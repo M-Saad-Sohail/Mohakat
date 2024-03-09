@@ -1,9 +1,10 @@
+'use client'
 import React from "react";
-import Input from "./../../../../UI//Input";
+import Input from "./../../../../UI/Input";
 import Button from "./../../../../UI/Button";
 import Link from "next/link";
 import { useFormik } from "formik";
-import { PATHS,LOGININITIALVALUES } from "../../../../../contants";
+import { PATHS, LOGININITIALVALUES } from "./../../../../../contants"; 
 import { loginSchema } from "./../../../../../utils/validationSchema";
 import { UserCredentials } from "./../../../../../types";
 
@@ -13,27 +14,23 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
-    const { handleSubmit, handleChange, values, touched, errors } = useFormik({
-      initialValues: LOGININITIALVALUES,
-      validationSchema: loginSchema,
-      onSubmit: (values: UserCredentials) => {
-        submitHandler({...values, email: values.email.toLowerCase()});
-        console.log('values', values)
-      },
-    });
+  const { handleSubmit, handleChange, values, touched, errors } = useFormik({
+    initialValues: LOGININITIALVALUES, // Corrected constant name
+    validationSchema: loginSchema,
+    onSubmit: (values: UserCredentials) => {
+      submitHandler({ ...values, email: values.email.toLowerCase() });
+    },
+  });
+
   return (
-    <form
-      className="w-full mt-[200px]"
-      noValidate
-        onSubmit={handleSubmit}
-    >
+    <form className="w-full mt-[200px]" noValidate onSubmit={handleSubmit}>
       <div className="mx-4 my-10">
-        <h2 className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
-        Sign In
-        </h2>
-        <h4 className="text-xl font-semibold text-primary  leading-normal pt-2 mb-8">
-        Enter your credentials to continue
-        </h4>
+        <div className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
+          Sign In
+        </div>
+        <div className="text-xl font-semibold text-primary leading-normal pt-2 mb-8">
+          Enter your credentials to continue
+        </div>
         <Input
           title="Email"
           placeholder="Enter your Email"
@@ -44,24 +41,31 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
           value={values.email}
           error={touched.email && errors.email}
         />
-          <Input
+        <Input
           title="Password"
           placeholder="*************"
           name="password"
+          type="password" // Added type attribute
           onChange={handleChange}
           value={values.password}
           error={touched.password && errors.password}
         />
-        <div className=" justify-center items-center flex w-full">
-        <Button title='Sign In' className='min-w-[250px] px-6 'type="submit" isLoading={isLoading} />
+        <div className="justify-center items-center flex w-full">
+          <Button
+            title="Sign In"
+            className="min-w-[250px] px-6"
+            type="submit"
+            isLoading={isLoading}
+          />
         </div>
-   
-        <Link
-          href={PATHS.LOGIN}
-          className="text-center text-primary text-lg my-6 justify-center items-center flex font-helvetica mt-20"
+        <div
+            className="text-center text-primary text-lg my-6 justify-center items-center flex font-helvetica mt-20"
         >
-          Don’t have an account?  <Link className="text-primary font-bold" href="/become-sponsors"> Become a Sponsor</Link>
-        </Link>
+          Don’t have an account?{" "}
+          <Link className="text-primary font-bold" href="/become-sponsor">
+            Become a Sponsor
+          </Link>
+        </div>
       </div>
     </form>
   );
