@@ -2,11 +2,12 @@ import AuthLayout from './../../UI/AuthLayout'
 import React from 'react'
 import {verification} from '../../../assests'
 import Link from 'next/link'
+import Image from 'next/image'
 const ValidationScreen = () => {
   return (
    <AuthLayout>
     <div className='mt-[250px] text-primary'>
-        <img src={verification}/>
+        <Image alt='verification' src={verification}/>
         <h1 className='text-[60px] my-2 font-bold'>Congratulations</h1>
         <p className='text-[20px] my-3'>You have successfully created your account. It will take <br/> about 24hrs for verification.</p>
         <div className='flex'>

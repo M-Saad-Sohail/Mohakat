@@ -12,12 +12,12 @@ type IProps = {
   isLoading: boolean;
 };
 
-const Form = () => {
+const Form = ({ submitHandler, isLoading }: IProps) => {
     const { handleSubmit, handleChange, values, touched, errors } = useFormik({
       initialValues: LOGININITIALVALUES,
       validationSchema: loginSchema,
       onSubmit: (values: UserCredentials) => {
-        // submitHandler({...values, email: values.email.toLowerCase()});
+        submitHandler({...values, email: values.email.toLowerCase()});
         console.log('values', values)
       },
     });
@@ -53,7 +53,7 @@ const Form = () => {
           error={touched.password && errors.password}
         />
         <div className=" justify-center items-center flex w-full">
-        <Button title='Sign In' className='min-w-[250px] px-6 'type="submit"  />
+        <Button title='Sign In' className='min-w-[250px] px-6 'type="submit" isLoading={isLoading} />
         </div>
    
         <Link

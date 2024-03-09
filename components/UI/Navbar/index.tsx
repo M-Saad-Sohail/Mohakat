@@ -42,7 +42,7 @@ const Navbar = ({ isLoggedIn }: IProps) => {
          
           <Link
            href={'/sign-in'}
-            className={`py-3 px-4 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-lg font-bold`}
+          className={`py-3 px-4 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-lg font-bold`}
           >
             {" "}
             Sign In
@@ -85,7 +85,7 @@ const Navbar = ({ isLoggedIn }: IProps) => {
           {isLoggedIn ? (
             <>
                 <Link
-             href="/"
+               href={'/sign-in'}
               onClick={()=>{}}
               className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
             >

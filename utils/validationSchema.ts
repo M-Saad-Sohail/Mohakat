@@ -14,9 +14,9 @@ export const becomeSponsorSchema=object({
   .matches(/^[0-9]+$/, "Must be only digits")
   .min(12, 'Min 12 digit'),
   email: string().required("Email is Required"),
-  new_password1: string().required("Password is required"),
-  new_password2: string()
-    .oneOf([ref("new_password1")], "Password must match")
-    .required("Confirm password is required"),
+  password: string().required("Password is required"),
+  // new_password2: string()
+  //   .oneOf([ref("new_password1")], "Password must match")
+  //   .required("Confirm password is required"),
   address: string().required(" Address  is Required"),
 });

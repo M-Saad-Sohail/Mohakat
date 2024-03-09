@@ -27,7 +27,6 @@ export const BECOMESPONSORINITIALVALUES: BecomeSponsorSchema = {
   gender: "Male",
   cnicNumber: "",
   email: "",
-  new_password1: "",
-  new_password2: "",
+  password: "",
   address: "",
 };

@@ -5,20 +5,20 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import { PATHS,BECOMESPONSORINITIALVALUES } from "../../../../../contants";
 import { becomeSponsorSchema } from "./../../../../../utils/validationSchema";
-import { BecomeSponsorSchema } from "../../../../../types";
+import { BecomeSponsorSchema, RegisterUserCredentials } from "../../../../../types";
 
-// type IProps = {
-//   submitHandler: (arg: UserCredentials) => void;
-//   isLoading: boolean;
-// };
+type IProps = {
+  submitHandler: (arg: RegisterUserCredentials) => void;
+  isLoading: boolean;
+};
 
-const Form = () => {
+const Form = ({ submitHandler, isLoading }: IProps) => {
     const { handleSubmit, handleChange, values, touched, errors } = useFormik({
       initialValues: BECOMESPONSORINITIALVALUES,
       validationSchema: becomeSponsorSchema,
-      onSubmit: (values: BecomeSponsorSchema) => {
+      onSubmit: (values: RegisterUserCredentials) => {
         console.log('values', values)
-        // submitHandler({...values, email: values.email.toLowerCase()});
+        submitHandler({...values, email: values.email.toLowerCase()});
       },
     });
   return (
@@ -65,18 +65,10 @@ const Form = () => {
           <Input
           title="Password"
           placeholder="*************"
-          name="new_password1"
+          name="password"
           onChange={handleChange}
-          value={values.new_password1}
-          error={touched.new_password1 && errors.new_password1}
-        />
-          <Input
-          title="Password"
-          placeholder="*************"
-          name="new_password2"
-          onChange={handleChange}
-          value={values.new_password2}
-          error={touched.new_password2 && errors.new_password2}
+          value={values.password}
+          error={touched.password && errors.password}
         />
           <Input
           title="CNIC"
@@ -120,7 +112,7 @@ const Form = () => {
             <option value={'Female'}>Female</option>
           </select>
         <div className=" justify-center items-center flex w-full">
-        <Button title='Become a sponsor' className='max-w-[250px] px-6 'type="submit"  />
+        <Button title='Become a sponsor' className='max-w-[250px] px-6 'type="submit" isLoading={isLoading} />
         </div>
    
         <Link
