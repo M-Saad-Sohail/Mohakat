@@ -1,0 +1,27 @@
+import { NextRouter } from "next/router";
+
+export const navigateToDashboardIfLoggedIn = (router: NextRouter) => {
+  const tokenString = localStorage.getItem("user");
+  if (tokenString && JSON.parse(tokenString).key) {
+    router.push("/dashboard");
+  }
+};
+
+export const isAdminUserLoggedIn = (): boolean => {
+  const userString = localStorage.getItem("user");
+  if (userString) {
+    const user = JSON.parse(userString);
+    return user.role === "admin";
+  }
+  return false;
+};
+
+export const getUserFromLocalStorage = () => {
+  if (typeof window !== 'undefined') {
+    const userString = localStorage.getItem("user");
+    if (userString) {
+      return JSON.parse(userString);
+    }
+  }
+  return null; // or any other default value if needed
+};

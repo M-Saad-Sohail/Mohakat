@@ -1,12 +1,21 @@
+'use client'
 import AuthLayout from './../../UI/AuthLayout'
 import Form from "./components/Form"
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useAuth } from '../../../hooks/useAuth'
+import { navigateToDashboardIfLoggedIn } from "./../../../utils/auth";
+import { useRouter } from 'next/router';
 
 const BecomeSponsor = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    navigateToDashboardIfLoggedIn(router);
+
+  }, [router]);
   const { registerUser, isLoading } = useAuth();
   return (
-   <AuthLayout>
+   <AuthLayout className=''>
     <Form submitHandler={registerUser} isLoading={isLoading} />
    </AuthLayout>
   )

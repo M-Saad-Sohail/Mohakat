@@ -3,9 +3,9 @@ import Input from "./../../../../UI//Input";
 import Button from "./../../../../UI/Button";
 import Link from "next/link";
 import { useFormik } from "formik";
-import { PATHS,BECOMESPONSORINITIALVALUES } from "../../../../../contants";
+import { PATHS, BECOMESPONSORINITIALVALUES } from "../../../../../contants";
 import { becomeSponsorSchema } from "./../../../../../utils/validationSchema";
-import { BecomeSponsorSchema, RegisterUserCredentials } from "../../../../../types";
+import { RegisterUserCredentials } from "../../../../../types";
 
 type IProps = {
   submitHandler: (arg: RegisterUserCredentials) => void;
@@ -13,19 +13,21 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
-    const { handleSubmit, handleChange, values, touched, errors } = useFormik({
-      initialValues: BECOMESPONSORINITIALVALUES,
-      validationSchema: becomeSponsorSchema,
-      onSubmit: (values: RegisterUserCredentials) => {
-        console.log('values', values)
-        submitHandler({...values, email: values.email.toLowerCase()});
-      },
-    });
+  const { handleSubmit, handleChange, values, touched, errors } = useFormik({
+    initialValues: BECOMESPONSORINITIALVALUES,
+    validationSchema: becomeSponsorSchema,
+    onSubmit: (values: RegisterUserCredentials) => {
+      console.log('values', values)
+      submitHandler({...values, email: values.email.toLowerCase()});
+    },
+  });
+
   return (
+    <div className="w-full overflow-scroll overflow-y-auto">
     <form
-      className="w-full "
+      className="w-full"  // Set form overflow to auto
       noValidate
-        onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <div className="mx-4">
         <h2 className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
@@ -122,6 +124,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
         </Link>
       </div>
     </form>
+    </div>
   );
 };
 
