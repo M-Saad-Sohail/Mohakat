@@ -24,23 +24,24 @@ export const useAuth = () => {
         );
         const user: UserType = {
           key: data.token,
-          avator: data.sponser.avator, 
-          createdAt: data.sponser.createdAt, 
-          email: data.sponser.email, 
-          name: data.sponser.name,
-          no_of_sponsor: data.sponser.no_of_sponsor, 
-          password: data.sponser.password,
-          role: data.sponser.role, 
-          status: data.sponser.status, 
-          __v: data.sponser.__v, 
-          id: data.sponser._id, 
+          avator: data.sponser.avator, // Corrected key name
+          createdAt: data.sponser.createdAt, // Corrected key name
+          email: data.sponser.email, // Corrected key name
+          name: data.sponser.name, // Corrected key name
+          no_of_sponsor: data.sponser.no_of_sponsor, // Corrected key name
+          password: data.sponser.password, // Corrected key name
+          role: data.sponser.role, // Corrected key name
+          status: data.sponser.status, // Corrected key name
+          __v: data.sponser.__v, // Corrected key name
+          id: data.sponser._id, // Corrected key name
         };
         if (data.success){
           router.push('/dashboard');
         }
-      
+        console.log("user", user);
 
         toast.success("Login Successful.");
+        setUser({ user, isAuthenticated: true });
       } catch (e) {
         if (e instanceof AxiosError) toast.error(e.response?.data.message);
         else toast.error("Some error has occurred! Please try again.");
@@ -78,7 +79,6 @@ export const useAuth = () => {
         console.log("user", user);
         
         toast.success("Register Successful.");
-        setUser({ user, isAuthenticated: true });
         router.push('/verification'); // Corrected redirection
       } catch (e) {
         if (e instanceof AxiosError) toast.error(e.response?.data.message);
