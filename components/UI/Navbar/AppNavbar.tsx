@@ -12,8 +12,10 @@ type IProps = {
 };
 
 const AppNavbar = () => {
+   let [user, setUser] = useState<{ name: string } | null>(null);
     useEffect(()=>{
-        getUserFromLocalStorage();
+      const loggedInUser = getUserFromLocalStorage();
+      setUser(loggedInUser)
     },[])
 
 
@@ -50,7 +52,7 @@ const AppNavbar = () => {
               alt={""}
               className="h-12 w-12 rounded-full mr-2"
             />
-            <p className="">{ "name"}</p>
+            <p className="">{user ? user.name : ''}</p>
           </div>
         </div>
         <div
