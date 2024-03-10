@@ -1,7 +1,7 @@
 import React from "react";
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string | boolean | undefined;
-  title:string
+  title: string;
 }
 
 const Input: React.FC<IProps> = ({
@@ -14,7 +14,7 @@ const Input: React.FC<IProps> = ({
   value,
   name,
   readOnly,
-  title
+  title,
 }) => {
   return (
     <div className="mb-4 flex flex-col">
@@ -31,9 +31,7 @@ const Input: React.FC<IProps> = ({
         className={`p-3 w-full focus:outline-none bg-[#E8E8E8] h-[60px] max-w-[700px] text-primary ${className}`}
         style={style}
       />
-      {error && (
-        <p className="text-sm mb-2 font-helvetica text-red">{error}</p>
-      )}
+      {error && <p className="text-sm mb-2 font-helvetica text-red">{error}</p>}
     </div>
   );
 };

@@ -3,12 +3,18 @@ import { logo } from "../../../assests";
 import { Links } from "./../../../contants";
 import Link from "next/link";
 import Image from "next/image";
+import { useIntl } from "react-intl";
+import Select from "../Select";
+import { useRouter } from "next/router";
 
 type IProps = {
   isLoggedIn: boolean;
 };
 const AuthNavbar = ({ isLoggedIn }: IProps) => {
   const [open, setOpen] = useState(false);
+
+  const { locale, replace, route } = useRouter();
+
   const handleMenuClick = () => {
     setOpen(!open);
     toggleBodyScrolling();
@@ -19,6 +25,10 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
       body.style.overflow = open ? "auto" : "hidden";
     }
   };
+  const intl = useIntl();
+  const getLocaleValue = (id: string) =>
+    intl.formatMessage({ id: `navbar.${id}` });
+
   return (
     <div className="bg-[#FCFCFC] h-fit shadow-md">
       <div className="flex items-center justify-between py-4 mobile:pt-4">
@@ -34,25 +44,37 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
               href={link.link}
               className="block py-2 px-10 font-bold duration-500 text-[16px] text-primary"
             >
-              {link.name}
+              {getLocaleValue(link.localeId)}
             </Link>
           ))}
         </div>
+
+        <Select
+          name="language"
+          value={locale}
+          title=""
+          onChange={(e) => replace(route, {}, { locale: e.target.value })}
+          options={[
+            { label: "English", value: "en" },
+            { label: "Arabic", value: "ar" },
+            { label: "Turkish", value: "tr" },
+          ]}
+        />
+
         <div className={`${isLoggedIn ? "block" : "hidden"}  float-right `}>
-         
           <Link
-           href={'/sign-in'}
+            href={"/sign-in"}
             className={`py-3 px-4 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-lg font-bold`}
           >
             {" "}
-            Sign In
+            {getLocaleValue("cta.signin")}
           </Link>
           <Link
-           href={'/become-sponsor'}
+            href={"/become-sponsor"}
             className={`py-3 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-4 rounded-lg font-bold`}
           >
             {" "}
-            Become a Sponsor
+            {getLocaleValue("cta.become-sponsor")}
           </Link>
         </div>
         <div
@@ -84,22 +106,21 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
           </div>
           {isLoggedIn ? (
             <>
-                <Link
-             href="/"
-              onClick={()=>{}}
-              className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
-            >
-              Sign In
-            </Link>
-             <Link
-             href="/"
-             onClick={()=>{}}
-             className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
-           >
-             Become a Sponsor
-           </Link>
+              <Link
+                href="/"
+                onClick={() => {}}
+                className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/"
+                onClick={() => {}}
+                className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
+              >
+                Become a Sponsor
+              </Link>
             </>
-        
           ) : null}
         </div>
       )}

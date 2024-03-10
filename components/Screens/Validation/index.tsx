@@ -1,31 +1,36 @@
-import AuthLayout from './../../UI/AuthLayout'
-import React from 'react'
-import {verification} from '../../../assests'
-import Link from 'next/link'
-import Image from 'next/image'
+import AuthLayout from "./../../UI/AuthLayout";
+import React from "react";
+import { verification } from "../../../assests";
+import Link from "next/link";
+import Image from "next/image";
+import { useIntl } from "react-intl";
 const ValidationScreen = () => {
+  const int = useIntl();
+  const getLocaleValue = (id: string) =>
+    int.formatMessage({ id: `sponsorsuccess.${id}` });
+
   return (
-   <AuthLayout>
-    <div className='mt-[250px] text-primary'>
-        <Image alt='verification' src={verification}/>
-        <h1 className='text-[60px] my-2 font-bold'>Congratulations</h1>
-        <p className='text-[20px] my-3'>You have successfully created your account. It will take <br/> about 24hrs for verification.</p>
-        <div className='flex'>
-        <Link
-            href={'/become-sponsors'}
-            className={`py-3 justify-center items-center flex duration-500 text-center md:flex hidden float-right mr-4 border bg-primary text-white px-4 rounded-lg font-bold my-4 min-w-[200px]`}
+    <AuthLayout>
+      <div className="mt-[250px] text-primary">
+        <Image alt="verification" src={verification} />
+        <h1 className="text-[60px] my-2 font-bold">
+          {getLocaleValue("message.title")}
+        </h1>
+        <p className="text-[20px] my-3">
+          {getLocaleValue("message.description")}
+        </p>
+        <div className="flex">
+          <Link
+            href={"/become-sponsor"}
+            className={`py-3 justify-center items-center duration-500 text-center md:flex hidden float-right mr-4 border bg-primary text-white px-4 rounded-lg font-bold my-4 min-w-[200px]`}
           >
             {" "}
-           Continue
+            {getLocaleValue("message.cta")}
           </Link>
-    
         </div>
- 
-       
-     
-    </div>
-   </AuthLayout>
-  )
-}
+      </div>
+    </AuthLayout>
+  );
+};
 
-export default ValidationScreen
+export default ValidationScreen;

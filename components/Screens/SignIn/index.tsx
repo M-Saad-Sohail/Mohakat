@@ -18,10 +18,10 @@ const SignIn = () => {
 
   const { loginUser, isLoading } = useAuth();
   return (
-   <AuthLayout>
-   <Form submitHandler={loginUser} isLoading={isLoading} />
-   </AuthLayout>
-  )
-}
+    <AuthLayout>
+      <Form submitHandler={loginUser} isLoading={isLoading} />
+    </AuthLayout>
+  );
+};
 
-export default SignIn
+export default SignIn;

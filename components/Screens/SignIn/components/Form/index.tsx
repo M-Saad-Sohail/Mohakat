@@ -4,9 +4,10 @@ import Input from "./../../../../UI/Input";
 import Button from "./../../../../UI/Button";
 import Link from "next/link";
 import { useFormik } from "formik";
-import { PATHS, LOGININITIALVALUES } from "./../../../../../contants"; 
+import { PATHS, LOGININITIALVALUES } from "./../../../../../contants";
 import { loginSchema } from "./../../../../../utils/validationSchema";
 import { UserCredentials } from "./../../../../../types";
+import { FormattedMessage, useIntl } from "react-intl";
 
 type IProps = {
   submitHandler: (arg: UserCredentials) => void;
@@ -23,18 +24,22 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
     },
   });
 
+  const int = useIntl();
+
   return (
     <form className="w-full mt-[200px]" noValidate onSubmit={handleSubmit}>
       <div className="mx-4 my-10">
         <div className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
-          Sign In
+          <FormattedMessage id="signin.form.title" />
         </div>
         <div className="text-xl font-semibold text-primary leading-normal pt-2 mb-8">
-          Enter your credentials to continue
+          <FormattedMessage id="signin.form.description" />
         </div>
         <Input
-          title="Email"
-          placeholder="Enter your Email"
+          title={int.formatMessage({ id: "signin.form.email.title" })}
+          placeholder={int.formatMessage({
+            id: "signin.form.email.placeholder",
+          })}
           type="email"
           name="email"
           className=""
@@ -43,7 +48,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
           error={touched.email && errors.email}
         />
         <Input
-          title="Password"
+          title={int.formatMessage({ id: "signin.form.password.title" })}
           placeholder="*************"
           name="password"
           type="password" // Added type attribute
@@ -53,18 +58,16 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
         />
         <div className="justify-center items-center flex w-full">
           <Button
-            title="Sign In"
+            title={int.formatMessage({ id: "signin.form.submit" })}
             className="min-w-[250px] px-6"
             type="submit"
             isLoading={isLoading}
           />
         </div>
-        <div
-            className="text-center text-primary text-lg my-6 justify-center items-center flex font-helvetica mt-20"
-        >
-          Don’t have an account?{" "}
+        <div className="text-center text-primary text-lg my-6 justify-center items-center flex font-helvetica mt-20">
+          <FormattedMessage id="signin.form.cta.0" />
           <Link className="text-primary font-bold" href="/become-sponsor">
-            Become a Sponsor
+            <FormattedMessage id="signin.form.cta.1" />
           </Link>
         </div>
       </div>

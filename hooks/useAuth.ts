@@ -41,7 +41,6 @@ export const useAuth = () => {
       
 
         toast.success("Login Successful.");
-        setUser({ user, isAuthenticated: true });
       } catch (e) {
         if (e instanceof AxiosError) toast.error(e.response?.data.message);
         else toast.error("Some error has occurred! Please try again.");

@@ -9,11 +9,17 @@ export const PATHS = {
 };
 
 export const Links = [
-  { name: "Support", link: "/support" },
-  { name: "Sponsor", link: "/become-sponsor" },
-  { name: "Empower", link: "/emPower" },
-  { name: "FAQs", link: "faqs" },
-  { name: "Contact", link: "/contact" },
+  { localeId: "links.0", name: "Support", link: "/support" },
+  { localeId: "links.1", name: "Sponsor", link: "/become-sponsor" },
+  {
+    localeId: "links.2", name: "Empower", link: "/emPower"
+  },
+  {
+    localeId: "links.3", name: "FAQs", link: "faqs"
+  },
+  {
+    localeId: "links.4", name: "Contact", link: "/contact"
+  },
 ];
 
 export const LOGININITIALVALUES: LoginSchema = {

@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import {
   dashboard,
   sponsor,
   families,
   credit_card,
-  logo
+  logo,
 } from "./../../../assests";
 import Link from "next/link";
 import { useWindowSize } from "./../../../hooks/useWindowSize";
@@ -15,18 +15,18 @@ import { getUserFromLocalStorage } from "../../../utils/auth";
 // import { isAdminUserLoggedIn } from "./../../../utils/auth";
 
 const LeftSideBar = () => {
-    const [isAdmin,setIsAdmin]=useState(false)
-useEffect(()=>{
-    const user =getUserFromLocalStorage()
-    if (user.role==="admin"){
-        setIsAdmin(true)
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    const user = getUserFromLocalStorage();
+    if (user && user.role === "admin") {
+      setIsAdmin(true);
     }
-})
+
+  }, []);
   const size = useWindowSize();
   const [open, setOpen] = useState(size.width > 768);
   const [clickedMenu, setClickedMenu] = useState(0);
 
-  
   const Menu = [
     { title: "Dashboard", src: dashboard, link: "/dashboard" },
     { title: "Families", src: families, link: "#" },
@@ -38,21 +38,33 @@ useEffect(()=>{
     { title: "Families", src: families, link: "#" },
     { title: "Sponsoring", src: sponsor, link: "#" },
     { title: "Credit Cards", src: credit_card, link: "#" },
-    { title: "Approved Sponsor", src: families, link: "/dashboard/sponsor/approved" },
-    { title: "Rejected Sponsor", src: families, link: "/dashboard/sponsor/rejected" },
-    { title: "Pending Sponsor", src: families, link: "/dashboard/sponsor/pending" },
+    {
+      title: "Approved Sponsor",
+      src: families,
+      link: "/dashboard/sponsor/approved",
+    },
+    {
+      title: "Rejected Sponsor",
+      src: families,
+      link: "/dashboard/sponsor/rejected",
+    },
+    {
+      title: "Pending Sponsor",
+      src: families,
+      link: "/dashboard/sponsor/pending",
+    },
   ];
-  
- 
 
-  const handleClick = (index:any) => {
+  const handleClick = (index: any) => {
     setClickedMenu(index);
   };
-   const Menus=isAdmin?AdminMenus:Menu
+  const Menus = isAdmin ? AdminMenus : Menu;
   return (
     <div className="flex h-full">
       <div
-        className={`fixed w-[275px] max-h-fit ${open ? "w-[240px] max-h-fit" : "w-20 "}
+        className={`fixed w-[275px] max-h-fit ${
+          open ? "w-[240px] max-h-fit" : "w-20 "
+        }
            h-screen p-5 pt-8 relative duration-300 bg-white shadow-md`}
       >
         <div className="flex gap-x-2 items-center">
@@ -71,9 +83,7 @@ useEffect(()=>{
               href={Menu.link}
               key={index}
               {...(Menu.title === "Logout" && {
-                onClick: () => {
-                 
-                },
+                onClick: () => {},
               })}
             >
               <li
@@ -85,13 +95,20 @@ useEffect(()=>{
                   src={Menu.src}
                   className="w-8 h-8 object-contain"
                   alt=""
-                  style={clickedMenu === index ? { filter: 'invert(26%) sepia(96%) saturate(581%) hue-rotate(317deg) brightness(91%) contrast(83%)' } : {}}
+                  style={
+                    clickedMenu === index
+                      ? {
+                          filter:
+                            "invert(26%) sepia(96%) saturate(581%) hue-rotate(317deg) brightness(91%) contrast(83%)",
+                        }
+                      : {}
+                  }
                 />
 
                 <p
-                  className={`${
-                    open && "hidden"
-                  } ${clickedMenu === index?"text-primary":"text-black"}
+                  className={`${open && "hidden"} ${
+                    clickedMenu === index ? "text-primary" : "text-black"
+                  }
                     origin-left font-semibold text-[20px] duration-200`}
                 >
                   {Menu.title}
