@@ -1,4 +1,5 @@
 import { NextRouter } from "next/router";
+import { UserType } from "../state/user/types";
 
 export const navigateToDashboardIfLoggedIn = (router: NextRouter) => {
   const tokenString = localStorage.getItem("user");
@@ -20,7 +21,11 @@ export const getUserFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
     const userString = localStorage.getItem("user");
     if (userString) {
-      return JSON.parse(userString);
+      try {
+        return JSON.parse(userString) as UserType; 
+      } catch (error) {
+        return null
+      }
     }
   }
   return null; // or any other default value if needed

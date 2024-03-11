@@ -1,5 +1,4 @@
 import { BecomeSponsorSchema, LoginSchema } from "../types";
-import { Column } from "react-table";
 export const PATHS = {
   HOME: "/",
   FORGETPASSWORD: "/forget-password",

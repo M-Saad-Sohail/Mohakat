@@ -41,11 +41,13 @@ function Table({ columns, data }: IProps) {
 
   const handleActionApprovedClick = (id: string) => {
     const user = getUserFromLocalStorage();
+    if (!user) return
     ApprovedSponsor(user.key, id);
     reload();
   };
   const handleActionRejectClick = (id: string) => {
     const user = getUserFromLocalStorage();
+    if (!user) return
     RejectSponsor(user.key, id);
     reload();
   };
@@ -94,7 +96,7 @@ function Table({ columns, data }: IProps) {
                       >
                         <button
                           onClick={() =>
-                            handleActionRejectClick(row.orignal._id)
+                            handleActionRejectClick(row.original._id)
                           }
                         >
                           <Image src={reject} alt="" />

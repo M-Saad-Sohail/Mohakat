@@ -13,6 +13,7 @@ const PendingSponsor = () => {
     const fetchData = async () => {
       try {
         const user = getUserFromLocalStorage();
+        if (!user) return;
         const data = await fetchPendingData(user.key);
         setPendingData(data?.simplifiedSponsors || []); // Ensure data is an array or set default to empty array
       } catch (error) {
