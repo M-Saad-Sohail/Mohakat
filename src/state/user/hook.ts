@@ -4,7 +4,7 @@ import { RootState } from "./../../state/store";
 import { setUserAction, updateUserAction } from ".";
 import { UpdateUserType, UserSliceType } from "./types";
 import {
-deleteUserInfoFromLocalStorage,
+  deleteUserInfoFromLocalStorage,
   getUserInfoFromLocalStorage,
   saveUserInfoInLocalStorage,
 } from "./../../lib/cache";

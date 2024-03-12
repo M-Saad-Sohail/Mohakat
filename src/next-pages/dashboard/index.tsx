@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "../../components/Screens/Dashboard";
-import { getUserFromLocalStorage } from "./../../utils/auth";
+import { getUserFromLocalStorage } from "../../utils/auth";
 
 const index = () => {
   const user = getUserFromLocalStorage();

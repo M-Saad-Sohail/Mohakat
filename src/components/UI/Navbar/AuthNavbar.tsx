@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { logo } from "../../../assests";
-import { Links } from "./../../../contants";
+import { logo } from "@/assests";
+import { Links } from "@/contants";
 import Link from "next/link";
 import Image from "next/image";
 import { useIntl } from "react-intl";
 import Select from "../Select";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   isLoggedIn: boolean;
@@ -13,7 +13,7 @@ type IProps = {
 const AuthNavbar = ({ isLoggedIn }: IProps) => {
   const [open, setOpen] = useState(false);
 
-  const { locale, replace, route } = useRouter();
+  const { replace } = useRouter();
 
   const handleMenuClick = () => {
     setOpen(!open);
@@ -49,11 +49,12 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
           ))}
         </div>
 
+        {/* TODO: need to add locale */}
         <Select
           name="language"
-          value={locale}
+          value={"en"}
           title=""
-          onChange={(e) => replace(route, {}, { locale: e.target.value })}
+          onChange={(e) => replace("/", {})}
           options={[
             { label: "English", value: "en" },
             { label: "Arabic", value: "ar" },

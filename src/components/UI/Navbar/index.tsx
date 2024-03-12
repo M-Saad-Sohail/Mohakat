@@ -1,15 +1,14 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter, usePathname } from "next/navigation";
 import AuthNavbar from "./AuthNavbar";
 import AppNavbar from "./AppNavbar";
 
 const Navbar = () => {
-  const router = useRouter();
-
+  const pathname = usePathname();
   // Function to check if the current path is an authentication path
   const isAuthPath = (path: string) => {
-
-    let newPath = path.replace("/tr", "")
-    newPath = newPath.replace("/ar", "")
+    let newPath = path.replace("/tr", "");
+    newPath = newPath.replace("/ar", "");
 
     const authPaths = [
       "/",
@@ -20,13 +19,10 @@ const Navbar = () => {
     ];
     return authPaths.includes(newPath);
   };
-  console.log("isAuthPath", router.pathname);
 
-  const isAuth = isAuthPath(router.pathname);
-  console.log(isAuth)
   return (
     <div>
-      {isAuthPath(router.pathname) ? <AuthNavbar isLoggedIn /> : <AppNavbar />}
+      {isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : <AppNavbar />}
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { NextRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { UserType } from "../state/user/types";
 
-export const navigateToDashboardIfLoggedIn = (router: NextRouter) => {
+export const navigateToDashboardIfLoggedIn = (router: ReturnType<typeof useRouter>) => {
   const tokenString = localStorage.getItem("user");
   if (tokenString && JSON.parse(tokenString).key) {
     router.push("/dashboard");

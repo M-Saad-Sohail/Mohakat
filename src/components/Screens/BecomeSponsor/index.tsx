@@ -1,10 +1,10 @@
 "use client";
-import AuthLayout from "./../../UI/AuthLayout";
+import AuthLayout from "@/components/UI/AuthLayout";
 import Form from "./components/Form";
 import React, { useEffect } from "react";
-import { useAuth } from "../../../hooks/useAuth";
-import { navigateToDashboardIfLoggedIn } from "./../../../utils/auth";
-import { useRouter } from "next/router";
+import { useAuth } from "@/hooks/useAuth";
+import { navigateToDashboardIfLoggedIn } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 
 const BecomeSponsor = () => {
   const router = useRouter();
