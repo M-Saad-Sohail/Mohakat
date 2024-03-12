@@ -1,3 +1,3 @@
 export type LoadingSliceType = {
-    isLoading: boolean;
-  };
+	isLoading: boolean;
+};

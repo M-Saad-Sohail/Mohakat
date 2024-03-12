@@ -1,10 +1,10 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import LandingPage from "../components/Screens/LandingPage";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import LandingPage from '../components/Screens/LandingPage';
 
 const Home: NextPage = () => {
-  return <LandingPage />;
+	return <LandingPage />;
 };
 export default Home;

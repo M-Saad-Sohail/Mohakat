@@ -1,10 +1,12 @@
-import React from 'react'
-import RejectedSponsor from '../../../../components/Screens/Dashboard/components/AdminDashboard/Sponsor/Rejected'
+import React from 'react';
+import RejectedSponsor from '../../../../components/Screens/Dashboard/components/AdminDashboard/Sponsor/Rejected';
 
 const index = () => {
-  return (
-    <div><RejectedSponsor/></div>
-  )
-}
+	return (
+		<div>
+			<RejectedSponsor />
+		</div>
+	);
+};
 
-export default index
+export default index;

@@ -1,15 +1,15 @@
-import MainProvider from "@/components/Provider/MainProvider";
+import MainProvider from '@/components/Provider/MainProvider';
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>
-        <MainProvider>{children}</MainProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body>
+				<MainProvider>{children}</MainProvider>
+			</body>
+		</html>
+	);
 }

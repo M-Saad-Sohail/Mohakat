@@ -1,10 +1,12 @@
-import React from 'react'
-import BecomeSponsor from '../../components/Screens/BecomeSponsor'
+import React from 'react';
+import BecomeSponsor from '../../components/Screens/BecomeSponsor';
 
 const index = () => {
-  return (
-    <div><BecomeSponsor/></div>
-  )
-}
+	return (
+		<div>
+			<BecomeSponsor />
+		</div>
+	);
+};
 
-export default index
+export default index;

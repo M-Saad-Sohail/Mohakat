@@ -1,10 +1,12 @@
-import React from 'react'
-import ValidationScreen from '../../components/Screens/Validation'
+import React from 'react';
+import ValidationScreen from '../../components/Screens/Validation';
 
 const index = () => {
-  return (
-    <div><ValidationScreen/></div>
-  )
-}
+	return (
+		<div>
+			<ValidationScreen />
+		</div>
+	);
+};
 
-export default index
+export default index;

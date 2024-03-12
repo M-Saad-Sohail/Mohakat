@@ -1,27 +1,27 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; //
-import UserReducer from "./../state/user";
-import LoadingReducer from "./../state/loading";
-import logger from 'redux-logger'
+import { combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; //
+import UserReducer from './../state/user';
+import LoadingReducer from './../state/loading';
+import logger from 'redux-logger';
 
 const rootReducer = combineReducers({
-  user: UserReducer,
-  loading: LoadingReducer,
+	user: UserReducer,
+	loading: LoadingReducer,
 });
 
 const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["loading"],
+	key: 'root',
+	storage,
+	blacklist: ['loading'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export default store;
