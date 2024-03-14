@@ -1,8 +1,9 @@
+'use client'
 import React, { useState, useEffect } from 'react';
-import LeftSideBar from '@/components/UI/Sidebar';
+import LeftSideBar from 'components/UI/Sidebar@/';
 import MainLayout from '@/components/UI/MainLayout';
 import Table from '@/components/UI/Table';
-import { APPROVEDCOLUMN, SPONSORDATA } from '@/contants';
+import { REJECTEDCOLUMN, SPONSORDATA } from '@/contants';
 import { fetchRejectededData } from '@/hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '@/utils/auth';
 
@@ -29,10 +30,10 @@ const RejectedSponsor = () => {
 				<LeftSideBar />
 				<MainLayout>
 					<div className="px-4">
-						<h2 className="text-primary text-4xl justify-center flex items-center my-4 font-bold">
+					<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
 							Rejected Sponsors
 						</h2>
-						<Table data={rejectedData} columns={APPROVEDCOLUMN} />
+						<Table data={rejectedData} columns={REJECTEDCOLUMN} />
 					</div>
 				</MainLayout>
 			</div>

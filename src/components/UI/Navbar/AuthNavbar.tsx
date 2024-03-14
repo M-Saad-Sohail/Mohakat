@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import Select from '../Select';
 import { useRouter } from 'next/navigation';
+import LangSelector from '../LandSelector';
 
 type IProps = {
 	isLoggedIn: boolean;
@@ -31,53 +32,50 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 
 	return (
 		<div className="bg-[#FCFCFC] h-fit shadow-md">
-			<div className="flex items-center justify-between py-4 mobile:pt-4">
+			<div className="flex items-center justify-between py-4 mobile:pt-4 mx-10">
 				<div className="flex items-center ">
 					<Link href="/">
 						<Image src={logo} alt="Logo" className="mx-2 h-14 w-14" />
 					</Link>
 				</div>
-				<div className="py-2 hidden md:flex ">
+				<div className="py-2 hidden md:flex -ml-20">
 					{Links.map((link) => (
 						<Link
 							key={link.name}
 							href={link.link}
-							className="block py-2 px-10 font-bold duration-500 text-[16px] text-primary"
+							className="block py-2 px-6 font-bold duration-500 text-[16px] text-primary"
 						>
 							{getLocaleValue(link.localeId)}
 						</Link>
 					))}
 				</div>
-
-				{/* TODO: need to add locale */}
-				<Select
-					name="language"
-					value={'en'}
-					title=""
-					onChange={(e) => replace('/', {})}
-					options={[
-						{ label: 'English', value: 'en' },
-						{ label: 'Arabic', value: 'ar' },
-						{ label: 'Turkish', value: 'tr' },
-					]}
-				/>
-
-				<div className={`${isLoggedIn ? 'block' : 'hidden'}  float-right `}>
+				<div className="flex flex-row items-center justify-center  gap-x-4">
+					<LangSelector
+						name="language"
+						value={'en'}
+						title=""
+						onChange={(e) => replace('/', {})}
+						options={[
+							{ label: 'EN', value: 'en' },
+							{ label: 'AR', value: 'ar' },
+							{ label: 'TR', value: 'tr' },
+						]}
+						className='px-4'
+					/>
 					<Link
 						href={'/sign-in'}
-						className={`py-3 px-4 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-lg font-bold`}
+						className={`px-4 py-3 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-md font-bold `}
 					>
-						{' '}
 						{getLocaleValue('cta.signin')}
 					</Link>
 					<Link
 						href={'/become-sponsor'}
-						className={`py-3 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-4 rounded-lg font-bold`}
+						className={`py-3 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
 					>
-						{' '}
 						{getLocaleValue('cta.become-sponsor')}
 					</Link>
 				</div>
+
 				<div
 					onClick={handleMenuClick}
 					className={` ${

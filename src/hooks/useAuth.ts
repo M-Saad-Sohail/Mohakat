@@ -1,19 +1,17 @@
 import { useCallback } from 'react';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import { useLoading } from './../state/loading/hook';
-import { useUser } from './../state/user/hook';
-import { UserType } from './../state/user/types';
-import { UserCredentials, RegisterUserCredentials } from './../types';
-import { setUserAction } from './../state/user';
-import { useRouter } from 'next/router'; // Corrected import statement
-import { PATHS } from '../contants';
-
+import { useLoading } from '@/state/loading/hook';
+import { useUser } from '@/state/user/hook';
+import { UserType } from '@/state/user/types';
+import { UserCredentials, RegisterUserCredentials } from '@/types';
+import { setUserAction } from '@/state/user';
+import { usePathname } from 'next/navigation'
+import { PATHS } from '@/contants';
+import { redirect } from 'next/navigation'
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
-	const router = useRouter(); // Corrected router import
-
 	const loginUser = useCallback(
 		async (credentials: UserCredentials) => {
 			try {
@@ -22,6 +20,7 @@ export const useAuth = () => {
 					'http://localhost:4000/api/v1/login',
 					credentials,
 				);
+				console.log('data', data)
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -36,15 +35,17 @@ export const useAuth = () => {
 					id: data.sponser._id, // Corrected key name
 				};
 				if (data.success) {
-					router.push('/dashboard');
+					window.location.href=('/dashboard');
+					
 				}
 				console.log('user', user);
 
 				toast.success('Login Successful.');
 				setUser({ user, isAuthenticated: true });
 			} catch (e) {
+
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
-				else toast.error('Some error has occurred! Please try again.');
+				// else toast.error('Some error has occurred! Please try again.');
 			} finally {
 				setIsLoading(false);
 			}
@@ -75,12 +76,12 @@ export const useAuth = () => {
 					id: data.sponser._id, // Corrected key name
 				};
 				if (data.success) {
-					router.push('/verification');
+					redirect('/verification');
 				}
 				console.log('user', user);
 
 				toast.success('Register Successful.');
-				router.push('/verification'); // Corrected redirection
+				redirect('/verification');
 			} catch (e) {
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
 				else toast.error('Some error has occurred! Please try again.');
@@ -89,7 +90,7 @@ export const useAuth = () => {
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[setIsLoading, setUser, router],
+		[setIsLoading, setUser],
 	);
 
 	const logoutUser = useCallback(() => {

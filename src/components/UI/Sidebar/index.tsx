@@ -6,52 +6,71 @@ import {
 	families,
 	credit_card,
 	logo,
+	approved__icon,
+	pending_icon,
+	deny_icon,
+	profile,
+	dashboard_logo,
+	setting_icon,
+	form_icon,
+	logout
 } from './../../../assests';
 import Link from 'next/link';
 import { useWindowSize } from './../../../hooks/useWindowSize';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { getUserFromLocalStorage } from '../../../utils/auth';
+import { getUserFromLocalStorage } from '@/utils/auth';
+import { useAuth } from '@/hooks/useAuth';
 // import { isAdminUserLoggedIn } from "./../../../utils/auth";
-
+type IProps = {
+	title: string;
+	src: any;
+	link: string;
+	gap?: boolean;
+}[];
 const LeftSideBar = () => {
+	let [user, setUser] = useState<{ name: string; email: string } | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
+	const {logoutUser}=useAuth()
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
+			setUser(user);
 		}
 	}, []);
 	const size = useWindowSize();
 	const [open, setOpen] = useState(size.width > 768);
 	const [clickedMenu, setClickedMenu] = useState(0);
 
-	const Menu = [
-		{ title: 'Dashboard', src: dashboard, link: '/dashboard' },
+	const Menu: IProps = [
+		{ title: 'Dashboard', src: dashboard, link: '/dashboard', gap: true },
 		{ title: 'Families', src: families, link: '#' },
 		{ title: 'Sponsoring', src: sponsor, link: '#' },
 		{ title: 'Credit Cards', src: credit_card, link: '#' },
 	];
 	const AdminMenus = [
-		{ title: 'Dashboard', src: dashboard, link: '/dashboard' },
+		{ title: 'Dashboard', src: dashboard, link: '/dashboard',gap: true },
 		{ title: 'Families', src: families, link: '#' },
-		{ title: 'Sponsoring', src: sponsor, link: '#' },
-		{ title: 'Credit Cards', src: credit_card, link: '#' },
+		{
+			title: 'Pending Sponsor',
+			src: pending_icon,
+			link: '/dashboard/sponsor/pending',
+		},
 		{
 			title: 'Approved Sponsor',
-			src: families,
+			src: approved__icon,
 			link: '/dashboard/sponsor/approved',
 		},
 		{
 			title: 'Rejected Sponsor',
-			src: families,
+			src: deny_icon,
 			link: '/dashboard/sponsor/rejected',
+			gap: true,
 		},
-		{
-			title: 'Pending Sponsor',
-			src: families,
-			link: '/dashboard/sponsor/pending',
-		},
+		{ title: 'Form Response', src: form_icon, link: '/dashboard' },
+		{ title: 'Setting ', src: setting_icon, link: '#' },
+		{ title: 'Logout', src: logout, link: '#' },
 	];
 
 	const handleClick = (index: any) => {
@@ -68,13 +87,25 @@ const LeftSideBar = () => {
 				<div className="flex gap-x-2 items-center">
 					<Link href="/">
 						<Image
-							src={logo}
-							alt='Logo'
+							src={dashboard_logo}
+							alt="Logo"
 							className={`${!open && 'hidden'}`}
 							width={150}
 							height={150}
 						/>
 					</Link>
+				</div>
+				<Link href="/" className="">
+					<Image src={dashboard_logo} alt="Logo" width={150} height={150} />
+				</Link>
+				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
+					<Image
+						src={profile} // Replace with the path to the user profile image
+						alt={''}
+						className="h-[100px] w-[100px] rounded-full mr-2"
+					/>
+					<p className="font-bold text-[20px]">{user ? user.name : ''}</p>
+					<p className="">{user ? user.email : ''}</p>
 				</div>
 				<ul className="py-6">
 					{Menus.map((Menu, index) => (
@@ -82,14 +113,16 @@ const LeftSideBar = () => {
 							href={Menu.link}
 							key={index}
 							{...(Menu.title === 'Logout' && {
-								onClick: () => {},
+								onClick: () => {logoutUser},
 							})}
 						>
 							<li
-								className={`flex  rounded-md p-2 mt-4 cursor-pointer hover:bg-light-white text-black text-sm items-center gap-x-4 
-                  ${index === 0 && 'bg-light-white'}`}
-								onClick={() => handleClick(index)} // Add onClick event
-							>
+								className={`flex  rounded-md px-2 py-1 cursor-pointer hover:bg-light-white text-black text-sm items-center gap-x-4 
+    ${index === 0 && 'bg-light-white '}`}
+								onClick={() => handleClick(index)}
+
+							><div className='flex-col'>
+								<div className='flex gap-x-4'>
 								<Image
 									src={Menu.src}
 									className="w-8 h-8 object-contain"
@@ -103,15 +136,24 @@ const LeftSideBar = () => {
 											: {}
 									}
 								/>
+	
+									<p
+										className={`${open && 'hidden'} ${
+											clickedMenu === index ? 'text-primary' : 'text-black'
+										}
+            origin-left font-semibold text-[20px] duration-200 mt-1`}
+									>
+										{Menu.title}
+									</p>
+									</div>
+							<div className='mt-4'>
 
-								<p
-									className={`${open && 'hidden'} ${
-										clickedMenu === index ? 'text-primary' : 'text-black'
-									}
-                    origin-left font-semibold text-[20px] duration-200`}
-								>
-									{Menu.title}
-								</p>
+									{Menu.gap && (
+								     <div className="w-[200px] h-[1px] bg-black my-5"></div>
+									)}{' '}
+								
+							</div>
+							</div>
 							</li>
 						</Link>
 					))}

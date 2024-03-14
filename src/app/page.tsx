@@ -1,10 +1,11 @@
 import React from 'react';
 import BecomeSponsor from '@/components/Screens/BecomeSponsor';
+import LandingPage from '@/components/Screens/LandingPage';
 
 const index = () => {
 	return (
 		<div>
-			<BecomeSponsor />
+			<LandingPage />
 		</div>
 	);
 };

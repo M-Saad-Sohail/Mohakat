@@ -2,9 +2,8 @@
 import Image from 'next/image';
 import { signIn__image } from '../../../assests';
 import { useCallback, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { getDirection } from '../../../utils/get-direction';
-
+import { redirect } from 'next/navigation'
 interface IProps {
 	children: React.ReactNode;
 	className?: string;
@@ -12,8 +11,8 @@ interface IProps {
 }
 
 const AuthLayout: React.FC<IProps> = ({ children, className, margin }) => {
-	const { locale, defaultLocale } = useRouter();
-	const dir = getDirection(locale ?? defaultLocale ?? 'en');
+	// const { locale, defaultLocale } = useRouter();
+	// const dir = getDirection(locale ?? defaultLocale ?? 'en');
 
 	const toggleBodyScrolling = useCallback(() => {
 		const body = document.querySelector('body');
@@ -27,7 +26,7 @@ const AuthLayout: React.FC<IProps> = ({ children, className, margin }) => {
 	}, [toggleBodyScrolling]);
 
 	return (
-		<div dir={dir} className="bg-main overflow-y-hidden">
+		<div dir={'en'} className="bg-main overflow-y-hidden">
 			<div className="flex flex-col" style={{ overflow: 'hidden' }}>
 				<div className="flex-1 w-full flex md:flex-row gap-x-14">
 					<div className={`w-1/2 ${margin}`}>
