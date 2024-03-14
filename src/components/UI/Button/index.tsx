@@ -4,6 +4,7 @@ import React from 'react';
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	isLoading?: boolean;
 	localeId?: string;
+	
 }
 const Button: React.FC<IProps> = ({
 	onClick = () => {},

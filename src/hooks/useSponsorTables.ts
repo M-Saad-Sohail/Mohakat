@@ -68,6 +68,44 @@ export const RejectSponsor = async (token: string, id: string) => {
 		throw error;
 	}
 };
+export const RejectDelete = async (token: string, id: string) => {
+	try {
+		const response = await axios.delete(
+			`http://localhost:4000/api/v1/sponser/delete/${id}`,
+		
+			{
+				headers: {
+					Authorization: `${token}`,
+				},
+			},
+		);
+		console.log('data', response.data);
+		console.log('sucesssfully delete')
+		return response.data;
+	} catch (error) {
+		console.error('Error fetching data:', error);
+		throw error;
+	}
+};
+export const RejectDeleteAll = async (token: string) => {
+	try {
+		const response = await axios.delete(
+			`http://localhost:4000/api/v1/sponser/delete/all`,
+		
+			{
+				headers: {
+					Authorization: `${token}`,
+				},
+			},
+		);
+		console.log('data', response.data);
+		console.log('sucesssfully delete all')
+		return response.data;
+	} catch (error) {
+		console.error('Error fetching data:', error);
+		throw error;
+	}
+};
 export const ApprovedSponsor = async (token: string, id: string) => {
 	try {
 		const response = await axios.put(
