@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '@/components/UI/Sidebar';
 import MainLayout from '@/components/UI/MainLayout';
@@ -7,7 +8,6 @@ import { fetchApprovedData } from '@/hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '@/utils/auth';
 const Approved = () => {
 	const [approvedData, setApprovedData] = useState([]);
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -33,7 +33,7 @@ const Approved = () => {
 				<LeftSideBar />
 				<MainLayout>
 					<div className="px-4">
-						<h2 className="text-primary text-4xl justify-center flex items-center my-4 font-bold">
+						<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
 							Approved Sponsors
 						</h2>
 						<Table data={approvedData} columns={APPROVEDCOLUMN} />

@@ -1,18 +1,20 @@
+'use client'
 import React from 'react';
-import { hero__image } from './../../../../../assests';
+import { hero__image } from '@/assests/index';
 import Button from './../../../../UI/Button';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getDirection } from '../../../../../utils/get-direction';
+
 const HeroSection = () => {
-	const { locale = 'en' } = useRouter();
+	// const { locale = 'en' } = useRouter();
 	const int = useIntl();
 	const title = int.formatMessage({ id: 'landingpage.hero.title' });
 	const description = int.formatMessage({ id: 'landingpage.hero.description' });
 
-	const dir = getDirection(locale);
-
+	// const dir = getDirection(locale);
+	const dir = getDirection('en');
 	return (
 		<div
 			dir={dir}
@@ -36,7 +38,8 @@ const HeroSection = () => {
 					alt="hero-image"
 					src={hero__image}
 					style={{ maxWidth: '100%' }}
-					className="h-screen"
+					className="h-auto"
+					loading="lazy" 
 				/>
 			</div>
 		</div>

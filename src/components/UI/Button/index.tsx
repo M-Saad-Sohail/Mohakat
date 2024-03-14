@@ -21,9 +21,9 @@ const Button: React.FC<IProps> = ({
 				type={type}
 				className={`${
 					isLoading
-						? 'bg-disabled text-disabled flex items-center justify-center cursor-not-allowed'
-						: 'text-white bg-primary rounded-lg cursor-pointer shadow-lg'
-				} font-bold py-3 px-4 w-full h-[65px] ${className}`}
+						? 'bg-disabled rounded-md text-disabled flex items-center justify-center cursor-not-allowed'
+						: 'text-white bg-primary  cursor-pointer shadow-lg'
+				} rounded-md shadow-custom border-main font-bold py-3 px-4 w-full h-[65px] ${className}`}
 			>
 				{isLoading && <Loader />}
 				{localeId !== undefined ? <FormattedMessage id={localeId} /> : title}

@@ -10,33 +10,33 @@ module.exports = {
   ],
   theme: {
     extend: {
-      textColor:{
-        primary:"#792532",
-       
+      textColor: {
+        'primary': '#792532',
       },
       screens: {
-        "2xl": "1700px",
-        "3xl": "1800px",
+        '2xl': '1700px',
+        '3xl': '1800px',
+      },
+      boxShadow: {
+        'custom': '0 4px 8px 0 rgba(121, 37, 50, 0.6)',
       },
       borderColor: {
-        main: "#792532",
+        'main': '#792532',
       },
-      outlineColor: {
-        main: "#792532",
+      outline: {
+        'main': '#792532',
       },
       borderRadius: {
-        large: "15px",
-        md: "5px",
-        lg: "10px",
+        'large': '15px',
+        'md': '4px',
+        'lg': '10px',
       },
       colors: {
-        primary: "#792532",
-        red: "#ff0002",
-        
+        'primary': '#792532',
+        'red': '#ff0002',
       },
-     
-   
     },
+    
   },
   plugins: [],
 }

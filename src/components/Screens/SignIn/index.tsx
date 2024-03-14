@@ -3,16 +3,13 @@ import AuthLayout from '../../UI/AuthLayout';
 import Form from './components/Form';
 import React from 'react';
 import { useEffect } from 'react';
-import { useAuth } from '../../../hooks/useAuth';
-import { navigateToDashboardIfLoggedIn } from './../../../utils/auth';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
+import { navigateToDashboardIfLoggedIn } from '@/utils/auth';
 
 const SignIn = () => {
-	const router = useRouter();
-
 	useEffect(() => {
-		navigateToDashboardIfLoggedIn(router);
-	}, [router]);
+		navigateToDashboardIfLoggedIn();
+	}, []);
 
 	const { loginUser, isLoading } = useAuth();
 	return (

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '../../../../../../UI/Sidebar';
 import MainLayout from '../../../../../../UI/MainLayout';
@@ -30,7 +31,7 @@ const PendingSponsor = () => {
 				<LeftSideBar />
 				<MainLayout>
 					<div className="px-4">
-						<h2 className="text-primary text-4xl justify-center flex items-center my-4 font-bold">
+					<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
 							Pending Sponsors
 						</h2>
 						<Table data={pendingData} columns={PENDINGCOLUMN} />

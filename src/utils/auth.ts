@@ -1,12 +1,12 @@
-import { useRouter } from 'next/navigation';
+import { redirect} from 'next/navigation';
 import { UserType } from '../state/user/types';
 
 export const navigateToDashboardIfLoggedIn = (
-	router: ReturnType<typeof useRouter>,
+
 ) => {
 	const tokenString = localStorage.getItem('user');
 	if (tokenString && JSON.parse(tokenString).key) {
-		router.push('/dashboard');
+		redirect('/dashboard');
 	}
 };
 

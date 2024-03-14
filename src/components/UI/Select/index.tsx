@@ -4,8 +4,8 @@ interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	error?: string | boolean | undefined;
 	title: string;
 	options: Array<{ value: string; label: string }>;
+	className?:string
 }
-
 const Select: React.FC<IProps> = ({
 	onChange,
 	error,
@@ -16,14 +16,14 @@ const Select: React.FC<IProps> = ({
 	options,
 }) => {
 	return (
-		<div className="mb-4 flex flex-col">
+		<div className={`flex flex-col ${className}`}>
 			<label className="font-bold text-[20px] text-primary">{title}</label>
 
 			<select
-				className={`p-3 w-full focus:outline-none bg-[#E8E8E8] h-[60px] max-w-[700px] text-primary ${className}`}
+				className={`p-3 w-full focus:outline-none bg-[#E8E8E8]  max-w-[700px] text-primary ${className}`}
 				onChange={onChange}
-				value={value} // Set the value attribute for select
-				name={name} // Add the name attribute
+				value={value} 
+				name={name}
 			>
 				{options.map((opt) => (
 					<option value={opt.value} key={opt.value}>
