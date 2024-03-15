@@ -71,7 +71,7 @@ export const RejectSponsor = async (token: string, id: string) => {
 export const RejectDelete = async (token: string, id: string) => {
 	try {
 		const response = await axios.delete(
-			`http://localhost:4000/api/v1/sponser/delete/${id}`,
+			`http://localhost:4000/api/v1/sponsers/rejected/delete/${id}`,
 		
 			{
 				headers: {
@@ -90,7 +90,7 @@ export const RejectDelete = async (token: string, id: string) => {
 export const RejectDeleteAll = async (token: string) => {
 	try {
 		const response = await axios.delete(
-			`http://localhost:4000/api/v1/sponser/delete/all`,
+			`http://localhost:4000/api/v1/sponsers/rejected/delete`,
 		
 			{
 				headers: {
