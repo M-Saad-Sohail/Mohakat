@@ -23,6 +23,7 @@ export const becomeSponsorSchema = object({
 });
 
 export const resetPasswordSchema = object({
+	password: string().required('Password is required'),
 	new_password1: string().required("Password is required"),
 	new_password2: string()
 	  .oneOf([ref("new_password1")], "Passwords must match")

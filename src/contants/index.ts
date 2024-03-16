@@ -7,6 +7,7 @@ export const PATHS = {
 	VERIFICATION: '/verification',
 };
 export const RESETINITIALVALUES: ResetPasswordSchema = {
+	password:'',
 	new_password1: "",
 	new_password2: "",
   };

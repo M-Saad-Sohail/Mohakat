@@ -12,21 +12,25 @@ import { useIntl } from 'react-intl';
 import { UserType } from '@/state/user/types';
 import Image from 'next/image';
 import { profile } from '@/assests';
+import { ResetPassword } from '@/hooks/useAuth';
 
 type IProps = {
-	submitHandler: (arg: RegisterUserCredentials) => void;
+	submitHandler: (arg: ResetPassword,id:String | undefined) => void;
 	isLoading: boolean;
 };
 
-// const SettingForm = ({ submitHandler, isLoading }: IProps) => {
-
-const SettingForm = () => {
+const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 	const [user, setUser] = useState<UserType | null>(null);
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: RESETINITIALVALUES,
 		validationSchema: resetPasswordSchema,
 		onSubmit: (values: ResetPasswordSchema) => {
 			console.log('values', values);
+            submitHandler({
+                oldPassword:values.password,
+                confirmPassword:values.new_password2,
+                newPassword:values.new_password1
+            },user?.id);
 		},
 	});
 	useEffect(() => {
@@ -88,7 +92,9 @@ const SettingForm = () => {
 						placeholder="*************"
 						name="password"
 						type="password"
-						value={user?.password}
+						value={values.password}
+                        onChange={handleChange}
+                        error={errors.password && touched.password}
                         className='max-w-[935px] mb-[19px]'
 					/>
 					<Input

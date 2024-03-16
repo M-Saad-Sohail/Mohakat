@@ -7,6 +7,7 @@ export type UserCredentials = {
 	password: string;
 	email: string;
 };
+
 export type RegisterUserCredentials = {
 	name: string;
 	fatherName: string;
