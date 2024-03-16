@@ -29,7 +29,10 @@ import language_icon from './icons/language__icon.svg'
 import country from './icons/country.svg'
 import delete_icon from "./icons/delete_icon.svg"
 import close_icon from "./icons/close_icon.svg"
-
+import no_data from './images/no-data.png'
+import password_eye from'./icons/eye_icon.svg'
+import notification from './icons/notification_icon.svg'
+import camera from './icons/camera_icon.svg'
 export {
 	logo,
 	hero__image,
@@ -61,5 +64,9 @@ export {
 	country,
 	language_icon,
 	delete_icon,
-	close_icon
+	close_icon,
+	no_data,
+	password_eye,
+	notification,
+	camera
 };

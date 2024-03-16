@@ -6,6 +6,8 @@ import Table from '@/components/UI/Table';
 import { REJECTEDCOLUMN, SPONSORDATA } from '@/contants';
 import { fetchRejectededData } from '@/hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import NoData from '@/components/UI/NoData';
+import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 
 const RejectedSponsor = () => {
 	const [rejectedData, setRejectedData] = useState([]);
@@ -25,19 +27,16 @@ const RejectedSponsor = () => {
 		fetchData();
 	}, []);
 	return (
-		<div>
-			<div className="flex">
-				<LeftSideBar />
-				<MainLayout>
-					<div className="px-4">
-					<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
-							Rejected Sponsors
-						</h2>
-						<Table data={rejectedData} columns={REJECTEDCOLUMN} />
+				<div className='flex'>
+					<LeftSideBar />
+					<div className='w-full px-4'>
+						<DashboardNavbar title={"Rejected Sponsor"}/>
+						{rejectedData.length>0 ?<Table data={rejectedData} columns={REJECTEDCOLUMN}/> :<NoData/>}
+						</div>
 					</div>
-				</MainLayout>
-			</div>
-		</div>
+			
+
+				
 	);
 };
 

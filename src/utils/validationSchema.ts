@@ -21,3 +21,11 @@ export const becomeSponsorSchema = object({
 	//   .required("Confirm password is required"),
 	address: string().required(' Address  is Required'),
 });
+
+export const resetPasswordSchema = object({
+	password: string().required('Password is required'),
+	new_password1: string().required("Password is required"),
+	new_password2: string()
+	  .oneOf([ref("new_password1")], "Passwords must match")
+	  .required("Confirm password is required"),
+  });

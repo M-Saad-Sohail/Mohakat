@@ -1,13 +1,14 @@
+'use client'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './../../state/store';
+import { RootState } from '@/state/store';
 import { setUserAction, updateUserAction } from '.';
 import { UpdateUserType, UserSliceType } from './types';
 import {
 	deleteUserInfoFromLocalStorage,
 	getUserInfoFromLocalStorage,
 	saveUserInfoInLocalStorage,
-} from './../../lib/cache';
+} from '@/lib/cache';
 
 export const useUser = () => {
 	const { isAuthenticated, user } = useSelector<RootState, UserSliceType>(
