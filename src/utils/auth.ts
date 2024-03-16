@@ -32,3 +32,9 @@ export const getUserFromLocalStorage = () => {
 	}
 	return null; // or any other default value if needed
 };
+
+export function getLastNameFromPathname(pathname:String) {
+	const parts = pathname.split('/');
+	const lastName = parts[parts.length - 1];
+	return lastName;
+  }

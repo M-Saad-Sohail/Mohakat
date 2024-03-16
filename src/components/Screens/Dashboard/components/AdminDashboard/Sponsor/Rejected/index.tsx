@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import LeftSideBar from 'components/UI/Sidebar@/';
+import LeftSideBar from '@/components/UI/Sidebar';
 import MainLayout from '@/components/UI/MainLayout';
 import Table from '@/components/UI/Table';
 import { REJECTEDCOLUMN, SPONSORDATA } from '@/contants';
