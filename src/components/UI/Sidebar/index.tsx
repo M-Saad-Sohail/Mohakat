@@ -47,7 +47,8 @@ const LeftSideBar = () => {
 		{ title: 'Dashboard', src: dashboard, link: '/dashboard', gap: true },
 		{ title: 'Families', src: families, link: '#' },
 		{ title: 'Sponsoring', src: sponsor, link: '#' },
-		{ title: 'Credit Cards', src: credit_card, link: '#' },
+		{ title: 'Credit Cards', src: credit_card, link: '#', gap: true },
+		{ title: 'Setting ', src: setting_icon, link: '/dashboard/setting' },
 	];
 	const AdminMenus = [
 		{ title: 'Dashboard', src: dashboard, link: '/dashboard',gap: true },

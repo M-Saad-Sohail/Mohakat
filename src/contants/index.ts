@@ -1,4 +1,4 @@
-import { BecomeSponsorSchema, LoginSchema } from '../types';
+import { BecomeSponsorSchema, LoginSchema,ResetPasswordSchema } from '../types';
 export const PATHS = {
 	HOME: '/',
 	FORGETPASSWORD: '/forget-password',
@@ -6,6 +6,10 @@ export const PATHS = {
 	SPONSOR: '/become-sponsor',
 	VERIFICATION: '/verification',
 };
+export const RESETINITIALVALUES: ResetPasswordSchema = {
+	new_password1: "",
+	new_password2: "",
+  };
 
 export const Links = [
 	{ localeId: 'links.0', name: 'Support', link: '/support' },
