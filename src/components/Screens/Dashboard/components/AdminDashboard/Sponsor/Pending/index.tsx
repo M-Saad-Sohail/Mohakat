@@ -6,7 +6,8 @@ import Table from '../../../../../../UI/Table';
 import { PENDINGCOLUMN } from './../../../../../../../contants';
 import { fetchPendingData } from './../../../../../../../hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '../../../../../../../utils/auth';
-
+import NoData from '@/components/UI/NoData';
+import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 const PendingSponsor = () => {
 	const [pendingData, setPendingData] = useState([]);
 
@@ -26,19 +27,15 @@ const PendingSponsor = () => {
 	}, []);
 
 	return (
-		<div>
-			<div className="flex">
-				<LeftSideBar />
-				<MainLayout>
-					<div className="px-4">
-					<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
-							Pending Sponsors
-						</h2>
-						<Table data={pendingData} columns={PENDINGCOLUMN} />
-					</div>
-				</MainLayout>
-			</div>
+		<div className='flex'>
+					<LeftSideBar />
+					<div className='w-full px-4'>
+						<DashboardNavbar title={"Pending Sponsors"}/>
+						{pendingData.length>0 ?<Table data={pendingData} columns={PENDINGCOLUMN}/>:<NoData/> }
+						</div>
 		</div>
+			
+		
 	);
 };
 

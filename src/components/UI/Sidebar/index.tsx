@@ -69,7 +69,7 @@ const LeftSideBar = () => {
 			gap: true,
 		},
 		{ title: 'Form Response', src: form_icon, link: '/dashboard' },
-		{ title: 'Setting ', src: setting_icon, link: '#' },
+		{ title: 'Setting ', src: setting_icon, link: '/dashboard/setting' },
 		{ title: 'Logout', src: logout, link: '#' },
 	];
 

@@ -7,7 +7,7 @@ const MainLayout: React.FC<IProps> = ({ children }) => {
 	return (
 		<section
 			className={
-				'bg-center bg-no-repeat bg-cover  max-w-full h-screen bg-hero dark:bg-heroDark dark:bg-dark'
+				'bg-center bg-no-repeat bg-cover  w-full h-screen bg-hero dark:bg-heroDark dark:bg-dark'
 			}
 		>
 			{children}

@@ -22,7 +22,7 @@ const Navbar = () => {
 
 	return (
 		<div>
-			{isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : <AppNavbar />}
+			{isAuthPath(pathname) && <AuthNavbar isLoggedIn /> }
 		</div>
 	);
 };

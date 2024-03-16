@@ -6,6 +6,8 @@ import Table from '@/components/UI/Table';
 import { APPROVEDCOLUMN } from '@/contants';
 import { fetchApprovedData } from '@/hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import NoData from '@/components/UI/NoData';
 const Approved = () => {
 	const [approvedData, setApprovedData] = useState([]);
 	useEffect(() => {
@@ -28,19 +30,15 @@ const Approved = () => {
 	}, []);
 
 	return (
-		<div>
-			<div className="flex">
-				<LeftSideBar />
-				<MainLayout>
-					<div className="px-4">
-						<h2 className="text-black text-[56px]  flex items-center my-4 font-bold">
-							Approved Sponsors
-						</h2>
-						<Table data={approvedData} columns={APPROVEDCOLUMN} />
+		<div className='flex'>
+					<LeftSideBar />
+					<div className='w-full px-4'>
+						<DashboardNavbar title={"Approved Sponsors"}/>
+						{approvedData.length>0?<Table data={approvedData} columns={APPROVEDCOLUMN} />:<NoData/>}
+						</div>
 					</div>
-				</MainLayout>
-			</div>
-		</div>
+			
+		
 	);
 };
 
