@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { reject, approved, delete_icon } from '@/assests';
@@ -135,13 +136,13 @@ function Table({ columns, data }: IProps) {
 										{column.Header === 'S.NO' || column.Header === 'Action' ? (
 											<div className="flex items-center justify-center ">
 												<TableIcon show={false} /> {/* Your icon component */}
-												<p className="ml-2">{column.render('Header')}</p>
+												<div className="ml-2">{column.render('Header')}</div>
 											</div>
 										) : (
 											<div className="flex items-center justify-center">
 												<TableIcon show={true} src={column.Header} />{' '}
 												{/* Your icon component */}
-												<p className="ml-2">{column.render('Header')}</p>
+												<div className="ml-2">{column.render('Header')}</div>
 											</div>
 										)}
 									</th>
@@ -230,7 +231,7 @@ function Table({ columns, data }: IProps) {
 					})}
 				</tbody>
 			</table>
-			{rows.length !== 0 && (
+			{/* {rows.length !== 0 && (
 				<Pagination
 					canNextPage={canNextPage}
 					pageIndex={pageIndex}
@@ -240,7 +241,7 @@ function Table({ columns, data }: IProps) {
 					goToPage={gotoPage}
 					pageCount={calculatedPageCount} // Pass pageCount here
 				/>
-			)}
+			)} */}
 		</>
 	);
 }

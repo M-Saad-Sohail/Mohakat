@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { dashboard } from '@/contants';
 import InfoCards from '@/components/UI/Card';
@@ -15,7 +16,7 @@ const AdminDashboard = () => {
 	return (
 		<div className="w-full px-4">
 			<DashboardNavbar title={'Dashboard'} />
-			<div className="text-primary flex gap-x-4 w-full my-4 flex-wrap mx-auto">
+			<div className="text-primary flex gap-x-2 w-full my-4 flex-wrap mx-auto">
 				{dashboard.map((item, index) => (
 					<InfoCards
 						key={index}
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
 					Admins & Moderators
 				</h2>
 				<div
-					className="gap-x-4 min-w-[180px] mx-6 flex text-white bg-primary  cursor-pointer rounded-md  border-main font-bold py-3 px-4  h-[65px] justify-center items-center"
+					className="gap-x-4 min-w-[180px] mx-3 flex text-white bg-primary  cursor-pointer rounded-md  border-main font-bold py-3 px-4  h-[65px] justify-center items-center"
 					onClick={() => {
 						// setDeleteOpenModal(true);
 					}}

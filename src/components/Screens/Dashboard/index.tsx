@@ -12,7 +12,11 @@ const Dashboard = () => {
 	return (
 		<div className="flex">
 			<LeftSideBar />
+			<div className='w-full px-3 overflow-x-hidden'>
+            <MainLayout>
 			{role ? <AdminDashboard /> : <UserDashboard />}
+			</MainLayout>
+			</div>
 		</div>
 	);
 };

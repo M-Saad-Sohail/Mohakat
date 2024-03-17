@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '../../../../../../UI/Sidebar';
 import MainLayout from '../../../../../../UI/MainLayout';
@@ -27,15 +27,19 @@ const PendingSponsor = () => {
 	}, []);
 
 	return (
-		<div className='flex'>
-					<LeftSideBar />
-					<div className='w-full px-4'>
-						<DashboardNavbar title={"Pending Sponsors"}/>
-						{pendingData.length>0 ?<Table data={pendingData} columns={PENDINGCOLUMN}/>:<NoData/> }
-						</div>
+		<div className="flex">
+			<LeftSideBar />
+			<div className="w-full px-3 overflow-x-hidden">
+				<MainLayout>
+					<DashboardNavbar title={'Pending Sponsors'} />
+					{pendingData.length > 0 ? (
+						<Table data={pendingData} columns={PENDINGCOLUMN} />
+					) : (
+						<NoData />
+					)}
+				</MainLayout>
+			</div>
 		</div>
-			
-		
 	);
 };
 

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '@/components/UI/Sidebar';
 import MainLayout from '@/components/UI/MainLayout';
@@ -27,16 +27,19 @@ const RejectedSponsor = () => {
 		fetchData();
 	}, []);
 	return (
-				<div className='flex'>
-					<LeftSideBar />
-					<div className='w-full px-4'>
-						<DashboardNavbar title={"Rejected Sponsor"}/>
-						{rejectedData.length>0 ?<Table data={rejectedData} columns={REJECTEDCOLUMN}/> :<NoData/>}
-						</div>
-					</div>
-			
-
-				
+		<div className="flex">
+			<LeftSideBar />
+			<div className="w-full px-3 overflow-x-hidden">
+				<MainLayout>
+					<DashboardNavbar title={'Rejected Sponsor'} />
+					{rejectedData.length > 0 ? (
+						<Table data={rejectedData} columns={REJECTEDCOLUMN} />
+					) : (
+						<NoData />
+					)}
+				</MainLayout>
+			</div>
+		</div>
 	);
 };
 

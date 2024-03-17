@@ -4,6 +4,7 @@ import LeftSideBar from '@/components/UI/Sidebar'
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar'
 import SettingForm from './components/Form'
 import { useAuth } from '@/hooks/useAuth'
+import MainLayout from '@/components/UI/MainLayout';
 
 
 const Setting = () => {
@@ -12,8 +13,11 @@ const Setting = () => {
     <div className='flex'>
 					<LeftSideBar />
 					<div className='w-full px-3 overflow-x-hidden'>
-						<DashboardNavbar title={"Settings"} setting={true}/>
+            <MainLayout>
+            <DashboardNavbar title={"Settings"} setting={true}/>
             <SettingForm submitHandler={updatePassword} isLoading={isLoading}/>
+            </MainLayout>
+					
 						</div>
 					</div>
 			

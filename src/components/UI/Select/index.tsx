@@ -20,7 +20,7 @@ const Select: React.FC<IProps> = ({
 			<label className="font-bold text-[20px] text-primary">{title}</label>
 
 			<select
-				className={`p-3 w-full focus:outline-none bg-[#E8E8E8]  max-w-[700px] text-primary ${className}`}
+				className={`p-3 py-3 h-[60px]  w-full focus:outline-none bg-[#E8E8E8]  max-w-[800px] text-primary ${className}`}
 				onChange={onChange}
 				value={value} 
 				name={name}

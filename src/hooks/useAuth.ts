@@ -5,9 +5,7 @@ import { useLoading } from '@/state/loading/hook';
 import { useUser } from '@/state/user/hook';
 import { UserType } from '@/state/user/types';
 import { UserCredentials, RegisterUserCredentials } from '@/types';
-import { setUserAction } from '@/state/user';
-import { usePathname } from 'next/navigation'
-import { PATHS } from '@/contants';
+import api from '@/config/axios';
 import { redirect } from 'next/navigation'
 export type ResetPassword={
 	oldPassword:string | undefined
@@ -63,10 +61,8 @@ export const useAuth = () => {
 		async (credentials: RegisterUserCredentials) => {
 			try {
 				setIsLoading(true);
-				const { data } = await axios.post(
-					'http://localhost:4000/api/v1/register',
-					credentials,
-				);
+				const { data } = await api.post('/register',
+					credentials);
 				// const user: UserType = {
 				// 	key: data.token,
 				// 	avator: data.sponser.avator, // Corrected key name
@@ -106,8 +102,7 @@ export const useAuth = () => {
 		async (credentials: ResetPassword,id:String | undefined) => {
 			try {
 				setIsLoading(true);
-				const { data } = await axios.put(
-					`http://localhost:4000/api/v1/sponser/update/password/${id}`,
+				const { data } = await api.put(`sponser/update/password/${id}`,
 					credentials,
 				);
 				console.log('data', data)				

@@ -32,7 +32,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		int.formatMessage({ id: `becomesponsor.form.${id}` });
 
 	return (
-		<div className="w-full overflow-scroll overflow-y-auto">
+		<div className="w-full">
 			<form
 				className="w-full" // Set form overflow to auto
 				noValidate
@@ -45,11 +45,12 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					<p className="text-xl font-semibold text-primary  leading-normal pt-2 mb-8">
 						{getLocaleValue('description')}
 					</p>
+					<div className='flex w-full justify-start gap-x-4 items-center'>
 					<Input
 						title={getLocaleValue('name.title')}
 						placeholder={getLocaleValue('name.placeholder')}
 						name="name"
-						className="mb-[19px]"
+						className='min-w-[390px] mb-[19px] text-primary'
 						onChange={handleChange}
 						value={values.name}
 						error={touched.name && errors.name}
@@ -58,25 +59,48 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						title={getLocaleValue('fatherName.title')}
 						placeholder={getLocaleValue('fatherName.placeholder')}
 						name="fatherName"
-						className="mb-[19px]"
+						className='min-w-[390px] mb-[19px] text-primary'
 						onChange={handleChange}
 						value={values.fatherName}
 						error={touched.fatherName && errors.fatherName}
 					/>
+					</div>
+					<div className='flex w-full justify-start gap-x-4 items-center'>
 					<Input
 						title={getLocaleValue('email.title')}
 						placeholder={getLocaleValue('email.placeholder')}
 						type="email"
 						name="email"
-						className=""
+						className='min-w-[390px] mb-[19px] text-primary'
 						onChange={handleChange}
 						value={values.email}
 						error={touched.email && errors.email}
 					/>
+					<Select
+						name="Language"
+						// title={getLocaleValue('gender.title')}
+						// options={[
+						// 	{ label: getLocaleValue('gender.value.0'), value: 'EN (United Kingdom)' },
+						// 	{ label: getLocaleValue('gender.value.1'), value: 'AR (Saudia Arabia)' },
+						// 	{ label: getLocaleValue('gender.value.2'), value: 'TR (Turkish)' },
+						// ]}
+						title={('Language')}
+						options={[
+							{ label: "EN (United Kingdom)", value: 'EN (United Kingdom)' },
+							{ label: "AR (Saudia Arabia)", value: 'AR (Saudia Arabia)' },
+							{ label: "TR (Turkish)", value: 'TR (Turkish)' },
+						]}
+						onChange={handleChange}
+						value={values.gender}
+						error={touched.gender && errors.gender}
+						className='min-w-[390px] mb-[19px] text-primary'
+					/>
+					</div>
 					<Input
 						title={getLocaleValue('password.title')}
 						placeholder="*************"
 						name="password"
+						className='max-w-[800px] mb-[19px] text-primary'
 						type="password"
 						onChange={handleChange}
 						value={values.password}
@@ -86,6 +110,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						title={getLocaleValue('cnic.title')}
 						placeholder="012345678912"
 						name="cnicNumber"
+						className='max-w-[800px] mb-[19px] text-primary'
 						onChange={handleChange}
 						value={values.cnicNumber}
 						error={touched.cnicNumber && errors.cnicNumber}
@@ -96,6 +121,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						name="postalCode"
 						onChange={handleChange}
 						value={values.postalCode}
+						className='max-w-[800px] mb-[19px] text-primary'
 						error={touched.postalCode && errors.postalCode}
 					/>
 					<Input
@@ -104,6 +130,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						name="country"
 						onChange={handleChange}
 						value={values.country}
+						className='max-w-[800px] mb-[19px] text-primary'
 						error={touched.country && errors.country}
 					/>
 					<Input
@@ -112,6 +139,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						name="address"
 						onChange={handleChange}
 						value={values.address}
+						className='max-w-[800px] mb-[19px] text-primary'
 						error={touched.address && errors.address}
 					/>
 
@@ -125,6 +153,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						onChange={handleChange}
 						value={values.gender}
 						error={touched.gender && errors.gender}
+						className='max-w-[800px] mb-[19px] text-primary'
 					/>
 
 					<div className=" justify-center items-center flex w-full">

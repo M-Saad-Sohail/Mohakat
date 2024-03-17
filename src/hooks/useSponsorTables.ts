@@ -1,9 +1,9 @@
 import axios from 'axios';
-
+import api from '@/config/axios';
 export const fetchPendingData = async (token: string) => {
 	try {
-		const response = await axios.get(
-			'http://localhost:4000/api/v1/sponsers/pending',
+		const response = await api.get(
+			'sponsers/pending',
 			{
 				headers: {
 					Authorization: `${token}`,
@@ -19,13 +19,13 @@ export const fetchPendingData = async (token: string) => {
 };
 export const fetchApprovedData = async (token: string) => {
 	try {
-		const response = await axios.get(
-			'http://localhost:4000/api/v1/sponsers/approved',
-			{
-				headers: {
-					Authorization: `${token}`,
-				},
-			},
+		const response = await api.get(
+			'sponsers/approved',
+			// {
+			// 	headers: {
+			// 		Authorization: `${token}`,
+			// 	},
+			// },
 		);
 
 		return response.data;
@@ -36,8 +36,8 @@ export const fetchApprovedData = async (token: string) => {
 
 export const fetchRejectededData = async (token: string) => {
 	try {
-		const response = await axios.get(
-			'http://localhost:4000/api/v1/sponsers/rejected',
+		const response = await api.get(
+			'sponsers/rejected',
 			{
 				headers: {
 					Authorization: `${token}`,
@@ -52,8 +52,8 @@ export const fetchRejectededData = async (token: string) => {
 
 export const RejectSponsor = async (token: string, id: string) => {
 	try {
-		const response = await axios.put(
-			`http://localhost:4000/api/v1//admin/reject/sponser/${id}`,
+		const response = await api.put(
+			`/admin/reject/sponser/${id}`,
 			{},
 			{
 				headers: {
@@ -70,8 +70,8 @@ export const RejectSponsor = async (token: string, id: string) => {
 };
 export const RejectDelete = async (token: string, id: string) => {
 	try {
-		const response = await axios.delete(
-			`http://localhost:4000/api/v1/sponsers/rejected/delete/${id}`,
+		const response = await api.delete(
+			`sponsers/rejected/delete/${id}`,
 		
 			{
 				headers: {
@@ -89,8 +89,8 @@ export const RejectDelete = async (token: string, id: string) => {
 };
 export const RejectDeleteAll = async (token: string) => {
 	try {
-		const response = await axios.delete(
-			`http://localhost:4000/api/v1/sponsers/rejected/delete`,
+		const response = await api.delete(
+			`sponsers/rejected/delete`,
 		
 			{
 				headers: {
@@ -108,8 +108,8 @@ export const RejectDeleteAll = async (token: string) => {
 };
 export const ApprovedSponsor = async (token: string, id: string) => {
 	try {
-		const response = await axios.put(
-			`http://localhost:4000/api/v1/admin/approved/sponser/${id}`,
+		const response = await api.put(
+			`/admin/approved/sponser/${id}`,
 			{
 				status: 'approved',
 			},

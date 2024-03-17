@@ -1,9 +1,10 @@
 'use client';
 import Image from 'next/image';
 import { signIn__image } from '../../../assests';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getDirection } from '../../../utils/get-direction';
 import { redirect } from 'next/navigation'
+import MainLayout from '../MainLayout';
 interface IProps {
 	children: React.ReactNode;
 	className?: string;
@@ -13,7 +14,7 @@ interface IProps {
 const AuthLayout: React.FC<IProps> = ({ children, className, margin }) => {
 	// const { locale, defaultLocale } = useRouter();
 	// const dir = getDirection(locale ?? defaultLocale ?? 'en');
-
+    const [loading,setLoading]=useState(false)
 	const toggleBodyScrolling = useCallback(() => {
 		const body = document.querySelector('body');
 		if (body) {
