@@ -1,17 +1,18 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainLayout from '../../UI/MainLayout';
 import LeftSideBar from '../../UI/Sidebar';
 import AdminDashboard from './components/AdminDashboard';
 import UserDashboard from './components/UserDashboard';
-type IProps = {
-	role: Boolean;
-};
-const Dashboard = ({ role }: IProps) => {
+import { getUserFromLocalStorage } from '@/utils/auth';
+const Dashboard = () => {
+	const user = getUserFromLocalStorage();
+	const role = !!user && user.role === 'admin';
+	console.log('role', role)
 	return (
 		<div className="flex">
 			<LeftSideBar />
-			<MainLayout>{role ? <AdminDashboard /> : <UserDashboard />}</MainLayout>
+			{role ? <AdminDashboard /> : <UserDashboard />}
 		</div>
 	);
 };

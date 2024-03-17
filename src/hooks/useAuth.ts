@@ -99,6 +99,7 @@ export const useAuth = () => {
 	const logoutUser = useCallback(() => {
 		toast.success('Logout Successful.');
 		setUser({ user: undefined, isAuthenticated: false });
+		localStorage.removeItem('user')
 		redirect('/sign-in')
 	}, [setUser]);
 	const updatePassword = useCallback(

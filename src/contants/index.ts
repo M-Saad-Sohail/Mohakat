@@ -69,6 +69,13 @@ export const REJECTEDCOLUMN: any = [
 	{ Header: 'Country', accessor: 'country' },
 	{ Header: 'Action', accessor: 'delete' },
 ];
+export const DASHBOARDCOLUMN: any = [
+	{ Header: 'S.NO', accessor: 'no' },
+	{ Header: 'Name', accessor: 'name' },
+	{ Header: 'Email', accessor: 'email' },
+	{ Header: 'Role', accessor: 'role' },
+	{ Header: 'Action', accessor: 'delete' },
+];
 export const PENDINGCOLUMN: any = [
 	{ Header: 'S.NO', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
@@ -122,3 +129,97 @@ export const SPONSORDATA: any = [
 		postalCode: 123456,
 	},
 ];
+export const DASHBOARDDATA: any = [
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'Admin',
+	
+	},
+	{
+		id: '2345678901',
+		name: 'testuser123',
+		email: 'testuser1@gmail.com',
+		role:'user',
+	},
+	{
+		id: '3456789012',
+		name: 'testuser',
+		email: 'testuser123@gmail.com',
+		role:'user',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'user',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'Admin',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'user',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'Admin',
+	
+	},
+	{
+		id: '2345678901',
+		name: 'testuser123',
+		email: 'testuser1@gmail.com',
+		role:'user',
+	},
+	{
+		id: '3456789012',
+		name: 'testuser',
+		email: 'testuser123@gmail.com',
+		role:'user',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'user',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'Admin',
+	},
+	{
+		id: '1234567890',
+		name: 'testuser12',
+		email: 'testuser@gmail.com',
+		role:'user',
+	},
+];
+export const dashboard=[
+	{
+		name:'Total Families',
+		value:"21245"
+	},
+	{
+		name:'Total Approved Sponsors',
+		value:"1214"
+	},
+	{
+		name:'Amount Received',
+		value:"$110,224"
+	},
+	{
+		name:'Form Responses',
+		value:56
+	},
+]
