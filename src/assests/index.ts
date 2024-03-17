@@ -33,6 +33,9 @@ import no_data from './images/no-data.png'
 import password_eye from'./icons/eye_icon.svg'
 import notification from './icons/notification_icon.svg'
 import camera from './icons/camera_icon.svg'
+import add_icon from './icons/add__icon.svg'
+import left_arrow from './icons/left_arrow_icon.svg'
+import right_arrow from './icons/right_arrow_icon.svg'
 export {
 	logo,
 	hero__image,
@@ -68,5 +71,8 @@ export {
 	no_data,
 	password_eye,
 	notification,
-	camera
+	camera,
+	add_icon,
+	left_arrow,
+	right_arrow
 };

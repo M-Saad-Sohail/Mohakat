@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '@/components/UI/Sidebar';
 import MainLayout from '@/components/UI/MainLayout';
@@ -30,15 +30,19 @@ const Approved = () => {
 	}, []);
 
 	return (
-		<div className='flex'>
-					<LeftSideBar />
-					<div className='w-full px-4'>
-						<DashboardNavbar title={"Approved Sponsors"}/>
-						{approvedData.length>0?<Table data={approvedData} columns={APPROVEDCOLUMN} />:<NoData/>}
-						</div>
-					</div>
-			
-		
+		<div className="flex">
+			<LeftSideBar />
+			<div className="w-full px-3 overflow-x-hidden">
+				<MainLayout>
+					<DashboardNavbar title={'Approved Sponsors'} />
+					{approvedData.length > 0 ? (
+						<Table data={approvedData} columns={APPROVEDCOLUMN} />
+					) : (
+						<NoData />
+					)}
+				</MainLayout>
+			</div>
+		</div>
 	);
 };
 

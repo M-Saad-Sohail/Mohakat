@@ -46,6 +46,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					onChange={handleChange}
 					value={values.email}
 					error={touched.email && errors.email}
+					className='max-w-[800px] mb-[19px] text-primary'
 				/>
 				<Input
 					title={int.formatMessage({ id: 'signin.form.password.title' })}
@@ -56,6 +57,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					className="w-[98%]"
 					value={values.password}
 					error={touched.password && errors.password}
+					className='max-w-[800px] mb-[19px] text-primary'
 				/>
 				<div className="justify-center items-center flex w-full">
 					<Button

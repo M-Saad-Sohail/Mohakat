@@ -32,7 +32,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		int.formatMessage({ id: `becomesponsor.form.${id}` });
 
 	return (
-		<div className="w-full overflow-scroll overflow-y-auto">
+		<div className="w-full">
 			<form
 				className="w-full" // Set form overflow to auto
 				noValidate

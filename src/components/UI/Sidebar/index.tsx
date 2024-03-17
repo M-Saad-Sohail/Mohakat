@@ -71,7 +71,7 @@ const LeftSideBar = () => {
 		},
 		{ title: 'Form Response', src: form_icon, link: '/dashboard' },
 		{ title: 'Setting ', src: setting_icon, link: '/dashboard/setting' },
-		{ title: 'Logout', src: logout, link: '#' },
+		{ title: 'Logout', src: logout, link: '/sign-in' },
 	];
 
 	const handleClick = (index: any) => {
@@ -113,9 +113,8 @@ const LeftSideBar = () => {
 						<Link
 							href={Menu.link}
 							key={index}
-							{...(Menu.title === 'Logout' && {
-								onClick: () => {logoutUser},
-							})}
+							onClick={()=>Menu.title === 'Logout'&&logoutUser()}
+				
 						>
 							<li
 								className={`flex  rounded-md px-2 py-1 cursor-pointer hover:bg-light-white text-black text-sm items-center gap-x-4 

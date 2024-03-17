@@ -40,8 +40,8 @@ const TableIcon = ({ src, show }: Props) => {
     return (
         <div className='flex gap-x-2'>
             {iconSrc && <Image src={iconSrc} alt="alt" className='w-8 h-8' />}
-            <Image src={transaction} alt="alt" className='w-8 h-8' />
-            <Image src={dollar} alt="alt" className='w-8 h-8' />
+            {/* <Image src={transaction} alt="alt" className='w-8 h-8' />
+            <Image src={dollar} alt="alt" className='w-8 h-8' /> */}
         </div>
     );
 };

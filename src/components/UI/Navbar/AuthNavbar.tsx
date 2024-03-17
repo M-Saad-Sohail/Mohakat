@@ -15,7 +15,6 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 	const [open, setOpen] = useState(false);
 
 	const { replace } = useRouter();
-
 	const handleMenuClick = () => {
 		setOpen(!open);
 		toggleBodyScrolling();
@@ -65,6 +64,7 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 					<Link
 						href={'/sign-in'}
 						className={`px-4 py-3 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-md font-bold `}
+						
 					>
 						{getLocaleValue('cta.signin')}
 					</Link>

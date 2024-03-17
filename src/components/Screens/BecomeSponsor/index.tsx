@@ -7,15 +7,17 @@ import { navigateToDashboardIfLoggedIn } from '@/utils/auth';
 import { useRouter } from 'next/navigation';
 
 const BecomeSponsor = () => {
-	const router = useRouter();
+
 
 	useEffect(() => {
-		navigateToDashboardIfLoggedIn(router);
-	}, [router]);
+		navigateToDashboardIfLoggedIn();
+	}, []);
 	const { registerUser, isLoading } = useAuth();
 	return (
 		<AuthLayout className="">
-			<Form submitHandler={registerUser} isLoading={isLoading} />
+			<div className="w-full px-3 overflow-x-hidden">
+				<Form submitHandler={registerUser} isLoading={isLoading} />
+			</div>
 		</AuthLayout>
 	);
 };

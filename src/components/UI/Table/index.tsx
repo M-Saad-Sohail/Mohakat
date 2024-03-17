@@ -1,5 +1,6 @@
+'use client'
 import React, { useState } from 'react';
-import { useTable, useGlobalFilter } from 'react-table';
+import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { reject, approved, delete_icon } from '@/assests';
 import {
 	ApprovedSponsor,
@@ -15,11 +16,13 @@ import GlobalFilter from './Filter';
 import TableIcon from '../TableIcon';
 import DeleteModal from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Rejected/component';
 import Button from '../Button';
+import Pagination from './Pagination';
+import { usePathname } from 'next/navigation';
+
 interface IProps {
 	data: any;
 	columns: any;
 }
-import { usePathname } from 'next/navigation';
 
 function Table({ columns, data }: IProps) {
 	const {
@@ -30,14 +33,22 @@ function Table({ columns, data }: IProps) {
 		prepareRow,
 		state,
 		setGlobalFilter,
+		nextPage,
+		previousPage,
+		canNextPage,
+		canPreviousPage,
+		pageCount,
+		page,
+		gotoPage,
 	}: any = useTable(
 		{
 			columns,
 			data,
 		},
-		useGlobalFilter, // Ensure that useGlobalFilter is included here
+		useGlobalFilter,
+		usePagination,
 	);
-	const { globalFilter }: any = state;
+	const { globalFilter, pageSize, pageIndex }: any = state;
 
 	const handleActionApprovedClick = (id: string) => {
 		const user = getUserFromLocalStorage();
@@ -61,32 +72,38 @@ function Table({ columns, data }: IProps) {
 	const [deleteId, setDeleteId] = useState('');
 	const handleModal = () => {
 		setOpenModal(false);
-		setDeleteOpenModal(false)
+		setDeleteOpenModal(false);
 	};
-    const [openDeleteModal, setDeleteOpenModal] = useState(false);
+	const [openDeleteModal, setDeleteOpenModal] = useState(false);
 	const [id, setId] = useState('');
-	
+
 	const pathName = window.location.pathname;
 	const value = getLastNameFromPathname(pathName);
 	const rejected = value === 'rejected' ? true : false;
+
+	// Calculate pageCount based on rows.length and pageSize
+	const calculatedPageCount = Math.ceil(rows.length / pageSize);
+
 	return (
 		<>
-			<DeleteModal openModal={openModal} isClose={handleModal} id={deleteId} deleteAll={false}/>
-			<DeleteModal openModal={openDeleteModal} isClose={handleModal} id={id} deleteAll={true} />        
+			{/* Your existing code for DeleteModal and other components */}
 			<div className="flex justify-between items-center mobile:flex-col-reverse">
 				<div className="my-3 mr-2 w-full flex gap-x-4">
 					<GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
 					{rejected && (
-						<div className='gap-x-4 min-w-[180px] flex text-white bg-primary  cursor-pointer rounded-md shadow-custom border-main font-bold py-3 px-4  h-[65px] justify-center items-center'onClick={() => {
-							setDeleteOpenModal(true)
-						}}> 
-							<Image src={delete_icon} alt="alt"   style={{ filter: "invert(100%)" }} className='w-6 h-6'/>
-							<button
-								className="text-base"
-	
-							>
-								Delete All
-							</button>
+						<div
+							className="gap-x-4 min-w-[180px] flex text-white bg-primary  cursor-pointer rounded-md shadow-custom border-main font-bold py-3 px-4  h-[65px] justify-center items-center"
+							onClick={() => {
+								setDeleteOpenModal(true);
+							}}
+						>
+							<Image
+								src={delete_icon}
+								alt="alt"
+								style={{ filter: 'invert(100%)' }}
+								className="w-6 h-6"
+							/>
+							<button className="text-base">Delete All</button>
 						</div>
 					)}
 				</div>
@@ -108,20 +125,24 @@ function Table({ columns, data }: IProps) {
 									<th
 										key={column.id}
 										{...column.getHeaderProps()}
-										className={
-											'border-table border py-4 px-7 mobile:px-3 mobile:py-2 bg-table dark:bg-darkTable text-xl mobile:text-sm text-white font-medium font-sans mx-auto justify-center bg-primary'
-										}
+										className={`border-table border py-4 px-7 mobile:px-3 mobile:py-2 bg-table dark:bg-darkTable text-xl mobile:text-sm text-white font-medium font-sans mx-auto justify-center bg-primary ${
+											column.Header === 'S.NO' || column.Header === 'Action'
+												? 'w-[10%]' // Set narrower width for S.NO and Action columns
+												: column.Header === 'Email'
+													? 'w-[30%]' // Set wider width for Email column
+													: 'w-auto' // Set default width for other columns
+										}`}
 									>
 										{column.Header === 'S.NO' || column.Header === 'Action' ? (
-											<div className="flex items-center justify-center">
+											<div className="flex items-center justify-center ">
 												<TableIcon show={false} /> {/* Your icon component */}
-												<p className="ml-2">{column.render('Header')}</p>
+												<div className="ml-2">{column.render('Header')}</div>
 											</div>
 										) : (
 											<div className="flex items-center justify-center">
 												<TableIcon show={true} src={column.Header} />{' '}
 												{/* Your icon component */}
-												<p className="ml-2">{column.render('Header')}</p>
+												<div className="ml-2">{column.render('Header')}</div>
 											</div>
 										)}
 									</th>
@@ -131,10 +152,9 @@ function Table({ columns, data }: IProps) {
 					))}
 				</thead>
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row: any, index: Number) => {
+					{page.map((row: any, index: Number) => {
 						prepareRow(row);
 						return (
-							/* eslint-disable */
 							<tr
 								{...row.getRowProps()}
 								key={row.id}
@@ -211,6 +231,17 @@ function Table({ columns, data }: IProps) {
 					})}
 				</tbody>
 			</table>
+			{/* {rows.length !== 0 && (
+				<Pagination
+					canNextPage={canNextPage}
+					pageIndex={pageIndex}
+					canPreviousPage={canPreviousPage}
+					previousPage={previousPage}
+					nextPage={nextPage}
+					goToPage={gotoPage}
+					pageCount={calculatedPageCount} // Pass pageCount here
+				/>
+			)} */}
 		</>
 	);
 }
