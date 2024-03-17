@@ -18,7 +18,7 @@ const HeroSection = () => {
 	return (
 		<div
 			dir={dir}
-			className="w-full h-full flex justify-center gap-x-16 items-center"
+			className="w-full h-full flex justify-between px-1 pr-5 gap-x-16 items-center"
 		>
 			<div className="w-[40%] px-[54px]">
 				<h1 className="text-primary text-[52px] font-bold">

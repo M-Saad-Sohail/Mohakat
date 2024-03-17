@@ -51,9 +51,9 @@ const Input: React.FC<IProps> = ({
 					/>
 					<div onClick={togglePasswordVisibility}>
 						{showPassword ? (
-							<EyeOff className="h-5 w-5 cursor-pointer absolute top-[55%] right-[30px] transform translate-y-[-50%]" />
+							<EyeOff className="h-5 w-5 cursor-pointer absolute top-[50%] right-[30px] transform translate-y-[-50%]" />
 						) : (
-							<EyeIcon className="h-5 w-5 cursor-pointer absolute top-[55%] right-[30px] transform translate-y-[-50%]" />
+							<EyeIcon className="h-5 w-5 cursor-pointer absolute top-[50%] right-[30px] transform translate-y-[-50%]" />
 						)}
 					</div>
 				</div>

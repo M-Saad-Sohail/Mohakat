@@ -15,6 +15,7 @@
 	"signin.form.email.title": "Email",
 	"signin.form.password.title": "Password",
 	"signin.form.submit": "Sign In",
+	"signin.form.forgot": "Forgot Password?",
 	"signin.form.cta.0": "Don't have an account?",
 	"signin.form.cta.1": "Become a Sponsor",
 	"becomesponsor.form.title": "Become a Sponsor",
@@ -26,6 +27,7 @@
 	"becomesponsor.form.email.title": "Email",
 	"becomesponsor.form.email.placeholder": "Enter your Email",
 	"becomesponsor.form.password.title": "Password",
+	"becomesponsor.form.confirmPassword.title": "Confirm Password",
 	"becomesponsor.form.cnic.title": "CNIC",
 	"becomesponsor.form.cnic.placeholder": "012345678912",
 	"becomesponsor.form.postalCode.title": "Postal Code",
@@ -40,6 +42,6 @@
 	"becomesponsor.form.cta.0": "Already have an account?",
 	"becomesponsor.form.cta.1": "Sign In",
 	"sponsorsuccess.message.title": "Congratulations",
-	"sponsorsuccess.message.description": "You have successfully created your account. It will take <br/> about 24hrs for verification.",
+	"sponsorsuccess.message.description": "You have successfully created your account. It will take about 24hrs for verification.",
 	"sponsorsuccess.message.cta": "Continue"
 }

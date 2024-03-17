@@ -1,3 +1,4 @@
+'use client'
 import { useCallback } from 'react';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
@@ -6,12 +7,12 @@ import { useUser } from '@/state/user/hook';
 import { UserType } from '@/state/user/types';
 import { UserCredentials, RegisterUserCredentials } from '@/types';
 import api from '@/config/axios';
-import { redirect } from 'next/navigation'
-export type ResetPassword={
-	oldPassword:string | undefined
-	confirmPassword:String,
-	newPassword:String
-}
+import { redirect } from 'next/navigation';
+export type ResetPassword = {
+	oldPassword: string | undefined;
+	confirmPassword: String;
+	newPassword: String;
+};
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
@@ -23,7 +24,7 @@ export const useAuth = () => {
 					'http://localhost:4000/api/v1/login',
 					credentials,
 				);
-				console.log('data', data)
+				console.log('data', data);
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -38,15 +39,13 @@ export const useAuth = () => {
 					id: data.sponser._id, // Corrected key name
 				};
 				if (data.success) {
-					window.location.href=('/dashboard');
-					
+					window.location.href = '/dashboard';
 				}
 				console.log('user', user);
 
 				toast.success('Login Successful.');
 				setUser({ user, isAuthenticated: true });
 			} catch (e) {
-
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
 				// else toast.error('Some error has occurred! Please try again.');
 			} finally {
@@ -58,11 +57,10 @@ export const useAuth = () => {
 	);
 
 	const registerUser = useCallback(
-		async (credentials: RegisterUserCredentials) => {
+		async (credentials: Omit<RegisterUserCredentials, 'confirmPassword'>) => {
 			try {
 				setIsLoading(true);
-				const { data } = await api.post('/register',
-					credentials);
+				const { data } = await api.post('/register', credentials);
 				// const user: UserType = {
 				// 	key: data.token,
 				// 	avator: data.sponser.avator, // Corrected key name
@@ -76,12 +74,15 @@ export const useAuth = () => {
 				// 	__v: data.sponser.__v, // Corrected key name
 				// 	id: data.sponser._id, // Corrected key name
 				// };
+				console.log('data', data);
 				if (data.success) {
-					redirect('/verification');
+					toast.success('Register Successful.');
+					window.location.href = '/verification';
+					return;
 				}
-				toast.success('Register Successful.');
-				redirect('/verification');
+				throw new Error('Some error has occurred! Please try again.');
 			} catch (e) {
+				console.log('e', e);
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
 				else toast.error('Some error has occurred! Please try again.');
 			} finally {
@@ -95,20 +96,20 @@ export const useAuth = () => {
 	const logoutUser = useCallback(() => {
 		toast.success('Logout Successful.');
 		setUser({ user: undefined, isAuthenticated: false });
-		localStorage.removeItem('user')
-		redirect('/sign-in')
+		localStorage.removeItem('user');
+		redirect('/sign-in');
 	}, [setUser]);
 	const updatePassword = useCallback(
-		async (credentials: ResetPassword,id:String | undefined) => {
+		async (credentials: ResetPassword, id: String | undefined) => {
 			try {
 				setIsLoading(true);
-				const { data } = await api.put(`sponser/update/password/${id}`,
+				const { data } = await api.put(
+					`sponser/update/password/${id}`,
 					credentials,
 				);
-				console.log('data', data)				
+				console.log('data', data);
 				toast.success('Update Password Successful.');
 			} catch (e) {
-
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
 				// else toast.error('Some error has occurred! Please try again.');
 			} finally {
@@ -123,6 +124,6 @@ export const useAuth = () => {
 		registerUser,
 		logoutUser,
 		isLoading,
-		updatePassword
+		updatePassword,
 	};
 };

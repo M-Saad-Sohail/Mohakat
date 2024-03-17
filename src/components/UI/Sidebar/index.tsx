@@ -77,7 +77,7 @@ const LeftSideBar = () => {
 					className={`absolute cursor-pointer right-4 top-[2.3rem] w-5  ${
 						!open && 'rotate-180 right-8 '
 					}`}
-					onClick={() => setOpen(!open)}
+					onClick={() => setOpen((prev) => !prev)}
 				/>
 
 				<div className="flex gap-x-2 items-center">
