@@ -32,11 +32,9 @@ const RejectedSponsor = () => {
 			<div className="w-full px-3 overflow-x-hidden">
 				<MainLayout>
 					<DashboardNavbar title={'Rejected Sponsor'} />
-					{rejectedData.length > 0 ? (
+					
 						<Table data={rejectedData} columns={REJECTEDCOLUMN} />
-					) : (
-						<NoData />
-					)}
+					
 				</MainLayout>
 			</div>
 		</div>

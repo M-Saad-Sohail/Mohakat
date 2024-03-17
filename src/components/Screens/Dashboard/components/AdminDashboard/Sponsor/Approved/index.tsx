@@ -35,11 +35,9 @@ const Approved = () => {
 			<div className="w-full px-3 overflow-x-hidden">
 				<MainLayout>
 					<DashboardNavbar title={'Approved Sponsors'} />
-					{approvedData.length > 0 ? (
+					
 						<Table data={approvedData} columns={APPROVEDCOLUMN} />
-					) : (
-						<NoData />
-					)}
+					
 				</MainLayout>
 			</div>
 		</div>

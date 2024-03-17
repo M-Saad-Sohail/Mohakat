@@ -25,18 +25,13 @@ const DashboardNavbar = ({title,setting}:IProps) => {
     </h2>
 
     <div className={`items-center  flex float-right w-full justify-end`}>
-        {setting &&<SearchBar />}
+      
         <Image
             src={language} // Replace with the path to the user profile image
             alt={''}
             className="h-10 w-10 rounded-full mx-2"
             style={{ filter: "invert(100%)" }}
             
-        />
-        <Image
-            src={notification} // Replace with the path to the user profile image
-            alt={''}
-            className="h-10 w-10 rounded-full mr-2"
         />
         <div className="flex items-center mx-4">
             <Image
@@ -46,11 +41,6 @@ const DashboardNavbar = ({title,setting}:IProps) => {
             />
             <p className="text-black">{user ? user.name : ''}</p>
         </div>
-        <Image
-            src={setting_icon} // Replace with the path to the user profile image
-            alt={''}
-            className="h-10 w-10 rounded-full mx-4"
-        />
     </div>
 </div>
 

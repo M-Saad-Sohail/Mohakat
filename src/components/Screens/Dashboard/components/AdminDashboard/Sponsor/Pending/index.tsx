@@ -32,11 +32,9 @@ const PendingSponsor = () => {
 			<div className="w-full px-3 overflow-x-hidden">
 				<MainLayout>
 					<DashboardNavbar title={'Pending Sponsors'} />
-					{pendingData.length > 0 ? (
+					
 						<Table data={pendingData} columns={PENDINGCOLUMN} />
-					) : (
-						<NoData />
-					)}
+					
 				</MainLayout>
 			</div>
 		</div>

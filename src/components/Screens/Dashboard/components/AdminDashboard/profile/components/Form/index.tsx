@@ -53,11 +53,6 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
                     <h2 className="text-2xl font-bold text-mmain my-6 leading-normal pt-2">
                     Profile Information
 					</h2>
-					<Image
-						src={profile} // Replace with the path to the user profile image
-						alt={''}
-						className="h-[200px] w-[200px] rounded-md mr-2"
-					/>
 				</div>
                     <div className='flex w-full justify-start gap-x-4 items-center'>
                     <Input
@@ -84,6 +79,12 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 					/>
 					<Input title={'Language'} name="language" type="language" value={'En English'}	className="mb-[19px] min-w-[460px]"/>
                     </div>
+					<Button
+							title={('Update Profile')}
+							className="max-w-[200px] px-6  shadow-custom"
+							type="submit"
+							// isLoading={isLoading}
+						/>
                     <h4 className="text-2xl font-bold text-mmain my-5 leading-normal pt-2">
 						Change Password
 					</h4>
