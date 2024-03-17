@@ -18,7 +18,7 @@ const RejectedSponsor = () => {
 				const user = getUserFromLocalStorage();
 				if (!user) return;
 				const data = await fetchRejectededData(user.key);
-				setRejectedData(data?.simplifiedSponsors || []); // Ensure data is an array or set default to empty array
+				setRejectedData(data?.sponsors || []); // Ensure data is an array or set default to empty array
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
