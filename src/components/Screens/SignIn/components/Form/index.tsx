@@ -28,7 +28,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full mt-[200px] max-w-[800px]"
+				className="w-full my-[200px] max-w-[800px]"
 				noValidate
 				onSubmit={handleSubmit}
 			>
@@ -51,7 +51,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						onChange={handleChange}
 						value={values.email}
 						error={touched.email && errors.email}
-						className="mb-[19px] text-primary max-w-[800px]"
+						className="mb-[19px] max-w-[800px]"
 					/>
 					<Input
 						title={int.formatMessage({ id: 'signin.form.password.title' })}
@@ -61,7 +61,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						onChange={handleChange}
 						value={values.password}
 						error={touched.password && errors.password}
-						className="text-primary max-w-[800px]"
+						className="max-w-[800px]"
 					/>
 					<p className="text-primary w-full text-right text-lg font-bold">
 						<FormattedMessage id="signin.form.forgot" />

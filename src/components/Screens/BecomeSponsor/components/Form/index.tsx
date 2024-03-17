@@ -37,7 +37,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full mt-[200px] max-w-[800px]" // Set form overflow to auto
+				className="w-full my-[200px] max-w-[800px]" // Set form overflow to auto
 				noValidate
 				onSubmit={handleSubmit}
 			>
