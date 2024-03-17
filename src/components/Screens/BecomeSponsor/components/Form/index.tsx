@@ -13,7 +13,9 @@ import {
 import { useIntl } from 'react-intl';
 
 type IProps = {
-	submitHandler: (arg: RegisterUserCredentials) => void;
+	submitHandler: (
+		arg: Omit<RegisterUserCredentials, 'confirmPassword'>,
+	) => void;
 	isLoading: boolean;
 };
 
@@ -23,7 +25,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		validationSchema: becomeSponsorSchema,
 		onSubmit: (values: RegisterUserCredentials) => {
 			console.log('values', values);
-			submitHandler({ ...values, email: values.email.toLowerCase() });
+			const { confirmPassword, ...rest } = values;
+			submitHandler({ ...rest, email: values.email.toLowerCase() });
 		},
 	});
 
@@ -32,149 +35,104 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		int.formatMessage({ id: `becomesponsor.form.${id}` });
 
 	return (
-		<div className="w-full">
+		<>
 			<form
-				className="w-full" // Set form overflow to auto
+				className="w-full my-[200px] max-w-[800px]" // Set form overflow to auto
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4">
-					<h2 className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
+					<h2 className="text-4xl font-extrabold text-primary mt-10 leading-normal pt-2">
 						{getLocaleValue('title')}
 					</h2>
 					<p className="text-xl font-semibold text-primary  leading-normal pt-2 mb-8">
 						{getLocaleValue('description')}
 					</p>
-					<div className='flex w-full justify-start gap-x-4 items-center'>
-					<Input
-						title={getLocaleValue('name.title')}
-						placeholder={getLocaleValue('name.placeholder')}
-						name="name"
-						className='min-w-[390px] mb-[19px] text-primary'
-						onChange={handleChange}
-						value={values.name}
-						error={touched.name && errors.name}
-					/>
-					<Input
-						title={getLocaleValue('fatherName.title')}
-						placeholder={getLocaleValue('fatherName.placeholder')}
-						name="fatherName"
-						className='min-w-[390px] mb-[19px] text-primary'
-						onChange={handleChange}
-						value={values.fatherName}
-						error={touched.fatherName && errors.fatherName}
-					/>
-					</div>
-					<div className='flex w-full justify-start gap-x-4 items-center'>
-					<Input
-						title={getLocaleValue('email.title')}
-						placeholder={getLocaleValue('email.placeholder')}
-						type="email"
-						name="email"
-						className='min-w-[390px] mb-[19px] text-primary'
-						onChange={handleChange}
-						value={values.email}
-						error={touched.email && errors.email}
-					/>
-					<Select
-						name="Language"
-						// title={getLocaleValue('gender.title')}
-						// options={[
-						// 	{ label: getLocaleValue('gender.value.0'), value: 'EN (United Kingdom)' },
-						// 	{ label: getLocaleValue('gender.value.1'), value: 'AR (Saudia Arabia)' },
-						// 	{ label: getLocaleValue('gender.value.2'), value: 'TR (Turkish)' },
-						// ]}
-						title={('Language')}
-						options={[
-							{ label: "EN (United Kingdom)", value: 'EN (United Kingdom)' },
-							{ label: "AR (Saudia Arabia)", value: 'AR (Saudia Arabia)' },
-							{ label: "TR (Turkish)", value: 'TR (Turkish)' },
-						]}
-						onChange={handleChange}
-						value={values.gender}
-						error={touched.gender && errors.gender}
-						className='min-w-[390px] mb-[19px] text-primary'
-					/>
-					</div>
-					<Input
-						title={getLocaleValue('password.title')}
-						placeholder="*************"
-						name="password"
-						className='max-w-[800px] mb-[19px] text-primary'
-						type="password"
-						onChange={handleChange}
-						value={values.password}
-						error={touched.password && errors.password}
-					/>
-					<Input
-						title={getLocaleValue('cnic.title')}
-						placeholder="012345678912"
-						name="cnicNumber"
-						className='max-w-[800px] mb-[19px] text-primary'
-						onChange={handleChange}
-						value={values.cnicNumber}
-						error={touched.cnicNumber && errors.cnicNumber}
-					/>
-					<Input
-						title={getLocaleValue('postalCode.title')}
-						placeholder="74600"
-						name="postalCode"
-						onChange={handleChange}
-						value={values.postalCode}
-						className='max-w-[800px] mb-[19px] text-primary'
-						error={touched.postalCode && errors.postalCode}
-					/>
-					<Input
-						title={getLocaleValue('country.title')}
-						placeholder={getLocaleValue('country.placeholder')}
-						name="country"
-						onChange={handleChange}
-						value={values.country}
-						className='max-w-[800px] mb-[19px] text-primary'
-						error={touched.country && errors.country}
-					/>
-					<Input
-						title={getLocaleValue('address.title')}
-						placeholder={getLocaleValue('address.placeholder')}
-						name="address"
-						onChange={handleChange}
-						value={values.address}
-						className='max-w-[800px] mb-[19px] text-primary'
-						error={touched.address && errors.address}
-					/>
-
-					<Select
-						name="gender"
-						title={getLocaleValue('gender.title')}
-						options={[
-							{ label: getLocaleValue('gender.value.0'), value: 'Male' },
-							{ label: getLocaleValue('gender.value.1'), value: 'Female' },
-						]}
-						onChange={handleChange}
-						value={values.gender}
-						error={touched.gender && errors.gender}
-						className='max-w-[800px] mb-[19px] text-primary'
-					/>
-
-					<div className=" justify-center items-center flex w-full">
-						<Button
-							title={getLocaleValue('submit')}
-							className="max-w-[250px] px-6 "
-							type="submit"
-							isLoading={isLoading}
+					<div className="w-full flex flex-col gap-4">
+						<Input
+							title={getLocaleValue('name.title')}
+							placeholder={getLocaleValue('name.placeholder')}
+							name="name"
+							className="max-w-[800px] w-full"
+							onChange={handleChange}
+							value={values.name}
+							error={touched.name && errors.name}
 						/>
-					</div>
+						<div className="flex flex-row max-w-[800px] w-full gap-3">
+							<Input
+								title={getLocaleValue('email.title')}
+								placeholder={getLocaleValue('email.placeholder')}
+								type="email"
+								className="flex-[1.5]"
+								name="email"
+								onChange={handleChange}
+								value={values.email}
+								error={touched.email && errors.email}
+							/>
+							<Select
+								name="language"
+								title="Language"
+								className="flex-[1.1]"
+								options={[
+									{ label: 'EN (United Kingdom)', value: 'en' },
+									{ label: 'Arabic', value: 'ar' },
+									{ label: 'Turkish', value: 'tr' },
+								]}
+								onChange={handleChange}
+								value={values.language}
+								error={touched.language && errors.language}
+							/>
+						</div>
+						<Input
+							title={getLocaleValue('password.title')}
+							placeholder="*************"
+							name="password"
+							type="password"
+							className="max-w-[800px] text-primary"
+							onChange={handleChange}
+							value={values.password}
+							error={touched.password && errors.password}
+						/>
+						<Input
+							title={getLocaleValue('confirmPassword.title')}
+							placeholder="*************"
+							name="confirmPassword"
+							type="password"
+							className="max-w-[800px] text-primary"
+							onChange={handleChange}
+							value={values.confirmPassword}
+							error={touched.confirmPassword && errors.confirmPassword}
+						/>
 
-					<div className="text-center text-primary text-lg my-6 justify-center items-center flex font-helvetica">
-						{' '}
-						{getLocaleValue('cta.0')}{' '}
-						<Link className="text-primary font-bold" href={'/sign-in'}>
-							{getLocaleValue('cta.1')}
-						</Link>
+						<Input
+							title={getLocaleValue('country.title')}
+							placeholder={getLocaleValue('country.placeholder')}
+							name="country"
+							className="max-w-[800px] w-full"
+							onChange={handleChange}
+							value={values.country}
+							error={touched.country && errors.country}
+						/>
+
+						<div className=" justify-center items-center flex w-full">
+							<Button
+								title={getLocaleValue('submit')}
+								className="max-w-[250px] px-6 "
+								type="submit"
+								isLoading={isLoading}
+							/>
+						</div>
 					</div>
 				</div>
 			</form>
-		</div>
+			<div className="text-center text-primary text-lg my-6 absolute bottom-12 max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
+				{' '}
+				{getLocaleValue('cta.0')}{' '}
+				<Link className="text-primary font-bold" href={'/sign-in'}>
+					{getLocaleValue('cta.1')}
+				</Link>
+			</div>
+		</>
 	);
 };
 

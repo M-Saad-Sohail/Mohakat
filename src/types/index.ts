@@ -10,15 +10,11 @@ export type UserCredentials = {
 
 export type RegisterUserCredentials = {
 	name: string;
-	fatherName: string;
-	postalCode: string;
 	country: string;
-	gender: string;
-	cnicNumber: string;
 	email: string;
 	password: string;
-	// new_password2: string,
-	address: string;
+	language: string;
+	confirmPassword: string;
 };
 export enum KEYS {
 	USER = 'user',

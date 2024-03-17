@@ -38,14 +38,11 @@ export const LOGININITIALVALUES: LoginSchema = {
 };
 export const BECOMESPONSORINITIALVALUES: BecomeSponsorSchema = {
 	name: '',
-	fatherName: '',
-	postalCode: '',
 	country: '',
-	gender: 'Male',
-	cnicNumber: '',
 	email: '',
 	password: '',
-	address: '',
+	language: '',
+	confirmPassword: '',
 };
 export const AUTHPATHS = {
 	HOME: '/',

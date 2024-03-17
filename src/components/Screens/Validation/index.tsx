@@ -1,3 +1,5 @@
+'use client';
+
 import AuthLayout from './../../UI/AuthLayout';
 import React from 'react';
 import { verification } from '../../../assests';
@@ -16,15 +18,14 @@ const ValidationScreen = () => {
 				<h1 className="text-[60px] my-2 font-bold">
 					{getLocaleValue('message.title')}
 				</h1>
-				<p className="text-[20px] my-3">
+				<p className="text-[20px] my-3 max-w-md w-full">
 					{getLocaleValue('message.description')}
 				</p>
 				<div className="flex">
 					<Link
 						href={'/become-sponsor'}
-						className={`py-3 justify-center items-center duration-500 text-center md:flex hidden float-right mr-4 border bg-primary text-white px-4 rounded-lg font-bold my-4 min-w-[200px]`}
+						className={`py-3 justify-center items-center duration-500 text-center md:flex hidden float-right mr-4 border bg-primary text-white  px-4 rounded-lg font-bold my-4 min-w-[200px]`}
 					>
-						{' '}
 						{getLocaleValue('message.cta')}
 					</Link>
 				</div>

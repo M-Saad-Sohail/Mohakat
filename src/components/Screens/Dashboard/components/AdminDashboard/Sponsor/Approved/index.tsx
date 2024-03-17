@@ -17,7 +17,7 @@ const Approved = () => {
 				if (!user) return;
 				const data = await fetchApprovedData(user.key);
 				setApprovedData(
-					data?.simplifiedSponsors.filter(
+					data?.sponsors.filter(
 						(sponsor: any) => sponsor.name !== 'Super Admin',
 					) || [],
 				); // Ensure data is an array or set default to empty array

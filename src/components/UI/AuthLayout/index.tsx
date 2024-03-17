@@ -11,7 +11,7 @@ interface IProps {
 	margin?: string;
 }
 
-const AuthLayout: React.FC<IProps> = ({ children, className, margin }) => {
+const AuthLayout: React.FC<IProps> = ({ children, className = '', margin }) => {
 	// const { locale, defaultLocale } = useRouter();
 	// const dir = getDirection(locale ?? defaultLocale ?? 'en');
     const [loading,setLoading]=useState(false)
@@ -37,7 +37,7 @@ const AuthLayout: React.FC<IProps> = ({ children, className, margin }) => {
 							className={`w-full h-full object-cover`}
 						/>
 					</div>
-					<div className={`w-1/2 ${className}`}>{children}</div>
+					<div className={`w-1/2 relative ${className}`}>{children}</div>
 				</div>
 			</div>
 		</div>
