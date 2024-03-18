@@ -19,12 +19,12 @@ const Select: React.FC<IProps> = ({
 	const dir = useDirection();
 
 	return (
-		<div dir={dir} className={`flex flex-col gap-y-2 ${className}`}>
-			<label className="font-bold text-[20px] text-primary">{title}</label>
+		<div dir={dir} className={`flex flex-col gap-y-2 h-[50px] ${className}`}>
+			<label className="font-bold text-[14px] text-primary">{title}</label>
 
-			<div dir={dir} className="relative">
+			<div dir={dir} className="relative h-full">
 				<select
-					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[60px] max-w-[700px] text-primary appearance-none ${className}`}
+					className={`py-2 px-5 w-full focus:outline-none text-[15px] bg-[#E8E8E8] h-[50px] max-w-[700px] text-primary appearance-none ${className}`}
 					onChange={onChange}
 					value={value}
 					name={name}

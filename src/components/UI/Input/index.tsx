@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EyeOff from '@/assests/icons/eye_icon.svg';
+import EyeOff from '@/assests/icons/eye_off.svg';
 import EyeIcon from '@/assests/icons/eye_icon.svg';
 import Image from 'next/image';
 import useDirection from '@/hooks/useDirection';
@@ -33,13 +33,13 @@ const Input: React.FC<IProps> = ({
 			style={style}
 		>
 			<label
-				className="text-base font-bold font-sans text-primary"
+				className="text-[14px] font-bold font-sans text-primary"
 				htmlFor={name}
 			>
 				{title}
 			</label>
 			{type === 'password' ? (
-				<div className="relative w-full ">
+				<div className="relative w-full h-[50px]">
 					<input
 						autoComplete="off"
 						placeholder={placeholder}
@@ -49,7 +49,7 @@ const Input: React.FC<IProps> = ({
 						id={name}
 						type={showPassword ? 'text' : 'password'}
 						value={value}
-						className={`py-3 px-5 w-full rounded-md focus:outline-none bg-[#E8E8E8] h-[60px]  ${className}`}
+						className={`py-3 px-5 w-full rounded-md focus:outline-none bg-[#E8E8E8] h-[50px] ${className}`}
 					/>
 					<div onClick={togglePasswordVisibility}>
 						{showPassword ? (
@@ -79,7 +79,7 @@ const Input: React.FC<IProps> = ({
 					id={name}
 					type={type || 'text'}
 					value={value}
-					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[60px] max-w-[700px]  ${className}`}
+					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px]  ${className}`}
 				/>
 			)}
 

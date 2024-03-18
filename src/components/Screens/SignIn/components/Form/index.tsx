@@ -64,21 +64,21 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						error={touched.password && errors.password}
 						className="max-w-[800px]"
 					/>
-					<p className="text-primary w-full text-right text-lg font-bold">
+					<p className="text-primary w-full text-right text-[12px] font-bold">
 						{t('forgot')}
 					</p>
 
 					<div className="justify-center items-center flex w-full">
 						<Button
 							title={t('submit')}
-							className="min-w-[250px] text-base px-6"
+							className="max-w-[250px] text-base px-6"
 							type="submit"
 							isLoading={isLoading}
 						/>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-12 text-lg justify-center items-center flex font-helvetica gap-x-4">
+			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-lg justify-center items-center flex font-helvetica gap-x-4">
 				{t('cta.0')}
 				<Link locale={locale} className="text-primary font-bold" href={url('/become-sponsor')}>
 					{t('cta.1')}

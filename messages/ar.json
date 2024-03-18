@@ -99,5 +99,39 @@
 			"description": "لقد قمت بإنشاء حسابك بنجاح. سيستغرق التحقق حوالي 24 ساعة.",
 			"cta": "متابعة"
 		}
+	},
+	"AccountSettings": {
+		"title": "الإعدادات",
+		"form": {
+			"title": "إدارة الحساب",
+			"section1": "المعلومات الشخصية",
+			"section2": "تغيير كلمة المرور",
+			"name": {
+				"title": "الاسم"
+			},
+			"email": {
+				"title": "البريد الإلكتروني"
+			},
+			"country": {
+				"title": "البلد"
+			},
+			"language": {
+				"title": "اللغة",
+				"arabic": "العربية",
+				"english": "الإنجليزية",
+				"turkish": "التركية"
+			},
+			"update_profile": "تحديث الملف الشخصي",
+			"currentPassword": {
+				"title": "كلمة المرور الحالية"
+			},
+			"newPassword": {
+				"title": "كلمة المرور الجديدة"
+			},
+			"confirmPassword": {
+				"title": "تأكيد كلمة المرور"
+			},
+			"save_changes": "حفظ التغييرات"
+		}
 	}
 }

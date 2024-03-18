@@ -99,5 +99,39 @@
 			"description": "Hesabınızı başarıyla oluşturdunuz. Doğrulama yaklaşık 24 saat sürecektir.",
 			"cta": "Devam"
 		}
+	},
+	"AccountSettings": {
+		"title": "Ayarlar",
+		"form": {
+			"title": "Hesap Yönetimi",
+			"section1": "Kişisel Bilgiler",
+			"section2": "Şifre Değiştirme",
+			"name": {
+				"title": "Ad"
+			},
+			"email": {
+				"title": "E-posta"
+			},
+			"country": {
+				"title": "Ülke"
+			},
+			"language": {
+				"title": "Dil",
+				"arabic": "Arapça",
+				"english": "İngilizce",
+				"turkish": "Türkçe"
+			},
+			"update_profile": "Profili Güncelle",
+			"currentPassword": {
+				"title": "Mevcut Şifre"
+			},
+			"newPassword": {
+				"title": "Yeni Şifre"
+			},
+			"confirmPassword": {
+				"title": "Şifreyi Onayla"
+			},
+			"save_changes": "Değişiklikleri Kaydet"
+		}
 	}
 }

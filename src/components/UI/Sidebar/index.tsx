@@ -23,6 +23,7 @@ import { useAuth } from '@/hooks/useAuth';
 import ham_icon from '@/assests/icons/hamburger_icon.png';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import '@/styles/scroll.css';
 
 const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
@@ -93,56 +94,60 @@ const LeftSideBar = () => {
 		const pathname = window.location.pathname;
 		setActive(pathname);
 	}, []);
+
 	const Menus = isAdmin ? AdminMenus : UserMenus;
+
 	return (
-		<div className="flex h-full">
+		<div className="flex">
 			<div
-				className={`fixed ${open ? 'w-[270px] max-h-fit' : 'w-20 '} bg-white h-screen p-5 pt-8 relative duration-300 shadow-lg`}
+				className={`fixed ${open ? 'w-[270px]' : 'w-20 '} bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg`}
 			>
-				<Image
-					src={ham_icon}
-					alt=""
-					className={`absolute cursor-pointer right-4 top-[0.8rem] w-5  ${!open && 'rotate-180 right-8 '}`}
-					onClick={() => setOpen((prev) => !prev)}
-				/>
-				<div className="flex gap-x-2 items-center">
-					<Link href={url('/')}>
+				<div className="flex gap-x-2 justify-between items-center">
+					{open && (
+						<Link href={url('/')}>
+							<Image alt="" src={dashboard_logo} width={100} height={100} />
+						</Link>
+					)}
+					{open ? (
 						<Image
 							alt=""
-							src={dashboard_logo}
-							className={`${!open && 'hidden'}`}
-							width={150}
-							height={150}
+							src={sidebar_icon}
+							className={`w-5 cursor-pointer `}
+							width={50}
+							height={50}
+							onClick={() => setOpen(false)}
 						/>
-					</Link>
+					) : (
+						<Image
+							src={ham_icon}
+							alt=""
+							className={`w-5 cursor-pointer ml-2`}
+							width={50}
+							height={50}
+							onClick={() => setOpen(true)}
+						/>
+					)}
 				</div>
 				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
-					{/* <Image
-						alt=""
-						src={sidebar_icon}
-						className={`${open && 'hidden'}`}
-						width={150}
-						height={150}
-					/> */}
 					<Image
 						src={profile}
 						alt={''}
 						className="h-[50px] w-[50px] rounded-full mt-2"
 					/>
-					<p className={`${!open && 'hidden'} font-bold text-[20px]`}>
+					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
 						{user ? user.name : ''}
 					</p>
 					<p
-						className={`${!open && 'hidden'} ${isAdmin && 'hidden'} rounded-lg bg-[#95dca9] px-4 text-bg mt-1`}
+						className={`${!open || isAdmin ? 'hidden' : ''} rounded-lg bg-[#95dca9] px-4 text-[10px] mt-1`}
 					>
 						Verified
 					</p>
 				</div>
-				<ul className={` pt-10`}>
+				<ul className={`pt-10`}>
 					{Menus.map((Menu, index) => (
 						<Link key={index} locale={locale} href={url(Menu.link)}>
 							<li
-								className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-sm items-center gap-x-4 ${index === 0 && 'bg-light-white'}  ${active !== Menu.link && 'text-primary'}`}
+								className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${index === 0 && 'bg-light-white'}  ${active !== Menu.link && 'text-primary'}`}
 								onClick={() => {
 									handleMenuClick(index);
 									if (Menu.title === 'Logout') {
@@ -150,22 +155,17 @@ const LeftSideBar = () => {
 									}
 								}}
 							>
-								<div className="flex gap-x-4">
+								<div className="flex gap-x-4 items-center">
 									<Image
 										src={Menu.src}
-										className="w-7 h-7 object-contain"
+										className="w-5 h-5 object-contain"
 										alt=""
 										style={
-											clickedMenu === index || active === Menu.link
-												? {
-														filter:
-															'invert(26%) sepia(96%) saturate(581%) hue-rotate(317deg) brightness(91%) contrast(83%)',
-													}
-												: {}
+											clickedMenu === index || active === Menu.link ? {} : {}
 										}
 									/>
 									<div
-										className={`${!open && 'hidden'} text-black origin-left duration-200 font-bold text-[17px] ${clickedMenu === index ? 'text-primary' : ''}  ${active === Menu.link && 'text-primary'} `}
+										className={`${!open && 'hidden'} text-black origin-left duration-200 text-[16px] font-[400] ${clickedMenu === index ? 'text-primary font-semibold' : ''}  ${active === Menu.link && 'text-primary font-semibold'} `}
 									>
 										{Menu.title}
 									</div>

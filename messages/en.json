@@ -99,5 +99,39 @@
 			"description": "You have successfully created your account. It will take about 24hrs for verification.",
 			"cta": "Continue"
 		}
+	},
+	"AccountSettings": {
+		"title": "Settings",
+		"form": {
+			"title": "Account Management",
+			"section1": "Personal Information",
+			"section2": "Change Password",
+			"name": {
+				"title": "Name"
+			},
+			"email": {
+				"title": "Email"
+			},
+			"country": {
+				"title": "Country"
+			},
+			"language": {
+				"title": "Language",
+				"arabic": "Arabic",
+				"english": "English",
+				"turkish": "Turkish"
+			},
+			"update_profile": "Update Profile",
+			"currentPassword": {
+				"title": "Current Password"
+			},
+			"newPassword": {
+				"title": "New Password"
+			},
+			"confirmPassword": {
+				"title": "Confirm Password"
+			},
+			"save_changes": "Save Changes"
+		}
 	}
 }

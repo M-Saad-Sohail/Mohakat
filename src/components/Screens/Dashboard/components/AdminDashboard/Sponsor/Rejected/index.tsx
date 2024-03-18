@@ -1,41 +1,32 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import LeftSideBar from '@/components/UI/Sidebar';
-import MainLayout from '@/components/UI/MainLayout';
 import Table from '@/components/UI/Table';
 import { REJECTEDCOLUMN, SPONSORDATA } from '@/contants';
 import { fetchRejectededData } from '@/hooks/useSponsorTables';
-import { getUserFromLocalStorage } from '@/utils/auth';
-import NoData from '@/components/UI/NoData';
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import fetchSponsorData from '@/components/Screens/Dashboard/utils/fetchSponsorData';
 
 const RejectedSponsor = () => {
-	const [rejectedData, setRejectedData] = useState([]);
+	const [data, setData] = useState<any[]>([]);
+
+	const init = async () => {
+		const result = await fetchSponsorData(fetchRejectededData);
+		setData(result);
+	};
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const user = getUserFromLocalStorage();
-				if (!user) return;
-				const data = await fetchRejectededData(user.key);
-				setRejectedData(data?.sponsors || []); // Ensure data is an array or set default to empty array
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
-
-		fetchData();
+		init();
 	}, []);
+
 	return (
-		<div className="flex">
+		<div className="flex bg-[#f4f4f4ea]">
 			<LeftSideBar />
 			<div className="w-full px-3 overflow-x-hidden">
-				<MainLayout>
-					<DashboardNavbar title={'Rejected Sponsor'} />
-					
-						<Table data={rejectedData} columns={REJECTEDCOLUMN} />
-					
-				</MainLayout>
+				<DashboardNavbar title={'Rejected Sponsor'} />
+				<div className="px-4">
+					<Table data={data} columns={REJECTEDCOLUMN} search={true} />
+				</div>
 			</div>
 		</div>
 	);

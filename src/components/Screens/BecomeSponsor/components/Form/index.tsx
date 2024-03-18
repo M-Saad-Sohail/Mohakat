@@ -68,7 +68,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							<Select
 								name="language"
 								title={t('language.title')}
-								className="flex-[1.1]"
+								className="flex-[1.1] h-[41px] mt-[2px]"
 								options={[
 									{ label: t('language.english'), value: 'en' },
 									{ label: t('language.arabic'), value: 'ar' },
@@ -122,7 +122,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary text-lg my-6 absolute bottom-12 max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
+			<div className="text-center text-primary text-lg absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
 				{t('cta.0')}
 				<Link className="text-primary font-bold" href={url('/sign-in')}>
 					{t('cta.1')}

@@ -1,5 +1,6 @@
 import MainProvider from '@/components/Provider/MainProvider';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import '@/styles/globals.css';
 
 export default function RootLayout({
 	children,

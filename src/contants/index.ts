@@ -64,6 +64,7 @@ export const REJECTEDCOLUMN: any = [
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Country', accessor: 'country' },
+	{ Header: 'Language', accessor: 'language' },
 	{ Header: 'Action', accessor: 'delete' },
 ];
 export const DASHBOARDCOLUMN: any = [
