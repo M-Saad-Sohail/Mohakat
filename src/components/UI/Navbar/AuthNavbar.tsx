@@ -3,18 +3,19 @@ import { logo } from '@/assests';
 import { Links } from '@/contants';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useIntl } from 'react-intl';
-import Select from '../Select';
-import { useRouter } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import LangSelector from '../LandSelector';
+import { useTranslations } from 'next-intl';
+import useDirection from '@/hooks/useDirection';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 type IProps = {
 	isLoggedIn: boolean;
 };
 const AuthNavbar = ({ isLoggedIn }: IProps) => {
 	const [open, setOpen] = useState(false);
+	const pathname = usePathname();
 
-	const { replace } = useRouter();
 	const handleMenuClick = () => {
 		setOpen(!open);
 		toggleBodyScrolling();
@@ -25,15 +26,18 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 			body.style.overflow = open ? 'auto' : 'hidden';
 		}
 	};
-	const intl = useIntl();
-	const getLocaleValue = (id: string) =>
-		intl.formatMessage({ id: `navbar.${id}` });
+	const t = useTranslations('Navbar');
+	const { url, dir, locale, replace, changeLocale } = useLocaleRouter();
+
+	if (!pathname) {
+		return null;
+	}
 
 	return (
-		<div className="bg-[#FCFCFC] h-fit shadow-md">
+		<div dir={dir} className="bg-[#FCFCFC] h-fit shadow-md">
 			<div className="flex items-center justify-between py-4 mobile:pt-4 mx-10">
 				<div className="flex items-center ">
-					<Link href="/">
+					<Link locale={locale} href={url('/')}>
 						<Image src={logo} alt="Logo" className="mx-2 h-14 w-14" />
 					</Link>
 				</div>
@@ -41,38 +45,42 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 					{Links.map((link) => (
 						<Link
 							key={link.name}
-							href={link.link}
+							href={url(link.link)}
+							locale={locale}
 							className="block py-2 px-6 font-bold duration-500 text-[16px] text-primary"
 						>
-							{getLocaleValue(link.localeId)}
+							{t(link.localeId)}
 						</Link>
 					))}
 				</div>
 				<div className="flex flex-row items-center justify-center  gap-x-4">
 					<LangSelector
 						name="language"
-						value={'en'}
+						value={locale}
 						title=""
-						onChange={(e) => replace('/', {})}
+						onChange={(e) => {
+							changeLocale(e.target.value);
+						}}
 						options={[
 							{ label: 'EN', value: 'en' },
 							{ label: 'AR', value: 'ar' },
 							{ label: 'TR', value: 'tr' },
 						]}
-						className='px-4'
+						className="px-4"
 					/>
 					<Link
-						href={'/sign-in'}
+						href={url('/sign-in')}
+						locale={locale}
 						className={`px-4 py-3 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-md font-bold `}
-						
 					>
-						{getLocaleValue('cta.signin')}
+						{t('cta.signin')}
 					</Link>
 					<Link
-						href={'/become-sponsor'}
+						href={url(`/become-sponsor`)}
+						locale={locale}
 						className={`py-3 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
 					>
-						{getLocaleValue('cta.become-sponsor')}
+						{t('cta.become-sponsor')}
 					</Link>
 				</div>
 
@@ -95,7 +103,8 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 								<Link
 									key={link.name}
 									onClick={handleMenuClick}
-									href={link.link}
+									href={url(link.link)}
+									locale={locale}
 									className="block py-3 duration-500  border-[#4d4d4d]  border-b pl-4 mt-4"
 								>
 									{link.name}
@@ -106,15 +115,17 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 					{isLoggedIn ? (
 						<>
 							<Link
-								href="/"
+								href={url('/')}
 								onClick={() => {}}
+								locale={locale}
 								className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
 							>
 								Sign In
 							</Link>
 							<Link
-								href="/"
+								href={url('/')}
 								onClick={() => {}}
+								locale={locale}
 								className="block py-3 duration-500  pl-4 mt-4 mb-3 border-[#4d4d4d]  border-b"
 							>
 								Become a Sponsor

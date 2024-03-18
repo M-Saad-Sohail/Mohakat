@@ -15,14 +15,14 @@ import {
 	form_icon,
 	logout,
 	sidebar_icon,
-} from './../../../assests';
+} from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { useAuth } from '@/hooks/useAuth';
 import ham_icon from '@/assests/icons/hamburger_icon.png';
-import { useWindowSize } from 'hooks/useWindowSize';
-import { toast } from 'react-toastify';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
@@ -35,6 +35,15 @@ const LeftSideBar = () => {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { logoutUser } = useAuth();
 
+	const { url, locale } = useLocaleRouter();
+
+	useEffect(() => {
+		const user = getUserFromLocalStorage();
+		if (user && user.role === 'admin') {
+			setIsAdmin(true);
+			setUser(user);
+		}
+	}, []);
 	const AdminMenus = [
 		{ title: 'Dashboard', src: dashboard, link: '/dashboard', gap: true },
 		{ title: 'Families', src: families, link: '/families' },
@@ -97,7 +106,7 @@ const LeftSideBar = () => {
 					onClick={() => setOpen((prev) => !prev)}
 				/>
 				<div className="flex gap-x-2 items-center">
-					<Link href="/">
+					<Link href={url('/')}>
 						<Image
 							alt=""
 							src={dashboard_logo}
@@ -108,13 +117,13 @@ const LeftSideBar = () => {
 					</Link>
 				</div>
 				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
-					<Image
+					{/* <Image
 						alt=""
 						src={sidebar_icon}
 						className={`${open && 'hidden'}`}
 						width={150}
 						height={150}
-					/>
+					/> */}
 					<Image
 						src={profile}
 						alt={''}
@@ -131,7 +140,7 @@ const LeftSideBar = () => {
 				</div>
 				<ul className={` pt-10`}>
 					{Menus.map((Menu, index) => (
-						<Link key={index} href={Menu.link}>
+						<Link key={index} locale={locale} href={url(Menu.link)}>
 							<li
 								className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-sm items-center gap-x-4 ${index === 0 && 'bg-light-white'}  ${active !== Menu.link && 'text-primary'}`}
 								onClick={() => {

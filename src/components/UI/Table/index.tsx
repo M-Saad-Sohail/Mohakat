@@ -7,11 +7,11 @@ import {
 	ApprovedSponsor,
 	RejectSponsor,
 	RejectDeleteAll,
-} from './../../../hooks/useSponsorTables';
+} from '@/hooks/useSponsorTables';
 import {
 	getLastNameFromPathname,
 	getUserFromLocalStorage,
-} from './../../../utils/auth';
+} from '@/utils/auth';
 import Image from 'next/image';
 import GlobalFilter from './Filter';
 import TableIcon from '../TableIcon';

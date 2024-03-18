@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { search } from './../../../assests';
+import { search } from '@/assests';
 
 const SearchBar = () => {
 	return (

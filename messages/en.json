@@ -1,0 +1,103 @@
+{
+	"Navbar": {
+		"links": {
+			"0": "Support",
+			"1": "Sponsor",
+			"2": "Empower",
+			"3": "FAQs",
+			"4": "Contact"
+		},
+		"cta": {
+			"become-sponsor": "Become a Sponsor",
+			"signin": "Sign In"
+		}
+	},
+	"LandingPage": {
+		"hero": {
+			"title": "Supporting Palestine and Gaza: Together for a Better Future",
+			"description": "Become a sponsor and make a difference for the families of Palestine and Gaza. Your contribution can bring hope and change lives.",
+			"cta": "Become a Sponsor"
+		}
+	},
+	"Signin": {
+		"form": {
+			"title": "Sign In",
+			"description": "Enter your credentials to continue",
+			"email": {
+				"placeholder": "Enter your Email",
+				"title": "Email"
+			},
+			"password": {
+				"title": "Password"
+			},
+			"submit": "Sign In",
+			"forgot": "Forgot Password?",
+			"cta": {
+				"0": "Don't have an account?",
+				"1": "Become a Sponsor"
+			}
+		}
+	},
+	"BecomeSponsor": {
+		"form": {
+			"title": "Become a Sponsor",
+			"description": "Take a step for the betterment of people",
+			"name": {
+				"placeholder": "Enter your name",
+				"title": "Name"
+			},
+			"fatherName": {
+				"placeholder": "Enter your father name",
+				"title": "Father name"
+			},
+			"email": {
+				"title": "Email",
+				"placeholder": "Enter your Email"
+			},
+			"password": {
+				"title": "Password"
+			},
+			"confirmPassword": {
+				"title": "Confirm Password"
+			},
+			"cnic": {
+				"title": "CNIC",
+				"placeholder": "012345678912"
+			},
+			"postalCode": {
+				"title": "Postal Code"
+			},
+			"country": {
+				"title": "Country",
+				"placeholder": "Pakistan"
+			},
+			"address": {
+				"title": "Address",
+				"placeholder": "ABC Address"
+			},
+			"gender": {
+				"title": "Gender",
+				"male": "Male",
+				"female": "Female"
+			},
+			"language": {
+				"title": "Language",
+				"arabic": "Arabic",
+				"english": "English",
+				"turkish": "Turkish"
+			},
+			"submit": "Become a sponsor",
+			"cta": {
+				"0": "Already have an account?",
+				"1": "Sign In"
+			}
+		}
+	},
+	"SponsorSuccess": {
+		"message": {
+			"title": "Congratulations",
+			"description": "You have successfully created your account. It will take about 24hrs for verification.",
+			"cta": "Continue"
+		}
+	}
+}

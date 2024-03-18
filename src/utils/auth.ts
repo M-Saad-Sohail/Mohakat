@@ -1,12 +1,10 @@
-import { redirect} from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { UserType } from '../state/user/types';
 
-export const navigateToDashboardIfLoggedIn = (
-
-) => {
+export const navigateIfLoggedIn = (url: string) => {
 	const tokenString = localStorage.getItem('user');
 	if (tokenString && JSON.parse(tokenString).key) {
-		redirect('/dashboard');
+		redirect(url);
 	}
 };
 
@@ -33,8 +31,8 @@ export const getUserFromLocalStorage = () => {
 	return null; // or any other default value if needed
 };
 
-export function getLastNameFromPathname(pathname:String) {
+export function getLastNameFromPathname(pathname: String) {
 	const parts = pathname.split('/');
 	const lastName = parts[parts.length - 1];
 	return lastName;
-  }
+}

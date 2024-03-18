@@ -1,14 +1,17 @@
 'use client';
-import AuthLayout from '../../UI/AuthLayout';
+import AuthLayout from '@/components/UI/AuthLayout';
 import Form from './components/Form';
 import React from 'react';
 import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { navigateToDashboardIfLoggedIn } from '@/utils/auth';
+import { navigateIfLoggedIn } from '@/utils/auth';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const SignIn = () => {
+	const { url } = useLocaleRouter();
+
 	useEffect(() => {
-		navigateToDashboardIfLoggedIn();
+		navigateIfLoggedIn(url('/dashboard'));
 	}, []);
 
 	const { loginUser, isLoading } = useAuth();

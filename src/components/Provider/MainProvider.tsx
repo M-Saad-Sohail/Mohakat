@@ -12,7 +12,7 @@ import '@/styles/globals.css';
 import { Provider } from 'react-redux';
 import { ReactNode } from 'react';
 
-const messages: Record<string, Record<string, string>> = {
+const messages: Record<string, any> = {
 	en,
 	ar,
 	tr,
@@ -20,14 +20,13 @@ const messages: Record<string, Record<string, string>> = {
 
 type MainProviderProps = {
 	children: ReactNode;
+	locale: string;
 };
 
 const MainProvider = (props: MainProviderProps) => {
-	const locale = 'en';
-
 	return (
 		<Provider store={store}>
-			<IntlProvider locale={locale} messages={messages[locale]}>
+			<IntlProvider locale={props.locale} messages={messages[props.locale]}>
 				<Navbar />
 				<div>{props.children}</div>
 				<ToastContainer />

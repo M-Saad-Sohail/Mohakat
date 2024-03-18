@@ -1,14 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { UserType } from '../../../../../state/user/types';
-import { getUserFromLocalStorage } from '../../../../../utils/auth';
-import { useRouter } from 'next/router';
+import { UserType } from '@/state/user/types';
+import { getUserFromLocalStorage } from '@/utils/auth';
 import { redirect } from 'next/navigation';
 
 const UserDashboard = () => {
-	console.log('1234567891234567890')
 	const [user, setUser] = useState<UserType | null>(null);
-	// const router = useRouter();
+
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
 		if (!user) {

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from './../../state/store';
+import { RootState, useAppDispatch } from '@/state/store';
 import { setIsLoadingStateAction } from '.';
 import { LoadingSliceType } from './types';
 import { useCallback } from 'react';

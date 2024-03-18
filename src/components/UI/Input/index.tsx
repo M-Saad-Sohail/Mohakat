@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import EyeOff from '@/assests/icons/hide_password_icon.svg';
+import EyeOff from '@/assests/icons/eye_icon.svg';
 import EyeIcon from '@/assests/icons/eye_icon.svg';
+import Image from 'next/image';
+import useDirection from '@/hooks/useDirection';
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	error?: string | boolean | undefined;
 	title: string;
@@ -21,7 +23,7 @@ const Input: React.FC<IProps> = ({
 	setting,
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
-
+	const dir = useDirection();
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
 	};
@@ -51,9 +53,19 @@ const Input: React.FC<IProps> = ({
 					/>
 					<div onClick={togglePasswordVisibility}>
 						{showPassword ? (
-							<EyeOff className="h-5 w-5 cursor-pointer absolute top-[50%] right-[30px] transform translate-y-[-50%]" />
+							<Image
+								src={EyeOff}
+								alt="eye-off"
+								key="eye-off"
+								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-[30px]' : 'left-[30px]'} transform translate-y-[-50%]`}
+							/>
 						) : (
-							<EyeIcon className="h-5 w-5 cursor-pointer absolute top-[50%] right-[30px] transform translate-y-[-50%]" />
+							<Image
+								src={EyeIcon}
+								alt="eye-icon"
+								key="eye-icon"
+								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-[30px]' : 'left-[30px]'} transform translate-y-[-50%]`}
+							/>
 						)}
 					</div>
 				</div>

@@ -4,10 +4,12 @@ import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { PATHS, LOGININITIALVALUES } from '@/contants';
+import { LOGININITIALVALUES } from '@/contants';
 import { loginSchema } from '@/utils/validationSchema';
 import { UserCredentials } from '@/types';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useTranslations } from 'next-intl';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 type IProps = {
 	submitHandler: (arg: UserCredentials) => void;
@@ -23,7 +25,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		},
 	});
 
-	const int = useIntl();
+	const t = useTranslations('Signin.form');
+	const { url, locale } = useLocaleRouter();
 
 	return (
 		<>
@@ -35,17 +38,15 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 				<div className="mx-4 my-10 space-y-5">
 					<div>
 						<div className="text-4xl font-extrabold text-primary mt-10 leading-normal pt-2">
-							<FormattedMessage id="signin.form.title" />
+							{t('title')}
 						</div>
 						<div className="text-xl font-semibold text-primary leading-normal pt-2 mb-8">
-							<FormattedMessage id="signin.form.description" />
+							{t('description')}
 						</div>
 					</div>
 					<Input
-						title={int.formatMessage({ id: 'signin.form.email.title' })}
-						placeholder={int.formatMessage({
-							id: 'signin.form.email.placeholder',
-						})}
+						title={t('email.title')}
+						placeholder={t('email.placeholder')}
 						type="email"
 						name="email"
 						onChange={handleChange}
@@ -54,7 +55,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						className="mb-[19px] max-w-[800px]"
 					/>
 					<Input
-						title={int.formatMessage({ id: 'signin.form.password.title' })}
+						title={t('password.title')}
 						placeholder="*************"
 						name="password"
 						type="password" // Added type attribute
@@ -64,12 +65,12 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						className="max-w-[800px]"
 					/>
 					<p className="text-primary w-full text-right text-lg font-bold">
-						<FormattedMessage id="signin.form.forgot" />
+						{t('forgot')}
 					</p>
 
 					<div className="justify-center items-center flex w-full">
 						<Button
-							title={int.formatMessage({ id: 'signin.form.submit' })}
+							title={t('submit')}
 							className="min-w-[250px] text-base px-6"
 							type="submit"
 							isLoading={isLoading}
@@ -78,9 +79,9 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 				</div>
 			</form>
 			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-12 text-lg justify-center items-center flex font-helvetica gap-x-4">
-				<FormattedMessage id="signin.form.cta.0" />
-				<Link className="text-primary font-bold" href="/become-sponsor">
-					<FormattedMessage id="signin.form.cta.1" />
+				{t('cta.0')}
+				<Link locale={locale} className="text-primary font-bold" href={url('/become-sponsor')}>
+					{t('cta.1')}
 				</Link>
 			</div>
 		</>

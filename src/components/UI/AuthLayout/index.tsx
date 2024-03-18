@@ -1,10 +1,9 @@
 'use client';
 import Image from 'next/image';
-import { signIn__image } from '../../../assests';
+import { signIn__image } from '@/assests';
 import { useCallback, useEffect, useState } from 'react';
-import { getDirection } from '../../../utils/get-direction';
-import { redirect } from 'next/navigation'
-import MainLayout from '../MainLayout';
+import useDirection from '@/hooks/useDirection';
+
 interface IProps {
 	children: React.ReactNode;
 	className?: string;
@@ -12,9 +11,7 @@ interface IProps {
 }
 
 const AuthLayout: React.FC<IProps> = ({ children, className = '', margin }) => {
-	// const { locale, defaultLocale } = useRouter();
-	// const dir = getDirection(locale ?? defaultLocale ?? 'en');
-    const [loading,setLoading]=useState(false)
+	const [loading, setLoading] = useState(false);
 	const toggleBodyScrolling = useCallback(() => {
 		const body = document.querySelector('body');
 		if (body) {
@@ -26,8 +23,11 @@ const AuthLayout: React.FC<IProps> = ({ children, className = '', margin }) => {
 		toggleBodyScrolling();
 	}, [toggleBodyScrolling]);
 
+
+	const dir = useDirection();
+
 	return (
-		<div dir={'en'} className="bg-main overflow-y-hidden">
+		<div dir={dir} className="bg-main overflow-y-hidden">
 			<div className="flex flex-col" style={{ overflow: 'hidden' }}>
 				<div className="flex-1 w-full flex md:flex-row gap-x-14">
 					<div className={`w-1/2 ${margin}`}>

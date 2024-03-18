@@ -36,13 +36,7 @@ module.exports = {
         'red': '#ff0002',
       },
       
-    },
-    screens: {
-      mobile: { max: '767px' },
-      tablet: { max: '1280px' },
-      laptop: { max: '1499px' },
-    },
-    
+    },    
   },
   plugins: [],
 }

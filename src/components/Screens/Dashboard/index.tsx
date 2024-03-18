@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
-import MainLayout from '../../UI/MainLayout';
-import LeftSideBar from '../../UI/Sidebar';
+import MainLayout from '@/components/UI/MainLayout';
+import LeftSideBar from '@/components/UI/Sidebar';
 import AdminDashboard from './components/AdminDashboard';
 import UserDashboard from './components/UserDashboard';
 import { getUserFromLocalStorage } from '@/utils/auth';

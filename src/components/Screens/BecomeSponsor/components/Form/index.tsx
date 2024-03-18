@@ -1,16 +1,14 @@
 import React from 'react';
-import Input from './../../../../UI//Input';
-import Button from './../../../../UI/Button';
-import Select from './../../../../UI/Select';
+import Input from '@/components/UI//Input';
+import Button from '@/components/UI/Button';
+import Select from '@/components/UI/Select';
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { PATHS, BECOMESPONSORINITIALVALUES } from '../../../../../contants';
-import { becomeSponsorSchema } from './../../../../../utils/validationSchema';
-import {
-	BecomeSponsorSchema,
-	RegisterUserCredentials,
-} from '../../../../../types';
-import { useIntl } from 'react-intl';
+import { BECOMESPONSORINITIALVALUES } from '@/contants';
+import { becomeSponsorSchema } from '@/utils/validationSchema';
+import { RegisterUserCredentials } from '@/types';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { useTranslations } from 'next-intl';
 
 type IProps = {
 	submitHandler: (
@@ -24,15 +22,13 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		initialValues: BECOMESPONSORINITIALVALUES,
 		validationSchema: becomeSponsorSchema,
 		onSubmit: (values: RegisterUserCredentials) => {
-			console.log('values', values);
 			const { confirmPassword, ...rest } = values;
 			submitHandler({ ...rest, email: values.email.toLowerCase() });
 		},
 	});
 
-	const int = useIntl();
-	const getLocaleValue = (id: string) =>
-		int.formatMessage({ id: `becomesponsor.form.${id}` });
+	const t = useTranslations('BecomeSponsor.form');
+	const { url } = useLocaleRouter();
 
 	return (
 		<>
@@ -43,15 +39,15 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 			>
 				<div className="mx-4">
 					<h2 className="text-4xl font-extrabold text-primary mt-10 leading-normal pt-2">
-						{getLocaleValue('title')}
+						{t('title')}
 					</h2>
 					<p className="text-xl font-semibold text-primary  leading-normal pt-2 mb-8">
-						{getLocaleValue('description')}
+						{t('description')}
 					</p>
 					<div className="w-full flex flex-col gap-4">
 						<Input
-							title={getLocaleValue('name.title')}
-							placeholder={getLocaleValue('name.placeholder')}
+							title={t('name.title')}
+							placeholder={t('name.placeholder')}
 							name="name"
 							className="max-w-[800px] w-full"
 							onChange={handleChange}
@@ -60,8 +56,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						/>
 						<div className="flex flex-row max-w-[800px] w-full gap-3">
 							<Input
-								title={getLocaleValue('email.title')}
-								placeholder={getLocaleValue('email.placeholder')}
+								title={t('email.title')}
+								placeholder={t('email.placeholder')}
 								type="email"
 								className="flex-[1.5]"
 								name="email"
@@ -71,12 +67,12 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							/>
 							<Select
 								name="language"
-								title="Language"
+								title={t('language.title')}
 								className="flex-[1.1]"
 								options={[
-									{ label: 'EN (United Kingdom)', value: 'en' },
-									{ label: 'Arabic', value: 'ar' },
-									{ label: 'Turkish', value: 'tr' },
+									{ label: t('language.english'), value: 'en' },
+									{ label: t('language.arabic'), value: 'ar' },
+									{ label: t('language.turkish'), value: 'tr' },
 								]}
 								onChange={handleChange}
 								value={values.language}
@@ -84,7 +80,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							/>
 						</div>
 						<Input
-							title={getLocaleValue('password.title')}
+							title={t('password.title')}
 							placeholder="*************"
 							name="password"
 							type="password"
@@ -93,8 +89,9 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							value={values.password}
 							error={touched.password && errors.password}
 						/>
+						
 						<Input
-							title={getLocaleValue('confirmPassword.title')}
+							title={t('confirmPassword.title')}
 							placeholder="*************"
 							name="confirmPassword"
 							type="password"
@@ -105,18 +102,18 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						/>
 
 						<Input
-							title={getLocaleValue('country.title')}
-							placeholder={getLocaleValue('country.placeholder')}
+							title={t('country.title')}
+							placeholder={t('country.placeholder')}
 							name="country"
 							className="max-w-[800px] w-full"
 							onChange={handleChange}
 							value={values.country}
 							error={touched.country && errors.country}
-						/>
+						/> 
 
-						<div className=" justify-center items-center flex w-full">
+						<div className="justify-center items-center flex w-full">
 							<Button
-								title={getLocaleValue('submit')}
+								title={t('submit')}
 								className="max-w-[250px] px-6 "
 								type="submit"
 								isLoading={isLoading}
@@ -126,10 +123,9 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 				</div>
 			</form>
 			<div className="text-center text-primary text-lg my-6 absolute bottom-12 max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
-				{' '}
-				{getLocaleValue('cta.0')}{' '}
-				<Link className="text-primary font-bold" href={'/sign-in'}>
-					{getLocaleValue('cta.1')}
+				{t('cta.0')}
+				<Link className="text-primary font-bold" href={url('/sign-in')}>
+					{t('cta.1')}
 				</Link>
 			</div>
 		</>

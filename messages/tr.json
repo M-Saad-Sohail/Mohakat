@@ -1,0 +1,103 @@
+{
+	"Navbar": {
+		"links": {
+			"0": "Destek",
+			"1": "Sponsor",
+			"2": "Güçlendir",
+			"3": "SSS",
+			"4": "İletişim"
+		},
+		"cta": {
+			"become-sponsor": "Sponsor Ol",
+			"signin": "Oturum Aç"
+		}
+	},
+	"LandingPage": {
+		"hero": {
+			"title": "Filistin ve Gazze'yi Desteklemek: Daha İyi Bir Gelecek İçin Birlikte",
+			"description": "Bir sponsor olun ve Filistin ve Gazze aileleri için fark yaratın. Katkınız umut getirebilir ve hayatları değiştirebilir.",
+			"cta": "Sponsor Ol"
+		}
+	},
+	"Signin": {
+		"form": {
+			"title": "Oturum Aç",
+			"description": "Devam etmek için kimlik bilgilerinizi girin",
+			"email": {
+				"placeholder": "E-postanızı girin",
+				"title": "E-posta"
+			},
+			"password": {
+				"title": "Şifre"
+			},
+			"submit": "Oturum Aç",
+			"forgot": "Şifrenizi mi unuttunuz?",
+			"cta": {
+				"0": "Hesabınız yok mu?",
+				"1": "Sponsor Ol"
+			}
+		}
+	},
+	"BecomeSponsor": {
+		"form": {
+			"title": "Sponsor Ol",
+			"description": "İnsanlar için bir adım atın",
+			"name": {
+				"placeholder": "Adınızı girin",
+				"title": "Ad"
+			},
+			"fatherName": {
+				"placeholder": "Babanızın adını girin",
+				"title": "Baba adı"
+			},
+			"email": {
+				"title": "E-posta",
+				"placeholder": "E-postanızı girin"
+			},
+			"password": {
+				"title": "Şifre"
+			},
+			"confirmPassword": {
+				"title": "Şifreyi Onayla"
+			},
+			"cnic": {
+				"title": "CNIC",
+				"placeholder": "012345678912"
+			},
+			"postalCode": {
+				"title": "Posta Kodu"
+			},
+			"country": {
+				"title": "Ülke",
+				"placeholder": "Pakistan"
+			},
+			"address": {
+				"title": "Adres",
+				"placeholder": "ABC Adresi"
+			},
+			"gender": {
+				"title": "Cinsiyet",
+				"male": "Erkek",
+				"female": "Kadın"
+			},
+			"language": {
+				"title": "Dil",
+				"arabic": "Arapça",
+				"english": "İngilizce",
+				"turkish": "Türkçe"
+			},
+			"submit": "Sponsor Ol",
+			"cta": {
+				"0": "Zaten bir hesabınız var mı?",
+				"1": "Oturum Aç"
+			}
+		}
+	},
+	"SponsorSuccess": {
+		"message": {
+			"title": "Tebrikler",
+			"description": "Hesabınızı başarıyla oluşturdunuz. Doğrulama yaklaşık 24 saat sürecektir.",
+			"cta": "Devam"
+		}
+	}
+}

@@ -1,20 +1,15 @@
 'use client'
 import React from 'react';
 import { hero__image } from '@/assests/index';
-import Button from './../../../../UI/Button';
+import Button from '@/components/UI/Button';
 import Image from 'next/image';
-// import { useRouter } from 'next/router';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { getDirection } from '../../../../../utils/get-direction';
+import { useTranslations } from 'next-intl';
+import useDirection from '@/hooks/useDirection';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const HeroSection = () => {
-	// const { locale = 'en' } = useRouter();
-	const int = useIntl();
-	const title = int.formatMessage({ id: 'landingpage.hero.title' });
-	const description = int.formatMessage({ id: 'landingpage.hero.description' });
-
-	// const dir = getDirection(locale);
-	const dir = getDirection('en');
+	const t = useTranslations('LandingPage.hero')
+	const { dir, url, replace } = useLocaleRouter();
 	return (
 		<div
 			dir={dir}
@@ -22,14 +17,16 @@ const HeroSection = () => {
 		>
 			<div className="w-[50%] px-[54px]">
 				<h1 className="text-primary text-[52px] font-bold">
-					<FormattedMessage id="landingpage.hero.title" />
+					{t('title')}
 				</h1>
 				<p className="text-[18px] my-4">
-					<FormattedMessage id="landingpage.hero.description" />
+					{t('description')}
 				</p>
 				<Button
-					localeId="landingpage.hero.cta"
-					title="Become a sponsor"
+					title={t('cta')}
+					onClick={() => {
+						replace('/become-sponsor');
+					}}
 					className="max-w-[200px]"
 				/>
 			</div>

@@ -1,3 +1,4 @@
+import useDirection from '@/hooks/useDirection';
 import { ArrowDown01, ChevronDown } from 'lucide-react';
 
 interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
@@ -15,11 +16,13 @@ const Select: React.FC<IProps> = ({
 	title,
 	options,
 }) => {
+	const dir = useDirection();
+
 	return (
-		<div className={`flex flex-col gap-y-2 ${className}`}>
+		<div dir={dir} className={`flex flex-col gap-y-2 ${className}`}>
 			<label className="font-bold text-[20px] text-primary">{title}</label>
 
-			<div className="relative">
+			<div dir={dir} className="relative">
 				<select
 					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[60px] max-w-[700px] text-primary appearance-none ${className}`}
 					onChange={onChange}
@@ -33,7 +36,7 @@ const Select: React.FC<IProps> = ({
 					))}
 				</select>
 				<ChevronDown
-					className="absolute right-8 top-1/2 transform -translate-y-1/2 pointer-events-none"
+					className={`absolute ${dir === 'ltr' ? 'right-4' : 'left-4'} top-1/2 transform -translate-y-1/2 pointer-events-none`}
 					width="20"
 					height="20"
 				/>

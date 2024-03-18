@@ -1,4 +1,17 @@
 {
+	"Navbar": {
+		"links": [
+			"Support",
+			"Sponsor",
+			"Empower",
+			"FAQs",
+			"Contact"
+		],
+		"cta": {
+			"become-sponsor": "Become a Sponsor",
+			"signin": "Sign In"
+		}
+	},
 	"navbar.links.0": "Support",
 	"navbar.links.1": "Sponsor",
 	"navbar.links.2": "Empower",
@@ -6,6 +19,13 @@
 	"navbar.links.4": "Contact",
 	"navbar.cta.become-sponsor": "Become a Sponsor",
 	"navbar.cta.signin": "Sign In",
+	"LandingPage": {
+		"hero": {
+			"title": "Supporting Palestine and Gaza: Together for a Better Future",
+			"description": "Become a sponsor and make a difference for the families of Palestine and Gaza. Your contribution can bring hope and change lives.",
+			"cta": "Become a Sponsor"
+		}
+	},
 	"landingpage.hero.title": "Supporting Palestine and Gaza: Together for a Better Future",
 	"landingpage.hero.description": "Become a sponsor and make a difference for the families of Palestine and Gaza. Your contribution can bring hope and change lives.",
 	"landingpage.hero.cta": "Become a Sponsor",

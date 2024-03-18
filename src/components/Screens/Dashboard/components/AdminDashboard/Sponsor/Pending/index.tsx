@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import LeftSideBar from '../../../../../../UI/Sidebar';
-import MainLayout from '../../../../../../UI/MainLayout';
-import Table from '../../../../../../UI/Table';
-import { PENDINGCOLUMN } from './../../../../../../../contants';
-import { fetchPendingData } from './../../../../../../../hooks/useSponsorTables';
-import { getUserFromLocalStorage } from '../../../../../../../utils/auth';
+import LeftSideBar from '@/components/UI/Sidebar';
+import MainLayout from '@/components/UI/MainLayout';
+import Table from '@/components/UI/Table';
+import { PENDINGCOLUMN } from '@/contants';
+import { fetchPendingData } from '@/hooks/useSponsorTables';
+import { getUserFromLocalStorage } from '@/utils/auth';
 import NoData from '@/components/UI/NoData';
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 const PendingSponsor = () => {

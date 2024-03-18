@@ -1,4 +1,3 @@
-import { FormattedMessage } from 'react-intl';
 import Loader from './../Loader';
 import React from 'react';
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,7 +11,6 @@ const Button: React.FC<IProps> = ({
 	title,
 	isLoading = false,
 	className,
-	localeId = undefined,
 }) => {
 	return (
 		<div>
@@ -27,7 +25,7 @@ const Button: React.FC<IProps> = ({
 				} rounded-md shadow-custom border-main font-bold py-3 px-4 w-full h-[65px] ${className}`}
 			>
 				{isLoading && <Loader />}
-				{localeId !== undefined ? <FormattedMessage id={localeId} /> : title}
+				{title}
 			</button>
 		</div>
 	);

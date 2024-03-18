@@ -1,12 +1,10 @@
 import React from 'react';
-import Dashboard from '../../components/Screens/Dashboard';
+import ValidationScreen from '@/components/Screens/Validation';
 
 const index = () => {
-
 	return (
 		<div>
-		
-			<Dashboard />
+			<ValidationScreen />
 		</div>
 	);
 };

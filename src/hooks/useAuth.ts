@@ -8,6 +8,7 @@ import { UserType } from '@/state/user/types';
 import { UserCredentials, RegisterUserCredentials } from '@/types';
 import api from '@/config/axios';
 import { redirect } from 'next/navigation';
+import useLocaleRouter from './useLocaleRouter';
 export type ResetPassword = {
 	oldPassword: string | undefined;
 	confirmPassword: String;
@@ -16,6 +17,7 @@ export type ResetPassword = {
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
+	const { url } = useLocaleRouter();
 	const loginUser = useCallback(
 		async (credentials: UserCredentials) => {
 			try {
@@ -39,7 +41,7 @@ export const useAuth = () => {
 					id: data.sponser._id, // Corrected key name
 				};
 				if (data.success) {
-					window.location.href = '/dashboard';
+					window.location.href = url('/dashboard');
 				}
 				console.log('user', user);
 
@@ -77,7 +79,7 @@ export const useAuth = () => {
 				console.log('data', data);
 				if (data.success) {
 					toast.success('Register Successful.');
-					window.location.href = '/verification';
+					window.location.href = url('/verification');
 					return;
 				}
 				throw new Error('Some error has occurred! Please try again.');
@@ -97,7 +99,7 @@ export const useAuth = () => {
 		toast.success('Logout Successful.');
 		setUser({ user: undefined, isAuthenticated: false });
 		localStorage.removeItem('user');
-		redirect('/sign-in');
+		window.location.href = url('/sign-in');
 	}, [setUser]);
 	const updatePassword = useCallback(
 		async (credentials: ResetPassword, id: String | undefined) => {

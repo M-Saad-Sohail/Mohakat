@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import AuthNavbar from './AuthNavbar';
 import AppNavbar from './AppNavbar';
 
@@ -9,6 +9,7 @@ const Navbar = () => {
 	const isAuthPath = (path: string) => {
 		let newPath = path.replace('/tr', '');
 		newPath = newPath.replace('/ar', '');
+		newPath = newPath.replace('/en', '');
 
 		const authPaths = [
 			'/',
@@ -17,6 +18,11 @@ const Navbar = () => {
 			'/become-sponsor',
 			'/verification',
 		];
+
+		if (newPath === '') {
+			return true;
+		}
+
 		return authPaths.includes(newPath);
 	};
 
@@ -24,8 +30,7 @@ const Navbar = () => {
 		return <AppNavbar />;
 	}
 
-	
-	return isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : null
+	return isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : null;
 };
 
 export default Navbar;

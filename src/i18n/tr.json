@@ -1,4 +1,11 @@
 {
+	"Navbar": {
+		"links": ["Destek", "Sponsor", "Güçlendir", "SSS", "İletişim"],
+		"cta": {
+			"become-sponsor": "Sponsor Ol",
+			"signin": "Giriş Yap"
+		}
+	},
 	"navbar.links.0": "Destek",
 	"navbar.links.1": "Sponsor",
 	"navbar.links.2": "Güçlendir",
@@ -6,6 +13,13 @@
 	"navbar.links.4": "İletişim",
 	"navbar.cta.become-sponsor": "Sponsor Ol",
 	"navbar.cta.signin": "Giriş Yap",
+	"LandingPage": {
+		"hero": {
+			"title": "Filistin ve Gazze'yi Destekleme: Birlikte Daha İyi Bir Gelecek İçin",
+			"description": "Sponsor olun ve Filistin ve Gazze'deki aileler için bir fark yaratın. Katkınız umut getirebilir ve hayatları değiştirebilir.",
+			"cta": "Sponsor Ol"
+		}
+	},
 	"landingpage.hero.title": "Filistin ve Gazze'yi Destekleme: Birlikte Daha İyi Bir Gelecek İçin",
 	"landingpage.hero.description": "Sponsor olun ve Filistin ve Gazze'deki aileler için bir fark yaratın. Katkınız umut getirebilir ve hayatları değiştirebilir.",
 	"landingpage.hero.cta": "Sponsor Ol",

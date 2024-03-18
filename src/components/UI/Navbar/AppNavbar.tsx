@@ -1,11 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { secondLogo, language, profile } from '../../../assests';
-import { Links } from '../../../contants';
+import { secondLogo, language, profile } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getUserFromLocalStorage } from '../../../utils/auth';
+import { getUserFromLocalStorage } from '@/utils/auth';
 import SearchBar from '../SearchBar';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 type IProps = {
 	isLoggedIn: boolean;
@@ -30,11 +30,13 @@ const AppNavbar = () => {
 		}
 	};
 
+	const { url } = useLocaleRouter();
+
 	return (
 		<div className="bg-primary h-fit shadow-md text-white">
 			<div className="flex items-center justify-between py-4 mobile:pt-4">
 				<div className="flex items-center">
-					<Link href="/">
+					<Link href={url('/')}>
 						<Image
 							src={secondLogo}
 							alt="Logo"
