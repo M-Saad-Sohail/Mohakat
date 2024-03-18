@@ -37,6 +37,10 @@ const useLocaleRouter = () => {
 		router.push(newPath);
 	}
 
+	const redirectWithLocale = (locale: string, path: string) => {
+		router.replace(`/${locale}${path}`);
+	}
+
 	const localeRedirect = (path: string) => {
 		redirect(url(path));
 	};
@@ -49,7 +53,8 @@ const useLocaleRouter = () => {
 		url,
 		locale: params.locale,
 		dir: getDirection(params.locale),
-		changeLocale
+		changeLocale,
+		redirectWithLocale
 	};
 };
 

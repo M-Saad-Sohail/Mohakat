@@ -23,6 +23,7 @@ import { ResetPassword } from '@/hooks/useAuth';
 import { useTranslations } from 'next-intl';
 import Select from '@/components/UI/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import useDirection from '@/hooks/useDirection';
 
 type IProps = {
 	submitHandler: (arg: ResetPassword, id: String | undefined) => void;
@@ -33,6 +34,8 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 	const [user, setUser] = useState<UserType | null>(null);
 
 	const t = useTranslations('AccountSettings.form');
+	const dir = useDirection()
+	const { changeLocale } = useLocaleRouter()
 
 	const changePasswordForm = useFormik({
 		initialValues: RESETINITIALVALUES,
@@ -55,7 +58,8 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		validationSchema: updateProfileSchema,
 		onSubmit: (values: UpdateProfileSchema) => {
 			console.log('values', values);
-			
+			// change locale
+			changeLocale(values.language);
 		},
 	});
 
@@ -77,7 +81,8 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 
 	return (
 		<div
-			className="w-full" // Set form overflow to auto
+			className="w-full"
+			dir={dir} // Set form overflow to auto
 		>
 			<div className="mx-4">
 				<h2 className="text-[24px] font-bold text-main mt-2 leading-normal pt-2">

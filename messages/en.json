@@ -133,5 +133,52 @@
 			},
 			"save_changes": "Save Changes"
 		}
+	},
+	"Sidebar": {
+		"verified": "Verified",
+		"dashboard": "Dashboard",
+		"families": "families",
+		"settings": "Settings",
+		"logout": "Logout",
+		"sponsor": {
+			"approved": "Approved Sponsor",
+			"pending": "Pending Sponsor",
+			"rejected": "Rejected Sponsor"
+		},
+		"form_response": "Form Response",
+		"credit_cards": "Credit Cards",
+		"sponsoring": "Sponsoring"
+	},
+	"RejectedSponsors" :{
+		"title": "Rejected Sponsors",
+		"deleteAll": "Delete All"
+	},
+	"PendingSponsors" :{
+		"title": "Pending Sponsors"
+	},
+	"ApprovedSponsors": {
+		"title": "Approved Sponsors"
+	},
+	"Table": {
+		"Header": {
+			"Sno": "S.NO",
+			"Name": "Name",
+			"Country": "Country",
+			"Email": "Email",
+			"Language": "Language",
+			"Action": "Action",
+			"Role": "Role"
+		}
+	},
+	"Dashboard": {
+		"title": "Dashboard",
+		"section1": "Admin & Moderators",
+		"cards": {
+			"1": "Total Families",
+			"2": "Total Approved Sponsors",
+			"3": "Amount Received",
+			"4": "Form Responses"
+		},
+		"add_user": "Add User"
 	}
 }

@@ -59,7 +59,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 								title={t('email.title')}
 								placeholder={t('email.placeholder')}
 								type="email"
-								className="flex-[1.5]"
+								className="w-full"
 								name="email"
 								onChange={handleChange}
 								value={values.email}
@@ -68,7 +68,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							<Select
 								name="language"
 								title={t('language.title')}
-								className="flex-[1.1] h-[41px] mt-[2px]"
+								className="w-[50%] mt-[2px]"
 								options={[
 									{ label: t('language.english'), value: 'en' },
 									{ label: t('language.arabic'), value: 'ar' },

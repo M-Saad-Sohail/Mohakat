@@ -6,6 +6,7 @@ import {
 } from '@/assests';
 import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import useDirection from '@/hooks/useDirection';
 
 type IProps = {
 	setting?: boolean;
@@ -19,8 +20,10 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 		setUser(loggedInUser);
 	}, []);
 
+	const dir = useDirection()
+
 	return (
-		<div className="flex py-2 w-full">
+		<div dir={dir} className="flex py-2 w-full">
 			<h2 className="text-black text-[32px] ps-4 flex items-center w-full my-4 font-bold">
 				{title}
 			</h2>

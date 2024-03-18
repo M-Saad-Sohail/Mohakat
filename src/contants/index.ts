@@ -63,7 +63,7 @@ export const AUTHPATHS = {
 	VERIFICATION: '/verification',
 };
 export const APPROVEDCOLUMN: any = [
-	{ Header: 'S.NO', accessor: 'no' },
+	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Country', accessor: 'country' },
@@ -71,7 +71,7 @@ export const APPROVEDCOLUMN: any = [
 ];
 
 export const REJECTEDCOLUMN: any = [
-	{ Header: 'S.NO', accessor: 'no' },
+	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Country', accessor: 'country' },
@@ -79,14 +79,14 @@ export const REJECTEDCOLUMN: any = [
 	{ Header: 'Action', accessor: 'delete' },
 ];
 export const DASHBOARDCOLUMN: any = [
-	{ Header: 'S.NO', accessor: 'no' },
+	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Role', accessor: 'role' },
 	{ Header: 'Action', accessor: 'delete' },
 ];
 export const PENDINGCOLUMN: any = [
-	{ Header: 'S.NO', accessor: 'no' },
+	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Country', accessor: 'country' },

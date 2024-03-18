@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useCallback } from 'react';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ export type ResetPassword = {
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
-	const { url } = useLocaleRouter();
+	const { url, redirectWithLocale } = useLocaleRouter();
 	const loginUser = useCallback(
 		async (credentials: UserCredentials) => {
 			try {
@@ -38,10 +38,10 @@ export const useAuth = () => {
 					__v: data.sponser.__v, // Corrected key name
 					id: data.sponser._id, // Corrected key name,
 					country: data.sponser.country,
-					language: data.sponser.language,
+					language: data.sponser?.language ?? 'en',
 				};
 				if (data.success) {
-					window.location.href = url('/dashboard');
+					redirectWithLocale(user.language, '/dashboard');
 				}
 
 				toast.success('Login Successful.');
@@ -95,9 +95,8 @@ export const useAuth = () => {
 	);
 
 	const logoutUser = useCallback(() => {
-		toast.success('Logout Successful.');
-		setUser({ user: undefined, isAuthenticated: false });
 		localStorage.removeItem('user');
+		setUser({ user: undefined, isAuthenticated: false });
 		window.location.href = url('/sign-in');
 	}, [setUser]);
 	const updatePassword = useCallback(

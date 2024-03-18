@@ -8,6 +8,7 @@ import {
 	language_icon,
 } from '@/assests';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 type Props = {
 	src?: string;
@@ -15,21 +16,22 @@ type Props = {
 };
 
 const TableIcon = ({ src, show }: Props) => {
+	const t = useTranslations('Table.Header')
 	const value = [
 		{
-			name: 'Name',
+			name: t('Name'),
 			src: name,
 		},
 		{
-			name: 'Email',
+			name: t('Email'),
 			src: email,
 		},
 		{
-			name: 'Country',
+			name: t('Country'),
 			src: country,
 		},
 		{
-			name: 'Language',
+			name: t('Language'),
 			src: language_icon,
 		},
 	];

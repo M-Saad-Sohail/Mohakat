@@ -19,17 +19,7 @@ const PendingSponsor = () => {
 		init();
 	}, []);
 
-	return (
-		<div className="flex bg-[#f4f4f4ea]">
-			<LeftSideBar />
-			<div className="w-full px-3 overflow-x-hidden">
-				<DashboardNavbar title={'Pending Sponsors'} />
-				<div className="px-4">
-					<Table data={data} columns={PENDINGCOLUMN} search={true} />
-				</div>
-			</div>
-		</div>
-	);
+	return <Table data={data} columns={PENDINGCOLUMN} search={true} />;
 };
 
 export default PendingSponsor;

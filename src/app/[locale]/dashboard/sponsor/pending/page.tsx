@@ -1,11 +1,18 @@
 import React from 'react';
 import PendingSponsor from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Pending';
+import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import { useTranslations } from 'next-intl';
 
 const index = () => {
+	const t = useTranslations('PendingSponsors');
+	
 	return (
-		<div>
-			<PendingSponsor />
-		</div>
+		<>
+			<DashboardNavbar title={t('title')} />
+			<div className="px-4">
+				<PendingSponsor />
+			</div>
+		</>
 	);
 };
 

@@ -8,7 +8,7 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 const Dashboard = () => {
 	const [isAdmin, setIsAdmin] = React.useState(false);
-	const { url } = useLocaleRouter();
+	const { url, dir } = useLocaleRouter();
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
@@ -20,7 +20,7 @@ const Dashboard = () => {
 	}, []);
 
 	return (
-		<div className="flex">
+		<div dir={dir} className="flex">
 			<LeftSideBar />
 			<div className="w-full bg-[#f4f4f4ea] px-3 overflow-x-hidden">
 				{isAdmin ? <AdminDashboard /> : <UserDashboard />}

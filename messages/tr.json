@@ -133,5 +133,54 @@
 			},
 			"save_changes": "Değişiklikleri Kaydet"
 		}
+	},
+	"Sidebar": {
+		"verified": "Doğrulandı",
+		"dashboard": "Pano",
+		"families": "Aileler",
+		"settings": "Ayarlar",
+		"logout": "Çıkış",
+		"sponsor": {
+			"approved": "Onaylanmış Sponsor",
+			"pending": "Bekleyen Sponsor",
+			"rejected": "Reddedilmiş Sponsor"
+		},
+		"form_response": "Form Yanıtı",
+		"credit_cards": "Kredi Kartları",
+		"sponsoring": "Sponsorluk"
+	},
+	"RejectedSponsors": {
+		"title": "Reddedilen Sponsorlar",
+		"deleteAll": "Tümünü Sil"
+	},
+	"PendingSponsors": {
+		"title": "Bekleyen Sponsorlar"
+	},
+	"ApprovedSponsors": {
+		"title": "Onaylanmış Sponsorlar"
+	},	
+	"Table": {
+		"Header": {
+			"Sno": "S.NO",
+			"Name": "Name",
+			"Country": "Country",
+			"Email": "Email",
+			"Language": "Language",
+			"Action": "Action",
+			"Role": "Rol"
+		}
+	},
+	"Dashboard": {
+		"title": "Pano",
+		"section1": "Yönetici ve Moderatörler",
+		"cards": {
+			"1": "Toplam Aileler",
+			"2": "Toplam Onaylanmış Sponsorlar",
+			"3": "Alınan Miktar",
+			"4": "Form Yanıtları"
+		},
+		"add_user": "Kullanıcı Ekle"
 	}
+	
+	
 }

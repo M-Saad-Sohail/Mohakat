@@ -24,6 +24,8 @@ import ham_icon from '@/assests/icons/hamburger_icon.png';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import '@/styles/scroll.css';
+import useDirection from '@/hooks/useDirection';
+import { useTranslations } from 'next-intl';
 
 const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
@@ -45,46 +47,60 @@ const LeftSideBar = () => {
 			setUser(user);
 		}
 	}, []);
+
+	const t = useTranslations('Sidebar');
+
 	const AdminMenus = [
-		{ title: 'Dashboard', src: dashboard, link: '/dashboard', gap: true },
-		{ title: 'Families', src: families, link: '/families' },
+		{ title: t('dashboard'), src: dashboard, link: '/dashboard', gap: true },
+		{ title: t('families'), src: families, link: '/families' },
 		{
-			title: 'Pending Sponsor',
+			title: t('sponsor.pending'),
 			src: pending_icon,
 			link: '/dashboard/sponsor/pending',
 		},
 		{
-			title: 'Approved Sponsor',
+			title: t('sponsor.approved'),
 			src: approved__icon,
 			link: '/dashboard/sponsor/approved',
 		},
 		{
-			title: 'Rejected Sponsor',
+			title: t('sponsor.rejected'),
 			src: deny_icon,
 			link: '/dashboard/sponsor/rejected',
 		},
-		{ title: 'Form Response', src: form_icon, link: '/dashboard', gap: true },
-		{ title: 'Setting ', src: setting_icon, link: '/dashboard/setting' },
-		{ title: 'Logout', src: logout, link: '/sign-in' },
+		{
+			title: t('form_response'),
+			src: form_icon,
+			link: '/dashboard',
+			gap: true,
+		},
+		{ title: t('settings'), src: setting_icon, link: '/dashboard/setting' },
+		{ title: t('logout'), src: logout, link: '/sign-in' },
 	];
 	const UserMenus = [
-		{ title: 'Dashboard', src: dashboard, link: '/dashboard', gap: true },
-		{ title: 'Families', src: families, link: '/families' },
-		{ title: 'Sponsoring', src: sponsor, link: '/sponsoring' },
+		{ title: t('dashboard'), src: dashboard, link: '/dashboard', gap: true },
+		{ title: t('families'), src: families, link: '/families' },
+		{ title: t('sponsoring'), src: sponsor, link: '/sponsoring' },
 		{
-			title: 'Credit Cards',
+			title: t('credit_cards'),
 			src: credit_card,
 			link: '/credit-cards',
 			gap: true,
 		},
-		{ title: 'Form Response', src: form_icon, link: '/dashboard', gap: true },
-		{ title: 'Setting ', src: setting_icon, link: '/dashboard/setting' },
-		{ title: 'Logout', src: logout, link: '/sign-in' },
+		{
+			title: t('form_response'),
+			src: form_icon,
+			link: '/dashboard',
+			gap: true,
+		},
+		{ title: t('settings'), src: setting_icon, link: '/dashboard/setting' },
+		{ title: t('logout'), src: logout, link: '/sign-in' },
 	];
 
 	const handleMenuClick = (index: number) => {
 		setClickedMenu(index); // Update the clicked menu index
 	};
+
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
 		if (user && user.role === 'admin') {
@@ -97,8 +113,10 @@ const LeftSideBar = () => {
 
 	const Menus = isAdmin ? AdminMenus : UserMenus;
 
+	const dir = useDirection();
+
 	return (
-		<div className="flex">
+		<div className="flex" dir={dir}>
 			<div
 				className={`fixed ${open ? 'w-[270px]' : 'w-20 '} bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg`}
 			>
@@ -112,7 +130,7 @@ const LeftSideBar = () => {
 						<Image
 							alt=""
 							src={sidebar_icon}
-							className={`w-5 cursor-pointer `}
+							className={`w-5 cursor-pointer ${dir === 'rtl' ? 'rotate-180' : 'rotate-0'}`}
 							width={50}
 							height={50}
 							onClick={() => setOpen(false)}
@@ -121,7 +139,7 @@ const LeftSideBar = () => {
 						<Image
 							src={ham_icon}
 							alt=""
-							className={`w-5 cursor-pointer ml-2`}
+							className={`w-5 cursor-pointer ${dir === 'ltr' ? 'ml-2' : 'mr-2'}`}
 							width={50}
 							height={50}
 							onClick={() => setOpen(true)}
@@ -138,9 +156,9 @@ const LeftSideBar = () => {
 						{user ? user.name : ''}
 					</p>
 					<p
-						className={`${!open || isAdmin ? 'hidden' : ''} rounded-lg bg-[#95dca9] px-4 text-[10px] mt-1`}
+						className={`${!open || isAdmin ? 'hidden' : ''} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px] mt-1`}
 					>
-						Verified
+						{t('verified')}
 					</p>
 				</div>
 				<ul className={`pt-10`}>
@@ -150,7 +168,7 @@ const LeftSideBar = () => {
 								className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${index === 0 && 'bg-light-white'}  ${active !== Menu.link && 'text-primary'}`}
 								onClick={() => {
 									handleMenuClick(index);
-									if (Menu.title === 'Logout') {
+									if (Menu.title === t('logout')) {
 										logoutUser();
 									}
 								}}
