@@ -20,11 +20,12 @@ const Navbar = () => {
 		return authPaths.includes(newPath);
 	};
 
-	return (
-		<div>
-			{isAuthPath(pathname) && <AuthNavbar isLoggedIn /> }
-		</div>
-	);
+	if (!pathname) {
+		return <AppNavbar />;
+	}
+
+	
+	return isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : null
 };
 
 export default Navbar;

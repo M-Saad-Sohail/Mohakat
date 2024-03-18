@@ -20,7 +20,7 @@ const HeroSection = () => {
 			dir={dir}
 			className="w-full h-full flex justify-between px-1 pr-5 gap-x-16 items-center"
 		>
-			<div className="w-[40%] px-[54px]">
+			<div className="w-[50%] px-[54px]">
 				<h1 className="text-primary text-[52px] font-bold">
 					<FormattedMessage id="landingpage.hero.title" />
 				</h1>

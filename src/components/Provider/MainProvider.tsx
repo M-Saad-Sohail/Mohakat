@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/globals.css';
 import { Provider } from 'react-redux';
+import { ReactNode } from 'react';
 
 const messages: Record<string, Record<string, string>> = {
 	en,
@@ -18,7 +19,7 @@ const messages: Record<string, Record<string, string>> = {
 };
 
 type MainProviderProps = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
 const MainProvider = (props: MainProviderProps) => {
@@ -28,7 +29,7 @@ const MainProvider = (props: MainProviderProps) => {
 		<Provider store={store}>
 			<IntlProvider locale={locale} messages={messages[locale]}>
 				<Navbar />
-				{props.children}
+				<div>{props.children}</div>
 				<ToastContainer />
 			</IntlProvider>
 		</Provider>
