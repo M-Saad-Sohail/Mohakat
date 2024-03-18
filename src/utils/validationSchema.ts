@@ -22,3 +22,10 @@ export const resetPasswordSchema = object({
 		.oneOf([ref('new_password1')], 'Passwords must match')
 		.required('Confirm password is required'),
 });
+
+export const updateProfileSchema = object({
+	name: string().required('Name is Required'),
+	email: string().required('Email is Required'),
+	country: string().required('Country is Required'),
+	language: string().required('Language is Required'),
+});

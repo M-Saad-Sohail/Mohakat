@@ -4,10 +4,17 @@ import Input from '@/components/UI//Input';
 import Button from '@/components/UI/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { PATHS, RESETINITIALVALUES } from '@/contants';
-import { resetPasswordSchema } from '@/utils/validationSchema';
+import { PATHS, ProfileValues, RESETINITIALVALUES } from '@/contants';
+import {
+	resetPasswordSchema,
+	updateProfileSchema,
+} from '@/utils/validationSchema';
 import { getUserFromLocalStorage } from '@/utils/auth';
-import { ResetPasswordSchema, RegisterUserCredentials } from '@/types';
+import {
+	ResetPasswordSchema,
+	RegisterUserCredentials,
+	UpdateProfileSchema,
+} from '@/types';
 import { useIntl } from 'react-intl';
 import { UserType } from '@/state/user/types';
 import Image from 'next/image';
@@ -15,6 +22,7 @@ import { profile } from '@/assests';
 import { ResetPassword } from '@/hooks/useAuth';
 import { useTranslations } from 'next-intl';
 import Select from '@/components/UI/Select';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 type IProps = {
 	submitHandler: (arg: ResetPassword, id: String | undefined) => void;
@@ -42,9 +50,29 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		},
 	});
 
+	const updateProfileForm = useFormik({
+		initialValues: ProfileValues,
+		validationSchema: updateProfileSchema,
+		onSubmit: (values: UpdateProfileSchema) => {
+			console.log('values', values);
+			
+		},
+	});
+
+	const { replace } = useLocaleRouter();
+
 	useEffect(() => {
 		const data = getUserFromLocalStorage();
-		setUser(data);
+		if (!data) {
+			replace(PATHS.LOGIN);
+			return;
+		}
+		updateProfileForm.setValues({
+			name: data.name,
+			email: data.email,
+			country: data?.country ?? '',
+			language: data.language ?? 'en',
+		});
 	}, []);
 
 	return (
@@ -65,13 +93,15 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						title={t('name.title')}
 						name="name"
 						className="mb-[19px] min-w-[460px]"
-						value={user?.name}
+						value={updateProfileForm.values?.name}
+						onChange={updateProfileForm.handleChange}
 					/>
 					<Input
 						title={t('email.title')}
 						name="email"
 						className="mb-[19px] min-w-[460px]"
-						value={user?.email}
+						value={updateProfileForm.values?.email}
+						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
 				<div className="flex w-full justify-start gap-x-4">
@@ -79,7 +109,8 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						title={t('country.title')}
 						name="country"
 						className="mb-[19px] min-w-[460px]"
-						value={'Pakistan'}
+						value={updateProfileForm.values.country}
+						onChange={updateProfileForm.handleChange}
 					/>
 					<Select
 						title={t('language.title')}
@@ -89,15 +120,19 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 							{ label: t('language.arabic'), value: 'ar' },
 							{ label: t('language.turkish'), value: 'tr' },
 						]}
-						value={'En English'}
+						value={updateProfileForm.values.language}
 						className="min-w-[460px] mt-[2px]"
+						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
 				<Button
 					title={t('update_profile')}
 					className="max-w-[200px] px-6  shadow-custom"
-					type="submit"
-					// isLoading={isLoading}
+					disabled={updateProfileForm.isSubmitting}
+					onClick={(e) => {
+						e.preventDefault();
+						updateProfileForm.handleSubmit(e as any);
+					}}
 				/>
 				<h4 className="text-[16px] font-bold text-mmain my-5 mt-12 leading-normal pt-2">
 					{t('section2')}
@@ -146,6 +181,11 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 					<Button
 						title={t('save_changes')}
 						className="max-w-[200px] px-6 shadow-custom"
+						disabled={changePasswordForm.isSubmitting}
+						onClick={(e) => {
+							e.preventDefault();
+							changePasswordForm.handleSubmit(e as any);
+						}}
 					/>
 				</div>
 			</div>

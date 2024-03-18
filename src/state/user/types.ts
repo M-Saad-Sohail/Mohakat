@@ -4,8 +4,8 @@ export type UserType = {
 	createdAt: string;
 	email: string;
 	name: string;
-	no_of_sponsor: number;
-	password: string;
+	country: string;
+	language: string;
 	role: string;
 	status: string;
 	__v: string;

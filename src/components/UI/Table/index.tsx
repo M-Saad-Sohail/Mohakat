@@ -22,9 +22,10 @@ interface IProps {
 	data: any;
 	columns: any;
 	search?: boolean;
+	setData?: any;
 }
 
-function Table({ columns, data, search }: IProps) {
+function Table({ columns, data, search, setData }: IProps) {
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -50,32 +51,22 @@ function Table({ columns, data, search }: IProps) {
 	);
 	const { globalFilter, pageSize, pageIndex }: any = state;
 	const { replace } = useLocaleRouter();
-	const handleActionApprovedClick = (id: string) => {
+	const handleActionApprovedClick = async (id: string) => {
 		const user = getUserFromLocalStorage();
 		if (!user) return;
-		ApprovedSponsor(user.key, id);
+		await ApprovedSponsor(user.key, id);
 		replace('/dashboard/sponsor/approved');
 	};
-	const handleActionRejectClick = (id: string) => {
+	const handleActionRejectClick = async (id: string) => {
 		const user = getUserFromLocalStorage();
 		if (!user) return;
-		RejectSponsor(user.key, id);
+		await RejectSponsor(user.key, id);
 		replace('/dashboard/sponsor/rejected');
 	};
 
-	const handleActionRejectDeleteAll = () => {
-		const user = getUserFromLocalStorage();
-		if (!user) return;
-		RejectDeleteAll(user.key);
-	};
-
-	const [openModal, setOpenModal] = useState(false);
 	const [deleteId, setDeleteId] = useState('');
-	const handleModal = () => {
-		setOpenModal(false);
-		setDeleteOpenModal(false);
-	};
-	const [openDeleteModal, setDeleteOpenModal] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
+	const [deleteAll, setDeleteAll] = useState(false);
 	const [id, setId] = useState('');
 
 	const pathName = window.location.pathname;
@@ -96,7 +87,8 @@ function Table({ columns, data, search }: IProps) {
 					<div
 						className="gap-x-2 min-w-[150px] ml-2 flex text-white bg-primary  cursor-pointer rounded-md shadow-custom border-main font-bold py-3 px-2  h-[45px] justify-center items-center"
 						onClick={() => {
-							setDeleteOpenModal(true);
+							setDeleteAll(true);
+							setOpenModal(true);
 						}}
 					>
 						<Image
@@ -121,7 +113,6 @@ function Table({ columns, data, search }: IProps) {
 							className=""
 						>
 							{headerGroup.headers.map((column: any) => {
-								console.log('column', column.Header); // Log the column object
 								return (
 									<th
 										key={column.id}
@@ -171,7 +162,7 @@ function Table({ columns, data, search }: IProps) {
 														onClick={() =>
 															handleActionRejectClick((row.original as any)._id)
 														}
-														className='mx-[1px]'
+														className="mx-[1px]"
 													>
 														<Image src={reject} alt="" />
 													</button>
@@ -181,7 +172,7 @@ function Table({ columns, data, search }: IProps) {
 																(row.original as any)._id,
 															)
 														}
-														className='mx-[1px]'
+														className="mx-[1px]"
 													>
 														<Image src={approved} alt="" />
 													</button>
@@ -246,19 +237,42 @@ function Table({ columns, data, search }: IProps) {
 					</tbody>
 				)}
 			</table>
-			{/* {rows.length !== 0 && (
+			{rows.length !== 0 && (
 				<Pagination
 					canNextPage={canNextPage}
 					pageIndex={pageIndex}
 					canPreviousPage={canPreviousPage}
 					previousPage={previousPage}
 					nextPage={nextPage}
+					pageSize={pageSize}
 					goToPage={gotoPage}
+					dataCount={rows.length}
 					pageCount={calculatedPageCount} // Pass pageCount here
 				/>
-			)} */}
+			)}
 
 			{/* Modal */}
+			<DeleteModal
+				openModal={openModal}
+				id={deleteId}
+				onClose={() => {
+					setOpenModal(false);
+				}}
+				deleteAll={deleteAll}
+				resetData={() => {
+					if (!setData) return;
+
+					if (deleteAll) {
+						setData([]);
+						setDeleteAll(false);
+					} else {
+						const updatedData = data.filter(
+							(item: any) => item._id !== deleteId,
+						);
+						setData(updatedData);
+					}
+				}}
+			/>
 		</>
 	);
 }

@@ -1,4 +1,8 @@
-import { BecomeSponsorSchema, LoginSchema,ResetPasswordSchema } from '../types';
+import {
+	BecomeSponsorSchema,
+	LoginSchema,
+	ResetPasswordSchema,
+} from '../types';
 export const PATHS = {
 	HOME: '/',
 	FORGETPASSWORD: '/forget-password',
@@ -7,10 +11,17 @@ export const PATHS = {
 	VERIFICATION: '/verification',
 };
 export const RESETINITIALVALUES: ResetPasswordSchema = {
-	password:'',
-	new_password1: "",
-	new_password2: "",
-  };
+	password: '',
+	new_password1: '',
+	new_password2: '',
+};
+
+export const ProfileValues = {
+	name: '',
+	email: '',
+	country: '',
+	language: '',
+}
 
 export const Links = [
 	{ localeId: 'links.0', name: 'Support', link: '/support' },
@@ -132,92 +143,90 @@ export const DASHBOARDDATA: any = [
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'Admin',
-	
+		role: 'Admin',
 	},
 	{
 		id: '2345678901',
 		name: 'testuser123',
 		email: 'testuser1@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '3456789012',
 		name: 'testuser',
 		email: 'testuser123@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'Admin',
+		role: 'Admin',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'Admin',
-	
+		role: 'Admin',
 	},
 	{
 		id: '2345678901',
 		name: 'testuser123',
 		email: 'testuser1@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '3456789012',
 		name: 'testuser',
 		email: 'testuser123@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'Admin',
+		role: 'Admin',
 	},
 	{
 		id: '1234567890',
 		name: 'testuser12',
 		email: 'testuser@gmail.com',
-		role:'user',
+		role: 'user',
 	},
 ];
-export const dashboard=[
+export const dashboard = [
 	{
-		name:'Total Families',
-		value:"21245"
+		name: 'Total Families',
+		value: '21245',
 	},
 	{
-		name:'Total Approved Sponsors',
-		value:"1214"
+		name: 'Total Approved Sponsors',
+		value: '1214',
 	},
 	{
-		name:'Amount Received',
-		value:"$110,224"
+		name: 'Amount Received',
+		value: '$110,224',
 	},
 	{
-		name:'Form Responses',
-		value:56
+		name: 'Form Responses',
+		value: 56,
 	},
-]
+];

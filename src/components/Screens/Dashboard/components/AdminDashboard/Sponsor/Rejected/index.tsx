@@ -25,7 +25,12 @@ const RejectedSponsor = () => {
 			<div className="w-full px-3 overflow-x-hidden">
 				<DashboardNavbar title={'Rejected Sponsor'} />
 				<div className="px-4">
-					<Table data={data} columns={REJECTEDCOLUMN} search={true} />
+					<Table
+						data={data}
+						columns={REJECTEDCOLUMN}
+						search={true}
+						setData={setData}
+					/>
 				</div>
 			</div>
 		</div>
