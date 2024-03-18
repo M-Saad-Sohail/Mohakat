@@ -36,6 +36,8 @@ import camera from './icons/camera_icon.svg'
 import add_icon from './icons/add__icon.svg'
 import left_arrow from './icons/left_arrow_icon.svg'
 import right_arrow from './icons/right_arrow_icon.svg'
+import sidebar_icon from './icons/sidebar_logo.svg'
+import hide_password_icon from './icons/hide_password_icon.svg'
 export {
 	logo,
 	hero__image,
@@ -74,5 +76,7 @@ export {
 	camera,
 	add_icon,
 	left_arrow,
-	right_arrow
+	right_arrow,
+	sidebar_icon,
+	hide_password_icon
 };

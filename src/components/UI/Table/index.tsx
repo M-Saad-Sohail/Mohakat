@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { reject, approved, delete_icon } from '@/assests';
+import NoData from '../NoData';
 import {
 	ApprovedSponsor,
 	RejectSponsor,
@@ -151,7 +152,7 @@ function Table({ columns, data }: IProps) {
 						</tr>
 					))}
 				</thead>
-				<tbody {...getTableBodyProps()}>
+				{data.length>0?<tbody {...getTableBodyProps()}>
 					{page.map((row: any, index: Number) => {
 						prepareRow(row);
 						return (
@@ -229,7 +230,8 @@ function Table({ columns, data }: IProps) {
 							</tr>
 						);
 					})}
-				</tbody>
+				</tbody>:<NoData/>}
+				
 			</table>
 			{/* {rows.length !== 0 && (
 				<Pagination

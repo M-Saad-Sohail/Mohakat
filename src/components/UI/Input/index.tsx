@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import EyeOff from '@/assests/icons/eye-off';
-import EyeIcon from '@/assests/icons/eye';
+import EyeOff from '@/assests/icons/hide_password_icon.svg';
+import EyeIcon from '@/assests/icons/eye_icon.svg';
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	error?: string | boolean | undefined;
 	title: string;
