@@ -38,6 +38,7 @@ import left_arrow from './icons/left_arrow_icon.svg'
 import right_arrow from './icons/right_arrow_icon.svg'
 import sidebar_icon from './icons/right_arrow_icon.svg'
 import hide_password_icon from './icons/hide_password_icon.svg'
+import consult from './images/consult.svg'
 export {
 	logo,
 	hero__image,
@@ -78,5 +79,6 @@ export {
 	left_arrow,
 	right_arrow,
 	sidebar_icon,
-	hide_password_icon
+	hide_password_icon,
+	consult
 };
