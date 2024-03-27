@@ -39,6 +39,10 @@ import right_arrow from './icons/right_arrow_icon.svg'
 import sidebar_icon from './icons/right_arrow_icon.svg'
 import hide_password_icon from './icons/hide_password_icon.svg'
 import consult from './images/consult.svg'
+
+import EyeOff from './icons/eye_off.svg'
+import ham_icon from './icons/hamburger_icon.png'
+
 export {
 	logo,
 	hero__image,
@@ -80,5 +84,7 @@ export {
 	right_arrow,
 	sidebar_icon,
 	hide_password_icon,
-	consult
+	consult,
+	EyeOff,
+	ham_icon
 };
