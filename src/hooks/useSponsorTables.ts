@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import api from '@/config/axios';
 export const fetchPendingData = async (token: string) => {
 	try {
@@ -10,10 +10,10 @@ export const fetchPendingData = async (token: string) => {
 				},
 			},
 		);
-		console.log('data', response.data);
+		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -61,10 +61,10 @@ export const RejectSponsor = async (token: string, id: string) => {
 				},
 			},
 		);
-		console.log('data', response.data);
+		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -79,11 +79,11 @@ export const RejectDelete = async (token: string, id: string) => {
 				},
 			},
 		);
-		console.log('data', response.data);
-		console.log('sucesssfully delete')
+		// console.log('data', response.data);
+		// console.log('sucesssfully delete')
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -98,11 +98,11 @@ export const RejectDeleteAll = async (token: string) => {
 				},
 			},
 		);
-		console.log('data', response.data);
-		console.log('sucesssfully delete all')
+		// console.log('data', response.data);
+		// console.log('sucesssfully delete all')
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -119,10 +119,10 @@ export const ApprovedSponsor = async (token: string, id: string) => {
 				},
 			},
 		);
-		console.log('data', response.data);
+		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
