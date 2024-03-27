@@ -3,20 +3,76 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
+
+
 function generateCircle(color, x, y, svg) {
 
+    // Create the circle element
     let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", x);
     circle.setAttribute("cy", y);
-    circle.setAttribute("r", 8);
+    circle.setAttribute("r", 10);
     circle.setAttribute("fill", color);
     circle.style.cursor = "pointer";
+
+    // Define the glow filter (replace with your desired glow properties)
+    const filterID = "circle-glow";
+    let filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+    filter.setAttribute("id", filterID);
+    filter.setAttribute("width", "200%");
+    filter.setAttribute("height", "200%");
+    filter.setAttribute("x", "-50%");
+    filter.setAttribute("y", "-50%");
+
+    // Create a feGaussianBlur for the base glow effect
+    let feGaussianBlur = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
+    feGaussianBlur.setAttribute("in", "SourceGraphic");
+    feGaussianBlur.setAttribute("stdDeviation", "10"); // Adjust for desired base glow intensity
+
+    // Create a feComponentTransfer for the pulsating glow animation
+    let feComponentTransfer = document.createElementNS("http://www.w3.org/2000/svg", "feComponentTransfer");
+    feComponentTransfer.setAttribute("type", "gamma");
+
+    // Define the animation curve for the pulse effect (adjust as needed)
+    let animateValue = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animateValue.setAttribute("attributeName", "tableValues");
+    animateValue.setAttribute("dur", "3s"); // Adjust animation duration
+    animateValue.setAttribute("repeatCount", "indefinite");
+    animateValue.setAttribute("from", "1 1 1"); // Initial no animation
+    animateValue.setAttribute("to", "1.2 1.2 1.2"); // Increased glow on hover (adjust)
+    animateValue.setAttribute("values", "1 1 1; 1.2 1.2 1.2; 1 1 1");  // Animate between these values
+    animateValue.setAttribute("calcMode", "gamma");
+    animateValue.setAttribute("fill", "freeze"); // Maintain final state on hover
+
+    // Add the animation to the component transfer
+    feComponentTransfer.appendChild(animateValue);
+
+    // Combine the blur and animation effects
+    let feMerge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");
+    let feMergeNode1 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+    feMergeNode1.setAttribute("in", "SourceGraphic");
+    let feMergeNode2 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+    feMergeNode2.setAttribute("in", "filter"); // Reference the component transfer filter
+    feMerge.appendChild(feMergeNode1);
+    feMerge.appendChild(feMergeNode2);
+
+    // Add the effects to the filter
+    filter.appendChild(feGaussianBlur);
+    filter.appendChild(feMerge);
+
+    // Reference the filter in the circle element (no initial glow)
+    circle.setAttribute("filter", "none");
+
+    // Handle hover effect to activate the glow
     circle.onmouseover = function () {
-        circle.setAttribute("r", 12); // Increase radius on hover
+        circle.setAttribute("filter", `url(#${filterID})`);
     };
+
     circle.onmouseout = function () {
-        circle.setAttribute("r", 8); // Restore radius on mouseout
+        circle.setAttribute("filter", "none"); // Remove filter on mouseout
     };
+
+    // Handle click event (optional, adjust as needed)
     if (color === '#ff002f') {
         circle.onclick = function (event) {
             event.preventDefault();
@@ -24,50 +80,71 @@ function generateCircle(color, x, y, svg) {
         };
     }
 
-
+    // Append the filter (defined before circle) and circle to the SVG
+    svg.appendChild(filter);
     svg.appendChild(circle);
 }
+
 
 function generateRandomCircles(svgRef, maxSponsorCount, interval) {
     const svg = svgRef.current;
     const paths = svg.querySelectorAll('path');
-
+  
     const pathCoordinates = [];
-
+  
     paths.forEach(path => {
-        const pathLength = path.getTotalLength();
-        const coordinates = [];
-        for (let i = 0; i < pathLength; i += interval) {
-            const point = path.getPointAtLength(i);
-            coordinates.push([point.x, point.y]);
+      const pathLength = path.getTotalLength();
+      const coordinates = [];
+      for (let i = 0; i < pathLength; i += interval) {
+        const point = path.getPointAtLength(i);
+        const startX = path.getPointAtLength(0).x;
+        const startY = path.getPointAtLength(0).y;
+        const distance = Math.sqrt(Math.pow(point.x - startX, 2) + Math.pow(point.y - startY, 2));
+  
+        // Adjust offset based on your SVG layout (optional)
+        const offsetX = 10; // Adjust X offset if needed
+        const offsetY = 10; // Adjust Y offset if needed
+  
+        // Check if coordinate is within path length and adjust for potential offset
+        if (distance <= pathLength && point.x + offsetX >= 0 && point.x + offsetX <= svg.clientWidth && point.y + offsetY >= 0 && point.y + offsetY <= svg.clientHeight) {
+          coordinates.push([Math.round(point.x) + offsetX, Math.round(point.y) + offsetY]);
         }
-        pathCoordinates.push(...coordinates);
+      }
+      pathCoordinates.push(...coordinates);
     });
+    console.log("pathCoordinates",pathCoordinates.length)
 
+    // console.log(pathCoordinates)
     const totalNumberOfPoints = pathCoordinates.length;
+    // const totalNumberOfPoints = 50
     const numberOfRedCircles = totalNumberOfPoints - maxSponsorCount;
-
+    // const numberOfRedCircles = totalNumberOfPoints + 50;
+  
     const greyCoordinates = []; // Store coordinates of grey circles
-
+  
     // Generate grey circles using coordinates from pathCoordinates
     for (let i = 0; i < maxSponsorCount; i++) {
-        const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
-        const [randomX, randomY] = pathCoordinates.splice(randomIndex, 1)[0]; // Remove used coordinates
-        generateCircle('#808080', randomX, randomY, svg);
-        greyCoordinates.push([randomX, randomY]);
+      const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
+      const [randomX, randomY] = pathCoordinates.splice(randomIndex, 1)[0]; // Remove used coordinates
+      generateCircle('#808080', randomX, randomY, svg);
+      greyCoordinates.push([randomX, randomY]);
     }
-
+  
     // Generate red circles using remaining coordinates from pathCoordinates
     for (let i = 0; i < numberOfRedCircles; i++) {
-        const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
-        const [randomX, randomY] = pathCoordinates[randomIndex];
-        // Check if the coordinates are not used for grey circles
-        if (!greyCoordinates.some(coord => coord[0] === randomX && coord[1] === randomY)) {
-            generateCircle('#ff002f', randomX, randomY, svg);
-        }
-        pathCoordinates.splice(randomIndex, 1); // Remove used coordinates
+      const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
+      const [randomX, randomY] = pathCoordinates[randomIndex];
+      // Check if the coordinates are not used for grey circles
+      if (!greyCoordinates.some(coord => coord[0] === randomX && coord[1] === randomY)) {
+        generateCircle('#ff002f', randomX, randomY, svg);
+      }
+      pathCoordinates.splice(randomIndex, 1); // Remove used coordinates
     }
-}
+  }
+
+
+
+
 function GazaMap() {
     const svgRef = React.useRef(null);
     const URL = "http://localhost:4000/api/v1";
