@@ -17,7 +17,7 @@ const Dashboard = () => {
 		} else {
 			setIsAdmin(user.role === 'admin');
 		}
-	}, []);
+	}, [url]);
 
 	return (
 		<div dir={dir} className="flex">

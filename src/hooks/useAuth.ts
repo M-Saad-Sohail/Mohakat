@@ -26,7 +26,7 @@ export const useAuth = () => {
 					'http://localhost:4000/api/v1/login',
 					credentials,
 				);
-				console.log('data', data);
+				// console.log('data', data);
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -54,7 +54,7 @@ export const useAuth = () => {
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[setIsLoading, setUser],
+		[setIsLoading, setUser, url],
 	);
 
 	const registerUser = useCallback(
@@ -75,7 +75,7 @@ export const useAuth = () => {
 				// 	__v: data.sponser.__v, // Corrected key name
 				// 	id: data.sponser._id, // Corrected key name
 				// };
-				console.log('data', data);
+				// console.log('data', data);
 				if (data.success) {
 					toast.success('Register Successful.');
 					window.location.href = url('/verification');
@@ -107,7 +107,7 @@ export const useAuth = () => {
 					`sponser/update/password/${id}`,
 					credentials,
 				);
-				console.log('data', data);
+				// console.log('data', data);
 				toast.success('Update Password Successful.');
 			} catch (e) {
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);

@@ -9,10 +9,11 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const SignIn = () => {
 	const { url } = useLocaleRouter();
+	console.log("url", url)
 
 	useEffect(() => {
 		navigateIfLoggedIn(url('/dashboard'));
-	}, []);
+	}, [url]);
 
 	const { loginUser, isLoading } = useAuth();
 	return (
