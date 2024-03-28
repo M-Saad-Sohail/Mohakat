@@ -23,7 +23,7 @@ export const useAuth = () => {
 			try {
 				setIsLoading(true);
 				const { data } = await axios.post(
-					'http://localhost:4000/api/v1/login',
+					'https://sponserendpoint.netlify.app/.netlify/functions/server/login',
 					credentials,
 				);
 				// console.log('data', data);
@@ -105,7 +105,7 @@ export const useAuth = () => {
 			try {
 				setIsLoading(true);
 				const { data } = await api.put(
-					`sponser/update/password/${id}`,
+					`/sponser/update/password/${id}`,
 					credentials,
 				);
 				// console.log('data', data);

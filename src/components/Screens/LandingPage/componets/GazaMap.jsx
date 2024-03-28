@@ -147,7 +147,7 @@ function generateRandomCircles(svgRef, maxSponsorCount, interval) {
 
 function GazaMap() {
     const svgRef = React.useRef(null);
-    const URL = "http://localhost:4000/api/v1";
+    const URL = "https://sponserendpoint.netlify.app/.netlify/functions/server";
 
     const [maxSponserCount, setMaxSponserCount] = React.useState(0);
 
