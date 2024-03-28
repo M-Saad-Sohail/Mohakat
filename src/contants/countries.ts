@@ -1,5 +1,4 @@
 export const countriesData = [
-	{ name: 'Select Country', code: '0' },
 	{ name: 'Afghanistan', code: 'AF' },
 	{ name: 'Åland Islands', code: 'AX' },
 	{ name: 'Albania', code: 'AL' },
