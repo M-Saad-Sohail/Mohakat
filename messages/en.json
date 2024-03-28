@@ -69,7 +69,8 @@
 			},
 			"country": {
 				"title": "Country",
-				"placeholder": "Pakistan"
+				"placeholder": "Pakistan",
+				"default": "Select Country"
 			},
 			"address": {
 				"title": "Address",
@@ -84,7 +85,8 @@
 				"title": "Language",
 				"arabic": "Arabic",
 				"english": "English",
-				"turkish": "Turkish"
+				"turkish": "Turkish",
+				"default": "Select Language"
 			},
 			"submit": "Become a sponsor",
 			"cta": {
@@ -113,13 +115,15 @@
 				"title": "Email"
 			},
 			"country": {
-				"title": "Country"
+				"title": "Country",
+				"default": "Select Country"
 			},
 			"language": {
 				"title": "Language",
 				"arabic": "Arabic",
 				"english": "English",
-				"turkish": "Turkish"
+				"turkish": "Turkish",
+				"default": "Select Language"
 			},
 			"update_profile": "Update Profile",
 			"currentPassword": {

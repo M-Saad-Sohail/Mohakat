@@ -87,12 +87,6 @@ const LeftSideBar = () => {
 			link: '/credit-cards',
 			gap: true,
 		},
-		{
-			title: t('form_response'),
-			src: form_icon,
-			link: '/dashboard',
-			gap: true,
-		},
 		{ title: t('settings'), src: setting_icon, link: '/dashboard/setting' },
 		{ title: t('logout'), src: logout, link: '/sign-in' },
 	];

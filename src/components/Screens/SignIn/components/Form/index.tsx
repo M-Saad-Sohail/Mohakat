@@ -71,7 +71,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					<div className="justify-center items-center flex w-full">
 						<Button
 							title={t('submit')}
-							className="max-w-[250px] text-base px-6"
+							className="max-w-[200px] text-base px-6"
 							type="submit"
 							isLoading={isLoading}
 						/>
@@ -80,7 +80,11 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 			</form>
 			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-lg justify-center items-center flex font-helvetica gap-x-4">
 				{t('cta.0')}
-				<Link locale={locale} className="text-primary font-bold" href={url('/become-sponsor')}>
+				<Link
+					locale={locale}
+					className="text-primary font-bold"
+					href={url('/become-sponsor')}
+				>
 					{t('cta.1')}
 				</Link>
 			</div>

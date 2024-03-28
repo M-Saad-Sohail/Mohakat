@@ -4,7 +4,7 @@ import { Links } from '@/contants';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
-import LangSelector from '../LandSelector';
+import LangSelector from '../LangSelector';
 import { useTranslations } from 'next-intl';
 import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
@@ -61,11 +61,6 @@ const AuthNavbar = ({ isLoggedIn }: IProps) => {
 						onChange={(e) => {
 							changeLocale(e.target.value);
 						}}
-						options={[
-							{ label: 'EN', value: 'en' },
-							{ label: 'AR', value: 'ar' },
-							{ label: 'TR', value: 'tr' },
-						]}
 						className="px-4"
 					/>
 					<Link

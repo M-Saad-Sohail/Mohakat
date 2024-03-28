@@ -12,36 +12,39 @@ import language from './icons/langunage_icon.svg';
 import secondLogo from './icons/second_logo.svg';
 import reject from './icons/deny__icon.svg';
 import approved from './icons/approve__icon.svg';
-import flag__icon from './icons/flag1.png'
-import pending_icon from './icons/pending__icon.svg'
-import approved__icon from './icons/Approve.svg'
-import deny_icon from './icons/deny__icon.svg'
-import dashboard_logo from './icons/dashboard__logo.svg'
-import setting_icon from "./icons/setting__icon.svg"
-import form_icon from "./icons/form__icon.svg"
-import logout  from "./icons/logout__icon.svg"
-import searching from './icons/search.svg'
-import dollar from "./icons/amount__icon.svg"
-import transaction from './icons/transaction__icon.svg'
-import name from './icons/name.svg'
-import email from './icons/email.svg'
-import language_icon from './icons/language__icon.svg'
-import country from './icons/country.svg'
-import delete_icon from "./icons/delete_icon.svg"
-import close_icon from "./icons/close_icon.svg"
-import no_data from './images/no-data.png'
-import password_eye from'./icons/eye_icon.svg'
-import notification from './icons/notification_icon.svg'
-import camera from './icons/camera_icon.svg'
-import add_icon from './icons/add__icon.svg'
-import left_arrow from './icons/left_arrow_icon.svg'
-import right_arrow from './icons/right_arrow_icon.svg'
-import sidebar_icon from './icons/right_arrow_icon.svg'
-import hide_password_icon from './icons/hide_password_icon.svg'
-import consult from './images/consult.svg'
+import flag__icon from './icons/flag1.png';
+import pending_icon from './icons/pending__icon.svg';
+import approved__icon from './icons/Approve.svg';
+import deny_icon from './icons/deny__icon.svg';
+import dashboard_logo from './icons/dashboard__logo.svg';
+import setting_icon from './icons/setting__icon.svg';
+import form_icon from './icons/form__icon.svg';
+import logout from './icons/logout__icon.svg';
+import searching from './icons/search.svg';
+import dollar from './icons/amount__icon.svg';
+import transaction from './icons/transaction__icon.svg';
+import name from './icons/name.svg';
+import email from './icons/email.svg';
+import language_icon from './icons/language__icon.svg';
+import country from './icons/country.svg';
+import delete_icon from './icons/delete_icon.svg';
+import close_icon from './icons/close_icon.svg';
+import no_data from './images/no-data.png';
+import password_eye from './icons/eye_icon.svg';
+import notification from './icons/notification_icon.svg';
+import camera from './icons/camera_icon.svg';
+import add_icon from './icons/add__icon.svg';
+import left_arrow from './icons/left_arrow_icon.svg';
+import right_arrow from './icons/right_arrow_icon.svg';
+import sidebar_icon from './icons/right_arrow_icon.svg';
+import hide_password_icon from './icons/hide_password_icon.svg';
+import consult from './images/consult.svg';
 
-import EyeOff from './icons/eye_off.svg'
-import ham_icon from './icons/hamburger_icon.png'
+import EyeOff from './icons/eye_off.svg';
+import ham_icon from './icons/hamburger_icon.png';
+import turkish_flag from './icons/turkish_flag.svg';
+import english_flag from './icons/english_flag.svg';
+import arabic_flag from './icons/arabic_flag.svg';
 
 export {
 	logo,
@@ -86,5 +89,8 @@ export {
 	hide_password_icon,
 	consult,
 	EyeOff,
-	ham_icon
+	ham_icon,
+	english_flag,
+	arabic_flag,
+	turkish_flag,
 };

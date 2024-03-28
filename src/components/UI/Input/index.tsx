@@ -57,14 +57,14 @@ const Input: React.FC<IProps> = ({
 								src={EyeOff}
 								alt="eye-off"
 								key="eye-off"
-								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-[30px]' : 'left-[30px]'} transform translate-y-[-50%]`}
+								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-4' : 'left-4'} transform translate-y-[-50%]`}
 							/>
 						) : (
 							<Image
 								src={EyeIcon}
 								alt="eye-icon"
 								key="eye-icon"
-								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-[30px]' : 'left-[30px]'} transform translate-y-[-50%]`}
+								className={`h-5 w-5 cursor-pointer absolute top-[50%] ${dir === 'ltr' ? 'right-4' : 'left-4'} transform translate-y-[-50%]`}
 							/>
 						)}
 					</div>

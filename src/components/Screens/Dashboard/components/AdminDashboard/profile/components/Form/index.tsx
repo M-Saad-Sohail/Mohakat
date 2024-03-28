@@ -24,6 +24,7 @@ import { useTranslations } from 'next-intl';
 import Select from '@/components/UI/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
+import { countriesData } from '@/contants/countries';
 
 type IProps = {
 	submitHandler: (arg: ResetPassword, id: String | undefined) => void;
@@ -72,6 +73,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 			replace(PATHS.LOGIN);
 			return;
 		}
+		console.log(data);
 		updateProfileForm.setValues({
 			name: data.name,
 			email: data.email,
@@ -112,10 +114,15 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
-				<div className="flex justify-start w-full gap-x-4">
-					<Input
+				<div className="flex justify-start w-full gap-x-4 mb-8">
+					<Select
 						title={t('country.title')}
 						name="country"
+						defaultValue={t('country.default')}
+						options={countriesData.map((c) => ({
+							value: c.code,
+							label: c.name,
+						}))}
 						className="mb-[19px] min-w-[460px]"
 						value={updateProfileForm.values.country}
 						onChange={updateProfileForm.handleChange}
@@ -128,6 +135,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 							{ label: t('language.arabic'), value: 'ar' },
 							{ label: t('language.turkish'), value: 'tr' },
 						]}
+						defaultValue={t('language.default')}
 						value={updateProfileForm.values.language}
 						className="min-w-[460px] mt-[2px]"
 						onChange={updateProfileForm.handleChange}

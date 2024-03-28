@@ -6,6 +6,8 @@ interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	title: string;
 	options: Array<{ value: string; label: string }>;
 	className?: string;
+	defaultValue?: string;
+	name: string;
 }
 const Select: React.FC<IProps> = ({
 	onChange,
@@ -15,6 +17,7 @@ const Select: React.FC<IProps> = ({
 	name,
 	title,
 	options,
+	defaultValue,
 }) => {
 	const dir = useDirection();
 
@@ -22,13 +25,18 @@ const Select: React.FC<IProps> = ({
 		<div dir={dir} className={`flex flex-col gap-y-2 h-[50px] ${className}`}>
 			<label className="font-bold text-[14px] text-primary">{title}</label>
 
-			<div dir={dir} className="relative h-full">
+			<div dir={dir} className="relative h-full w-full">
 				<select
 					className={`py-2 px-5 w-full focus:outline-none text-[15px] bg-[#E8E8E8] h-[50px] max-w-[700px] text-primary appearance-none ${className}`}
-					onChange={onChange}
+					onChange={(e) => {
+						onChange?.(e);
+					}}
 					value={value}
 					name={name}
 				>
+					<option value={''} hidden className="hidden">
+						{defaultValue ?? 'Select an Option'}
+					</option>
 					{options.map((opt) => (
 						<option value={opt.value} key={opt.value}>
 							{opt.label}
@@ -36,9 +44,10 @@ const Select: React.FC<IProps> = ({
 					))}
 				</select>
 				<ChevronDown
-					className={`absolute ${dir === 'ltr' ? 'right-4' : 'left-4'} top-1/2 transform -translate-y-1/2 pointer-events-none`}
+					className={`absolute ${dir === 'ltr' ? 'right-4' : 'left-4'} !w-[20px] top-[55%] transform -translate-y-1/2 pointer-events-none`}
 					width="20"
 					height="20"
+					style={{ width: 20 }}
 				/>
 			</div>
 

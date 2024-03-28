@@ -9,6 +9,7 @@ import { becomeSponsorSchema } from '@/utils/validationSchema';
 import { RegisterUserCredentials } from '@/types';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useTranslations } from 'next-intl';
+import { countriesData } from '@/contants/countries';
 
 type IProps = {
 	submitHandler: (
@@ -69,6 +70,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 								name="language"
 								title={t('language.title')}
 								className="w-[50%] mt-[2px]"
+								defaultValue={t('language.default')}
 								options={[
 									{ label: t('language.english'), value: 'en' },
 									{ label: t('language.arabic'), value: 'ar' },
@@ -89,7 +91,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							value={values.password}
 							error={touched.password && errors.password}
 						/>
-						
+
 						<Input
 							title={t('confirmPassword.title')}
 							placeholder="*************"
@@ -101,15 +103,19 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							error={touched.confirmPassword && errors.confirmPassword}
 						/>
 
-						<Input
+						<Select
 							title={t('country.title')}
-							placeholder={t('country.placeholder')}
 							name="country"
-							className="max-w-[800px] w-full"
+							className="max-w-[800px] w-full mb-8"
 							onChange={handleChange}
 							value={values.country}
+							defaultValue={t('country.default')}
+							options={countriesData.map((country) => ({
+								label: country.name,
+								value: country.code,
+							}))}
 							error={touched.country && errors.country}
-						/> 
+						/>
 
 						<div className="justify-center items-center flex w-full">
 							<Button

@@ -69,7 +69,8 @@
 			},
 			"country": {
 				"title": "البلد",
-				"placeholder": "باكستان"
+				"placeholder": "باكستان",
+				"default": "حدد البلد"
 			},
 			"address": {
 				"title": "العنوان",
@@ -79,7 +80,8 @@
 				"title": "اللغة",
 				"arabic": "العربية",
 				"english": "الإنجليزية",
-				"turkish": "التركية"
+				"turkish": "التركية",
+				"default": "اختر اللغة"
 			},
 			"gender": {
 				"title": "الجنس",
@@ -113,13 +115,15 @@
 				"title": "البريد الإلكتروني"
 			},
 			"country": {
-				"title": "البلد"
+				"title": "البلد",
+				"default": "حدد البلد"
 			},
 			"language": {
 				"title": "اللغة",
 				"arabic": "العربية",
 				"english": "الإنجليزية",
-				"turkish": "التركية"
+				"turkish": "التركية",
+				"default": "اختر اللغة"
 			},
 			"update_profile": "تحديث الملف الشخصي",
 			"currentPassword": {

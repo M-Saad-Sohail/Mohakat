@@ -69,7 +69,8 @@
 			},
 			"country": {
 				"title": "Ülke",
-				"placeholder": "Pakistan"
+				"placeholder": "Pakistan",
+				"default": "Ülke Seçin"
 			},
 			"address": {
 				"title": "Adres",
@@ -84,7 +85,8 @@
 				"title": "Dil",
 				"arabic": "Arapça",
 				"english": "İngilizce",
-				"turkish": "Türkçe"
+				"turkish": "Türkçe",
+				"default": "Dil Seçin"
 			},
 			"submit": "Sponsor Ol",
 			"cta": {
@@ -113,13 +115,15 @@
 				"title": "E-posta"
 			},
 			"country": {
-				"title": "Ülke"
+				"title": "Ülke",
+				"default":"Ülke Seçin"
 			},
 			"language": {
 				"title": "Dil",
 				"arabic": "Arapça",
 				"english": "İngilizce",
-				"turkish": "Türkçe"
+				"turkish": "Türkçe",
+				"default": "Dil Seçin"
 			},
 			"update_profile": "Profili Güncelle",
 			"currentPassword": {
@@ -158,7 +162,7 @@
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
-	},	
+	},
 	"Table": {
 		"Header": {
 			"Sno": "S.NO",
@@ -181,6 +185,4 @@
 		},
 		"add_user": "Kullanıcı Ekle"
 	}
-	
-	
 }
