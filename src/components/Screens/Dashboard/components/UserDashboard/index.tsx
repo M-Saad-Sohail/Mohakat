@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { UserType } from '@/state/user/types';
 import { getUserFromLocalStorage } from '@/utils/auth';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 import SocailSharing from './SocailSharing/SocailSharing'
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 
@@ -29,8 +29,10 @@ const UserDashboard = () => {
 					Welcome {user.name}
 				</h1>
 			</div>
-			<h6>Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media</h6>
+		<div>
+		<h6>Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media</h6>
 			<SocailSharing />
+		</div>
 		</>
 	);
 };
