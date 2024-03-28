@@ -31,24 +31,25 @@ type IProps = {
 };
 
 const SettingForm = ({ submitHandler, isLoading }: IProps) => {
-	const [user, setUser] = useState<UserType | null>(null);
+	const [userId, setUserId] = useState<string | null>(null);
 
 	const t = useTranslations('AccountSettings.form');
-	const dir = useDirection()
-	const { changeLocale } = useLocaleRouter()
+	const dir = useDirection();
+	const { changeLocale } = useLocaleRouter();
 
 	const changePasswordForm = useFormik({
 		initialValues: RESETINITIALVALUES,
 		validationSchema: resetPasswordSchema,
 		onSubmit: (values: ResetPasswordSchema) => {
 			console.log('values', values);
+			if (!userId) return;
 			submitHandler(
 				{
 					oldPassword: values.password,
 					confirmPassword: values.new_password2,
 					newPassword: values.new_password1,
 				},
-				user?.id,
+				userId,
 			);
 		},
 	});
@@ -77,6 +78,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 			country: data?.country ?? '',
 			language: data.language ?? 'en',
 		});
+		setUserId(data.id);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -145,7 +147,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 				</h4>
 				<Input
 					title={t('currentPassword.title')}
-					placeholder="*************"
+					placeholder="*"
 					name="password"
 					type="password"
 					value={changePasswordForm.values.password}
@@ -158,7 +160,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 				/>
 				<Input
 					title={t('newPassword.title')}
-					placeholder="*************"
+					placeholder="*"
 					name="new_password1"
 					type="password"
 					onChange={changePasswordForm.handleChange}
@@ -171,7 +173,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 				/>
 				<Input
 					title={t('confirmPassword.title')}
-					placeholder="*************"
+					placeholder="*"
 					name="new_password2"
 					type="password"
 					onChange={changePasswordForm.handleChange}

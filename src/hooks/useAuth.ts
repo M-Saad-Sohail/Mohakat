@@ -103,12 +103,13 @@ export const useAuth = () => {
 	const updatePassword = useCallback(
 		async (credentials: ResetPassword, id: String | undefined) => {
 			try {
+				console.log(id)
 				setIsLoading(true);
 				const { data } = await api.put(
 					`/sponser/update/password/${id}`,
 					credentials,
 				);
-				// console.log('data', data);
+				console.log('data', data);
 				toast.success('Update Password Successful.');
 			} catch (e) {
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
