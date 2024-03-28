@@ -110,11 +110,11 @@ const LeftSideBar = () => {
 	const dir = useDirection();
 
 	return (
-		<div className="flex" dir={dir}>
+		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
 				className={`fixed ${open ? 'w-[270px]' : 'w-20 '} bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg`}
 			>
-				<div className="flex gap-x-2 justify-between items-center">
+				<div className="flex items-center justify-between gap-x-2">
 					{open && (
 						<Link href={url('/')}>
 							<Image alt="" src={dashboard_logo} width={100} height={100} />
@@ -167,10 +167,10 @@ const LeftSideBar = () => {
 									}
 								}}
 							>
-								<div className="flex gap-x-4 items-center">
+								<div className="flex items-center gap-x-4">
 									<Image
 										src={Menu.src}
-										className="w-5 h-5 object-contain"
+										className="object-contain w-5 h-5"
 										alt=""
 										style={
 											clickedMenu === index || active === Menu.link ? {} : {}

@@ -129,3 +129,16 @@ export const fetchAdminModerators = async (token: string) => {
 		throw error;
 	}
 };
+
+export const fetchDashboardStats = async (token: string) => {
+	try {
+		const response = await api.get('dashboard/stats', {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data;
+	} catch (error) {
+		throw error;
+	}
+};
