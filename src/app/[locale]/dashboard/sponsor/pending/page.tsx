@@ -3,9 +3,9 @@ import PendingSponsor from '@/components/Screens/Dashboard/components/AdminDashb
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
 
-const index = () => {
+const Pending = () => {
 	const t = useTranslations('PendingSponsors');
-	
+
 	return (
 		<>
 			<DashboardNavbar title={t('title')} />
@@ -16,4 +16,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default Pending;

@@ -98,6 +98,7 @@ export const useAuth = () => {
 		localStorage.removeItem('user');
 		setUser({ user: undefined, isAuthenticated: false });
 		window.location.href = url('/sign-in');
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setUser]);
 	const updatePassword = useCallback(
 		async (credentials: ResetPassword, id: String | undefined) => {

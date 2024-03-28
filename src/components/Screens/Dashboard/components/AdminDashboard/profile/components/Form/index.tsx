@@ -77,6 +77,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 			country: data?.country ?? '',
 			language: data.language ?? 'en',
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -93,7 +94,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						{t('section1')}
 					</h2>
 				</div>
-				<div className="flex w-full justify-start gap-x-4 items-center">
+				<div className="flex items-center justify-start w-full gap-x-4">
 					<Input
 						title={t('name.title')}
 						name="name"
@@ -109,7 +110,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
-				<div className="flex w-full justify-start gap-x-4">
+				<div className="flex justify-start w-full gap-x-4">
 					<Input
 						title={t('country.title')}
 						name="country"

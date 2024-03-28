@@ -11,6 +11,7 @@ const BecomeSponsor = () => {
 
 	useEffect(() => {
 		navigateIfLoggedIn(url('/dashboard'));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const { registerUser, isLoading } = useAuth();

@@ -3,16 +3,16 @@ import RejectedSponsor from '@/components/Screens/Dashboard/components/AdminDash
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
 
-const index = () => {
+const Rejected = () => {
 	const t = useTranslations('RejectedSponsors');
 	return (
 		<>
 			<DashboardNavbar title={t('title')} />
 			<div className="px-4">
-        <RejectedSponsor />
-      </div>
+				<RejectedSponsor />
+			</div>
 		</>
 	);
 };
 
-export default index;
+export default Rejected;
