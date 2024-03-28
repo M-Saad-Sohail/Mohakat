@@ -32,7 +32,6 @@ export default class SocailSharing extends Component {
           <WhatsappShareButton
             url={shareUrl}
             quote={"I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website"}
-            separator=":: "
             className="Demo__some-network__share-button"
           >
             <WhatsappIcon size={40}  />
