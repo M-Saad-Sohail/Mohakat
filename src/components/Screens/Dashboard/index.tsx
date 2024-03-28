@@ -16,6 +16,7 @@ const Dashboard = () => {
 			window.location.href = url('/login');
 		} else {
 			setIsAdmin(user.role === 'admin');
+			console.log(isAdmin)
 		}
 	}, [url]);
 
