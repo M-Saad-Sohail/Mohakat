@@ -27,7 +27,7 @@ function generateCircle(color, x, y, svg) {
     // Create a feGaussianBlur for the base glow effect
     let feGaussianBlur = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
     feGaussianBlur.setAttribute("in", "SourceGraphic");
-    feGaussianBlur.setAttribute("stdDeviation", "10"); // Adjust for desired base glow intensity
+    feGaussianBlur.setAttribute("stdDeviation", "16"); // Adjust for desired base glow intensity
 
     // Create a feComponentTransfer for the pulsating glow animation
     let feComponentTransfer = document.createElementNS("http://www.w3.org/2000/svg", "feComponentTransfer");
@@ -85,62 +85,40 @@ function generateCircle(color, x, y, svg) {
     svg.appendChild(circle);
 }
 
-
-function generateRandomCircles(svgRef, maxSponsorCount, interval) {
+function generateRandomCircles(svgRef, maxSponsorCount) {
     const svg = svgRef.current;
-    const paths = svg.querySelectorAll('path');
-  
-    const pathCoordinates = [];
-  
-    paths.forEach(path => {
-      const pathLength = path.getTotalLength();
-      const coordinates = [];
-      for (let i = 0; i < pathLength; i += interval) {
-        const point = path.getPointAtLength(i);
-        const startX = path.getPointAtLength(0).x;
-        const startY = path.getPointAtLength(0).y;
-        const distance = Math.sqrt(Math.pow(point.x - startX, 2) + Math.pow(point.y - startY, 2));
-  
-        // Adjust offset based on your SVG layout (optional)
-        const offsetX = 10; // Adjust X offset if needed
-        const offsetY = 10; // Adjust Y offset if needed
-  
-        // Check if coordinate is within path length and adjust for potential offset
-        if (distance <= pathLength && point.x + offsetX >= 0 && point.x + offsetX <= svg.clientWidth && point.y + offsetY >= 0 && point.y + offsetY <= svg.clientHeight) {
-          coordinates.push([Math.round(point.x) + offsetX, Math.round(point.y) + offsetY]);
-        }
-      }
-      pathCoordinates.push(...coordinates);
-    });
-    // console.log("pathCoordinates",pathCoordinates.length)
-    // console.log(pathCoordinates)
-    const totalNumberOfPoints = pathCoordinates.length;
-    // const totalNumberOfPoints = 50
-    const numberOfRedCircles = totalNumberOfPoints - maxSponsorCount;
-    // const numberOfRedCircles = totalNumberOfPoints + 50;
-  
-    const greyCoordinates = []; // Store coordinates of grey circles
-  
-    // Generate grey circles using coordinates from pathCoordinates
-    for (let i = 0; i < maxSponsorCount; i++) {
-      const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
-      const [randomX, randomY] = pathCoordinates.splice(randomIndex, 1)[0]; // Remove used coordinates
-      generateCircle('#808080', randomX, randomY, svg);
-      greyCoordinates.push([randomX, randomY]);
-    }
-  
-    // Generate red circles using remaining coordinates from pathCoordinates
-    for (let i = 0; i < numberOfRedCircles; i++) {
-      const randomIndex = Math.floor(Math.random() * pathCoordinates.length);
-      const [randomX, randomY] = pathCoordinates[randomIndex];
-      // Check if the coordinates are not used for grey circles
-      if (!greyCoordinates.some(coord => coord[0] === randomX && coord[1] === randomY)) {
-        generateCircle('#ff002f', randomX, randomY, svg);
-      }
-      pathCoordinates.splice(randomIndex, 1); // Remove used coordinates
-    }
-  }
 
+    const coordinates = [
+        [800, 485], [750, 440], [870, 456], [450, 456], [450, 600], [500, 650], [500, 690], [1059, 400], [890, 330], [100, 670],
+        [330, 670], [220, 600], [220, 900], [220, 620], [1010, 400], [1200, 300], [1270, 300], [1320, 340], [1320, 150], [1379, 170],
+        [1400, 170], [1400, 320], [1370, 300], [1500, 300], [1550, 300], [1600, 250], [1390, 250], [1390, 120], [1390, 200], [1390, 300],
+        [1250, 180], [1250, 150], [1100, 270], [1140, 270], [1170, 270], [1600, 270], [1600, 220], [400, 510], [450, 510], [450, 600],
+        [400, 700], [500, 700], [150, 847], [150, 800], [426, 800], [426, 800], [426, 800], [300, 800], [150, 700], [971, 385],
+        [1000, 385], [1050, 385], [870, 456], [800, 485], [517, 600], [517, 600], [400, 650], [250, 557], [400, 700], [300, 700],
+        [100, 654], [100, 600], [100, 780], [638, 500], [550, 500]
+    ];
+
+    const totalNumberOfPoints = coordinates.length;
+    const numberOfRedCircles = totalNumberOfPoints - maxSponsorCount;
+
+    const greyCoordinates = []; // Store coordinates of grey circles
+
+    // Generate grey circles using provided coordinates
+    for (let i = 0; i < maxSponsorCount; i++) {
+        const [randomX, randomY] = coordinates.pop(); // Get last coordinates from array
+        generateCircle('#808080', randomX, randomY, svg); // Generate grey circle
+        greyCoordinates.push([randomX, randomY]); // Store grey circle coordinates
+    }
+
+    // Generate red circles using remaining coordinates
+    for (let i = 0; i < numberOfRedCircles; i++) {
+        const [randomX, randomY] = coordinates.pop(); // Get last coordinates from array
+        // Check if the coordinates are not used for grey circles
+        if (!greyCoordinates.some(coord => coord[0] === randomX && coord[1] === randomY)) {
+            generateCircle('#ff002f', randomX, randomY, svg); // Generate red circle
+        }
+    }
+}
 
 
 
@@ -155,14 +133,12 @@ function GazaMap() {
             try {
                 const response = await axios.get(`${URL}/sponsers/approved/count`);
                 setMaxSponserCount(response.data.maxSponsorCount);
-                // console.log(maxSponserCount)
-                // console.log(response.data)
             } catch (error) {
-                // console.log("Error getting data:", error);
+                console.log("Error getting data:", error);
             }
         };
         fetchedMaxSponserCount()
-        generateRandomCircles(svgRef, maxSponserCount, 100);
+        generateRandomCircles(svgRef, maxSponserCount);
     }, [maxSponserCount]);
 
     return (
