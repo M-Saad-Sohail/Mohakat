@@ -2,14 +2,11 @@
 import api from '@/config/axios';
 export const fetchPendingData = async (token: string) => {
 	try {
-		const response = await api.get(
-			'sponsers/pending',
-			{
-				headers: {
-					Authorization: `${token}`,
-				},
+		const response = await api.get('sponsers/pending', {
+			headers: {
+				Authorization: `${token}`,
 			},
-		);
+		});
 		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
@@ -36,14 +33,11 @@ export const fetchApprovedData = async (token: string) => {
 
 export const fetchRejectededData = async (token: string) => {
 	try {
-		const response = await api.get(
-			'sponsers/rejected',
-			{
-				headers: {
-					Authorization: `${token}`,
-				},
+		const response = await api.get('sponsers/rejected', {
+			headers: {
+				Authorization: `${token}`,
 			},
-		);
+		});
 		return response.data;
 	} catch (error) {
 		throw error;
@@ -70,15 +64,11 @@ export const RejectSponsor = async (token: string, id: string) => {
 };
 export const RejectDelete = async (token: string, id: string) => {
 	try {
-		const response = await api.delete(
-			`sponsers/rejected/delete/${id}`,
-		
-			{
-				headers: {
-					Authorization: `${token}`,
-				},
+		const response = await api.delete(`sponsers/rejected/delete/${id}`, {
+			headers: {
+				Authorization: `${token}`,
 			},
-		);
+		});
 		// console.log('data', response.data);
 		// console.log('sucesssfully delete')
 		return response.data;
@@ -91,7 +81,7 @@ export const RejectDeleteAll = async (token: string) => {
 	try {
 		const response = await api.delete(
 			`sponsers/rejected/delete`,
-		
+
 			{
 				headers: {
 					Authorization: `${token}`,
@@ -123,6 +113,19 @@ export const ApprovedSponsor = async (token: string, id: string) => {
 		return response.data;
 	} catch (error) {
 		// console.error('Error fetching data:', error);
+		throw error;
+	}
+};
+
+export const fetchAdminModerators = async (token: string) => {
+	try {
+		const response = await api.get('admin/data', {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data;
+	} catch (error) {
 		throw error;
 	}
 };

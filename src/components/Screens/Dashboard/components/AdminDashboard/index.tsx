@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { dashboard } from '@/contants';
 import InfoCards from '@/components/UI/Card';
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
@@ -6,20 +6,62 @@ import Image from 'next/image';
 import { add_icon } from '@/assests';
 import Table from '@/components/UI/Table';
 import { DASHBOARDCOLUMN, DASHBOARDDATA } from '@/contants';
-import useDirection from '@/hooks/useDirection';
 import { useTranslations } from 'next-intl';
+import { Loader } from 'lucide-react';
+import { getUserFromLocalStorage } from '@/utils/auth';
+import { toast } from 'react-toastify';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { fetchAdminModerators } from '@/hooks/useSponsorTables';
 type CARD = {
 	name: string;
 	value: string;
 };
 
 const AdminDashboard = () => {
-	const dir = useDirection()
-	const t = useTranslations('Dashboard')
+	const { dir, redirect } = useLocaleRouter();
+	const t = useTranslations('Dashboard');
+	const [data, setData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const init = useCallback(async () => {
+		setIsLoading(true);
+		try {
+			const user = getUserFromLocalStorage();
+			if (!user) {
+				redirect('/sign-in');
+				return;
+			}
+
+			const token = user.key;
+			let moderators = await fetchAdminModerators(token);
+			moderators = moderators.adminData.map((mod: any) => ({
+				id: mod._id,
+				email: mod.email,
+				name: mod.name,
+				role: mod.role,
+			}));
+			setData(moderators);
+			setIsLoading(false);
+		} catch (error) {
+			if (error instanceof Error) {
+				toast.error(error.message);
+			}
+			setIsLoading(false);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	React.useEffect(() => {
+		init();
+	}, [init]);
+
 	return (
 		<div dir={dir} className="w-full">
 			<DashboardNavbar title={t('title')} />
-			<div dir={dir} className="text-primary px-4 flex gap-x-3 w-full my-4 flex-wrap mx-auto">
+			<div
+				dir={dir}
+				className="flex flex-wrap w-full px-4 mx-auto my-4 text-primary gap-x-3"
+			>
 				{dashboard.map((item, index) => (
 					<InfoCards
 						key={index}
@@ -30,7 +72,7 @@ const AdminDashboard = () => {
 					/>
 				))}
 			</div>
-			<div className="flex py-4 mobile:pt-4 w-full px-4">
+			<div className="flex w-full px-4 py-4 mobile:pt-4">
 				<h2 className="text-black text-[24px] flex items-center w-full my-4 font-bold">
 					{t('section1')}
 				</h2>
@@ -45,7 +87,8 @@ const AdminDashboard = () => {
 				</div>
 			</div>
 			<div className="px-4">
-				<Table data={DASHBOARDDATA} columns={DASHBOARDCOLUMN} />
+				{isLoading && <Loader size={20} />}
+				{!isLoading && <Table data={data} columns={DASHBOARDCOLUMN} />}
 			</div>
 		</div>
 	);

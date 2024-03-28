@@ -91,7 +91,7 @@ function Table({ columns, data, search, setData }: IProps) {
 	return (
 		<>
 			{/* Your existing code for DeleteModal and other components */}
-			<div dir={dir} className="flex justify-between items-center gap-3">
+			<div dir={dir} className="flex items-center justify-between gap-3">
 				{search && (
 					<GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
 				)}
@@ -119,7 +119,7 @@ function Table({ columns, data, search, setData }: IProps) {
 			<table
 				dir={dir}
 				{...getTableProps()}
-				className="font-helvetica mt-4 mb-4  sm:table-fixed w-full"
+				className="w-full mt-4 mb-4 font-helvetica sm:table-fixed"
 			>
 				<thead>
 					{headerGroups.map((headerGroup: any) => (
@@ -131,7 +131,6 @@ function Table({ columns, data, search, setData }: IProps) {
 							{headerGroup.headers.map((column: any) => {
 								return (
 									<th
-										key={column.id}
 										{...column.getHeaderProps()}
 										className={`py-3 px-7 mobile:px-3 mobile:py-2 text-[15px] mobile:text-sm text-white font-medium font-sans bg-primary ${
 											column.Header === t('Table.Header.Sno') ||
@@ -141,6 +140,7 @@ function Table({ columns, data, search, setData }: IProps) {
 													? 'w-[30%]' // Set wider width for Email column
 													: 'w-auto' // Set default width for other columns
 										}`}
+										key={column.id}
 									>
 										{column.Header === t('Table.Header.Sno') ||
 										column.Header === t('Table.Header.Action') ? (
@@ -168,13 +168,12 @@ function Table({ columns, data, search, setData }: IProps) {
 							return (
 								<tr {...row.getRowProps()} key={row.id}>
 									{row.cells.map((cell: any, cellIndex: number) => {
-										console.log('cell', cell);
 										if (cell.column.id === 'action') {
 											return (
 												<td
-													key={cell.id}
 													{...cell.getCellProps()}
-													className="py-3 px-7 mobile:p-3  text-black font-sans font-normal text-base mobile:text-sm text-center"
+													key={cell.id}
+													className="py-3 font-sans text-base font-normal text-center text-black px-7 mobile:p-3 mobile:text-sm"
 												>
 													<button
 														onClick={() =>
@@ -200,9 +199,9 @@ function Table({ columns, data, search, setData }: IProps) {
 										if (cell.column.id === 'delete') {
 											return (
 												<td
-													key={cell.id}
 													{...cell.getCellProps()}
-													className="py-3 px-7 mobile:p-3 text-black font-sans font-normal text-base mobile:text-sm text-center gap-x-7"
+													key={cell.id}
+													className="py-3 font-sans text-base font-normal text-center text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
 												>
 													<button
 														onClick={() => {
@@ -219,13 +218,12 @@ function Table({ columns, data, search, setData }: IProps) {
 												<td
 													key={cell.id}
 													{...cell.getCellProps()}
-													className="py-3 px-7 mobile:p-3 text-black font-sans font-normal text-base mobile:text-sm text-center gap-x-7"
+													className="py-3 font-sans text-base font-normal text-center text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
 												>
 													{cell.row.index + 1}
 												</td>
 											);
 										} else {
-											console.log('row.original', row.original);
 											return (
 												<td
 													key={cell.id}
@@ -247,7 +245,7 @@ function Table({ columns, data, search, setData }: IProps) {
 						<tr className="h-full">
 							<td
 								colSpan={columns.length}
-								className="text-center text-primary font-bold"
+								className="font-bold text-center text-primary"
 							>
 								<NoData />
 							</td>

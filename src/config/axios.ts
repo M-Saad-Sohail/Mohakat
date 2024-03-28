@@ -4,7 +4,6 @@ import { getUserInfoFromLocalStorage } from '@/lib/cache';
 
 // Function to handle logout
 const logout = () => {
-	console.log('Logging out...');
 	localStorage.removeItem('user');
 	redirect('/sign-in');
 };

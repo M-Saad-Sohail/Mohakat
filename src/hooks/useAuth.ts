@@ -26,7 +26,6 @@ export const useAuth = () => {
 					'https://sponserendpoint.netlify.app/.netlify/functions/server/login',
 					credentials,
 				);
-				// console.log('data', data);
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -75,7 +74,6 @@ export const useAuth = () => {
 				// 	__v: data.sponser.__v, // Corrected key name
 				// 	id: data.sponser._id, // Corrected key name
 				// };
-				// console.log('data', data);
 				if (data.success) {
 					toast.success('Register Successful.');
 					window.location.href = url('/verification');
@@ -83,7 +81,6 @@ export const useAuth = () => {
 				}
 				throw new Error('Some error has occurred! Please try again.');
 			} catch (e) {
-				console.log('e', e);
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);
 				else toast.error('Some error has occurred! Please try again.');
 			} finally {
@@ -103,13 +100,11 @@ export const useAuth = () => {
 	const updatePassword = useCallback(
 		async (credentials: ResetPassword, id: String | undefined) => {
 			try {
-				console.log(id)
 				setIsLoading(true);
 				const { data } = await api.put(
 					`/sponser/update/password/${id}`,
 					credentials,
 				);
-				console.log('data', data);
 				toast.success('Update Password Successful.');
 			} catch (e) {
 				if (e instanceof AxiosError) toast.error(e.response?.data.message);

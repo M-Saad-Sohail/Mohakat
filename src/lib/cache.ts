@@ -5,7 +5,6 @@ export const getUserInfoFromLocalStorage = () => {
 	const result = localStorage.getItem(KEYS.USER);
 	if (result) {
 		const user: UserType = JSON.parse(result);
-		console.log('user', user);
 		return user;
 	}
 	return null;
@@ -13,7 +12,6 @@ export const getUserInfoFromLocalStorage = () => {
 export const saveUserInfoInLocalStorage = (user: UserType) => {
 	const data = JSON.stringify(user);
 	const token = user.key;
-	console.log('token', token);
 	localStorage.setItem(KEYS.TOKEN, token);
 	localStorage.setItem(KEYS.USER, data);
 };

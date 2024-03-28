@@ -42,7 +42,6 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		initialValues: RESETINITIALVALUES,
 		validationSchema: resetPasswordSchema,
 		onSubmit: (values: ResetPasswordSchema) => {
-			console.log('values', values);
 			if (!userId) return;
 			submitHandler(
 				{
@@ -59,7 +58,6 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		initialValues: ProfileValues,
 		validationSchema: updateProfileSchema,
 		onSubmit: (values: UpdateProfileSchema) => {
-			console.log('values', values);
 			// change locale
 			changeLocale(values.language);
 		},
@@ -73,7 +71,6 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 			replace(PATHS.LOGIN);
 			return;
 		}
-		console.log(data);
 		updateProfileForm.setValues({
 			name: data.name,
 			email: data.email,
@@ -114,7 +111,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
-				<div className="flex justify-start w-full gap-x-4 mb-8">
+				<div className="flex justify-start w-full mb-8 gap-x-4">
 					<Select
 						title={t('country.title')}
 						name="country"

@@ -113,7 +113,6 @@ function generateRandomCircles(svgRef, maxSponsorCount, interval) {
       pathCoordinates.push(...coordinates);
     });
     // console.log("pathCoordinates",pathCoordinates.length)
-
     // console.log(pathCoordinates)
     const totalNumberOfPoints = pathCoordinates.length;
     // const totalNumberOfPoints = 50
@@ -159,7 +158,7 @@ function GazaMap() {
                 // console.log(maxSponserCount)
                 // console.log(response.data)
             } catch (error) {
-                console.log("Error getting data:", error);
+                // console.log("Error getting data:", error);
             }
         };
         fetchedMaxSponserCount()
