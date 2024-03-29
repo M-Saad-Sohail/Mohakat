@@ -10,7 +10,6 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 const UserDashboard = () => {
 	const [user, setUser] = useState<UserType | null>(null);
 	const router = useLocaleRouter()
-
 	useEffect(() => {
 		const loggedInUser = getUserFromLocalStorage();
 		if (!loggedInUser) {
@@ -24,12 +23,12 @@ const UserDashboard = () => {
 
 	return (
 		<>
-			<div>
+			<div className = "text-center">
 				<h1 className="text-4xl font-bold text-primary mt-10 leading-normal pt-2">
 					Welcome {user.name}
 				</h1>
 			</div>
-		<div>
+		<div className = "text-center">
 		<h6>Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media</h6>
 			<SocailSharing />
 		</div>
