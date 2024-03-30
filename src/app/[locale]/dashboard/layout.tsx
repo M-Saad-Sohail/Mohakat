@@ -1,12 +1,31 @@
+'use client';
 import LeftSideBar from '@/components/UI/Sidebar';
-import { getDirection } from '@/utils/get-direction';
-import React from 'react';
+import { PATHS } from '@/contants';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { getUserFromLocalStorage } from '@/utils/auth';
+import React, { useEffect, useState } from 'react';
 
-const layout = (props: {
+const Layout = (props: {
 	children: React.ReactNode;
 	params: { locale: string };
 }) => {
-	const dir = getDirection(props.params.locale);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const { url, dir, redirect } = useLocaleRouter();
+
+	useEffect(() => {
+		const user = getUserFromLocalStorage();
+		setIsLoggedIn(!!user)
+		if (!user) {
+			redirect(PATHS.LOGIN)
+			return;
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	if (!isLoggedIn) {
+		return <></>
+	}
+
 	return (
 		<div dir={dir}>
 			<div className="flex bg-[#f4f4f4ea]">
@@ -17,4 +36,4 @@ const layout = (props: {
 	);
 };
 
-export default layout;
+export default Layout;
