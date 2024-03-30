@@ -23,7 +23,7 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 	const dir = useDirection()
 
 	return (
-		<div dir={dir} className="flex py-2 w-full">
+		<div dir={dir} className="flex w-full py-2">
 			<h2 className="text-black text-[32px] ps-4 flex items-center w-full my-4 font-bold">
 				{title}
 			</h2>
@@ -32,14 +32,14 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 				<Image
 					src={language} // Replace with the path to the user profile image
 					alt={''}
-					className="h-8 w-8 rounded-full mx-2"
+					className="w-8 h-8 mx-2 rounded-full"
 					style={{ filter: 'invert(100%)' }}
 				/>
-				<div className="flex items-center mx-4">
+				<div dir={dir} className="flex items-center mx-4">
 					<Image
 						src={profile} // Replace with the path to the user profile image
 						alt={''}
-						className="h-10 w-10 rounded-full mx-2"
+						className="w-10 h-10 mx-2 rounded-full"
 					/>
 					<p className="text-black text-[16px]">{user ? user.name : ''}</p>
 				</div>

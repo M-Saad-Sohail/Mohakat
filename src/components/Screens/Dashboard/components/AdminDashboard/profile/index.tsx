@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl';
 import useDirection from '@/hooks/useDirection';
 
 const Setting = () => {
-	const { updatePassword, isLoading } = useAuth();
+	const { updatePassword,  isLoading } = useAuth();
 	const t = useTranslations('AccountSettings');
 	const dir = useDirection();
 	return (
@@ -18,7 +18,7 @@ const Setting = () => {
 			<div className="w-full px-4 bg-[#f4f4f4ea]">
 				<DashboardNavbar title={t('title')} setting={true} />
 				<div>
-					<SettingForm submitHandler={updatePassword} isLoading={isLoading} />
+					<SettingForm updatePassword={updatePassword} isLoading={isLoading} />
 				</div>
 			</div>
 		</div>

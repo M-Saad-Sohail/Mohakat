@@ -9,7 +9,8 @@
 		},
 		"cta": {
 			"become-sponsor": "Sponsor Ol",
-			"signin": "Oturum Aç"
+			"signin": "Oturum Aç",
+			"go-to-dashboard": "Panoya Git"
 		}
 	},
 	"LandingPage": {
@@ -116,7 +117,7 @@
 			},
 			"country": {
 				"title": "Ülke",
-				"default":"Ülke Seçin"
+				"default": "Ülke Seçin"
 			},
 			"language": {
 				"title": "Dil",

@@ -21,7 +21,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
 	reducer: persistedReducer,
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+	middleware: (getDefaultMiddleware) => {
+		if (process.env.NODE_ENV === 'development') {
+			return getDefaultMiddleware()
+		}
+		return getDefaultMiddleware()
+	},
 });
 
 export default store;

@@ -3,13 +3,24 @@ import {
 	LoginSchema,
 	ResetPasswordSchema,
 } from '../types';
+
 export const PATHS = {
 	HOME: '/',
 	FORGETPASSWORD: '/forget-password',
 	LOGIN: '/sign-in',
-	SPONSOR: '/become-sponsor',
+	BECOME_SPONSOR: '/become-sponsor',
 	VERIFICATION: '/verification',
+	DASHBOARD: '/dashboard',
+	FAMILIES: '/dashboard/families',
+	APPROVED_SPONSOR: '/dashboard/sponsor/approved',
+	PENDING_SPONSOR: '/dashboard/sponsor/pending',
+	REJECTED_SPONSOR: '/dashboard/sponsor/rejected',
+	FORM_RESPONSES: '/dashboard/form-responses',
+	SETTING: '/dashboard/setting',
+	SPONSORING: '/dashboard/sponsoring',
+	CREDIT_CARDS: '/dashboard/credit-cards'
 };
+
 export const RESETINITIALVALUES: ResetPasswordSchema = {
 	password: '',
 	new_password1: '',
@@ -25,16 +36,16 @@ export const ProfileValues = {
 
 export const Links = [
 	{ localeId: 'links.0', name: 'Support', link: '/support' },
-	{ localeId: 'links.1', name: 'Sponsor', link: '/become-sponsor' },
+	{ localeId: 'links.1', name: 'Sponsor', link: '/sponsor' },
 	{
 		localeId: 'links.2',
 		name: 'Empower',
-		link: '/emPower',
+		link: '/empower',
 	},
 	{
 		localeId: 'links.3',
 		name: 'FAQs',
-		link: 'faqs',
+		link: '/faqs',
 	},
 	{
 		localeId: 'links.4',
@@ -55,13 +66,7 @@ export const BECOMESPONSORINITIALVALUES: BecomeSponsorSchema = {
 	language: '',
 	confirmPassword: '',
 };
-export const AUTHPATHS = {
-	HOME: '/',
-	FORGETPASSWORD: '/forget-password',
-	LOGIN: '/sign-in',
-	SPONSOR: '/become-sponsor',
-	VERIFICATION: '/verification',
-};
+
 export const APPROVEDCOLUMN: any = [
 	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },

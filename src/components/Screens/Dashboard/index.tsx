@@ -6,6 +6,7 @@ import AdminDashboard from './components/AdminDashboard';
 import UserDashboard from './components/UserDashboard';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { PATHS } from '@/contants';
 const Dashboard = () => {
 	const [isAdmin, setIsAdmin] = React.useState(false);
 	const { url, dir } = useLocaleRouter();
@@ -13,7 +14,7 @@ const Dashboard = () => {
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
 		if (!user) {
-			window.location.href = url('/login');
+			window.location.href = url(PATHS.LOGIN);
 		} else {
 			setIsAdmin(user.role === 'admin');
 			console.log(isAdmin)

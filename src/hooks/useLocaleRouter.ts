@@ -34,7 +34,7 @@ const useLocaleRouter = () => {
 
 	const changeLocale = (locale: string) => {
 		const newPath = (pathname ?? '').replace(`/${params.locale}`, `/${locale}`);
-		router.push(newPath);
+		router.replace(newPath);
 	}
 
 	const redirectWithLocale = (locale: string, path: string) => {

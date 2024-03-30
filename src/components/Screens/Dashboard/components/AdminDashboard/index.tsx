@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { dashboard } from '@/contants';
+import { dashboard, PATHS } from '@/contants';
 import InfoCards from '@/components/UI/Card';
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 import Image from 'next/image';
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 		try {
 			const user = getUserFromLocalStorage();
 			if (!user) {
-				redirect('/sign-in');
+				redirect(PATHS.LOGIN);
 				return;
 			}
 

@@ -27,11 +27,11 @@ import useDirection from '@/hooks/useDirection';
 import { countriesData } from '@/contants/countries';
 
 type IProps = {
-	submitHandler: (arg: ResetPassword, id: String | undefined) => void;
+	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
 	isLoading: boolean;
 };
 
-const SettingForm = ({ submitHandler, isLoading }: IProps) => {
+const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 	const [userId, setUserId] = useState<string | null>(null);
 
 	const t = useTranslations('AccountSettings.form');
@@ -43,7 +43,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		validationSchema: resetPasswordSchema,
 		onSubmit: (values: ResetPasswordSchema) => {
 			if (!userId) return;
-			submitHandler(
+			updatePassword(
 				{
 					oldPassword: values.password,
 					confirmPassword: values.new_password2,
@@ -58,7 +58,6 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 		initialValues: ProfileValues,
 		validationSchema: updateProfileSchema,
 		onSubmit: (values: UpdateProfileSchema) => {
-			// change locale
 			changeLocale(values.language);
 		},
 	});
@@ -143,8 +142,8 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 					className="max-w-[200px] px-6  shadow-custom"
 					disabled={updateProfileForm.isSubmitting}
 					onClick={(e) => {
-						e.preventDefault();
-						updateProfileForm.handleSubmit(e as any);
+						console.log('Updating profile.....')
+						updateProfileForm.handleSubmit();
 					}}
 				/>
 				<h4 className="text-[16px] font-bold text-mmain my-5 mt-12 leading-normal pt-2">
@@ -197,7 +196,7 @@ const SettingForm = ({ submitHandler, isLoading }: IProps) => {
 						disabled={changePasswordForm.isSubmitting}
 						onClick={(e) => {
 							e.preventDefault();
-							changePasswordForm.handleSubmit(e as any);
+							changePasswordForm.handleSubmit();
 						}}
 					/>
 				</div>

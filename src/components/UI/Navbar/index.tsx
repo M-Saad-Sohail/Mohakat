@@ -30,7 +30,7 @@ const Navbar = () => {
 		return <AppNavbar />;
 	}
 
-	return isAuthPath(pathname) ? <AuthNavbar isLoggedIn /> : null;
+	return isAuthPath(pathname) ? <AuthNavbar /> : null;
 };
 
 export default Navbar;

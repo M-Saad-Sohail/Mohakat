@@ -245,6 +245,7 @@ function Table({ columns, data, search, setData }: IProps) {
 						<tr className="h-full">
 							<td
 								colSpan={columns.length}
+								key={'no data'}
 								className="font-bold text-center text-primary"
 							>
 								<NoData />
