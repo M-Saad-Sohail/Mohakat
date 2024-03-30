@@ -7,10 +7,8 @@ export const fetchPendingData = async (token: string) => {
 				Authorization: `${token}`,
 			},
 		});
-		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -55,10 +53,8 @@ export const RejectSponsor = async (token: string, id: string) => {
 				},
 			},
 		);
-		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -69,11 +65,8 @@ export const RejectDelete = async (token: string, id: string) => {
 				Authorization: `${token}`,
 			},
 		});
-		// console.log('data', response.data);
-		// console.log('sucesssfully delete')
 		return response.data;
 	} catch (error) {
-		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -88,11 +81,8 @@ export const RejectDeleteAll = async (token: string) => {
 				},
 			},
 		);
-		// console.log('data', response.data);
-		// console.log('sucesssfully delete all')
 		return response.data;
 	} catch (error) {
-		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };
@@ -109,10 +99,8 @@ export const ApprovedSponsor = async (token: string, id: string) => {
 				},
 			},
 		);
-		// console.log('data', response.data);
 		return response.data;
 	} catch (error) {
-		// console.error('Error fetching data:', error);
 		throw error;
 	}
 };

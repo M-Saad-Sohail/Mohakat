@@ -9,8 +9,8 @@ const fetchSponsorData = async (apiHandler: Apihandler) => {
 	try {
 		const user = getUserFromLocalStorage();
 		if (!user) {
-      return [];
-    };
+			return [];
+		};
 		const data = await apiHandler(user.key);
 		let sponser = data?.sponser || [];
 		const languageMap = {
@@ -28,7 +28,6 @@ const fetchSponsorData = async (apiHandler: Apihandler) => {
 			});
 		return sponser;
 	} catch (error) {
-		console.error('Error fetching data:', error);
 		return [];
 	}
 };

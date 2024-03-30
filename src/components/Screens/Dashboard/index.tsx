@@ -17,16 +17,12 @@ const Dashboard = () => {
 			window.location.href = url(PATHS.LOGIN);
 		} else {
 			setIsAdmin(user.role === 'admin');
-			console.log(isAdmin)
 		}
 	}, [url]);
 
 	return (
-		<div dir={dir} className="flex">
-			<LeftSideBar />
-			<div className="w-full bg-[#f4f4f4ea] px-3 overflow-x-hidden">
-				{isAdmin ? <AdminDashboard /> : <UserDashboard />}
-			</div>
+		<div dir={dir} className="w-full bg-[#f4f4f4ea]">
+			{isAdmin ? <AdminDashboard /> : <UserDashboard />}
 		</div>
 	);
 };

@@ -141,8 +141,7 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 					title={t('update_profile')}
 					className="max-w-[200px] px-6  shadow-custom"
 					disabled={updateProfileForm.isSubmitting}
-					onClick={(e) => {
-						console.log('Updating profile.....')
+					onClick={() => {
 						updateProfileForm.handleSubmit();
 					}}
 				/>

@@ -28,35 +28,35 @@ import { useTranslations } from 'next-intl';
 import { PATHS } from '@/contants';
 
 const AdminMenus = [
-	{ title: 'dashboard', src: dashboard, link: '/dashboard', gap: true },
-	{ title: 'families', src: families, link: '/dashboard/families' },
+	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD , gap: true },
+	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	{
 		title: 'sponsor.pending',
 		src: pending_icon,
-		link: '/dashboard/sponsor/pending',
+		link: PATHS.PENDING_SPONSOR,
 	},
 	{
 		title: 'sponsor.approved',
 		src: approved__icon,
-		link: '/dashboard/sponsor/approved',
+		link: PATHS.APPROVED_SPONSOR,
 	},
 	{
 		title: 'sponsor.rejected',
 		src: deny_icon,
-		link: '/dashboard/sponsor/rejected',
+		link: PATHS.REJECTED_SPONSOR,
 	},
 	{
 		title: 'form_response',
 		src: form_icon,
-		link: '/dashboard/form-responses',
+		link: PATHS.FORM_RESPONSES,
 		gap: true,
 	},
-	{ title: 'settings', src: setting_icon, link: '/dashboard/setting' },
+	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
 
 const UserMenus = [
-	{ title: 'dashboard', src: dashboard, link: PATHS.LOGIN, gap: true },
+	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
 	{

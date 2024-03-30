@@ -134,7 +134,6 @@ function GazaMap() {
                 const response = await axios.get(`${URL}/sponsers/approved/count`);
                 setMaxSponserCount(response.data.maxSponsorCount);
             } catch (error) {
-                console.log("Error getting data:", error);
             }
         };
         fetchedMaxSponserCount()

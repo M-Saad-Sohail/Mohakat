@@ -2,6 +2,11 @@ import React from 'react';
 import PendingSponsor from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Pending';
 import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: `Pending Sponsors`
+}
 
 const Pending = () => {
 	const t = useTranslations('PendingSponsors');
