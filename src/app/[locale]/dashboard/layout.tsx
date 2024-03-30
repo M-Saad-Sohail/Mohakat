@@ -1,38 +1,21 @@
-'use client';
+import Protected from '@/components/Protected';
 import LeftSideBar from '@/components/UI/Sidebar';
-import { PATHS } from '@/contants';
-import useLocaleRouter from '@/hooks/useLocaleRouter';
-import { getUserFromLocalStorage } from '@/utils/auth';
-import React, { useEffect, useState } from 'react';
+import { getDirection } from '@/utils/get-direction';
 
 const Layout = (props: {
 	children: React.ReactNode;
 	params: { locale: string };
 }) => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const { url, dir, redirect } = useLocaleRouter();
-
-	useEffect(() => {
-		const user = getUserFromLocalStorage();
-		setIsLoggedIn(!!user)
-		if (!user) {
-			redirect(PATHS.LOGIN)
-			return;
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	if (!isLoggedIn) {
-		return <></>
-	}
-
+	const dir = getDirection(props.params.locale);
 	return (
-		<div dir={dir}>
-			<div className="flex bg-[#f4f4f4ea]">
-				<LeftSideBar />
-				<div className="w-full px-3 overflow-x-hidden">{props.children}</div>
+		<Protected>
+			<div dir={dir}>
+				<div className="flex bg-[#f4f4f4ea]">
+					<LeftSideBar />
+					<div className="w-full px-3 overflow-x-hidden">{props.children}</div>
+				</div>
 			</div>
-		</div>
+		</Protected>
 	);
 };
 

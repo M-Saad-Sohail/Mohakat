@@ -1,6 +1,13 @@
 import React from 'react';
 import SignIn from '@/components/Screens/SignIn';
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Sign in`
+}
+
+
 const page = () => <SignIn />;
 
 export default page;

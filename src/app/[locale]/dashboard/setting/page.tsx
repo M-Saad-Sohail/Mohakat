@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   title: 'Account Settings'
 }
 
-const page = () => <Setting/>
+const page = () => <Setting />
 
 export default page
