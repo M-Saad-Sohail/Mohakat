@@ -6,7 +6,7 @@ import { useLoading } from '@/state/loading/hook';
 import { useUser } from '@/state/user/hook';
 import { UserType } from '@/state/user/types';
 import { UserCredentials, RegisterUserCredentials } from '@/types';
-import api from '@/config/axios';
+import api, { publicApi } from '@/config/axios';
 import useLocaleRouter from './useLocaleRouter';
 import { PATHS } from '@/contants';
 export type ResetPassword = {
@@ -14,6 +14,13 @@ export type ResetPassword = {
 	confirmPassword: String;
 	newPassword: String;
 };
+
+const handleError = (e: unknown) => {
+	if (e instanceof AxiosError) toast.error(e.response?.data.message);
+	else if (e instanceof Error) toast.error(e.message);
+	else toast.error('Some error has occurred! Please try again.');
+}
+
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
@@ -23,10 +30,11 @@ export const useAuth = () => {
 		async (credentials: UserCredentials) => {
 			try {
 				setIsLoading(true);
-				const { data } = await api.post(
+				const { data, ...rest } = await publicApi.post(
 					`/login`,
 					credentials,
 				);
+				console.log(data, rest)
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -41,14 +49,13 @@ export const useAuth = () => {
 					language: data.sponser?.language ?? 'en',
 				};
 				if (data.success) {
-					redirectWithLocale(user.language, PATHS.DASHBOARD);
+					// redirectWithLocale(user.language, PATHS.DASHBOARD);
 				}
-
 				toast.success('Login Successful.');
 				setUser({ user, isAuthenticated: true });
 			} catch (e) {
-				if (e instanceof AxiosError) toast.error(e.response?.data.message);
-				// else toast.error('Some error has occurred! Please try again.');
+				console.log({ e })
+				handleError(e)
 			} finally {
 				setIsLoading(false);
 			}
@@ -61,7 +68,7 @@ export const useAuth = () => {
 		async (credentials: Omit<RegisterUserCredentials, 'confirmPassword'>) => {
 			try {
 				setIsLoading(true);
-				const { data } = await api.post('/register', credentials);
+				const { data } = await publicApi.post('/register', credentials);
 				if (data.success) {
 					toast.success('Register Successful.');
 					window.location.href = url(PATHS.VERIFICATION);
@@ -69,8 +76,7 @@ export const useAuth = () => {
 				}
 				throw new Error('Some error has occurred! Please try again.');
 			} catch (e) {
-				if (e instanceof AxiosError) toast.error(e.response?.data.message);
-				else toast.error('Some error has occurred! Please try again.');
+				handleError(e)
 			} finally {
 				setIsLoading(false);
 			}
@@ -97,8 +103,7 @@ export const useAuth = () => {
 				);
 				toast.success('Update Password Successful.');
 			} catch (e) {
-				if (e instanceof AxiosError) toast.error(e.response?.data.message);
-				// else toast.error('Some error has occurred! Please try again.');
+				handleError(e)
 			} finally {
 				setIsLoading(false);
 			}

@@ -4,8 +4,6 @@ import store from '@/state/store';
 import en from '@/i18n/en.json';
 import ar from '@/i18n/ar.json';
 import tr from '@/i18n/tr.json';
-import { IntlProvider } from 'react-intl';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/globals.css';
@@ -26,11 +24,9 @@ type MainProviderProps = {
 const MainProvider = (props: MainProviderProps) => {
 	return (
 		<Provider store={store}>
-			<IntlProvider locale={props.locale} messages={messages[props.locale]}>
-				<Navbar />
-				<div>{props.children}</div>
-				<ToastContainer />
-			</IntlProvider>
+			<Navbar />
+			<div>{props.children}</div>
+			<ToastContainer />
 		</Provider>
 	);
 };

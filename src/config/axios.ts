@@ -10,19 +10,18 @@ const logout = () => {
 };
 
 // Create Axios instance
+export const publicApi = axios.create({
+	baseURL: process.env.NEXT_PUBLIC_REACT_APP_BASE_URL,
+});
+
 export const api = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_REACT_APP_BASE_URL,
 });
 
-const publicApis = [
-	'/login',
-	'/register'
-]
-
 api.interceptors.request.use(
 	async (config) => {
 		const user = getUserInfoFromLocalStorage();
-		if (config.url && !publicApis.includes(config.url) && user) {
+		if (user) {
 			config.headers.Authorization = `${user.key}`;
 		}
 		return config;
@@ -36,7 +35,6 @@ api.interceptors.response.use(
 	},
 	(error) => {
 		if (error.response && error.response.status === 401) {
-			// If the error status is 401, call the logout function
 			logout();
 		}
 		return Promise.reject(error);

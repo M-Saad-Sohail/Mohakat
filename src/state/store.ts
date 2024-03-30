@@ -1,11 +1,17 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import {
+	persistStore, persistReducer, FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; //
 import UserReducer from './../state/user';
 import LoadingReducer from './../state/loading';
-import logger from 'redux-logger';
 
 const rootReducer = combineReducers({
 	user: UserReducer,
@@ -17,15 +23,17 @@ const persistConfig = {
 	storage,
 	blacklist: ['loading'],
 };
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => {
-		if (process.env.NODE_ENV === 'development') {
-			return getDefaultMiddleware()
-		}
-		return getDefaultMiddleware()
+		return getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		})
 	},
 });
 
