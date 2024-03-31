@@ -79,10 +79,10 @@ export const useAuth = () => {
 				}
 				localStorage.setItem(OTP_KEY, data.sponsorId);
 				toast.success(data.data);
-				window.location.href = url(PATHS.VERIFY_OTP);
-				return;
+				return true;
 			} catch (e) {
 				handleError(e)
+				return false;
 			} finally {
 				setIsLoading(false);
 			}

@@ -5,11 +5,11 @@ import React, { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { navigateIfLoggedIn } from '@/utils/auth';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const BecomeSponsor = () => {
 	const { url } = useLocaleRouter();
-	const params = useSearchParams()
+	const params = useSearchParams();
 
 	useEffect(() => {
 		if (params && params.get('from') === 'gaza_map') {
@@ -23,7 +23,11 @@ const BecomeSponsor = () => {
 
 	return (
 		<AuthLayout className="">
-			<Form submitHandler={registerUser} isLoading={isLoading} />
+			<Form
+				fromGazaMap={!!params && params.get('from') === 'gaza_map'}
+				submitHandler={registerUser}
+				isLoading={isLoading}
+			/>
 		</AuthLayout>
 	);
 };

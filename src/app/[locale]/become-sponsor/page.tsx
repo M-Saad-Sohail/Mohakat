@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: `Become a sponsor`
 }
 
-
 const Page = () => <BecomeSponsor />;
 
 export default Page;

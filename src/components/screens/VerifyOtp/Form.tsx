@@ -13,9 +13,10 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 type IProps = {
 	submitHandler: (otp: string) => Promise<boolean>;
 	isLoading: boolean;
+	fromGazaMap?: boolean;
 };
 
-const Form = ({ submitHandler, isLoading }: IProps) => {
+const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	const { url, locale } = useLocaleRouter();
 
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
@@ -26,7 +27,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		onSubmit: async (values: { otp: string }) => {
 			const success = await submitHandler(values.otp);
 			if (!success) return;
-			window.location.href = url(PATHS.LOGIN);
+			const href = fromGazaMap ? PATHS.DASHBOARD : PATHS.LOGIN
+			window.location.href = url(href);
 		},
 	});
 
@@ -56,7 +58,14 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						className="max-w-[800px]"
 					/>
 					<div className="flex justify-end w-full my-2">
-						<Link href={url('/resend-otp')} className='text-primary text-right text-[12px] font-bold'>{t('resendOtp')}</Link>
+						<Link
+							href={url(
+								`/resend-otp${fromGazaMap ? '?from=' + encodeURIComponent('gaza_map') : ''}`,
+							)}
+							className="text-primary text-right text-[12px] font-bold"
+						>
+							{t('resendOtp')}
+						</Link>
 					</div>
 
 					<div className="flex items-center justify-center w-full">

@@ -4,7 +4,7 @@ import Button from '@/components/ui/Button';
 import Select from '@/components/ui/Select';
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { BECOMESPONSORINITIALVALUES } from '@/contants';
+import { BECOMESPONSORINITIALVALUES, PATHS } from '@/contants';
 import { becomeSponsorSchema } from '@/utils/validationSchema';
 import { RegisterUserCredentials } from '@/types';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
@@ -14,22 +14,28 @@ import { countriesData } from '@/contants/countries';
 type IProps = {
 	submitHandler: (
 		arg: Omit<RegisterUserCredentials, 'confirmPassword'>,
-	) => void;
+	) => Promise<boolean>;
 	isLoading: boolean;
+	fromGazaMap: boolean;
 };
 
-const Form = ({ submitHandler, isLoading }: IProps) => {
+const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
+	const { url } = useLocaleRouter();
+
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: BECOMESPONSORINITIALVALUES,
 		validationSchema: becomeSponsorSchema,
-		onSubmit: (values: RegisterUserCredentials) => {
+		onSubmit: async (values: RegisterUserCredentials) => {
 			const { confirmPassword, ...rest } = values;
-			submitHandler({ ...rest, email: values.email.toLowerCase() });
+			const success = await submitHandler({ ...rest, email: values.email.toLowerCase() });
+			if (!success) return;
+			let href = PATHS.VERIFY_OTP;
+			if (fromGazaMap) href += `?from=${encodeURIComponent('gaza_map')}`
+			window.location.href = url(href)
 		},
 	});
 
 	const t = useTranslations('BecomeSponsor.form');
-	const { url } = useLocaleRouter();
 
 	return (
 		<>

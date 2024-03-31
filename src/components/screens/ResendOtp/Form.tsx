@@ -11,9 +11,10 @@ import { PATHS } from '@/contants';
 type IProps = {
 	submitHandler: (email: string) => Promise<boolean>;
 	isLoading: boolean;
+	fromGazaMap: boolean;
 };
 
-const Form = ({ submitHandler, isLoading }: IProps) => {
+const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	const { url } = useLocaleRouter();
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: {
@@ -23,7 +24,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 		onSubmit: async (values: { email: string }, { resetForm }) => {
 			const success = await submitHandler(values.email);
 			if (!success) return
-			window.location.href = url(PATHS.VERIFY_OTP)
+			const query = fromGazaMap ? `?from=${encodeURIComponent('gaza_map')}` : ''
+			window.location.href = url(PATHS.VERIFY_OTP + query)
 		},
 	});
 
