@@ -228,8 +228,6 @@ function GazaMap() {
 		if (color === '#ff002f') {
 			circle.onclick = function (event) {
 				event.preventDefault();
-				console.log('Cliking')
-				console.log(url('/become-sponsor?from=gaza_map'))
 				window.location.href = url('/become-sponsor?from=gaza_map')
 				// redirect('/become-sponsor?from=gaza_map');
 			};

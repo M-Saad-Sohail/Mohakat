@@ -49,7 +49,6 @@ export const useAuth = () => {
 					country: data.sponser.country,
 					language: data.sponser?.language ?? 'en',
 				};
-				console.log({ user })
 				if (!user.verified) {
 					throw new Error(`Please verify first`);
 				}
@@ -110,7 +109,6 @@ export const useAuth = () => {
 				`/sponser/verify/${id}`,
 				{ otp },
 			);
-			console.log({ data })
 			toast.success(data.message);
 			localStorage.removeItem(OTP_KEY);
 			return true;
@@ -129,7 +127,6 @@ export const useAuth = () => {
 				`/sponser/resend/otp`,
 				{ email },
 			);
-			console.log({ data })
 			setIsLoading(false);
 			toast.success(data.data);
 			localStorage.setItem(OTP_KEY, data.sponsorId)
