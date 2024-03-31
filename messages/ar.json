@@ -39,6 +39,26 @@
 			}
 		}
 	},
+	"VerifyOtp": {
+		"form": {
+			"title": "تحقق من رمز التحقق",
+			"otp": {
+				"title": "الرمز"
+			},
+			"resendOtp": "إعادة إرسال رمز التحقق",
+			"submit": "إرسال"
+		}
+	},
+	"ResendOtp": {
+		"form": {
+			"title": "Otp'yi Yeniden Gönder",
+			"email": {
+				"title": "E-posta",
+				"placeholder": "E-postanızı girin"
+			},
+			"submit": "Gönder"
+		}
+	},
 	"BecomeSponsor": {
 		"form": {
 			"title": "كن راعيًا",

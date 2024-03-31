@@ -8,6 +8,7 @@ export type UserType = {
 	language: string;
 	role: string;
 	status: string;
+	verified: boolean;
 	__v: string;
 	id: string;
 };

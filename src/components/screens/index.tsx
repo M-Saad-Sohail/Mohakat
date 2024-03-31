@@ -1,9 +1,11 @@
-export { default as Dashboard } from './Dashboard'
-export { default as Signin} from './Signin'
-export { default as BecomeSponsor } from './BecomeSponsor'
-export { default as ApprovedSponsors  } from './ApprovedSponsors'
-export { default as PendingSponsors } from './PendingSponsors'
-export { default as RejectedSponsors } from './RejectedSponsors'
-export { default as Settings } from './Settings'
-export { default as Congratulations } from './Congratulations'
-export { default as LandingPage } from './LandingPage'
+export { default as Dashboard } from './Dashboard';
+export { default as Signin } from './Signin';
+export { default as BecomeSponsor } from './BecomeSponsor';
+export { default as ApprovedSponsors } from './ApprovedSponsors';
+export { default as PendingSponsors } from './PendingSponsors';
+export { default as RejectedSponsors } from './RejectedSponsors';
+export { default as Settings } from './Settings';
+export { default as Congratulations } from './Congratulations';
+export { default as LandingPage } from './LandingPage';
+export { default as VerifyOtp } from './VerifyOtp';
+export { default as ResendOtp } from './ResendOtp';

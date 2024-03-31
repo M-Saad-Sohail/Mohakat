@@ -1,0 +1,1 @@
+export const OTP_KEY = 'otp_id';

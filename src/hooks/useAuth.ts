@@ -9,6 +9,7 @@ import { UserCredentials, RegisterUserCredentials } from '@/types';
 import api, { publicApi } from '@/config/axios';
 import useLocaleRouter from './useLocaleRouter';
 import { PATHS } from '@/contants';
+import { OTP_KEY } from '@/contants/storage';
 export type ResetPassword = {
 	oldPassword: string | undefined;
 	confirmPassword: String;
@@ -24,7 +25,7 @@ const handleError = (e: unknown) => {
 export const useAuth = () => {
 	const { isLoading, setIsLoading } = useLoading();
 	const { setUser } = useUser();
-	const { url, redirectWithLocale } = useLocaleRouter();
+	const { url } = useLocaleRouter();
 
 	const loginUser = useCallback(
 		async (credentials: UserCredentials) => {
@@ -34,7 +35,6 @@ export const useAuth = () => {
 					`/login`,
 					credentials,
 				);
-				console.log(data, rest)
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -42,20 +42,26 @@ export const useAuth = () => {
 					email: data.sponser.email, // Corrected key name
 					name: data.sponser.name, // Corrected key name
 					role: data.sponser.role, // Corrected key name
-					status: data.sponser.status, // Corrected key name
+					status: data.sponser?.status,
+					verified: data.sponser?.verified, // Corrected key name
 					__v: data.sponser.__v, // Corrected key name
 					id: data.sponser._id, // Corrected key name,
 					country: data.sponser.country,
 					language: data.sponser?.language ?? 'en',
 				};
-				if (data.success) {
-					// redirectWithLocale(user.language, PATHS.DASHBOARD);
+				console.log({ user })
+				if (!user.verified) {
+					throw new Error(`Please verify first`);
 				}
 				toast.success('Login Successful.');
 				setUser({ user, isAuthenticated: true });
+				return user;
 			} catch (e) {
-				console.log({ e })
 				handleError(e)
+				if (e instanceof AxiosError && e.response?.status === 403) {
+					window.location.href = url(PATHS.RESEND_OTP);
+				}
+				return null;
 			} finally {
 				setIsLoading(false);
 			}
@@ -69,12 +75,13 @@ export const useAuth = () => {
 			try {
 				setIsLoading(true);
 				const { data } = await publicApi.post('/register', credentials);
-				if (data.success) {
-					toast.success('Register Successful.');
-					window.location.href = url(PATHS.VERIFICATION);
-					return;
+				if (!data.success) {
+					throw new Error('Some error has occurred! Please try again.');
 				}
-				throw new Error('Some error has occurred! Please try again.');
+				localStorage.setItem(OTP_KEY, data.sponsorId);
+				toast.success(data.data);
+				window.location.href = url(PATHS.VERIFY_OTP);
+				return;
 			} catch (e) {
 				handleError(e)
 			} finally {
@@ -92,6 +99,47 @@ export const useAuth = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setUser]);
 
+	const verifyOtp = useCallback(async (otp: string) => {
+		try {
+			setIsLoading(true);
+			const id = localStorage.getItem(OTP_KEY);
+			if (!id) {
+				throw new Error(`Otp expired`);
+			}
+			const { data } = await publicApi.put(
+				`/sponser/verify/${id}`,
+				{ otp },
+			);
+			console.log({ data })
+			toast.success(data.message);
+			localStorage.removeItem(OTP_KEY);
+			return true;
+		} catch (e) {
+			handleError(e)
+			return false;
+		} finally {
+			setIsLoading(false);
+		}
+	}, [setIsLoading])
+
+	const resendOtp = useCallback(async (email: string) => {
+		try {
+			setIsLoading(true);
+			const { data } = await publicApi.post(
+				`/sponser/resend/otp`,
+				{ email },
+			);
+			console.log({ data })
+			setIsLoading(false);
+			toast.success(data.data);
+			localStorage.setItem(OTP_KEY, data.sponsorId)
+			return true;
+		} catch (e) {
+			handleError(e)
+			setIsLoading(false);
+			return false;
+		}
+	}, [setIsLoading])
 
 	const updatePassword = useCallback(
 		async (credentials: ResetPassword, id: String | undefined) => {
@@ -117,5 +165,7 @@ export const useAuth = () => {
 		logoutUser,
 		isLoading,
 		updatePassword,
+		verifyOtp,
+		resendOtp
 	};
 };

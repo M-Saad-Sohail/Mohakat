@@ -4,6 +4,14 @@ export const loginSchema = object({
 	password: string().required('Password is Required'),
 });
 
+export const otpSchema = object({
+	otp: string().required("Otp is required")
+})
+
+export const resendOtpSchema = object({
+	email: string().required("Email is required")
+});
+
 export const becomeSponsorSchema = object({
 	name: string().required('Name is Required'),
 	country: string().required('Country is Required'),

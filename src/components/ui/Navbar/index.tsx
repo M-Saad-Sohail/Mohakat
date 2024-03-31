@@ -16,7 +16,9 @@ const Navbar = () => {
 			'/forget-password',
 			'/sign-in',
 			'/become-sponsor',
-			'/verification',
+			'/congratulations',
+			'/verify-otp',
+			'/resend-otp'
 		];
 
 		if (newPath === '') {

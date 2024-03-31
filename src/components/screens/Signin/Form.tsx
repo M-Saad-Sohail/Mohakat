@@ -4,29 +4,37 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { LOGININITIALVALUES } from '@/contants';
+import { LOGININITIALVALUES, PATHS } from '@/contants';
 import { loginSchema } from '@/utils/validationSchema';
 import { UserCredentials } from '@/types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { UserType } from '@/state/user/types';
 
 type IProps = {
-	submitHandler: (arg: UserCredentials) => void;
+	submitHandler: (arg: UserCredentials) => Promise<UserType | null>;
 	isLoading: boolean;
 };
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
+	const { url, locale } = useLocaleRouter();
+
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: LOGININITIALVALUES, // Corrected constant name
 		validationSchema: loginSchema,
-		onSubmit: (values: UserCredentials) => {
-			submitHandler({ ...values, email: values.email.toLowerCase() });
+		onSubmit: async (values: UserCredentials) => {
+			const user = await submitHandler({ ...values, email: values.email.toLowerCase() });
+			if (!user) return;
+			let locale = 'en'
+			if (["en", "ar", "tr"].includes(user.language)) {
+				locale = user.language;
+			}
+			window.location.href = `/${locale}${PATHS.DASHBOARD}`
 		},
 	});
 
 	const t = useTranslations('Signin.form');
-	const { url, locale } = useLocaleRouter();
 
 	return (
 		<>

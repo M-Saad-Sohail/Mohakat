@@ -9,7 +9,9 @@ export const PATHS = {
 	FORGETPASSWORD: '/forget-password',
 	LOGIN: '/sign-in',
 	BECOME_SPONSOR: '/become-sponsor',
-	VERIFICATION: '/verification',
+	VERIFICATION: '/congratulations',
+	VERIFY_OTP: '/verify-otp',
+	RESEND_OTP: '/resend-otp',
 	DASHBOARD: '/dashboard',
 	FAMILIES: '/dashboard/families',
 	APPROVED_SPONSOR: '/dashboard/sponsor/approved',
@@ -58,6 +60,7 @@ export const LOGININITIALVALUES: LoginSchema = {
 	email: '',
 	password: '',
 };
+
 export const BECOMESPONSORINITIALVALUES: BecomeSponsorSchema = {
 	name: '',
 	country: '',

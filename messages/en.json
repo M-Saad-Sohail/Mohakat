@@ -39,6 +39,26 @@
 			}
 		}
 	},
+	"VerifyOtp": {
+		"form": {
+			"title": "Verify OTP",
+			"otp": {
+				"title": "Code"
+			},
+			"resendOtp": "Resend OTP",
+			"submit": "Submit"
+		}
+	},
+	"ResendOtp": {
+		"form": {
+			"title": "Resend OTP",
+			"email": {
+				"title": "Email",
+				"placeholder": "Enter your Email"
+			},
+			"submit": "Submit"
+		}
+	},
 	"BecomeSponsor": {
 		"form": {
 			"title": "Become a Sponsor",
@@ -154,11 +174,11 @@
 		"credit_cards": "Credit Cards",
 		"sponsoring": "Sponsoring"
 	},
-	"RejectedSponsors" :{
+	"RejectedSponsors": {
 		"title": "Rejected Sponsors",
 		"deleteAll": "Delete All"
 	},
-	"PendingSponsors" :{
+	"PendingSponsors": {
 		"title": "Pending Sponsors"
 	},
 	"ApprovedSponsors": {
