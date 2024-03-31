@@ -1,5 +1,5 @@
 import React from 'react';
-import BecomeSponsor from '@/components/Screens/BecomeSponsor';
+import BecomeSponsor from '@/components/screens/BecomeSponsor';
 
 
 import { Metadata } from "next";

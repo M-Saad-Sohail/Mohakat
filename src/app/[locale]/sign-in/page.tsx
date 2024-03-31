@@ -1,5 +1,5 @@
 import React from 'react';
-import SignIn from '@/components/Screens/SignIn';
+import SignIn from '@/components/screens/Signin';
 
 import { Metadata } from "next";
 

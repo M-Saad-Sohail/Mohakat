@@ -1,5 +1,5 @@
 import React from 'react';
-import LandingPage from '@/components/Screens/LandingPage';
+import LandingPage from '@/components/screens/LandingPage';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

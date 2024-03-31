@@ -8,8 +8,6 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full gap-2">
-      {/* Page not found */}
-
       <div className="text-3xl">Page not exists</div>
       <p className="text-1xl">Website is currently under development</p>
     </div>

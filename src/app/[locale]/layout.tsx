@@ -1,4 +1,4 @@
-import MainProvider from '@/components/Provider/MainProvider';
+import MainProvider from '@/components/common/Provider';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import '@/styles/globals.css';
 

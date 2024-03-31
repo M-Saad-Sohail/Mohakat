@@ -1,4 +1,4 @@
-import Redirect from "@/components/Redirect";
+import Redirect from "@/components/common/Redirect";
 
 const Page = () => {
   return <Redirect href="/" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import Dashboard from '@/components/Screens/Dashboard';
+import Dashboard from '@/components/screens/Dashboard';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

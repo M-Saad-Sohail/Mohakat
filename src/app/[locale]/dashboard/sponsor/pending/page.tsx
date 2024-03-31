@@ -1,6 +1,6 @@
 import React from 'react';
-import PendingSponsor from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Pending';
-import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import { PendingSponsors } from '@/components/screens';
+import DashboardNavbar from '@/components/ui/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 
@@ -15,7 +15,7 @@ const Pending = () => {
 		<>
 			<DashboardNavbar title={t('title')} />
 			<div className="px-4">
-				<PendingSponsor />
+				<PendingSponsors />
 			</div>
 		</>
 	);

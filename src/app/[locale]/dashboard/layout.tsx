@@ -1,5 +1,5 @@
-import Protected from '@/components/Protected';
-import LeftSideBar from '@/components/UI/Sidebar';
+import Protected from '@/components/common/Protected';
+import LeftSideBar from '@/components/ui/Sidebar';
 import { getDirection } from '@/utils/get-direction';
 
 const Layout = (props: {

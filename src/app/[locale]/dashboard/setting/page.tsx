@@ -1,11 +1,11 @@
-import Setting from '@/components/Screens/Dashboard/components/AdminDashboard/profile'
 import { Metadata } from 'next'
 import React from 'react'
+import  { Settings } from '@/components/screens'
 
 export const metadata: Metadata = {
   title: 'Account Settings'
 }
 
-const page = () => <Setting />
+const Page = () => <Settings />
 
-export default page
+export default Page

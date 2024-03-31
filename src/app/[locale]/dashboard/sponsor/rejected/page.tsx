@@ -1,6 +1,6 @@
 import React from 'react';
-import RejectedSponsor from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Rejected';
-import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import { RejectedSponsors } from '@/components/screens';
+import DashboardNavbar from '@/components/ui/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 
@@ -15,7 +15,7 @@ const Rejected = () => {
 		<>
 			<DashboardNavbar title={t('title')} />
 			<div className="px-4">
-				<RejectedSponsor />
+				<RejectedSponsors />
 			</div>
 		</>
 	);

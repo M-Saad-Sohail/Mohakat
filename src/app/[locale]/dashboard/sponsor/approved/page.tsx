@@ -1,21 +1,19 @@
 import React from 'react';
-import ApprovedTable from '@/components/Screens/Dashboard/components/AdminDashboard/Sponsor/Approved';
-import DashboardNavbar from '@/components/UI/Navbar/DashboardNavbar';
+import { ApprovedSponsors } from '@/components/screens';
+import DashboardNavbar from '@/components/ui/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: `Approved Sponsors`
-}
+	title: `Approved Sponsors`,
+};
 
 const Approved = () => {
 	const t = useTranslations('ApprovedSponsors');
 	return (
 		<>
 			<DashboardNavbar title={t('title')} />
-			<div className="px-4">
-				<ApprovedTable />
-			</div>
+			<ApprovedSponsors />
 		</>
 	);
 };

@@ -1,12 +1,6 @@
 import React from 'react';
-import ValidationScreen from '@/components/Screens/Validation';
+import { Congratulations } from '@/components/screens';
 
-const index = () => {
-	return (
-		<div>
-			<ValidationScreen />
-		</div>
-	);
-};
+const Page = () => <Congratulations />
 
-export default index;
+export default Page;
