@@ -1,5 +1,4 @@
 'use client';
-import Navbar from '@/components/ui/Navbar';
 import store from '@/state/store';
 import en from '@/i18n/en.json';
 import ar from '@/i18n/ar.json';
@@ -24,7 +23,6 @@ type ProviderProps = {
 const Provider = (props: ProviderProps) => {
 	return (
 		<ReduxProvider store={store}>
-			<Navbar />
 			<div>{props.children}</div>
 			<ToastContainer />
 		</ReduxProvider>

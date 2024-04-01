@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import { logo } from '@/assests';
 import { Links, PATHS } from '@/contants';
@@ -9,10 +10,11 @@ import { useTranslations } from 'next-intl';
 import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import { UserType } from '@/state/user/types';
 
 const AuthNavbar = () => {
 	const pathname = usePathname();
-
+	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const t = useTranslations('Navbar');
@@ -22,6 +24,7 @@ const AuthNavbar = () => {
 	useEffect(() => {
 		const user = getUserFromLocalStorage()
 		setIsLoggedIn(!!user)
+		setUser(user)
 	}, [])
 
 
@@ -62,8 +65,8 @@ const AuthNavbar = () => {
 					{isLoggedIn ? (
 						<>
 							<Link
-								href={url(PATHS.DASHBOARD)}
-								locale={locale}
+								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
+								locale={user?.language ?? locale}
 								className={`py-3 px-6 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
 							>
 								{t('cta.go-to-dashboard')}

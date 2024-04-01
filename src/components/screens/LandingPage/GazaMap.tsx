@@ -8,14 +8,18 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { PATHS } from '@/contants';
 
 function GazaMap() {
 	const svgRef = useRef<SVGSVGElement>(null);
 	const URL = 'https://sponserendpoint.netlify.app/.netlify/functions/server';
 
 	const [maxSponserCount, setMaxSponserCount] = useState(0);
-	const { url, redirect } = useLocaleRouter();
+	const { redirect, push } = useLocaleRouter();
 
+	
+
+	
 	function generateRandomCircles(
 		svgRef: RefObject<SVGSVGElement>,
 		maxSponsorCount: number,
@@ -228,8 +232,7 @@ function GazaMap() {
 		if (color === '#ff002f') {
 			circle.onclick = function (event) {
 				event.preventDefault();
-				window.location.href = url('/become-sponsor?from=gaza_map')
-				// redirect('/become-sponsor?from=gaza_map');
+				push(`${PATHS.BECOME_SPONSOR}?from=${encodeURIComponent('gaza_map')}`);
 			};
 		}
 

@@ -11,6 +11,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { UserType } from '@/state/user/types';
+import UserNotVerifiedError from '@/errors/UserNotVerifiedError';
 
 type IProps = {
 	submitHandler: (arg: UserCredentials) => Promise<UserType | null>;
@@ -18,20 +19,31 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
-	const { url, locale } = useLocaleRouter();
+	const { url, locale, redirect, redirectWithLocale } = useLocaleRouter();
+
+	const onSubmit = async (values: UserCredentials) => {
+		try {
+			const user = await submitHandler({
+				...values,
+				email: values.email.toLowerCase(),
+			});
+			if (!user) return;
+			let locale = 'en';
+			if (['en', 'ar', 'tr'].includes(user.language)) {
+				locale = user.language;
+			}
+			redirectWithLocale(locale, PATHS.DASHBOARD);
+		} catch (error) {
+			if (error instanceof UserNotVerifiedError) {
+				return redirect(PATHS.RESEND_OTP);
+			}
+		}
+	};
 
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: LOGININITIALVALUES, // Corrected constant name
 		validationSchema: loginSchema,
-		onSubmit: async (values: UserCredentials) => {
-			const user = await submitHandler({ ...values, email: values.email.toLowerCase() });
-			if (!user) return;
-			let locale = 'en'
-			if (["en", "ar", "tr"].includes(user.language)) {
-				locale = user.language;
-			}
-			window.location.href = `/${locale}${PATHS.DASHBOARD}`
-		},
+		onSubmit,
 	});
 
 	const t = useTranslations('Signin.form');

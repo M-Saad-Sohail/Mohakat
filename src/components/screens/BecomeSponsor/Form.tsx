@@ -20,19 +20,24 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
-	const { url } = useLocaleRouter();
+	const { url, replace } = useLocaleRouter();
+
+	const onSubmit = async (values: RegisterUserCredentials) => {
+		const { confirmPassword, ...rest } = values;
+		const success = await submitHandler({
+			...rest,
+			email: values.email.toLowerCase(),
+		});
+		if (!success) return;
+		let url = PATHS.VERIFY_OTP;
+		if (fromGazaMap) url += `?from=${encodeURIComponent('gaza_map')}`;
+		replace(url);
+	};
 
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: BECOMESPONSORINITIALVALUES,
 		validationSchema: becomeSponsorSchema,
-		onSubmit: async (values: RegisterUserCredentials) => {
-			const { confirmPassword, ...rest } = values;
-			const success = await submitHandler({ ...rest, email: values.email.toLowerCase() });
-			if (!success) return;
-			let href = PATHS.VERIFY_OTP;
-			if (fromGazaMap) href += `?from=${encodeURIComponent('gaza_map')}`
-			window.location.href = url(href)
-		},
+		onSubmit,
 	});
 
 	const t = useTranslations('BecomeSponsor.form');

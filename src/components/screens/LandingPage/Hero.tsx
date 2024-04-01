@@ -7,8 +7,9 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import GazaMap from './GazaMap';
 import { PATHS } from '@/contants';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
 
-const HeroSection = () => {
+const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const t = useTranslations('LandingPage.hero');
 	const { dir, replace } = useLocaleRouter();
 	return (
@@ -20,13 +21,13 @@ const HeroSection = () => {
 				<div className="w-[80%] mx-auto my-[5%]">
 					<h1 className="text-primary text-[52px] font-bold">{t('title')}</h1>
 					<p className="text-[18px] my-4">{t('description')}</p>
-					<Button
+					{!isLoggedIn && <Button
 						title={t('cta')}
 						onClick={() => {
 							replace(PATHS.BECOME_SPONSOR);
 						}}
 						className="max-w-[200px]"
-					/>
+					/>}
 				</div>
 			</div>
 			<div style={{ marginTop: '-310px' }}>

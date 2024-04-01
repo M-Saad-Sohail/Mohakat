@@ -129,7 +129,7 @@ const LeftSideBar = () => {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { logoutUser } = useAuth();
 
-	const { url, locale, dir } = useLocaleRouter();
+	const { url, locale, dir, redirect } = useLocaleRouter();
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
@@ -146,6 +146,11 @@ const LeftSideBar = () => {
 	const handleMenuClick = (index: number) => {
 		setClickedMenu(index); // Update the clicked menu index
 	};
+
+	const logout = () => {
+		logoutUser()
+		redirect(PATHS.LOGIN);
+	}
 
 	const menus = isAdmin ? AdminMenus : UserMenus;
 

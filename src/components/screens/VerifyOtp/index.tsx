@@ -3,32 +3,24 @@ import AuthLayout from '@/components/ui/AuthLayout';
 import Form from './Form';
 import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import useLocaleRouter from '@/hooks/useLocaleRouter';
-import useLoggedInUser from '@/hooks/useLoggedInUser';
-import { PATHS } from '@/contants';
 import { useSearchParams } from 'next/navigation';
+import NotDashboardLayout from '@/components/common/NotDashboardLayout';
 
 const VerifyOtp = () => {
 	const { verifyOtp, isLoading } = useAuth();
-  const { redirect } = useLocaleRouter()
-	const { user, isLoading: isUserLoading  } = useLoggedInUser()
-	const params = useSearchParams()
+	const params = useSearchParams();
+	const fromGazaMap = !!params && params.get('from') === 'gaza_map';
 
-	const fromGazaMap = !!params && params.get('from') === 'gaza_map'
-	
-	if (!fromGazaMap && user) {
-		redirect(PATHS.DASHBOARD)
-		return <></>
-	}
-
-	if (!fromGazaMap && (user || isUserLoading)) {
-		return <></>
-	}
-
-  return (
-		<AuthLayout>
-			<Form fromGazaMap={fromGazaMap} submitHandler={verifyOtp} isLoading={isLoading} />
-		</AuthLayout>
+	return (
+		<NotDashboardLayout fromGazaMap={fromGazaMap}>
+			<AuthLayout>
+				<Form
+					fromGazaMap={fromGazaMap}
+					submitHandler={verifyOtp}
+					isLoading={isLoading}
+				/>
+			</AuthLayout>
+		</NotDashboardLayout>
 	);
 };
 

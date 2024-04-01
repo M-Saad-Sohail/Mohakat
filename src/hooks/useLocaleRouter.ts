@@ -1,5 +1,5 @@
 import { getDirection } from '@/utils/get-direction';
-import { useParams, useRouter, redirect, usePathname } from 'next/navigation';
+import { useParams, useRouter, RedirectType, redirect, usePathname } from 'next/navigation';
 
 const useLocaleRouter = () => {
 	let params = useParams() as {
@@ -41,8 +41,8 @@ const useLocaleRouter = () => {
 		router.replace(`/${locale}${path}`);
 	}
 
-	const localeRedirect = (path: string) => {
-		redirect(url(path));
+	const localeRedirect = (path: string, type?: RedirectType) => {
+		redirect(url(path), type);
 	};
 
 	return {

@@ -7,27 +7,24 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { PATHS } from '@/contants';
 import { useSearchParams } from 'next/navigation';
+import NotDashboardLayout from '@/components/common/NotDashboardLayout';
 
 const ResendOtp = () => {
 	const { resendOtp, isLoading } = useAuth();
-	const { redirect } = useLocaleRouter();
-	const { user, isLoading: isUserLoading } = useLoggedInUser();
-	const params = useSearchParams()
+	const params = useSearchParams();
 
-	const fromGazaMap = !!params && params.get('from') === 'gaza_map'
-	
-	if (!fromGazaMap && user) {
-		redirect(PATHS.DASHBOARD)
-		return <></>
-	}
+	const fromGazaMap = !!params && params.get('from') === 'gaza_map';
 
-	if (!fromGazaMap && (user || isUserLoading)) {
-		return <></>
-	}
 	return (
-		<AuthLayout>
-			<Form fromGazaMap={fromGazaMap} submitHandler={resendOtp} isLoading={isLoading} />
-		</AuthLayout>
+		<NotDashboardLayout fromGazaMap={fromGazaMap}>
+			<AuthLayout>
+				<Form
+					fromGazaMap={fromGazaMap}
+					submitHandler={resendOtp}
+					isLoading={isLoading}
+				/>
+			</AuthLayout>
+		</NotDashboardLayout>
 	);
 };
 

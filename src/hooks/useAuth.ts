@@ -10,6 +10,7 @@ import api, { publicApi } from '@/config/axios';
 import useLocaleRouter from './useLocaleRouter';
 import { PATHS } from '@/contants';
 import { OTP_KEY } from '@/contants/storage';
+import UserNotVerifiedError from '@/errors/UserNotVerifiedError';
 export type ResetPassword = {
 	oldPassword: string | undefined;
 	confirmPassword: String;
@@ -58,7 +59,8 @@ export const useAuth = () => {
 			} catch (e) {
 				handleError(e)
 				if (e instanceof AxiosError && e.response?.status === 403) {
-					window.location.href = url(PATHS.RESEND_OTP);
+					// window.location.href = url(PATHS.RESEND_OTP);
+					throw new UserNotVerifiedError()
 				}
 				return null;
 			} finally {
@@ -94,7 +96,7 @@ export const useAuth = () => {
 	const logoutUser = useCallback(() => {
 		localStorage.removeItem('user');
 		setUser({ user: undefined, isAuthenticated: false });
-		window.location.href = url(PATHS.LOGIN);
+		// window.location.href = url(PATHS.LOGIN);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setUser]);
 

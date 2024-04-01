@@ -17,23 +17,42 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
-	const { url, locale } = useLocaleRouter();
+	const { url, replace } = useLocaleRouter();
+
+	const onSubmit = async (values: { otp: string }) => {
+		const success = await submitHandler(values.otp);
+		if (!success) return;
+		const href = fromGazaMap ? PATHS.DASHBOARD : PATHS.LOGIN;
+		replace(href);
+	};
 
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: {
 			otp: '',
 		}, // Corrected constant name
 		validationSchema: otpSchema,
-		onSubmit: async (values: { otp: string }) => {
-			const success = await submitHandler(values.otp);
-			if (!success) return;
-			const href = fromGazaMap ? PATHS.DASHBOARD : PATHS.LOGIN
-			window.location.href = url(href);
-		},
+		onSubmit,
 	});
 
 	const t = useTranslations('VerifyOtp.form');
 
+	const getResendOtpURL = () => {
+		const queryParams: Record<string, string> = {};
+		if (fromGazaMap) {
+			queryParams['from'] = 'gaza_map';
+		}
+
+		let resendOtpLink = PATHS.RESEND_OTP;
+		if (Object.keys(queryParams).length > 0) {
+			let hashedQuery = Object.keys(queryParams)
+				.map((key) => `${key}=${encodeURIComponent(queryParams[key])}`)
+				.join('&');
+			resendOtpLink += `?${hashedQuery}`;
+		}
+		return resendOtpLink
+	}
+
+	
 	return (
 		<>
 			<form
@@ -59,9 +78,8 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					/>
 					<div className="flex justify-end w-full my-2">
 						<Link
-							href={url(
-								`/resend-otp${fromGazaMap ? '?from=' + encodeURIComponent('gaza_map') : ''}`,
-							)}
+							href={url(getResendOtpURL())}
+							replace={true}
 							className="text-primary text-right text-[12px] font-bold"
 						>
 							{t('resendOtp')}

@@ -6,29 +6,24 @@ import { useAuth } from '@/hooks/useAuth';
 import { navigateIfLoggedIn } from '@/utils/auth';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useSearchParams } from 'next/navigation';
+import NotDashboardLayout from '@/components/common/NotDashboardLayout';
 
 const BecomeSponsor = () => {
-	const { url } = useLocaleRouter();
 	const params = useSearchParams();
-
-	useEffect(() => {
-		if (params && params.get('from') === 'gaza_map') {
-			return;
-		}
-		navigateIfLoggedIn(url('/dashboard'));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [params]);
-
 	const { registerUser, isLoading } = useAuth();
 
+	const gazaMap = !!params && params.get('from') === 'gaza_map'
+
 	return (
-		<AuthLayout className="">
-			<Form
-				fromGazaMap={!!params && params.get('from') === 'gaza_map'}
-				submitHandler={registerUser}
-				isLoading={isLoading}
-			/>
-		</AuthLayout>
+		<NotDashboardLayout fromGazaMap={gazaMap}>
+			<AuthLayout>
+				<Form
+					fromGazaMap={gazaMap}
+					submitHandler={registerUser}
+					isLoading={isLoading}
+				/>
+			</AuthLayout>
+		</NotDashboardLayout>
 	);
 };
 

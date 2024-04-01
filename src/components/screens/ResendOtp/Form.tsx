@@ -7,6 +7,7 @@ import { resendOtpSchema } from '@/utils/validationSchema';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
+import { useSearchParams } from 'next/navigation';
 
 type IProps = {
 	submitHandler: (email: string) => Promise<boolean>;
@@ -15,18 +16,37 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
-	const { url } = useLocaleRouter();
+	const { url, replace } = useLocaleRouter();
+	const params = useSearchParams();
+
+	const getLink = () => {
+		const queryParams: Record<string, string> = {};
+		if (fromGazaMap) {
+			queryParams['from'] = 'gaza_map';
+		}
+		let link = PATHS.VERIFY_OTP;
+		if (Object.keys(queryParams).length > 0) {
+			let hashedQuery = Object.keys(queryParams)
+				.map((key) => `${key}=${encodeURIComponent(queryParams[key])}`)
+				.join('&');
+			link += `?${hashedQuery}`;
+		}
+		return link
+	}
+
+
+	const onSubmit = async (values: { email: string }) => {
+		const success = await submitHandler(values.email);
+		if (!success || !params) return;
+		replace(getLink())
+	}
+	
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: {
 			email: '',
 		}, // Corrected constant name
 		validationSchema: resendOtpSchema,
-		onSubmit: async (values: { email: string }, { resetForm }) => {
-			const success = await submitHandler(values.email);
-			if (!success) return
-			const query = fromGazaMap ? `?from=${encodeURIComponent('gaza_map')}` : ''
-			window.location.href = url(PATHS.VERIFY_OTP + query)
-		},
+		onSubmit,
 	});
 
 	const t = useTranslations('ResendOtp.form');
