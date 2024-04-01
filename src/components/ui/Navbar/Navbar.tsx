@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import { logo } from '@/assests';
 import { Links, PATHS } from '@/contants';
@@ -20,16 +20,23 @@ const AuthNavbar = () => {
 	const t = useTranslations('Navbar');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
-
 	useEffect(() => {
-		const user = getUserFromLocalStorage()
-		setIsLoggedIn(!!user)
-		setUser(user)
-	}, [])
-
+		const user = getUserFromLocalStorage();
+		setIsLoggedIn(!!user);
+		setUser(user);
+	}, []);
 
 	if (!pathname) {
 		return null;
+	}
+
+	let currentPathName = pathname
+		.replace('/en', '')
+		.replace('/ar', '')
+		.replace('/tr', '');
+	
+	if (currentPathName === '') {
+		currentPathName = '/'
 	}
 
 	return (
@@ -66,6 +73,7 @@ const AuthNavbar = () => {
 						<>
 							<Link
 								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
+								replace={currentPathName !== '/'}
 								locale={user?.language ?? locale}
 								className={`py-3 px-6 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
 							>
