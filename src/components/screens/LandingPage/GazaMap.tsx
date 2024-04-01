@@ -212,7 +212,7 @@ function GazaMap() {
 		tooltip.textContent = toolTipText[color]; // Adjust tooltip content as needed
 		tooltip.style.position = 'absolute';
 		tooltip.style.display = 'none'; // Initially hide the tooltip
-		tooltip.style.backgroundColor = 'black'; // Customize tooltip style
+		tooltip.style.backgroundColor = '#BB9B6C'; // Customize tooltip style
 		tooltip.style.color = 'white'; // Customize tooltip style
 		tooltip.style.padding = '5px'; // Customize tooltip style
 		tooltip.style.borderRadius = '5px'; // Customize tooltip style
@@ -246,8 +246,8 @@ function GazaMap() {
 		filter.setAttribute('id', filterID);
 		filter.setAttribute('width', '200%');
 		filter.setAttribute('height', '200%');
-		filter.setAttribute('x', '-90%');
-		filter.setAttribute('y', '-90%');
+		filter.setAttribute('x', '-50%');
+		filter.setAttribute('y', '-50%');
 
 		// Create a feGaussianBlur for the base glow effect
 		let feGaussianBlur = document.createElementNS(
@@ -310,8 +310,8 @@ function GazaMap() {
 
 		// Position tooltip relative to the circle
 		circle.onmousemove = function (event) {
-			tooltip.style.left = event.pageX + 'px';
-			tooltip.style.top = event.pageY + 'px';
+			tooltip.style.left = event.pageX + 20 + 'px';
+			tooltip.style.top = event.pageY + 20 + 'px';
 		};
 
 		// Handle click event (optional, adjust as needed)
