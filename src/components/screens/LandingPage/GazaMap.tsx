@@ -1,6 +1,12 @@
 `use client`;
 
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, {
+	RefObject,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import axios from 'axios';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
@@ -8,8 +14,8 @@ import { coordinates } from '@/contants/coordinates';
 
 const COLORS = {
 	GRAY: '#808080',
-	RED: '#ff002f'
-}
+	RED: '#ff002f',
+};
 
 function GazaMap() {
 	const svgRef = useRef<SVGSVGElement>(null);
@@ -27,7 +33,6 @@ function GazaMap() {
 
 		const totalNumberOfPoints = coordinates.length;
 		const numberOfRedCircles = totalNumberOfPoints - maxSponsorCount;
-
 		const greyCoordinates = []; // Store coordinates of grey circles
 
 		// Generate grey circles using provided coordinates
@@ -82,8 +87,8 @@ function GazaMap() {
 
 		const toolTipText = {
 			[COLORS.GRAY]: 'This pixel has already booked.',
-			[COLORS.RED]: 'Click on this to get registered as a sponsor'
-		}
+			[COLORS.RED]: 'Click on this to get registered as a sponsor',
+		};
 
 		// Create the tooltip element
 		let tooltip = document.createElement('div');
@@ -206,16 +211,20 @@ function GazaMap() {
 		svg.appendChild(circle);
 	}
 
+	const init = useCallback(async () => {
+		try {
+			const response = await axios.get(`${URL}/sponsers/approved/count`);
+			const sponsorCount = response.data.maxSponsorCount
+			generateRandomCircles(svgRef, sponsorCount);
+			setMaxSponserCount(sponsorCount);
+			return response.data.maxSponsorCount;
+		} catch (error) {
+			return 0;
+		}
+	}, [svgRef.current]);
 	useEffect(() => {
-		const fetchedMaxSponserCount = async () => {
-			try {
-				const response = await axios.get(`${URL}/sponsers/approved/count`);
-				setMaxSponserCount(response.data.maxSponsorCount);
-			} catch (error) {}
-		};
-		fetchedMaxSponserCount();
-		generateRandomCircles(svgRef, maxSponserCount);
-	}, [maxSponserCount]);
+		init();
+	}, [init]);
 
 	return (
 		<>
