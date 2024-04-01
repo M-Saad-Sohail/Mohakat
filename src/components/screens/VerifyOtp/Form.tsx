@@ -68,7 +68,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					</div>
 					<Input
 						title={t('otp.title')}
-						placeholder="1234567"
+						placeholder={t('otp.placeholder')}
 						name="otp"
 						type="text" // Added type attribute
 						onChange={handleChange}

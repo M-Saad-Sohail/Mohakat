@@ -1,14 +1,15 @@
 `use client`;
 
-import React, {
-	RefObject,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
+import { coordinates } from '@/contants/coordinates';
+
+const COLORS = {
+	GRAY: '#808080',
+	RED: '#ff002f'
+}
 
 function GazaMap() {
 	const svgRef = useRef<SVGSVGElement>(null);
@@ -17,83 +18,12 @@ function GazaMap() {
 	const [maxSponserCount, setMaxSponserCount] = useState(0);
 	const { redirect, push } = useLocaleRouter();
 
-	
-
-	
 	function generateRandomCircles(
 		svgRef: RefObject<SVGSVGElement>,
 		maxSponsorCount: number,
 	) {
 		const svg = svgRef?.current;
 		if (!svg) return;
-
-		const coordinates = [
-			[800, 485],
-			[750, 440],
-			[870, 456],
-			[450, 456],
-			[450, 600],
-			[500, 650],
-			[500, 690],
-			[1059, 400],
-			[890, 330],
-			[100, 670],
-			[330, 670],
-			[220, 600],
-			[220, 900],
-			[220, 620],
-			[1010, 400],
-			[1200, 300],
-			[1270, 300],
-			[1320, 340],
-			[1320, 150],
-			[1379, 170],
-			[1400, 170],
-			[1400, 320],
-			[1370, 300],
-			[1500, 300],
-			[1550, 300],
-			[1600, 250],
-			[1390, 250],
-			[1390, 120],
-			[1390, 200],
-			[1390, 300],
-			[1250, 180],
-			[1250, 150],
-			[1100, 270],
-			[1140, 270],
-			[1170, 270],
-			[1600, 270],
-			[1600, 220],
-			[400, 510],
-			[450, 510],
-			[450, 600],
-			[400, 700],
-			[500, 700],
-			[150, 847],
-			[150, 800],
-			[426, 800],
-			[426, 800],
-			[426, 800],
-			[300, 800],
-			[150, 700],
-			[971, 385],
-			[1000, 385],
-			[1050, 385],
-			[870, 456],
-			[800, 485],
-			[517, 600],
-			[517, 600],
-			[400, 650],
-			[250, 557],
-			[400, 700],
-			[300, 700],
-			[100, 654],
-			[100, 600],
-			[100, 780],
-			[638, 500],
-			[550, 500],
-		];
 
 		const totalNumberOfPoints = coordinates.length;
 		const numberOfRedCircles = totalNumberOfPoints - maxSponsorCount;
@@ -105,7 +35,7 @@ function GazaMap() {
 			const randomCoordinates = coordinates.pop(); // Get last coordinates from array
 			if (randomCoordinates) {
 				const [randomX, randomY] = randomCoordinates;
-				generateCircle('#808080', randomX, randomY, svg); // Generate grey circle
+				generateCircle(COLORS.GRAY, randomX, randomY, svg); // Generate grey circle
 				greyCoordinates.push([randomX, randomY]); // Store grey circle coordinates
 			}
 		}
@@ -124,7 +54,7 @@ function GazaMap() {
 				)
 			) {
 				generateCircle(
-					'#ff002f',
+					COLORS.RED,
 					randomCoordinates[0],
 					randomCoordinates[1],
 					svg,
@@ -149,6 +79,34 @@ function GazaMap() {
 		circle.setAttribute('r', '10');
 		circle.setAttribute('fill', color);
 		circle.style.cursor = 'pointer';
+
+		const toolTipText = {
+			[COLORS.GRAY]: 'This pixel has already booked.',
+			[COLORS.RED]: 'Click on this to get registered as a sponsor'
+		}
+
+		// Create the tooltip element
+		let tooltip = document.createElement('div');
+		tooltip.textContent = toolTipText[color]; // Adjust tooltip content as needed
+		tooltip.style.position = 'absolute';
+		tooltip.style.display = 'none'; // Initially hide the tooltip
+		tooltip.style.backgroundColor = 'black'; // Customize tooltip style
+		tooltip.style.color = 'white'; // Customize tooltip style
+		tooltip.style.padding = '5px'; // Customize tooltip style
+		tooltip.style.borderRadius = '5px'; // Customize tooltip style
+		document.body.appendChild(tooltip);
+
+		// Define the function to show the tooltip and activate the glow
+		function showTooltipAndActivateGlow() {
+			tooltip.style.display = 'block';
+			circle.setAttribute('filter', `url(#${filterID})`);
+		}
+
+		// Define the function to hide the tooltip and deactivate the glow
+		function hideTooltipAndDeactivateGlow() {
+			tooltip.style.display = 'none';
+			circle.setAttribute('filter', 'none');
+		}
 
 		// Define the glow filter (replace with your desired glow properties)
 		const filterID = 'circle-glow';
@@ -219,17 +177,24 @@ function GazaMap() {
 		// Reference the filter in the circle element (no initial glow)
 		circle.setAttribute('filter', 'none');
 
-		// Handle hover effect to activate the glow
+		// Handle hover effect to show tooltip and activate the glow
 		circle.onmouseover = function () {
-			circle.setAttribute('filter', `url(#${filterID})`);
+			showTooltipAndActivateGlow();
 		};
 
+		// Handle mouseout to hide tooltip and deactivate the glow
 		circle.onmouseout = function () {
-			circle.setAttribute('filter', 'none'); // Remove filter on mouseout
+			hideTooltipAndDeactivateGlow();
+		};
+
+		// Position tooltip relative to the circle
+		circle.onmousemove = function (event) {
+			tooltip.style.left = event.pageX + 'px';
+			tooltip.style.top = event.pageY + 'px';
 		};
 
 		// Handle click event (optional, adjust as needed)
-		if (color === '#ff002f') {
+		if (color === COLORS.RED) {
 			circle.onclick = function (event) {
 				event.preventDefault();
 				push(`${PATHS.BECOME_SPONSOR}?from=${encodeURIComponent('gaza_map')}`);

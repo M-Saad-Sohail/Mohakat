@@ -43,7 +43,8 @@
 		"form": {
 			"title": "Verify OTP",
 			"otp": {
-				"title": "Code"
+				"title": "Code",
+				"placeholder": "Enter your 6 digit verification code"
 			},
 			"resendOtp": "Resend OTP",
 			"submit": "Submit"

@@ -43,7 +43,8 @@
 		"form": {
 			"title": "Doğrulama Kodunu Onayla",
 			"otp": {
-				"title": "Kod"
+				"title": "Kod",
+				"placeholder": "6 haneli doğrulama kodunuzu girin"
 			},
 			"resendOtp": "OTP'yi Yeniden Gönder",
 			"submit": "Gönder"
