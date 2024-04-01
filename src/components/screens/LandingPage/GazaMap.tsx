@@ -176,7 +176,7 @@ function GazaMap() {
 				)
 			) {
 				generateCircle(
-					COLORS.RED,
+					"#ff002f",
 					randomCoordinates[0],
 					randomCoordinates[1],
 					svg,
@@ -315,7 +315,7 @@ function GazaMap() {
 		};
 
 		// Handle click event (optional, adjust as needed)
-		if (color === COLORS.RED) {
+		if (color === "#ff002f") {
 			circle.onclick = function (event) {
 				event.preventDefault();
 				tooltip.remove();
