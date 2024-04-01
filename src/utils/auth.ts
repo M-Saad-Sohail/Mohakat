@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation';
+import { redirect, RedirectType } from 'next/navigation';
 import { UserType } from '../state/user/types';
 
 export const navigateIfLoggedIn = (url: string) => {
 	const tokenString = localStorage.getItem('user');
 	if (tokenString && JSON.parse(tokenString).key) {
-		redirect(url);
+		redirect(url, RedirectType.replace);
 	}
 };
 

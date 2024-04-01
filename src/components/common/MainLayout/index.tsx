@@ -6,17 +6,17 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import React from 'react';
 
-type NotDashboardLayoutProps = {
+type MainLayoutProps = {
 	children: React.ReactNode;
 	fromGazaMap?: boolean;
 };
 
-const NotDashboardLayout = ({
+const MainLayout = ({
 	children,
 	fromGazaMap,
-}: NotDashboardLayoutProps) => {
+}: MainLayoutProps) => {
 	const { user, isLoading } = useLoggedInUser();
-	const { redirect, redirectWithLocale } = useLocaleRouter();
+	const { redirectWithLocale } = useLocaleRouter();
 
 	if (fromGazaMap) {
 		return (
@@ -47,4 +47,4 @@ const NotDashboardLayout = ({
 	);
 };
 
-export default NotDashboardLayout;
+export default MainLayout;

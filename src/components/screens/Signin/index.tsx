@@ -2,18 +2,9 @@
 import AuthLayout from '@/components/ui/AuthLayout';
 import Form from './Form';
 import React from 'react';
-import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { navigateIfLoggedIn } from '@/utils/auth';
-import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const SignIn = () => {
-	const { url } = useLocaleRouter();
-
-	useEffect(() => {
-		navigateIfLoggedIn(url('/dashboard'));
-	}, [url]);
-
 	const { loginUser, isLoading } = useAuth();
 	return (
 		<AuthLayout>

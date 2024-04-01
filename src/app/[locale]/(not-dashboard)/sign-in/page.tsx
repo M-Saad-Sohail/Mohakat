@@ -1,6 +1,6 @@
 import React from 'react';
 import SignIn from '@/components/screens/Signin';
-import NotDashboardLayout from '@/components/common/NotDashboardLayout';
+import MainLayout from '@/components/common/MainLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const Page = () => {
 	return (
-		<NotDashboardLayout>
+		<MainLayout>
 			<SignIn />
-		</NotDashboardLayout>
+		</MainLayout>
 	);
 };
 

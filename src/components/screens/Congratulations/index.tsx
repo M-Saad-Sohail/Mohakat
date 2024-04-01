@@ -6,14 +6,14 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import AuthLayout from '@/components/ui/AuthLayout';
-import NotDashboardLayout from '@/components/common/NotDashboardLayout';
+import MainLayout from '@/components/common/MainLayout';
 
 const Congratulations = () => {
 	const { url } = useLocaleRouter();
 	const t = useTranslations('SponsorSuccess.message');
 
 	return (
-		<NotDashboardLayout>
+		<MainLayout>
 			<AuthLayout>
 				<div className="mt-[250px] text-primary">
 					<Image alt="verification" src={verification} />
@@ -29,7 +29,7 @@ const Congratulations = () => {
 					</div>
 				</div>
 			</AuthLayout>
-		</NotDashboardLayout>
+		</MainLayout>
 	);
 };
 

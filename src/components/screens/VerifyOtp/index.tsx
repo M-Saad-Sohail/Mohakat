@@ -4,7 +4,7 @@ import Form from './Form';
 import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useSearchParams } from 'next/navigation';
-import NotDashboardLayout from '@/components/common/NotDashboardLayout';
+import MainLayout from '@/components/common/MainLayout';
 
 const VerifyOtp = () => {
 	const { verifyOtp, isLoading } = useAuth();
@@ -12,7 +12,7 @@ const VerifyOtp = () => {
 	const fromGazaMap = !!params && params.get('from') === 'gaza_map';
 
 	return (
-		<NotDashboardLayout fromGazaMap={fromGazaMap}>
+		<MainLayout fromGazaMap={fromGazaMap}>
 			<AuthLayout>
 				<Form
 					fromGazaMap={fromGazaMap}
@@ -20,7 +20,7 @@ const VerifyOtp = () => {
 					isLoading={isLoading}
 				/>
 			</AuthLayout>
-		</NotDashboardLayout>
+		</MainLayout>
 	);
 };
 

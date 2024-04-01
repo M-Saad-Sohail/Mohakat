@@ -26,9 +26,10 @@ import '@/styles/scroll.css';
 import useDirection from '@/hooks/useDirection';
 import { useTranslations } from 'next-intl';
 import { PATHS } from '@/contants';
+import { RedirectType } from 'next/navigation';
 
 const AdminMenus = [
-	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD , gap: true },
+	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	{
 		title: 'sponsor.pending',
@@ -129,7 +130,7 @@ const LeftSideBar = () => {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { logoutUser } = useAuth();
 
-	const { url, locale, dir, redirect } = useLocaleRouter();
+	const { url, locale, dir, replace } = useLocaleRouter();
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
@@ -148,9 +149,8 @@ const LeftSideBar = () => {
 	};
 
 	const logout = () => {
-		logoutUser()
-		redirect(PATHS.LOGIN);
-	}
+		logoutUser();
+	};
 
 	const menus = isAdmin ? AdminMenus : UserMenus;
 
@@ -184,51 +184,57 @@ const LeftSideBar = () => {
 					</p>
 				</div>
 				<ul className={`pt-10`}>
-					{menus.map((menu, index) => (
-						<Link key={index} locale={locale} href={url(menu.link)}>
-							<li
-								className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${
-									index === 0 && 'bg-light-white'
-								}  ${active !== menu.link && 'text-primary'}`}
+					{menus.map((menu, index) => {
+						const isLogout = menu.title === 'logout';
+						return (
+							<Link
+								key={index}
+								locale={locale}
+								replace={isLogout}
+								href={url(menu.link)}
 								onClick={() => {
 									handleMenuClick(index);
-									if (menu.title === 'logout') {
-										logoutUser();
-									}
+									if (isLogout) logout();
 								}}
 							>
-								<div className="flex items-center gap-x-4">
-									<Image
-										src={menu.src}
-										className={`relative object-contain w-5 h-5  ${
-											menu.title === 'logout'
-												? 'left-[3px]'
-												: ''
-										}`}
-										alt=""
-									/>
-									<div
-										className={`${
-											!open && 'hidden'
-										} text-black origin-left duration-200 text-[16px] font-[400] ${
-											clickedMenu === index ? 'text-primary font-semibold' : ''
-										}  ${
-											active === menu.link && 'text-primary font-semibold'
-										} `}
-									>
-										{t(menu.title)}
+								<li
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${
+										index === 0 && 'bg-light-white'
+									}  ${active !== menu.link && 'text-primary'}`}
+								>
+									<div className="flex items-center gap-x-4">
+										<Image
+											src={menu.src}
+											className={`relative object-contain w-5 h-5  ${
+												menu.title === 'logout' ? 'left-[3px]' : ''
+											}`}
+											alt=""
+										/>
+										<div
+											className={`${
+												!open && 'hidden'
+											} text-black origin-left duration-200 text-[16px] font-[400] ${
+												clickedMenu === index
+													? 'text-primary font-semibold'
+													: ''
+											}  ${
+												active === menu.link && 'text-primary font-semibold'
+											} `}
+										>
+											{t(menu.title)}
+										</div>
 									</div>
-								</div>
-								{menu.gap && (
-									<div
-										className={`${
-											!open && 'w-[20px] mt-5'
-										} w-[200px] h-[1.3px] mt-5 border-t-1 border-black bg-black `}
-									></div>
-								)}
-							</li>
-						</Link>
-					))}
+									{menu.gap && (
+										<div
+											className={`${
+												!open && 'w-[20px] mt-5'
+											} w-[200px] h-[1.3px] mt-5 border-t-1 border-black bg-black `}
+										></div>
+									)}
+								</li>
+							</Link>
+						);
+					})}
 				</ul>
 			</div>
 		</div>
