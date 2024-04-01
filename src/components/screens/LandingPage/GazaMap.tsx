@@ -11,6 +11,7 @@ import axios from 'axios';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import { coordinates } from '@/contants/coordinates';
+import { useTranslations } from 'next-intl';
 
 const COLORS = {
 	GRAY: '#808080',
@@ -20,7 +21,7 @@ const COLORS = {
 function GazaMap() {
 	const svgRef = useRef<SVGSVGElement>(null);
 	const URL = 'https://sponserendpoint.netlify.app/.netlify/functions/server';
-
+	const t = useTranslations('GazaMap')
 	const [maxSponserCount, setMaxSponserCount] = useState(0);
 	const { redirect, push } = useLocaleRouter();
 
@@ -86,8 +87,8 @@ function GazaMap() {
 		circle.style.cursor = 'pointer';
 
 		const toolTipText = {
-			[COLORS.GRAY]: 'This pixel has already booked.',
-			[COLORS.RED]: 'Click on this to get registered as a sponsor',
+			[COLORS.GRAY]: t('red'),
+			[COLORS.RED]: t('grey'),
 		};
 
 		// Create the tooltip element
@@ -122,8 +123,8 @@ function GazaMap() {
 		filter.setAttribute('id', filterID);
 		filter.setAttribute('width', '200%');
 		filter.setAttribute('height', '200%');
-		filter.setAttribute('x', '-50%');
-		filter.setAttribute('y', '-50%');
+		filter.setAttribute('x', '-90%');
+		filter.setAttribute('y', '-90%');
 
 		// Create a feGaussianBlur for the base glow effect
 		let feGaussianBlur = document.createElementNS(
@@ -202,6 +203,7 @@ function GazaMap() {
 		if (color === COLORS.RED) {
 			circle.onclick = function (event) {
 				event.preventDefault();
+				tooltip.style.display = 'none';
 				push(`${PATHS.BECOME_SPONSOR}?from=${encodeURIComponent('gaza_map')}`);
 			};
 		}
@@ -215,6 +217,7 @@ function GazaMap() {
 		try {
 			const response = await axios.get(`${URL}/sponsers/approved/count`);
 			const sponsorCount = response.data.maxSponsorCount
+			console.log(`Sponsor count`, sponsorCount)
 			generateRandomCircles(svgRef, sponsorCount);
 			setMaxSponserCount(sponsorCount);
 			return response.data.maxSponsorCount;
@@ -224,7 +227,7 @@ function GazaMap() {
 	}, [svgRef.current]);
 	useEffect(() => {
 		init();
-	}, [init]);
+	}, []);
 
 	return (
 		<>
