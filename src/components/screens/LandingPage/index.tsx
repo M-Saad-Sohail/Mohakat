@@ -7,6 +7,9 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import HeroSection from './HeroSection';
 import SponserSection from './SponserSection';
+import FamiliesSection from './FamiliesSection';
+import Footer from '@/components/ui/Footer';
+import PartnersSection from './PartnersSection';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -31,7 +34,10 @@ const LandingPage = () => {
 			<Navbar />
 			<HeroSection />
 			<SponserSection />
-			<MapSection isLoggedIn={!isLoading && !!user} />
+			<FamiliesSection/>
+			{/* <MapSection isLoggedIn={!isLoading && !!user} /> */}
+			<PartnersSection/>
+			<Footer/>
 		</div>
 	);
 };
