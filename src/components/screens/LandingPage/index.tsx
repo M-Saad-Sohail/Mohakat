@@ -11,6 +11,7 @@ import FamiliesSection from './FamiliesSection';
 import Footer from '@/components/ui/Footer';
 import PartnersSection from './PartnersSection';
 import ImagesSection from './ImagesSection';
+import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -32,7 +33,8 @@ const LandingPage = () => {
 
 	return (
 		<div>
-			<Navbar />
+			{/* <Navbar /> */}
+			<MobileNavbar/>
 			<HeroSection />
 			<SponserSection />
 			<FamiliesSection />
