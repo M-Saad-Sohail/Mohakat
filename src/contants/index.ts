@@ -6,6 +6,7 @@ import {
 
 export const PATHS = {
 	HOME: '/',
+	FAMILY: '/families',
 	FORGETPASSWORD: '/forget-password',
 	LOGIN: '/sign-in',
 	BECOME_SPONSOR: '/become-sponsor',
@@ -36,24 +37,28 @@ export const ProfileValues = {
 	language: '',
 }
 
+// export const Links = [
+// 	{ localeId: 'links.0', name: 'Support', link: '/support' },
+// 	{ localeId: 'links.1', name: 'Sponsor', link: '/sponsor' },
+// 	{
+// 		localeId: 'links.2',
+// 		name: 'Empower',
+// 		link: '/empower',
+// 	},
+// 	{
+// 		localeId: 'links.3',
+// 		name: 'FAQs',
+// 		link: '/faqs',
+// 	},
+// 	{
+// 		localeId: 'links.4',
+// 		name: 'Contact',
+// 		link: '/contact',
+// 	},
+// ];
 export const Links = [
-	{ localeId: 'links.0', name: 'Support', link: '/support' },
-	{ localeId: 'links.1', name: 'Sponsor', link: '/sponsor' },
-	{
-		localeId: 'links.2',
-		name: 'Empower',
-		link: '/empower',
-	},
-	{
-		localeId: 'links.3',
-		name: 'FAQs',
-		link: '/faqs',
-	},
-	{
-		localeId: 'links.4',
-		name: 'Contact',
-		link: '/contact',
-	},
+	{ localeId: 'links.0', name: 'Home', link: '/' },
+	{ localeId: 'links.1', name: 'Families', link: '/families' },
 ];
 
 export const LOGININITIALVALUES: LoginSchema = {

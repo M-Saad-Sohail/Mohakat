@@ -34,40 +34,41 @@ const AuthNavbar = () => {
 		.replace('/en', '')
 		.replace('/ar', '')
 		.replace('/tr', '');
-	
+
 	if (currentPathName === '') {
-		currentPathName = '/'
+		currentPathName = '/';
 	}
 
 	return (
-		<div dir={dir} className="bg-[#FCFCFC] h-fit shadow-md">
+		<div dir={dir} className="h-fit">
 			<div className="flex items-center justify-between py-4 mx-10 mobile:pt-4">
-				<div className="flex items-center ">
-					<Link locale={locale} href={url('/')}>
-						<Image src={logo} alt="Logo" className="mx-2 h-14 w-14" />
-					</Link>
-				</div>
-				<div className="hidden py-2 -ml-20 md:flex">
-					{Links.map((link) => (
-						<Link
-							key={link.name}
-							href={url(link.link)}
-							locale={locale}
-							className="block py-2 px-6 font-bold duration-500 text-[16px] text-primary"
-						>
-							{t(link.localeId)}
+				<div className=" flex gap-6">
+					<div className="flex items-center ">
+						<Link locale={locale} href={url('/')}>
+							<Image src={logo} alt="Logo" className="mx-2 h-14 w-14" />
 						</Link>
-					))}
+					</div>
+					<div className="hidden py-2 md:flex">
+						{Links.map((link, i) => (
+							<Link
+								key={link.name}
+								href={url(link.link)}
+								locale={locale}
+								className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
+							>
+								{t(link.localeId)}
+							</Link>
+						))}
+					</div>
 				</div>
 				<div className="flex flex-row items-center justify-center gap-x-4">
 					<LangSelector
 						name="language"
 						value={locale}
 						title=""
-						onChange={(e) => {
-							changeLocale(e.target.value);
-						}}
-						className="px-4"
+						onChange={()=>{}}
+						handleChange={changeLocale}
+						className="px-3"
 					/>
 					{isLoggedIn ? (
 						<>
@@ -75,7 +76,7 @@ const AuthNavbar = () => {
 								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
 								replace={currentPathName !== '/'}
 								locale={user?.language ?? locale}
-								className={`py-3 px-6 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
+								className={`duration-500 md:flex hidden float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
 								{t('cta.go-to-dashboard')}
 							</Link>
@@ -85,14 +86,14 @@ const AuthNavbar = () => {
 							<Link
 								href={url(PATHS.LOGIN)}
 								locale={locale}
-								className={`px-4 py-3 duration-500 md:flex hidden float-right mr-4 border-2 border-primary text-primary rounded-md font-bold `}
+								className={` duration-500 md:flex hidden float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
 							>
 								{t('cta.signin')}
 							</Link>
 							<Link
 								href={url(PATHS.BECOME_SPONSOR)}
 								locale={locale}
-								className={`py-3 duration-500 md:flex hidden float-right mr-4 border bg-primary text-white px-3 rounded-md font-bold shadow-custom border-main`}
+								className={`duration-500 md:flex hidden float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
 								{t('cta.become-sponsor')}
 							</Link>
