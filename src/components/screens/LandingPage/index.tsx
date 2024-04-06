@@ -10,6 +10,7 @@ import SponserSection from './SponserSection';
 import FamiliesSection from './FamiliesSection';
 import Footer from '@/components/ui/Footer';
 import PartnersSection from './PartnersSection';
+import ImagesSection from './ImagesSection';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -36,6 +37,7 @@ const LandingPage = () => {
 			<SponserSection />
 			<FamiliesSection/>
 			{/* <MapSection isLoggedIn={!isLoading && !!user} /> */}
+			<ImagesSection />
 			<PartnersSection/>
 			<Footer/>
 		</div>
