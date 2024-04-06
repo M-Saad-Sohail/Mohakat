@@ -16,7 +16,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		<>
 			<div
 				dir={dir}
-				className="w-[80%] mx-auto my-[5%] h-full flex justify-center px-1 pr-5 gap-x-16 items-center text-center"
+				className="w-[80%] mx-auto h-full flex justify-center px-1 pr-5 gap-x-16 items-center text-center"
 			>
 				<div className="w-[80%] mx-auto my-[5%]">
 					<h1 className="text-primary text-[52px] font-bold">{t('title')}</h1>

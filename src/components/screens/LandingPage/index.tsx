@@ -1,18 +1,20 @@
-'use client'
+'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { Navbar } from '@/components/ui/Navbar';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
+import HeroSection from './HeroSection';
+import SponserSection from './SponserSection';
 
-const Hero = dynamic(() => import('./Hero'), {
+const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
 });
 
 const LandingPage = () => {
-	const { user, isLoading } = useLoggedInUser()
-	const { locale, redirectWithLocale } = useLocaleRouter()
+	const { user, isLoading } = useLoggedInUser();
+	const { locale, redirectWithLocale } = useLocaleRouter();
 
 	if (isLoading) {
 		return null;
@@ -27,7 +29,9 @@ const LandingPage = () => {
 	return (
 		<div>
 			<Navbar />
-			<Hero isLoggedIn={!isLoading && !!user} />
+			<HeroSection />
+			<SponserSection />
+			<MapSection isLoggedIn={!isLoading && !!user} />
 		</div>
 	);
 };
