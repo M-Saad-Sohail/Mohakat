@@ -10,7 +10,7 @@ import Linkedin from '@/assests/icons/linkedin.png';
 const Footer = () => {
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] flex flex-col gap-8 px-20 py-10">
+			<div className=" bg-[#F8F8F8] flex flex-col gap-8 md:px-20 px-8 py-10">
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					{/* logo */}
@@ -18,7 +18,7 @@ const Footer = () => {
 						<Image src={Logo} alt="logo" />
 					</div>
 					{/* links */}
-					<div className=" flex gap-8">
+					<div className=" hidden md:flex gap-8">
 						<Link href={''}>
 							<h3 className=" text-sm font-medium">Home</h3>
 						</Link>
@@ -46,16 +46,21 @@ const Footer = () => {
 				</div>
 
 				{/* third div */}
-				<div className=" flex justify-center items-center gap-10">
-					<h3 className=" text-sm font-normal">
+				<div className=" flex md:justify-center justify-end items-center md:gap-10 gap-4">
+					<h3 className="hidden md:flex text-sm font-normal">
 						© 2024 Muakhet. All rights reserved.
 					</h3>
-					<Link href={''}>
-						<h3 className=" text-sm font-normal">Privacy Policy</h3>
+					<Link href={'/'}>
+						<h3 className=" md:text-sm text-[13px] font-normal">Privacy Policy</h3>
 					</Link>
-					<Link href={''}>
-						<h3 className=" text-sm font-normal">Terms of Service</h3>
+					<Link href={'/'}>
+						<h3 className=" md:text-sm text-[13px] font-normal">Terms of Service</h3>
 					</Link>
+				</div>
+				<div className='flex justify-center items-center'>
+					<h3 className="md:hidden flex text-sm font-normal">
+						© 2024 Muakhet. All rights reserved.
+					</h3>
 				</div>
 			</div>
 		</>
