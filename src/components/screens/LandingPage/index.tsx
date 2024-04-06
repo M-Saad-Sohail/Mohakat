@@ -35,11 +35,11 @@ const LandingPage = () => {
 			<Navbar />
 			<HeroSection />
 			<SponserSection />
-			<FamiliesSection/>
+			<FamiliesSection />
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
-			<PartnersSection/>
-			<Footer/>
+			<PartnersSection />
+			<Footer />
 		</div>
 	);
 };
