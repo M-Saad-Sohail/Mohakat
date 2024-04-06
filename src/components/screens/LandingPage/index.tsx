@@ -36,7 +36,7 @@ const LandingPage = () => {
 			<HeroSection />
 			<SponserSection />
 			<FamiliesSection/>
-			{/* <MapSection isLoggedIn={!isLoading && !!user} /> */}
+			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
 			<PartnersSection/>
 			<Footer/>

@@ -348,7 +348,7 @@ function GazaMap() {
 		<>
 			<svg
 				width={1645}
-				height={970}
+				height={600}
 				viewBox="0 0 1645 970"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"

@@ -14,7 +14,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const { dir, replace } = useLocaleRouter();
 	return (
 		<>
-			<div
+			{/* <div
 				dir={dir}
 				className="w-[80%] mx-auto h-full flex justify-center px-1 pr-5 gap-x-16 items-center text-center"
 			>
@@ -29,18 +29,13 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						className="max-w-[200px]"
 					/>}
 				</div>
-			</div>
-			<div style={{ marginTop: '-310px' }}>
+			</div> */}
+			<div className="relative w-[80%] mx-auto">
 				<GazaMap />
 				<Image
 					alt="hero-image"
 					src={consult}
-					style={{
-						maxWidth: '100%',
-						marginLeft: '1000px',
-						marginTop: '-500px',
-					}}
-					className="h-auto"
+					className="h-auto absolute bottom-36 right-2"
 					loading="lazy"
 				/>
 			</div>
