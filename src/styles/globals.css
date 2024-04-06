@@ -35,7 +35,6 @@ svg {
 }
 
 @keyframes scroll {
-
 	0%,
 	100% {
 		transform: translateX(0);
@@ -46,14 +45,12 @@ svg {
 	}
 }
 
-
 /* MOBILE NAVBAR */
 
 .navbar-lists {
 	width: 100vw;
-	height: calc(100vh-48px) !important;
+	height: 90vh !important;
 	position: absolute;
-	/* top: 0; */
 	left: 0;
 	bottom: 0;
 	background-color: #fff;
@@ -62,12 +59,10 @@ svg {
 	visibility: hidden;
 	opacity: 0;
 	transform: translateX(100%);
-	/* transform-origin: top; */
 	transition: all 0.3s linear;
 }
 
 .active .navbar-lists {
-	background: #1a2238;
 	visibility: visible;
 	opacity: 1;
 	transform: translateX(0);

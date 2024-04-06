@@ -33,7 +33,7 @@ const LandingPage = () => {
 
 	return (
 		<div>
-			{/* <Navbar /> */}
+			<Navbar />
 			<MobileNavbar/>
 			<HeroSection />
 			<SponserSection />

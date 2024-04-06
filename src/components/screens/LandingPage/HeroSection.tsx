@@ -69,12 +69,12 @@ const HeroSection = () => {
 					</div>
 				</div>
 			</div>
-			<div className="md:hidden flex flex-col gap-10 h-full">
+			<div className="md:hidden flex flex-col justify-end gap-10 h-full">
 				<div className=" px-4 flex flex-col gap-4">
 					<h1 className=" text-3xl leading-8 text-[#171717] font-bold text-center ">
 						Be a Hero for Gaza: Donate, Sponsor, and Change Lives!
 					</h1>
-					<p className="text-lg leading-6 font-normal text-center">
+					<p className="text-base leading-6 font-normal text-center">
 						Take action today and be the hero Gaza families desperately need –
 						your support matters.
 					</p>
@@ -84,7 +84,7 @@ const HeroSection = () => {
 						<Button title="Register as Family" className=" bg-[#000000]" />
 					</div>
 				</div>
-				<div className="carousel-container h-[60%]">
+				<div className="carousel-container h-[40%]">
 					<div className="carousel h-full">
 						{images.map((img, i) => (
 							<div

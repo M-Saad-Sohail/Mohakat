@@ -42,12 +42,11 @@ const MobileNavbar = () => {
 	}
 	return (
 		<>
-			<div className={`flex flex-col ${active && 'active'}`}>
-				<div className="flex justify-between items-center px-5 py-2 my-5 border-b-[0.5px] border-[#00000080] h-12">
+			<div className={` md:hidden flex flex-col ${active && 'active'}`}>
+				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#00000080]">
 					{/* logo */}
-					<div>
-						<Image className="mx-2 h-12 w-12" src={logo} alt="" />
-					</div>
+
+					<Image className="mx-2 h-12 w-12" src={logo} alt="" />
 
 					{/* icons */}
 					<div className=" flex gap-3">

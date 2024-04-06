@@ -1,13 +1,13 @@
-import MainLayout from '@/components/common/MainLayout'
-import FamiliesPage from '@/components/screens/Families'
-import React from 'react'
+import LandingFamilyPage from '@/components/screens/Families';
+import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Family',
+};
 
 const page = () => {
-  return (
-    <MainLayout>
-			<FamiliesPage />
-		</MainLayout>
-  )
-}
+	return <LandingFamilyPage />;
+};
 
-export default page
+export default page;
