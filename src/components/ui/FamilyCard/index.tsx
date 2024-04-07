@@ -1,11 +1,15 @@
-import React from 'react';
+'use client';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/LandingPage/Button';
 // ICONS
 import PeopleSvg from '@/assests/icons/people.svg';
 import LocationSvg from '@/assests/icons/location.svg';
+import FamilyModal from '../Modals/FamilyModal';
 
-const FamilyCard = () => {
+const FamilyCard: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
+	const [open, setOpen] = useState(false);
+	const cancelButtonRef = useRef(null);
 	return (
 		<>
 			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col gap-4">
@@ -45,10 +49,21 @@ const FamilyCard = () => {
 
 				{/* buttons */}
 				<div className=" flex gap-2">
-					<Button title="Donate a Share" className=" bg-[#8DAE8E]" />
-					<Button title="Sponsor" className=" bg-[#000000]" />
+					<Button
+						onClick={() => {
+							setOpen(true);
+						}}
+						title={`${isLoggedIn ? `Sponser` : `Donate a share`}`}
+						className=" bg-[#8DAE8E]"
+					/>
+					<Button title="Add to Basket" className=" bg-[#000000]" />
 				</div>
 			</div>
+			<FamilyModal
+				setOpen={setOpen}
+				open={open}
+				cancelButtonRef={cancelButtonRef}
+			/>
 		</>
 	);
 };
