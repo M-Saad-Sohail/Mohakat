@@ -30,6 +30,14 @@ export enum KEYS {
 export type FamilyModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;
+	setDonate: (value: boolean) => void;
+	cancelButtonRef: any;
+	isLoggedIn?: boolean;
+};
+
+export type DonateModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
 	cancelButtonRef: any;
 	isLoggedIn?: boolean;
 };

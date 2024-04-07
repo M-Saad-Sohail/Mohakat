@@ -12,6 +12,7 @@ import LocationSvg from '@/assests/icons/location.svg';
 const FamilyModal: React.FC<FamilyModalType> = ({
 	open,
 	setOpen,
+	setDonate,
 	cancelButtonRef,
 	isLoggedIn,
 }) => {
@@ -198,7 +199,14 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									)}
 									{/* btns */}
 									<div className=" flex gap-2">
-										<Button title={`Donate`} className=" bg-[#CF7475]" />
+										<Button
+											onClick={() => {
+												setOpen(false);
+												setDonate(true);
+											}}
+											title={`Donate`}
+											className=" bg-[#CF7475]"
+										/>
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

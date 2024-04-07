@@ -6,10 +6,13 @@ import Button from '@/components/ui/LandingPage/Button';
 import PeopleSvg from '@/assests/icons/people.svg';
 import LocationSvg from '@/assests/icons/location.svg';
 import FamilyModal from '../Modals/FamilyModal';
+import DonateModal from '../Modals/DonateModal';
 
 const FamilyCard: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const [open, setOpen] = useState(false);
 	const cancelButtonRef = useRef(null);
+	const [donateOpen, setDonateOpen] = useState(false);
+	const cancelDonateButtonRef = useRef(null);
 	return (
 		<>
 			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col gap-4">
@@ -62,7 +65,14 @@ const FamilyCard: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			<FamilyModal
 				setOpen={setOpen}
 				open={open}
+				setDonate={setDonateOpen}
 				cancelButtonRef={cancelButtonRef}
+				isLoggedIn={isLoggedIn}
+			/>
+			<DonateModal
+				setOpen={setDonateOpen}
+				open={donateOpen}
+				cancelButtonRef={cancelDonateButtonRef}
 				isLoggedIn={isLoggedIn}
 			/>
 		</>
