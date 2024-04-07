@@ -12,6 +12,7 @@ import Footer from '@/components/ui/Footer';
 import PartnersSection from './PartnersSection';
 import ImagesSection from './ImagesSection';
 import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
+import MainLayout from '@/components/common/MainLayout';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -32,17 +33,14 @@ const LandingPage = () => {
 	// }
 
 	return (
-		<div>
-			<Navbar />
-			<MobileNavbar/>
+		<MainLayout>
 			<HeroSection />
 			<SponserSection />
 			<FamiliesSection />
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
 			<PartnersSection />
-			<Footer />
-		</div>
+		</MainLayout>
 	);
 };
 

@@ -1,6 +1,9 @@
 'use client';
 
+import Footer from '@/components/ui/Footer';
 import { Navbar } from '@/components/ui/Navbar';
+import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
+import StickeyBar from '@/components/ui/StickeyBar';
 import { PATHS } from '@/contants';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
@@ -11,10 +14,7 @@ type MainLayoutProps = {
 	fromGazaMap?: boolean;
 };
 
-const MainLayout = ({
-	children,
-	fromGazaMap,
-}: MainLayoutProps) => {
+const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { user, isLoading } = useLoggedInUser();
 	const { redirectWithLocale } = useLocaleRouter();
 
@@ -22,16 +22,18 @@ const MainLayout = ({
 		return (
 			<div>
 				<Navbar />
+				<MobileNavbar />
 				{children}
+				<Footer />
 			</div>
 		);
 	}
 
 	if (!!user) {
-    let locale = 'en';
-    if (['en', 'ar', 'tr'].includes(user.language)) {
-      locale = user.language;
-    }
+		let locale = 'en';
+		if (['en', 'ar', 'tr'].includes(user.language)) {
+			locale = user.language;
+		}
 		redirectWithLocale(locale, PATHS.DASHBOARD);
 	}
 
@@ -40,9 +42,12 @@ const MainLayout = ({
 	}
 
 	return (
-		<div>
+		<div className=" relative">
 			<Navbar />
+			<MobileNavbar />
+			<StickeyBar />
 			{children}
+			<Footer />
 		</div>
 	);
 };

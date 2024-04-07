@@ -7,6 +7,7 @@ import { PATHS } from '@/contants';
 import Footer from '@/components/ui/Footer';
 import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
 import FamiliesSection from './FamiliesSection';
+import MainLayout from '@/components/common/MainLayout';
 
 const LandingFamilyPage = () => {
 	const { user, isLoading } = useLoggedInUser();
@@ -23,12 +24,9 @@ const LandingFamilyPage = () => {
 	// }
 
 	return (
-		<div>
-			<Navbar />
-			<MobileNavbar />
+		<MainLayout>
 			<FamiliesSection />
-			<Footer />
-		</div>
+		</MainLayout>
 	);
 };
 

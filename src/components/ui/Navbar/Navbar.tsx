@@ -11,6 +11,7 @@ import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
+import { TbBasketDollar } from 'react-icons/tb';
 
 const AuthNavbar = () => {
 	const pathname = usePathname();
@@ -66,7 +67,7 @@ const AuthNavbar = () => {
 						name="language"
 						value={locale}
 						title=""
-						onChange={()=>{}}
+						onChange={() => {}}
 						handleChange={changeLocale}
 						className="px-3"
 					/>
@@ -97,6 +98,12 @@ const AuthNavbar = () => {
 							>
 								{t('cta.become-sponsor')}
 							</Link>
+							<div className=" relative">
+								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+									1
+								</span>
+								<TbBasketDollar className=" text-[40px]" />
+							</div>
 						</>
 					)}
 				</div>

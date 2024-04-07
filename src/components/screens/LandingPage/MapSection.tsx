@@ -30,12 +30,12 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					/>}
 				</div>
 			</div> */}
-			<div className="relative w-[80%] mx-auto">
+			<div className="relative w-[80%] md:mt-8 mb-16 mx-auto">
 				<GazaMap />
 				<Image
 					alt="hero-image"
 					src={consult}
-					className="h-auto absolute bottom-36 right-2"
+					className=" md:w-32 w-10 h-auto absolute md:bottom-36 bottom-5 right-2"
 					loading="lazy"
 				/>
 			</div>
