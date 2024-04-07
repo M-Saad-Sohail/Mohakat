@@ -1,11 +1,47 @@
 import Button from '@/components/ui/LandingPage/Button';
-import Sponser1 from '@/assests/svgs/landing-sponser/sponser-svg-1.svg';
-import Sponser2 from '@/assests/svgs/landing-sponser/sponser-svg-2.svg';
-import Sponser3 from '@/assests/svgs/landing-sponser/sponser-svg-3.svg';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getJson } from '@/api/api.instances';
+import { usePathname } from 'next/navigation';
 
-const SponserSection = () => {
+const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1);
+	const [featureData, setFeatureData] = useState<any[]>([]);
+	const handleFeatureData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setFeatureData((prev: any) => [
+				...prev,
+				{
+					description: data?.description?.inEnglish,
+				},
+			]);
+		} else if (path === 'ar') {
+			setFeatureData((prev: any) => [
+				...prev,
+				{ description: data?.description?.inArabic },
+			]);
+		} else if (path === 'tr') {
+			setFeatureData((prev: any) => [
+				...prev,
+				{ description: data?.description?.inTurkish },
+			]);
+		}
+	};
+
+	useEffect(() => {
+		(async () => {
+			const res = await getJson(
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-feature`,
+			);
+			if (res.success) {
+				setFeatureData([]);
+				res.feature.map((item: any) => handleFeatureData(currentPath, item));
+				console.log(res.feature[0]);
+				// handleFeatureData(currentPath, res.feature[0]);
+			}
+		})();
+	}, []);
 	return (
 		<section className=" md:w-[80%] w-[90%] flex flex-col md:gap-20 gap-12 py-14 mx-auto">
 			<div className=" flex flex-col gap-4">
@@ -25,29 +61,20 @@ const SponserSection = () => {
 				</div>
 			</div>
 			<div className=" flex md:flex-row flex-col justify-between md:gap-0 gap-6">
-				<div className=" flex-1 flex flex-col items-center gap-5">
-					<Image src={Sponser1} alt="Sponser1" className=' md:w-auto w-[70px]' />
-					<p className="md:text-lg text-base font-light text-center">
-						Look at the data available for families needing sponsorship in Gaza
-						Strip
-					</p>
-				</div>
-				<div className=" flex-1 flex flex-col items-center gap-5">
-					<Image src={Sponser2} alt="Sponser2" className=' md:w-auto w-[70px]' />
-					<p className="md:text-lg text-base font-light text-center">
-						Choose the family you wish to sponsor depending on the Region inside
-						Gaza, Number of family members, or Family situation (and you will
-						receive updated information of that family, if sponsored)
-					</p>
-				</div>
-				<div className=" flex-1 flex flex-col items-center gap-5">
-					<Image src={Sponser3} alt="Sponser3" className=' md:w-auto w-[70px]' />
-					<p className="md:text-lg text-base font-light text-center">
-						Paying monthly sponsorship for the family by registering on the
-						platform and completing the process. You can also contribute by a
-						share to the initiative without registering on the platform.
-					</p>
-				</div>
+				{featureData?.map((item: any, i: number) => (
+					<div key={i} className=" flex-1 flex flex-col items-center gap-5">
+						<Image
+							src={`/svgs/landing-sponser/sponser-svg-${i + 1}.svg`}
+							alt={`img`}
+							width={100}
+							height={100}
+							className=" h-auto md:w-auto w-[70px]"
+						/>
+						<p className="md:text-lg text-base font-light text-center">
+							{item.description}
+						</p>
+					</div>
+				))}
 			</div>
 		</section>
 	);

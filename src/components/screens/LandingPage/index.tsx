@@ -1,17 +1,13 @@
 'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Navbar } from '@/components/ui/Navbar';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
-import { PATHS } from '@/contants';
 import HeroSection from './HeroSection';
 import SponserSection from './SponserSection';
 import FamiliesSection from './FamiliesSection';
-import Footer from '@/components/ui/Footer';
 import PartnersSection from './PartnersSection';
 import ImagesSection from './ImagesSection';
-import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
 import MainLayout from '@/components/common/MainLayout';
 
 const MapSection = dynamic(() => import('./MapSection'), {
@@ -34,11 +30,11 @@ const LandingPage = () => {
 
 	return (
 		<MainLayout>
-			<HeroSection />
-			<SponserSection />
+			<HeroSection isLoggedIn={!isLoading && !!user} />
+			<SponserSection isLoggedIn={!isLoading && !!user} />
 			<FamiliesSection isLoggedIn={!isLoading && !!user} />
 			<MapSection isLoggedIn={!isLoading && !!user} />
-			<ImagesSection   />
+			<ImagesSection />
 			<PartnersSection />
 		</MainLayout>
 	);
