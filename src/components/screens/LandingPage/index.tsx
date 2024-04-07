@@ -39,7 +39,7 @@ const LandingPage = () => {
 			<SponserSection />
 			<FamiliesSection />
 			<MapSection isLoggedIn={!isLoading && !!user} />
-			<ImagesSection />
+			<ImagesSection   />
 			<PartnersSection />
 			<Footer />
 		</div>

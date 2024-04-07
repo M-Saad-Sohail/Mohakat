@@ -35,6 +35,7 @@ svg {
 }
 
 @keyframes scroll {
+
 	0%,
 	100% {
 		transform: translateX(0);
@@ -69,4 +70,19 @@ svg {
 	z-index: 999;
 	transform-origin: right;
 	transition: all 0.3s linear;
+}
+
+
+.scrollbarHide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbarHide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+input[name="month"] {
+	accent-color: #CF7475;
 }

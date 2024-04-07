@@ -1,4 +1,9 @@
-import { loginSchema, becomeSponsorSchema,resetPasswordSchema, updateProfileSchema } from './../utils/validationSchema';
+import {
+	loginSchema,
+	becomeSponsorSchema,
+	resetPasswordSchema,
+	updateProfileSchema,
+} from './../utils/validationSchema';
 import { InferType } from 'yup';
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 export type LoginSchema = InferType<typeof loginSchema>;
@@ -22,3 +27,8 @@ export enum KEYS {
 	TOKEN = 'token_dg',
 }
 
+export type FamilyModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+};
