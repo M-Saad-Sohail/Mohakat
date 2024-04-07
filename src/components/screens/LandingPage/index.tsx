@@ -36,7 +36,7 @@ const LandingPage = () => {
 		<MainLayout>
 			<HeroSection />
 			<SponserSection />
-			<FamiliesSection />
+			<FamiliesSection isLoggedIn={!isLoading && !!user} />
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection   />
 			<PartnersSection />

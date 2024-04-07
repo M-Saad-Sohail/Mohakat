@@ -9,7 +9,12 @@ import { IoClose } from 'react-icons/io5';
 import PeopleSvg from '@/assests/icons/people.svg';
 import LocationSvg from '@/assests/icons/location.svg';
 
-const FamilyModal = ({ open, setOpen, cancelButtonRef }: FamilyModalType) => {
+const FamilyModal: React.FC<FamilyModalType> = ({
+	open,
+	setOpen,
+	cancelButtonRef,
+	isLoggedIn,
+}) => {
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>
@@ -72,7 +77,9 @@ const FamilyModal = ({ open, setOpen, cancelButtonRef }: FamilyModalType) => {
 												</div>
 											</div>
 										</div>
-										<span className=" text-xl font-bold">$300</span>
+										{isLoggedIn && (
+											<span className=" text-xl font-bold">$300</span>
+										)}
 									</div>
 
 									{/* content */}
@@ -93,17 +100,18 @@ const FamilyModal = ({ open, setOpen, cancelButtonRef }: FamilyModalType) => {
 										<div className="flex gap-4 w-full overflow-x-scroll scrollbarHide">
 											<div className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]">
 												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Name:</span>
+													<span className=" text-sm font-semibold">Name: </span>
 													Yasmin Khan
 												</p>
 												<p className=" text-sm font-normal w-max h-max">
 													<span className=" text-sm font-semibold">
-														Gender:
+														Gender:{' '}
 													</span>
 													Female
 												</p>
 												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age:</span>24
+													<span className=" text-sm font-semibold">Age: </span>
+													24
 												</p>
 											</div>
 
@@ -151,39 +159,43 @@ const FamilyModal = ({ open, setOpen, cancelButtonRef }: FamilyModalType) => {
 													Female
 												</p>
 												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age:</span>24
+													<span className=" text-sm font-semibold">Age: </span>
+													24
 												</p>
 											</div>
 										</div>
 									</div>
 
 									{/* duration */}
-									<div className=" flex flex-col gap-2">
-										<h2 className="  text-lg font-semibold">Select Duration</h2>
-										{/* durations */}
-										<div className=" flex gap-3">
-											<input type="radio" name="month" id="3month" />
-											<label className=" text-sm font-semibold">
-												3 Month(s)
-											</label>
+									{isLoggedIn && (
+										<div className=" flex flex-col gap-2">
+											<h2 className="  text-lg font-semibold">
+												Select Duration
+											</h2>
+											{/* durations */}
+											<div className=" flex gap-3">
+												<input type="radio" name="month" id="3month" />
+												<label className=" text-sm font-semibold">
+													3 Month(s)
+												</label>
 
-											<input type="radio" name="month" id="6month" />
-											<label className=" text-sm font-semibold">
-												6 Month(s)
-											</label>
+												<input type="radio" name="month" id="6month" />
+												<label className=" text-sm font-semibold">
+													6 Month(s)
+												</label>
 
-											<input type="radio" name="month" id="9month" />
-											<label className=" text-sm font-semibold">
-												9 Month(s)
-											</label>
+												<input type="radio" name="month" id="9month" />
+												<label className=" text-sm font-semibold">
+													9 Month(s)
+												</label>
 
-											<input type="radio" name="month" id="12month" />
-											<label className=" text-sm font-semibold">
-												12 Month(s)
-											</label>
+												<input type="radio" name="month" id="12month" />
+												<label className=" text-sm font-semibold">
+													12 Month(s)
+												</label>
+											</div>
 										</div>
-									</div>
-
+									)}
 									{/* btns */}
 									<div className=" flex gap-2">
 										<Button title={`Donate`} className=" bg-[#CF7475]" />

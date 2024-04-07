@@ -31,4 +31,5 @@ export type FamilyModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;
 	cancelButtonRef: any;
+	isLoggedIn?: boolean;
 };

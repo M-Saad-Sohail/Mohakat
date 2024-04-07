@@ -63,6 +63,7 @@ const FamilyCard: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				setOpen={setOpen}
 				open={open}
 				cancelButtonRef={cancelButtonRef}
+				isLoggedIn={isLoggedIn}
 			/>
 		</>
 	);

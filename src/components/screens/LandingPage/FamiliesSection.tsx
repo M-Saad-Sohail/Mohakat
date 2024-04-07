@@ -2,8 +2,9 @@ import React from 'react';
 import FamilyCard from '@/components/ui/FamilyCard';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 
-const FamiliesSection = () => {
-	const { user, isLoading } = useLoggedInUser();
+const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
+	isLoggedIn,
+}) => {
 	return (
 		<>
 			<section className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
@@ -13,9 +14,9 @@ const FamiliesSection = () => {
 				</div>
 
 				<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">
-					<FamilyCard isLoggedIn={!isLoading && !!user} />
-					<FamilyCard isLoggedIn={!isLoading && !!user} />
-					<FamilyCard isLoggedIn={!isLoading && !!user} />
+					<FamilyCard isLoggedIn={isLoggedIn} />
+					<FamilyCard isLoggedIn={isLoggedIn} />
+					<FamilyCard isLoggedIn={isLoggedIn} />
 				</div>
 			</section>
 		</>
