@@ -1,22 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Sponser1 from '@/assests/images/landing-page/sponser1.png';
-import Sponser2 from '@/assests/images/landing-page/sponser2.png';
+import defaultImg from '@/assests/images/landing-page/light-gray-background.png';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getJson } from '@/api/api.instances';
 
 const PartnersSection = () => {
-	const partners = [
-		Sponser1,
-		Sponser2,
-		Sponser1,
-		Sponser2,
-		Sponser1,
-		Sponser2,
-		Sponser1,
-	];
 	const settings1: any = {
 		infinite: true,
 		slidesToShow: 5,
@@ -70,6 +61,18 @@ const PartnersSection = () => {
 			},
 		],
 	};
+	const [partnerData, setPartnerData] = useState<any>();
+
+	useEffect(() => {
+		(async () => {
+			const res = await getJson(
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-partner`,
+			);
+			if (res.success) {
+				setPartnerData(res.partner);
+			}
+		})();
+	}, []);
 	return (
 		<>
 			<section className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
@@ -82,11 +85,16 @@ const PartnersSection = () => {
 				{/* laptop screen */}
 				<div className="hidden md:flex gap-2">
 					<Slider {...settings1} className=" w-full">
-						{partners.map((item, i) => {
+						{partnerData?.map((item: any, i: any) => {
 							return (
 								<div key={i} className="slide">
 									<div className=" bg-[#FFFFFF] rounded-3xl p-10 w-[200px] h-[200px] shadow-md ring ring-gray-50 ring-opacity-40">
-										<Image src={item} alt="" width={200} height={200} />
+										<Image
+											src={(partnerData && item?.partnerImg) || defaultImg}
+											alt="img"
+											width={200}
+											height={200}
+										/>
 									</div>
 								</div>
 							);
@@ -97,11 +105,16 @@ const PartnersSection = () => {
 				{/* mobile screen */}
 				<div className=" md:hidden flex gap-2">
 					<Slider {...settings2} className=" w-full">
-						{partners.map((item, i) => {
+						{partnerData?.map((item: any, i: number) => {
 							return (
 								<div key={i} className="slide">
 									<div className=" bg-[#FFFFFF] rounded-3xl p-10 w-[250px] h-[250px] shadow-md ring ring-gray-50 ring-opacity-40">
-										<Image src={item} alt="" width={200} height={200} />
+										<Image
+											src={(partnerData && item?.partnerImg) || defaultImg}
+											alt="img"
+											width={200}
+											height={200}
+										/>
 									</div>
 								</div>
 							);
