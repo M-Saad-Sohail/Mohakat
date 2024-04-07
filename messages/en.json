@@ -160,10 +160,137 @@
 			"save_changes": "Save Changes"
 		}
 	},
+	"AddFamilies": {
+		"title": "Families",
+		"form": {
+			"title": "Add Family",
+			"section1": "Personal Information",
+			"section2": "Change Password",
+			"name": {
+				"title": "Name"
+			},
+			"email": {
+				"title": "Email"
+			},
+			"age": {
+				"title": "Age"
+			},
+			"gender": {
+				"title": "Gender"
+			},
+			"FamilyMembers": {
+				"title": "No of Family Members"
+			},
+			"MartyrInFamily": {
+				"title": "No of Martyr In Family"
+			},
+			"InfectedInFamily": {
+				"title": "No of Infected In Family"
+			},
+			"dob": {
+				"title": "Date of Birth"
+			},
+			"telephone": {
+				"title": "Telephone"
+			},
+			"id": {
+				"title": "Id"
+			},
+			"gender": {
+				"title": "Gender",
+				"male": "Male",
+				"female": "Female",
+				"default": "Select Gender"
+			},
+			"martialstatus": {
+				"title": "Martial Status",
+				"single": "Single",
+				"married": "Married",
+				"default": "Select Martial Status"
+			},
+			"previousresidence": {
+				"title": "Previous Residence",
+				"Gaza": "Gaza City",
+				"JabaliaCamp": "Jabalia Camp",
+				"KhanYunis": "Khan Yunis",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Deir al-Balah",
+				"Beachrefugeecamp": "Beach refugee camp",
+				"NuseiratCamp": "Nuseirat Camp",
+				"MaghaziCamp": "Maghazi Camp",
+				"BureijCamp": "Bureij Camp",
+				"AlShatiCamp": "Al-Shati Camp",
+				"default": "Select Previous Residence"
+			},
+			"currentresidence": {
+				"title": "Current Residence",
+				"Gaza": "Gaza City",
+				"JabaliaCamp": "Jabalia Camp",
+				"KhanYunis": "Khan Yunis",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Deir al-Balah",
+				"Beachrefugeecamp": "Beach refugee camp",
+				"NuseiratCamp": "Nuseirat Camp",
+				"MaghaziCamp": "Maghazi Camp",
+				"BureijCamp": "Bureij Camp",
+				"AlShatiCamp": "Al-Shati Camp",
+				"default": "Select Current Residence"
+			},
+			"currentsituation": {
+				"title": "Current Situation",
+				"bad": "Bad",
+				"good": "Good",
+				"worst": "Worst",
+				"default": "Select Current Situation"
+			},
+			"losesinwar": {
+				"title": "Loses In War",
+					"1": "1",
+					"2": "2",
+					"3": "3",
+					"4": "4",
+					"5": "5",
+					"6": "6",
+					"7": "7",
+					"8": "8",
+					"9": "9",
+					"10": "10",
+					"11": "11",
+					"12": "12",
+					"13": "13",
+					"14": "14",
+					"15": "15",
+					"16": "16",
+					"17": "17",
+					"18": "18",
+					"19": "19",
+					"20": "20",
+					"21": "21",
+					"22": "22",
+					"23": "23",
+					"24": "24",
+					"25": "25",
+					"26": "26",
+					"27": "27",
+					"28": "28",
+					"29": "29",
+					"30": "30",				  
+				"default": "Select No of Loses in War"
+			},
+			"language": {
+				"title": "Language",
+				"arabic": "Arabic",
+				"english": "English",
+				"turkish": "Turkish",
+				"default": "Select Language"
+			},
+			"save_changes": "Save Changes"
+		}
+	},
 	"Sidebar": {
 		"verified": "Verified",
 		"dashboard": "Dashboard",
-		"families": "families",
+		"families": "Families",
 		"settings": "Settings",
 		"logout": "Logout",
 		"sponsor": {
@@ -181,6 +308,9 @@
 	},
 	"PendingSponsors": {
 		"title": "Pending Sponsors"
+	},
+	"Families": {
+		"title": "Families"
 	},
 	"ApprovedSponsors": {
 		"title": "Approved Sponsors"

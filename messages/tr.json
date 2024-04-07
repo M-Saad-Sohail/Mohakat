@@ -160,6 +160,128 @@
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
+	"AddFamilies": {
+		"title": "Aileler",
+		"form": {
+			"title": "Aile Ekle",
+			"email": {
+				"title": "E-posta"
+			},
+			"age": {
+				"title": "Yaş"
+			},
+			"gender": {
+				"title": "Cinsiyet"
+			},
+			"FamilyMembers": {
+				"title": "Aile Üyeleri Sayısı"
+			},
+			"MartyrInFamily": {
+				"title": "Ailede Şehit Sayısı"
+			},
+			"InfectedInFamily": {
+				"title": "Ailede Enfekte Olan Sayısı"
+			},
+			"dob": {
+				"title": "Doğum Tarihi"
+			},
+			"telephone": {
+				"title": "Telefon"
+			},
+			"id": {
+				"title": "Kimlik"
+			},
+			"gender": {
+				"title": "Cinsiyet",
+				"male": "Erkek",
+				"female": "Kadın",
+				"default": "Cinsiyeti Seçin"
+			},
+			"martialstatus": {
+				"title": "Medeni Durum",
+				"single": "Bekar",
+				"married": "Evli",
+				"default": "Medeni Durumu Seçin"
+			},
+			"previousresidence": {
+				"title": "Önceki İkamet",
+				"Gaza": "Gazze Şehri",
+				"JabaliaCamp": "Cebaliye Kampı",
+				"KhanYunis": "Han Yunus",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Deir el-Belah",
+				"Beachrefugeecamp": "Sahil Mülteci Kampı",
+				"NuseiratCamp": "Nuseirat Kampı",
+				"MaghaziCamp": "Maghazi Kampı",
+				"BureijCamp": "Bureyc Kampı",
+				"AlShatiCamp": "El Şati Kampı",
+				"default": "Önceki İkameti Seçin"
+			},
+			"currentresidence": {
+				"title": "Mevcut İkamet",
+				"Gaza": "Gazze Şehri",
+				"JabaliaCamp": "Cebaliye Kampı",
+				"KhanYunis": "Han Yunus",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Deir el-Belah",
+				"Beachrefugeecamp": "Sahil Mülteci Kampı",
+				"NuseiratCamp": "Nuseirat Kampı",
+				"MaghaziCamp": "Maghazi Kampı",
+				"BureijCamp": "Bureyc Kampı",
+				"AlShatiCamp": "El Şati Kampı",
+				"default": "Mevcut İkameti Seçin"
+			},
+			"currentsituation": {
+				"title": "Mevcut Durum",
+				"bad": "Kötü",
+				"good": "İyi",
+				"worst": "En Kötü",
+				"default": "Mevcut Durumu Seçin"
+			},
+			"losesinwar": {
+				"title": "Savaşta Kayıplar",
+				"1": "1",
+				"2": "2",
+				"3": "3",
+				"4": "4",
+				"5": "5",
+				"6": "6",
+				"7": "7",
+				"8": "8",
+				"9": "9",
+				"10": "10",
+				"11": "11",
+				"12": "12",
+				"13": "13",
+				"14": "14",
+				"15": "15",
+				"16": "16",
+				"17": "17",
+				"18": "18",
+				"19": "19",
+				"20": "20",
+				"21": "21",
+				"22": "22",
+				"23": "23",
+				"24": "24",
+				"25": "25",
+				"26": "26",
+				"27": "27",
+				"28": "28",
+				"29": "29",
+				"30": "30",
+				"default": "Savaşta Kayıp Sayısını Seçin"
+			},
+			"language": {
+				"title": "Dil",
+				"arabic": "Arapça",
+				"english": "İngilizce",
+				"turkish": "Türkçe",
+				"default": "Dili Seçin"
+			},
+			"save_changes": "Değişiklikleri Kaydet"
+		}
+	},
 	"Sidebar": {
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",
@@ -181,6 +303,9 @@
 	},
 	"PendingSponsors": {
 		"title": "Bekleyen Sponsorlar"
+	},
+	"Families": {
+		"title": "Aileler"
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
