@@ -32,7 +32,7 @@ const LandingPage = () => {
 		<MainLayout>
 			<HeroSection isLoggedIn={!isLoading && !!user} />
 			<SponserSection isLoggedIn={!isLoading && !!user} />
-			<FamiliesSection isLoggedIn={!isLoading && !!user} />
+			{/* <FamiliesSection isLoggedIn={!isLoading && !!user} /> */}
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
 			<PartnersSection />

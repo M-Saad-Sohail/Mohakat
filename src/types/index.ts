@@ -31,8 +31,11 @@ export type FamilyModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;
 	setDonate: (value: boolean) => void;
+	setAmount?: (value: number) => void;
+	amount?: number;
 	cancelButtonRef: any;
 	isLoggedIn?: boolean;
+	familyInfo?: any;
 };
 
 export type DonateModalType = {
@@ -40,4 +43,6 @@ export type DonateModalType = {
 	setOpen: (value: boolean) => void;
 	cancelButtonRef: any;
 	isLoggedIn?: boolean;
+	setAmount?: (value: number) => void;
+	amount?: number;
 };

@@ -16,6 +16,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 	setOpen,
 	cancelButtonRef,
 	isLoggedIn,
+	amount,
+	setAmount,
 }) => {
 	return (
 		<>
@@ -49,7 +51,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 								leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
-								<Dialog.Panel className=" flex flex-col gap-5 p-8 transform overflow-hidden bg-[#fff] text-left shadow-xl transition-all md:w-[30vw]">
+								<Dialog.Panel className=" flex flex-col gap-5 py-6 px-7 rounded-2xl transform overflow-hidden bg-[#fff] text-left shadow-xl transition-all md:w-[30vw] h-[90vh]">
 									{/* first div */}
 									<div className="flex justify-between items-center w-full border-b-[2px] border-[#00000080] pb-3">
 										<h2 className="  text-2xl font-semibold">Donate a Share</h2>
@@ -112,7 +114,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 									<div className=" flex flex-col gap-3 w-full">
 										<div className=" flex justify-between items-center">
 											<h3 className=" text-2xl font-bold">Total</h3>
-											<h3 className=" text-2xl font-bold">$300</h3>
+											<h3 className=" text-2xl font-bold">${amount}</h3>
 										</div>
 
 										<div className=" w-full">

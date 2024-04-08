@@ -25,7 +25,7 @@ const LandingFamilyPage = () => {
 
 	return (
 		<MainLayout>
-			<FamiliesSection />
+			<FamiliesSection  isLoggedIn={!isLoading && !!user} />
 		</MainLayout>
 	);
 };
