@@ -8,6 +8,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
 import { AddFamiliesValues } from '@/contants';
 import { useFormik } from 'formik';
+import Button from '@/components/ui/Button';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
@@ -25,7 +26,7 @@ const FamilyForm = () => {
 		initialValues: AddFamiliesValues,
 		// validationSchema: updateProfileSchema,
 		onSubmit: (values: any) => {
-			console.log("form submitted")
+			console.log("form submitted",values)
 		},
 	});
 
@@ -330,7 +331,7 @@ const FamilyForm = () => {
 				{/* eigth */}
 				<div className=" flex flex-col gap-3">
 					<h3 className=" text-sm font-bold">Family Member Details</h3>
-					{[...Array(2)].map((index) => (
+					{[...Array(AddFamiliesForm.values.numberOfFamilyMembers)].map((index) => (
 						<div key={index} className="flex flex-col gap-3">
 							<div>
 								<h3 className=" text-sm font-bold">Name</h3>
@@ -383,6 +384,17 @@ const FamilyForm = () => {
 							<div></div>
 						</div>
 					))}
+				</div>
+				<div className="flex my-5">
+					<Button
+						title={t('save_changes')}
+						className="max-w-[200px] px-6 shadow-custom"
+						disabled={AddFamiliesForm.isSubmitting}
+						onClick={(e) => {
+							e.preventDefault();
+							AddFamiliesForm.handleSubmit();
+						}}
+					/>
 				</div>
 			</div>
 		</div>

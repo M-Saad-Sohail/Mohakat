@@ -50,7 +50,7 @@ export const AddFamiliesValues = {
 	language: '',
 	areaOfPreviousResidence: '',
 	areaOfCurrentResidence: '',
-	numberOfFamilyMembers: '',
+	numberOfFamilyMembers: 0,
 	numberOfMartyrInFamily: '',
 	numberOfInfectedInFamily: '',
 	telephoneNumber	: '',
