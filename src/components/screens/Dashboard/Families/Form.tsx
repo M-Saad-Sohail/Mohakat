@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl';
 import Select from '@/components/ui/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
+import { AddFamiliesValues } from '@/contants';
+import { useFormik } from 'formik';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
@@ -18,6 +20,14 @@ const FamilyForm = () => {
 	const t = useTranslations('AddFamilies.form');
 	const dir = useDirection();
 	const { changeLocale } = useLocaleRouter();
+
+	const AddFamiliesForm = useFormik({
+		initialValues: AddFamiliesValues,
+		// validationSchema: updateProfileSchema,
+		onSubmit: (values: any) => {
+			console.log("form submitted")
+		},
+	});
 
 	return (
 		<div
@@ -35,24 +45,24 @@ const FamilyForm = () => {
 					<div className="flex items-center justify-start w-full gap-x-4">
 						<Input
 							title={'In English'}
-							name="inenglish"
+							name="breadWinnerNameEn"
 							className="mb-[19px] min-w-[250px]"
-							// value={updateProfileForm.values?.name}
-							// onChange={updateProfileForm.handleChange}
+							value={AddFamiliesForm.values?.breadWinnerNameEn}
+							onChange={AddFamiliesForm.handleChange}
 						/>
 						<Input
 							title={'In Arabic'}
-							name="inarabic"
+							name="breadWinnerNameTr"
 							className="mb-[19px] min-w-[250px]"
-							// value={updateProfileForm.values?.email}
-							// onChange={updateProfileForm.handleChange}
+							value={AddFamiliesForm.values?.breadWinnerNameTr}
+							onChange={AddFamiliesForm.handleChange}
 						/>
 						<Input
 							title={'In Turkish'}
-							name="inturkish"
+							name="breadWinnerNameAr"
 							className="mb-[19px] min-w-[250px]"
-							// value={updateProfileForm.values?.email}
-							// onChange={updateProfileForm.handleChange}
+							value={AddFamiliesForm.values?.breadWinnerNameAr}
+							onChange={AddFamiliesForm.handleChange}
 						/>
 					</div>
 				</div>
@@ -64,15 +74,15 @@ const FamilyForm = () => {
 						title={t('email.title')}
 						name="email"
 						className="mb-[19px] min-w-[460px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.email}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('age.title')}
-						name="email"
+						name="age"
 						className="mb-[19px] min-w-[460px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.age}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -81,15 +91,15 @@ const FamilyForm = () => {
 						title={t('telephone.title')}
 						name="telephone"
 						className="mb-[19px] min-w-[460px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.telephone}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('id.title')}
-						name="id"
+						name="idNumber"
 						className="mb-[19px] min-w-[460px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.idNumber}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -98,23 +108,23 @@ const FamilyForm = () => {
 				<div className="flex items-center justify-start w-full gap-x-4">
 					<Input
 						title={t('dob.title')}
-						name="email"
+						name="dateOfBirth"
 						className="mb-[19px] min-w-[460px] "
 						type="date"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.dateOfBirth}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('gender.title')}
-						name="language"
+						name="gender"
 						options={[
 							{ label: t('gender.male'), value: 'male' },
 							{ label: t('gender.female'), value: 'female' },
 						]}
 						defaultValue={t('gender.default')}
 						className="mb-[60px] min-w-[460px] "
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.gender}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -123,15 +133,15 @@ const FamilyForm = () => {
 				<div className="flex justify-start w-full mb-8 gap-x-4">
 					<Select
 						title={t('martialstatus.title')}
-						name="language"
+						name="martialStatus"
 						options={[
 							{ label: t('martialstatus.single'), value: 'single' },
 							{ label: t('martialstatus.married'), value: 'married' },
 						]}
 						defaultValue={t('martialstatus.default')}
 						className="mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.martialStatus}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('language.title')}
@@ -143,8 +153,8 @@ const FamilyForm = () => {
 						]}
 						defaultValue={t('language.default')}
 						className="mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values.language}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -153,7 +163,7 @@ const FamilyForm = () => {
 				<div className="flex justify-start w-full mb-8 gap-x-4">
 					<Select
 						title={t('previousresidence.title')}
-						name="previousresidence"
+						name="areaOfPreviousResidence"
 						options={[
 							{ label: t('previousresidence.Gaza'), value: 'Gaza' },
 							{
@@ -189,12 +199,12 @@ const FamilyForm = () => {
 						]}
 						defaultValue={t('previousresidence.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.areaOfPreviousResidence}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('currentresidence.title')}
-						name="currentresidence"
+						name="areaOfCurrentResidence"
 						options={[
 							{ label: t('currentresidence.Gaza'), value: 'Gaza' },
 							{
@@ -227,8 +237,8 @@ const FamilyForm = () => {
 						]}
 						defaultValue={t('currentresidence.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.areaOfCurrentResidence}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -237,7 +247,7 @@ const FamilyForm = () => {
 				<div className="flex justify-start w-full mb-8 gap-x-4">
 					<Select
 						title={t('currentsituation.title')}
-						name="currentsituation"
+						name="currentSituation"
 						options={[
 							{ label: t('currentsituation.good'), value: 'Good' },
 							{ label: t('currentsituation.bad'), value: 'Bad' },
@@ -245,8 +255,8 @@ const FamilyForm = () => {
 						]}
 						defaultValue={t('currentsituation.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.currentSituation}
+							onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('losesinwar.title')}
@@ -296,24 +306,24 @@ const FamilyForm = () => {
 				<div className="flex items-center justify-start w-full gap-x-4">
 					<Input
 						title={t('FamilyMembers.title')}
-						name="FamilyMembers"
+						name="numberOfFamilyMembers"
 						className="mb-[19px] min-w-[300px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.numberOfFamilyMembers}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('MartyrInFamily.title')}
-						name="MartyrInFamily"
+						name="numberOfMartyrInFamily"
 						className="mb-[19px] min-w-[300px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.numberOfMartyrInFamily}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('InfectedInFamily.title')}
-						name="InfectedInFamily"
+						name="numberOfInfectedInFamily"
 						className="mb-[19px] min-w-[300px]"
-						// value={updateProfileForm.values?.name}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values?.numberOfInfectedInFamily}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 

@@ -37,6 +37,28 @@ export const ProfileValues = {
 	language: '',
 }
 
+export const AddFamiliesValues = {
+	breadWinnerName:{},
+	breadWinnerNameEn: '',
+	breadWinnerNameTr: '',
+	breadWinnerNameAr: '',
+	martialStatus: '',
+	email: '',
+	gender: '',
+	age: '',
+	dateOfBirth: '',
+	language: '',
+	areaOfPreviousResidence: '',
+	areaOfCurrentResidence: '',
+	numberOfFamilyMembers: '',
+	numberOfMartyrInFamily: '',
+	numberOfInfectedInFamily: '',
+	telephoneNumber	: '',
+	idNumber	: '',
+	currentSituation	: '',
+	familyMemberDetail:[]
+}
+
 // export const Links = [
 // 	{ localeId: 'links.0', name: 'Support', link: '/support' },
 // 	{ localeId: 'links.1', name: 'Sponsor', link: '/sponsor' },
