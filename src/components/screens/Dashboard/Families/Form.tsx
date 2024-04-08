@@ -9,14 +9,64 @@ import useDirection from '@/hooks/useDirection';
 import { AddFamiliesValues } from '@/contants';
 import { useFormik } from 'formik';
 import Button from '@/components/ui/Button';
+import { postJson } from '@/api/api.instances';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
 	isLoading: boolean;
 };
 
+interface FamilyMember {
+	memberName: {
+		inEnglish: string;
+		inTurkish: string;
+		inArabic: string;
+	};
+	memberAge: number | '';
+	MemberIdNumber: string | '';
+	memberGender: string;
+}
+
 const FamilyForm = () => {
 	const [userId, setUserId] = useState<string | null>(null);
+	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
+	const { user } = useLoggedInUser();
+
+	const handleMemberDetailChange = (
+		index: any,
+		key: string,
+		value: string | number,
+	) => {
+		console.log(index);
+		const updatedMembers = [...familyMembers];
+		if (!updatedMembers[index]) {
+			updatedMembers[index] = {
+				memberName: {
+					inEnglish: '',
+					inTurkish: '',
+					inArabic: '',
+				},
+				memberAge: '',
+				MemberIdNumber: '',
+				memberGender: '',
+			};
+		}
+		if (key.startsWith('in')) {
+			updatedMembers[index].memberName[
+				key as keyof FamilyMember['memberName']
+			] = value as string;
+		} else {
+			updatedMembers[index][key as keyof FamilyMember] = value as
+				| string
+				| number;
+		}
+		setFamilyMembers(updatedMembers);
+	};
+
+	useEffect(() => {
+		console.log('jj', familyMembers);
+	}, [familyMembers]);
 
 	const t = useTranslations('AddFamilies.form');
 	const dir = useDirection();
@@ -25,8 +75,45 @@ const FamilyForm = () => {
 	const AddFamiliesForm = useFormik({
 		initialValues: AddFamiliesValues,
 		// validationSchema: updateProfileSchema,
-		onSubmit: (values: any) => {
-			console.log("form submitted",values)
+		onSubmit: async (values: any) => {
+			const response = {
+				breadWinnerName: {
+					inEnglish: values.breadWinnerNameEn,
+					inTurkish: values.breadWinnerNameTr,
+					inArabic: values.breadWinnerNameAr,
+				},
+				maritalStatus: values.maritalStatus,
+				email: values.email,
+				language: values.language,
+				gender: values.gender,
+				age: values.age,
+				dateOfBirth: values.dateOfBirth,
+				areaOfPreviousResidence: values.areaOfPreviousResidence,
+				areaOfCurrentResidence: values.areaOfCurrentResidence,
+				numberOfFamilyMembers: parseInt(values.numberOfFamilyMembers),
+				telephoneNumber: values.telephoneNumber,
+				idNumber: parseInt(values.idNumber),
+				lossesInWar: values.lossesInWar,
+				currentSituation: values.currentSituation,
+				numberOfMartyrInFamily: parseInt(values.numberOfMartyrInFamily),
+				numberOfInfectedInFamily: parseInt(values.numberOfInfectedInFamily),
+				familyMemberDetail: familyMembers,
+			};
+
+			try {
+				const res = await postJson(
+					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
+					response,
+					user?.key,
+				);
+				if (res.success) {
+					alert('done');
+				}
+			} catch (error) {
+				console.log(error);
+			}
+
+			console.log('form submitted', response);
 		},
 	});
 
@@ -76,31 +163,31 @@ const FamilyForm = () => {
 						name="email"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.email}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('age.title')}
 						name="age"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.age}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
 				<div className="flex items-center justify-start w-full gap-x-4">
 					<Input
 						title={t('telephone.title')}
-						name="telephone"
+						name="telephoneNumber"
 						className="mb-[19px] min-w-[460px]"
-						value={AddFamiliesForm.values?.telephone}
-							onChange={AddFamiliesForm.handleChange}
+						value={AddFamiliesForm.values?.telephoneNumber}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Input
 						title={t('id.title')}
 						name="idNumber"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.idNumber}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -113,7 +200,7 @@ const FamilyForm = () => {
 						className="mb-[19px] min-w-[460px] "
 						type="date"
 						value={AddFamiliesForm.values?.dateOfBirth}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('gender.title')}
@@ -125,7 +212,7 @@ const FamilyForm = () => {
 						defaultValue={t('gender.default')}
 						className="mb-[60px] min-w-[460px] "
 						value={AddFamiliesForm.values?.gender}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -134,15 +221,15 @@ const FamilyForm = () => {
 				<div className="flex justify-start w-full mb-8 gap-x-4">
 					<Select
 						title={t('martialstatus.title')}
-						name="martialStatus"
+						name="maritalStatus"
 						options={[
 							{ label: t('martialstatus.single'), value: 'single' },
 							{ label: t('martialstatus.married'), value: 'married' },
 						]}
 						defaultValue={t('martialstatus.default')}
 						className="mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values?.martialStatus}
-							onChange={AddFamiliesForm.handleChange}
+						value={AddFamiliesForm.values?.maritalStatus}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('language.title')}
@@ -201,7 +288,7 @@ const FamilyForm = () => {
 						defaultValue={t('previousresidence.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
 						value={AddFamiliesForm.values?.areaOfPreviousResidence}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('currentresidence.title')}
@@ -239,7 +326,7 @@ const FamilyForm = () => {
 						defaultValue={t('currentresidence.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
 						value={AddFamiliesForm.values?.areaOfCurrentResidence}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -257,12 +344,13 @@ const FamilyForm = () => {
 						defaultValue={t('currentsituation.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
 						value={AddFamiliesForm.values?.currentSituation}
-							onChange={AddFamiliesForm.handleChange}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 					<Select
 						title={t('losesinwar.title')}
-						name="losesinwar"
+						name="lossesInWar"
 						options={[
+							{ label: t('losesinwar.none'), value: 'none' },
 							{ label: t('losesinwar.1'), value: '1' },
 							{ label: t('losesinwar.2'), value: '2' },
 							{ label: t('losesinwar.3'), value: '3' },
@@ -297,8 +385,8 @@ const FamilyForm = () => {
 						]}
 						defaultValue={t('losesinwar.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						// value={updateProfileForm.values.language}
-						// onChange={updateProfileForm.handleChange}
+						value={AddFamiliesForm.values.lossesInWar}
+						onChange={AddFamiliesForm.handleChange}
 					/>
 				</div>
 
@@ -329,65 +417,96 @@ const FamilyForm = () => {
 				</div>
 
 				{/* eigth */}
-				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold">Family Member Details</h3>
-					{[...Array(AddFamiliesForm.values.numberOfFamilyMembers)].map((index) => (
-						<div key={index} className="flex flex-col gap-3">
-							<div>
-								<h3 className=" text-sm font-bold">Name</h3>
+				{AddFamiliesForm.values.numberOfFamilyMembers && (
+					<div className=" flex flex-col gap-3">
+						<h3 className=" text-sm font-bold">Family Member Details</h3>
+						{[
+							...Array(parseInt(AddFamiliesForm.values.numberOfFamilyMembers)),
+						].map((item, i) => (
+							<div key={i} className="flex flex-col gap-3">
+								<div>
+									<h3 className=" text-sm font-bold">Name</h3>
+								</div>
+								<div className="flex items-center justify-start w-full gap-x-4">
+									<Input
+										title={'In English'}
+										name="inenglish"
+										className="mb-[10px] min-w-[250px]"
+										// value={updateProfileForm.values?.name}
+										onChange={(e) =>
+											handleMemberDetailChange(i, 'inEnglish', e.target.value)
+										}
+									/>
+									<Input
+										title={'In Arabic'}
+										name="inarabic"
+										className="mb-[10px] min-w-[250px]"
+										// value={updateProfileForm.values?.email}
+										onChange={(e) =>
+											handleMemberDetailChange(i, 'inArabic', e.target.value)
+										}
+									/>
+									<Input
+										title={'In Turkish'}
+										name="inturkish"
+										className="mb-[10px] min-w-[250px]"
+										// value={updateProfileForm.values?.email}
+										onChange={(e) =>
+											handleMemberDetailChange(i, 'inTurkish', e.target.value)
+										}
+									/>
+								</div>
+								<div className="flex items-center justify-start w-full gap-x-4">
+									<Input
+										title={'Age'}
+										className="mb-[19px] min-w-[400px] "
+										type="number"
+										onChange={(e) =>
+											handleMemberDetailChange(
+												i,
+												'memberAge',
+												parseInt(e.target.value),
+											)
+										}
+									/>
+									<Input
+										title={'Member ID Number'}
+										className="mb-[19px] min-w-[400px] "
+										type="text"
+										onChange={(e) =>
+											handleMemberDetailChange(
+												i,
+												'MemberIdNumber',
+												e.target.value,
+											)
+										}
+									/>
+
+									<Select
+										title={t('gender.title')}
+										name="language"
+										options={[
+											{ label: t('gender.male'), value: 'male' },
+											{ label: t('gender.female'), value: 'female' },
+										]}
+										defaultValue={t('gender.default')}
+										className="mb-[60px] min-w-[400px] "
+										onChange={(e) =>
+											handleMemberDetailChange(
+												i,
+												'memberGender',
+												e.target.value,
+											)
+										}
+									/>
+								</div>
 							</div>
-							<div className="flex items-center justify-start w-full gap-x-4">
-								<Input
-									title={'In English'}
-									name="inenglish"
-									className="mb-[10px] min-w-[250px]"
-									// value={updateProfileForm.values?.name}
-									// onChange={updateProfileForm.handleChange}
-								/>
-								<Input
-									title={'In Arabic'}
-									name="inarabic"
-									className="mb-[10px] min-w-[250px]"
-									// value={updateProfileForm.values?.email}
-									// onChange={updateProfileForm.handleChange}
-								/>
-								<Input
-									title={'In Turkish'}
-									name="inturkish"
-									className="mb-[10px] min-w-[250px]"
-									// value={updateProfileForm.values?.email}
-									// onChange={updateProfileForm.handleChange}
-								/>
-							</div>
-							<div className="flex items-center justify-start w-full gap-x-4">
-								<Input
-									title={t('dob.title')}
-									name="email"
-									className="mb-[19px] min-w-[400px] "
-									type="date"
-									// value={updateProfileForm.values?.name}
-									// onChange={updateProfileForm.handleChange}
-								/>
-								<Select
-									title={t('gender.title')}
-									name="language"
-									options={[
-										{ label: t('gender.male'), value: 'male' },
-										{ label: t('gender.female'), value: 'female' },
-									]}
-									defaultValue={t('gender.default')}
-									className="mb-[60px] min-w-[400px] "
-									// value={updateProfileForm.values.language}
-									// onChange={updateProfileForm.handleChange}
-								/>
-							</div>
-							<div></div>
-						</div>
-					))}
-				</div>
+						))}
+					</div>
+				)}
 				<div className="flex my-5">
 					<Button
-						title={t('save_changes')}
+						title={'Submit'}
 						className="max-w-[200px] px-6 shadow-custom"
 						disabled={AddFamiliesForm.isSubmitting}
 						onClick={(e) => {
