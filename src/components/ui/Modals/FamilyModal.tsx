@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { IoClose } from 'react-icons/io5';
 import PeopleSvg from '@/assests/icons/people.svg';
 import LocationSvg from '@/assests/icons/location.svg';
+import { useTranslations } from 'next-intl';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
 
 const FamilyModal: React.FC<FamilyModalType> = ({
 	open,
@@ -15,7 +17,44 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	setDonate,
 	cancelButtonRef,
 	isLoggedIn,
+	familyInfo,
+	amount,
+	setAmount,
 }) => {
+	const { user } = useLoggedInUser();
+	const t = useTranslations('AddFamilies.form');
+
+	const [selectedOption, setSelectedOption] = useState<string>('');
+	const [numberOfPersons, setNumberOfPersons] = useState<number>(0);
+
+	// Function to handle radio button change
+	const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSelectedOption(event.target.value);
+		calculateAmount(event.target.value, familyInfo?.numberOfFamilyMembers);
+	};
+
+	// Function to calculate amount based on selected option and number of persons
+	const calculateAmount = (selectedOption: string, numberOfPersons: number) => {
+		let newAmount = 0;
+		if (selectedOption === '3') {
+			newAmount = numberOfPersons <= 3 ? 300 * 3 : 500 * 3;
+		} else if (selectedOption === '6') {
+			newAmount = numberOfPersons <= 3 ? 600 * 6 : 1000 * 6;
+		} else if (selectedOption === '9') {
+			newAmount = numberOfPersons <= 3 ? 900 * 9 : 1500 * 9;
+		} else if (selectedOption === '12') {
+			newAmount = numberOfPersons <= 3 ? 1200 * 12 : 2000 * 12;
+		}
+		setAmount && setAmount(newAmount);
+	};
+
+	useEffect(() => {
+		console.log(selectedOption);
+
+		if (selectedOption === '') {
+			setAmount && setAmount(0);
+		}
+	}, [selectedOption]);
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>
@@ -48,10 +87,13 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
-								<Dialog.Panel className=" flex flex-col gap-5 p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw]">
+								<Dialog.Panel className=" h-[95vh] flex flex-col gap-5 p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw]">
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
-										<Button title={'Very Bad'} className=" bg-[#CF7475]" />
+										<Button
+											title={familyInfo?.currentSituation || 'Nil'}
+											className=" bg-[#CF7475]"
+										/>
 										<div>
 											<IoClose
 												className=" text-3xl text-[#000] cursor-pointer"
@@ -64,33 +106,121 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 									<div className=" flex justify-between">
 										<div className=" flex flex-col gap-2">
-											<h2 className="  text-2xl font-semibold">Family Name</h2>
+											<h2 className="  text-2xl font-semibold">
+												{familyInfo?.breadWinnerName.inEnglish}
+											</h2>
 											{/* people and location div */}
 											<div className=" flex gap-8">
 												<div className=" flex gap-2 justify-center items-center">
-													<Image src={PeopleSvg} alt="people" />
-													<span className=" text-base font-normal">03</span>
+													<span className=" text-base font-semibold">
+														{t('id.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.idNumber}
+													</span>
 												</div>
-
 												<div className=" flex gap-2 justify-center items-center">
-													<Image src={LocationSvg} alt="people" />
-													<span className=" text-base font-normal">Rafah</span>
+													{/* <Image src={PeopleSvg} alt="people" /> */}
+													<span className=" text-base font-semibold">
+														{t('FamilyMembers.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.numberOfFamilyMembers}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('losesinwar.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.lossesInWar}
+													</span>
+												</div>
+											</div>
+											<div className=" flex gap-8">
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('gender.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.gender}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('age.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.age}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('dob.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.dateOfBirth}
+													</span>
+												</div>
+											</div>
+											<div className=" flex gap-8">
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('martialstatus.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.maritalStatus}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('language.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.language}
+													</span>
+												</div>
+											</div>
+											<div className=" flex gap-8">
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('previousresidence.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.areaOfPreviousResidence}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('currentresidence.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.areaOfCurrentResidence}
+													</span>
+												</div>
+											</div>
+											<div className=" flex gap-8">
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('MartyrInFamily.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.numberOfMartyrInFamily}
+													</span>
+												</div>
+												<div className=" flex gap-2 justify-center items-center">
+													<span className=" text-base font-semibold">
+														{t('InfectedInFamily.title')}:
+													</span>
+													<span className=" text-base font-normal">
+														{familyInfo?.numberOfInfectedInFamily}
+													</span>
 												</div>
 											</div>
 										</div>
-										{isLoggedIn && (
-											<span className=" text-xl font-bold">$300</span>
+										{user && (
+											<span className=" text-xl font-bold">${amount}</span>
 										)}
-									</div>
-
-									{/* content */}
-									<div className=" text-base font-light w-full">
-										<p>
-											Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-											Ipsam molestias, debitis veniam, suscipit dolor ex beatae
-											libero omnis delectus autem, amet minima? Delectus magni
-											atque soluta exercitationem modi, fugit doloremque!
-										</p>
 									</div>
 
 									{/* member details */}
@@ -99,98 +229,88 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 										{/* members */}
 										<div className="flex gap-4 w-full overflow-x-scroll scrollbarHide">
-											<div className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]">
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Name: </span>
-													Yasmin Khan
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">
-														Gender:{' '}
-													</span>
-													Female
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age: </span>
-													24
-												</p>
-											</div>
-
-											<div className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]">
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Name:</span>
-													Yasmin Khan
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">
-														Gender:
-													</span>
-													Female
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age:</span>24
-												</p>
-											</div>
-
-											<div className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]">
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Name:</span>
-													Yasmin Khan
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">
-														Gender:
-													</span>
-													Female
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age:</span>24
-												</p>
-											</div>
-
-											<div className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]">
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Name:</span>
-													Yasmin Khan
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">
-														Gender:
-													</span>
-													Female
-												</p>
-												<p className=" text-sm font-normal w-max h-max">
-													<span className=" text-sm font-semibold">Age: </span>
-													24
-												</p>
-											</div>
+											{familyInfo?.familyMemberDetail.map(
+												(item: any, i: number) => (
+													<div
+														key={i}
+														className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]"
+													>
+														<p className=" text-sm font-normal w-max h-max">
+															<span className=" text-sm font-semibold">
+																{t('name.title')}:{' '}
+															</span>
+															{item.memberName.inEnglish}
+														</p>
+														<p className=" text-sm font-normal w-max h-max">
+															<span className=" text-sm font-semibold">
+																{t('gender.title')}:{' '}
+															</span>
+															{item.memberGender}
+														</p>
+														<p className=" text-sm font-normal w-max h-max">
+															<span className=" text-sm font-semibold">
+																{t('age.title')}:{' '}
+															</span>
+															{item.memberAge}
+														</p>
+													</div>
+												),
+											)}
 										</div>
 									</div>
 
 									{/* duration */}
-									{isLoggedIn && (
+									{user && (
 										<div className=" flex flex-col gap-2">
 											<h2 className="  text-lg font-semibold">
 												Select Duration
 											</h2>
 											{/* durations */}
 											<div className=" flex gap-3">
-												<input type="radio" name="month" id="3month" />
+												<input
+													type="radio"
+													name="month"
+													id="3month"
+													value="3"
+													checked={selectedOption === '3'}
+													onChange={handleOptionChange}
+												/>
 												<label className=" text-sm font-semibold">
 													3 Month(s)
 												</label>
 
-												<input type="radio" name="month" id="6month" />
+												<input
+													type="radio"
+													name="month"
+													id="6month"
+													value="6"
+													checked={selectedOption === '6'}
+													onChange={handleOptionChange}
+												/>
 												<label className=" text-sm font-semibold">
 													6 Month(s)
 												</label>
 
-												<input type="radio" name="month" id="9month" />
+												<input
+													type="radio"
+													name="month"
+													id="9month"
+													value="9"
+													checked={selectedOption === '9'}
+													onChange={handleOptionChange}
+												/>
 												<label className=" text-sm font-semibold">
 													9 Month(s)
 												</label>
 
-												<input type="radio" name="month" id="12month" />
+												<input
+													type="radio"
+													name="month"
+													id="12month"
+													value="12"
+													checked={selectedOption === '12'}
+													onChange={handleOptionChange}
+												/>
 												<label className=" text-sm font-semibold">
 													12 Month(s)
 												</label>
