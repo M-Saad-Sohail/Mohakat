@@ -21,6 +21,7 @@ const Input: React.FC<IProps> = ({
 	readOnly,
 	title,
 	setting,
+	disabled,
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const dir = useDirection();
@@ -79,6 +80,7 @@ const Input: React.FC<IProps> = ({
 					id={name}
 					type={type || 'text'}
 					value={value}
+					disabled={disabled ? disabled : false}
 					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px]  ${className}`}
 				/>
 			)}
