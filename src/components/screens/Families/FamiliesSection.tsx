@@ -42,7 +42,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			}
 		})();
 	}, []);
-	
 
 	if (isLoading) {
 		<Loader />;
@@ -150,7 +149,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					<div className=" flex justify-center items-center h-32">
 						<Loader />
 					</div>
-				) : familiesData.length > 0 ? (
+				) : familiesData && familiesData.length > 0 ? (
 					<>
 						{/* cards */}
 						<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">

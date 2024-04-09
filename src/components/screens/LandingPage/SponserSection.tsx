@@ -4,10 +4,19 @@ import React, { useEffect, useState } from 'react';
 import { getJson } from '@/api/api.instances';
 import { usePathname } from 'next/navigation';
 
+interface SponserDataType {
+	heading: string;
+	description: string;
+}
+
 const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [featureData, setFeatureData] = useState<any[]>([]);
+	const [sponserData, setSponserData] = useState<SponserDataType>({
+		heading: '',
+		description: '',
+	});
 	const handleFeatureData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setFeatureData((prev: any) => [
@@ -42,17 +51,47 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			}
 		})();
 	}, []);
+
+	const handleSponserData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setSponserData({
+				heading: data?.heading?.inEnglish,
+				description: data?.description?.inEnglish,
+			});
+		} else if (path === 'ar') {
+			setSponserData({
+				heading: data?.heading?.inArabic,
+				description: data?.description?.inArabic,
+			});
+		} else if (path === 'tr') {
+			setSponserData({
+				heading: data?.heading?.inTurkish,
+				description: data?.description?.inTurkish,
+			});
+		}
+	};
+
+	useEffect(() => {
+		(async () => {
+			const res = await getJson(
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-action`,
+			);
+			if (res.success) {
+				handleSponserData(currentPath, res.newPost[0]);
+				console.log(res);
+				
+			}
+		})();
+	}, []);
+
 	return (
 		<section className=" md:w-[80%] w-[90%] flex flex-col md:gap-20 gap-12 py-14 mx-auto">
 			<div className=" flex flex-col gap-4">
 				<h2 className=" md:text-3xl text-2xl font-semibold">
-					How can you become a sponsor?
+					{sponserData?.heading}
 				</h2>
 				<p className=" md:text-lg text-base font-light">
-					Lorem ipsum dolor sit amet consectetur. Faucibus turpis sed nisl in.
-					Lacus mi vel arcu sed lacus sed lacus. Erat convallis sed suscipit
-					tortor urna bibendum vivamus sit. Morbi proin commodo imperdiet
-					ullamcorper quam cum elit.
+					{sponserData?.description}
 				</p>
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Button title="Donate a Share" className=" bg-[#CF7475]" />
