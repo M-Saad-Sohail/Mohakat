@@ -279,6 +279,19 @@
 		"credit_cards": "Credit Cards",
 		"sponsoring": "Sponsoring"
 	},
+	"HeroMainSection":{
+		"btns":{
+			"DonateaShare":{
+				"title":"Donate a Share"
+			},
+			"BecomeaSponser":{
+				"title":"Become a Sponser"
+			},
+			"RegisterasFamily":{
+				"title":"Register as Family"
+			}
+		}
+	},
 	"RejectedSponsors": {
 		"title": "Rejected Sponsors",
 		"deleteAll": "Delete All"

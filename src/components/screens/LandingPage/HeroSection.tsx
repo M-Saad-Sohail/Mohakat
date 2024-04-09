@@ -5,6 +5,10 @@ import Button from '@/components/ui/LandingPage/Button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { getJson } from '@/api/api.instances';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { toast } from 'react-toastify';
 
 interface HeroDataType {
 	heading: string;
@@ -15,6 +19,8 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [imagesData, setImagesData] = useState<any>();
+	const t = useTranslations('HeroMainSection.btns');
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [currentHeroData, setCurrentHeroData] = useState<HeroDataType>({
 		heading: '',
 		description: '',
@@ -90,9 +96,19 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData.description}
 					</p>
 					<div className=" flex flex-wrap gap-5 justify-center w-[80%] mx-auto">
-						<Button title="Donate a Share" className=" bg-[#CF7475]" />
-						<Button title="Become a Sponser" className=" bg-[#8DAE8E]" />
-						<Button title="Register as Family" className=" bg-[#000000]" />
+						<Link href={url('/families')}>
+						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
+						</Link>
+						<Link href={url('/become-sponsor')}>
+						<Button title={t('BecomeaSponser.title')} className=" bg-[#8DAE8E]" />
+						</Link>
+						<Button onClick={()=>{
+							toast.error(`This feature is in progress`, {
+								toastId: 'success',
+								position: 'bottom-right',
+								autoClose: 4000,
+							});
+						}} title={t('RegisterasFamily.title')} className=" bg-[#000000]" />
 					</div>
 					<div className=" h-[45%] flex gap-3">
 						<div className="">
