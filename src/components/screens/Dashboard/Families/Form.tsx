@@ -107,7 +107,7 @@ const FamilyForm = () => {
 					user?.key,
 				);
 				if (res.success) {
-					alert('done');
+					AddFamiliesForm.resetForm()
 				}
 			} catch (error) {
 				console.log(error);
