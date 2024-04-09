@@ -5,13 +5,13 @@ import EarthSvg from '@/assests/images/landing-page/earth.svg';
 import ProfileSvg from '@/assests/images/landing-page/profile.svg';
 import HamBurgurSvg from '@/assests/images/landing-page/hamburgur.svg';
 import CrossSvg from '@/assests/images/landing-page/cross.svg';
-import { Links } from '@/contants';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
+import { Links, PATHS } from '@/contants';
 
 const MobileNavbar = () => {
 	const pathname = usePathname();
@@ -66,7 +66,7 @@ const MobileNavbar = () => {
 					</div>
 				</div>
 
-				<div className="navbar-lists py-2 px-6">
+				<div className="navbar-lists">
 					{Links.map((link, i) => (
 						<Link
 							key={link.name}
@@ -77,6 +77,22 @@ const MobileNavbar = () => {
 							{t(link.localeId)}
 						</Link>
 					))}
+					<div className=' flex justify-start items-start mt-5 py-2 px-6'>
+					<Link
+								href={url(PATHS.LOGIN)}
+								locale={locale}
+								className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+							>
+								{t('cta.signin')}
+							</Link>
+							<Link
+								href={url(PATHS.BECOME_SPONSOR)}
+								locale={locale}
+								className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+							>
+								{t('cta.become-sponsor')}
+							</Link>
+					</div>
 				</div>
 			</div>
 		</>
