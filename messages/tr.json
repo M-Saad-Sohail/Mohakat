@@ -259,6 +259,19 @@
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "Bir Pay Bağışla"
+			},
+			"BecomeaSponser": {
+				"title": "Sponsor Ol"
+			},
+			"RegisterasFamily": {
+				"title": "Aile Olarak Kaydol"
+			}
+		}
+	},	
 	"Sidebar": {
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",

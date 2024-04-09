@@ -259,6 +259,19 @@
 			"save_changes": "حفظ التغييرات"
 		}
 	},
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "تبرع بسهم"
+			},
+			"BecomeaSponser": {
+				"title": "كن راعياً"
+			},
+			"RegisterasFamily": {
+				"title": "سجل كعائلة"
+			}
+		}
+	},	
 	"Sidebar": {
 		"verified": "تم التحقق",
 		"dashboard": "لوحة التحكم",

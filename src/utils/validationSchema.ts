@@ -31,6 +31,12 @@ export const resetPasswordSchema = object({
 		.required('Confirm password is required'),
 });
 
+export const AddFamiliesSchema = object({
+	numberOfFamilyMembers: number()
+    .min(0, 'Number of family members must be positive or zero')
+    .required('Number of family members is required'),
+});
+
 export const updateProfileSchema = object({
 	name: string().required('Name is Required'),
 	email: string().required('Email is Required'),
