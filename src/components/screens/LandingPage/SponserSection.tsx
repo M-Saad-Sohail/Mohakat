@@ -46,8 +46,6 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			if (res.success) {
 				setFeatureData([]);
 				res.feature.map((item: any) => handleFeatureData(currentPath, item));
-				console.log(res.feature[0]);
-				// handleFeatureData(currentPath, res.feature[0]);
 			}
 		})();
 	}, []);
@@ -78,8 +76,6 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			);
 			if (res.success) {
 				handleSponserData(currentPath, res.newPost[0]);
-				console.log(res);
-				
 			}
 		})();
 	}, []);

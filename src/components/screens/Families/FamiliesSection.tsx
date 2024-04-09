@@ -43,10 +43,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		})();
 	}, []);
 
-	if (isLoading) {
-		<Loader />;
-	}
-
 	return (
 		<>
 			<section

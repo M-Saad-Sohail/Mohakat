@@ -8,33 +8,30 @@ import LocationSvg from '@/assests/icons/location.svg';
 import FamilyModal from '../Modals/FamilyModal';
 import DonateModal from '../Modals/DonateModal';
 import { useTranslations } from 'next-intl';
-import useDirection from '@/hooks/useDirection';
-import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
 	isLoggedIn,
 }) => {
+	const t = useTranslations('AddFamilies.form');
+	const { user } = useLoggedInUser();
 	const [amount, setAmount] = useState<number>(0);
 	const [open, setOpen] = useState(false);
 	const cancelButtonRef = useRef(null);
 	const [donateOpen, setDonateOpen] = useState(false);
 	const cancelDonateButtonRef = useRef(null);
 
-	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>();
+	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
 
-	const t = useTranslations('AddFamilies.form');
-	const dir = useDirection();
-	const { changeLocale } = useLocaleRouter();
-	const { user } = useLoggedInUser();
+
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col gap-4">
+			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4">
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
-						title={familyData.currentSituation || 'Nil'}
+						title={familyData?.currentSituation || 'Nil'}
 						className=" bg-[#CF7475]"
 					/>
 				</div>
@@ -42,21 +39,23 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* second div */}
 				<div className=" flex flex-col gap-3">
 					<h2 className="  text-2xl font-semibold">
-						{familyData.breadWinnerName.inEnglish}
+						{familyData?.breadWinnerName
+							? familyData?.breadWinnerName?.inEnglish
+							: 'Unknown'}
 					</h2>
 					{/* people and location div */}
 					<div className=" flex gap-8">
 						<div className=" flex gap-2 justify-center items-center">
 							<Image src={PeopleSvg} alt="people" />
 							<span className=" text-base font-normal">
-								{familyData.numberOfFamilyMembers}
+								{familyData?.numberOfFamilyMembers}
 							</span>
 						</div>
 
 						<div className=" flex gap-2 justify-center items-center">
 							<Image src={LocationSvg} alt="people" />
 							<span className=" text-base font-normal">
-								{familyData.areaOfCurrentResidence}
+								{familyData?.areaOfCurrentResidence}
 							</span>
 						</div>
 					</div>

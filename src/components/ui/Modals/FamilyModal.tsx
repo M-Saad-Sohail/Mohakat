@@ -25,7 +25,6 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const t = useTranslations('AddFamilies.form');
 
 	const [selectedOption, setSelectedOption] = useState<string>('');
-	const [numberOfPersons, setNumberOfPersons] = useState<number>(0);
 
 	// Function to handle radio button change
 	const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +48,6 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	};
 
 	useEffect(() => {
-		console.log(selectedOption);
-
 		if (selectedOption === '') {
 			setAmount && setAmount(0);
 		}
@@ -87,7 +84,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
-								<Dialog.Panel className=" h-[95vh] flex flex-col gap-5 p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw]">
+								<Dialog.Panel
+									className={` ${user ? 'h-[95vh]' : 'h-[85vh]'} flex flex-col gap-5 p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw] `}
+								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
 										<Button

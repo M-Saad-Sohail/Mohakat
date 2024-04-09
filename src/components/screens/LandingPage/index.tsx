@@ -5,7 +5,7 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import HeroSection from './HeroSection';
 import SponserSection from './SponserSection';
-import FamiliesSection from './FamiliesSection';
+import FamilySection from './FamilySection';
 import PartnersSection from './PartnersSection';
 import ImagesSection from './ImagesSection';
 import MainLayout from '@/components/common/MainLayout';
@@ -32,7 +32,7 @@ const LandingPage = () => {
 		<MainLayout>
 			<HeroSection isLoggedIn={!isLoading && !!user} />
 			<SponserSection isLoggedIn={!isLoading && !!user} />
-			{/* <FamiliesSection isLoggedIn={!isLoading && !!user} /> */}
+			{/* <FamilySection isLoggedIn={!isLoading && !!user} /> */}
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
 			<PartnersSection />
