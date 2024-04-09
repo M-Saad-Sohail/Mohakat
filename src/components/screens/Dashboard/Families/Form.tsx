@@ -11,6 +11,8 @@ import { useFormik } from 'formik';
 import Button from '@/components/ui/Button';
 import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { number } from 'yup';
+import { toast } from 'react-toastify';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
@@ -24,7 +26,7 @@ interface FamilyMember {
 		inArabic: string;
 	};
 	memberAge: number | '';
-	MemberIdNumber: string | '';
+	MemberIdNumber: number | '';
 	memberGender: string;
 }
 
@@ -38,7 +40,7 @@ const FamilyForm = () => {
 		key: string,
 		value: string | number,
 	) => {
-		console.log(index);
+		// console.log(index);
 		const updatedMembers = [...familyMembers];
 		if (!updatedMembers[index]) {
 			updatedMembers[index] = {
@@ -65,7 +67,7 @@ const FamilyForm = () => {
 	};
 
 	useEffect(() => {
-		console.log('jj', familyMembers);
+		// console.log('jj', familyMembers);
 	}, [familyMembers]);
 
 	const t = useTranslations('AddFamilies.form');
@@ -108,19 +110,29 @@ const FamilyForm = () => {
 				);
 				if (res.success) {
 					AddFamiliesForm.resetForm()
+					toast.success(`${t('title')}`, {
+						toastId: "success",
+						position: "bottom-right",
+						autoClose: 4000,
+					  });
 				}
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
+				toast.error(`${t('fill_form_correctly')}`, {
+					toastId: "error",
+					position: "bottom-right",
+					autoClose: 4000,
+				});
 			}
 
-			console.log('form submitted', response);
+			// console.log('form submitted', response);
 		},
 	});
 
 	return (
 		<div
 			className=" scrollbarHide"
-			// dir={dir} // Set form overflow to auto
+		// dir={dir} // Set form overflow to auto
 		>
 			<div className="scrollbarHide ">
 				<h2 className="text-[24px] font-bold text-main mt-2 leading-normal py-2 ">
@@ -137,6 +149,7 @@ const FamilyForm = () => {
 							className="mb-[19px] min-w-[250px]"
 							value={AddFamiliesForm.values?.breadWinnerNameEn}
 							onChange={AddFamiliesForm.handleChange}
+
 						/>
 						<Input
 							title={'In Arabic'}
@@ -178,6 +191,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('telephone.title')}
 						name="telephoneNumber"
+						type="number"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.telephoneNumber}
 						onChange={AddFamiliesForm.handleChange}
@@ -185,6 +199,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('id.title')}
 						name="idNumber"
+						type="number"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.idNumber}
 						onChange={AddFamiliesForm.handleChange}
@@ -351,37 +366,11 @@ const FamilyForm = () => {
 						name="lossesInWar"
 						options={[
 							{ label: t('losesinwar.none'), value: 'none' },
-							{ label: t('losesinwar.1'), value: '1' },
-							{ label: t('losesinwar.2'), value: '2' },
-							{ label: t('losesinwar.3'), value: '3' },
-							// Add more entries till 30
-							{ label: t('losesinwar.4'), value: '4' },
-							{ label: t('losesinwar.5'), value: '5' },
-							{ label: t('losesinwar.6'), value: '6' },
-							{ label: t('losesinwar.7'), value: '7' },
-							{ label: t('losesinwar.8'), value: '8' },
-							{ label: t('losesinwar.9'), value: '9' },
-							{ label: t('losesinwar.10'), value: '10' },
-							{ label: t('losesinwar.11'), value: '11' },
-							{ label: t('losesinwar.12'), value: '12' },
-							{ label: t('losesinwar.13'), value: '13' },
-							{ label: t('losesinwar.14'), value: '14' },
-							{ label: t('losesinwar.15'), value: '15' },
-							{ label: t('losesinwar.16'), value: '16' },
-							{ label: t('losesinwar.17'), value: '17' },
-							{ label: t('losesinwar.18'), value: '18' },
-							{ label: t('losesinwar.19'), value: '19' },
-							{ label: t('losesinwar.20'), value: '20' },
-							{ label: t('losesinwar.21'), value: '21' },
-							{ label: t('losesinwar.22'), value: '22' },
-							{ label: t('losesinwar.23'), value: '23' },
-							{ label: t('losesinwar.24'), value: '24' },
-							{ label: t('losesinwar.25'), value: '25' },
-							{ label: t('losesinwar.26'), value: '26' },
-							{ label: t('losesinwar.27'), value: '27' },
-							{ label: t('losesinwar.28'), value: '28' },
-							{ label: t('losesinwar.29'), value: '29' },
-							{ label: t('losesinwar.30'), value: '30' },
+							{ label: t('losesinwar.car'), value: 'car' },
+							{ label: t('losesinwar.furniture'), value: 'furniture' },
+							{ label: t('losesinwar.store'), value: 'store' },
+							{ label: t('losesinwar.house'), value: 'house' },
+							{ label: t('losesinwar.business'), value: 'business' },
 						]}
 						defaultValue={t('losesinwar.default')}
 						className=" mb-[19px] min-w-[460px] mt-[2px]"
@@ -396,6 +385,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('FamilyMembers.title')}
 						name="numberOfFamilyMembers"
+						type="number"
 						className="mb-[19px] min-w-[300px]"
 						value={AddFamiliesForm.values?.numberOfFamilyMembers}
 						onChange={AddFamiliesForm.handleChange}
@@ -403,6 +393,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('MartyrInFamily.title')}
 						name="numberOfMartyrInFamily"
+						type="number"
 						className="mb-[19px] min-w-[300px]"
 						value={AddFamiliesForm.values?.numberOfMartyrInFamily}
 						onChange={AddFamiliesForm.handleChange}
@@ -410,6 +401,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('InfectedInFamily.title')}
 						name="numberOfInfectedInFamily"
+						type="number"
 						className="mb-[19px] min-w-[300px]"
 						value={AddFamiliesForm.values?.numberOfInfectedInFamily}
 						onChange={AddFamiliesForm.handleChange}
@@ -472,7 +464,7 @@ const FamilyForm = () => {
 									<Input
 										title={'Member ID Number'}
 										className="mb-[19px] min-w-[400px] "
-										type="text"
+										type="number"
 										onChange={(e) =>
 											handleMemberDetailChange(
 												i,
@@ -506,7 +498,7 @@ const FamilyForm = () => {
 				)}
 				<div className="flex my-5">
 					<Button
-						title={'Submit'}
+						title={t('title')}
 						className="max-w-[200px] px-6 shadow-custom"
 						disabled={AddFamiliesForm.isSubmitting}
 						onClick={(e) => {
