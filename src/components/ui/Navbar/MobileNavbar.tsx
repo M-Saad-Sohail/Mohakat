@@ -66,7 +66,7 @@ const MobileNavbar = () => {
 					</div>
 				</div>
 
-				<div className="navbar-lists">
+				<div className="navbar-lists py-5">
 					{Links.map((link, i) => (
 						<Link
 							key={link.name}
