@@ -334,5 +334,8 @@
 	"GazaMap": {
 		"red": "This pixel has already booked.",
 		"grey": "Click on this to get registered as a sponsor"
+	},
+	"OurPartner": {
+		"title": "Our Partners"
 	}
 }

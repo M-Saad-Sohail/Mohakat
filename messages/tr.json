@@ -329,5 +329,9 @@
 	"GazaMap": {
 		"red": "Bu piksel zaten rezerve edilmiş.",
 		"grey": "Sponsor olarak kaydolmak için buna tıklayın."
+	},
+	"OurPartner": {
+		"title": "Ortaklarımız"
+		
 	}
 }
