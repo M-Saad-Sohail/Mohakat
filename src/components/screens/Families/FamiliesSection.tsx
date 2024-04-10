@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { getJson } from '@/api/api.instances';
 import Loader from '@/components/ui/Loader';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useTranslations } from 'next-intl';
+
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
@@ -29,6 +31,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	};
 
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
+	const t = useTranslations('AddFamilies');
 
 	useEffect(() => {
 		(async () => {
@@ -51,12 +54,9 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				{/* heading and content */}
 				{!user && (
 					<div className=" flex flex-col gap-2">
-						<h2 className=" md:text-3xl text-2xl font-semibold">Families</h2>
+						<h2 className=" md:text-3xl text-2xl font-semibold">{t('title')}</h2>
 						<p className="md:text-lg text-base font-light">
-							When families receive sponsorship, they gain access to essential
-							resources and support, improving their quality of life. Donations
-							are utilized to provide food, shelter, education, and medical
-							assistance.
+							{t('description')}
 						</p>
 					</div>
 				)}
@@ -64,7 +64,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				{/* dropdowns */}
 				<div className=" flex md:flex-nowrap flex-wrap md:gap-3 gap-3">
 					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
-						<h3 className=" text-base font-medium">Area</h3>
+						<h3 className=" text-base font-medium"> {t('area')} </h3>
 						<button
 							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
 							onClick={() => handleDropDownClick(0)}
@@ -90,7 +90,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					</div>
 
 					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
-						<h3 className=" text-base font-medium">Situation</h3>
+						<h3 className=" text-base font-medium"> {t('situation')} </h3>
 						<button
 							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
 							onClick={() => handleDropDownClick(1)}
@@ -116,7 +116,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					</div>
 
 					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
-						<h3 className=" text-base font-medium">No. of Members</h3>
+						<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
 						<button
 							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
 							onClick={() => handleDropDownClick(2)}
