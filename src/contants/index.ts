@@ -127,7 +127,6 @@ export const PENDINGCOLUMN: any = [
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Country', accessor: 'country' },
 	{ Header: 'Language', accessor: 'language' },
-	{ Header: 'Action', accessor: 'action' },
 ];
 
 export const SPONSORDATA: any = [

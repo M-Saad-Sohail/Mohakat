@@ -42,11 +42,6 @@ const AdminMenus = [
 		link: PATHS.APPROVED_SPONSOR,
 	},
 	{
-		title: 'sponsor.rejected',
-		src: deny_icon,
-		link: PATHS.REJECTED_SPONSOR,
-	},
-	{
 		title: 'form_response',
 		src: form_icon,
 		link: PATHS.FORM_RESPONSES,
