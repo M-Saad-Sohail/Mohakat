@@ -11,29 +11,32 @@ const StickeyBar = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	return (
 		<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2">
-			<Link href={url(PATHS.FAMILY)} className=" bg-[#CF7475] md:p-5 p-[10px]">
+			<Link href={url(PATHS.FAMILY)} className=" bg-[#CF7475] md:p-5 p-[10px] tooltip">
 				<Image
 					src={stickeySvg1}
 					alt="stickeySvg1"
 					className=" md:w-auto w-[14px]"
 				/>
+				<span className="tooltiptext">Families</span>
 			</Link>
-			<Link href={''} className=" bg-[#E8C08A] md:p-5 p-[10px]">
+			<Link href={''} className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip">
 				<Image
 					src={stickeySvg2}
 					alt="stickeySvg2"
 					className=" md:w-auto w-[14px]"
 				/>
+				<span className="tooltiptext">example</span>
 			</Link>
 			<Link
 				href={url(PATHS.BECOME_SPONSOR)}
-				className=" bg-[#8DAE8E] md:p-5 p-[10px]"
+				className=" bg-[#8DAE8E] md:p-5 p-[10px] tooltip"
 			>
 				<Image
 					src={stickeySvg3}
 					alt="stickeySvg3"
 					className=" md:w-auto w-[14px]"
 				/>
+				<span className="tooltiptext">Become Sponser</span>
 			</Link>
 		</div>
 	);

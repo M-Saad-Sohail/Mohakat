@@ -90,3 +90,38 @@ svg {
 input[name="month"] {
 	accent-color: #CF7475;
 }
+
+/* tooltip */
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+	visibility: hidden;
+	width: 150px;
+	background-color: #555555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0px;
+	position: absolute;
+	z-index: 1;
+	top: 15px;
+	left: 110%;
+  }
+  
+  .tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #555555 transparent transparent;
+  }
+  .tooltip:hover .tooltiptext {
+	visibility: visible;
+  }

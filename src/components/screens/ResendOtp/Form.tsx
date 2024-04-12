@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
+import Button from '@/components/ui/LandingPage/Button';
 import { useFormik } from 'formik';
 import { resendOtpSchema } from '@/utils/validationSchema';
 import { useTranslations } from 'next-intl';
@@ -74,12 +75,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					className="max-w-[800px]"
 				/>
 				<div className="flex items-center justify-center w-full">
-					<Button
-						title={t('submit')}
-						className="max-w-[200px] text-base px-6"
-						type="submit"
-						isLoading={isLoading}
-					/>
+					<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] w-56" />
 				</div>
 			</div>
 		</form>

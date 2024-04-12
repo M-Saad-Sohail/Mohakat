@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 // ICONS
-import Logo from '@/assests/icons/mainlogo.png';
+import Logo from '@/assests/icons/newlogo.svg';
 import Facebook from '@/assests/icons/fb.png';
 import Twitter from '@/assests/icons/twitter.png';
 import Linkedin from '@/assests/icons/linkedin.png';

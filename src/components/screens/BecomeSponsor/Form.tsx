@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '@/components/ui//Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
+import Button from '@/components/ui/LandingPage/Button';
 import Select from '@/components/ui/Select';
 import Link from 'next/link';
 import { useFormik } from 'formik';
@@ -129,12 +130,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						/>
 
 						<div className="flex items-center justify-center w-full">
-							<Button
-								title={t('submit')}
-								className="max-w-[250px] px-6 "
-								type="submit"
-								isLoading={isLoading}
-							/>
+							<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] max-w-[300px]" />
 						</div>
 					</div>
 				</div>

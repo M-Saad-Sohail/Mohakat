@@ -1,6 +1,5 @@
 import React from 'react';
 import SignIn from '@/components/screens/Signin';
-import MainLayout from '@/components/common/MainLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,9 +8,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
 	return (
-		<MainLayout>
 			<SignIn />
-		</MainLayout>
 	);
 };
 

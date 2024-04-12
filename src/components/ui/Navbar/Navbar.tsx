@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { logo } from '@/assests';
+import Logo from '@/assests/icons/newlogo.svg';
 import { Links, PATHS } from '@/contants';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,6 +20,7 @@ const AuthNavbar = ({
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const pathname = usePathname();
+	const currentPath = pathname?.slice(1);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -50,7 +52,13 @@ const AuthNavbar = ({
 				<div className=" flex gap-6">
 					<div className="flex items-center ">
 						<Link locale={locale} href={url('/')}>
-							<Image src={logo} alt="Logo" className="mx-2 h-14 w-14" />
+							<Image
+								src={currentPath === 'en' || currentPath === 'tr' ? logo : Logo}
+								alt="Logo"
+								width={56}
+								height={56}
+								className="mx-2 h-14 w-14"
+							/>
 						</Link>
 					</div>
 					<div className="hidden py-2 md:flex">
