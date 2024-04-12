@@ -12,8 +12,13 @@ import { usePathname } from 'next/navigation';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { Links, PATHS } from '@/contants';
+import { TbBasketDollar } from 'react-icons/tb';
 
-const MobileNavbar = () => {
+const MobileNavbar = ({
+	setIsCartOpen,
+}: {
+	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const pathname = usePathname();
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,7 +58,16 @@ const MobileNavbar = () => {
 						{!active && (
 							<>
 								<Image src={EarthSvg} alt="" />
-								<Image src={ProfileSvg} alt="" />
+								{/* <Image src={ProfileSvg} alt="" /> */}
+								<div
+									className=" relative cursor-pointer"
+									onClick={() => setIsCartOpen(true)}
+								>
+									<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[8px] rounded-[50%] px-[5px] pt-[2px] pb-[1px]">
+										1
+									</span>
+									<TbBasketDollar className=" text-[32px]" />
+								</div>
 							</>
 						)}
 						<Image
@@ -77,21 +91,21 @@ const MobileNavbar = () => {
 							{t(link.localeId)}
 						</Link>
 					))}
-					<div className=' flex justify-start items-start mt-5 py-2 px-6'>
-					<Link
-								href={url(PATHS.LOGIN)}
-								locale={locale}
-								className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
-							>
-								{t('cta.signin')}
-							</Link>
-							<Link
-								href={url(PATHS.BECOME_SPONSOR)}
-								locale={locale}
-								className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
-							>
-								{t('cta.become-sponsor')}
-							</Link>
+					<div className=" flex justify-start items-start mt-5 py-2 px-6">
+						<Link
+							href={url(PATHS.LOGIN)}
+							locale={locale}
+							className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+						>
+							{t('cta.signin')}
+						</Link>
+						<Link
+							href={url(PATHS.BECOME_SPONSOR)}
+							locale={locale}
+							className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+						>
+							{t('cta.become-sponsor')}
+						</Link>
 					</div>
 				</div>
 			</div>

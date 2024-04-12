@@ -9,6 +9,7 @@ import FamilySection from './FamilySection';
 import PartnersSection from './PartnersSection';
 import ImagesSection from './ImagesSection';
 import MainLayout from '@/components/common/MainLayout';
+import AboutSection from './AboutSection';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -31,6 +32,7 @@ const LandingPage = () => {
 	return (
 		<MainLayout>
 			<HeroSection isLoggedIn={!isLoading && !!user} />
+			<AboutSection />
 			<SponserSection isLoggedIn={!isLoading && !!user} />
 			{/* <FamilySection isLoggedIn={!isLoading && !!user} /> */}
 			<MapSection isLoggedIn={!isLoading && !!user} />

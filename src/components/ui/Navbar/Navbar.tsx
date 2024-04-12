@@ -13,7 +13,11 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { TbBasketDollar } from 'react-icons/tb';
 
-const AuthNavbar = () => {
+const AuthNavbar = ({
+	setIsCartOpen,
+}: {
+	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const pathname = usePathname();
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -98,7 +102,11 @@ const AuthNavbar = () => {
 							>
 								{t('cta.become-sponsor')}
 							</Link>
-							<div className=" relative">
+
+							<div
+								className=" relative cursor-pointer"
+								onClick={() => setIsCartOpen(true)}
+							>
 								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
 									1
 								</span>

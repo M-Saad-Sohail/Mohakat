@@ -72,6 +72,10 @@ svg {
 	transition: all 0.3s linear;
 }
 
+.custom-box-shadow{
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+}
+
 
 .scrollbarHide::-webkit-scrollbar {
 	display: none;

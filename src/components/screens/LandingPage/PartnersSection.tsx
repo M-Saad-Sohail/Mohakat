@@ -6,8 +6,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getJson } from '@/api/api.instances';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const PartnersSection = () => {
+	
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+
 	const settings1: any = {
 		infinite: true,
 		slidesToShow: 5,
@@ -75,7 +79,7 @@ const PartnersSection = () => {
 	}, []);
 	return (
 		<>
-			<section className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
+			<section dir={dir} className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
 				<div>
 					<h2 className=" md:text-3xl text-2xl font-semibold">Our Partners</h2>
 				</div>

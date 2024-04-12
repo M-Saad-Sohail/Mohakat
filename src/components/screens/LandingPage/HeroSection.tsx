@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { toast } from 'react-toastify';
+import { PATHS } from '@/contants';
 
 interface HeroDataType {
 	heading: string;
@@ -96,10 +97,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData.description}
 					</p>
 					<div className=" flex flex-wrap gap-5 justify-center w-[80%] mx-auto">
-						<Link href={url('/families')}>
+						<Link href={url(PATHS.FAMILY)}>
 						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
 						</Link>
-						<Link href={url('/become-sponsor')}>
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
 						<Button title={t('BecomeaSponser.title')} className=" bg-[#8DAE8E]" />
 						</Link>
 						<Button onClick={()=>{

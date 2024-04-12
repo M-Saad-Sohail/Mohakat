@@ -1,5 +1,6 @@
 'use client';
 
+import Cart from '@/components/ui/Cart';
 import Footer from '@/components/ui/Footer';
 import { Navbar } from '@/components/ui/Navbar';
 import MobileNavbar from '@/components/ui/Navbar/MobileNavbar';
@@ -7,7 +8,7 @@ import StickeyBar from '@/components/ui/StickeyBar';
 import { PATHS } from '@/contants';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
-import React from 'react';
+import React, { useState } from 'react';
 
 type MainLayoutProps = {
 	children: React.ReactNode;
@@ -17,12 +18,13 @@ type MainLayoutProps = {
 const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { user, isLoading } = useLoggedInUser();
 	const { redirectWithLocale } = useLocaleRouter();
+	const [isCartOpen, setIsCartOpen] = useState(false)
 
 	if (fromGazaMap) {
 		return (
 			<div>
-				<Navbar />
-				<MobileNavbar />
+				<Navbar setIsCartOpen={setIsCartOpen} />
+				<MobileNavbar setIsCartOpen={setIsCartOpen} />
 				{children}
 				<Footer />
 			</div>
@@ -43,9 +45,10 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 
 	return (
 		<div className=" relative">
-			<Navbar />
-			<MobileNavbar />
+			<Navbar setIsCartOpen={setIsCartOpen} />
+			<MobileNavbar setIsCartOpen={setIsCartOpen} />
 			<StickeyBar />
+			<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
 			{children}
 			<Footer />
 		</div>

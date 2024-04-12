@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { toast } from 'react-toastify';
+import { PATHS } from '@/contants';
 
 interface SponserDataType {
 	heading: string;
@@ -87,7 +88,10 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, []);
 
 	return (
-		<section className=" md:w-[80%] w-[90%] flex flex-col md:gap-20 gap-12 py-14 mx-auto">
+		<section
+			dir={dir}
+			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto"
+		>
 			<div className=" flex flex-col gap-4">
 				<h2 className=" md:text-3xl text-2xl font-semibold">
 					{sponserData?.heading}
@@ -96,19 +100,26 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					{sponserData?.description}
 				</p>
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
-					<Link href={url('/families')}>
+					<Link href={url(PATHS.FAMILY)}>
 						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
-						</Link>
-						<Link href={url('/become-sponsor')}>
-						<Button title={t('BecomeaSponser.title')} className=" bg-[#8DAE8E]" />
-						</Link>
-						<Button onClick={()=>{
+					</Link>
+					<Link href={url(PATHS.BECOME_SPONSOR)}>
+						<Button
+							title={t('BecomeaSponser.title')}
+							className=" bg-[#8DAE8E]"
+						/>
+					</Link>
+					<Button
+						onClick={() => {
 							toast.error(`This feature is in progress`, {
 								toastId: 'success',
 								position: 'bottom-right',
 								autoClose: 4000,
 							});
-						}} title={t('RegisterasFamily.title')} className=" bg-[#000000]" />
+						}}
+						title={t('RegisterasFamily.title')}
+						className=" bg-[#000000]"
+					/>
 				</div>
 			</div>
 			<div className=" flex md:flex-row flex-col justify-between md:gap-0 gap-6">
