@@ -10,7 +10,6 @@ import Loader from '@/components/ui/Loader';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useTranslations } from 'next-intl';
 
-
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
@@ -46,6 +45,22 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		})();
 	}, []);
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				event.target instanceof HTMLElement &&
+				!event.target.closest('.closeDropdown')
+			) {
+				setOpenDropDown([false, false, false]);
+			}
+		};
+
+		document.body.addEventListener('click', handleClickOutside);
+		return () => {
+			document.body.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
+
 	return (
 		<>
 			<section
@@ -54,7 +69,9 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				{/* heading and content */}
 				{!user && (
 					<div className=" flex flex-col gap-2">
-						<h2 className=" md:text-3xl text-2xl font-semibold">{t('title')}</h2>
+						<h2 className=" md:text-3xl text-2xl font-semibold">
+							{t('title')}
+						</h2>
 						<p className="md:text-lg text-base font-light">
 							{t('description')}
 						</p>
@@ -63,10 +80,10 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 
 				{/* dropdowns */}
 				<div className=" flex md:flex-nowrap flex-wrap md:gap-3 gap-3">
-					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
+					<div className="relative flex flex-col gap-2 md:w-64 w-[48%]">
 						<h3 className=" text-base font-medium"> {t('area')} </h3>
 						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
+							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 							onClick={() => handleDropDownClick(0)}
 						>
 							<span className=" md:text-base text-sm font-medium text-[#00000080] capitalize ">
@@ -83,7 +100,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[0] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-300 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
 						>
 							<p></p>
 						</div>
@@ -92,7 +109,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
 						<h3 className=" text-base font-medium"> {t('situation')} </h3>
 						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
+							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 							onClick={() => handleDropDownClick(1)}
 						>
 							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
@@ -109,7 +126,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[1] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-300 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
 						>
 							<p></p>
 						</div>
@@ -118,7 +135,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
 						<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
 						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer"
+							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 							onClick={() => handleDropDownClick(2)}
 						>
 							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
@@ -135,7 +152,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[2] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-300 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
 						>
 							<p></p>
 						</div>

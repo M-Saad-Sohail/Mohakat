@@ -7,7 +7,7 @@ import Button from '../LandingPage/Button';
 
 const FamilyCard = () => {
 	return (
-		<div className="flex flex-col gap-[10px] justify-between bg-[#F8F8F8] rounded-xl p-4">
+		<div className="flex flex-col gap-[10px] justify-between bg-[#F8F8F8] rounded-xl p-4 shadow-md">
 			<div className=" flex justify-between">
 				<h3 className="text-sm font-semibold">Family Name</h3>
 				<h3 className="text-sm font-semibold">$300</h3>

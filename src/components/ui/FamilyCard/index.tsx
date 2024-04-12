@@ -27,7 +27,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4">
+			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md">
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
