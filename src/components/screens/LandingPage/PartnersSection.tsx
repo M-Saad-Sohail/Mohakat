@@ -7,6 +7,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getJson } from '@/api/api.instances';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { useTranslations } from 'next-intl';
+
 
 const PartnersSection = () => {
 	
@@ -66,7 +68,7 @@ const PartnersSection = () => {
 		],
 	};
 	const [partnerData, setPartnerData] = useState<any>();
-
+	const t = useTranslations('OurPartner');
 	useEffect(() => {
 		(async () => {
 			const res = await getJson(
@@ -81,7 +83,7 @@ const PartnersSection = () => {
 		<>
 			<section dir={dir} className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
 				<div>
-					<h2 className=" md:text-3xl text-2xl font-semibold">Our Partners</h2>
+					<h2 className=" md:text-3xl text-2xl font-semibold"> {t('title')} </h2>
 				</div>
 
 				{/* partners card */}

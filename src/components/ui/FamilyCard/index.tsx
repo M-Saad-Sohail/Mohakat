@@ -39,9 +39,11 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* second div */}
 				<div className=" flex flex-col gap-3">
 					<h2 className="  text-2xl font-semibold">
-						{familyData?.breadWinnerName
-							? familyData?.breadWinnerName?.inEnglish
-							: 'Unknown'}
+					{
+						familyData?.breadWinnerName
+						? familyData?.breadWinnerName?.inEnglish
+						: 'Unknown'
+					}
 					</h2>
 					{/* people and location div */}
 					<div className=" flex gap-8">

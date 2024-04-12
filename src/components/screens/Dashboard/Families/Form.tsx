@@ -181,6 +181,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('age.title')}
 						name="age"
+						type = "number"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.age}
 						onChange={AddFamiliesForm.handleChange}

@@ -162,6 +162,10 @@
 	},
 	"AddFamilies": {
 		"title": "Aileler",
+		"description": "Aileler sponsorluk aldığında temel kaynaklara ve desteğe erişerek yaşam kalitelerini artırırlar. Bağışlar yiyecek, barınma, eğitim ve tıbbi yardım sağlamak için kullanılıyor.",
+		"area": "alan",
+		"situation": "durum",
+		"no_of_member": "Üye Sayısı",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
 			"title": "Aile Ekle",
@@ -325,5 +329,9 @@
 	"GazaMap": {
 		"red": "Bu piksel zaten rezerve edilmiş.",
 		"grey": "Sponsor olarak kaydolmak için buna tıklayın."
+	},
+	"OurPartner": {
+		"title": "Ortaklarımız"
+		
 	}
 }
