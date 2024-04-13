@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 import Button from '../LandingPage/Button';
 import Image from 'next/image';
-import FamilyCard from './FamilyCard';
+import Card from './Card';
+import { useSelector } from 'react-redux';
 
 const Cart = ({
 	isCartOpen,
@@ -11,6 +12,7 @@ const Cart = ({
 	isCartOpen: boolean;
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+	const cartItems = useSelector((state: any) => state.cart);
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -49,16 +51,20 @@ const Cart = ({
 					</span>
 				</div>
 				<div className=" h-full flex flex-col gap-[10px] px-6 py-5 overflow-y-auto scrollbarHide">
-					<FamilyCard />
-					<FamilyCard />
-					<FamilyCard />
-					<FamilyCard />
-					<FamilyCard />
+					{cartItems.length > 0 ? (
+						cartItems.map((item: any, i: number) => (
+							<Card key={i} family={item} />
+						))
+					) : (
+						<h3 className="text-lg text-center font-semibold">
+							No Family Added
+						</h3>
+					)}
 				</div>
 				<div className=" bg-white w-full flex flex-col justify-between gap-[10px] px-6 pt-3 pb-5">
 					<div className=" flex justify-between">
 						<h3 className="text-lg font-semibold">Total</h3>
-						<h3 className="text-lg font-semibold">$600</h3>
+						<h3 className="text-lg font-semibold">$0</h3>
 					</div>
 					<Button
 						title="Proceed to Checkout"

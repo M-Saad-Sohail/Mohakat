@@ -13,6 +13,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { TbBasketDollar } from 'react-icons/tb';
+import { useSelector } from 'react-redux';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -45,6 +46,8 @@ const AuthNavbar = ({
 	if (currentPathName === '') {
 		currentPathName = '/';
 	}
+
+	const cartItems = useSelector((state: any) => state.cart);
 
 	return (
 		<div dir={dir} className="h-fit hidden md:block">
@@ -116,7 +119,7 @@ const AuthNavbar = ({
 								onClick={() => setIsCartOpen(true)}
 							>
 								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
-									1
+									{cartItems.length > 0 ? cartItems.length : '0'}
 								</span>
 								<TbBasketDollar className=" text-[40px]" />
 							</div>

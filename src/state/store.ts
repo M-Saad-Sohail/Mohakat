@@ -15,17 +15,19 @@ import storage from 'redux-persist/lib/storage'; //
 import UserReducer from './../state/user';
 import LoadingReducer from './../state/loading';
 import LandingReducer from './landingpage';
+import cartReducer from './cart';
 
 const rootReducer = combineReducers({
 	user: UserReducer,
 	loading: LoadingReducer,
 	landingpage: LandingReducer,
+	cart: cartReducer,
 });
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['loading', 'landingpage'],
+	blacklist: ['loading', 'landingpage', 'cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -9,11 +9,14 @@ import FamilyModal from '../Modals/FamilyModal';
 import DonateModal from '../Modals/DonateModal';
 import { useTranslations } from 'next-intl';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAddCartStateAction } from '@/state/cart';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
 	isLoggedIn,
 }) => {
+	const dispatch = useDispatch();
 	const t = useTranslations('AddFamilies.form');
 	const { user } = useLoggedInUser();
 	const [amount, setAmount] = useState<number>(0);
@@ -23,6 +26,12 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	const cancelDonateButtonRef = useRef(null);
 
 	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
+
+	// Get cart items from Redux store
+	const cartItems = useSelector((state: any) => state.cart);
+
+	// Check if familyData is already in the cart
+	const isInCart = cartItems.some((item: any) => item._id === familyData?._id);
 
 	return (
 		<>
@@ -108,7 +117,18 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						title={`${user ? `Sponser` : `Donate a share`}`}
 						className=" bg-[#8DAE8E]"
 					/>
-					<Button title="Add to Basket" className=" bg-[#000000]" />
+					{isInCart ? (
+						<Button
+							title="Already Added"
+							className=" bg-[#555555] md:px-5"
+						/>
+					) : (
+						<Button
+							title="Add to Basket"
+							className=" bg-[#000000]"
+							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
+						/>
+					)}
 				</div>
 			</div>
 			<FamilyModal
