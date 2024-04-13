@@ -9,10 +9,16 @@ import { getJson } from '@/api/api.instances';
 import Loader from '@/components/ui/Loader';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useTranslations } from 'next-intl';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
+	const data = useSelector<RootState, any>((state) => state.landingpage);
+	useEffect(() => {
+		console.log("alag page data",data);
+	}, [data]);
 	const { user } = useLoggedInUser();
 	const [isLoading, setIsLoading] = useState(true);
 	const [openDropDown, setOpenDropDown] = useState<boolean[]>([
@@ -39,7 +45,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/families`,
 			);
 			if (res.success) {
-				console.log(res.familySponser);
 				setFamiliesData(res.familySponser);
 				setIsLoading(false);
 			}

@@ -8,21 +8,40 @@ import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLandingStateAction } from '@/state/landingpage';
+import { RootState } from '@/state/store';
 
 const ImagesSection = () => {
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const [imagesData, setImagesData] = useState<any>();
 	const t = useTranslations('HeroMainSection.btns');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
-	useEffect(() => {
+	const fetchLandingImages = async () => {
 		(async () => {
 			const res = await getJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-landing-img`,
 			);
 			if (res.success) {
 				setImagesData(res.landingPageSlider);
+				dispatch(
+					setIsLandingStateAction({
+						key: 'landingPageSlider',
+						value: res.landingPageSlider,
+					}),
+				);
 			}
 		})();
+	};
+
+	useEffect(() => {
+		if (data.landingPageSlider) {
+			setImagesData(data.landingPageSlider);
+		} else {
+			fetchLandingImages();
+		}
 	}, []);
 
 	return (

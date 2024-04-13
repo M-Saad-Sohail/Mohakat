@@ -8,10 +8,14 @@ import 'slick-carousel/slick/slick-theme.css';
 import { getJson } from '@/api/api.instances';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useTranslations } from 'next-intl';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
+import { setIsLandingStateAction } from '@/state/landingpage';
 
 
 const PartnersSection = () => {
-	
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	const settings1: any = {
@@ -69,15 +73,30 @@ const PartnersSection = () => {
 	};
 	const [partnerData, setPartnerData] = useState<any>();
 	const t = useTranslations('OurPartner');
-	useEffect(() => {
+
+	const fetchPartners = () =>{
 		(async () => {
 			const res = await getJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-partner`,
 			);
 			if (res.success) {
 				setPartnerData(res.partner);
+				dispatch(
+					setIsLandingStateAction({
+						key: 'partner',
+						value: res.partner,
+					}),
+				);
 			}
 		})();
+	}
+	
+	useEffect(() => {
+		if (data.partner) {
+			setPartnerData(data.partner);
+		} else {
+			fetchPartners()
+		}
 	}, []);
 	return (
 		<>

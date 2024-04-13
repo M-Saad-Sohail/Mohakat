@@ -10,6 +10,9 @@ import Link from 'next/link';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { toast } from 'react-toastify';
 import { PATHS } from '@/contants';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLandingStateAction } from '@/state/landingpage';
+import { RootState } from '@/state/store';
 
 interface HeroDataType {
 	heading: string;
@@ -17,6 +20,8 @@ interface HeroDataType {
 }
 
 const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [imagesData, setImagesData] = useState<any>();
@@ -45,20 +50,49 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			});
 		}
 	};
+
+	const fetchHeroData = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero`,
+		);
+		if (res.success) {
+			handleHeroData(currentPath, res.newHero[0]);
+			dispatch(
+				setIsLandingStateAction({
+					key: 'newHero',
+					value: res.newHero[0],
+				}),
+			);
+		}
+	};
+
+	const fetchHeroImages = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
+		);
+		if (res.success) {
+			setImagesData(res.heroSlider);
+			dispatch(
+				setIsLandingStateAction({
+					key: 'heroSlider',
+					value: res.heroSlider,
+				}),
+			);
+		}
+	};
+
 	useEffect(() => {
 		(async () => {
 			try {
-				const res = await getJson(
-					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero`,
-				);
-				if (res.success) {
-					handleHeroData(currentPath, res.newHero[0]);
+				if (data.newHero) {
+					handleHeroData(currentPath, data.newHero);
+				} else {
+					fetchHeroData();
 				}
-				const resImg = await getJson(
-					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
-				);
-				if (resImg.success) {
-					setImagesData(resImg.heroSlider);
+				if (data.heroSlider) {
+					setImagesData(data.heroSlider);
+				} else {
+					fetchHeroImages();
 				}
 			} catch (error) {
 				console.log(error);
@@ -98,18 +132,28 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</p>
 					<div className=" flex flex-wrap gap-5 justify-center w-[85%] mx-auto">
 						<Link href={url(PATHS.FAMILY)}>
-						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
+							<Button
+								title={t('DonateaShare.title')}
+								className=" bg-[#CF7475]"
+							/>
 						</Link>
 						<Link href={url(PATHS.BECOME_SPONSOR)}>
-						<Button title={t('BecomeaSponser.title')} className=" bg-[#8DAE8E]" />
+							<Button
+								title={t('BecomeaSponser.title')}
+								className=" bg-[#8DAE8E]"
+							/>
 						</Link>
-						<Button onClick={()=>{
-							toast.error(`This feature is in progress`, {
-								toastId: 'success',
-								position: 'bottom-right',
-								autoClose: 4000,
-							});
-						}} title={t('RegisterasFamily.title')} className=" bg-[#000000]" />
+						<Button
+							onClick={() => {
+								toast.error(`This feature is in progress`, {
+									toastId: 'success',
+									position: 'bottom-right',
+									autoClose: 4000,
+								});
+							}}
+							title={t('RegisterasFamily.title')}
+							className=" bg-[#000000]"
+						/>
 					</div>
 					<div className=" h-[45%] flex gap-3">
 						<div className="">

@@ -8,6 +8,9 @@ import Link from 'next/link';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { toast } from 'react-toastify';
 import { PATHS } from '@/contants';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
+import { setIsLandingStateAction } from '@/state/landingpage';
 
 interface SponserDataType {
 	heading: string;
@@ -15,6 +18,8 @@ interface SponserDataType {
 }
 
 const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [featureData, setFeatureData] = useState<any[]>([]);
@@ -24,6 +29,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		heading: '',
 		description: '',
 	});
+	
 	const handleFeatureData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setFeatureData((prev: any) => [
@@ -45,7 +51,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	};
 
-	useEffect(() => {
+	const fetchFeature = () => {
 		(async () => {
 			const res = await getJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-feature`,
@@ -53,9 +59,15 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			if (res.success) {
 				setFeatureData([]);
 				res.feature.map((item: any) => handleFeatureData(currentPath, item));
+				dispatch(
+					setIsLandingStateAction({
+						key: 'feature',
+						value: res.feature,
+					}),
+				);
 			}
 		})();
-	}, []);
+	};
 
 	const handleSponserData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -76,15 +88,35 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	};
 
-	useEffect(() => {
+	const fetchActions = () => {
 		(async () => {
 			const res = await getJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-action`,
 			);
 			if (res.success) {
 				handleSponserData(currentPath, res.newPost[0]);
+				dispatch(
+					setIsLandingStateAction({
+						key: 'newPost',
+						value: res.newPost[0],
+					}),
+				);
 			}
 		})();
+	};
+
+	useEffect(() => {
+		if (data.feature) {
+			setFeatureData([]);
+			data.feature.map((item: any) => handleFeatureData(currentPath, item));
+		} else {
+			fetchFeature();
+		}
+		if (data.newPost) {
+			handleSponserData(currentPath, data.newPost);
+		} else {
+			fetchActions();
+		}
 	}, []);
 
 	return (
