@@ -11,16 +11,24 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useTranslations } from 'next-intl';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
+import { areasData } from '@/contants/Areas';
+import { situationData } from '@/contants/Situations';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	useEffect(() => {
-		console.log("alag page data",data);
+		console.log('alag page data', data);
 	}, [data]);
 	const { user } = useLoggedInUser();
 	const [isLoading, setIsLoading] = useState(true);
+	const [familiesData, setFamiliesData] = useState<any[]>([]);
+	const [filteredData, setFilteredData] = useState<any[]>([]);
+	const t = useTranslations('AddFamilies');
+	const [area, setArea] = useState('');
+	const [situation, setSituation] = useState('');
+	const [member, setMember] = useState<number>();
 	const [openDropDown, setOpenDropDown] = useState<boolean[]>([
 		false,
 		false,
@@ -35,8 +43,30 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		setOpenDropDown(newOpenDropDown);
 	};
 
-	const [familiesData, setFamiliesData] = useState<any[]>([]);
-	const t = useTranslations('AddFamilies');
+	const filterData = (type: string, value: any) => {
+		console.log(value);
+		// FOR AREAS
+		if (type === 'area') {
+			const filteredItems = familiesData.filter(
+				(item) => item.areaOfCurrentResidence === value,
+			);
+			setFilteredData(filteredItems);
+		}
+		// FOR SITUATION
+		if (type === 'situation') {
+			const filteredItems = familiesData.filter(
+				(item) => item.currentSituation === value,
+			);
+			setFilteredData(filteredItems);
+		}
+		// FOR MEMBERS
+		if (type === 'member') {
+			const filteredItems = familiesData.filter(
+				(item) => item.numberOfFamilyMembers <= value,
+			);
+			setFilteredData(filteredItems);
+		}
+	};
 
 	useEffect(() => {
 		(async () => {
@@ -46,6 +76,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			);
 			if (res.success) {
 				setFamiliesData(res.familySponser);
+				setFilteredData(res.familySponser);
 				setIsLoading(false);
 			}
 		})();
@@ -93,7 +124,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							onClick={() => handleDropDownClick(0)}
 						>
 							<span className=" md:text-base text-sm font-medium text-[#00000080] capitalize ">
-								{'Select'}
+								{area ? area : 'Select'}
 							</span>
 							<span>
 								{openDropDown[0] ? (
@@ -106,9 +137,22 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[0] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
-							<p></p>
+							{areasData.map((item, i) => {
+								return (
+									<p
+										key={i}
+										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										onClick={() => {
+											filterData('area', item.value);
+											setArea(item.value);
+										}}
+									>
+										{t(`form.currentresidence.${item.label}`)}
+									</p>
+								);
+							})}
 						</div>
 					</div>
 
@@ -119,7 +163,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							onClick={() => handleDropDownClick(1)}
 						>
 							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-								{'Select'}
+								{situation ? situation : 'Select'}
 							</span>
 							<span>
 								{openDropDown[1] ? (
@@ -132,9 +176,22 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[1] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
-							<p></p>
+							{situationData.map((item, i) => {
+								return (
+									<p
+										key={i}
+										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										onClick={() => {
+											filterData('situation', item.value);
+											setSituation(item.value);
+										}}
+									>
+										{t(`form.currentsituation.${item.label}`)}
+									</p>
+								);
+							})}
 						</div>
 					</div>
 
@@ -145,7 +202,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							onClick={() => handleDropDownClick(2)}
 						>
 							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
-								{'Select'}
+								{member ? member : 'Select'}
 							</span>
 							<span>
 								{openDropDown[2] ? (
@@ -158,9 +215,23 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[2] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] bg-gray-200 scroll-marketplace-dropdown `}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
-							<p></p>
+							{[3, 6, 9, 12].map((item, i) => {
+								return (
+									<p
+										key={i}
+										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										onClick={() => {
+											filterData('member', item);
+											setMember(item);
+										}}
+									>
+										{/* {t(`form.currentsituation.${item.label}`)} */}
+										{item}
+									</p>
+								);
+							})}
 						</div>
 					</div>
 				</div>
@@ -168,11 +239,11 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					<div className=" flex justify-center items-center h-32">
 						<Loader />
 					</div>
-				) : familiesData && familiesData.length > 0 ? (
+				) : filteredData && filteredData.length > 0 ? (
 					<>
 						{/* cards */}
 						<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">
-							{familiesData.map((family, i) => (
+							{filteredData.map((family, i) => (
 								<FamilyCard
 									key={i}
 									familyData={family}
