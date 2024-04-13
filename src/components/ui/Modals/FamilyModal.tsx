@@ -24,7 +24,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
 
-	const [selectedOption, setSelectedOption] = useState<string>('');
+	const [selectedOption, setSelectedOption] = useState<string>('3');
 
 	// Function to handle radio button change
 	const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,20 +38,20 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 		if (selectedOption === '3') {
 			newAmount = numberOfPersons <= 3 ? 300 * 3 : 500 * 3;
 		} else if (selectedOption === '6') {
-			newAmount = numberOfPersons <= 3 ? 600 * 6 : 1000 * 6;
+			newAmount = numberOfPersons <= 3 ? 300 * 6 : 500 * 6;
 		} else if (selectedOption === '9') {
-			newAmount = numberOfPersons <= 3 ? 900 * 9 : 1500 * 9;
+			newAmount = numberOfPersons <= 3 ? 300 * 9 : 500 * 9;
 		} else if (selectedOption === '12') {
-			newAmount = numberOfPersons <= 3 ? 1200 * 12 : 2000 * 12;
+			newAmount = numberOfPersons <= 3 ? 300 * 12 : 500 * 12;
 		}
 		setAmount && setAmount(newAmount);
 	};
 
 	useEffect(() => {
-		if (selectedOption === '') {
-			setAmount && setAmount(0);
-		}
-	}, [selectedOption]);
+		setSelectedOption('3');
+		calculateAmount('3', familyInfo?.numberOfFamilyMembers);
+	}, [open]);
+
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>

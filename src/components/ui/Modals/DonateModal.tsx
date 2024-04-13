@@ -21,7 +21,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 	amount,
 	setAmount,
 }) => {
-	console.log('amou', amount);
 	const { user } = useLoggedInUser();
 	useEffect(() => {
 		DonateForm.setFieldValue('totalAmount', amount);

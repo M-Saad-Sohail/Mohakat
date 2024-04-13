@@ -24,7 +24,6 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 
 	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
 
-
 	return (
 		<>
 			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md">
@@ -34,16 +33,15 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						title={familyData?.currentSituation || 'Nil'}
 						className=" bg-[#CF7475]"
 					/>
+					{user && <span className=" text-lg font-semibold">${amount}</span>}
 				</div>
 
 				{/* second div */}
 				<div className=" flex flex-col gap-3">
 					<h2 className="  text-2xl font-semibold">
-					{
-						familyData?.breadWinnerName
-						? familyData?.breadWinnerName?.inEnglish
-						: 'Unknown'
-					}
+						{familyData?.breadWinnerName
+							? familyData?.breadWinnerName?.inEnglish
+							: 'Unknown'}
 					</h2>
 					{/* people and location div */}
 					<div className=" flex gap-8">
