@@ -108,112 +108,110 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											<h2 className="  text-2xl font-semibold">
 												{familyInfo?.breadWinnerName.inEnglish}
 											</h2>
-											{/* people and location div */}
-											<div className=" flex gap-8">
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('id.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.idNumber}
-													</span>
+											
+											<div className=" flex gap-5">
+												{/* first column */}
+												<div className=" flex flex-col gap-3">
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('id.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.idNumber}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('age.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.age}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('martialstatus.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.maritalStatus}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('losesinwar.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.lossesInWar}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('previousresidence.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.areaOfPreviousResidence}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('MartyrInFamily.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.numberOfMartyrInFamily}
+														</span>
+													</div>
 												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													{/* <Image src={PeopleSvg} alt="people" /> */}
-													<span className=" text-base font-semibold">
-														{t('FamilyMembers.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.numberOfFamilyMembers}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('losesinwar.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.lossesInWar}
-													</span>
-												</div>
-											</div>
-											<div className=" flex gap-8">
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('gender.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.gender}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('age.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.age}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('dob.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.dateOfBirth}
-													</span>
-												</div>
-											</div>
-											<div className=" flex gap-8">
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('martialstatus.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.maritalStatus}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('language.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.language}
-													</span>
-												</div>
-											</div>
-											<div className=" flex gap-8">
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('previousresidence.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.areaOfPreviousResidence}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('currentresidence.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.areaOfCurrentResidence}
-													</span>
-												</div>
-											</div>
-											<div className=" flex gap-8">
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('MartyrInFamily.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.numberOfMartyrInFamily}
-													</span>
-												</div>
-												<div className=" flex gap-2 justify-center items-center">
-													<span className=" text-base font-semibold">
-														{t('InfectedInFamily.title')}:
-													</span>
-													<span className=" text-base font-normal">
-														{familyInfo?.numberOfInfectedInFamily}
-													</span>
+
+												{/* second column */}
+												<div className=" flex flex-col gap-3">
+													<div className=" flex ">
+														<span className=" text-base font-semibold">
+															{t('gender.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.gender}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('dob.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.dateOfBirth}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('language.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.language}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('FamilyMembers.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.numberOfFamilyMembers}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('currentresidence.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.areaOfCurrentResidence}
+														</span>
+													</div>
+													<div className=" flex">
+														<span className=" text-base font-semibold">
+															{t('InfectedInFamily.title')}:
+														</span>
+														<span className=" text-base font-normal">
+															{familyInfo?.numberOfInfectedInFamily}
+														</span>
+													</div>
 												</div>
 											</div>
 										</div>
