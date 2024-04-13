@@ -39,6 +39,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/families`,
 			);
 			if (res.success) {
+				console.log(res.familySponser);
 				setFamiliesData(res.familySponser);
 				setIsLoading(false);
 			}
