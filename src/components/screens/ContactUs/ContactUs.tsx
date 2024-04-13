@@ -9,7 +9,7 @@ const ContactUs = () => {
 	return (
 		<section className={` md:w-[80%] py-12 w-[90%] mx-auto flex gap-8 `}>
 			<div className=" flex flex-1 flex-col gap-5">
-				<h2 className=" flex flex-col gap-4 text-5xl font-bold text-[#CF7475]">
+				<h2 className=" flex flex-col gap-4 text-5xl font-extrabold text-[#CF7475]">
 					{' '}
 					<span>Contact</span>
 					<span>Information</span>

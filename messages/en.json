@@ -246,6 +246,7 @@
 				"bad": "Bad",
 				"good": "Good",
 				"worst": "Worst",
+				"urgentneeded": "Urgently Needed",
 				"default": "Select Current Situation"
 			},
 			"losesinwar": {

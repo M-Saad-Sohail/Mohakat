@@ -8,6 +8,7 @@ export const PATHS = {
 	HOME: '/',
 	FAMILY: '/families',
 	CONTACTUS: '/contact',
+	FQAS: '/faqs',
 	FORGETPASSWORD: '/forget-password',
 	LOGIN: '/sign-in',
 	BECOME_SPONSOR: '/become-sponsor',
@@ -83,6 +84,7 @@ export const AddFamiliesValues = {
 export const Links = [
 	{ localeId: 'links.0', name: 'Home', link: '/' },
 	{ localeId: 'links.1', name: 'Families', link: '/families' },
+	{ localeId: 'links.3', name: 'FAQs', link: '/faqs' },
 	{ localeId: 'links.4', name: 'Contact Us', link: '/contact' },
 ];
 

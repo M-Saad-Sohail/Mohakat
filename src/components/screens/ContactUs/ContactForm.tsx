@@ -2,6 +2,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import Input from '@/components/ui//Input';
+import Button from '@/components/ui/LandingPage/Button';
 
 const ContactForm = () => {
 	const ContactForm = useFormik({
@@ -34,7 +35,7 @@ const ContactForm = () => {
 				onChange={ContactForm.handleChange}
 			/>
 			<div className=" flex flex-col gap-4">
-				<label className="text-[14px] font-bold font-sans text-primary">
+				<label className="text-[16px] font-bold font-sans text-primary">
 					Message
 				</label>
 				<textarea
@@ -49,9 +50,7 @@ const ContactForm = () => {
 				/>
 			</div>
 			<div className=" flex justify-end">
-				<button className=" rounded-[30px] py-[12px] px-[40px] bg-[#000000] text-[#FFFFFF] text-base font-bold">
-					Send
-				</button>
+				<Button title={'Send'} className=" bg-[#000000]" />
 			</div>
 		</form>
 	);
