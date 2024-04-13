@@ -67,10 +67,6 @@ const FamilyForm = () => {
 		setFamilyMembers(updatedMembers);
 	};
 
-	useEffect(() => {
-		// console.log('jj', familyMembers);
-	}, [familyMembers]);
-
 	const t = useTranslations('AddFamilies.form');
 	const dir = useDirection();
 	const { changeLocale } = useLocaleRouter();

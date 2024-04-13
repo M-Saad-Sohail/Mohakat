@@ -106,7 +106,7 @@ const AuthNavbar = ({
 							<Link
 								href={url(PATHS.BECOME_SPONSOR)}
 								locale={locale}
-								className={`duration-500 md:flex hidden float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+								className={`duration-500 md:flex hidden float-right mr-4 bg-[#8DAE8E] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
 								{t('cta.become-sponsor')}
 							</Link>
