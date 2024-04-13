@@ -14,7 +14,6 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/random-families`,
 			);
 			if (res.success) {
-				localStorage.setItem('randomFamilies', res.randomFamilies);
 				console.log(res.randomFamilies);
 				setFamiliesData(res.randomFamilies);
 				setIsLoading(false);

@@ -2,7 +2,9 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import {
-	persistStore, persistReducer, FLUSH,
+	persistStore,
+	persistReducer,
+	FLUSH,
 	REHYDRATE,
 	PAUSE,
 	PERSIST,
@@ -12,16 +14,18 @@ import {
 import storage from 'redux-persist/lib/storage'; //
 import UserReducer from './../state/user';
 import LoadingReducer from './../state/loading';
+import LandingReducer from './landingpage';
 
 const rootReducer = combineReducers({
 	user: UserReducer,
 	loading: LoadingReducer,
+	landingpage: LandingReducer,
 });
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['loading'],
+	blacklist: ['loading', 'landingpage'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -33,7 +37,7 @@ const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		})
+		});
 	},
 });
 
