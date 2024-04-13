@@ -34,7 +34,7 @@ const Input: React.FC<IProps> = ({
 			style={style}
 		>
 			<label
-				className="text-[14px] font-bold font-sans text-primary"
+				className="text-[16px] font-bold font-sans text-primary"
 				htmlFor={name}
 			>
 				{title}
