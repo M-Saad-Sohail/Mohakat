@@ -85,7 +85,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${user ? 'h-[95vh]' : 'h-[85vh]'} flex flex-col gap-5 p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw] `}
+									className={` ${user ? 'h-[95vh]' : 'h-[90vh]'} flex flex-col justify-between p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw] `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
@@ -108,7 +108,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											<h2 className="  text-2xl font-semibold">
 												{familyInfo?.breadWinnerName.inEnglish}
 											</h2>
-											
+
 											<div className=" flex gap-5">
 												{/* first column */}
 												<div className=" flex flex-col gap-3">
