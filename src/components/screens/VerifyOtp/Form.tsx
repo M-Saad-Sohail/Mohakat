@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Input from '@/components/ui/Input';
 // import Button from '@/components/ui/Button';
 import Button from '@/components/ui/LandingPage/Button';
@@ -12,16 +12,19 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 type IProps = {
-	submitHandler: (otp: string) => Promise<boolean>;
+	submitHandler: (otp: any) => Promise<boolean>;
 	isLoading: boolean;
 	fromGazaMap?: boolean;
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	const { url, replace } = useLocaleRouter();
+	let numberOfDigits = 6;
+	const [otp, setOtp] = useState<string[]>(new Array(numberOfDigits).fill(''));
+	const otpBoxReference = useRef<any[]>([]);
 
-	const onSubmit = async (values: { otp: string }) => {
-		const success = await submitHandler(values.otp);
+	const onSubmit = async (values: { otp: any }) => {
+		const success = await submitHandler(otp.toString().replace(/,/g, ""));
 		if (!success) return;
 		const href = fromGazaMap ? PATHS.DASHBOARD : PATHS.LOGIN;
 		replace(href);
@@ -31,7 +34,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 		initialValues: {
 			otp: '',
 		}, // Corrected constant name
-		validationSchema: otpSchema,
+		// validationSchema: otpSchema,
 		onSubmit,
 	});
 
@@ -50,34 +53,68 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 				.join('&');
 			resendOtpLink += `?${hashedQuery}`;
 		}
-		return resendOtpLink
-	}
+		return resendOtpLink;
+	};
 
-	
+	const handleOtpChange = (value: string, index: number) => {
+		const newArr = [...otp];
+		newArr[index] = value;
+		setOtp(newArr);
+
+		if (value && index < numberOfDigits - 1) {
+			otpBoxReference.current[index + 1]?.focus();
+		}
+	};
+
+	const handleBackspaceAndEnter = (
+		e: React.KeyboardEvent<HTMLInputElement>,
+		index: number,
+	) => {
+		if (e.key === 'Backspace' && !e.currentTarget.value && index > 0) {
+			otpBoxReference.current[index - 1]?.focus();
+		}
+		if (
+			e.key === 'Enter' &&
+			e.currentTarget.value &&
+			index < numberOfDigits - 1
+		) {
+			otpBoxReference.current[index + 1]?.focus();
+		}
+	};
+
 	return (
 		<>
 			<form
-				className="w-full my-[200px] max-w-[800px]"
+				className="my-[80px]"
 				noValidate
 				onSubmit={handleSubmit}
 			>
-				<div className="mx-4 my-10 space-y-5">
+				<div className="mx-4 flex flex-col justify-center items-center space-y-5">
 					<div>
-						<div className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+						<div className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
 						</div>
 					</div>
-					<Input
-						title={t('otp.title')}
-						placeholder={t('otp.placeholder')}
-						name="otp"
-						type="text" // Added type attribute
-						onChange={handleChange}
-						value={values.otp}
-						error={touched.otp && errors.otp}
-						className="max-w-[800px]"
-					/>
-					<div className="flex justify-end w-full my-2">
+					<div className="flex flex-col  items-center gap-4">
+						<div className='flex items-center gap-4'>
+						{otp.map((digit, index) => (
+							<input
+								key={index}
+								value={digit}
+								maxLength={1}
+								onChange={(e) => handleOtpChange(e.target.value, index)}
+								onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
+								ref={(reference) =>
+									(otpBoxReference.current[index] = reference)
+								}
+								className={`border-2 w-14 h-auto text-[#CF7475] p-3 text-sm font-semibold rounded-md block bg-[#E8E8E8] focus:outline-none appearance-none ${
+									digit ? 'border-filled' : 'border-empty'
+								}`}
+							/>
+						))}
+
+						</div>
+					<div className="flex justify-end items-end w-full my-2">
 						<Link
 							href={url(getResendOtpURL())}
 							replace={true}
@@ -85,6 +122,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						>
 							{t('resendOtp')}
 						</Link>
+					</div>
 					</div>
 
 					<div className="flex items-center justify-center w-full">
@@ -94,7 +132,12 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 							type="submit"
 							isLoading={isLoading}
 						/> */}
-						<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] w-56" />
+						<Button
+							title={t('submit')}
+							type="submit"
+							isLoading={isLoading}
+							className=" bg-[#CF7475] w-56"
+						/>
 					</div>
 				</div>
 			</form>

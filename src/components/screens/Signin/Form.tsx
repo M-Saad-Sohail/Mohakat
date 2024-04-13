@@ -52,13 +52,13 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[200px] max-w-[800px]"
+				className="w-full my-[100px] max-w-[800px]"
 				noValidate
 				onSubmit={handleSubmit}
 			>
-				<div className="mx-4 my-10 space-y-5">
+				<div className="mx-4 space-y-5">
 					<div>
-						<div className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+						<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
 						</div>
 						<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">

@@ -72,8 +72,8 @@ svg {
 	transition: all 0.3s linear;
 }
 
-.custom-box-shadow{
-	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+.custom-box-shadow {
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -96,9 +96,9 @@ input[name="month"] {
 .tooltip {
 	position: relative;
 	display: inline-block;
-  }
-  
-  .tooltip .tooltiptext {
+}
+
+.tooltip .tooltiptext {
 	visibility: hidden;
 	width: 150px;
 	background-color: #555555;
@@ -112,9 +112,9 @@ input[name="month"] {
 	left: 110%;
 	font-size: 14px;
 	font-weight: 600;
-  }
-  
-  .tooltip .tooltiptext::after {
+}
+
+.tooltip .tooltiptext::after {
 	content: "";
 	position: absolute;
 	top: 50%;
@@ -123,7 +123,19 @@ input[name="month"] {
 	border-width: 5px;
 	border-style: solid;
 	border-color: transparent #555555 transparent transparent;
-  }
-  .tooltip:hover .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
 	visibility: visible;
-  }
+}
+
+
+.border-filled {
+	border-color: #CF7475;
+	border-width: 3px;
+}
+
+.border-empty {
+	border-color: #CF7475;
+	border-width: 2px;
+}

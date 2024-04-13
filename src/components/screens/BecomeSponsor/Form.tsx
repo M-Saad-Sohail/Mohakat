@@ -46,12 +46,12 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[200px] max-w-[800px]" // Set form overflow to auto
+				className="w-full my-[100px] max-w-[800px]" // Set form overflow to auto
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4">
-					<h2 className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+					<h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
 					</h2>
 					<p className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
