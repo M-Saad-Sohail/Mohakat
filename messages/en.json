@@ -338,5 +338,14 @@
 	},
 	"OurPartner": {
 		"title": "Our Partners"
+	},
+	"Footer": {
+		"home": "Home",
+		"families": "Families",
+		"faqs":"FAQs",
+		"contact":"Contact",
+		"MuakhetAllrightsreserved":"Muakhet. All rights reserved.",
+		"privacypolicy":"Privacy Policy",
+		"termsofservice":"Terms of Service"
 	}
 }

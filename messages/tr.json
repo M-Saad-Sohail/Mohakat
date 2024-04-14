@@ -333,6 +333,14 @@
 	},
 	"OurPartner": {
 		"title": "Ortaklarımız"
-		
-	}
+	},
+	"Footer": {
+		"home": "Ana Sayfa",
+		"families": "Aileler",
+		"faqs":"SSS",
+		"contact":"İletişim",
+		"MuakhetAllrightsreserved":"Muakhet. Tüm hakları saklıdır.",
+		"privacypolicy":"Gizlilik Politikası",
+		"termsofservice":"Hizmet Şartları"
+	}	
 }

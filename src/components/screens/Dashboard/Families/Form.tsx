@@ -129,7 +129,7 @@ const FamilyForm = () => {
 	return (
 		<div
 			className=" scrollbarHide"
-			// dir={dir} // Set form overflow to auto
+			dir={dir} // Set form overflow to auto
 		>
 			<div className="scrollbarHide ">
 				<h2 className="text-[24px] font-bold text-main mt-2 leading-normal py-2 ">

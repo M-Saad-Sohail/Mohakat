@@ -333,5 +333,14 @@
 	},
 	"OurPartner": {
 		"title": "شركاؤنا"
-	}
+	},
+	"Footer": {
+		"home": "الرئيسية",
+		"families": "العائلات",
+		"faqs":"الأسئلة الشائعة",
+		"contact":"اتصل",
+		"MuakhetAllrightsreserved":"مواخت. جميع الحقوق محفوظة.",
+		"privacypolicy":"سياسة الخصوصية",
+		"termsofservice":"شروط الخدمة"
+	}	
 }
