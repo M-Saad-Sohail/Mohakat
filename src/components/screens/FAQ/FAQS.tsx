@@ -8,6 +8,11 @@ import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 
+interface FaqDataType {
+	questions: string;
+	answers: string;
+}
+
 const FAQS = () => {
 	const t = useTranslations('FAQ');
 	const dispatch = useDispatch();
@@ -15,7 +20,7 @@ const FAQS = () => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
-	const [faqData, setFaqData] = useState<any[]>([]);
+	const [faqData, setFaqData] = useState<FaqDataType[]>([]);
 
 	const handleFaqData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -50,8 +55,6 @@ const FAQS = () => {
 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-faqs`,
 		);
 		if (res.success) {
-			console.log(res.newFaq);
-			
 			setFaqData([]);
 			res.newFaq.map((item: any) => handleFaqData(currentPath, item));
 			dispatch(
@@ -76,13 +79,9 @@ const FAQS = () => {
 		}
 	}, []);
 
-	useEffect(() => {
-		console.log(faqData);
-	}, [faqData]);
-
 	return (
 		<section
-		dir={dir}
+			dir={dir}
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">

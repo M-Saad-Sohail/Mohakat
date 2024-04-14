@@ -1,31 +1,111 @@
-import React from 'react';
+import { getJson } from '@/api/api.instances';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { setIsLandingStateAction } from '@/state/landingpage';
+import { RootState } from '@/state/store';
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+interface AboutDataType {
+	heading: string;
+	description: string;
+}
 
 const AboutSection = () => {
+	const t = useTranslations('FAQ');
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
+
+	const handleAboutData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setAboutData((prev: any) => [
+				...prev,
+				{
+					heading: data?.heading?.inEnglish,
+					description: data?.description?.inEnglish,
+				},
+			]);
+		} else if (path === 'ar') {
+			setAboutData((prev: any) => [
+				...prev,
+				{
+					heading: data?.heading?.inArabic,
+					description: data?.description?.inArabic,
+				},
+			]);
+		} else if (path === 'tr') {
+			setAboutData((prev: any) => [
+				...prev,
+				{
+					heading: data?.heading?.inTurkish,
+					description: data?.description?.inTurkish,
+				},
+			]);
+		}
+	};
+
+	const fetchAbout = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-about`,
+		);
+		if (res.success) {
+			setAboutData([]);
+			res.newAbout.map((item: any) => handleAboutData(currentPath, item));
+			dispatch(
+				setIsLandingStateAction({
+					key: 'newAbout',
+					value: res.newAbout,
+				}),
+			);
+		}
+	};
+
+	useEffect(() => {
+		try {
+			if (data.newAbout) {
+				setAboutData([]);
+				data.newAbout.map((item: any) => handleAboutData(currentPath, item));
+			} else {
+				fetchAbout();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
+
 	return (
-		<div className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10 grid md:grid-cols-2 grid-cols-1 gap-3">
+		<div
+			dir={dir}
+			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10 grid md:grid-cols-2 grid-cols-1 gap-3"
+		>
 			<div className=" flex flex-col gap-5 bg-[#E8C08A] rounded-[20px] py-8 md:px-7 px-6 custom-box-shadow">
-				<h3 className="md:text-3xl text-2xl font-semibold">Who We Are?</h3>
+				<h3 className="md:text-3xl text-2xl font-semibold">
+					{aboutData[0]?.heading}
+				</h3>
 				<p className="md:text-2xl text-lg font-light">
-					“Moakhat” is a global initiative launched by civil society
-					organizations and social activists to support our people in the Gaza
-					Strip morally and financially.
+					{aboutData[0]?.description}
 				</p>
 			</div>
 			<div className=" flex flex-col gap-3">
 				<div className="flex flex-col gap-[6px] bg-[#8DAE8E] rounded-[20px] p-6 custom-box-shadow">
-					<h3 className="md:text-xl text-lg font-semibold">Financially</h3>
+					<h3 className="md:text-xl text-lg font-semibold">
+						{aboutData[1]?.heading}
+					</h3>
 					<p className="md:text-base text-sm font-light">
-						Financially, through the sponsorship by an individual, institution,
-						or a family from outside Palestine to a family from inside Palestine
+						{aboutData[1]?.description}
 					</p>
 				</div>
 				<div className="flex flex-col gap-[6px] bg-[#CF7475] rounded-[20px] p-6 custom-box-shadow">
-					<h3 className="md:text-xl text-lg font-semibold">Morally</h3>
+					<h3 className="md:text-xl text-lg font-semibold">
+						{aboutData[2]?.heading}
+					</h3>
 					<p className="md:text-base text-sm font-light">
-						Morally, through encouraging communication among families from
-						outside and inside Gaza with each other, directly or indirectly, to
-						raise their morale, support them, and stabilize them in our land,
-						the land of Palestine.
+						{aboutData[2]?.description}
 					</p>
 				</div>
 			</div>
