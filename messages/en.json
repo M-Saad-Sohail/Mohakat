@@ -347,5 +347,9 @@
 		"MuakhetAllrightsreserved":"Muakhet. All rights reserved.",
 		"privacypolicy":"Privacy Policy",
 		"termsofservice":"Terms of Service"
+	},
+	"FAQ": {
+		"title":"FAQs",
+		"description": "Find answers to common questions about the donation process, where funds go, and how to become a sponsor"
 	}
 }
