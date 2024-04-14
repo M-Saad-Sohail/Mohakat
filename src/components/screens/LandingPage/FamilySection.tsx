@@ -3,29 +3,51 @@ import FamilyCard from '@/components/ui/FamilyCard';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { getJson } from '@/api/api.instances';
 import Loader from '@/components/ui/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
+import { setIsLandingStateAction } from '@/state/landingpage';
+import Link from 'next/link';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { PATHS } from '@/contants';
 
 const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
-	const [isLoading, setIsLoading] = useState(true);
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const [isLoading, setIsLoading] = useState(false);
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
-	useEffect(() => {
-		(async () => {
-			setIsLoading(true);
-			const res = await getJson(
-				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/random-families`,
+
+	const fetchRandomFamilies = async () => {
+		setIsLoading(true);
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/random-families`,
+		);
+		if (res.success) {
+			setFamiliesData(res.randomFamilies);
+			dispatch(
+				setIsLandingStateAction({
+					key: 'randomFamilies',
+					value: res.randomFamilies,
+				}),
 			);
-			if (res.success) {
-				console.log(res.randomFamilies);
-				setFamiliesData(res.randomFamilies);
-				setIsLoading(false);
-			}
-		})();
+		}
+	};
+
+	useEffect(() => {
+		if (data.randomFamilies) {
+			setFamiliesData(data.randomFamilies);
+		} else {
+			fetchRandomFamilies();
+		}
 	}, []);
 	return (
 		<>
 			<section className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
 				<div className=" flex justify-between">
 					<h2 className=" md:text-3xl text-2xl font-semibold">Families</h2>
-					<span className=" md:text-lg text-base font-light">see more</span>
+					<Link href={url(PATHS.FAMILY)} locale={locale}>
+						<span className=" md:text-lg text-base font-light">see more...</span>
+					</Link>
 				</div>
 				{isLoading ? (
 					<div className=" flex justify-center items-center h-32">

@@ -34,7 +34,7 @@ const LandingPage = () => {
 			<HeroSection isLoggedIn={!isLoading && !!user} />
 			<AboutSection />
 			<SponserSection isLoggedIn={!isLoading && !!user} />
-			{/* <FamilySection isLoggedIn={!isLoading && !!user} /> */}
+			<FamilySection isLoggedIn={!isLoading && !!user} />
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
 			<PartnersSection />
