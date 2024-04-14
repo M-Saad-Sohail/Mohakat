@@ -23,7 +23,7 @@ export const PATHS = {
 	FORM_RESPONSES: '/dashboard/form-responses',
 	SETTING: '/dashboard/setting',
 	SPONSORING: '/dashboard/sponsoring',
-	CREDIT_CARDS: '/dashboard/credit-cards'
+	CREDIT_CARDS: '/dashboard/credit-cards',
 };
 
 export const RESETINITIALVALUES: ResetPasswordSchema = {
@@ -37,13 +37,17 @@ export const ProfileValues = {
 	email: '',
 	country: '',
 	language: '',
-}
+};
 
 export const AddFamiliesValues = {
-	breadWinnerName:{},
+	breadWinnerName: {},
 	breadWinnerNameEn: '',
 	breadWinnerNameTr: '',
 	breadWinnerNameAr: '',
+	description: {},
+	descriptionEn: '',
+	descriptionTr: '',
+	descriptionAr: '',
 	maritalStatus: '',
 	email: '',
 	gender: '',
@@ -53,14 +57,14 @@ export const AddFamiliesValues = {
 	areaOfPreviousResidence: '',
 	areaOfCurrentResidence: '',
 	numberOfFamilyMembers: '',
-	lossesInWar:'',
+	lossesInWar: '',
 	numberOfMartyrInFamily: '',
 	numberOfInfectedInFamily: '',
-	telephoneNumber	: '',
-	idNumber	: '',
-	currentSituation	: '',
-	familyMemberDetail:[]
-}
+	telephoneNumber: '',
+	idNumber: '',
+	currentSituation: '',
+	familyMemberDetail: [],
+};
 
 // export const Links = [
 // 	{ localeId: 'links.0', name: 'Support', link: '/support' },

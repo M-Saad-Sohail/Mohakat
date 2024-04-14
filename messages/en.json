@@ -351,5 +351,13 @@
 	"FAQ": {
 		"title":"FAQs",
 		"description": "Find answers to common questions about the donation process, where funds go, and how to become a sponsor"
+	},
+	"ContactUs": {
+		"name":"Name",
+		"email":"Email",
+		"message":"Message",
+		"send":"Send",
+		"success": "Submitted Successfully",
+		"error": "Something went wrong"
 	}
 }
