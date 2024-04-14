@@ -12,11 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
-
-interface InitiationDataType {
-	heading: string;
-	description: string;
-}
+import IntiationMain from './IntiationMain';
 
 const ImagesSection = () => {
 	const dispatch = useDispatch();
@@ -26,29 +22,6 @@ const ImagesSection = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const [imagesData, setImagesData] = useState<any>();
-	const [initiationData, setInitiationData] = useState<InitiationDataType>({
-		heading: '',
-		description: '',
-	});
-
-	const handleInitiationData = (path: string | undefined, data: any) => {
-		if (path === 'en') {
-			setInitiationData({
-				heading: data?.heading?.inEnglish,
-				description: data?.description?.inEnglish,
-			});
-		} else if (path === 'ar') {
-			setInitiationData({
-				heading: data?.heading?.inArabic,
-				description: data?.description?.inArabic,
-			});
-		} else if (path === 'tr') {
-			setInitiationData({
-				heading: data?.heading?.inTurkish,
-				description: data?.description?.inTurkish,
-			});
-		}
-	};
 
 	const fetchLandingImages = async () => {
 		const res = await getJson(
@@ -65,32 +38,12 @@ const ImagesSection = () => {
 		}
 	};
 
-	const fetchInitiationData = async () => {
-		const res = await getJson(
-			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-initiation`,
-		);
-		if (res.success) {
-			handleInitiationData(currentPath, res.newPost[0]);
-			dispatch(
-				setIsLandingStateAction({
-					key: 'initiationData',
-					value: res.newPost[0],
-				}),
-			);
-		}
-	};
-
 	useEffect(() => {
 		try {
 			if (data.landingPageSlider) {
 				setImagesData(data.landingPageSlider);
 			} else {
 				fetchLandingImages();
-			}
-			if (data.initiationData) {
-				handleInitiationData(currentPath, data.initiationData);
-			} else {
-				fetchInitiationData();
 			}
 		} catch (error) {
 			console.log(error);
@@ -103,12 +56,7 @@ const ImagesSection = () => {
 			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 md:my-12 mt-6 mb-12 mx-auto"
 		>
 			<div className=" flex flex-col gap-4">
-				<h2 className=" md:text-3xl text-2xl font-semibold">
-					{initiationData.heading}
-				</h2>
-				<p className=" md:text-lg text-base font-light">
-					{initiationData.description}
-				</p>
+				<IntiationMain currentPath={currentPath} />
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.FAMILY)}>
 						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />

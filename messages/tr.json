@@ -3,7 +3,7 @@
 		"links": {
 			"0": "Destek",
 			"1": "Sponsor",
-			"2": "Güçlendir",
+			"2": "Hakkında",
 			"3": "SSS",
 			"4": "İletişim"
 		},
@@ -354,5 +354,8 @@
 		"send":"Göndermek",
 		"success": "Başarıyla Gönderildi",
 		"error": "Bir şeyler yanlış gitti"
-	}
+	},
+	"About": {
+		"title": "Hakkında"
+	}	
 }
