@@ -1,33 +1,88 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-
-const data = [
-	{
-		que: 'How can I donate?',
-		ans: "To donate, simply click on the 'Donate Now' button on our website and follow the instructions provided. Your contribution will go directly towards supporting the families in Palestine and Gaza.",
-	},
-	{
-		que: 'Where do funds go?',
-		ans: 'All funds raised through our platform are used to provide essential resources such as food, clean water, medical aid, and shelter to the families in need in Palestine and Gaza.',
-	},
-	{
-		que: 'How can I become a sponsor?',
-		ans: "To become a sponsor, click on the 'Sponsor Now' button on our website. You can choose to sponsor a specific family or make a general sponsorship donation to support multiple families.",
-	},
-	{
-		que: 'Can I donate anonymously?',
-		ans: 'Yes, you can choose to donate anonymously. Simply indicate your preference during the donation process, and your personal information will be kept confidential.',
-	},
-	{
-		que: 'How can I get involved?',
-		ans: 'There are many ways to get involved. You can volunteer your time, organize fundraising events, or spread awareness about the situation in Palestine and Gaza through social media.',
-	},
-];
+import { getJson } from '@/api/api.instances';
+import { setIsLandingStateAction } from '@/state/landingpage';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
+import { usePathname } from 'next/navigation';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const FAQS = () => {
 	const t = useTranslations('FAQ');
+	const dispatch = useDispatch();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const [faqData, setFaqData] = useState<any[]>([]);
+
+	const handleFaqData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setFaqData((prev: any) => [
+				...prev,
+				{
+					questions: data?.questions?.inEnglish,
+					answers: data?.answers?.inEnglish,
+				},
+			]);
+		} else if (path === 'ar') {
+			setFaqData((prev: any) => [
+				...prev,
+				{
+					questions: data?.questions?.inArabic,
+					answers: data?.answers?.inArabic,
+				},
+			]);
+		} else if (path === 'tr') {
+			setFaqData((prev: any) => [
+				...prev,
+				{
+					questions: data?.questions?.inTurkish,
+					answers: data?.answers?.inTurkish,
+				},
+			]);
+		}
+	};
+
+	const fetchFaq = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-faqs`,
+		);
+		if (res.success) {
+			console.log(res.newFaq);
+			
+			setFaqData([]);
+			res.newFaq.map((item: any) => handleFaqData(currentPath, item));
+			dispatch(
+				setIsLandingStateAction({
+					key: 'newFaq',
+					value: res.newFaq,
+				}),
+			);
+		}
+	};
+
+	useEffect(() => {
+		try {
+			if (data.newFaq) {
+				setFaqData([]);
+				data.newFaq.map((item: any) => handleFaqData(currentPath, item));
+			} else {
+				fetchFaq();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
+
+	useEffect(() => {
+		console.log(faqData);
+	}, [faqData]);
+
 	return (
 		<section
+		dir={dir}
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">
@@ -38,20 +93,20 @@ const FAQS = () => {
 			{/* faqs */}
 
 			<div className=" flex flex-col gap-3">
-				{data.map((item, i) => {
+				{faqData.map((item, i) => {
 					return (
 						<>
-							<div className=" flex gap-2">
+							<div key={i} className=" flex gap-2">
 								<div key={i} className=" flex flex-col gap-2">
 									<h3 className=" text-lg font-bold text-[#CF7475]">Q:</h3>
 									<h3 className="text-lg font-bold text-[#000000]">A:</h3>
 								</div>
 								<div className=" flex flex-col gap-2">
 									<h3 className=" text-lg font-bold text-[#CF7475]">
-										{item.que}
+										{item.questions}
 									</h3>
 									<h3 className=" text-lg font-normal text-[#000000]">
-										{item.ans}
+										{item.answers}
 									</h3>
 								</div>
 							</div>
