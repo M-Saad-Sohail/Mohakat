@@ -3,7 +3,6 @@ import FamilyCard from '@/components/ui/FamilyCard';
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 // ICONS
-import ArrowSvg from '@/assests/svgs/arrow.svg';
 import Image from 'next/image';
 import { getJson } from '@/api/api.instances';
 import Loader from '@/components/ui/Loader';
@@ -13,19 +12,18 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { areasData } from '@/contants/Areas';
 import { situationData } from '@/contants/Situations';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
 	const data = useSelector<RootState, any>((state) => state.landingpage);
-	useEffect(() => {
-		console.log('alag page data', data);
-	}, [data]);
 	const { user } = useLoggedInUser();
+	const t = useTranslations('AddFamilies');
 	const [isLoading, setIsLoading] = useState(true);
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
 	const [filteredData, setFilteredData] = useState<any[]>([]);
-	const t = useTranslations('AddFamilies');
 	const [area, setArea] = useState('');
 	const [situation, setSituation] = useState('');
 	const [member, setMember] = useState<number>();
@@ -34,6 +32,24 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		false,
 		false,
 	]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 9; // Change as needed
+
+	const getCurrentItems = () => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return filteredData.slice(startIndex, endIndex);
+	};
+
+	// Handlers for pagination buttons
+	const goToNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+	};
+
+	const goToPrevPage = () => {
+		setCurrentPage((prevPage) => prevPage - 1);
+	};
+
 	// DropDown
 	const handleDropDownClick = (index: number) => {
 		let newOpenDropDown: boolean[] = [];
@@ -44,7 +60,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	};
 
 	const filterData = (type: string, value: any) => {
-		console.log(value);
 		// FOR AREAS
 		if (type === 'area') {
 			const filteredItems = familiesData.filter(
@@ -66,6 +81,9 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			);
 			setFilteredData(filteredItems);
 		}
+
+		// Reset to first page when filtering
+		setCurrentPage(1);
 	};
 
 	useEffect(() => {
@@ -243,7 +261,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					<>
 						{/* cards */}
 						<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">
-							{filteredData.map((family, i) => (
+							{getCurrentItems().map((family, i) => (
 								<FamilyCard
 									key={i}
 									familyData={family}
@@ -252,21 +270,40 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							))}
 						</div>
 						{/* pagination */}
-						<div className="flex md:flex-row flex-col gap-5 items-center">
-							<div className=" flex justify-end md:w-[55%]">
-								<button className="flex gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold rounded-3xl px-5 py-3">
+						<div className="grid md:grid-cols-3 grid-cols-1 gap-5">
+							<div></div>
+							<div className=" flex justify-center  gap-4">
+								<button
+									className={`${currentPage === 1 ? 'bg-[#555555]' : 'bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold rounded-3xl px-5 py-3`}
+									onClick={goToPrevPage}
+									disabled={currentPage === 1}
+								>
+									<span>
+										<FaArrowLeftLong className=" text-xl" />
+									</span>
+									<span>Back Page</span>
+								</button>
+								<button
+									className="flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold rounded-3xl px-5 py-3"
+									onClick={goToNextPage}
+									disabled={
+										currentPage >= Math.ceil(filteredData.length / itemsPerPage)
+									}
+								>
 									<span>Next Page</span>
-									<Image src={ArrowSvg} alt="arrow" />
+									<span>
+										<FaArrowRightLong className=" text-xl" />
+									</span>
 								</button>
 							</div>
 
-							<div className="flex gap-2 justify-end items-center md:w-[45%] text-sm font-medium ">
+							<div className="flex gap-2 justify-end items-center text-sm font-medium ">
 								<span>Page</span>
 								<div className=" border-[2px] border-[#000000] rounded-[6px] px-3">
-									1
+									{currentPage}
 								</div>
 								<span>of</span>
-								<span>100</span>
+								<span>{Math.ceil(filteredData.length / itemsPerPage)}</span>
 							</div>
 						</div>
 					</>

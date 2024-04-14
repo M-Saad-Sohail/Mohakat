@@ -108,14 +108,14 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				</div> */}
 
 				{/* buttons */}
-				<div className=" flex gap-2">
+				<div className=" flex justify-between">
 					<Button
 						onClick={() => {
 							setOpen(true);
 							setCurrentFamilyInfo(familyData);
 						}}
 						title={`${user ? `Sponser` : `Donate a share`}`}
-						className=" bg-[#8DAE8E]"
+						className=" bg-[#8DAE8E] md:px-5"
 					/>
 					{isInCart ? (
 						<Button
@@ -125,7 +125,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 					) : (
 						<Button
 							title="Add to Basket"
-							className=" bg-[#000000]"
+							className=" bg-[#000000] md:px-5"
 							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
 						/>
 					)}
