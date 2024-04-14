@@ -4,10 +4,10 @@ import dynamic from 'next/dynamic';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import HeroSection from './HeroSection';
-import SponserSection from './SponserSection';
+import SponserSection from './Sponsers/SponserSection';
 import FamilySection from './FamilySection';
 import PartnersSection from './PartnersSection';
-import ImagesSection from './ImagesSection';
+import ImagesSection from './Intiation/ImagesSection';
 import MainLayout from '@/components/common/MainLayout';
 import AboutSection from './AboutSection';
 

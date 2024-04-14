@@ -85,12 +85,19 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						error={touched.password && errors.password}
 						className="max-w-[800px]"
 					/>
-					<p className="text-primary w-full text-right text-[12px] font-bold">
-						{t('forgot')}
-					</p>
+					<Link href={url('')}>
+						<p className="text-primary w-full text-right text-[12px] font-bold">
+							{t('forgot')}
+						</p>
+					</Link>
 
 					<div className="flex items-center justify-center w-full">
-						<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] w-56" />
+						<Button
+							title={t('submit')}
+							type="submit"
+							isLoading={isLoading}
+							className=" bg-[#CF7475] w-56"
+						/>
 					</div>
 				</div>
 			</form>

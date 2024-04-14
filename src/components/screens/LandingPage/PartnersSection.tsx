@@ -12,8 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
 
-
-const PartnersSection = () => {
+const PartnersSection = ({ isAbout }: { isAbout?: boolean }) => {
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -74,7 +73,7 @@ const PartnersSection = () => {
 	const [partnerData, setPartnerData] = useState<any>();
 	const t = useTranslations('OurPartner');
 
-	const fetchPartners = () =>{
+	const fetchPartners = () => {
 		(async () => {
 			const res = await getJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-partner`,
@@ -89,20 +88,26 @@ const PartnersSection = () => {
 				);
 			}
 		})();
-	}
-	
+	};
+
 	useEffect(() => {
 		if (data.partner) {
 			setPartnerData(data.partner);
 		} else {
-			fetchPartners()
+			fetchPartners();
 		}
 	}, []);
 	return (
 		<>
-			<section dir={dir} className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12">
+			<section
+				dir={dir}
+				className={` ${isAbout ? 'md:w-full' : 'md:w-[80%]'} w-[90%] mx-auto flex flex-col gap-8 py-12`}
+			>
 				<div>
-					<h2 className=" md:text-3xl text-2xl font-semibold"> {t('title')} </h2>
+					<h2 className=" md:text-3xl text-2xl font-semibold">
+						{' '}
+						{t('title')}{' '}
+					</h2>
 				</div>
 
 				{/* partners card */}

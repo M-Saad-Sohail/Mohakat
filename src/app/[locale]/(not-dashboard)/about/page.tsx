@@ -1,16 +1,15 @@
 import MainLayout from '@/components/common/MainLayout';
-import Redirect from '@/components/common/Redirect';
-import FAQS from '@/components/screens/FAQ/FAQS';
+import About from '@/components/screens/About/About';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'FAQs',
+	title: 'About Us',
 };
 
 const Page = () => {
 	return (
 		<MainLayout>
-			<FAQS />
+			<About />
 		</MainLayout>
 	);
 };

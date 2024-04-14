@@ -3,7 +3,7 @@
 		"links": {
 			"0": "Home",
 			"1": "Families",
-			"2": "Empower",
+			"2": "About",
 			"3": "FAQs",
 			"4": "Contact"
 		},
@@ -359,5 +359,8 @@
 		"send":"Send",
 		"success": "Submitted Successfully",
 		"error": "Something went wrong"
+	},
+	"About": {
+		"title":"About"
 	}
 }

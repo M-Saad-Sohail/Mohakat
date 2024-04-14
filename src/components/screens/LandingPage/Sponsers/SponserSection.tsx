@@ -11,11 +11,7 @@ import { PATHS } from '@/contants';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
-
-interface SponserDataType {
-	heading: string;
-	description: string;
-}
+import SponserMain from './SponserMain';
 
 const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const dispatch = useDispatch();
@@ -25,11 +21,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const [featureData, setFeatureData] = useState<any[]>([]);
 	const t = useTranslations('HeroMainSection.btns');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
-	const [sponserData, setSponserData] = useState<SponserDataType>({
-		heading: '',
-		description: '',
-	});
-	
+
 	const handleFeatureData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setFeatureData((prev: any) => [
@@ -69,53 +61,12 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		})();
 	};
 
-	const handleSponserData = (path: string | undefined, data: any) => {
-		if (path === 'en') {
-			setSponserData({
-				heading: data?.heading?.inEnglish,
-				description: data?.description?.inEnglish,
-			});
-		} else if (path === 'ar') {
-			setSponserData({
-				heading: data?.heading?.inArabic,
-				description: data?.description?.inArabic,
-			});
-		} else if (path === 'tr') {
-			setSponserData({
-				heading: data?.heading?.inTurkish,
-				description: data?.description?.inTurkish,
-			});
-		}
-	};
-
-	const fetchActions = () => {
-		(async () => {
-			const res = await getJson(
-				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-action`,
-			);
-			if (res.success) {
-				handleSponserData(currentPath, res.newPost[0]);
-				dispatch(
-					setIsLandingStateAction({
-						key: 'newPost',
-						value: res.newPost[0],
-					}),
-				);
-			}
-		})();
-	};
-
 	useEffect(() => {
 		if (data.feature) {
 			setFeatureData([]);
 			data.feature.map((item: any) => handleFeatureData(currentPath, item));
 		} else {
 			fetchFeature();
-		}
-		if (data.newPost) {
-			handleSponserData(currentPath, data.newPost);
-		} else {
-			fetchActions();
 		}
 	}, []);
 
@@ -125,12 +76,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto"
 		>
 			<div className=" flex flex-col gap-4">
-				<h2 className=" md:text-3xl text-2xl font-semibold">
-					{sponserData?.heading}
-				</h2>
-				<p className=" md:text-lg text-base font-light">
-					{sponserData?.description}
-				</p>
+				<SponserMain currentPath={currentPath} />
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.FAMILY)}>
 						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
