@@ -137,13 +137,13 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[0] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
 							{areasData.map((item, i) => {
 								return (
 									<p
 										key={i}
-										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
 										onClick={() => {
 											filterData('area', item.value);
 											setArea(item.value);
@@ -176,13 +176,13 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[1] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
 							{situationData.map((item, i) => {
 								return (
 									<p
 										key={i}
-										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
 										onClick={() => {
 											filterData('situation', item.value);
 											setSituation(item.value);
@@ -215,13 +215,13 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div
 							className={`${
 								openDropDown[2] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 						>
 							{[3, 6, 9, 12].map((item, i) => {
 								return (
 									<p
 										key={i}
-										className={`py-1 px-3 cursor-pointer hover:bg-gray-600`}
+										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
 										onClick={() => {
 											filterData('member', item);
 											setMember(item);
