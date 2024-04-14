@@ -11,50 +11,103 @@ import { PATHS } from '@/contants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
+import { usePathname } from 'next/navigation';
+
+interface InitiationDataType {
+	heading: string;
+	description: string;
+}
 
 const ImagesSection = () => {
 	const dispatch = useDispatch();
-	const data = useSelector<RootState, any>((state) => state.landingpage);
-	const [imagesData, setImagesData] = useState<any>();
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1);
 	const t = useTranslations('HeroMainSection.btns');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
+	const [imagesData, setImagesData] = useState<any>();
+	const [initiationData, setInitiationData] = useState<InitiationDataType>({
+		heading: '',
+		description: '',
+	});
+
+	const handleInitiationData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setInitiationData({
+				heading: data?.heading?.inEnglish,
+				description: data?.description?.inEnglish,
+			});
+		} else if (path === 'ar') {
+			setInitiationData({
+				heading: data?.heading?.inArabic,
+				description: data?.description?.inArabic,
+			});
+		} else if (path === 'tr') {
+			setInitiationData({
+				heading: data?.heading?.inTurkish,
+				description: data?.description?.inTurkish,
+			});
+		}
+	};
 
 	const fetchLandingImages = async () => {
-		(async () => {
-			const res = await getJson(
-				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-landing-img`,
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-landing-img`,
+		);
+		if (res.success) {
+			setImagesData(res.landingPageSlider);
+			dispatch(
+				setIsLandingStateAction({
+					key: 'landingPageSlider',
+					value: res.landingPageSlider,
+				}),
 			);
-			if (res.success) {
-				setImagesData(res.landingPageSlider);
-				dispatch(
-					setIsLandingStateAction({
-						key: 'landingPageSlider',
-						value: res.landingPageSlider,
-					}),
-				);
-			}
-		})();
+		}
+	};
+
+	const fetchInitiationData = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-initiation`,
+		);
+		if (res.success) {
+			handleInitiationData(currentPath, res.newPost[0]);
+			dispatch(
+				setIsLandingStateAction({
+					key: 'initiationData',
+					value: res.newPost[0],
+				}),
+			);
+		}
 	};
 
 	useEffect(() => {
-		if (data.landingPageSlider) {
-			setImagesData(data.landingPageSlider);
-		} else {
-			fetchLandingImages();
+		try {
+			if (data.landingPageSlider) {
+				setImagesData(data.landingPageSlider);
+			} else {
+				fetchLandingImages();
+			}
+			if (data.initiationData) {
+				handleInitiationData(currentPath, data.initiationData);
+			} else {
+				fetchInitiationData();
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	}, []);
 
 	return (
-		<section className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 md:my-12 mt-6 mb-12 mx-auto">
+		<section
+			dir={dir}
+			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 md:my-12 mt-6 mb-12 mx-auto"
+		>
 			<div className=" flex flex-col gap-4">
 				<h2 className=" md:text-3xl text-2xl font-semibold">
-					What they say about the initiation?
+					{initiationData.heading}
 				</h2>
 				<p className=" md:text-lg text-base font-light">
-					Lorem ipsum dolor sit amet consectetur. Faucibus turpis sed nisl in.
-					Lacus mi vel arcu sed lacus sed lacus. Erat convallis sed suscipit
-					tortor urna bibendum vivamus sit. Morbi proin commodo imperdiet
-					ullamcorper quam cum elit.
+					{initiationData.description}
 				</p>
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.FAMILY)}>

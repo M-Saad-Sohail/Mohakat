@@ -82,22 +82,20 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	};
 
 	useEffect(() => {
-		(async () => {
-			try {
-				if (data.newHero) {
-					handleHeroData(currentPath, data.newHero);
-				} else {
-					fetchHeroData();
-				}
-				if (data.heroSlider) {
-					setImagesData(data.heroSlider);
-				} else {
-					fetchHeroImages();
-				}
-			} catch (error) {
-				console.log(error);
+		try {
+			if (data.newHero) {
+				handleHeroData(currentPath, data.newHero);
+			} else {
+				fetchHeroData();
 			}
-		})();
+			if (data.heroSlider) {
+				setImagesData(data.heroSlider);
+			} else {
+				fetchHeroImages();
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	}, []);
 
 	return (
