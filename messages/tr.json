@@ -333,6 +333,18 @@
 	},
 	"OurPartner": {
 		"title": "Ortaklarımız"
-		
+	},
+	"Footer": {
+		"home": "Ana Sayfa",
+		"families": "Aileler",
+		"faqs":"SSS",
+		"contact":"İletişim",
+		"MuakhetAllrightsreserved":"Muakhet. Tüm hakları saklıdır.",
+		"privacypolicy":"Gizlilik Politikası",
+		"termsofservice":"Hizmet Şartları"
+	},
+	"FAQ": {
+		"title":"SSS",
+		"description": "Bağış süreci, fonların nereye gittiği ve nasıl sponsor olunacağıyla ilgili sık sorulan soruların yanıtlarını bulun"
 	}
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const data = [
 	{
@@ -24,16 +25,14 @@ const data = [
 ];
 
 const FAQS = () => {
+	const t = useTranslations('FAQ');
 	return (
 		<section
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">
-				<h2 className=" md:text-3xl text-2xl font-semibold">FAQs</h2>
-				<p className="md:text-lg text-base font-light">
-					Find answers to common questions about the donation process, where
-					funds go, and how to become a sponsor.
-				</p>
+				<h2 className=" md:text-3xl text-2xl font-semibold">{t('title')}</h2>
+				<p className="md:text-lg text-base font-light">{t('description')}</p>
 			</div>
 
 			{/* faqs */}
