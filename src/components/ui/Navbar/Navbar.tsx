@@ -20,6 +20,7 @@ const AuthNavbar = ({
 }: {
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+	const cartItems = useSelector((state: any) => state.cart);
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [user, setUser] = useState<UserType | null>(null);
@@ -47,7 +48,6 @@ const AuthNavbar = ({
 		currentPathName = '/';
 	}
 
-	const cartItems = useSelector((state: any) => state.cart);
 
 	return (
 		<div dir={dir} className="h-fit hidden md:block">
