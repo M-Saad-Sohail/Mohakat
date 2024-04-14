@@ -68,44 +68,13 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							</span>
 						</div>
 					</div>
-					<div className=" flex flex-col gap-2">
-						<div className=" flex gap-2">
-							<span className=" text-base font-semibold">
-								{t('losesinwar.title')}:
-							</span>
-							<span className=" text-base font-normal">
-								{familyData?.lossesInWar}
-							</span>
-						</div>
-						<div className=" flex gap-2">
-							<span className=" text-base font-semibold">
-								{t('MartyrInFamily.title')}:
-							</span>
-							<span className=" text-base font-normal">
-								{familyData?.numberOfMartyrInFamily}
-							</span>
-						</div>
-						<div className=" flex gap-2">
-							<span className=" text-base font-semibold">
-								{t('InfectedInFamily.title')}:
-							</span>
-							<span className=" text-base font-normal">
-								{familyData?.numberOfInfectedInFamily}
-							</span>
-						</div>
-					</div>
 				</div>
 
 				{/* content div */}
 
-				{/* <div className=" text-base font-light">
-					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-						molestias, debitis veniam, suscipit dolor ex beatae libero omnis
-						delectus autem, amet minima? Delectus magni atque soluta
-						exercitationem modi, fugit doloremque!
-					</p>
-				</div> */}
+				<div className=" text-[15px] font-light">
+					<p>{familyData?.description?.inEnglish}</p>
+				</div>
 
 				{/* buttons */}
 				<div className=" flex justify-between">
@@ -118,10 +87,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						className=" bg-[#8DAE8E] md:px-5"
 					/>
 					{isInCart ? (
-						<Button
-							title="Already Added"
-							className=" bg-[#555555] md:px-5"
-						/>
+						<Button title="Already Added" className=" bg-[#555555] md:px-5" />
 					) : (
 						<Button
 							title="Add to Basket"
