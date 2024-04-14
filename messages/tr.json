@@ -346,5 +346,13 @@
 	"FAQ": {
 		"title":"SSS",
 		"description": "Bağış süreci, fonların nereye gittiği ve nasıl sponsor olunacağıyla ilgili sık sorulan soruların yanıtlarını bulun"
+	},
+	"ContactUs": {
+		"name": "İsim",
+		"email": "E-posta",
+		"message": "Mesaj",
+		"send":"Göndermek",
+		"success": "Başarıyla Gönderildi",
+		"error": "Bir şeyler yanlış gitti"
 	}
 }

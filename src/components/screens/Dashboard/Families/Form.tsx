@@ -81,6 +81,11 @@ const FamilyForm = () => {
 					inTurkish: values.breadWinnerNameTr,
 					inArabic: values.breadWinnerNameAr,
 				},
+				description: {
+					inEnglish: values.descriptionEn,
+					inTurkish: values.descriptionTr,
+					inArabic: values.descriptionAr,
+				},
 				maritalStatus: values.maritalStatus,
 				email: values.email,
 				language: values.language,
@@ -164,6 +169,33 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
+				<div className=" flex flex-col gap-3">
+					<h3 className=" text-sm font-bold">Description</h3>
+					<div className="flex items-center justify-start w-full gap-x-4">
+						<Input
+							title={'In English'}
+							name="descriptionEn"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionEn}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						<Input
+							title={'In Arabic'}
+							name="descriptionTr"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionTr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						<Input
+							title={'In Turkish'}
+							name="descriptionAr"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionAr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+					</div>
+				</div>
+
 				{/* second */}
 
 				<div className="flex items-center justify-start w-full gap-x-4">
@@ -177,7 +209,7 @@ const FamilyForm = () => {
 					<Input
 						title={t('age.title')}
 						name="age"
-						type = "number"
+						type="number"
 						className="mb-[19px] min-w-[460px]"
 						value={AddFamiliesForm.values?.age}
 						onChange={AddFamiliesForm.handleChange}
