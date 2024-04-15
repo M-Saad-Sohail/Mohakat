@@ -353,7 +353,8 @@
 		"message": "Mesaj",
 		"send":"Göndermek",
 		"success": "Başarıyla Gönderildi",
-		"error": "Bir şeyler yanlış gitti"
+		"error": "Bir şeyler yanlış gitti",
+		"allfields":"Tüm alanlar zorunludur"
 	},
 	"About": {
 		"title": "Hakkında"

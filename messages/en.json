@@ -358,7 +358,8 @@
 		"message":"Message",
 		"send":"Send",
 		"success": "Submitted Successfully",
-		"error": "Something went wrong"
+		"error": "Something went wrong",
+		"allfields":"All fields are required"
 	},
 	"About": {
 		"title":"About"

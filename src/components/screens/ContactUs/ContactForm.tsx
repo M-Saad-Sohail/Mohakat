@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import Input from '@/components/ui//Input';
 import Button from '@/components/ui/LandingPage/Button';
@@ -7,9 +7,11 @@ import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
+import { useAuth } from '@/hooks/useAuth';
 
 const ContactForm = () => {
 	const { user } = useLoggedInUser();
+	const [loading, setLoading] = useState(false);
 	const t = useTranslations('ContactUs');
 	const ContactForm = useFormik({
 		initialValues: {
@@ -25,18 +27,28 @@ const ContactForm = () => {
 				message: values.message,
 			};
 			try {
-				const res = await postJson(
-					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/contact-form-submit`,
-					response,
-					user?.key,
-				);
-				if (res.success) {
-					ContactForm.resetForm();
-					toast.success(`${t('success')}`, {
-						toastId: 'success',
+				if (!values.name || !values.email || !values.message) {
+					toast.error(`${t('allfields')}`, {
+						toastId: 'error',
 						position: 'bottom-right',
 						autoClose: 4000,
 					});
+				} else {
+					setLoading(true);
+					const res = await postJson(
+						`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/contact-form-submit`,
+						response,
+						user?.key,
+					);
+					if (res.success) {
+						setLoading(false);
+						ContactForm.resetForm();
+						toast.success(`${t('success')}`, {
+							toastId: 'success',
+							position: 'bottom-right',
+							autoClose: 4000,
+						});
+					}
 				}
 			} catch (error) {
 				console.log(error);
@@ -83,7 +95,12 @@ const ContactForm = () => {
 				/>
 			</div>
 			<div className=" flex justify-end">
-				<Button title={t('send')} type="submit" className=" bg-[#000000]" />
+				<Button
+					title={t('send')}
+					isLoading={loading}
+					type="submit"
+					className=" bg-[#000000]"
+				/>
 			</div>
 		</form>
 	);
