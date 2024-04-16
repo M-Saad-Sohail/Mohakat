@@ -118,7 +118,7 @@ const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
 	const size = useWindowSize();
 	const [open, setOpen] = useState(size.width > 768);
-	const [user, setUser] = useState<{ name: string; email: string } | null>(
+	const [user, setUser] = useState<{ name: string; email: string; id:string; } | null>(
 		null,
 	);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
@@ -129,8 +129,12 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
+		console.log("use",user)
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
+			setUser(user);
+		}
+		if (user && user.role === 'user') {
 			setUser(user);
 		}
 		const pathname = window.location.pathname;
@@ -162,13 +166,16 @@ const LeftSideBar = () => {
 					handleClose={() => setOpen(false)}
 				/>
 				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
-					<Image
+					{/* <Image
 						src={profile}
 						alt={''}
 						className="h-[50px] w-[50px] rounded-full mt-2"
-					/>
+					/> */}
 					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
 						{user ? user.name : ''}
+					</p>
+					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
+						{user ? user.id : ''}
 					</p>
 					<p
 						className={`${
