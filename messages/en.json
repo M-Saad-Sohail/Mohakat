@@ -371,5 +371,10 @@
 		"total":"Total",
 		"button":"Proceed to Checkout",
 		"emptyMessage":"No Family Added"
+	},
+	"toolTips":{
+		"familyRegister":"Register as Family",
+		"donateShare":"Donate a Share",
+		"becomeSponser":"Become Sponser"
 	}
 }

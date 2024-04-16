@@ -56,7 +56,7 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 							alt={''}
 							className="w-10 h-10 mx-2 rounded-full"
 						/> */}
-						<p className="text-black text-[16px]">{user ? user.name : ''}</p>
+						<p className="text-black text-[16px]">{user ? user.name.toUpperCase() : ''}</p>
 					</div>
 				</div>
 			</div>

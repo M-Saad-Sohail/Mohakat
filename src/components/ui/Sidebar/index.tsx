@@ -165,22 +165,24 @@ const LeftSideBar = () => {
 					handleOpen={() => setOpen(true)}
 					handleClose={() => setOpen(false)}
 				/>
-				<div className="flex-col flex gap-1 mx-auto items-center justify-center mt-[40px]">
+				<div className="flex-col flex gap-3 mx-auto items-center justify-center mt-[40px]">
 					{/* <Image
 						src={profile}
 						alt={''}
 						className="h-[50px] w-[50px] rounded-full mt-2"
 					/> */}
-					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
-						{user ? user.name : ''}
+					<div className=' flex flex-col items-center gap-3'>
+					<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						{user ? user.name.toUpperCase() : ''}
 					</p>
-					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
-						{user ? user.id : ''}
+					<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						Id: {' '}{user ? user.id : ''}
 					</p>
+					</div>
 					<p
 						className={`${
 							!open || isAdmin ? 'hidden' : ''
-						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px] mt-1`}
+						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px]`}
 					>
 						{t('verified')}
 					</p>

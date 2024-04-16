@@ -369,5 +369,10 @@
 		"total":"المجموع",
 		"button":"الانتقال إلى الدفع",
 		"emptyMessage":"لم يتم إضافة عائلة"
+	},
+	"toolTips": {
+		"familyRegister": "تسجيل كعائلة",
+		"donateShare": "تبرع بنصيب",
+		"becomeSponser": "كن راعي"
 	}	
 }

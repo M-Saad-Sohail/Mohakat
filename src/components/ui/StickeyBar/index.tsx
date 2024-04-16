@@ -6,9 +6,11 @@ import stickeySvg3 from '@/assests/svgs/stickeybar/stickeybar-3.svg';
 import Link from 'next/link';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
+import { useTranslations } from 'next-intl';
 
 const StickeyBar = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const t = useTranslations('toolTips');
 	return (
 		<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
 			<Link href={''} className=" bg-[#CF7475] md:p-5 p-[10px] tooltip">
@@ -17,15 +19,18 @@ const StickeyBar = () => {
 					alt="stickeySvg1"
 					className=" md:w-auto w-[14px]"
 				/>
-				<span className="tooltiptext">Register as Family</span>
+				<span className="tooltiptext">{t('familyRegister')}</span>
 			</Link>
-			<Link href={url(PATHS.FAMILY)} className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip">
+			<Link
+				href={url(PATHS.FAMILY)}
+				className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip"
+			>
 				<Image
 					src={stickeySvg2}
 					alt="stickeySvg2"
 					className=" md:w-auto w-[14px]"
 				/>
-				<span className="tooltiptext">Donate a Share</span>
+				<span className="tooltiptext">{t('donateShare')}</span>
 			</Link>
 			<Link
 				href={url(PATHS.BECOME_SPONSOR)}
@@ -36,7 +41,7 @@ const StickeyBar = () => {
 					alt="stickeySvg3"
 					className=" md:w-auto w-[14px]"
 				/>
-				<span className="tooltiptext">Become Sponser</span>
+				<span className="tooltiptext">{t('becomeSponser')}</span>
 			</Link>
 		</div>
 	);

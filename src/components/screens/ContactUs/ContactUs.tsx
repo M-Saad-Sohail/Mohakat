@@ -12,6 +12,8 @@ import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import EarthSvg from '@/assests/images/landing-page/earth.svg';
+import Link from 'next/link';
 
 interface ContactDataType {
 	heading: string;
@@ -116,9 +118,11 @@ const ContactUs = () => {
 							</div>
 
 							<div className=" flex gap-3 items-center">
-								<Image src={Location} alt="" />
+								<Image src={EarthSvg} alt="" />
 								<span className=" text-base font-medium text-[#000000]">
+									<Link href={contactData?.address} target='_blank'>
 									{contactData?.address}
+									</Link>
 								</span>
 							</div>
 						</div>

@@ -4,7 +4,7 @@ import EyeIcon from '@/assests/icons/eye_icon.svg';
 import Image from 'next/image';
 import useDirection from '@/hooks/useDirection';
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	error?: string | boolean | undefined;
+	error?: string | boolean | undefined | any;
 	title: string;
 	setting?: boolean;
 }
