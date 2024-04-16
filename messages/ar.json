@@ -279,6 +279,18 @@
 			},
 			"RegisterasFamily": {
 				"title": "سجل كعائلة"
+			},
+			"Sponser":{
+				"title":"تبرع بحصة"
+			},
+			"AddtoBasket":{
+				"title":"تبرع بحصة"
+			},
+			"Donate":{
+				"title":"تبرع"
+			},
+			"AlreadyAdded":{
+				"title":"تمت الإضافة بالفعل"
 			}
 		}
 	},	

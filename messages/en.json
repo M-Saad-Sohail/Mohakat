@@ -291,11 +291,23 @@
 			"DonateaShare":{
 				"title":"Donate a Share"
 			},
+			"Sponser":{
+				"title":"Donate a Share"
+			},
+			"AddtoBasket":{
+				"title":"Donate a Share"
+			},
+			"AlreadyAdded":{
+				"title":"Already Added"
+			},
 			"BecomeaSponser":{
 				"title":"Become a Sponser"
 			},
 			"RegisterasFamily":{
 				"title":"Register as Family"
+			},
+			"Donate":{
+				"title":"Donate"
 			}
 		}
 	},
