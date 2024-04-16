@@ -369,5 +369,10 @@
 		"total": "Toplam",
 		"button": "Ödeme Yapmaya Git",
 		"emptyMessage": "Hiçbir Ürün Eklenmedi"
-	}
+	},
+		"toolTips": {
+			"familyRegister": "Aile Olarak Kaydol",
+			"donateShare": "Pay Bağışla",
+			"becomeSponser": "Sponsor Ol"
+		}
 }
