@@ -19,6 +19,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 }) => {
 	const dispatch = useDispatch();
 	const t = useTranslations('AddFamilies.form');
+	const t1 = useTranslations('HeroMainSection.btns');
 	const { user } = useLoggedInUser();
 	const [amount, setAmount] = useState<number>(0);
 	const [open, setOpen] = useState(false);
@@ -90,14 +91,14 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							setOpen(true);
 							setCurrentFamilyInfo(familyData);
 						}}
-						title={`${user ? `Sponser` : `Donate a share`}`}
+						title={`${user ? t1('Sponser.title')  : t1('DonateaShare.title')}`}
 						className=" bg-[#8DAE8E] md:px-5"
 					/>
 					{isInCart ? (
-						<Button title="Already Added" className=" bg-[#555555] md:px-5" />
+						<Button title={t1('AlreadyAdded.title')} className=" bg-[#555555] md:px-5" />
 					) : (
 						<Button
-							title="Add to Basket"
+							title={t1('AddtoBasket.title')}
 							className=" bg-[#000000] md:px-5"
 							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
 						/>

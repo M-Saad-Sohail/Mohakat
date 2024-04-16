@@ -25,6 +25,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
+	const t1 = useTranslations('HeroMainSection.btns');
 
 	const [selectedOption, setSelectedOption] = useState<string>('3');
 
@@ -326,7 +327,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												setOpen(false);
 												setDonate(true);
 											}}
-											title={`Donate`}
+											title={t1('Donate.title')}
 											className=" bg-[#CF7475]"
 										/>
 									</div>

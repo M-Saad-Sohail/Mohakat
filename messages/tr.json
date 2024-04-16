@@ -279,6 +279,18 @@
 			},
 			"RegisterasFamily": {
 				"title": "Aile Olarak Kaydol"
+			},
+			"Sponser":{
+				"title":"Bir Pay Bağışla"
+			},
+			"AddtoBasket":{
+				"title":"Bir Pay Bağışla"
+			},
+			"Donate":{
+				"title":"Bağış Yap"
+			},
+			"AlreadyAdded":{
+				"title":"Zaten Eklendi"
 			}
 		}
 	},
