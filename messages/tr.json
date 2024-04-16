@@ -280,17 +280,20 @@
 			"RegisterasFamily": {
 				"title": "Aile Olarak Kaydol"
 			},
-			"Sponser":{
-				"title":"Bir Pay Bağışla"
+			"Sponser": {
+				"title": "Bir Pay Bağışla"
 			},
-			"AddtoBasket":{
-				"title":"Bir Pay Bağışla"
+			"AddtoBasket": {
+				"title": "Bir Pay Bağışla"
 			},
-			"Donate":{
-				"title":"Bağış Yap"
+			"Donate": {
+				"title": "Bağış Yap"
 			},
-			"AlreadyAdded":{
-				"title":"Zaten Eklendi"
+			"AlreadyAdded": {
+				"title": "Zaten Eklendi"
+			},
+			"seeMore": {
+				"title": "Daha fazla görüntüle"
 			}
 		}
 	},
@@ -382,9 +385,9 @@
 		"button": "Ödeme Yapmaya Git",
 		"emptyMessage": "Hiçbir Ürün Eklenmedi"
 	},
-		"toolTips": {
-			"familyRegister": "Aile Olarak Kaydol",
-			"donateShare": "Pay Bağışla",
-			"becomeSponser": "Sponsor Ol"
-		}
+	"toolTips": {
+		"familyRegister": "Aile Olarak Kaydol",
+		"donateShare": "Pay Bağışla",
+		"becomeSponser": "Sponsor Ol"
+	}
 }

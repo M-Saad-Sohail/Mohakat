@@ -11,10 +11,12 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/LandingPage/Button';
+import { useTranslations } from 'next-intl';
 
 const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
+	const t = useTranslations('HeroMainSection.btns');
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -126,7 +128,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						<div className=" flex justify-center mt-4">
 							<Link href={url(PATHS.FAMILY)} locale={locale}>
 								<Button
-									title="see more..."
+									title={t('seeMore.title')}
 									className=" md:font-medium bg-[#000000]"
 								/>
 							</Link>

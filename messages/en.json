@@ -292,13 +292,16 @@
 				"title":"Donate a Share"
 			},
 			"Sponser":{
-				"title":"Donate a Share"
+				"title":"Sponser"
 			},
 			"AddtoBasket":{
-				"title":"Donate a Share"
+				"title":"Add to Basket"
 			},
 			"AlreadyAdded":{
 				"title":"Already Added"
+			},
+			"seeMore":{
+				"title":"see more"
 			},
 			"BecomeaSponser":{
 				"title":"Become a Sponser"
