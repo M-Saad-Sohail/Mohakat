@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAddCartStateAction } from '@/state/cart';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
@@ -24,6 +25,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	const cancelButtonRef = useRef(null);
 	const [donateOpen, setDonateOpen] = useState(false);
 	const cancelDonateButtonRef = useRef(null);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
 
@@ -35,21 +37,26 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md">
+			<div
+				dir={dir}
+				className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md"
+			>
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
 						title={familyData?.currentSituation || 'Nil'}
 						className=" bg-[#CF7475]"
 					/>
-					{user && <span className=" text-lg font-semibold">${amount}</span>}
+					<span className=" text-lg font-semibold">
+						{familyData.numberOfFamilyMembers >= 3 ? '$500' : '$300'}
+					</span>
 				</div>
 
 				{/* second div */}
 				<div className=" flex flex-col gap-3">
 					<h2 className="  text-2xl font-semibold">
 						{familyData?.breadWinnerName
-							? familyData?.breadWinnerName?.inEnglish
+							? familyData?.breadWinnerName
 							: 'Unknown'}
 					</h2>
 					{/* people and location div */}
@@ -73,7 +80,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* content div */}
 
 				<div className=" text-[15px] font-light">
-					<p>{familyData?.description?.inEnglish}</p>
+					<p>{familyData?.description}</p>
 				</div>
 
 				{/* buttons */}

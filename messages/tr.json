@@ -171,6 +171,9 @@
 			"all_fields": "Tüm alanlar zorunludur",
 			"submit": "Aile Başarıyla Eklendi",
 			"title": "Aile Ekle",
+			"name": {
+				"title": "İsim"
+			},
 			"email": {
 				"title": "E-posta"
 			},
@@ -248,12 +251,12 @@
 			},
 			"losesinwar": {
 				"title": "Savaşta Kayıplar",
-					"none": "none",
-					"car": "araba",
-					"furniture": "mobilya",
-					"store": "mobilya mağazası",
-					"house": "ev",
-					"business": "iş",
+				"none": "none",
+				"car": "araba",
+				"furniture": "mobilya",
+				"store": "mobilya mağazası",
+				"house": "ev",
+				"business": "iş",
 				"default": "Savaşta Kayıp Sayısını Seçin"
 			},
 			"language": {
@@ -278,7 +281,7 @@
 				"title": "Aile Olarak Kaydol"
 			}
 		}
-	},	
+	},
 	"Sidebar": {
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",
@@ -339,26 +342,32 @@
 	"Footer": {
 		"home": "Ana Sayfa",
 		"families": "Aileler",
-		"faqs":"SSS",
-		"contact":"İletişim",
-		"MuakhetAllrightsreserved":"Muakhet. Tüm hakları saklıdır.",
-		"privacypolicy":"Gizlilik Politikası",
-		"termsofservice":"Hizmet Şartları"
+		"faqs": "SSS",
+		"contact": "İletişim",
+		"MuakhetAllrightsreserved": "Muakhet. Tüm hakları saklıdır.",
+		"privacypolicy": "Gizlilik Politikası",
+		"termsofservice": "Hizmet Şartları"
 	},
 	"FAQ": {
-		"title":"SSS",
+		"title": "SSS",
 		"description": "Bağış süreci, fonların nereye gittiği ve nasıl sponsor olunacağıyla ilgili sık sorulan soruların yanıtlarını bulun"
 	},
 	"ContactUs": {
 		"name": "İsim",
 		"email": "E-posta",
 		"message": "Mesaj",
-		"send":"Göndermek",
+		"send": "Göndermek",
 		"success": "Başarıyla Gönderildi",
 		"error": "Bir şeyler yanlış gitti",
-		"allfields":"Tüm alanlar zorunludur"
+		"allfields": "Tüm alanlar zorunludur"
 	},
 	"About": {
 		"title": "Hakkında"
-	}	
+	},
+	"Cart": {
+		"title": "Sepet",
+		"total": "Toplam",
+		"button": "Ödeme Yapmaya Git",
+		"emptyMessage": "Hiçbir Ürün Eklenmedi"
+	}
 }

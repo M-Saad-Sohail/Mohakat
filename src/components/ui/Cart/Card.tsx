@@ -16,7 +16,7 @@ const FamilyCard = ({ family }: { family: any }) => {
 		<div className="flex flex-col gap-[10px] justify-between bg-[#F8F8F8] rounded-xl p-4 shadow-md">
 			<div className=" flex justify-between">
 				<h3 className="text-sm font-semibold">
-					{family?.breadWinnerName?.inEnglish}
+					{family?.breadWinnerName}
 				</h3>
 				<h3 className="text-sm font-semibold">$300</h3>
 			</div>

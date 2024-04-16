@@ -14,10 +14,15 @@ import { areasData } from '@/contants/Areas';
 import { situationData } from '@/contants/Situations';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FaArrowLeftLong } from 'react-icons/fa6';
+import { usePathname } from 'next/navigation';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1,3);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies');
@@ -86,6 +91,49 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		setCurrentPage(1);
 	};
 
+	const handleFamiliesData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inEnglish,
+					description: data?.description?.inEnglish,
+					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+						...member,
+						memberName: member?.memberName.inEnglish,
+					})),
+				},
+			]);
+		} else if (path === 'ar') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inArabic,
+					description: data?.description?.inArabic,
+					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+						...member,
+						memberName: member?.memberName.inArabic,
+					})),
+				},
+			]);
+		} else if (path === 'tr') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inTurkish,
+					description: data?.description?.inTurkish,
+					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+						...member,
+						memberName: member?.memberName.inTurkish,
+					})),
+				},
+			]);
+		}
+	};
+
 	useEffect(() => {
 		(async () => {
 			setIsLoading(true);
@@ -93,12 +141,20 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/families`,
 			);
 			if (res.success) {
-				setFamiliesData(res.familySponser);
-				setFilteredData(res.familySponser);
+				setFamiliesData([]);
+				res.familySponser.map((item: any) =>
+					handleFamiliesData(currentPath, item),
+				);
+				// setFilteredData(res.familySponser);
 				setIsLoading(false);
 			}
 		})();
 	}, []);
+
+	useEffect(() => {
+	  setFilteredData(familiesData)
+	}, [familiesData])
+	
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -119,6 +175,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	return (
 		<>
 			<section
+			dir={dir}
 				className={` ${user ? 'md:w-[90%] py-8' : 'md:w-[80%] py-12'} w-[90%] mx-auto flex flex-col gap-8 `}
 			>
 				{/* heading and content */}

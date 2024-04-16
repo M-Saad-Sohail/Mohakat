@@ -100,7 +100,9 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					/>
 				</div>
 			</div>
-			<div className=" flex md:flex-row flex-col justify-between md:gap-0 gap-6">
+			<div
+				className={`flex md:flex-row flex-col justify-between ${currentPath === 'ar' ? ' md:gap-9' : 'md:gap-4'} gap-6`}
+			>
 				{featureData?.map((item: any, i: number) => (
 					<div key={i} className=" flex-1 flex flex-col items-center gap-5">
 						<Image
