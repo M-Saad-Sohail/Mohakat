@@ -70,14 +70,14 @@ const AuthNavbar = ({
 								key={link.name}
 								href={url(link.link)}
 								locale={locale}
-								className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
+								className={`block py-2 px-4 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
 							>
 								{t(link.localeId)}
 							</Link>
 						))}
 					</div>
 				</div>
-				<div className="flex flex-row items-center justify-center gap-x-4">
+				<div className="flex flex-row items-center justify-center gap-x-3">
 					<LangSelector
 						name="language"
 						value={locale}
@@ -92,7 +92,7 @@ const AuthNavbar = ({
 								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
 								replace={currentPathName !== '/'}
 								locale={user?.language ?? locale}
-								className={`duration-500 md:flex hidden float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+								className={`duration-500 md:flex hidden float-right mr-2 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
 								{t('cta.go-to-dashboard')}
 							</Link>
@@ -102,14 +102,14 @@ const AuthNavbar = ({
 							<Link
 								href={url(PATHS.LOGIN)}
 								locale={locale}
-								className={` duration-500 md:flex hidden float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+								className={` duration-500 md:flex hidden float-right mr-2 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
 							>
 								{t('cta.signin')}
 							</Link>
 							<Link
 								href={url(PATHS.BECOME_SPONSOR)}
 								locale={locale}
-								className={`duration-500 md:flex hidden float-right mr-4 bg-[#8DAE8E] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+								className={`duration-500 md:flex hidden float-right mr-2 bg-[#8DAE8E] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
 								{t('cta.become-sponsor')}
 							</Link>

@@ -16,12 +16,13 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import Button from '@/components/ui/LandingPage/Button';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
 	const pathname = usePathname();
-	const currentPath = pathname?.slice(1,3);
+	const currentPath = pathname?.slice(1, 3);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { user } = useLoggedInUser();
@@ -31,7 +32,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	const [filteredData, setFilteredData] = useState<any[]>([]);
 	const [area, setArea] = useState('');
 	const [situation, setSituation] = useState('');
-	const [member, setMember] = useState<number>();
+	const [member, setMember] = useState<number | null>(null);
 	const [openDropDown, setOpenDropDown] = useState<boolean[]>([
 		false,
 		false,
@@ -152,9 +153,15 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	}, []);
 
 	useEffect(() => {
-	  setFilteredData(familiesData)
-	}, [familiesData])
-	
+		setFilteredData(familiesData);
+	}, [familiesData]);
+
+	const clearAll = () => {
+		setFilteredData(familiesData);
+		setMember(null);
+		setSituation('');
+		setArea('');
+	};
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -175,7 +182,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	return (
 		<>
 			<section
-			dir={dir}
+				dir={dir}
 				className={` ${user ? 'md:w-[90%] py-8' : 'md:w-[80%] py-12'} w-[90%] mx-auto flex flex-col gap-8 `}
 			>
 				{/* heading and content */}
@@ -191,123 +198,132 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				)}
 
 				{/* dropdowns */}
-				<div className=" flex md:flex-nowrap flex-wrap md:gap-3 gap-3">
-					<div className="relative flex flex-col gap-2 md:w-64 w-[48%]">
-						<h3 className=" text-base font-medium"> {t('area')} </h3>
-						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
-							onClick={() => handleDropDownClick(0)}
-						>
-							<span className=" md:text-base text-sm font-medium text-[#00000080] capitalize ">
-								{area ? area : 'Select'}
-							</span>
-							<span>
-								{openDropDown[0] ? (
-									<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
-								) : (
-									<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
-								)}
-							</span>
-						</button>
-						<div
-							className={`${
-								openDropDown[0] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
-						>
-							{areasData.map((item, i) => {
-								return (
-									<p
-										key={i}
-										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-										onClick={() => {
-											filterData('area', item.value);
-											setArea(item.value);
-										}}
-									>
-										{t(`form.currentresidence.${item.label}`)}
-									</p>
-								);
-							})}
+				<div className=" flex justify-between">
+					<div className="flex md:flex-nowrap flex-wrap md:gap-3 gap-3">
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%]">
+							<h3 className=" text-base font-medium"> {t('area')} </h3>
+							<button
+								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(0)}
+							>
+								<span className=" md:text-base text-sm font-medium text-[#00000080] capitalize ">
+									{area ? area : 'Select'}
+								</span>
+								<span>
+									{openDropDown[0] ? (
+										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[0] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{areasData.map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() => {
+												filterData('area', item.value);
+												setArea(item.value);
+											}}
+										>
+											{t(`form.currentresidence.${item.label}`)}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
+							<h3 className=" text-base font-medium"> {t('situation')} </h3>
+							<button
+								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(1)}
+							>
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
+									{situation ? situation : 'Select'}
+								</span>
+								<span>
+									{openDropDown[1] ? (
+										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[1] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{situationData.map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() => {
+												filterData('situation', item.value);
+												setSituation(item.value);
+											}}
+										>
+											{t(`form.currentsituation.${item.label}`)}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
+							<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
+							<button
+								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(2)}
+							>
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
+									{member ? member : 'Select'}
+								</span>
+								<span>
+									{openDropDown[2] ? (
+										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[2] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{[3, 6, 9, 12].map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() => {
+												filterData('member', item);
+												setMember(item);
+											}}
+										>
+											{/* {t(`form.currentsituation.${item.label}`)} */}
+											{item}
+										</p>
+									);
+								})}
+							</div>
 						</div>
 					</div>
-
-					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
-						<h3 className=" text-base font-medium"> {t('situation')} </h3>
-						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
-							onClick={() => handleDropDownClick(1)}
-						>
-							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-								{situation ? situation : 'Select'}
-							</span>
-							<span>
-								{openDropDown[1] ? (
-									<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
-								) : (
-									<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
-								)}
-							</span>
-						</button>
-						<div
-							className={`${
-								openDropDown[1] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
-						>
-							{situationData.map((item, i) => {
-								return (
-									<p
-										key={i}
-										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-										onClick={() => {
-											filterData('situation', item.value);
-											setSituation(item.value);
-										}}
-									>
-										{t(`form.currentsituation.${item.label}`)}
-									</p>
-								);
-							})}
-						</div>
-					</div>
-
-					<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
-						<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
-						<button
-							className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
-							onClick={() => handleDropDownClick(2)}
-						>
-							<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
-								{member ? member : 'Select'}
-							</span>
-							<span>
-								{openDropDown[2] ? (
-									<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
-								) : (
-									<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
-								)}
-							</span>
-						</button>
-						<div
-							className={`${
-								openDropDown[2] ? 'block' : 'hidden'
-							}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
-						>
-							{[3, 6, 9, 12].map((item, i) => {
-								return (
-									<p
-										key={i}
-										className={`py-1 px-3 text-base font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-										onClick={() => {
-											filterData('member', item);
-											setMember(item);
-										}}
-									>
-										{/* {t(`form.currentsituation.${item.label}`)} */}
-										{item}
-									</p>
-								);
-							})}
-						</div>
+					<div className=" flex items-end">
+						<Button
+							title="Clear All"
+							className=" bg-[#000000]"
+							onClick={clearAll}
+						/>
 					</div>
 				</div>
 				{isLoading ? (
