@@ -7,7 +7,7 @@ import Select from '@/components/ui/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
 import { AddFamiliesValues } from '@/contants';
-import { useFormik } from 'formik';
+import { useFormik, ErrorMessage } from 'formik';
 import Button from '@/components/ui/Button';
 import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
@@ -75,7 +75,7 @@ const FamilyForm = () => {
 	const AddFamiliesForm = useFormik({
 		initialValues: AddFamiliesValues,
 		validationSchema: AddFamiliesSchema,
-		onSubmit: async (values: any) => {
+		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
 					inEnglish: values.breadWinnerNameEn,
@@ -106,20 +106,20 @@ const FamilyForm = () => {
 			};
 			try {
 				setLoading(true);
-					const res = await postJson(
-						`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
-						response,
-						user?.key,
-					);
-					if (res.success) {
-						setLoading(false);
-						AddFamiliesForm.resetForm();
-						toast.success(`${t('submit')}`, {
-							toastId: 'success',
-							position: 'bottom-right',
-							autoClose: 4000,
-						});
-					}
+				const res = await postJson(
+					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
+					response,
+					user?.key,
+				);
+				if (res.success) {
+					setLoading(false);
+					AddFamiliesForm.resetForm();
+					toast.success(`${t('submit')}`, {
+						toastId: 'success',
+						position: 'bottom-right',
+						autoClose: 4000,
+					});
+				}
 			} catch (error) {
 				// console.log(error);
 				toast.error(`${t('fill_form_correctly')}`, {
@@ -154,20 +154,50 @@ const FamilyForm = () => {
 							value={AddFamiliesForm.values?.breadWinnerNameEn}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.breadWinnerNameEn &&
+							Boolean(AddFamiliesForm.errors.breadWinnerNameEn) &&
+							toast.error(
+								`${AddFamiliesForm.errors.breadWinnerNameEn as any}`,
+								{
+									toastId: '',
+									position: 'bottom-right',
+									autoClose: 4000,
+								},
+							)}
 						<Input
-							title={'In Arabic'}
+							title={'In Turkish'}
 							name="breadWinnerNameTr"
 							className="mb-[19px] min-w-[250px]"
 							value={AddFamiliesForm.values?.breadWinnerNameTr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.breadWinnerNameTr &&
+							Boolean(AddFamiliesForm.errors.breadWinnerNameTr) &&
+							toast.error(
+								`${AddFamiliesForm.errors.breadWinnerNameTr as any}`,
+								{
+									toastId: '',
+									position: 'bottom-right',
+									autoClose: 4000,
+								},
+							)}
 						<Input
-							title={'In Turkish'}
+							title={'In Arabic'}
 							name="breadWinnerNameAr"
 							className="mb-[19px] min-w-[250px]"
 							value={AddFamiliesForm.values?.breadWinnerNameAr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.breadWinnerNameAr &&
+							Boolean(AddFamiliesForm.errors.breadWinnerNameAr) &&
+							toast.error(
+								`${AddFamiliesForm.errors.breadWinnerNameAr as any}`,
+								{
+									toastId: '',
+									position: 'bottom-right',
+									autoClose: 4000,
+								},
+							)}
 					</div>
 				</div>
 
@@ -181,20 +211,41 @@ const FamilyForm = () => {
 							value={AddFamiliesForm.values?.descriptionEn}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.descriptionEn &&
+							Boolean(AddFamiliesForm.errors.descriptionEn) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionEn as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
 						<Input
-							title={'In Arabic'}
+							title={'In Turkish'}
 							name="descriptionTr"
 							className="mb-[19px] min-w-[250px]"
 							value={AddFamiliesForm.values?.descriptionTr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.descriptionTr &&
+							Boolean(AddFamiliesForm.errors.descriptionTr) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionTr as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
 						<Input
-							title={'In Turkish'}
+							title={'In Arabic'}
 							name="descriptionAr"
 							className="mb-[19px] min-w-[250px]"
 							value={AddFamiliesForm.values?.descriptionAr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
+						{AddFamiliesForm.touched.descriptionAr &&
+							Boolean(AddFamiliesForm.errors.descriptionAr) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionAr as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
 					</div>
 				</div>
 
@@ -208,6 +259,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.email}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.email &&
+						Boolean(AddFamiliesForm.errors.email) &&
+						toast.error(`${AddFamiliesForm.errors.email as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 					<Input
 						title={t('age.title')}
 						name="age"
@@ -216,6 +274,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.age}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.age &&
+						Boolean(AddFamiliesForm.errors.age) &&
+						toast.error(`${AddFamiliesForm.errors.age as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 				</div>
 
 				<div className="flex items-center justify-start w-full gap-x-4">
@@ -227,6 +292,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.telephoneNumber}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.telephoneNumber &&
+						Boolean(AddFamiliesForm.errors.telephoneNumber) &&
+						toast.error(`${AddFamiliesForm.errors.telephoneNumber as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 					<Input
 						title={t('id.title')}
 						name="idNumber"
@@ -235,6 +307,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.idNumber}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.idNumber &&
+						Boolean(AddFamiliesForm.errors.idNumber) &&
+						toast.error(`${AddFamiliesForm.errors.idNumber as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 				</div>
 
 				{/* third */}
@@ -248,6 +327,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.dateOfBirth}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.dateOfBirth &&
+						Boolean(AddFamiliesForm.errors.dateOfBirth) &&
+						toast.error(`${AddFamiliesForm.errors.dateOfBirth as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 					<Select
 						title={t('gender.title')}
 						name="gender"
@@ -260,6 +346,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.gender}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.gender &&
+						Boolean(AddFamiliesForm.errors.gender) &&
+						toast.error(`${AddFamiliesForm.errors.gender as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 				</div>
 
 				{/* fourth */}
@@ -277,6 +370,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.maritalStatus}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.maritalStatus &&
+						Boolean(AddFamiliesForm.errors.maritalStatus) &&
+						toast.error(`${AddFamiliesForm.errors.maritalStatus as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 					<Select
 						title={t('language.title')}
 						name="language"
@@ -290,6 +390,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values.language}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.language &&
+						Boolean(AddFamiliesForm.errors.language) &&
+						toast.error(`${AddFamiliesForm.errors.language as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 				</div>
 
 				{/* fifth */}
@@ -336,6 +443,16 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.areaOfPreviousResidence}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.areaOfPreviousResidence &&
+						Boolean(AddFamiliesForm.errors.areaOfPreviousResidence) &&
+						toast.error(
+							`${AddFamiliesForm.errors.areaOfPreviousResidence as any}`,
+							{
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							},
+						)}
 					<Select
 						title={t('currentresidence.title')}
 						name="areaOfCurrentResidence"
@@ -374,6 +491,16 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.areaOfCurrentResidence}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.areaOfCurrentResidence &&
+						Boolean(AddFamiliesForm.errors.areaOfCurrentResidence) &&
+						toast.error(
+							`${AddFamiliesForm.errors.areaOfCurrentResidence as any}`,
+							{
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							},
+						)}
 				</div>
 
 				{/* Sixth */}
@@ -392,6 +519,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.currentSituation}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.currentSituation &&
+						Boolean(AddFamiliesForm.errors.currentSituation) &&
+						toast.error(`${AddFamiliesForm.errors.currentSituation as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 					<Select
 						title={t('losesinwar.title')}
 						name="lossesInWar"
@@ -408,6 +542,13 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values.lossesInWar}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.lossesInWar &&
+						Boolean(AddFamiliesForm.errors.lossesInWar) &&
+						toast.error(`${AddFamiliesForm.errors.lossesInWar as any}`, {
+							toastId: '',
+							position: 'bottom-right',
+							autoClose: 4000,
+						})}
 				</div>
 
 				{/* seventh */}
@@ -421,6 +562,16 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.numberOfFamilyMembers}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.numberOfFamilyMembers &&
+						Boolean(AddFamiliesForm.errors.numberOfFamilyMembers) &&
+						toast.error(
+							`${AddFamiliesForm.errors.numberOfFamilyMembers as any}`,
+							{
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							},
+						)}
 					<Input
 						title={t('MartyrInFamily.title')}
 						name="numberOfMartyrInFamily"
@@ -429,6 +580,16 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.numberOfMartyrInFamily}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.numberOfMartyrInFamily &&
+						Boolean(AddFamiliesForm.errors.numberOfMartyrInFamily) &&
+						toast.error(
+							`${AddFamiliesForm.errors.numberOfMartyrInFamily as any}`,
+							{
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							},
+						)}
 					<Input
 						title={t('InfectedInFamily.title')}
 						name="numberOfInfectedInFamily"
@@ -437,6 +598,16 @@ const FamilyForm = () => {
 						value={AddFamiliesForm.values?.numberOfInfectedInFamily}
 						onChange={AddFamiliesForm.handleChange}
 					/>
+					{AddFamiliesForm.touched.numberOfInfectedInFamily &&
+						Boolean(AddFamiliesForm.errors.numberOfInfectedInFamily) &&
+						toast.error(
+							`${AddFamiliesForm.errors.numberOfInfectedInFamily as any}`,
+							{
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							},
+						)}
 				</div>
 
 				{/* eigth */}
@@ -536,7 +707,6 @@ const FamilyForm = () => {
 						title={t('title')}
 						className="max-w-[200px] px-6 shadow-custom"
 						isLoading={loading}
-						disabled={AddFamiliesForm.isSubmitting}
 						onClick={(e) => {
 							e.preventDefault();
 							AddFamiliesForm.handleSubmit();
