@@ -34,6 +34,7 @@ interface FamilyMember {
 const FamilyForm = () => {
 	const [userId, setUserId] = useState<string | null>(null);
 	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
+	const [loading, setLoading] = useState<boolean>(false);
 	const { user } = useLoggedInUser();
 
 	const handleMemberDetailChange = (
@@ -103,21 +104,22 @@ const FamilyForm = () => {
 				numberOfInfectedInFamily: parseInt(values.numberOfInfectedInFamily),
 				familyMemberDetail: familyMembers,
 			};
-
 			try {
-				const res = await postJson(
-					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
-					response,
-					user?.key,
-				);
-				if (res.success) {
-					AddFamiliesForm.resetForm();
-					toast.success(`${t('title')}`, {
-						toastId: 'success',
-						position: 'bottom-right',
-						autoClose: 4000,
-					});
-				}
+				setLoading(true);
+					const res = await postJson(
+						`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
+						response,
+						user?.key,
+					);
+					if (res.success) {
+						setLoading(false);
+						AddFamiliesForm.resetForm();
+						toast.success(`${t('submit')}`, {
+							toastId: 'success',
+							position: 'bottom-right',
+							autoClose: 4000,
+						});
+					}
 			} catch (error) {
 				// console.log(error);
 				toast.error(`${t('fill_form_correctly')}`, {
@@ -533,6 +535,7 @@ const FamilyForm = () => {
 					<Button
 						title={t('title')}
 						className="max-w-[200px] px-6 shadow-custom"
+						isLoading={loading}
 						disabled={AddFamiliesForm.isSubmitting}
 						onClick={(e) => {
 							e.preventDefault();

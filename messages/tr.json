@@ -168,6 +168,8 @@
 		"no_of_member": "Üye Sayısı",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
+			"all_fields": "Tüm alanlar zorunludur",
+			"submit": "Aile Başarıyla Eklendi",
 			"title": "Aile Ekle",
 			"email": {
 				"title": "E-posta"

@@ -14,7 +14,7 @@ type IProps = {
 };
 
 const DashboardNavbar = ({ title, setting }: IProps) => {
-	let [user, setUser] = useState<{ name: string } | null>(null);
+	let [user, setUser] = useState<{ name: string; role: string } | null>(null);
 	useEffect(() => {
 		const loggedInUser = getUserFromLocalStorage();
 		setUser(loggedInUser);
@@ -33,27 +33,29 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 				</h2>
 
 				<div className={`items-center  flex float-right w-full justify-end`}>
-					<Image
+					{/* <Image
 						src={language} // Replace with the path to the user profile image
 						alt={''}
 						className="w-8 h-8 mx-2 rounded-full"
 						style={{ filter: 'invert(100%)' }}
-					/>
-					<div
-						className=" relative cursor-pointer"
-						onClick={() => setIsCartOpen(true)}
-					>
-						<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
-							{cartItems.length > 0 ? cartItems.length : '0'}
-						</span>
-						<TbBasketDollar className=" text-[40px]" />
-					</div>
+					/> */}
+					{user?.role === 'user' && (
+						<div
+							className=" relative cursor-pointer"
+							onClick={() => setIsCartOpen(true)}
+						>
+							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								{cartItems.length > 0 ? cartItems.length : '0'}
+							</span>
+							<TbBasketDollar className=" text-[40px]" />
+						</div>
+					)}
 					<div dir={dir} className="flex items-center mx-4">
-						<Image
+						{/* <Image
 							src={profile} // Replace with the path to the user profile image
 							alt={''}
 							className="w-10 h-10 mx-2 rounded-full"
-						/>
+						/> */}
 						<p className="text-black text-[16px]">{user ? user.name : ''}</p>
 					</div>
 				</div>
