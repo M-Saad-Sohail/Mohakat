@@ -30,6 +30,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					value: res.randomFamilies,
 				}),
 			);
+			setIsLoading(false);
 		}
 	};
 
@@ -46,7 +47,9 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				<div className=" flex justify-between">
 					<h2 className=" md:text-3xl text-2xl font-semibold">Families</h2>
 					<Link href={url(PATHS.FAMILY)} locale={locale}>
-						<span className=" md:text-lg text-base font-light">see more...</span>
+						<span className=" md:text-lg text-base font-light">
+							see more...
+						</span>
 					</Link>
 				</div>
 				{isLoading ? (
