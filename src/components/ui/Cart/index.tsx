@@ -4,6 +4,7 @@ import Button from '../LandingPage/Button';
 import Image from 'next/image';
 import Card from './Card';
 import { useSelector } from 'react-redux';
+import { useTranslations } from 'next-intl';
 
 const Cart = ({
 	isCartOpen,
@@ -13,6 +14,7 @@ const Cart = ({
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const cartItems = useSelector((state: any) => state.cart);
+	const t = useTranslations('Cart');
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -42,7 +44,7 @@ const Cart = ({
 				} transition-transform duration-500 ease-out z-50 bg-white shadow-lg`}
 			>
 				<div className="flex justify-between px-6 py-5 border-b-[0.5px] border-[#00000080]">
-					<h3 className="text-xl font-semibold">Basket</h3>
+					<h3 className="text-xl font-semibold">{t('title')}</h3>
 					<span>
 						<IoClose
 							onClick={() => setIsCartOpen(false)}
@@ -57,19 +59,16 @@ const Cart = ({
 						))
 					) : (
 						<h3 className="text-lg text-center font-semibold">
-							No Family Added
+							{t('emptyMessage')}
 						</h3>
 					)}
 				</div>
 				<div className=" bg-white w-full flex flex-col justify-between gap-[10px] px-6 pt-3 pb-5">
 					<div className=" flex justify-between">
-						<h3 className="text-lg font-semibold">Total</h3>
+						<h3 className="text-lg font-semibold">{t('total')}</h3>
 						<h3 className="text-lg font-semibold">$0</h3>
 					</div>
-					<Button
-						title="Proceed to Checkout"
-						className=" bg-[#CF7475] w-full"
-					/>
+					<Button title={t('button')} className=" bg-[#CF7475] w-full" />
 				</div>
 				{/* Cart content goes here */}
 			</div>

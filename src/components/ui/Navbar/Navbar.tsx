@@ -22,7 +22,7 @@ const AuthNavbar = ({
 }) => {
 	const cartItems = useSelector((state: any) => state.cart);
 	const pathname = usePathname();
-	const currentPath = pathname?.slice(1);
+	const currentPath = pathname?.slice(1,3);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 

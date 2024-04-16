@@ -10,6 +10,7 @@ import PeopleSvg from '@/assests/icons/people.svg';
 import LocationSvg from '@/assests/icons/location.svg';
 import { useTranslations } from 'next-intl';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 const FamilyModal: React.FC<FamilyModalType> = ({
 	open,
@@ -21,6 +22,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	amount,
 	setAmount,
 }) => {
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
 
@@ -73,7 +75,10 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 						<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 					</Transition.Child>
 
-					<div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+					<div
+						dir={dir}
+						className="fixed inset-0 z-10 w-screen overflow-y-auto"
+					>
 						<div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
 							<Transition.Child
 								as={Fragment}
@@ -106,13 +111,13 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									<div className=" flex justify-between">
 										<div className=" flex flex-col gap-2">
 											<h2 className="  text-2xl font-semibold">
-												{familyInfo?.breadWinnerName.inEnglish}
+												{familyInfo?.breadWinnerName}
 											</h2>
 
 											<div className=" flex gap-5">
 												{/* first column */}
 												<div className=" flex flex-col gap-3">
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('id.title')}:
 														</span>
@@ -120,7 +125,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.idNumber}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('age.title')}:
 														</span>
@@ -128,7 +133,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.age}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('martialstatus.title')}:
 														</span>
@@ -136,7 +141,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.maritalStatus}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('losesinwar.title')}:
 														</span>
@@ -144,7 +149,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.lossesInWar}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('previousresidence.title')}:
 														</span>
@@ -152,7 +157,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.areaOfPreviousResidence}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('MartyrInFamily.title')}:
 														</span>
@@ -164,7 +169,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 												{/* second column */}
 												<div className=" flex flex-col gap-3">
-													<div className=" flex ">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('gender.title')}:
 														</span>
@@ -172,7 +177,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.gender}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('dob.title')}:
 														</span>
@@ -180,7 +185,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.dateOfBirth}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('language.title')}:
 														</span>
@@ -188,7 +193,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.language}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('FamilyMembers.title')}:
 														</span>
@@ -196,7 +201,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.numberOfFamilyMembers}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('currentresidence.title')}:
 														</span>
@@ -204,7 +209,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															{familyInfo?.areaOfCurrentResidence}
 														</span>
 													</div>
-													<div className=" flex">
+													<div className=" flex gap-[6px]">
 														<span className=" text-base font-semibold">
 															{t('InfectedInFamily.title')}:
 														</span>
@@ -215,9 +220,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												</div>
 											</div>
 										</div>
-										{user && (
-											<span className=" text-xl font-bold">${amount}</span>
-										)}
+										<span className=" text-xl font-bold">
+											{familyInfo?.numberOfFamilyMembers >= 3 ? '$500' : '$300'}
+										</span>
 									</div>
 
 									{/* member details */}
@@ -236,7 +241,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 															<span className=" text-sm font-semibold">
 																{t('name.title')}:{' '}
 															</span>
-															{item.memberName.inEnglish}
+															{item.memberName}
 														</p>
 														<p className=" text-sm font-normal w-max h-max">
 															<span className=" text-sm font-semibold">
