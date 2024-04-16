@@ -165,7 +165,7 @@ const LeftSideBar = () => {
 					handleOpen={() => setOpen(true)}
 					handleClose={() => setOpen(false)}
 				/>
-				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
+				<div className="flex-col flex gap-1 mx-auto items-center justify-center mt-[40px]">
 					{/* <Image
 						src={profile}
 						alt={''}
