@@ -13,8 +13,9 @@ export const resendOtpSchema = object({
 });
 
 export const becomeSponsorSchema = object({
-	name: string().required('Name is Required')
-	.matches(/^[A-Za-z]+$/, 'Name should only contain alphabets'),
+	name: string()
+		.required('Name is Required')
+		.matches(/^[A-Za-z]+$/, 'Name should only contain alphabets'),
 	country: string().required('Country is Required'),
 	email: string().required('Email is Required'),
 	password: string().required('Password is required'),
@@ -39,7 +40,7 @@ export const resetPasswordSchema = object({
 // });
 
 export const AddFamiliesSchema = object({
-	breadWinnerName: string().required('Breadwinner name is required'),
+	// breadWinnerName: string().required('Breadwinner name is required'),
 	breadWinnerNameEn: string().required(
 		'Breadwinner name (English) is required',
 	),
@@ -47,11 +48,11 @@ export const AddFamiliesSchema = object({
 		'Breadwinner name (Turkish) is required',
 	),
 	breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
-	description: string().required('Description is required'),
-	descriptionEn: string().required('Description (English) is required'),
-	descriptionTr: string().required('Description (Turkish) is required'),
-	descriptionAr: string().required('Description (Arabic) is required'),
-	maritalStatus: string().required('Marital status is required'),
+	// description: string().required('Description is required'),
+	descriptionEn: string(),
+	descriptionTr: string(),
+	descriptionAr: string(),
+	maritalStatus: string(),
 	email: string()
 		.email('Invalid email address')
 		.required('Email address is required'),
@@ -71,17 +72,15 @@ export const AddFamiliesSchema = object({
 	numberOfFamilyMembers: number()
 		.min(0, 'Number of family members must be positive or zero')
 		.required('Number of family members is required'),
-	lossesInWar: number()
-		.min(0, 'Losses in war must be positive or zero')
-		.required('Losses in war is required'),
+	lossesInWar: string().required('Losses in war is required'),
 	numberOfMartyrInFamily: number()
 		.min(0, 'Number of martyrs in family must be positive or zero')
 		.required('Number of martyrs in family is required'),
 	numberOfInfectedInFamily: number()
 		.min(0, 'Number of infected in family must be positive or zero')
 		.required('Number of infected in family is required'),
-	telephoneNumber: string().required('Telephone number is required'),
-	idNumber: string().required('ID number is required'),
+	telephoneNumber: number().required('Telephone number is required'),
+	idNumber: number().required('ID number is required'),
 	currentSituation: string().required('Current situation is required'),
 	familyMemberDetail: array().required('Family member detail is required'),
 });

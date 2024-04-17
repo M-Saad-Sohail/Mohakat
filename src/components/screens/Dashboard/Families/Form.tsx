@@ -76,32 +76,34 @@ const FamilyForm = () => {
 		initialValues: AddFamiliesValues,
 		validationSchema: AddFamiliesSchema,
 		onSubmit: async ({ values }: any) => {
+			console.log("testinggg",familyMembers)
+			console.log("test",AddFamiliesForm.values.breadWinnerNameEn)
 			const response = {
 				breadWinnerName: {
-					inEnglish: values.breadWinnerNameEn,
-					inTurkish: values.breadWinnerNameTr,
-					inArabic: values.breadWinnerNameAr,
+					inEnglish: AddFamiliesForm.values.breadWinnerNameEn,
+					inTurkish: AddFamiliesForm.values.breadWinnerNameTr,
+					inArabic: AddFamiliesForm.values.breadWinnerNameAr,
 				},
 				description: {
-					inEnglish: values.descriptionEn,
-					inTurkish: values.descriptionTr,
-					inArabic: values.descriptionAr,
+					inEnglish: AddFamiliesForm.values.descriptionEn,
+					inTurkish: AddFamiliesForm.values.descriptionTr,
+					inArabic: AddFamiliesForm.values.descriptionAr,
 				},
-				maritalStatus: values.maritalStatus,
-				email: values.email,
-				language: values.language,
-				gender: values.gender,
-				age: values.age,
-				dateOfBirth: values.dateOfBirth,
-				areaOfPreviousResidence: values.areaOfPreviousResidence,
-				areaOfCurrentResidence: values.areaOfCurrentResidence,
-				numberOfFamilyMembers: parseInt(values.numberOfFamilyMembers),
-				telephoneNumber: values.telephoneNumber,
-				idNumber: parseInt(values.idNumber),
-				lossesInWar: values.lossesInWar,
-				currentSituation: values.currentSituation,
-				numberOfMartyrInFamily: parseInt(values.numberOfMartyrInFamily),
-				numberOfInfectedInFamily: parseInt(values.numberOfInfectedInFamily),
+				maritalStatus: AddFamiliesForm.values.maritalStatus,
+				email: AddFamiliesForm.values.email,
+				language: AddFamiliesForm.values.language,
+				gender: AddFamiliesForm.values.gender,
+				age: AddFamiliesForm.values.age,
+				dateOfBirth: AddFamiliesForm.values.dateOfBirth,
+				areaOfPreviousResidence: AddFamiliesForm.values.areaOfPreviousResidence,
+				areaOfCurrentResidence: AddFamiliesForm.values.areaOfCurrentResidence,
+				numberOfFamilyMembers: parseInt(AddFamiliesForm.values.numberOfFamilyMembers),
+				telephoneNumber: AddFamiliesForm.values.telephoneNumber,
+				idNumber: parseInt(AddFamiliesForm.values.idNumber),
+				lossesInWar: AddFamiliesForm.values.lossesInWar,
+				currentSituation: AddFamiliesForm.values.currentSituation,
+				numberOfMartyrInFamily: parseInt(AddFamiliesForm.values.numberOfMartyrInFamily),
+				numberOfInfectedInFamily: parseInt(AddFamiliesForm.values.numberOfInfectedInFamily),
 				familyMemberDetail: familyMembers,
 			};
 			try {
@@ -113,7 +115,7 @@ const FamilyForm = () => {
 				);
 				if (res.success) {
 					setLoading(false);
-					AddFamiliesForm.resetForm();
+					// AddFamiliesForm.resetForm();
 					toast.success(`${t('submit')}`, {
 						toastId: 'success',
 						position: 'bottom-right',
@@ -132,6 +134,11 @@ const FamilyForm = () => {
 			// console.log('form submitted', response);
 		},
 	});
+
+	useEffect(() => {
+	  console.log("test",familyMembers);
+	}, [familyMembers])
+	
 
 	return (
 		<div
@@ -201,53 +208,7 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold">Description</h3>
-					<div className="flex items-center justify-start w-full gap-x-4">
-						<Input
-							title={'In English'}
-							name="descriptionEn"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionEn}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						{AddFamiliesForm.touched.descriptionEn &&
-							Boolean(AddFamiliesForm.errors.descriptionEn) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionEn as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
-						<Input
-							title={'In Turkish'}
-							name="descriptionTr"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionTr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						{AddFamiliesForm.touched.descriptionTr &&
-							Boolean(AddFamiliesForm.errors.descriptionTr) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionTr as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
-						<Input
-							title={'In Arabic'}
-							name="descriptionAr"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionAr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						{AddFamiliesForm.touched.descriptionAr &&
-							Boolean(AddFamiliesForm.errors.descriptionAr) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionAr as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
-					</div>
-				</div>
+				
 
 				{/* second */}
 
@@ -397,6 +358,54 @@ const FamilyForm = () => {
 							position: 'bottom-right',
 							autoClose: 4000,
 						})}
+				</div>
+
+				<div className=" flex flex-col gap-3">
+					<h3 className=" text-sm font-bold">Comment</h3>
+					<div className="flex items-center justify-start w-full gap-x-4">
+						<Input
+							title={'In English'}
+							name="descriptionEn"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionEn}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						{AddFamiliesForm.touched.descriptionEn &&
+							Boolean(AddFamiliesForm.errors.descriptionEn) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionEn as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
+						<Input
+							title={'In Turkish'}
+							name="descriptionTr"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionTr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						{AddFamiliesForm.touched.descriptionTr &&
+							Boolean(AddFamiliesForm.errors.descriptionTr) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionTr as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
+						<Input
+							title={'In Arabic'}
+							name="descriptionAr"
+							className="mb-[19px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionAr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						{AddFamiliesForm.touched.descriptionAr &&
+							Boolean(AddFamiliesForm.errors.descriptionAr) &&
+							toast.error(`${AddFamiliesForm.errors.descriptionAr as any}`, {
+								toastId: '',
+								position: 'bottom-right',
+								autoClose: 4000,
+							})}
+					</div>
 				</div>
 
 				{/* fifth */}
@@ -705,6 +714,7 @@ const FamilyForm = () => {
 				<div className="flex my-5">
 					<Button
 						title={t('title')}
+						type='submit'
 						className="max-w-[200px] px-6 shadow-custom"
 						isLoading={loading}
 						onClick={(e) => {
