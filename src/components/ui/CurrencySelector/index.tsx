@@ -11,9 +11,9 @@ interface CurrencyOption {
 
 const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	const options: CurrencyOption[] = [
-		{ label: 'Dollar', icon: 'en' },
-		{ label: 'Dinar', icon: 'ar' },
-		{ label: 'Riyal', icon: 'tr' },
+		{ label: 'Dollar', icon: 'USD' },
+		{ label: 'kuwaiti dinar', icon: 'KWD' },
+		{ label: 'Saudi Riyal', icon: 'SAR' },
 	];
 	const [open, setOpen] = useState(false);
 	const handleCurrencyChange = (opt: CurrencyOption) => {

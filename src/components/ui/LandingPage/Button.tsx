@@ -18,9 +18,9 @@ const Button: React.FC<IProps> = ({
 			type={type}
 			className={`${
 				isLoading
-					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed'
-					: 'text-white cursor-pointer text-center shadow-lg'
-			} rounded-[20px] shadow-custom font-semibold md:text-sm text-[13px] border-none outline-none md:px-6 px-4 md:py-[10px] py-2 w-fit ${className}`}
+					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10 '
+					: 'text-white cursor-pointer text-center shadow-lg md:px-6 px-4 '
+			} rounded-[20px] shadow-custom font-semibold md:text-sm text-[13px] border-none outline-none md:py-[10px] py-2 w-fit ${className}`}
 		>
 			{isLoading ? <Loader style={{ color: 'white' }} /> : title}
 		</button>

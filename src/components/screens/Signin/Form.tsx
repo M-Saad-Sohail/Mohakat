@@ -101,7 +101,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-lg justify-center items-center flex font-helvetica gap-x-4">
+			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
 				{t('cta.0')}
 				<Link
 					locale={locale}
