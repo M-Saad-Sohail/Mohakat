@@ -39,6 +39,32 @@
 			}
 		}
 	},
+	"forgotPassword": {
+		"form": {
+			"title": "Hesabınızı Bulun",
+			"description": "Sizi bulabilmemiz için e-posta adresinizi girin.",
+			"email": {
+				"placeholder": "E-postanızı Girin",
+				"title": "E-posta"
+			},
+			"submit": "E-posta Gönder"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "Şifre Değiştirme",
+			"description": "Yeni şifrenizi girin",
+			"password": {
+				"placeholder": "Yeni şifrenizi girin",
+				"title": "Şifre"
+			},
+			"newPassword": {
+				"placeholder": "Yeni şifrenizi tekrar girin",
+				"title": "Şifreyi Onayla"
+			},
+			"submit": "Şifreyi Değiştir"
+		}
+	},	
 	"VerifyOtp": {
 		"form": {
 			"title": "Doğrulama Kodunu Onayla",
