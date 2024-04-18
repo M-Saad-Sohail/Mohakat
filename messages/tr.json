@@ -48,7 +48,7 @@
 				"title": "E-posta"
 			},
 			"submit": "E-posta Gönder",
-			"checkEmail":"E-postanızı kontrol edinl"
+			"emailCheck": "Lütfen e-postanızı kontrol edin"
 		}
 	},
 	"resetPassword": {
@@ -63,7 +63,8 @@
 				"placeholder": "Yeni şifrenizi tekrar girin",
 				"title": "Şifreyi Onayla"
 			},
-			"submit": "Şifreyi Değiştir"
+			"submit": "Şifreyi Değiştir",
+			"InValidCredientials": "Geçersiz Kimlik Bilgileri!"
 		}
 	},	
 	"VerifyOtp": {

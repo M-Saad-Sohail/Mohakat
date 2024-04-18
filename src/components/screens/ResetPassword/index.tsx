@@ -38,7 +38,7 @@ const ResetPassword = () => {
 			!data.password ||
 			!data.confirmPassword
 		) {
-			toast.error('Invalid Credientials', {
+			toast.error(`${t('InValidCredientials')}`, {
 				position: 'top-right',
 				autoClose: 4000,
 			});

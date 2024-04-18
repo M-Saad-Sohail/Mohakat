@@ -45,7 +45,7 @@ const ForgotPassword = () => {
 				);
 				if (res.success) {
 					setLoading(false);
-					toast.success(`${t('checkEmail')}`, {
+					toast.success(`${t('emailCheck')}`, {
 						position: 'top-right',
 						autoClose: 4000,
 					});

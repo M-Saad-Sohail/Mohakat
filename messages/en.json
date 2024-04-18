@@ -48,7 +48,8 @@
 				"title": "Email"
 			},
 			"checkEmail":"check your email",
-			"submit": "Send Email"
+			"submit": "Send Email",
+			"emailCheck":"Please check your email"
 		}
 	},
 	"resetPassword": {
@@ -63,7 +64,8 @@
 				"placeholder": "Confirm Password",
 				"title": "Confirm Password"
 			},
-			"submit": "Change Password"
+			"submit": "Change Password",
+			"InValidCredientials":"InValid Credientials!"
 		}
 	},
 	"VerifyOtp": {
