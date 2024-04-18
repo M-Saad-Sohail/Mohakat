@@ -47,7 +47,8 @@
 				"placeholder": "E-postanızı Girin",
 				"title": "E-posta"
 			},
-			"submit": "E-posta Gönder"
+			"submit": "E-posta Gönder",
+			"checkEmail":"E-postanızı kontrol edinl"
 		}
 	},
 	"resetPassword": {

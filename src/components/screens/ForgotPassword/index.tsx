@@ -6,10 +6,13 @@ import { useTranslations } from 'next-intl';
 import Input from '@/components/ui/Input';
 import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useParams } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
 	const t = useTranslations('forgotPassword.form');
 	const [loading, setLoading] = useState<boolean>(false);
+	const params = useParams();
 	const [email, setEmail] = useState<string>('');
 	const [error, setError] = useState<string>('');
 	const { user } = useLoggedInUser();
@@ -30,17 +33,22 @@ const ForgotPassword = () => {
 			if (!result) {
 				setError('Please enter a valid email');
 			} else {
-				setError("")
+				setError('');
 				setLoading(true);
 				const res = await postJson(
 					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/forgot/password`,
 					{
 						email: email,
+						urlSlug: params && params.locale,
 					},
 					user?.key,
 				);
 				if (res.success) {
 					setLoading(false);
+					toast.success(`${t('checkEmail')}`, {
+						position: 'top-right',
+						autoClose: 4000,
+					});
 					setEmail('');
 				}
 			}

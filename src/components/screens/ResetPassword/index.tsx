@@ -6,12 +6,16 @@ import { useTranslations } from 'next-intl';
 import Input from '@/components/ui/Input';
 import { postJson, putJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const ResetPassword = () => {
 	const { user } = useLoggedInUser();
 	const t = useTranslations('resetPassword.form');
 	const params = useParams();
+	console.log(params);
+
+	const router = useRouter();
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>({
 		password: '',
@@ -28,6 +32,19 @@ const ResetPassword = () => {
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+
+		if (
+			data.password !== data.confirmPassword ||
+			!data.password ||
+			!data.confirmPassword
+		) {
+			toast.error('Invalid Credientials', {
+				position: 'top-right',
+				autoClose: 4000,
+			});
+			return;
+		}
+
 		try {
 			setLoading(true);
 			const res = await putJson(
@@ -39,11 +56,13 @@ const ResetPassword = () => {
 			);
 			if (res.success) {
 				setLoading(false);
+				router.push(`/${params && params.locale}/sign-in`);
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
 	return (
 		<form
 			className="w-full my-[100px] max-w-[800px]"
