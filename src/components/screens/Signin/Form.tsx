@@ -85,7 +85,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						error={touched.password && errors.password}
 						className="max-w-[800px]"
 					/>
-					<Link href={url('')}>
+					<Link href={url('/forgot-password')}>
 						<p className="text-primary w-full text-right text-[12px] font-bold">
 							{t('forgot')}
 						</p>

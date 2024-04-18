@@ -39,6 +39,33 @@
 			}
 		}
 	},
+	"forgotPassword": {
+		"form": {
+			"title": "Find Your Account",
+			"description": "Enter your email address so we can find you,",
+			"email": {
+				"placeholder": "Enter your Email",
+				"title": "Email"
+			},
+			"checkEmail":"check your email",
+			"submit": "Send Email"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "Change Password",
+			"description": "Enter your new  password",
+			"password": {
+				"placeholder": "New Password",
+				"title": "Password"
+			},
+			"newPassword": {
+				"placeholder": "Confirm Password",
+				"title": "Confirm Password"
+			},
+			"submit": "Change Password"
+		}
+	},
 	"VerifyOtp": {
 		"form": {
 			"title": "Verify OTP",
