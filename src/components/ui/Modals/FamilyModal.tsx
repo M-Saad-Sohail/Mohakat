@@ -222,7 +222,11 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											</div>
 										</div>
 										<span className=" text-xl font-bold">
-											{familyInfo?.numberOfFamilyMembers >= 3 ? '$500' : '$300'}
+											{amount === 0
+												? familyInfo?.numberOfFamilyMembers >= 3
+													? '$500'
+													: '$300'
+												: `$${amount}`}
 										</span>
 									</div>
 
