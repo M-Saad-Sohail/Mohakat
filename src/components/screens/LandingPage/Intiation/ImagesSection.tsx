@@ -59,13 +59,10 @@ const ImagesSection = () => {
 				<IntiationMain currentPath={currentPath} />
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.FAMILY)}>
-						<Button title={t('DonateaShare.title')} className=" bg-[#CF7475]" />
+						<Button title={t('DonateaShare.title')} Color="#CF7475" />
 					</Link>
 					<Link href={url(PATHS.BECOME_SPONSOR)}>
-						<Button
-							title={t('BecomeaSponser.title')}
-							className=" bg-[#8DAE8E]"
-						/>
+						<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
 					</Link>
 					<Button
 						onClick={() => {
@@ -76,7 +73,7 @@ const ImagesSection = () => {
 							});
 						}}
 						title={t('RegisterasFamily.title')}
-						className=" bg-[#000000]"
+						Color="#000000"
 					/>
 				</div>
 			</div>

@@ -1,8 +1,9 @@
 import Loader from './../Loader';
-import React from 'react';
+import React, { useState } from 'react';
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	isLoading?: boolean;
 	localeId?: string;
+	Color?: string;
 }
 const Button: React.FC<IProps> = ({
 	onClick = () => {},
@@ -10,7 +11,18 @@ const Button: React.FC<IProps> = ({
 	title,
 	isLoading = false,
 	className,
+	Color,
 }) => {
+	console.log(Color);
+	const [isHovered, setIsHovered] = useState(false);
+
+	const handleMouseEnter = () => {
+		setIsHovered(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsHovered(false);
+	};
 	return (
 		<button
 			onClick={onClick}
@@ -20,7 +32,14 @@ const Button: React.FC<IProps> = ({
 				isLoading
 					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10 '
 					: 'text-white cursor-pointer text-center shadow-lg md:px-6 px-4 '
-			} rounded-[20px] shadow-custom font-semibold md:text-sm text-[13px] border-none outline-none md:py-[10px] py-2 w-fit ${className}`}
+			} rounded-[20px] shadow-custom font-semibold ${className} md:text-sm text-[13px] border-2 border-white outline-none md:py-[10px] py-2 w-fit transition-colors duration-300 ease-in-out`}
+			style={{
+				backgroundColor: isHovered ? 'white' : Color,
+				borderColor: isHovered ? Color : 'white',
+				color: isHovered ? Color : 'white',
+			}}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 		>
 			{isLoading ? <Loader style={{ color: 'white' }} /> : title}
 		</button>

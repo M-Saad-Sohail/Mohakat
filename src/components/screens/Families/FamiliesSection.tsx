@@ -319,11 +319,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						</div>
 					</div>
 					<div className=" flex items-end">
-						<Button
-							title="Clear All"
-							className=" bg-[#000000]"
-							onClick={clearAll}
-						/>
+						<Button title="Clear All" Color="#000000" onClick={clearAll} />
 					</div>
 				</div>
 				{isLoading ? (

@@ -130,16 +130,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</p>
 					<div className=" flex flex-wrap gap-5 justify-center w-[85%] mx-auto">
 						<Link href={url(PATHS.FAMILY)}>
-							<Button
-								title={t('DonateaShare.title')}
-								className=" bg-[#CF7475]"
-							/>
+							<Button title={t('DonateaShare.title')} Color="#CF7475" />
 						</Link>
 						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button
-								title={t('BecomeaSponser.title')}
-								className=" bg-[#8DAE8E]"
-							/>
+							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
 						</Link>
 						<Button
 							onClick={() => {
@@ -150,7 +144,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								});
 							}}
 							title={t('RegisterasFamily.title')}
-							className=" bg-[#000000]"
+							Color="#000000"
 						/>
 					</div>
 					<div className=" h-[45%] flex gap-3">
@@ -213,9 +207,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData?.description}
 					</p>
 					<div className=" flex flex-wrap gap-4 justify-center">
-						<Button title="Donate a Share" className=" bg-[#CF7475]" />
-						<Button title="Become a Sponser" className=" bg-[#8DAE8E]" />
-						<Button title="Register as Family" className=" bg-[#000000]" />
+						<Button title="Donate a Share" Color="#CF7475" />
+						<Button title="Become a Sponser" Color="#8DAE8E" />
+						<Button title="Register as Family" Color="#000000" />
 					</div>
 				</div>
 				<div className="carousel-container h-[40%]">

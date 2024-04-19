@@ -107,7 +107,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 								ref={(reference) =>
 									(otpBoxReference.current[index] = reference)
 								}
-								className={`border-2 w-14 h-auto text-[#CF7475] p-3 text-sm font-semibold rounded-md block bg-[#E8E8E8] focus:outline-none appearance-none ${
+								className={`border-2 text-center w-14 h-auto text-[#CF7475] p-3 text-sm font-semibold rounded-md block bg-[#E8E8E8] focus:outline-none appearance-none ${
 									digit ? 'border-filled' : 'border-empty'
 								}`}
 							/>
@@ -136,7 +136,8 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 							title={t('submit')}
 							type="submit"
 							isLoading={isLoading}
-							className=" bg-[#CF7475] w-56"
+							className="w-56"
+							Color='#CF7475'
 						/>
 					</div>
 				</div>
