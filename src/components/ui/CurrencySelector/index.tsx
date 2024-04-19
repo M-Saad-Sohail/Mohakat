@@ -1,4 +1,6 @@
+import { setIsCurrencyStateAction } from '@/state/currency';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface CurrencySelectorType {
 	className?: string;
@@ -6,19 +8,38 @@ interface CurrencySelectorType {
 
 interface CurrencyOption {
 	label: string;
-	icon: string;
+	key: string;
+	basePriceOne: number;
+	basePriceTwo: number;
 }
 
+const options: CurrencyOption[] = [
+	{ label: 'Dollar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
+	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
+	{ label: 'Kuwaiti Dinar', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	{ label: 'Qatari Riyal', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
+	{ label: 'Suadi Riyal', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{
+		label: 'Turkish Lira',
+		key: 'TRY',
+		basePriceOne: 9776,
+		basePriceTwo: 16294,
+	},
+];
+
 const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
-	const options: CurrencyOption[] = [
-		{ label: 'Dollar', icon: 'USD' },
-		{ label: 'kuwaiti dinar', icon: 'KWD' },
-		{ label: 'Saudi Riyal', icon: 'SAR' },
-	];
+	const dispatch = useDispatch();
+	const currencyState = useSelector((state: any) => state.currency);
 	const [open, setOpen] = useState(false);
+
 	const handleCurrencyChange = (opt: CurrencyOption) => {
+		dispatch(setIsCurrencyStateAction(opt));
 		setOpen(false);
 	};
+
+	useEffect(() => {
+		handleCurrencyChange(options[0]);
+	}, []);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -38,17 +59,27 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 
 	return (
 		<div className={` relative flex flex-col ${className}`}>
+			<div
+				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[42px] h-10 cursor-pointer dropdown"
+				onClick={() => setOpen((prev) => !prev)}
+			>
+				<p className={` text-sm text-black font-bold uppercase`}>
+					{currencyState?.key}
+				</p>
+			</div>
 			{open && (
-				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-[20px] absolute flex flex-col gap-2 dropdown z-50">
-					{options.map((opt, i) => (
-						<span
-							key={i}
-							onClick={() => handleCurrencyChange(opt)}
-							className="bg-black text-white text-sm rounded-[20px] w-32 px-3 text-center py-2 cursor-pointer "
-						>
-							{opt.label}
-						</span>
-					))}
+				<div className=" h-[140px] top-12 right-0 shadow-custom bg-white pl-2 py-2 rounded-[16px] absolute  dropdown z-50 ">
+					<div className=" h-full flex flex-col gap-2 overflow-y-auto currency-scrollbar pr-1">
+						{options.map((opt, i) => (
+							<span
+								key={i}
+								onClick={() => handleCurrencyChange(opt)}
+								className="bg-black text-white text-sm rounded-[20px] w-32 px-3 text-center py-2 cursor-pointer "
+							>
+								{opt.label}
+							</span>
+						))}
+					</div>
 				</div>
 			)}
 		</div>

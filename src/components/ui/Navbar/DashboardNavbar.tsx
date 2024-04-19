@@ -7,6 +7,7 @@ import useDirection from '@/hooks/useDirection';
 import Cart from '../Cart';
 import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
+import CurrencySelector from '../CurrencySelector';
 
 type IProps = {
 	setting?: boolean;
@@ -40,23 +41,28 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 						style={{ filter: 'invert(100%)' }}
 					/> */}
 					{user?.role === 'user' && (
-						<div
-							className=" relative cursor-pointer"
-							onClick={() => setIsCartOpen(true)}
-						>
-							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
-								{cartItems.length > 0 ? cartItems.length : '0'}
-							</span>
-							<TbBasketDollar className=" text-[40px]" />
+						<div className='flex items-center gap-6'>
+							<div
+								className=" relative cursor-pointer"
+								onClick={() => setIsCartOpen(true)}
+							>
+								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+									{cartItems.length > 0 ? cartItems.length : '0'}
+								</span>
+								<TbBasketDollar className=" text-[40px]" />
+							</div>
+							<CurrencySelector />
 						</div>
 					)}
-					<div dir={dir} className="flex items-center mx-4">
+					<div dir={dir} className="flex items-center mx-6">
 						{/* <Image
 							src={profile} // Replace with the path to the user profile image
 							alt={''}
 							className="w-10 h-10 mx-2 rounded-full"
 						/> */}
-						<p className="text-black text-[16px]">{user ? user.name.toUpperCase() : ''}</p>
+						<p className="text-black text-[16px]">
+							{user ? user.name.toUpperCase() : ''}
+						</p>
 					</div>
 				</div>
 			</div>

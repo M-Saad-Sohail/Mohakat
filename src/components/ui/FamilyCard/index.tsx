@@ -17,21 +17,19 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
 	isLoggedIn,
 }) => {
+	const { user } = useLoggedInUser();
 	const dispatch = useDispatch();
 	const t = useTranslations('AddFamilies.form');
 	const t1 = useTranslations('HeroMainSection.btns');
-	const { user } = useLoggedInUser();
+	const cancelButtonRef = useRef(null);
+	const cancelDonateButtonRef = useRef(null);
+	const cartItems = useSelector((state: any) => state.cart);
+	const currencyState = useSelector((state: any) => state.currency);
 	const [amount, setAmount] = useState<number>(0);
 	const [open, setOpen] = useState(false);
-	const cancelButtonRef = useRef(null);
-	const [donateOpen, setDonateOpen] = useState(false);
-	const cancelDonateButtonRef = useRef(null);
-	const { url, dir, locale, changeLocale } = useLocaleRouter();
-
 	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
-
-	// Get cart items from Redux store
-	const cartItems = useSelector((state: any) => state.cart);
+	const [donateOpen, setDonateOpen] = useState(false);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	// Check if familyData is already in the cart
 	const isInCart = cartItems.some((item: any) => item._id === familyData?._id);
@@ -48,9 +46,19 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						title={familyData?.currentSituation || 'Nil'}
 						className=" bg-[#CF7475]"
 					/>
-					<span className=" text-lg font-semibold">
-						{familyData.numberOfFamilyMembers >= 3 ? '$500' : '$300'}
-					</span>
+					<p className=" flex gap-1 text-lg font-semibold">
+						{familyData.numberOfFamilyMembers >= 3 ? (
+							<>
+								<span>{currencyState?.key}</span>
+								<span>{currencyState?.basePriceTwo}</span>
+							</>
+						) : (
+							<>
+								<span>{currencyState?.key}</span>
+								<span>{currencyState?.basePriceOne}</span>
+							</>
+						)}
+					</p>
 				</div>
 
 				{/* second div */}
@@ -91,11 +99,14 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							setOpen(true);
 							setCurrentFamilyInfo(familyData);
 						}}
-						title={`${user ? t1('Sponser.title')  : t1('DonateaShare.title')}`}
+						title={`${user ? t1('Sponser.title') : t1('DonateaShare.title')}`}
 						className=" bg-[#8DAE8E] md:px-5"
 					/>
 					{isInCart ? (
-						<Button title={t1('AlreadyAdded.title')} className=" bg-[#555555] md:px-5" />
+						<Button
+							title={t1('AlreadyAdded.title')}
+							className=" bg-[#555555] md:px-5"
+						/>
 					) : (
 						<Button
 							title={t1('AddtoBasket.title')}

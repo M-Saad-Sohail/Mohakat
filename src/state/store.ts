@@ -16,18 +16,20 @@ import UserReducer from './../state/user';
 import LoadingReducer from './../state/loading';
 import LandingReducer from './landingpage';
 import cartReducer from './cart';
+import currencyReducer from './currency';
 
 const rootReducer = combineReducers({
 	user: UserReducer,
 	loading: LoadingReducer,
 	landingpage: LandingReducer,
 	cart: cartReducer,
+	currency: currencyReducer,
 });
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['loading', 'landingpage', 'cart'],
+	blacklist: ['loading', 'landingpage', 'cart', 'currency'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

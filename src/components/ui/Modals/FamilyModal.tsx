@@ -11,6 +11,8 @@ import LocationSvg from '@/assests/icons/location.svg';
 import { useTranslations } from 'next-intl';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { useSelector } from 'react-redux';
+import { calculateAmount } from '@/utils/calculateAmount';
 
 const FamilyModal: React.FC<FamilyModalType> = ({
 	open,
@@ -26,33 +28,31 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
 	const t1 = useTranslations('HeroMainSection.btns');
+	const currencyState = useSelector((state: any) => state.currency);
 
 	const [selectedOption, setSelectedOption] = useState<string>('3');
 
 	// Function to handle radio button change
 	const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedOption(event.target.value);
-		calculateAmount(event.target.value, familyInfo?.numberOfFamilyMembers);
-	};
-
-	// Function to calculate amount based on selected option and number of persons
-	const calculateAmount = (selectedOption: string, numberOfPersons: number) => {
-		let newAmount = 0;
-		if (selectedOption === '3') {
-			newAmount = numberOfPersons <= 3 ? 300 * 3 : 500 * 3;
-		} else if (selectedOption === '6') {
-			newAmount = numberOfPersons <= 3 ? 300 * 6 : 500 * 6;
-		} else if (selectedOption === '9') {
-			newAmount = numberOfPersons <= 3 ? 300 * 9 : 500 * 9;
-		} else if (selectedOption === '12') {
-			newAmount = numberOfPersons <= 3 ? 300 * 12 : 500 * 12;
-		}
-		setAmount && setAmount(newAmount);
+		let newAmount = calculateAmount(
+			event.target.value,
+			familyInfo?.numberOfFamilyMembers,
+			currencyState?.basePriceOne,
+			currencyState?.basePriceTwo,
+		);
+		setAmount && setAmount(newAmount as any);
 	};
 
 	useEffect(() => {
 		setSelectedOption('3');
-		calculateAmount('3', familyInfo?.numberOfFamilyMembers);
+		let newAmount = calculateAmount(
+			'3',
+			familyInfo?.numberOfFamilyMembers,
+			currencyState?.basePriceOne,
+			currencyState?.basePriceTwo,
+		);
+		setAmount && setAmount(newAmount as any);
 	}, [open]);
 
 	return (
@@ -91,7 +91,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${user ? 'h-[95vh]' : 'h-[90vh]'} flex flex-col justify-between p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[45vw] `}
+									className={` ${user ? 'h-[95vh]' : 'h-[90vh]'} flex flex-col justify-between p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[50vw] `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
@@ -221,13 +221,10 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												</div>
 											</div>
 										</div>
-										<span className=" text-xl font-bold">
-											{amount === 0
-												? familyInfo?.numberOfFamilyMembers >= 3
-													? '$500'
-													: '$300'
-												: `$${amount}`}
-										</span>
+										<p className="flex gap-1 text-xl font-bold">
+											<span>{currencyState?.key}</span>
+											<span>{amount}</span>
+										</p>
 									</div>
 
 									{/* member details */}

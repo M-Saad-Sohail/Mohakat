@@ -14,6 +14,7 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
+import CurrencySelector from '../CurrencySelector';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -22,7 +23,7 @@ const AuthNavbar = ({
 }) => {
 	const cartItems = useSelector((state: any) => state.cart);
 	const pathname = usePathname();
-	const currentPath = pathname?.slice(1,3);
+	const currentPath = pathname?.slice(1, 3);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -47,7 +48,6 @@ const AuthNavbar = ({
 	if (currentPathName === '') {
 		currentPathName = '/';
 	}
-
 
 	return (
 		<div dir={dir} className="h-fit hidden md:block">
@@ -125,6 +125,7 @@ const AuthNavbar = ({
 							</div>
 						</>
 					)}
+					<CurrencySelector />
 				</div>
 			</div>
 		</div>
