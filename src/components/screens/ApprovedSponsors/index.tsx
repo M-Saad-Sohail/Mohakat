@@ -7,6 +7,7 @@ import useFetchSponsors from '@/hooks/useFetchSponsors';
 
 const ApprovedSponsors = () => {
 	const { data } = useFetchSponsors(fetchApprovedData);
+	console.log(data)
 
 	return (
 		<div className="px-4">

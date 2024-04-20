@@ -150,3 +150,7 @@ input[name="month"] {
 .currency-scrollbar::-webkit-scrollbar {
 	width: 3px; /* Set the width of the scrollbar */
 }
+
+::selection{
+	color:#8DAE8E ;
+}

@@ -116,6 +116,14 @@ export const APPROVEDCOLUMN: any = [
 	{ Header: 'Language', accessor: 'language' },
 ];
 
+export const SPONSERFAMILIESCOLUMN: any = [
+	// { Header: 'Sno', accessor: 'no' },
+	// { Header: 'Name', accessor: 'name' },
+	{ Header: 'Area', accessor: 'areaOfCurrentResidence' },
+	{ Header: 'Losses In War', accessor: 'lossesInWar' },
+	{ Header: '# Martyr In Family', accessor: 'numberOfMartyrInFamily' },
+];
+
 export const REJECTEDCOLUMN: any = [
 	{ Header: 'Sno', accessor: 'no' },
 	{ Header: 'Name', accessor: 'name' },
