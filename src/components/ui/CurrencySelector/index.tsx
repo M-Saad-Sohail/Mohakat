@@ -69,7 +69,7 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 				</p>
 			</div>
 			{open && (
-				<div className=" h-[140px] top-12 right-0 shadow-custom bg-white pl-2 py-2 rounded-[16px] absolute  dropdown z-50 ">
+				<div className=" h-[140px] top-12 right-0 shadow-custom bg-white pl-2 py-2 rounded-[16px] absolute  currency-dropdown z-50 ">
 					<div className=" h-full flex flex-col gap-2 overflow-y-auto currency-scrollbar pr-1">
 						{options.map((opt, i) => (
 							<span

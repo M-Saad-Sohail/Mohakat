@@ -65,30 +65,32 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		setOpenDropDown(newOpenDropDown);
 	};
 
-	const filterData = (type: string, value: any) => {
-		// FOR AREAS
-		if (type === 'area') {
-			const filteredItems = familiesData.filter(
-				(item) => item.areaOfCurrentResidence === value,
-			);
-			setFilteredData(filteredItems);
-		}
-		// FOR SITUATION
-		if (type === 'situation') {
-			const filteredItems = familiesData.filter(
-				(item) => item.currentSituation === value,
-			);
-			setFilteredData(filteredItems);
-		}
-		// FOR MEMBERS
-		if (type === 'member') {
-			const filteredItems = familiesData.filter(
-				(item) => item.numberOfFamilyMembers <= value,
-			);
-			setFilteredData(filteredItems);
-		}
+	const filterData = (
+		areaValue: string,
+		situationValue: string,
+		memberValue: number | null,
+	) => {
+		const filteredItems = familiesData.filter((item) => {
+			let areaMatch = true;
+			let situationMatch = true;
+			let memberMatch = true;
 
-		// Reset to first page when filtering
+			if (areaValue !== '') {
+				areaMatch = item.areaOfCurrentResidence === areaValue;
+			}
+
+			if (situationValue !== '') {
+				situationMatch = item.currentSituation === situationValue;
+			}
+
+			if (memberValue !== null) {
+				memberMatch = item.numberOfFamilyMembers <= memberValue;
+			}
+
+			return areaMatch && situationMatch && memberMatch;
+		});
+
+		setFilteredData(filteredItems);
 		setCurrentPage(1);
 	};
 
@@ -146,7 +148,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				res.familySponser.map((item: any) =>
 					handleFamiliesData(currentPath, item),
 				);
-				// setFilteredData(res.familySponser);
 				setIsLoading(false);
 			}
 		})();
@@ -179,6 +180,21 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		};
 	}, []);
 
+	const handleAreaChange = (value: string) => {
+		setArea(value);
+		filterData(value, situation, member);
+	};
+
+	const handleSituationChange = (value: string) => {
+		setSituation(value);
+		filterData(area, value, member);
+	};
+
+	const handleMemberChange = (value: number | null) => {
+		setMember(value);
+		filterData(area, situation, value);
+	};
+
 	return (
 		<>
 			<section
@@ -203,10 +219,10 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div className="relative flex flex-col gap-2 md:w-64 w-[48%]">
 							<h3 className=" text-base font-medium"> {t('area')} </h3>
 							<button
-								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 								onClick={() => handleDropDownClick(0)}
 							>
-								<span className=" md:text-base text-sm font-medium text-[#00000080] capitalize ">
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
 									{area ? area : 'Select'}
 								</span>
 								<span>
@@ -227,10 +243,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 										<p
 											key={i}
 											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-											onClick={() => {
-												filterData('area', item.value);
-												setArea(item.value);
-											}}
+											onClick={() => handleAreaChange(item.value)}
 										>
 											{t(`form.currentresidence.${item.label}`)}
 										</p>
@@ -242,7 +255,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
 							<h3 className=" text-base font-medium"> {t('situation')} </h3>
 							<button
-								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 								onClick={() => handleDropDownClick(1)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
@@ -266,10 +279,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 										<p
 											key={i}
 											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-											onClick={() => {
-												filterData('situation', item.value);
-												setSituation(item.value);
-											}}
+											onClick={() => handleSituationChange(item.value)}
 										>
 											{t(`form.currentsituation.${item.label}`)}
 										</p>
@@ -281,7 +291,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
 							<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
 							<button
-								className=" flex  justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 								onClick={() => handleDropDownClick(2)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
@@ -305,12 +315,8 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 										<p
 											key={i}
 											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-											onClick={() => {
-												filterData('member', item);
-												setMember(item);
-											}}
+											onClick={() => handleMemberChange(item)}
 										>
-											{/* {t(`form.currentsituation.${item.label}`)} */}
 											{item}
 										</p>
 									);
@@ -318,18 +324,18 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							</div>
 						</div>
 					</div>
-					<div className=" flex items-end">
+					<div className="flex items-end">
 						<Button title="Clear All" Color="#000000" onClick={clearAll} />
 					</div>
 				</div>
 				{isLoading ? (
-					<div className=" flex justify-center items-center h-32">
+					<div className="flex justify-center items-center h-32">
 						<Loader />
 					</div>
 				) : filteredData && filteredData.length > 0 ? (
 					<>
 						{/* cards */}
-						<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">
+						<div className="grid md:grid-cols-3 grid-cols-1 gap-4">
 							{getCurrentItems().map((family, i) => (
 								<FamilyCard
 									key={i}
@@ -341,11 +347,15 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						{/* pagination */}
 						<div className="grid md:grid-cols-3 grid-cols-1 gap-5">
 							<div></div>
-							<div className=" flex justify-center  gap-4">
+							<div className="flex justify-center  gap-4">
 								<button
-									className={`${currentPage === 1 ? 'bg-[#555555] cursor-not-allowed' : 'bg-[#000000] cursor-pointer'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
-									
-									`}
+									className={`${
+										currentPage === 1
+											? 'bg-[#555555] cursor-not-allowed'
+											: 'bg-[#000000] cursor-pointer'
+									} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
+
+                                    `}
 									onClick={goToPrevPage}
 									disabled={currentPage === 1}
 								>
@@ -379,7 +389,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						</div>
 					</>
 				) : (
-					<div className=" flex justify-center items-center h-32">
+					<div className="flex justify-center items-center h-32">
 						<h2 className=" text-center md:text-3xl text-2xl font-semibold">
 							Families Not Found
 						</h2>

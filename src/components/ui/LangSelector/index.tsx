@@ -84,7 +84,7 @@ const LangSelector: React.FC<IProps> = ({
 				<Image src={downArrow} alt="downArrow" className="w-[10px]" />
 			</div>
 			{open && (
-				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 dropdown z-50">
+				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 lang-dropdown z-50">
 					{options.map((opt) => (
 						<span
 							key={opt.value}
