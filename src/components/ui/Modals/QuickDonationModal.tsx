@@ -97,6 +97,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 									<div className=" grid grid-cols-3 gap-4">
 										{amountQuiclDonation.map((price, i) => (
 											<button
+												key={i}
 												onClick={() => {
 													setOpenInputField(false);
 													setTotalAmount(price);
