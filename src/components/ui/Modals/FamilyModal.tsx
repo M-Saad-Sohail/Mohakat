@@ -53,7 +53,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 			currencyState?.basePriceTwo,
 		);
 		setAmount && setAmount(newAmount as any);
-	}, [open]);
+	}, [currencyState, familyInfo]);
 
 	return (
 		<>
