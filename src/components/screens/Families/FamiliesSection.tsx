@@ -343,7 +343,9 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							<div></div>
 							<div className=" flex justify-center  gap-4">
 								<button
-									className={`${currentPage === 1 ? 'bg-[#555555]' : 'bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold rounded-3xl px-5 py-3`}
+									className={`${currentPage === 1 ? 'bg-[#555555] cursor-not-allowed' : 'bg-[#000000] cursor-pointer'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
+									
+									`}
 									onClick={goToPrevPage}
 									disabled={currentPage === 1}
 								>
@@ -353,7 +355,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 									<span>Back Page</span>
 								</button>
 								<button
-									className="flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold rounded-3xl px-5 py-3"
+									className="flex items-center gap-3 bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
 									onClick={goToNextPage}
 									disabled={
 										currentPage >= Math.ceil(filteredData.length / itemsPerPage)

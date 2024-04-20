@@ -15,6 +15,7 @@ import { UserType } from '@/state/user/types';
 import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
+import Button from '../LandingPage/Button';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -70,7 +71,7 @@ const AuthNavbar = ({
 								key={link.name}
 								href={url(link.link)}
 								locale={locale}
-								className={`block py-2 px-4 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
+								className={`block py-2 px-4 transition-colors duration-300 ease-in-out  ${link.link === currentPathName ? ' font-semibold text-xl text-[#CF7475]' : ' font-normal text-lg hover:text-[#CF7475]'}`}
 							>
 								{t(link.localeId)}
 							</Link>
@@ -99,19 +100,11 @@ const AuthNavbar = ({
 						</>
 					) : (
 						<>
-							<Link
-								href={url(PATHS.LOGIN)}
-								locale={locale}
-								className={` duration-500 md:flex hidden float-right mr-2 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
-							>
-								{t('cta.signin')}
+							<Link href={url(PATHS.LOGIN)} locale={locale}>
+								<Button title={t('cta.signin')} Color="#000000" />
 							</Link>
-							<Link
-								href={url(PATHS.BECOME_SPONSOR)}
-								locale={locale}
-								className={`duration-500 md:flex hidden float-right mr-2 bg-[#8DAE8E] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
-							>
-								{t('cta.become-sponsor')}
+							<Link href={url(PATHS.BECOME_SPONSOR)} locale={locale}>
+								<Button title={t('cta.become-sponsor')} Color="#8DAE8E" />
 							</Link>
 						</>
 					)}

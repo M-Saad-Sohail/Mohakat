@@ -141,9 +141,9 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
+			<div className="text-center text-primary text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
 				{t('cta.0')}
-				<Link className="font-bold text-primary" href={url('/sign-in')}>
+				<Link className="font-bold text-primary hover:text-black" href={url('/sign-in')}>
 					{t('cta.1')}
 				</Link>
 			</div>

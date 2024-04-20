@@ -106,7 +106,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 				{t('cta.0')}
 				<Link
 					locale={locale}
-					className="font-bold text-primary"
+					className="font-bold text-primary hover:text-black"
 					href={url('/become-sponsor')}
 				>
 					{t('cta.1')}
