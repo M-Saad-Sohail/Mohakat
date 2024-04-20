@@ -7,6 +7,8 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	error?: string | boolean | undefined | any;
 	title: string;
 	setting?: boolean;
+	errorClass?:string | boolean | undefined | any;
+	className:string;
 }
 
 const Input: React.FC<IProps> = ({
@@ -16,6 +18,7 @@ const Input: React.FC<IProps> = ({
 	type,
 	style,
 	className,
+	errorClass,
 	value,
 	name,
 	readOnly,
@@ -50,7 +53,7 @@ const Input: React.FC<IProps> = ({
 						id={name}
 						type={showPassword ? 'text' : 'password'}
 						value={value}
-						className={`py-3 px-5 w-full rounded-md focus:outline-none bg-[#E8E8E8] h-[50px] ${className}`}
+						className={`py-3 px-5 w-full rounded-md focus:outline-none bg-[#E8E8E8] h-[50px] ${className} ${errorClass}`}
 					/>
 					<div onClick={togglePasswordVisibility}>
 						{showPassword ? (
@@ -81,7 +84,7 @@ const Input: React.FC<IProps> = ({
 					type={type || 'text'}
 					value={value}
 					disabled={disabled ? disabled : false}
-					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px]  ${className}`}
+					className={`py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px]  ${className} ${errorClass}`}
 				/>
 			)}
 

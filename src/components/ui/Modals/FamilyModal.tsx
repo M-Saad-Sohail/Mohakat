@@ -22,8 +22,10 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	isLoggedIn,
 	familyInfo,
 	amount,
+	isTableView = false,
 	setAmount,
 }) => {
+	console.log('family', familyInfo);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
@@ -91,7 +93,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` h-[95vh] flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
+									className={` ${isTableView ? 'h-[500px]' : 'h-[600px]'}  flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
@@ -115,7 +117,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												{familyInfo?.breadWinnerName}
 											</h2>
 											<p className="flex gap-1 text-[#4a4b65] text-xl font-bold">
-												<span>{currencyState?.key}</span>
+												{!isTableView && <span>{currencyState?.key}</span>}
 												<span>{amount}</span>
 											</p>
 										</div>
@@ -263,7 +265,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									</div>
 
 									{/* duration */}
-									{user && (
+									{user && !isTableView && (
 										<div className=" flex flex-col gap-2">
 											<h2 className="  text-lg font-semibold">
 												Select Duration
@@ -321,17 +323,19 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 										</div>
 									)}
 									{/* btns */}
-									<div className=" flex gap-2">
-										<Button
-											onClick={() => {
-												setOpen(false);
-												setDonate(true);
-											}}
-											title={t1('Donate.title')}
-											Color="#CF7475"
-											className=" md:px-12"
-										/>
-									</div>
+									{!isTableView && (
+										<div className=" flex gap-2">
+											<Button
+												onClick={() => {
+													setOpen(false);
+													setDonate && setDonate(true);
+												}}
+												title={t1('Donate.title')}
+												Color="#CF7475"
+												className=" md:px-12"
+											/>
+										</div>
+									)}
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>

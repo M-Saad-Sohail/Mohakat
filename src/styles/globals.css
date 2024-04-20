@@ -172,3 +172,6 @@ input[name='month'] {
 	transform-origin: left;
 	transform: scaleX(1);
 }
+::selection {
+	color: #8dae8e;
+}

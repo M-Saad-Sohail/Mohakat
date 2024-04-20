@@ -6,6 +6,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	title: string;
 	options: Array<{ value: string; label: string }>;
 	className?: string;
+	errorClass?: string;
 	defaultValue?: string;
 	titleColor?: string;
 	textColor?: string;
@@ -22,6 +23,7 @@ const Select: React.FC<IProps> = ({
 	titleColor,
 	textColor,
 	BgColor,
+	errorClass,
 	options,
 	defaultValue,
 }) => {
@@ -37,7 +39,7 @@ const Select: React.FC<IProps> = ({
 
 			<div dir={dir} className="relative h-full w-full">
 				<select
-					className={`py-1 px-5 w-full focus:outline-none text-[15px] ${BgColor ? BgColor : `bg-[#E8E8E8]`}  h-[50px] max-w-[700px] ${textColor ? textColor : `text-primary`} appearance-none ${className}`}
+					className={`py-1 px-5 w-full focus:outline-none text-[15px] ${BgColor ? BgColor : `bg-[#E8E8E8]`}  h-[50px] max-w-[700px] ${textColor ? textColor : `text-primary`} appearance-none ${className} ${errorClass}`}
 					onChange={(e) => {
 						onChange?.(e);
 					}}
