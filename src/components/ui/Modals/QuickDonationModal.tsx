@@ -1,18 +1,14 @@
 'use client';
 import React, { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { FamilyModalType, QuickDonationModalType } from '@/types';
+import { QuickDonationModalType } from '@/types';
 import Button from '../LandingPage/Button';
-import Image from 'next/image';
-// ICONS
-import { IoClose } from 'react-icons/io5';
-import PeopleSvg from '@/assests/icons/people.svg';
-import LocationSvg from '@/assests/icons/location.svg';
-import { useTranslations } from 'next-intl';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useSelector } from 'react-redux';
-import { calculateAmount } from '@/utils/calculateAmount';
+// ICONS
+import { IoClose } from 'react-icons/io5';
+import { useTranslations } from 'next-intl';
 
 const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	open,
@@ -21,10 +17,21 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 }) => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
-	const [totalAmount, setTotalAmount] = useState(0);
+	const t = useTranslations('QuickDonation');
+	const [totalAmount, setTotalAmount] = useState<number>(0);
 	const [openInputField, setOpenInputField] = useState<boolean>(false);
+	const [inputAmount, setInputAmount] = useState<number>(0);
 	const amountQuiclDonation: number[] = [25, 50, 100, 200, 400];
 	const currencyState = useSelector((state: any) => state.currency);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = parseInt(e.target.value);
+		setInputAmount(isNaN(value) ? 0 : value);
+	};
+
+	useEffect(() => {
+		setTotalAmount(inputAmount === 0 ? 0 : inputAmount);
+	}, [inputAmount]);
 
 	return (
 		<>
@@ -67,7 +74,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
 										<h2 className="  text-xl text-[#4a4b65] font-semibold">
-											General & Quick Donation
+											{t('title')}
 										</h2>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
@@ -78,43 +85,52 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 									</div>
 									<div className=" flex flex-col gap-2">
 										<h4 className=" text-sm text-[#4a4b65] font-medium">
-											Purpose
+											{t('purposeTitle')}
 										</h4>
 										<input
 											type="text"
 											disabled
-											value={'General Purpose'}
+											value={t('purposeValue')}
 											className=" py-2 px-3 text-[15px] font-medium rounded-xl text-[#737491] border border-[#dfdfeb]"
 										/>
 									</div>
 									<div className=" grid grid-cols-3 gap-4">
-										{amountQuiclDonation.map((price) => (
+										{amountQuiclDonation.map((price, i) => (
 											<button
-												onClick={() => setTotalAmount(price)}
-												className=" h-11 text-sm text-[#4a4b65] font-semibold border border-[#dfdfeb] hover:text-[#CF7475] hover:border-[#CF7475] rounded-xl transition-colors duration-300 ease-in-out"
+												onClick={() => {
+													setOpenInputField(false);
+													setTotalAmount(price);
+												}}
+												className={` h-11 text-sm font-semibold border rounded-xl transition-colors duration-300 ease-in-out ${price === totalAmount ? 'text-[#CF7475] border-[#CF7475] ' : 'text-[#4a4b65] border-[#dfdfeb]'} hover:text-[#CF7475] hover:border-[#CF7475] `}
 											>
 												{currencyState.key} {price}
 											</button>
 										))}
 										<button
-											className=" h-11 text-sm text-[#4a4b65] font-semibold border border-[#dfdfeb] hover:text-[#CF7475] hover:border-[#CF7475] rounded-xl transition-colors duration-300 ease-in-out"
-											onClick={() => setOpenInputField(true)}
+											className={` h-11 text-sm font-semibold border rounded-xl transition-colors duration-300 ease-in-out ${openInputField ? 'text-[#CF7475] border-[#CF7475] ' : 'text-[#4a4b65] border-[#dfdfeb]'} hover:text-[#CF7475] hover:border-[#CF7475] `}
+											onClick={() => {
+												setTotalAmount(0);
+												setOpenInputField(true);
+											}}
 										>
-											Another Amount
+											{t('anotherAmount')}
 										</button>
 									</div>
 									{openInputField && (
 										<div>
 											<input
 												type="text"
-												className=" w-full py-2 px-3 text-[15px] font-medium rounded-xl text-[#737491] border border-[#dfdfeb] focus:outline-none"
-												placeholder="Enter donation Amount"
+												className=" w-full py-2 px-3 text-[15px] font-medium rounded-xl text-[#737491] border border-[#dfdfeb] focus:outline-[#CF7475]"
+												value={inputAmount || ''}
+												onChange={handleInputChange}
+												placeholder={t('inputPlaceholder')}
+												autoFocus
 											/>
 										</div>
 									)}
 									<div className=" flex justify-between">
 										<h3 className="text-lg text-[#4a4b65] font-semibold">
-											Total
+											{t('totalTitle')}
 										</h3>
 										<h3 className="text-lg text-[#4a4b65] font-semibold">
 											{currencyState.key} {totalAmount}
@@ -125,7 +141,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 											onClick={() => {
 												setOpen(false);
 											}}
-											title={'Proceed to Checkout'}
+											title={t('button')}
 											className=" w-full"
 											Color="#CF7475"
 										/>

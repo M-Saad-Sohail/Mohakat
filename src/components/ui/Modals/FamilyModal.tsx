@@ -91,7 +91,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${user ? 'h-[95vh]' : 'h-[90vh]'} flex flex-col justify-between p-6 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[50vw] `}
+									className={` h-[95vh] flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
@@ -99,9 +99,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											title={familyInfo?.currentSituation || 'Nil'}
 											className=" bg-[#CF7475]"
 										/>
-										<div>
+										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
-												className=" text-3xl text-[#000] cursor-pointer"
+												className=" text-[26px] text-[#4a4b65] cursor-pointer"
 												onClick={() => setOpen(false)}
 											/>
 										</div>
@@ -109,122 +109,121 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 									{/* second div */}
 
-									<div className=" flex justify-between">
-										<div className=" flex flex-col gap-2">
+									<div className=" flex flex-col gap-2">
+										<div className=" flex justify-between">
 											<h2 className="  text-2xl font-semibold">
 												{familyInfo?.breadWinnerName}
 											</h2>
-
-											<div className=" flex gap-5">
-												{/* first column */}
-												<div className=" flex flex-col gap-3">
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('id.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.idNumber}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('age.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.age}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('martialstatus.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.maritalStatus}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('losesinwar.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.lossesInWar}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('previousresidence.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.areaOfPreviousResidence}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('MartyrInFamily.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.numberOfMartyrInFamily}
-														</span>
-													</div>
+											<p className="flex gap-1 text-[#4a4b65] text-xl font-bold">
+												<span>{currencyState?.key}</span>
+												<span>{amount}</span>
+											</p>
+										</div>
+										<div className=" flex gap-5">
+											{/* first column */}
+											<div className=" flex flex-col gap-3">
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('id.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.idNumber}
+													</span>
 												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('age.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.age}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('martialstatus.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.maritalStatus}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('losesinwar.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.lossesInWar}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('previousresidence.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.areaOfPreviousResidence}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('MartyrInFamily.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.numberOfMartyrInFamily}
+													</span>
+												</div>
+											</div>
 
-												{/* second column */}
-												<div className=" flex flex-col gap-3">
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('gender.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.gender}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('dob.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.dateOfBirth}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('language.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.language}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('FamilyMembers.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.numberOfFamilyMembers}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('currentresidence.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.areaOfCurrentResidence}
-														</span>
-													</div>
-													<div className=" flex gap-[6px]">
-														<span className=" text-base font-semibold">
-															{t('InfectedInFamily.title')}:
-														</span>
-														<span className=" text-base font-normal">
-															{familyInfo?.numberOfInfectedInFamily}
-														</span>
-													</div>
+											{/* second column */}
+											<div className=" flex flex-col gap-3">
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('gender.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.gender}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('dob.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.dateOfBirth}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('language.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.language}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('FamilyMembers.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.numberOfFamilyMembers}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('currentresidence.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.areaOfCurrentResidence}
+													</span>
+												</div>
+												<div className=" flex gap-[6px]">
+													<span className=" text-base font-semibold">
+														{t('InfectedInFamily.title')}:
+													</span>
+													<span className=" text-base text-[#4a4b65] font-normal">
+														{familyInfo?.numberOfInfectedInFamily}
+													</span>
 												</div>
 											</div>
 										</div>
-										<p className="flex gap-1 text-xl font-bold">
-											<span>{currencyState?.key}</span>
-											<span>{amount}</span>
-										</p>
 									</div>
 
 									{/* member details */}
@@ -330,6 +329,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											}}
 											title={t1('Donate.title')}
 											Color="#CF7475"
+											className=" md:px-12"
 										/>
 									</div>
 								</Dialog.Panel>

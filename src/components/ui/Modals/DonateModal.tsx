@@ -69,22 +69,25 @@ const DonateModal: React.FC<DonateModalType> = ({
 								leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
-								<Dialog.Panel className=" flex flex-col gap-5 py-6 px-7 rounded-2xl transform overflow-hidden bg-[#fff] text-left shadow-xl transition-all md:w-[30vw] h-[90vh]">
+								<Dialog.Panel className=" py-4 px-5 rounded-2xl transform overflow-hidden bg-[#fff] text-left shadow-xl transition-all md:w-[500px] h-[550px]">
 									{/* first div */}
-									<form onSubmit={DonateForm.handleSubmit}>
+									<form
+										onSubmit={DonateForm.handleSubmit}
+										className="flex flex-col justify-between w-full h-full"
+									>
 										<div className="flex justify-between items-center w-full border-b-[2px] border-[#00000080] pb-3">
 											<h2 className="  text-2xl font-semibold">
 												Donate a Share
 											</h2>
-											<div>
+											<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 												<IoClose
-													className=" text-3xl text-[#000] cursor-pointer"
+													className=" text-[26px] text-[#4a4b65] cursor-pointer"
 													onClick={() => setOpen(false)}
 												/>
 											</div>
 										</div>
 
-										<div className=" flex flex-col gap-3 overflow-y-scroll h-[420px] scrollbarHide">
+										<div className=" flex flex-col gap-3 pt-3 overflow-y-auto h-[70%] scrollbarHide">
 											<ModalInput
 												label="Name"
 												placeholder="John"
@@ -158,13 +161,12 @@ const DonateModal: React.FC<DonateModalType> = ({
 												</h3>
 											</div>
 
-											<div className=" w-full">
-												<Button
-													title={`Confirm Payment`}
-													className=" bg-[#CF7475]"
-													type="submit"
-												/>
-											</div>
+											<Button
+												title={`Confirm Payment`}
+												className="  w-full"
+												type="submit"
+												Color="#CF7475"
+											/>
 										</div>
 									</form>
 								</Dialog.Panel>

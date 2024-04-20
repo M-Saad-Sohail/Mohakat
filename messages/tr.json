@@ -66,7 +66,7 @@
 			"submit": "Şifreyi Değiştir",
 			"InValidCredientials": "Geçersiz Kimlik Bilgileri!"
 		}
-	},	
+	},
 	"VerifyOtp": {
 		"form": {
 			"title": "Doğrulama Kodunu Onayla",
@@ -417,5 +417,14 @@
 		"familyRegister": "Aile Olarak Kaydol",
 		"donateShare": "Pay Bağışla",
 		"becomeSponser": "Sponsor Ol"
+	},
+	"QuickDonation": {
+		"title": "Genel ve Hızlı Bağış",
+		"purposeTitle": "Amaç",
+		"purposeValue": "Genel Amaç",
+		"totalTitle": "Toplam",
+		"anotherAmount": "Başka Miktar",
+		"inputPlaceholder": "Bağış miktarını girin",
+		"button": "Ödeme Yapmaya Devam Et"
 	}
 }

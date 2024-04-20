@@ -417,5 +417,14 @@
 		"familyRegister": "تسجيل كعائلة",
 		"donateShare": "تبرع بنصيب",
 		"becomeSponser": "كن راعي"
+	},
+	"QuickDonation":{
+		"title":"التبرع العام والسريع",
+		"purposeTitle":"الغرض",
+		"purposeValue":"الغرض العام",
+		"totalTitle":"الإجمالي",
+		"anotherAmount":"مبلغ آخر",
+		"inputPlaceholder":"أدخل مبلغ التبرع",
+		"button":"الانتقال إلى الخروج"
 	}	
 }

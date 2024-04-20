@@ -420,5 +420,14 @@
 		"familyRegister":"Register as Family",
 		"donateShare":"Donate a Share",
 		"becomeSponser":"Become Sponser"
+	},
+	"QuickDonation":{
+		"title":"General & Quick Donation",
+		"purposeTitle":"Purpose",
+		"purposeValue":"General Purpose",
+		"totalTitle":"Total",
+		"anotherAmount":"Another Amount",
+		"inputPlaceholder":"Enter donation amount",
+		"button":"Proceed to Checkout"
 	}
 }
