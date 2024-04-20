@@ -183,7 +183,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		<>
 			<section
 				dir={dir}
-				className={` ${user ? 'md:w-[90%] py-8' : 'md:w-[80%] py-12'} w-[90%] mx-auto flex flex-col gap-8 `}
+				className={` ${user ? 'md:w-full py-8' : 'md:w-[80%] py-12'} w-[90%] mx-auto flex flex-col gap-8 `}
 			>
 				{/* heading and content */}
 				{!user && (
