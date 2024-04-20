@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import Button from '../LandingPage/Button';
 import Image from 'next/image';
 import Card from './Card';
 import { useSelector } from 'react-redux';
 import { useTranslations } from 'next-intl';
+import { calculateAmount } from '@/utils/calculateAmount';
 
 const Cart = ({
 	isCartOpen,
@@ -13,8 +14,28 @@ const Cart = ({
 	isCartOpen: boolean;
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-	const cartItems = useSelector((state: any) => state.cart);
 	const t = useTranslations('Cart');
+	const [totalAmount, setTotalAmount] = useState(0);
+	const cartItems = useSelector((state: any) => state.cart);
+	const currencyState = useSelector((state: any) => state.currency);
+
+	useEffect(() => {
+		console.log(totalAmount);
+	}, [totalAmount]);
+
+	useEffect(() => {
+		setTotalAmount(0);
+		cartItems.forEach((element: any) => {
+			let newAmount = calculateAmount(
+				'3',
+				element?.numberOfFamilyMembers,
+				currencyState?.basePriceOne,
+				currencyState?.basePriceTwo,
+			);
+			setTotalAmount((prev) => prev + (newAmount as any));
+		});
+	}, [cartItems, currencyState]);
+
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -66,7 +87,9 @@ const Cart = ({
 				<div className=" bg-white w-full flex flex-col justify-between gap-[10px] px-6 pt-3 pb-5">
 					<div className=" flex justify-between">
 						<h3 className="text-lg font-semibold">{t('total')}</h3>
-						<h3 className="text-lg font-semibold">$0</h3>
+						<h3 className="text-lg font-semibold">
+							{currencyState.key} {totalAmount}
+						</h3>
 					</div>
 					<Button title={t('button')} className=" bg-[#CF7475] w-full" />
 				</div>
