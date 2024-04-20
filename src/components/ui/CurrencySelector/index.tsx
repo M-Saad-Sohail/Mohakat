@@ -46,7 +46,7 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
 				event.target instanceof HTMLElement &&
-				!event.target.closest('.dropdown')
+				!event.target.closest('.currency-dropdown')
 			) {
 				setOpen(false);
 			}
@@ -61,7 +61,7 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[42px] h-10 cursor-pointer dropdown"
+				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[42px] h-10 cursor-pointer currency-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<p className={` text-sm text-black font-bold uppercase`}>

@@ -55,7 +55,7 @@ const LangSelector: React.FC<IProps> = ({
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
 				event.target instanceof HTMLElement &&
-				!event.target.closest('.dropdown')
+				!event.target.closest('.lang-dropdown')
 			) {
 				setOpen(false);
 			}
@@ -70,7 +70,7 @@ const LangSelector: React.FC<IProps> = ({
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer dropdown"
+				className="flex border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
