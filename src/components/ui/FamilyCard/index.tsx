@@ -12,6 +12,8 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAddCartStateAction } from '@/state/cart';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import Link from 'next/link';
+import { PATHS } from '@/contants';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
@@ -101,19 +103,23 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						}}
 						title={`${user ? t1('Sponser.title') : t1('DonateaShare.title')}`}
 						className="md:px-5"
-						Color='#8DAE8E'
+						Color={`${user ? '#8DAE8E' : '#CF7475'}`}
 					/>
-					{isInCart ? (
+					{!user ? (
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
+							<Button title={t1('Sponser.title')} Color="#8DAE8E" />
+						</Link>
+					) : isInCart ? (
 						<Button
 							title={t1('AlreadyAdded.title')}
 							className="md:px-5"
-							Color='#555555'
+							Color="#555555"
 						/>
 					) : (
 						<Button
 							title={t1('AddtoBasket.title')}
 							className="md:px-5"
-							Color='#000000'
+							Color="#000000"
 							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
 						/>
 					)}

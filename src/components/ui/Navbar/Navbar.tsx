@@ -113,16 +113,6 @@ const AuthNavbar = ({
 							>
 								{t('cta.become-sponsor')}
 							</Link>
-
-							<div
-								className=" relative cursor-pointer"
-								onClick={() => setIsCartOpen(true)}
-							>
-								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
-									{cartItems.length > 0 ? cartItems.length : '0'}
-								</span>
-								<TbBasketDollar className=" text-[40px]" />
-							</div>
 						</>
 					)}
 					<CurrencySelector />
