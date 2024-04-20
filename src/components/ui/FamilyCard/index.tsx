@@ -44,7 +44,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				<div className=" flex justify-between items-center">
 					<Button
 						title={familyData?.currentSituation || 'Nil'}
-						className=" bg-[#CF7475]"
+						Color="#CF7475"
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers >= 3 ? (
@@ -100,17 +100,20 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							setCurrentFamilyInfo(familyData);
 						}}
 						title={`${user ? t1('Sponser.title') : t1('DonateaShare.title')}`}
-						className=" bg-[#8DAE8E] md:px-5"
+						className="md:px-5"
+						Color='#8DAE8E'
 					/>
 					{isInCart ? (
 						<Button
 							title={t1('AlreadyAdded.title')}
-							className=" bg-[#555555] md:px-5"
+							className="md:px-5"
+							Color='#555555'
 						/>
 					) : (
 						<Button
 							title={t1('AddtoBasket.title')}
-							className=" bg-[#000000] md:px-5"
+							className="md:px-5"
+							Color='#000000'
 							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
 						/>
 					)}

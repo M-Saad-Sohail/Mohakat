@@ -130,7 +130,13 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						/>
 
 						<div className="flex items-center justify-center w-full">
-							<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] max-w-[300px]" />
+							<Button
+								title={t('submit')}
+								type="submit"
+								isLoading={isLoading}
+								className="max-w-[300px]"
+								Color="#CF7475"
+							/>
 						</div>
 					</div>
 				</div>

@@ -129,7 +129,8 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							<Link href={url(PATHS.FAMILY)} locale={locale}>
 								<Button
 									title={t('seeMore.title')}
-									className=" md:font-medium bg-[#000000]"
+									className=" md:font-medium"
+									Color='#000000'
 								/>
 							</Link>
 						</div>

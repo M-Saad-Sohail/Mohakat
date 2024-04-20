@@ -99,12 +99,12 @@ const ContactForm = () => {
 					{ContactForm.errors.message as any}
 				</span>
 			) : null}
-			<div className=" flex justify-end">
+			<div className=" flex justify-end mt-4">
 				<Button
 					title={t('send')}
 					isLoading={loading}
 					type="submit"
-					className=" bg-[#000000]"
+					Color="#000000"
 				/>
 			</div>
 		</form>
