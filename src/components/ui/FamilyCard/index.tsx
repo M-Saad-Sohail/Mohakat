@@ -108,6 +108,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('Sponser.title')}
 							className="md:px-0 md:py-2 w-full"
 							Color={'#8DAE8E'}
+							isPadding='md:px-0 md:py-2'
 						/>
 					) : (
 						<Button
@@ -117,6 +118,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('DonateaShare.title')}
 							className="md:px-0 md:py-2 w-full"
 							Color={'#CF7475'}
+							isPadding='md:px-0 md:py-2'
 						/>
 					)}
 					{!user ? (
@@ -124,7 +126,8 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							<Button
 								title={t1('BecomeaSponser.title')}
 								Color="#8DAE8E"
-								className=" md:px-1 md:py-2 w-full"
+								className="md:px-1 md:py-2 w-full"
+								isPadding='md:px-1 md:py-2'
 							/>
 						</Link>
 					) : isInCart ? (
@@ -132,12 +135,14 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('AlreadyAdded.title')}
 							className="md:px-1 md:py-2 w-full"
 							Color="#555555"
+							isPadding='md:px-1 md:py-2'
 						/>
 					) : (
 						<Button
 							title={t1('AddtoBasket.title')}
 							className="md:px-1 md:py-2 w-full"
 							Color="#000000"
+							isPadding='md:px-1 md:py-2'
 							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
 						/>
 					)}

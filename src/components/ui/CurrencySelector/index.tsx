@@ -1,6 +1,7 @@
 import { setIsCurrencyStateAction } from '@/state/currency';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from '../LandingPage/Button';
 
 interface CurrencySelectorType {
 	className?: string;
@@ -74,7 +75,7 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 							<span
 								key={i}
 								onClick={() => handleCurrencyChange(opt)}
-								className="bg-black text-white text-sm rounded-[20px] w-32 px-3 text-center py-2 cursor-pointer "
+								className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
 							>
 								{opt.label}
 							</span>

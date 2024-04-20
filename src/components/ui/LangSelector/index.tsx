@@ -70,7 +70,7 @@ const LangSelector: React.FC<IProps> = ({
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex border border-black rounded-[20px] py-2 w-36 justify-center gap-3 cursor-pointer dropdown"
+				className="flex border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
@@ -84,12 +84,12 @@ const LangSelector: React.FC<IProps> = ({
 				<Image src={downArrow} alt="downArrow" className="w-[10px]" />
 			</div>
 			{open && (
-				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-[20px] absolute flex flex-col gap-2 dropdown z-50">
+				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 dropdown z-50">
 					{options.map((opt) => (
 						<span
 							key={opt.value}
 							onClick={() => handleLangChange(opt)}
-							className="bg-black text-white text-sm rounded-[20px] w-32 px-3 text-center py-2 cursor-pointer "
+							className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
 						>
 							{opt.label}
 						</span>

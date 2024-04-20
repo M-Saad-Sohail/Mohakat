@@ -4,6 +4,7 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	isLoading?: boolean;
 	localeId?: string;
 	Color?: string;
+	isPadding?: string;
 }
 const Button: React.FC<IProps> = ({
 	onClick = () => {},
@@ -12,6 +13,7 @@ const Button: React.FC<IProps> = ({
 	isLoading = false,
 	className,
 	Color,
+	isPadding
 }) => {
 	console.log(Color);
 	const [isHovered, setIsHovered] = useState(false);
@@ -31,8 +33,8 @@ const Button: React.FC<IProps> = ({
 			className={`${
 				isLoading
 					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10'
-					: 'text-white cursor-pointer text-center shadow-lg md:px-6 px-4 '
-			} rounded-xl shadow-custom font-semibold ${className} md:text-sm text-[13px] border-2 border-transparent outline-none md:py-2 py-2 w-fit transition-colors duration-300 ease-in-out`}
+					: `text-white cursor-pointer text-center shadow-lg ${isPadding ? isPadding : `md:px-6 md:py-2`} px-4 `
+			} rounded-xl shadow-custom font-semibold ${className} md:text-sm text-[13px] border-2 border-transparent outline-none py-2 w-fit transition-colors duration-300 ease-in-out`}
 			style={{
 				backgroundColor: !isLoading && isHovered ? 'white' : Color,
 				borderColor: isHovered ? Color : 'transparent',
