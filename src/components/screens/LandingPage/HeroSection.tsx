@@ -128,7 +128,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					<p className="text-lg font-light text-center">
 						{currentHeroData.description}
 					</p>
-					<div className=" flex flex-wrap gap-5 justify-center w-[85%] mx-auto">
+					<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
 						<Link href={url(PATHS.FAMILY)}>
 							<Button title={t('DonateaShare.title')} Color="#CF7475" />
 						</Link>
