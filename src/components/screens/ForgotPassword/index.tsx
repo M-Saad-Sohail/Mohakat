@@ -84,7 +84,8 @@ const ForgotPassword = () => {
 						title={t('submit')}
 						type="submit"
 						isLoading={loading}
-						className=" bg-[#CF7475] w-56"
+						className="w-56"
+						Color='#CF7475'
 						onClick={handleSubmit}
 					/>
 				</div>
