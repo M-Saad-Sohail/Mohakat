@@ -65,13 +65,14 @@ const AuthNavbar = ({
 							/>
 						</Link>
 					</div>
-					<div className="hidden py-2 md:flex">
+					<div className="hidden md:flex items-center">
 						{Links.map((link, i) => (
 							<Link
 								key={link.name}
 								href={url(link.link)}
 								locale={locale}
-								className={`block py-2 px-4 transition-colors duration-300 ease-in-out  ${link.link === currentPathName ? ' font-semibold text-xl text-[#CF7475]' : ' font-normal text-lg hover:text-[#CF7475]'}`}
+								// className={` block py-2 px-4 transition-colors duration-300 ease-in-out  ${link.link === currentPathName ? ' font-semibold text-xl text-[#CF7475]' : ' font-normal text-lg hover:text-[#CF7475]'}`}
+								className="navbar-link text-lg font-medium hover:text-xl transition-all duration-300 mx-4"
 							>
 								{t(link.localeId)}
 							</Link>

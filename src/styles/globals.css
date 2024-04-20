@@ -35,7 +35,6 @@ svg {
 }
 
 @keyframes scroll {
-
 	0%,
 	100% {
 		transform: translateX(0);
@@ -76,7 +75,6 @@ svg {
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
-
 .scrollbarHide::-webkit-scrollbar {
 	display: none;
 }
@@ -87,8 +85,8 @@ svg {
 	scrollbar-width: none;
 }
 
-input[name="month"] {
-	accent-color: #CF7475;
+input[name='month'] {
+	accent-color: #cf7475;
 }
 
 /* tooltip */
@@ -115,7 +113,7 @@ input[name="month"] {
 }
 
 .tooltip .tooltiptext::after {
-	content: "";
+	content: '';
 	position: absolute;
 	top: 50%;
 	right: 100%;
@@ -129,17 +127,15 @@ input[name="month"] {
 	visibility: visible;
 }
 
-
 .border-filled {
-	border-color: #CF7475;
+	border-color: #cf7475;
 	border-width: 3px;
 }
 
 .border-empty {
-	border-color: #CF7475;
+	border-color: #cf7475;
 	border-width: 2px;
 }
-
 
 /* Define the scrollbar thumb */
 .currency-scrollbar::-webkit-scrollbar-thumb {
@@ -149,4 +145,30 @@ input[name="month"] {
 
 .currency-scrollbar::-webkit-scrollbar {
 	width: 3px; /* Set the width of the scrollbar */
+}
+
+.navbar-link {
+	color: black;
+	position: relative;
+	text-decoration: none;
+}
+
+.navbar-link::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2.6px;
+	border-radius: 4px;
+	background-color: #cf7475;
+	bottom: -4px;
+	left: 0;
+	transform-origin: right;
+	transform: scaleX(0);
+	transition: transform 0.3s ease-in-out;
+}
+
+.navbar-link:hover::before {
+	height: 3px;
+	transform-origin: left;
+	transform: scaleX(1);
 }

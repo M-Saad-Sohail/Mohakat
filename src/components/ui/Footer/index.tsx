@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 
 // REACT ICONS
 import { RiFacebookBoxFill } from 'react-icons/ri';
-import { FaTwitterSquare,FaFacebookSquare } from 'react-icons/fa';
+import { FaTwitterSquare, FaFacebookSquare } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa6';
 
 const footerLinks = [
@@ -70,9 +70,10 @@ const Footer = () => {
 									key={link.title}
 									href={url(link.link)}
 									locale={locale}
-									className={`
-								${link.link === currentPathName ? 'font-semibold text-base text-[#CF7475]' : 'font-normal text-sm hover:text-[#CF7475]'}
-							  `}
+									// 		className={`
+									// 	${link.link === currentPathName ? 'font-semibold text-base text-[#CF7475]' : 'font-normal text-sm hover:text-[#CF7475]'}
+									//   `}
+									className="navbar-link text-base font-medium hover:text-lg transition-all duration-300"
 								>
 									<h3>{t(`${link.title}`)}</h3>
 								</Link>

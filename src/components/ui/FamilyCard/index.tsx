@@ -43,7 +43,15 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 		<>
 			<div
 				dir={dir}
-				className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md"
+				className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md cursor-pointer"
+				onClick={() => {
+					if (user) {
+						setOpen(true);
+						setCurrentFamilyInfo(familyData);
+					} else {
+						setQuickDonationOpen(true);
+					}
+				}}
 			>
 				{/* first div */}
 				<div className=" flex justify-between items-center">
@@ -108,7 +116,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('Sponser.title')}
 							className="md:px-0 md:py-2 w-full"
 							Color={'#8DAE8E'}
-							isPadding='md:px-0 md:py-2'
+							isPadding="md:px-0 md:py-2"
 						/>
 					) : (
 						<Button
@@ -118,16 +126,20 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('DonateaShare.title')}
 							className="md:px-0 md:py-2 w-full"
 							Color={'#CF7475'}
-							isPadding='md:px-0 md:py-2'
+							isPadding="md:px-0 md:py-2"
 						/>
 					)}
 					{!user ? (
-						<Link href={url(PATHS.BECOME_SPONSOR)} className=" w-full">
+						<Link
+							href={url(PATHS.BECOME_SPONSOR)}
+							onClick={(event) => event.stopPropagation()}
+							className=" w-full"
+						>
 							<Button
 								title={t1('BecomeaSponser.title')}
 								Color="#8DAE8E"
 								className="md:px-1 md:py-2 w-full"
-								isPadding='md:px-1 md:py-2'
+								isPadding="md:px-1 md:py-2"
 							/>
 						</Link>
 					) : isInCart ? (
@@ -135,15 +147,18 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							title={t1('AlreadyAdded.title')}
 							className="md:px-1 md:py-2 w-full"
 							Color="#555555"
-							isPadding='md:px-1 md:py-2'
+							isPadding="md:px-1 md:py-2"
 						/>
 					) : (
 						<Button
 							title={t1('AddtoBasket.title')}
 							className="md:px-1 md:py-2 w-full"
 							Color="#000000"
-							isPadding='md:px-1 md:py-2'
-							onClick={() => dispatch(setIsAddCartStateAction(familyData))}
+							isPadding="md:px-1 md:py-2"
+							onClick={(event) => {
+								event.stopPropagation();
+								dispatch(setIsAddCartStateAction(familyData));
+							}}
 						/>
 					)}
 				</div>
