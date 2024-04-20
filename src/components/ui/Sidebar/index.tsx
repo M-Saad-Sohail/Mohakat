@@ -15,6 +15,8 @@ import {
 	logout,
 	sidebar_icon,
 } from '@/assests';
+import stickeySvg2 from '@/assests/svgs/stickeybar/stickeybar-2.svg';
+import { FaDollarSign } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
@@ -40,6 +42,11 @@ const AdminMenus = [
 		title: 'sponsor.approved',
 		src: approved__icon,
 		link: PATHS.APPROVED_SPONSOR,
+	},
+	{
+		title: 'donatedFamilies',
+		src: sponsor,
+		link: PATHS.DONATED_FAMILIES,
 	},
 	{
 		title: 'form_response',
@@ -118,9 +125,11 @@ const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
 	const size = useWindowSize();
 	const [open, setOpen] = useState(size.width > 768);
-	const [user, setUser] = useState<{ name: string; email: string; id:string; } | null>(
-		null,
-	);
+	const [user, setUser] = useState<{
+		name: string;
+		email: string;
+		id: string;
+	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { logoutUser } = useAuth();
@@ -129,7 +138,7 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
-		console.log("use",user)
+		console.log('use', user);
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
 			setUser(user);
@@ -171,13 +180,13 @@ const LeftSideBar = () => {
 						alt={''}
 						className="h-[50px] w-[50px] rounded-full mt-2"
 					/> */}
-					<div className=' flex flex-col items-center gap-3'>
-					<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
-						{user ? user.name.toUpperCase() : ''}
-					</p>
-					<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
-						Id: {' '}{user ? user.id : ''}
-					</p>
+					<div className=" flex flex-col items-center gap-3">
+						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+							{user ? user.name.toUpperCase() : ''}
+						</p>
+						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+							Id: {user ? user.id : ''}
+						</p>
 					</div>
 					<p
 						className={`${

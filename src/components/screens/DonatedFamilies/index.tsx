@@ -17,7 +17,7 @@ interface Row {
 	numberOfMartyrInFamily: string;
 }
 
-const SponsoringFamilies = () => {
+const DonatedFamilies = () => {
 	const [data, setData] = useState<any>();
 	const [isLoading, setIsLoading] = useState<boolean | string>('');
 	const initialState = {
@@ -32,26 +32,22 @@ const SponsoringFamilies = () => {
 	const currentPath = pathname?.slice(1, 3);
 	const cancelButtonRef = useRef(null);
 
-	const fetchSponserFamilies = async (sponserId: string, token: any) => {
+	const fetchDonatedFamilies = async (token: any) => {
 		setIsLoading(true);
 		const response = await getJsonWithToken(
-			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donated/${sponserId}/families`,
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donated/families`,
 			token && token,
 		);
 		if (response.success) {
 			// setData(res.families);
 			// console.log(res);
-			console.log(response.families);
-			const familiesData = response?.families
-				.filter((item: any) => {
-					return item.family !== null && item.family && item.amount;
-				})
+			console.log(response.donations);
+			const familiesData = response?.donations
 				.map((item: any) => ({
-					...item.family,
-					id: item.family._id,
-					amount: item.amount,
+					...item,
+					id: item._id,
 				}));
-			console.log('hhj', familiesData);
+			// console.log('hhj', familiesData);
 			setRows(familiesData);
 			setIsLoading(false);
 		}
@@ -68,39 +64,21 @@ const SponsoringFamilies = () => {
 
 	const columns: GridColDef[] = [
 		{
-			field: 'id',
-			headerName: 'Id',
-			headerAlign: 'center',
-			align: 'center',
-			sortable: true,
-			width: calculateColumnWidth('id' as any),
-			disableColumnMenu: true,
-		},
-		{
-			field: 'lossesInWar',
-			headerName: 'Losses In War',
-			headerAlign: 'center',
-			width: 150,
-			align: 'center',
-			sortable: false,
-			disableColumnMenu: true,
-		},
-		{
-			field: 'areaOfCurrentResidence',
-			headerName: 'Area Of Current Residence',
-			width: 250,
+			field: 'sponsor',
+			headerName: 'Sponser Id',
 			headerAlign: 'center',
 			align: 'center',
 			sortable: false,
+			width: calculateColumnWidth('sponsor' as any),
 			disableColumnMenu: true,
 		},
 		{
-			field: 'numberOfMartyrInFamily',
-			headerName: 'No. Of Martyr In Family',
+			field: 'family',
+			headerName: 'Family Id',
 			headerAlign: 'center',
 			align: 'center',
-			width: 200,
 			sortable: false,
+			width: calculateColumnWidth('family' as any),
 			disableColumnMenu: true,
 		},
 		{
@@ -111,25 +89,6 @@ const SponsoringFamilies = () => {
 			width: 200,
 			sortable: false,
 			disableColumnMenu: true,
-		},
-		{
-			field: 'view',
-			headerName: 'View',
-			sortable: false,
-			headerAlign: 'center',
-			align: 'center',
-			disableColumnMenu: true,
-			renderCell: (params) => (
-				<div className=" flex justify-center items-center p-[13px]">
-					<FaRegListAlt
-						onClick={() => {
-							setOpen(true);
-							handleFamiliesData(currentPath, params.row as any);
-						}}
-						className=" text-[18px] cursor-pointer"
-					/>
-				</div>
-			),
 		},
 	];
 
@@ -171,7 +130,7 @@ const SponsoringFamilies = () => {
 		const userData = getUserFromLocalStorage();
 		console.log('user', userData);
 		if (userData) {
-			fetchSponserFamilies(userData.id, userData?.key);
+			fetchDonatedFamilies(userData?.key);
 		}
 	}, []);
 
@@ -242,16 +201,16 @@ const SponsoringFamilies = () => {
 					) : null}
 				</div>
 			)}
-			<FamilyModal
+			{/* <FamilyModal
 				setOpen={setOpen}
 				open={open}
 				isTableView={true}
 				cancelButtonRef={cancelButtonRef}
 				amount={familiesData && (familiesData?.amount as any)}
 				familyInfo={familiesData && familiesData}
-			/>
+			/> */}
 		</>
 	);
 };
 
-export default SponsoringFamilies;
+export default DonatedFamilies;

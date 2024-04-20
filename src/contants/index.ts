@@ -21,6 +21,7 @@ export const PATHS = {
 	APPROVED_SPONSOR: '/dashboard/sponsor/approved',
 	PENDING_SPONSOR: '/dashboard/sponsor/pending',
 	REJECTED_SPONSOR: '/dashboard/sponsor/rejected',
+	DONATED_FAMILIES: '/dashboard/donated-families',
 	FORM_RESPONSES: '/dashboard/form-responses',
 	SETTING: '/dashboard/setting',
 	SPONSORING: '/dashboard/sponsoring',

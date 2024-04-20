@@ -311,6 +311,7 @@
 			"pending": "Pending Sponsor",
 			"rejected": "Rejected Sponsor"
 		},
+		"donatedFamilies": "Donated Families",
 		"form_response": "Form Response",
 		"credit_cards": "Credit Cards",
 		"sponsoring": "Sponsoring"
@@ -355,6 +356,12 @@
 	},
 	"ApprovedSponsors": {
 		"title": "Approved Sponsors"
+	},
+	"SponsoredFamilies": {
+		"title": "Sponsored Families"
+	},
+	"DonatedFamilies": {
+		"title": "Donated Families"
 	},
 	"Table": {
 		"Header": {
