@@ -91,7 +91,7 @@ const Cart = ({
 							{currencyState.key} {totalAmount}
 						</h3>
 					</div>
-					<Button title={t('button')} className=" bg-[#CF7475] w-full" />
+					<Button title={t('button')} className=" w-full" Color='#CF7475' />
 				</div>
 				{/* Cart content goes here */}
 			</div>

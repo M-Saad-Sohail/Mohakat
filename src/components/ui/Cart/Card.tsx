@@ -51,7 +51,8 @@ const FamilyCard = ({ family }: { family: any }) => {
 			</div>
 			<Button
 				title="Remove"
-				className=" bg-[#CF7475] md:py-2 md:text-xs w-fit"
+				className=" md:py-2 md:text-xs w-fit"
+				Color="#CF7475"
 				onClick={() =>
 					dispatch(setIsRemoveCartStateAction({ id: family?._id }))
 				}

@@ -30,11 +30,11 @@ const Button: React.FC<IProps> = ({
 			type={type}
 			className={`${
 				isLoading
-					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10 '
+					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10'
 					: 'text-white cursor-pointer text-center shadow-lg md:px-6 px-4 '
-			} rounded-[20px] shadow-custom font-semibold ${className} md:text-sm text-[13px] border-2 border-transparent outline-none md:py-[10px] py-2 w-fit transition-colors duration-300 ease-in-out`}
+			} rounded-[20px] shadow-custom font-semibold ${className} md:text-sm text-[13px] border-2 border-transparent outline-none md:py-2 py-2 w-fit transition-colors duration-300 ease-in-out`}
 			style={{
-				backgroundColor: isHovered ? 'white' : Color,
+				backgroundColor: !isLoading && isHovered ? 'white' : Color,
 				borderColor: isHovered ? Color : 'transparent',
 				color: isHovered ? Color : 'white',
 			}}
