@@ -14,6 +14,7 @@ import { setIsAddCartStateAction } from '@/state/cart';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
+import QuickDonationModal from '../Modals/QuickDonationModal';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
@@ -25,12 +26,14 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	const t1 = useTranslations('HeroMainSection.btns');
 	const cancelButtonRef = useRef(null);
 	const cancelDonateButtonRef = useRef(null);
+	const cancelQuickDonationButtonRef = useRef(null);
 	const cartItems = useSelector((state: any) => state.cart);
 	const currencyState = useSelector((state: any) => state.currency);
 	const [amount, setAmount] = useState<number>(0);
 	const [open, setOpen] = useState(false);
 	const [currentFamilyInfo, setCurrentFamilyInfo] = useState<any>(null);
 	const [donateOpen, setDonateOpen] = useState(false);
+	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	// Check if familyData is already in the cart
@@ -96,15 +99,26 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 
 				{/* buttons */}
 				<div className=" flex justify-between gap-2">
-					<Button
-						onClick={() => {
-							setOpen(true);
-							setCurrentFamilyInfo(familyData);
-						}}
-						title={`${user ? t1('Sponser.title') : t1('DonateaShare.title')}`}
-						className="md:px-0 md:py-2 w-full"
-						Color={`${user ? '#8DAE8E' : '#CF7475'}`}
-					/>
+					{user ? (
+						<Button
+							onClick={() => {
+								setOpen(true);
+								setCurrentFamilyInfo(familyData);
+							}}
+							title={t1('Sponser.title')}
+							className="md:px-0 md:py-2 w-full"
+							Color={'#8DAE8E'}
+						/>
+					) : (
+						<Button
+							onClick={() => {
+								setQuickDonationOpen(true);
+							}}
+							title={t1('DonateaShare.title')}
+							className="md:px-0 md:py-2 w-full"
+							Color={'#CF7475'}
+						/>
+					)}
 					{!user ? (
 						<Link href={url(PATHS.BECOME_SPONSOR)} className=" w-full">
 							<Button
@@ -146,6 +160,11 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				isLoggedIn={isLoggedIn}
 				amount={amount}
 				setAmount={setAmount}
+			/>
+			<QuickDonationModal
+				open={quickDonationOpen}
+				setOpen={setQuickDonationOpen}
+				cancelButtonRef={cancelQuickDonationButtonRef}
 			/>
 		</>
 	);

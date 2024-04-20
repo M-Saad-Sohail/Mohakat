@@ -46,3 +46,9 @@ export type DonateModalType = {
 	setAmount?: (value: number) => void;
 	amount?: number;
 };
+
+export type QuickDonationModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+};

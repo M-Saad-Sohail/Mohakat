@@ -329,7 +329,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												setDonate(true);
 											}}
 											title={t1('Donate.title')}
-											className=" bg-[#CF7475]"
+											Color="#CF7475"
 										/>
 									</div>
 								</Dialog.Panel>
