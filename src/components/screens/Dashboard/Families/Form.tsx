@@ -153,7 +153,7 @@ const FamilyForm = () => {
 					<div className="flex items-start justify-start w-full gap-x-4">
 						<div>
 							<Input
-								title={'In English'}
+								title={'In English *'}
 								name="breadWinnerNameEn"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameEn}
@@ -174,7 +174,7 @@ const FamilyForm = () => {
 
 						<div>
 							<Input
-								title={'In Turkish'}
+								title={'In Turkish *'}
 								name="breadWinnerNameTr"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameTr}
@@ -194,7 +194,7 @@ const FamilyForm = () => {
 						</div>
 						<div>
 							<Input
-								title={'In Arabic'}
+								title={'In Arabic *'}
 								name="breadWinnerNameAr"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameAr}
@@ -220,7 +220,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full gap-x-4">
 					<div>
 						<Input
-							title={t('email.title')}
+							title={`${t('email.title')} *`}
 							name="email"
 							className="mb-[5px] min-w-[460px]"
 							value={AddFamiliesForm.values?.email}
@@ -239,7 +239,7 @@ const FamilyForm = () => {
 					</div>
 					<div>
 						<Input
-							title={t('age.title')}
+							title={`${t('age.title')} *`}
 							name="age"
 							type="number"
 							className="mb-[5px] min-w-[460px]"
@@ -263,7 +263,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full gap-x-4">
 					<div>
 						<Input
-							title={t('telephone.title')}
+							title={`${t('telephone.title')} *`}
 							name="telephoneNumber"
 							type="number"
 							className="mb-[5px] min-w-[460px]"
@@ -285,7 +285,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Input
-							title={t('id.title')}
+							title={`${t('id.title')} *`}
 							name="idNumber"
 							type="number"
 							className="mb-[5px] min-w-[460px]"
@@ -311,7 +311,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full gap-x-4">
 					<div>
 						<Input
-							title={t('dob.title')}
+							title={`${t('dob.title')} *`}
 							name="dateOfBirth"
 							className="mb-[5px] min-w-[460px] "
 							type="date"
@@ -333,7 +333,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Select
-							title={t('gender.title')}
+							title={`${t('gender.title')} *`}
 							name="gender"
 							options={[
 								{ label: t('gender.male'), value: 'male' },
@@ -363,7 +363,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
 					<div>
 						<Select
-							title={t('martialstatus.title')}
+							title={`${t('martialstatus.title')} *`}
 							name="maritalStatus"
 							options={[
 								{ label: t('martialstatus.single'), value: 'single' },
@@ -389,7 +389,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Select
-							title={t('language.title')}
+							title={`${t('language.title')} *`}
 							name="language"
 							options={[
 								{ label: t('language.english'), value: 'en' },
@@ -448,7 +448,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
 					<div>
 						<Select
-							title={t('previousresidence.title')}
+							title={`${t('previousresidence.title')} *`}
 							name="areaOfPreviousResidence"
 							options={[
 								{ label: t('previousresidence.Gaza'), value: 'Gaza' },
@@ -505,7 +505,7 @@ const FamilyForm = () => {
 					</div>
 					<div>
 						<Select
-							title={t('currentresidence.title')}
+							title={`${t('currentresidence.title')} *`}
 							name="areaOfCurrentResidence"
 							options={[
 								{ label: t('currentresidence.Gaza'), value: 'Gaza' },
@@ -564,7 +564,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
 					<div>
 						<Select
-							title={t('currentsituation.title')}
+							title={`${t('currentsituation.title')} *`}
 							name="currentSituation"
 							options={[
 								{ label: t('currentsituation.good'), value: 'Good' },
@@ -591,7 +591,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Select
-							title={t('losesinwar.title')}
+							title={`${t('losesinwar.title')} *`}
 							name="lossesInWar"
 							options={[
 								{ label: t('losesinwar.none'), value: 'none' },
@@ -625,7 +625,7 @@ const FamilyForm = () => {
 				<div className="flex items-start justify-start w-full gap-x-4">
 					<div>
 						<Input
-							title={t('FamilyMembers.title')}
+							title={`${t('FamilyMembers.title')} *`}
 							name="numberOfFamilyMembers"
 							type="number"
 							className="mb-[5px] min-w-[300px]"
@@ -647,7 +647,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Input
-							title={t('MartyrInFamily.title')}
+							title={`${t('MartyrInFamily.title')} *`}
 							name="numberOfMartyrInFamily"
 							type="number"
 							className="mb-[5px] min-w-[300px]"
@@ -670,7 +670,7 @@ const FamilyForm = () => {
 
 					<div>
 						<Input
-							title={t('InfectedInFamily.title')}
+							title={`${t('InfectedInFamily.title')} *`}
 							name="numberOfInfectedInFamily"
 							type="number"
 							className="mb-[5px] min-w-[300px]"
