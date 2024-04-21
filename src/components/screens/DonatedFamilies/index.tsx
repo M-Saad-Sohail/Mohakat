@@ -82,7 +82,7 @@ const DonatedFamilies = () => {
 			headerAlign: 'center',
 			align: 'center',
 			width: 200,
-			sortable: false,
+			sortable: true,
 			disableColumnMenu: true,
 		},
 	];
@@ -117,7 +117,10 @@ const DonatedFamilies = () => {
 							sx={{
 								border: 'none',
 								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow .css-k008qs': {
-									background: '#742430 !important',
+									background: 'rgba(116, 36, 48, 1) !important',
+								},
+								'& .MuiDataGrid-container--top [role=row]': {
+									background: 'rgba(116, 36, 48, 1) !important',
 								},
 								'& .MuiDataGrid-columnHeaderTitle': {
 									fontWeight: '600',
