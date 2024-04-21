@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 // ICONS
+import { logo } from '@/assests';
 import Logo from '@/assests/icons/newlogo.svg';
 import Facebook from '@/assests/icons/fb.png';
 import Twitter from '@/assests/icons/twitter.png';
@@ -60,7 +61,11 @@ const Footer = () => {
 				<div className=" flex justify-between items-center">
 					{/* logo */}
 					<div>
-						<Image src={Logo} alt="logo" />
+						<Image
+							src={currentPath === 'ar' ? Logo : logo}
+							className={`${currentPath === 'ar' ? ' w-14' : ' w-11'}`}
+							alt="logo"
+						/>
 					</div>
 					{/* links */}
 					<div className=" hidden md:flex items-center gap-8">
