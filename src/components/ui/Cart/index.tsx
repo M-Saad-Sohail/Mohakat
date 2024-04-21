@@ -20,10 +20,6 @@ const Cart = ({
 	const currencyState = useSelector((state: any) => state.currency);
 
 	useEffect(() => {
-		console.log(totalAmount);
-	}, [totalAmount]);
-
-	useEffect(() => {
 		setTotalAmount(0);
 		cartItems.forEach((element: any) => {
 			let newAmount = calculateAmount(

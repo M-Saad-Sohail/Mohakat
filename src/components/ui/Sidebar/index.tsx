@@ -138,7 +138,6 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
-		console.log('use', user);
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
 			setUser(user);

@@ -25,7 +25,6 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	isTableView = false,
 	setAmount,
 }) => {
-	console.log('family', familyInfo);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');

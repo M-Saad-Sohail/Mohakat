@@ -13,7 +13,6 @@ const ResetPassword = () => {
 	const { user } = useLoggedInUser();
 	const t = useTranslations('resetPassword.form');
 	const params = useParams();
-	console.log(params);
 
 	const router = useRouter();
 	const [loading, setLoading] = useState<boolean>(false);

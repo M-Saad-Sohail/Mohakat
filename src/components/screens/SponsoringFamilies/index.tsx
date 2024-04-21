@@ -39,9 +39,6 @@ const SponsoringFamilies = () => {
 			token && token,
 		);
 		if (response.success) {
-			// setData(res.families);
-			// console.log(res);
-			console.log(response.families);
 			const familiesData = response?.families
 				.filter((item: any) => {
 					return item.family !== null && item.family && item.amount;
@@ -51,7 +48,6 @@ const SponsoringFamilies = () => {
 					id: item.family._id,
 					amount: item.amount,
 				}));
-			console.log('hhj', familiesData);
 			setRows(familiesData);
 			setIsLoading(false);
 		}
@@ -169,7 +165,6 @@ const SponsoringFamilies = () => {
 
 	useEffect(() => {
 		const userData = getUserFromLocalStorage();
-		console.log('user', userData);
 		if (userData) {
 			fetchSponserFamilies(userData.id, userData?.key);
 		}
