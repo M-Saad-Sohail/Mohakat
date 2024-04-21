@@ -140,7 +140,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								toast.error(`This feature is in progress`, {
 									toastId: 'success',
 									position: 'bottom-right',
-									autoClose: false,
+									autoClose: 4000,
 								});
 							}}
 							title={t('RegisterasFamily.title')}
