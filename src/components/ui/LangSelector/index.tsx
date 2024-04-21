@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { arabic_flag, english_flag, flag__icon, turkish_flag } from '@/assests';
 import downArrow from '@/assests/icons/down-arrow.svg';
-import { usePathname } from 'next/navigation';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
 
 interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
@@ -91,7 +90,7 @@ const LangSelector: React.FC<IProps> = ({
 				onClick={() => setOpen((prev) => !prev)}
 			/>
 			{open && (
-				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 lang-dropdown z-50">
+				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-xl absolute flex flex-col gap-2 lang-dropdown z-50">
 					{options.map((opt) => (
 						<span
 							key={opt.value}

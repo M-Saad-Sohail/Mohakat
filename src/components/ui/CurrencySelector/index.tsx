@@ -1,7 +1,7 @@
 import { setIsCurrencyStateAction } from '@/state/currency';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../LandingPage/Button';
+import { usePathname } from 'next/navigation';
 
 interface CurrencySelectorType {
 	className?: string;
@@ -30,6 +30,8 @@ const options: CurrencyOption[] = [
 
 const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	const dispatch = useDispatch();
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
 	const currencyState = useSelector((state: any) => state.currency);
 	const [open, setOpen] = useState(false);
 
@@ -69,8 +71,12 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 				</p>
 			</div>
 			{open && (
-				<div className=" h-[140px] top-12 right-0 shadow-custom bg-white pl-2 py-2 rounded-[16px] absolute  currency-dropdown z-50 ">
-					<div className=" h-full flex flex-col gap-2 overflow-y-auto currency-scrollbar pr-1">
+				<div
+					className={` ${currentPath === 'ar' ? ' left-0 pr-2' : 'right-0 pl-2'} h-[140px] top-12 shadow-custom bg-white  py-2 rounded-xl absolute  currency-dropdown z-[5000] `}
+				>
+					<div
+						className={` h-full flex flex-col gap-2 overflow-y-auto currency-scrollbar  ${currentPath === 'ar' ? 'pl-1' : ' pr-1'}`}
+					>
 						{options.map((opt, i) => (
 							<span
 								key={i}
