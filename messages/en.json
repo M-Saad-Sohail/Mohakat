@@ -361,7 +361,10 @@
 		"title": "Sponsored Families"
 	},
 	"DonatedFamilies": {
-		"title": "Donated Families"
+		"title": "Donated Families",
+		"sponserId":"Sponser Id",
+		"familyId":"Family Id",
+		"amountDonated":"Amount Donated"
 	},
 	"Table": {
 		"Header": {

@@ -336,6 +336,7 @@
 			"pending": "الراعي المعلق",
 			"rejected": "الراعي المرفوض"
 		},
+		"donatedFamilies": "العائلات المتبرع لها",
 		"form_response": "استجابة النموذج",
 		"credit_cards": "بطاقات الائتمان",
 		"sponsoring": "الرعاية"
@@ -352,6 +353,12 @@
 	},
 	"ApprovedSponsors": {
 		"title": "الرعاة الموافق عليهم"
+	},
+	"DonatedFamilies": {
+		"title": "العائلات المتبرع لها",
+		"sponserId": "معرف الراعي",
+		"familyId": "معرف العائلة",
+		"amountDonated": "المبلغ المتبرع به"
 	},
 	"Table": {
 		"Header": {

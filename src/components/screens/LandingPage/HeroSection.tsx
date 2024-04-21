@@ -1,8 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import defaultImg from '@/assests/images/landing-page/light-gray-background.png';
 import Button from '@/components/ui/LandingPage/Button';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { getJson } from '@/api/api.instances';
 import { useTranslations } from 'next-intl';
@@ -104,7 +102,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%]">
 						<img
-							src={(imagesData && imagesData[0].heroSliderImg) || defaultImg}
+							src={
+								(imagesData && imagesData[0].heroSliderImg) ||
+								'/images/light-gray-background.png'
+							}
 							alt="img"
 							width={100}
 							height={100}
@@ -113,7 +114,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 					<div className=" h-[30%]">
 						<img
-							src={(imagesData && imagesData[1].heroSliderImg) || defaultImg}
+							src={
+								(imagesData && imagesData[1].heroSliderImg) ||
+								'/images/light-gray-background.png'
+							}
 							alt="img"
 							width={100}
 							height={100}
@@ -150,7 +154,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					<div className=" h-[45%] flex gap-3">
 						<div className=" flex-1">
 							<img
-								src={(imagesData && imagesData[2].heroSliderImg) || defaultImg}
+								src={
+									(imagesData && imagesData[2].heroSliderImg) ||
+									'/images/light-gray-background.png'
+								}
 								alt="img"
 								width={100}
 								height={100}
@@ -159,7 +166,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</div>
 						<div className=" flex-1 h-[80%] self-end">
 							<img
-								src={(imagesData && imagesData[3].heroSliderImg) || defaultImg}
+								src={
+									(imagesData && imagesData[3].heroSliderImg) ||
+									'/images/light-gray-background.png'
+								}
 								alt="img"
 								width={100}
 								height={100}
@@ -168,7 +178,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</div>
 						<div className="flex-1">
 							<img
-								src={(imagesData && imagesData[4].heroSliderImg) || defaultImg}
+								src={
+									(imagesData && imagesData[4].heroSliderImg) ||
+									'/images/light-gray-background.png'
+								}
 								alt="img"
 								width={100}
 								height={100}
@@ -180,7 +193,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%]">
 						<img
-							src={(imagesData && imagesData[5].heroSliderImg) || defaultImg}
+							src={
+								(imagesData && imagesData[5].heroSliderImg) ||
+								'/images/light-gray-background.png'
+							}
 							alt="img"
 							width={100}
 							height={100}
@@ -189,7 +205,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 					<div className=" h-[30%]">
 						<img
-							src={(imagesData && imagesData[6].heroSliderImg) || defaultImg}
+							src={
+								(imagesData && imagesData[6].heroSliderImg) ||
+								'/images/light-gray-background.png'
+							}
 							alt="img"
 							width={100}
 							height={100}
@@ -220,7 +239,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className="carousel-item flex even:items-end odd:items-start px-2"
 							>
 								<img
-									src={(imagesData && item?.heroSliderImg) || defaultImg}
+									src={
+										(imagesData && item?.heroSliderImg) ||
+										'/images/light-gray-background.png'
+									}
 									alt="img"
 									width={100}
 									height={100}

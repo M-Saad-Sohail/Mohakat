@@ -9,6 +9,7 @@ import { FaRegListAlt } from 'react-icons/fa';
 import Loader from '@/components/ui/Loader';
 import FamilyModal from '@/components/ui/Modals/FamilyModal';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface Row {
 	_id: number;
@@ -19,6 +20,7 @@ interface Row {
 
 const DonatedFamilies = () => {
 	const [data, setData] = useState<any>();
+	const t = useTranslations("DonatedFamilies")
 	const [isLoading, setIsLoading] = useState<boolean | string>('');
 	const initialState = {
 		pagination: { paginationModel: { pageSize: 50 } },
@@ -60,7 +62,7 @@ const DonatedFamilies = () => {
 	const columns: GridColDef[] = [
 		{
 			field: 'sponsor',
-			headerName: 'Sponser Id',
+			headerName: t('sponserId'),
 			headerAlign: 'center',
 			align: 'center',
 			sortable: false,
@@ -69,7 +71,7 @@ const DonatedFamilies = () => {
 		},
 		{
 			field: 'family',
-			headerName: 'Family Id',
+			headerName: t('familyId'),
 			headerAlign: 'center',
 			align: 'center',
 			sortable: false,
@@ -78,7 +80,7 @@ const DonatedFamilies = () => {
 		},
 		{
 			field: 'amount',
-			headerName: 'Amount Donated',
+			headerName: t('amountDonated'),
 			headerAlign: 'center',
 			align: 'center',
 			width: 200,

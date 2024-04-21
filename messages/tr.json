@@ -336,6 +336,7 @@
 			"pending": "Bekleyen Sponsor",
 			"rejected": "Reddedilmiş Sponsor"
 		},
+		"donatedFamilies": "Bağışlanan Aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
 		"sponsoring": "Sponsorluk"
@@ -352,6 +353,12 @@
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
+	},
+	"DonatedFamilies": {
+		"title": "Bağışlanan Aileler",
+		"sponserId": "Sponsor Kimliği",
+		"familyId": "Aile Kimliği",
+		"amountDonated": "Bağış Miktarı"
 	},
 	"Table": {
 		"Header": {
