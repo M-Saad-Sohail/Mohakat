@@ -68,7 +68,7 @@ const SponsoringFamilies = () => {
 			headerName: 'Id',
 			headerAlign: 'center',
 			align: 'center',
-			sortable: true,
+			sortable: false,
 			width: calculateColumnWidth('id' as any),
 			disableColumnMenu: true,
 		},
@@ -95,8 +95,8 @@ const SponsoringFamilies = () => {
 			headerName: 'No. Of Martyr In Family',
 			headerAlign: 'center',
 			align: 'center',
-			width: 200,
-			sortable: false,
+			width: 230,
+			sortable: true,
 			disableColumnMenu: true,
 		},
 		{
@@ -104,8 +104,8 @@ const SponsoringFamilies = () => {
 			headerName: 'Amount Donated',
 			headerAlign: 'center',
 			align: 'center',
-			width: 200,
-			sortable: false,
+			width: 230,
+			sortable: true,
 			disableColumnMenu: true,
 		},
 		{
@@ -195,6 +195,9 @@ const SponsoringFamilies = () => {
 								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
 									background: 'rgba(116, 36, 48, 1) !important',
 								},
+								'& .MuiDataGrid-container--top [role=row]': {
+									background: 'rgba(116, 36, 48, 1) !important',
+								},
 								'& .MuiDataGrid-columnHeaderTitle': {
 									fontWeight: '600',
 									color: 'white !important',
@@ -226,6 +229,12 @@ const SponsoringFamilies = () => {
 									border: '1px solid',
 									borderRadius: '6px',
 									fontSize: '14px',
+								},
+								'& .MuiDataGrid-sortIcon ': {
+									color: 'white',
+								},
+								'& .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root:hover ': {
+									background: 'none',
 								},
 							}}
 							rows={rows}
