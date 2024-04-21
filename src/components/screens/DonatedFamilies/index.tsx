@@ -116,8 +116,8 @@ const DonatedFamilies = () => {
 							pagination
 							sx={{
 								border: 'none',
-								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
-									background: 'rgba(116, 36, 48, 1) !important',
+								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow .css-k008qs': {
+									background: '#742430 !important',
 								},
 								'& .MuiDataGrid-columnHeaderTitle': {
 									fontWeight: '600',

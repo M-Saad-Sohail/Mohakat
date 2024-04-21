@@ -192,7 +192,7 @@ const SponsoringFamilies = () => {
 							pagination
 							sx={{
 								border: 'none',
-								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
+								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow .css-k008qs': {
 									background: 'rgba(116, 36, 48, 1) !important',
 								},
 								'& .MuiDataGrid-columnHeaderTitle': {
