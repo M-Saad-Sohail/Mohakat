@@ -27,6 +27,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies');
+	const t1 = useTranslations('FamiliesMainSection');
 	const [isLoading, setIsLoading] = useState(true);
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
 	const [filteredData, setFilteredData] = useState<any[]>([]);
@@ -323,9 +324,17 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								})}
 							</div>
 						</div>
+						<div className="md:hidden flex items-end w-[48%]">
+							<Button
+								title={t1('clearAll')}
+								Color="#000000"
+								onClick={clearAll}
+								className=" w-full"
+							/>
+						</div>
 					</div>
-					<div className="flex items-end">
-						<Button title="Clear All" Color="#000000" onClick={clearAll} />
+					<div className="md:flex hidden items-end">
+						<Button title={t1('clearAll')} Color="#000000" onClick={clearAll} />
 					</div>
 				</div>
 				{isLoading ? (
@@ -353,28 +362,40 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 										currentPage === 1
 											? 'bg-[#555555] cursor-not-allowed'
 											: 'bg-[#000000] cursor-pointer'
-									} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
+									} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm text-[12px] font-semibold  rounded-xl px-4 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
 
                                     `}
 									onClick={goToPrevPage}
 									disabled={currentPage === 1}
 								>
-									<span>
-										<FaArrowLeftLong className=" text-xl" />
-									</span>
-									<span>Back Page</span>
+									{currentPath === 'ar' ? (
+										<span>
+											<FaArrowRightLong className=" text-xl" />
+										</span>
+									) : (
+										<span>
+											<FaArrowLeftLong className=" text-xl" />
+										</span>
+									)}
+									<span>{t1('backPage')}</span>
 								</button>
 								<button
-									className="flex items-center gap-3 bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm font-semibold  rounded-xl px-5 py-3 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
+									className="flex items-center gap-3 bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm text-[12px] font-semibold  rounded-xl px-4 py-3 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
 									onClick={goToNextPage}
 									disabled={
 										currentPage >= Math.ceil(filteredData.length / itemsPerPage)
 									}
 								>
-									<span>Next Page</span>
-									<span>
-										<FaArrowRightLong className=" text-xl" />
-									</span>
+									<span>{t1('nextPage')}</span>
+									{currentPath === 'ar' ? (
+										<span>
+											<FaArrowLeftLong className=" text-xl" />
+										</span>
+									) : (
+										<span>
+											<FaArrowRightLong className=" text-xl" />
+										</span>
+									)}
 								</button>
 							</div>
 

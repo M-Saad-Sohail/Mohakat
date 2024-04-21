@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { arabic_flag, english_flag, flag__icon, turkish_flag } from '@/assests';
 import downArrow from '@/assests/icons/down-arrow.svg';
 import { usePathname } from 'next/navigation';
+import EarthSvg from '@/assests/images/landing-page/earth.svg';
 
 interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	error?: string | boolean | undefined;
@@ -70,7 +71,7 @@ const LangSelector: React.FC<IProps> = ({
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
+				className="md:flex hidden border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
@@ -83,8 +84,14 @@ const LangSelector: React.FC<IProps> = ({
 				</p>
 				<Image src={downArrow} alt="downArrow" className="w-[10px]" />
 			</div>
+			<Image
+				src={EarthSvg}
+				alt="earth"
+				className=" md:hidden flex text-2xl w-full"
+				onClick={() => setOpen((prev) => !prev)}
+			/>
 			{open && (
-				<div className=" top-12 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 lang-dropdown z-50">
+				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 lang-dropdown z-50">
 					{options.map((opt) => (
 						<span
 							key={opt.value}

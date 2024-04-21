@@ -24,6 +24,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	const dispatch = useDispatch();
 	const t = useTranslations('AddFamilies.form');
 	const t1 = useTranslations('HeroMainSection.btns');
+	const t2 = useTranslations('FamiliesMainSection');
 	const cancelButtonRef = useRef(null);
 	const cancelDonateButtonRef = useRef(null);
 	const cancelQuickDonationButtonRef = useRef(null);
@@ -56,7 +57,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
-						title={familyData?.currentSituation || 'Nil'}
+						title={t2(familyData?.currentSituation) || 'Nil'}
 						Color="#CF7475"
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">

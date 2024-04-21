@@ -61,10 +61,10 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[42px] h-10 cursor-pointer currency-dropdown"
+				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
-				<p className={` text-sm text-black font-bold uppercase`}>
+				<p className={` md:text-sm text-[10px] text-black font-bold uppercase`}>
 					{currencyState?.key}
 				</p>
 			</div>
@@ -75,7 +75,7 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 							<span
 								key={i}
 								onClick={() => handleCurrencyChange(opt)}
-								className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
+								className="bg-black text-white md:text-sm text-xs rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
 							>
 								{opt.label}
 							</span>

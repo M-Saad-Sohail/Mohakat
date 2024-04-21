@@ -39,34 +39,34 @@
 			}
 		}
 	},
-		"forgotPassword": {
-			"form": {
-				"title": "العثور على حسابك",
-				"description": "أدخل عنوان بريدك الإلكتروني حتى نتمكن من العثور عليك.",
-				"email": {
-					"placeholder": "أدخل بريدك الإلكتروني",
-					"title": "البريد الإلكتروني"
-				},
-				"submit": "إرسال البريد الإلكتروني",
-				"emailCheck":"تحقق من بريدك الإلكتروني"
-			}
-		},
-		"resetPassword": {
-			"form": {
-				"title": "تغيير كلمة المرور",
-				"description": "أدخل كلمة المرور الجديدة",
-				"password": {
-					"placeholder": "أدخل كلمة المرور الجديدة",
-					"title": "كلمة المرور"
-				},
-				"newPassword": {
-					"placeholder": "أدخل كلمة المرور الجديدة مرة أخرى",
-					"title": "تأكيد كلمة المرور"
-				},
-				"submit": "تغيير كلمة المرور",
-				"InValidCredientials": "بيانات الاعتماد غير صالحة!"
-			}
-		},
+	"forgotPassword": {
+		"form": {
+			"title": "العثور على حسابك",
+			"description": "أدخل عنوان بريدك الإلكتروني حتى نتمكن من العثور عليك.",
+			"email": {
+				"placeholder": "أدخل بريدك الإلكتروني",
+				"title": "البريد الإلكتروني"
+			},
+			"submit": "إرسال البريد الإلكتروني",
+			"emailCheck": "تحقق من بريدك الإلكتروني"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "تغيير كلمة المرور",
+			"description": "أدخل كلمة المرور الجديدة",
+			"password": {
+				"placeholder": "أدخل كلمة المرور الجديدة",
+				"title": "كلمة المرور"
+			},
+			"newPassword": {
+				"placeholder": "أدخل كلمة المرور الجديدة مرة أخرى",
+				"title": "تأكيد كلمة المرور"
+			},
+			"submit": "تغيير كلمة المرور",
+			"InValidCredientials": "بيانات الاعتماد غير صالحة!"
+		}
+	},
 	"VerifyOtp": {
 		"form": {
 			"title": "تحقق من رمز التحقق",
@@ -279,12 +279,12 @@
 			},
 			"losesinwar": {
 				"title": "الخسائر في الحرب",
-					"none": "none",
-					"car": "سيارة",
-					"furniture": "أثاث",
-					"store": "متجر الأثاث",
-					"house": "منزل",
-					"business": "عمل تجاري",
+				"none": "none",
+				"car": "سيارة",
+				"furniture": "أثاث",
+				"store": "متجر الأثاث",
+				"house": "منزل",
+				"business": "عمل تجاري",
 				"default": "اختر عدد الخسائر في الحرب"
 			},
 			"language": {
@@ -308,23 +308,23 @@
 			"RegisterasFamily": {
 				"title": "سجل كعائلة"
 			},
-			"Sponser":{
-				"title":"تبرع بحصة"
+			"Sponser": {
+				"title": "تبرع بحصة"
 			},
-			"AddtoBasket":{
-				"title":"تبرع بحصة"
+			"AddtoBasket": {
+				"title": "تبرع بحصة"
 			},
-			"Donate":{
-				"title":"تبرع"
+			"Donate": {
+				"title": "تبرع"
 			},
-			"AlreadyAdded":{
-				"title":"تمت الإضافة بالفعل"
+			"AlreadyAdded": {
+				"title": "تمت الإضافة بالفعل"
 			},
-			"seeMore":{
-				"title":"رؤية المزيد"
+			"seeMore": {
+				"title": "رؤية المزيد"
 			}
 		}
-	},	
+	},
 	"Sidebar": {
 		"verified": "تم التحقق",
 		"dashboard": "لوحة التحكم",
@@ -385,11 +385,11 @@
 	"Footer": {
 		"home": "الرئيسية",
 		"families": "العائلات",
-		"faqs":"الأسئلة الشائعة",
-		"contact":"اتصل",
-		"MuakhetAllrightsreserved":"مواخت. جميع الحقوق محفوظة.",
-		"privacypolicy":"سياسة الخصوصية",
-		"termsofservice":"شروط الخدمة"
+		"faqs": "الأسئلة الشائعة",
+		"contact": "اتصل",
+		"MuakhetAllrightsreserved": "مواخت. جميع الحقوق محفوظة.",
+		"privacypolicy": "سياسة الخصوصية",
+		"termsofservice": "شروط الخدمة"
 	},
 	"FAQ": {
 		"title": "أسئلة شائعة",
@@ -399,32 +399,46 @@
 		"name": "الاسم",
 		"email": "البريد الإلكتروني",
 		"message": "الرسالة",
-		"send":"يرسل",
+		"send": "يرسل",
 		"success": "تم الإرسال بنجاح",
 		"error": "حدث خطأ ما",
-		"allfields":"جميع الحقول مطلوبة"
+		"allfields": "جميع الحقول مطلوبة"
 	},
 	"About": {
 		"title": "حول"
 	},
-	"Cart":{
-		"title":"سلة التسوق",
-		"total":"المجموع",
-		"button":"الانتقال إلى الدفع",
-		"emptyMessage":"لم يتم إضافة عائلة"
+	"Cart": {
+		"title": "سلة التسوق",
+		"total": "المجموع",
+		"button": "الانتقال إلى الدفع",
+		"emptyMessage": "لم يتم إضافة عائلة"
 	},
 	"toolTips": {
 		"familyRegister": "تسجيل كعائلة",
 		"donateShare": "تبرع بنصيب",
 		"becomeSponser": "كن راعي"
 	},
-	"QuickDonation":{
-		"title":"التبرع العام والسريع",
-		"purposeTitle":"الغرض",
-		"purposeValue":"الغرض العام",
-		"totalTitle":"الإجمالي",
-		"anotherAmount":"مبلغ آخر",
-		"inputPlaceholder":"أدخل مبلغ التبرع",
-		"button":"الانتقال إلى الخروج"
-	}	
+	"QuickDonation": {
+		"title": "التبرع العام والسريع",
+		"purposeTitle": "الغرض",
+		"purposeValue": "الغرض العام",
+		"totalTitle": "الإجمالي",
+		"anotherAmount": "مبلغ آخر",
+		"inputPlaceholder": "أدخل مبلغ التبرع",
+		"button": "الانتقال إلى الخروج"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "مسح الكل",
+		"backPage": "الصفحة السابقة",
+		"nextPage": "الصفحة التالية",
+		"Stable": "مستقر",
+		"stable": "مستقر",
+		"Bad": "سيء",
+		"bad": "سيء",
+		"Good": "جيد",
+		"good": "جيد",
+		"Worst": "الأسوأ",
+		"worst": "الأسوأ",
+		"Urgently Needed": "مطلوب بشكل عاجل"
+	}
 }

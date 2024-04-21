@@ -13,6 +13,8 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { Links, PATHS } from '@/contants';
 import { TbBasketDollar } from 'react-icons/tb';
+import CurrencySelector from '../CurrencySelector';
+import LangSelector from '../LangSelector';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -54,20 +56,18 @@ const MobileNavbar = ({
 					<Image className="mx-2 h-12 w-12" src={logo} alt="" />
 
 					{/* icons */}
-					<div className=" flex gap-3">
+					<div className=" flex items-center gap-5">
 						{!active && (
 							<>
-								<Image src={EarthSvg} alt="" />
-								{/* <Image src={ProfileSvg} alt="" /> */}
-								<div
-									className=" relative cursor-pointer"
-									onClick={() => setIsCartOpen(true)}
-								>
-									<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[8px] rounded-[50%] px-[5px] pt-[2px] pb-[1px]">
-										1
-									</span>
-									<TbBasketDollar className=" text-[32px]" />
-								</div>
+								<LangSelector
+									name="language"
+									value={locale}
+									title=""
+									onChange={() => {}}
+									handleChange={changeLocale}
+									className=" justify-center w-8 h-8"
+								/>
+								<CurrencySelector />
 							</>
 						)}
 						<Image
@@ -76,6 +76,7 @@ const MobileNavbar = ({
 							}}
 							src={active ? CrossSvg : HamBurgurSvg}
 							alt=""
+							className=" w-[22px] h-[22px]"
 						/>
 					</div>
 				</div>

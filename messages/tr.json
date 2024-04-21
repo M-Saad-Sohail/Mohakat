@@ -426,5 +426,19 @@
 		"anotherAmount": "Başka Miktar",
 		"inputPlaceholder": "Bağış miktarını girin",
 		"button": "Ödeme Yapmaya Devam Et"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "Hepsini Temizle",
+		"backPage": "Önceki Sayfa",
+		"nextPage": "Sonraki Sayfa",
+		"Stable": "Kararlı",
+		"stable": "Kararlı",
+		"Bad": "Kötü",
+		"bad": "Kötü",
+		"Good": "İyi",
+		"good": "İyi",
+		"Worst": "En Kötü",
+		"worst": "En Kötü",
+		"Urgently Needed": "Acil Olarak Gerekli"
 	}
 }

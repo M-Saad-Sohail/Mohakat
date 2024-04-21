@@ -47,9 +47,9 @@
 				"placeholder": "Enter your Email",
 				"title": "Email"
 			},
-			"checkEmail":"check your email",
+			"checkEmail": "check your email",
 			"submit": "Send Email",
-			"emailCheck":"Please check your email"
+			"emailCheck": "Please check your email"
 		}
 	},
 	"resetPassword": {
@@ -65,7 +65,7 @@
 				"title": "Confirm Password"
 			},
 			"submit": "Change Password",
-			"InValidCredientials":"InValid Credientials!"
+			"InValidCredientials": "InValid Credientials!"
 		}
 	},
 	"VerifyOtp": {
@@ -282,12 +282,12 @@
 			},
 			"losesinwar": {
 				"title": "Loses In War",
-					"none": "none",
-					"car": "car",
-					"furniture": "furniture",
-					"store": "store furniture",
-					"house": "house",
-					"business": "business",			  
+				"none": "none",
+				"car": "car",
+				"furniture": "furniture",
+				"store": "store furniture",
+				"house": "house",
+				"business": "business",
 				"default": "Select No of Loses in War"
 			},
 			"language": {
@@ -316,31 +316,31 @@
 		"credit_cards": "Credit Cards",
 		"sponsoring": "Sponsoring"
 	},
-	"HeroMainSection":{
-		"btns":{
-			"DonateaShare":{
-				"title":"Donate a Share"
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "Donate a Share"
 			},
-			"Sponser":{
-				"title":"Sponser"
+			"Sponser": {
+				"title": "Sponser"
 			},
-			"AddtoBasket":{
-				"title":"Add to Basket"
+			"AddtoBasket": {
+				"title": "Add to Basket"
 			},
-			"AlreadyAdded":{
-				"title":"Already Added"
+			"AlreadyAdded": {
+				"title": "Already Added"
 			},
-			"seeMore":{
-				"title":"see more"
+			"seeMore": {
+				"title": "see more"
 			},
-			"BecomeaSponser":{
-				"title":"Become a Sponser"
+			"BecomeaSponser": {
+				"title": "Become a Sponser"
 			},
-			"RegisterasFamily":{
-				"title":"Register as Family"
+			"RegisterasFamily": {
+				"title": "Register as Family"
 			},
-			"Donate":{
-				"title":"Donate"
+			"Donate": {
+				"title": "Donate"
 			}
 		}
 	},
@@ -395,46 +395,60 @@
 	"Footer": {
 		"home": "Home",
 		"families": "Families",
-		"faqs":"FAQs",
-		"contact":"Contact",
-		"MuakhetAllrightsreserved":"Muakhet. All rights reserved.",
-		"privacypolicy":"Privacy Policy",
-		"termsofservice":"Terms of Service"
+		"faqs": "FAQs",
+		"contact": "Contact",
+		"MuakhetAllrightsreserved": "Muakhet. All rights reserved.",
+		"privacypolicy": "Privacy Policy",
+		"termsofservice": "Terms of Service"
 	},
 	"FAQ": {
-		"title":"FAQs",
+		"title": "FAQs",
 		"description": "Find answers to common questions about the donation process, where funds go, and how to become a sponsor"
 	},
 	"ContactUs": {
-		"name":"Name",
-		"email":"Email",
-		"message":"Message",
-		"send":"Send",
+		"name": "Name",
+		"email": "Email",
+		"message": "Message",
+		"send": "Send",
 		"success": "Submitted Successfully",
 		"error": "Something went wrong",
-		"allfields":"All fields are required"
+		"allfields": "All fields are required"
 	},
 	"About": {
-		"title":"About"
+		"title": "About"
 	},
-	"Cart":{
-		"title":"Basket",
-		"total":"Total",
-		"button":"Proceed to Checkout",
-		"emptyMessage":"No Family Added"
+	"Cart": {
+		"title": "Basket",
+		"total": "Total",
+		"button": "Proceed to Checkout",
+		"emptyMessage": "No Family Added"
 	},
-	"toolTips":{
-		"familyRegister":"Register as Family",
-		"donateShare":"Donate a Share",
-		"becomeSponser":"Become Sponser"
+	"toolTips": {
+		"familyRegister": "Register as Family",
+		"donateShare": "Donate a Share",
+		"becomeSponser": "Become Sponser"
 	},
-	"QuickDonation":{
-		"title":"General & Quick Donation",
-		"purposeTitle":"Purpose",
-		"purposeValue":"General Purpose",
-		"totalTitle":"Total",
-		"anotherAmount":"Another Amount",
-		"inputPlaceholder":"Enter donation amount",
-		"button":"Proceed to Checkout"
+	"QuickDonation": {
+		"title": "General & Quick Donation",
+		"purposeTitle": "Purpose",
+		"purposeValue": "General Purpose",
+		"totalTitle": "Total",
+		"anotherAmount": "Another Amount",
+		"inputPlaceholder": "Enter donation amount",
+		"button": "Proceed to Checkout"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "Clear All",
+		"backPage": "Back Page",
+		"nextPage": "Next Page",
+		"Stable": "Stable",
+		"stable": "Stable",
+		"Bad": "Bad",
+		"bad": "Bad",
+		"Good": "Good",
+		"good": "Good",
+		"Worst": "Worst",
+		"worst": "Worst",
+		"Urgently Needed": "Urgently Needed"
 	}
 }
