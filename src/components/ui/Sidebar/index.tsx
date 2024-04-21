@@ -162,7 +162,7 @@ const LeftSideBar = () => {
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
 				className={`fixed flex flex-col  bg-white max-h-fit h-full overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
-					open ? 'w-[270px] justify-between' : 'w-20 gap-6'
+					open ? 'w-[270px] gap-6' : 'w-20 gap-6'
 				}`}
 			>
 				<SideBarHeader

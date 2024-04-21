@@ -279,7 +279,7 @@
 			},
 			"losesinwar": {
 				"title": "Savaşta Kayıplar",
-				"none": "none",
+				"none": "hiçbiri",
 				"car": "araba",
 				"furniture": "mobilya",
 				"store": "mobilya mağazası",
