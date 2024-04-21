@@ -117,7 +117,7 @@ const DonatedFamilies = () => {
 							sx={{
 								border: 'none',
 								'& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
-									background: '#742430 !important',
+									background: 'rgba(116, 36, 48, 1) !important',
 								},
 								'& .MuiDataGrid-columnHeaderTitle': {
 									fontWeight: '600',
