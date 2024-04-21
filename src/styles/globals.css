@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 body {
 	font-family: 'Raleway', sans-serif;
 }
@@ -35,6 +36,7 @@ svg {
 }
 
 @keyframes scroll {
+
 	0%,
 	100% {
 		transform: translateX(0);
@@ -139,12 +141,15 @@ input[name='month'] {
 
 /* Define the scrollbar thumb */
 .currency-scrollbar::-webkit-scrollbar-thumb {
-	background-color: #888; /* For Chrome, Safari, and Opera */
-	border-radius: 20px; /* Optional: rounder thumb */
+	background-color: #888;
+	/* For Chrome, Safari, and Opera */
+	border-radius: 20px;
+	/* Optional: rounder thumb */
 }
 
 .currency-scrollbar::-webkit-scrollbar {
-	width: 3px; /* Set the width of the scrollbar */
+	width: 3px;
+	/* Set the width of the scrollbar */
 }
 
 .navbar-link {
@@ -172,6 +177,45 @@ input[name='month'] {
 	transform-origin: left;
 	transform: scaleX(1);
 }
+
 ::selection {
 	color: #8dae8e;
+}
+
+
+/* TOAST CUSTOMIZATION */
+
+.Toastify__toast--error {
+	border: 2.5px solid #EB5757 !important;
+	border-radius: 12px !important;
+	background: #FAE1E2 !important;
+}
+
+
+.Toastify__toast--success {
+	border: 2.5px solid #8DAE8E !important;
+	border-radius: 12px !important;
+	background: #dfeae5 !important;
+}
+
+.Toastify__toast-body {
+	color: black !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding: 0px !important;
+	width: 100% !important;
+	font-weight: 500 !important;
+	margin-left: 10px !important;
+	font-size: 16.5px !important;
+	text-align: start !important;
+}
+
+.Toastify__toast-icon {
+	content: url('../assests//icons//logo.svg') !important;
+}
+
+/* Customizing Close Button */
+.Toastify__close-button {
+	width: 35px !important;
+	height: 45px !important;
 }
