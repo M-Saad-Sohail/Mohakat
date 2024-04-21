@@ -154,6 +154,12 @@ const DonatedFamilies = () => {
 									borderRadius: '6px',
 									fontSize: '14px',
 								},
+								'& .MuiDataGrid-sortIcon ': {
+									color: 'white',
+								},
+								'& .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root:hover ': {
+									background: 'none',
+								},
 							}}
 							rows={rows}
 							columns={columns}
