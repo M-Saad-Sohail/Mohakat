@@ -108,7 +108,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							alt="img"
 							width={100}
 							height={100}
-							className=" w-full h-full rounded-[20px] "
+							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
 					<div className=" h-[30%]">
@@ -117,7 +117,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							alt="img"
 							width={100}
 							height={100}
-							className=" w-full h-full rounded-[20px] "
+							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
 				</div>
@@ -148,31 +148,31 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						/>
 					</div>
 					<div className=" h-[45%] flex gap-3">
-						<div className="">
+						<div className=" flex-1">
 							<Image
 								src={(imagesData && imagesData[2].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
 								height={100}
-								className=" w-full h-full rounded-[20px] "
+								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className=" h-[80%] self-end">
+						<div className=" flex-1 h-[80%] self-end">
 							<Image
 								src={(imagesData && imagesData[3].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
 								height={100}
-								className=" w-full h-full rounded-[20px] "
+								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className="">
+						<div className="flex-1">
 							<Image
 								src={(imagesData && imagesData[4].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
 								height={100}
-								className=" w-full h-full rounded-[20px] "
+								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
 					</div>
@@ -184,7 +184,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							alt="img"
 							width={100}
 							height={100}
-							className=" w-full h-full rounded-[20px] "
+							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
 					<div className=" h-[30%]">
@@ -193,7 +193,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							alt="img"
 							width={100}
 							height={100}
-							className=" w-full h-full rounded-[20px] "
+							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
 				</div>
