@@ -28,7 +28,7 @@ import '@/styles/scroll.css';
 import useDirection from '@/hooks/useDirection';
 import { useTranslations } from 'next-intl';
 import { PATHS } from '@/contants';
-import { RedirectType } from 'next/navigation';
+import { RedirectType, usePathname } from 'next/navigation';
 
 const AdminMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
@@ -122,6 +122,8 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 };
 
 const LeftSideBar = () => {
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(3);
 	const [active, setActive] = useState('/');
 	const size = useWindowSize();
 	const [open, setOpen] = useState(size.width > 768);
@@ -130,7 +132,6 @@ const LeftSideBar = () => {
 		email: string;
 		id: string;
 	} | null>(null);
-	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { logoutUser } = useAuth();
 
@@ -151,10 +152,6 @@ const LeftSideBar = () => {
 
 	const t = useTranslations('Sidebar');
 
-	const handleMenuClick = (index: number) => {
-		setClickedMenu(index); // Update the clicked menu index
-	};
-
 	const logout = () => {
 		logoutUser();
 	};
@@ -164,8 +161,8 @@ const LeftSideBar = () => {
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
-				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
-					open ? 'w-[270px]' : 'w-20 '
+				className={`fixed flex flex-col  bg-white max-h-fit h-full overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
+					open ? 'w-[270px] justify-between' : 'w-20 gap-6'
 				}`}
 			>
 				<SideBarHeader
@@ -173,12 +170,7 @@ const LeftSideBar = () => {
 					handleOpen={() => setOpen(true)}
 					handleClose={() => setOpen(false)}
 				/>
-				<div className="flex-col flex gap-3 mx-auto items-center justify-center mt-[40px]">
-					{/* <Image
-						src={profile}
-						alt={''}
-						className="h-[50px] w-[50px] rounded-full mt-2"
-					/> */}
+				<div className="flex-col flex gap-3 mx-auto items-center justify-center">
 					<div className=" flex flex-col items-center gap-3">
 						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
 							{user ? user.name.toUpperCase() : ''}
@@ -195,7 +187,7 @@ const LeftSideBar = () => {
 						{t('verified')}
 					</p>
 				</div>
-				<ul className={`pt-10`}>
+				<ul className={``}>
 					{menus.map((menu, index) => {
 						const isLogout = menu.title === 'logout';
 						return (
@@ -205,12 +197,11 @@ const LeftSideBar = () => {
 								replace={isLogout}
 								href={url(menu.link)}
 								onClick={() => {
-									handleMenuClick(index);
 									if (isLogout) logout();
 								}}
 							>
 								<li
-									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black hover:text-primary text-[16px] items-center gap-x-4 ${
 										index === 0 && 'bg-light-white'
 									}  ${active !== menu.link && 'text-primary'}`}
 								>
@@ -225,13 +216,12 @@ const LeftSideBar = () => {
 										<div
 											className={`${
 												!open && 'hidden'
-											} text-black origin-left duration-200 text-[16px] font-[400] ${
-												clickedMenu === index
+											} text-black hover:text-primary origin-left duration-200 text-[16px] font-[400] ${
+												currentPath === menu.link
 													? 'text-primary font-semibold'
 													: ''
-											}  ${
-												active === menu.link && 'text-primary font-semibold'
-											} `}
+											}  
+											 `}
 										>
 											{t(menu.title)}
 										</div>

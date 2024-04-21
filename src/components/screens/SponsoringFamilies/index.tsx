@@ -21,7 +21,7 @@ const SponsoringFamilies = () => {
 	const [data, setData] = useState<any>();
 	const [isLoading, setIsLoading] = useState<boolean | string>('');
 	const initialState = {
-		pagination: { paginationModel: { pageSize: 8 } },
+		pagination: { paginationModel: { pageSize: 50 } },
 		rows: data,
 	};
 	const [rows, setRows] = React.useState<any[]>([]);
@@ -179,7 +179,7 @@ const SponsoringFamilies = () => {
 			) : (
 				<div
 					style={{
-						height: '80%',
+						height: '80vh',
 						width: '100%',
 						backgroundColor: '#fff',
 						border: 'none',

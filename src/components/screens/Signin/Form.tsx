@@ -86,7 +86,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						className="max-w-[800px]"
 					/>
 					<Link href={url('/forgot-password')}>
-						<p className="text-primary w-full text-right text-[12px] mt-5 font-bold">
+						<p className="text-primary hover:text-black w-full text-right text-[12px] mt-5 font-bold">
 							{t('forgot')}
 						</p>
 					</Link>
