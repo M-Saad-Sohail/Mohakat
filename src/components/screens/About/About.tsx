@@ -25,9 +25,7 @@ const About = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
 	const handleAboutData = (path: string | undefined, data: any) => {
-		console.log(path);
 		if (path === 'en') {
-			console.log('englush');
 			setAboutData((prev: any) => [
 				...prev,
 				{

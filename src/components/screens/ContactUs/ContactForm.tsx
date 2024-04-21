@@ -22,7 +22,6 @@ const ContactForm = () => {
 		},
 		validationSchema: contactFormSchema,
 		onSubmit: async (values: any) => {
-			console.log(values);
 			const response = {
 				name: values.name,
 				email: values.email,

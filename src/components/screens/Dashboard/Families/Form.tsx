@@ -123,22 +123,14 @@ const FamilyForm = () => {
 					});
 				}
 			} catch (error) {
-				// console.log(error);
 				toast.error(`${t('fill_form_correctly')}`, {
 					toastId: 'error',
 					position: 'bottom-right',
 					autoClose: 4000,
 				});
 			}
-
-			// console.log('form submitted', response);
 		},
 	});
-
-	useEffect(() => {
-	  console.log("test",familyMembers);
-	}, [familyMembers])
-	
 
 	return (
 		<div

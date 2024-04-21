@@ -15,7 +15,6 @@ const Button: React.FC<IProps> = ({
 	Color,
 	isPadding
 }) => {
-	console.log(Color);
 	const [isHovered, setIsHovered] = useState(false);
 
 	const handleMouseEnter = () => {

@@ -39,15 +39,10 @@ const DonatedFamilies = () => {
 			token && token,
 		);
 		if (response.success) {
-			// setData(res.families);
-			// console.log(res);
-			console.log(response.donations);
-			const familiesData = response?.donations
-				.map((item: any) => ({
-					...item,
-					id: item._id,
-				}));
-			// console.log('hhj', familiesData);
+			const familiesData = response?.donations.map((item: any) => ({
+				...item,
+				id: item._id,
+			}));
 			setRows(familiesData);
 			setIsLoading(false);
 		}
@@ -92,43 +87,8 @@ const DonatedFamilies = () => {
 		},
 	];
 
-	const handleFamiliesData = (path: string | undefined, data: any) => {
-		if (path === 'en') {
-			setFamiliesData({
-				...data,
-				breadWinnerName: data?.breadWinnerName?.inEnglish,
-				description: data?.description?.inEnglish,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
-					...member,
-					memberName: member?.memberName.inEnglish,
-				})),
-			});
-		} else if (path === 'ar') {
-			setFamiliesData({
-				...data,
-				breadWinnerName: data?.breadWinnerName?.inArabic,
-				description: data?.description?.inArabic,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
-					...member,
-					memberName: member?.memberName.inArabic,
-				})),
-			});
-		} else if (path === 'tr') {
-			setFamiliesData({
-				...data,
-				breadWinnerName: data?.breadWinnerName?.inTurkish,
-				description: data?.description?.inTurkish,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
-					...member,
-					memberName: member?.memberName.inTurkish,
-				})),
-			});
-		}
-	};
-
 	useEffect(() => {
 		const userData = getUserFromLocalStorage();
-		console.log('user', userData);
 		if (userData) {
 			fetchDonatedFamilies(userData?.key);
 		}
@@ -201,14 +161,6 @@ const DonatedFamilies = () => {
 					) : null}
 				</div>
 			)}
-			{/* <FamilyModal
-				setOpen={setOpen}
-				open={open}
-				isTableView={true}
-				cancelButtonRef={cancelButtonRef}
-				amount={familiesData && (familiesData?.amount as any)}
-				familyInfo={familiesData && familiesData}
-			/> */}
 		</>
 	);
 };
