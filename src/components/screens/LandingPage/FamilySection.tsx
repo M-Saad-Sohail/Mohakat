@@ -106,7 +106,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12"
 			>
 				<div className=" flex justify-between">
-					<h2 className=" md:text-3xl text-2xl font-semibold">Families</h2>
+					<h2 className=" md:text-3xl text-2xl font-semibold"> {t("Families.title")} </h2>
 				</div>
 				{isLoading ? (
 					<div className=" flex justify-center items-center h-32">

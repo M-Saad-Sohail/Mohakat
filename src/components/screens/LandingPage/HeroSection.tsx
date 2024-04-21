@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Button from '@/components/ui/LandingPage/Button';
 import { usePathname } from 'next/navigation';
 import { getJson } from '@/api/api.instances';
@@ -11,6 +11,7 @@ import { PATHS } from '@/contants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
+import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal'
 
 interface HeroDataType {
 	heading: string;
@@ -29,6 +30,11 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		heading: '',
 		description: '',
 	});
+
+	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
+	const cancelQuickDonationButtonRef = useRef(null);
+
+
 
 	const handleHeroData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -97,7 +103,13 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, []);
 
 	return (
+
 		<section className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
+			<QuickDonationModal
+				open={quickDonationOpen}
+				setOpen={setQuickDonationOpen}
+				cancelButtonRef={cancelQuickDonationButtonRef}
+			/>
 			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3">
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%]">
@@ -133,9 +145,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData.description}
 					</p>
 					<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
-						<Link href={url(PATHS.FAMILY)}>
-							<Button title={t('DonateaShare.title')} Color="#CF7475" />
-						</Link>
+						<Button title={t('DonateaShare.title')} Color="#CF7475" onClick={() => { setQuickDonationOpen(true); }} />
 						<Link href={url(PATHS.BECOME_SPONSOR)}>
 							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
 						</Link>

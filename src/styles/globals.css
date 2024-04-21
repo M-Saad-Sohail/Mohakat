@@ -222,11 +222,31 @@ input[name='month'] {
 }
 
 
+/* Bakhtawar CSS */
 .feature-shadow:hover{
-	/* box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); */
 	box-shadow: 0 0 11px rgba(33,33,33,.2);
 	border: 1px solid #f7f7f7;
 	cursor: pointer;
 	padding: 1.5rem;
 	border-radius: 8px;
+}
+
+.btn-transition{
+	color: #FFF;
+	border: 2px solid rgb(216, 2, 134);
+	border-radius: 0px;
+	padding: 18px 36px;
+	display: inline-block;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 14px;
+	letter-spacing: 1px;
+	cursor: pointer;
+	box-shadow: inset 0 0 0 0 #D80286;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.4s;
+}
+
+.btn-transition:hover{
+	box-shadow: inset 400px 0 0 0 #D80286;
 }

@@ -325,6 +325,9 @@
 			},
 			"Step": {
 				"title": "Aşama"
+			},
+			"Families": {
+				"title": "aileler"
 			}
 		}
 	},
