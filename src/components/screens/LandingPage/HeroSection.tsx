@@ -103,7 +103,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3">
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%]">
-						<Image
+						<img
 							src={(imagesData && imagesData[0].heroSliderImg) || defaultImg}
 							alt="img"
 							width={100}
@@ -112,7 +112,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						/>
 					</div>
 					<div className=" h-[30%]">
-						<Image
+						<img
 							src={(imagesData && imagesData[1].heroSliderImg) || defaultImg}
 							alt="img"
 							width={100}
@@ -149,7 +149,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 					<div className=" h-[45%] flex gap-3">
 						<div className=" flex-1">
-							<Image
+							<img
 								src={(imagesData && imagesData[2].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
@@ -158,7 +158,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							/>
 						</div>
 						<div className=" flex-1 h-[80%] self-end">
-							<Image
+							<img
 								src={(imagesData && imagesData[3].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
@@ -167,7 +167,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							/>
 						</div>
 						<div className="flex-1">
-							<Image
+							<img
 								src={(imagesData && imagesData[4].heroSliderImg) || defaultImg}
 								alt="img"
 								width={100}
@@ -179,7 +179,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				</div>
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%]">
-						<Image
+						<img
 							src={(imagesData && imagesData[5].heroSliderImg) || defaultImg}
 							alt="img"
 							width={100}
@@ -188,7 +188,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						/>
 					</div>
 					<div className=" h-[30%]">
-						<Image
+						<img
 							src={(imagesData && imagesData[6].heroSliderImg) || defaultImg}
 							alt="img"
 							width={100}
@@ -219,7 +219,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								key={i}
 								className="carousel-item flex even:items-end odd:items-start px-2"
 							>
-								<Image
+								<img
 									src={(imagesData && item?.heroSliderImg) || defaultImg}
 									alt="img"
 									width={100}
