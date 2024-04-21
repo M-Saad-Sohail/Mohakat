@@ -172,17 +172,17 @@ const LeftSideBar = () => {
 				/>
 				<div className="flex-col flex gap-3 mx-auto items-center justify-center">
 					<div className=" flex flex-col items-center gap-3">
-						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
 							Id: {user ? user.id : ''}
 						</p>
 					</div>
 					<p
 						className={`${
 							!open || isAdmin ? 'hidden' : ''
-						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px]`}
+						} rounded-lg bg-[#95dca9] px-4 py-1 mt-3 text-[10px]`}
 					>
 						{t('verified')}
 					</p>
