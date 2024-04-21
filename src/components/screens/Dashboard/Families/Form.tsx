@@ -60,7 +60,7 @@ const FamilyForm = () => {
 		if (key.startsWith('in')) {
 			updatedMembers[index].memberName[
 				key as keyof FamilyMember['memberName']
-			] = value as string;
+			] = (value as string).toUpperCase(); // Convert to uppercase
 		} else {
 			updatedMembers[index][key as keyof FamilyMember] = value as
 				| string
@@ -79,9 +79,9 @@ const FamilyForm = () => {
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
-					inEnglish: AddFamiliesForm.values.breadWinnerNameEn,
-					inTurkish: AddFamiliesForm.values.breadWinnerNameTr,
-					inArabic: AddFamiliesForm.values.breadWinnerNameAr,
+					inEnglish: AddFamiliesForm.values.breadWinnerNameEn.toUpperCase(),
+					inTurkish: AddFamiliesForm.values.breadWinnerNameTr.toUpperCase(),
+					inArabic: AddFamiliesForm.values.breadWinnerNameAr.toUpperCase(),
 				},
 				description: {
 					inEnglish: AddFamiliesForm.values.descriptionEn,
@@ -111,12 +111,6 @@ const FamilyForm = () => {
 				),
 				familyMemberDetail: familyMembers,
 			};
-			if (Object.keys(AddFamiliesForm.errors).length > 0) {
-				// Find the first error field and focus on it
-				const firstErrorField = Object.keys(AddFamiliesForm.errors)[0];
-				const errorFieldRef = firstErrorRef.current[firstErrorField];
-				errorFieldRef.focus();
-			}
 			try {
 				setLoading(true);
 				const res = await postJson(
