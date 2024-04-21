@@ -220,3 +220,13 @@ input[name='month'] {
 .Toastify__progress-bar--wrp {
 	visibility: hidden;
 }
+
+
+.feature-shadow:hover{
+	/* box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); */
+	box-shadow: 0 0 11px rgba(33,33,33,.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	padding: 1.5rem;
+	border-radius: 8px;
+}

@@ -306,7 +306,7 @@
 				"title": "كن راعياً"
 			},
 			"RegisterasFamily": {
-				"title": "سجل كعائلة"
+				"title": "تسجيل عائلة في غزة"
 			},
 			"Sponser": {
 				"title": "تبرع بحصة"
@@ -322,6 +322,9 @@
 			},
 			"seeMore": {
 				"title": "رؤية المزيد"
+			},
+			"Step": {
+				"title": "الخطوة"
 			}
 		}
 	},
@@ -421,7 +424,7 @@
 		"emptyMessage": "لم يتم إضافة عائلة"
 	},
 	"toolTips": {
-		"familyRegister": "تسجيل كعائلة",
+		"familyRegister": "تسجيل عائلة في غزة",
 		"donateShare": "تبرع بنصيب",
 		"becomeSponser": "كن راعي"
 	},

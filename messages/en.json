@@ -337,10 +337,13 @@
 				"title": "Become a Sponser"
 			},
 			"RegisterasFamily": {
-				"title": "Register as Family"
+				"title": "Register Family in Gaza"
 			},
 			"Donate": {
 				"title": "Donate"
+			},
+			"Step": {
+				"title": "Step"
 			}
 		}
 	},
@@ -427,7 +430,7 @@
 		"emptyMessage": "No Family Added"
 	},
 	"toolTips": {
-		"familyRegister": "Register as Family",
+		"familyRegister": "Register Family In Gaza",
 		"donateShare": "Donate a Share",
 		"becomeSponser": "Become Sponser"
 	},

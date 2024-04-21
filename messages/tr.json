@@ -306,7 +306,7 @@
 				"title": "Sponsor Ol"
 			},
 			"RegisterasFamily": {
-				"title": "Aile Olarak Kaydol"
+				"title": "Gazze'deki aileyi kaydettirmek"
 			},
 			"Sponser": {
 				"title": "Bir Pay Bağışla"
@@ -322,6 +322,9 @@
 			},
 			"seeMore": {
 				"title": "Daha fazla görüntüle"
+			},
+			"Step": {
+				"title": "Aşama"
 			}
 		}
 	},
@@ -421,7 +424,7 @@
 		"emptyMessage": "Hiçbir Ürün Eklenmedi"
 	},
 	"toolTips": {
-		"familyRegister": "Aile Olarak Kaydol",
+		"familyRegister": "Gazze'deki aileyi kaydettirmek",
 		"donateShare": "Pay Bağışla",
 		"becomeSponser": "Sponsor Ol"
 	},

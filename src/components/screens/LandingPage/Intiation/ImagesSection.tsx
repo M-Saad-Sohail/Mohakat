@@ -57,7 +57,7 @@ const ImagesSection = () => {
 		>
 			<div className=" flex flex-col gap-4">
 				<IntiationMain currentPath={currentPath} />
-				<div className=" flex md:flex-nowrap flex-wrap gap-4">
+				{/* <div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.FAMILY)}>
 						<Button title={t('DonateaShare.title')} Color="#CF7475" />
 					</Link>
@@ -146,7 +146,7 @@ const ImagesSection = () => {
 							className=" w-full h-full md:rounded-[20px] rounded-[16px] object-cover"
 						/>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);
