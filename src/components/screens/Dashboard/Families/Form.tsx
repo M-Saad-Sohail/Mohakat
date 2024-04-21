@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Input from '@/components/ui//Input';
 import { ResetPassword } from '@/hooks/useAuth';
 import { useTranslations } from 'next-intl';
@@ -36,6 +36,7 @@ const FamilyForm = () => {
 	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const { user } = useLoggedInUser();
+	const firstErrorRef = useRef<any>(null);
 
 	const handleMemberDetailChange = (
 		index: any,
@@ -76,8 +77,6 @@ const FamilyForm = () => {
 		initialValues: AddFamiliesValues,
 		validationSchema: AddFamiliesSchema,
 		onSubmit: async ({ values }: any) => {
-			console.log("testinggg",familyMembers)
-			console.log("test",AddFamiliesForm.values.breadWinnerNameEn)
 			const response = {
 				breadWinnerName: {
 					inEnglish: AddFamiliesForm.values.breadWinnerNameEn,
@@ -97,15 +96,27 @@ const FamilyForm = () => {
 				dateOfBirth: AddFamiliesForm.values.dateOfBirth,
 				areaOfPreviousResidence: AddFamiliesForm.values.areaOfPreviousResidence,
 				areaOfCurrentResidence: AddFamiliesForm.values.areaOfCurrentResidence,
-				numberOfFamilyMembers: parseInt(AddFamiliesForm.values.numberOfFamilyMembers),
+				numberOfFamilyMembers: parseInt(
+					AddFamiliesForm.values.numberOfFamilyMembers,
+				),
 				telephoneNumber: AddFamiliesForm.values.telephoneNumber,
 				idNumber: parseInt(AddFamiliesForm.values.idNumber),
 				lossesInWar: AddFamiliesForm.values.lossesInWar,
 				currentSituation: AddFamiliesForm.values.currentSituation,
-				numberOfMartyrInFamily: parseInt(AddFamiliesForm.values.numberOfMartyrInFamily),
-				numberOfInfectedInFamily: parseInt(AddFamiliesForm.values.numberOfInfectedInFamily),
+				numberOfMartyrInFamily: parseInt(
+					AddFamiliesForm.values.numberOfMartyrInFamily,
+				),
+				numberOfInfectedInFamily: parseInt(
+					AddFamiliesForm.values.numberOfInfectedInFamily,
+				),
 				familyMemberDetail: familyMembers,
 			};
+			if (Object.keys(AddFamiliesForm.errors).length > 0) {
+				// Find the first error field and focus on it
+				const firstErrorField = Object.keys(AddFamiliesForm.errors)[0];
+				const errorFieldRef = firstErrorRef.current[firstErrorField];
+				errorFieldRef.focus();
+			}
 			try {
 				setLoading(true);
 				const res = await postJson(
@@ -115,7 +126,7 @@ const FamilyForm = () => {
 				);
 				if (res.success) {
 					setLoading(false);
-					// AddFamiliesForm.resetForm();
+					AddFamiliesForm.resetForm();
 					toast.success(`${t('submit')}`, {
 						toastId: 'success',
 						position: 'bottom-right',
@@ -145,470 +156,545 @@ const FamilyForm = () => {
 				{/* first */}
 				<div className=" flex flex-col gap-3">
 					<h3 className=" text-sm font-bold">Bread Winner Name</h3>
-					<div className="flex items-center justify-start w-full gap-x-4">
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Input
+								title={'In English'}
+								name="breadWinnerNameEn"
+								className="mb-1 min-w-[250px]"
+								value={AddFamiliesForm.values?.breadWinnerNameEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.breadWinnerNameEn &&
+									AddFamiliesForm.errors.breadWinnerNameEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.breadWinnerNameEn &&
+								AddFamiliesForm.errors.breadWinnerNameEn && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.breadWinnerNameEn as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Input
+								title={'In Turkish'}
+								name="breadWinnerNameTr"
+								className="mb-1 min-w-[250px]"
+								value={AddFamiliesForm.values?.breadWinnerNameTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.breadWinnerNameTr &&
+									AddFamiliesForm.errors.breadWinnerNameTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.breadWinnerNameTr &&
+								AddFamiliesForm.errors.breadWinnerNameTr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.breadWinnerNameTr as any}
+									</p>
+								)}
+						</div>
+						<div>
+							<Input
+								title={'In Arabic'}
+								name="breadWinnerNameAr"
+								className="mb-1 min-w-[250px]"
+								value={AddFamiliesForm.values?.breadWinnerNameAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.breadWinnerNameAr &&
+									AddFamiliesForm.errors.breadWinnerNameAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.breadWinnerNameAr &&
+								AddFamiliesForm.errors.breadWinnerNameAr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.breadWinnerNameAr as any}
+									</p>
+								)}
+						</div>
+					</div>
+				</div>
+
+				{/* second */}
+
+				<div className="flex items-start justify-start w-full gap-x-4">
+					<div>
 						<Input
-							title={'In English'}
-							name="breadWinnerNameEn"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.breadWinnerNameEn}
+							title={t('email.title')}
+							name="email"
+							className="mb-[5px] min-w-[460px]"
+							value={AddFamiliesForm.values?.email}
 							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.email &&
+								AddFamiliesForm.errors.email &&
+								'border-2 border-solid border-red'
+							}
 						/>
-						{AddFamiliesForm.touched.breadWinnerNameEn &&
-							Boolean(AddFamiliesForm.errors.breadWinnerNameEn) &&
-							toast.error(
-								`${AddFamiliesForm.errors.breadWinnerNameEn as any}`,
-								{
-									toastId: '',
-									position: 'bottom-right',
-									autoClose: 4000,
-								},
+						{AddFamiliesForm.touched.email && AddFamiliesForm.errors.email && (
+							<p className="text-sm mb-2 text-red">
+								{AddFamiliesForm.errors.email as any}
+							</p>
+						)}
+					</div>
+					<div>
+						<Input
+							title={t('age.title')}
+							name="age"
+							type="number"
+							className="mb-[5px] min-w-[460px]"
+							value={AddFamiliesForm.values?.age}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.age &&
+								AddFamiliesForm.errors.age &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.errors.age && (
+							<p className="text-sm mb-2 text-red">
+								{AddFamiliesForm.touched.age &&
+									(AddFamiliesForm.errors.age as any)}
+							</p>
+						)}
+					</div>
+				</div>
+
+				<div className="flex items-start justify-start w-full gap-x-4">
+					<div>
+						<Input
+							title={t('telephone.title')}
+							name="telephoneNumber"
+							type="number"
+							className="mb-[5px] min-w-[460px]"
+							value={AddFamiliesForm.values?.telephoneNumber}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.telephoneNumber &&
+								AddFamiliesForm.errors.telephoneNumber &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.telephoneNumber &&
+							AddFamiliesForm.errors.telephoneNumber && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.telephoneNumber as any}
+								</p>
 							)}
+					</div>
+
+					<div>
 						<Input
-							title={'In Turkish'}
-							name="breadWinnerNameTr"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.breadWinnerNameTr}
+							title={t('id.title')}
+							name="idNumber"
+							type="number"
+							className="mb-[5px] min-w-[460px]"
+							value={AddFamiliesForm.values?.idNumber}
 							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.idNumber &&
+								AddFamiliesForm.errors.idNumber &&
+								'border-2 border-solid border-red'
+							}
 						/>
-						{AddFamiliesForm.touched.breadWinnerNameTr &&
-							Boolean(AddFamiliesForm.errors.breadWinnerNameTr) &&
-							toast.error(
-								`${AddFamiliesForm.errors.breadWinnerNameTr as any}`,
-								{
-									toastId: '',
-									position: 'bottom-right',
-									autoClose: 4000,
-								},
-							)}
-						<Input
-							title={'In Arabic'}
-							name="breadWinnerNameAr"
-							className="mb-[19px] min-w-[250px]"
-							value={AddFamiliesForm.values?.breadWinnerNameAr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						{AddFamiliesForm.touched.breadWinnerNameAr &&
-							Boolean(AddFamiliesForm.errors.breadWinnerNameAr) &&
-							toast.error(
-								`${AddFamiliesForm.errors.breadWinnerNameAr as any}`,
-								{
-									toastId: '',
-									position: 'bottom-right',
-									autoClose: 4000,
-								},
+						{AddFamiliesForm.touched.idNumber &&
+							AddFamiliesForm.errors.idNumber && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.idNumber as any}
+								</p>
 							)}
 					</div>
 				</div>
 
-				
-
-				{/* second */}
-
-				<div className="flex items-center justify-start w-full gap-x-4">
-					<Input
-						title={t('email.title')}
-						name="email"
-						className="mb-[19px] min-w-[460px]"
-						value={AddFamiliesForm.values?.email}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.email &&
-						Boolean(AddFamiliesForm.errors.email) &&
-						toast.error(`${AddFamiliesForm.errors.email as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-					<Input
-						title={t('age.title')}
-						name="age"
-						type="number"
-						className="mb-[19px] min-w-[460px]"
-						value={AddFamiliesForm.values?.age}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.age &&
-						Boolean(AddFamiliesForm.errors.age) &&
-						toast.error(`${AddFamiliesForm.errors.age as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-				</div>
-
-				<div className="flex items-center justify-start w-full gap-x-4">
-					<Input
-						title={t('telephone.title')}
-						name="telephoneNumber"
-						type="number"
-						className="mb-[19px] min-w-[460px]"
-						value={AddFamiliesForm.values?.telephoneNumber}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.telephoneNumber &&
-						Boolean(AddFamiliesForm.errors.telephoneNumber) &&
-						toast.error(`${AddFamiliesForm.errors.telephoneNumber as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-					<Input
-						title={t('id.title')}
-						name="idNumber"
-						type="number"
-						className="mb-[19px] min-w-[460px]"
-						value={AddFamiliesForm.values?.idNumber}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.idNumber &&
-						Boolean(AddFamiliesForm.errors.idNumber) &&
-						toast.error(`${AddFamiliesForm.errors.idNumber as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-				</div>
-
 				{/* third */}
 
-				<div className="flex items-center justify-start w-full gap-x-4">
-					<Input
-						title={t('dob.title')}
-						name="dateOfBirth"
-						className="mb-[19px] min-w-[460px] "
-						type="date"
-						value={AddFamiliesForm.values?.dateOfBirth}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.dateOfBirth &&
-						Boolean(AddFamiliesForm.errors.dateOfBirth) &&
-						toast.error(`${AddFamiliesForm.errors.dateOfBirth as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-					<Select
-						title={t('gender.title')}
-						name="gender"
-						options={[
-							{ label: t('gender.male'), value: 'male' },
-							{ label: t('gender.female'), value: 'female' },
-						]}
-						defaultValue={t('gender.default')}
-						className="mb-[60px] min-w-[460px] "
-						value={AddFamiliesForm.values?.gender}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.gender &&
-						Boolean(AddFamiliesForm.errors.gender) &&
-						toast.error(`${AddFamiliesForm.errors.gender as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
+				<div className="flex items-start justify-start w-full gap-x-4">
+					<div>
+						<Input
+							title={t('dob.title')}
+							name="dateOfBirth"
+							className="mb-[5px] min-w-[460px] "
+							type="date"
+							value={AddFamiliesForm.values?.dateOfBirth}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.dateOfBirth &&
+								AddFamiliesForm.errors.dateOfBirth &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.dateOfBirth &&
+							AddFamiliesForm.errors.dateOfBirth && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.dateOfBirth as any}
+								</p>
+							)}
+					</div>
+
+					<div>
+						<Select
+							title={t('gender.title')}
+							name="gender"
+							options={[
+								{ label: t('gender.male'), value: 'male' },
+								{ label: t('gender.female'), value: 'female' },
+							]}
+							defaultValue={t('gender.default')}
+							className="mb-[40px] min-w-[460px] mt-[2px] "
+							value={AddFamiliesForm.values?.gender}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.gender &&
+								AddFamiliesForm.errors.gender &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.gender &&
+							AddFamiliesForm.errors.gender && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.gender as any}
+								</p>
+							)}
+					</div>
 				</div>
 
 				{/* fourth */}
 
-				<div className="flex justify-start w-full mb-8 gap-x-4">
-					<Select
-						title={t('martialstatus.title')}
-						name="maritalStatus"
-						options={[
-							{ label: t('martialstatus.single'), value: 'single' },
-							{ label: t('martialstatus.married'), value: 'married' },
-						]}
-						defaultValue={t('martialstatus.default')}
-						className="mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values?.maritalStatus}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.maritalStatus &&
-						Boolean(AddFamiliesForm.errors.maritalStatus) &&
-						toast.error(`${AddFamiliesForm.errors.maritalStatus as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-					<Select
-						title={t('language.title')}
-						name="language"
-						options={[
-							{ label: t('language.english'), value: 'en' },
-							{ label: t('language.arabic'), value: 'ar' },
-							{ label: t('language.turkish'), value: 'tr' },
-						]}
-						defaultValue={t('language.default')}
-						className="mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values.language}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.language &&
-						Boolean(AddFamiliesForm.errors.language) &&
-						toast.error(`${AddFamiliesForm.errors.language as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
+				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
+					<div>
+						<Select
+							title={t('martialstatus.title')}
+							name="maritalStatus"
+							options={[
+								{ label: t('martialstatus.single'), value: 'single' },
+								{ label: t('martialstatus.married'), value: 'married' },
+							]}
+							defaultValue={t('martialstatus.default')}
+							className={` ${AddFamiliesForm.errors.maritalStatus ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values?.maritalStatus}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.maritalStatus &&
+								AddFamiliesForm.errors.maritalStatus &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.errors.maritalStatus && (
+							<p className="text-sm mb-2 text-red">
+								{AddFamiliesForm.touched.maritalStatus &&
+									(AddFamiliesForm.errors.maritalStatus as any)}
+							</p>
+						)}
+					</div>
+
+					<div>
+						<Select
+							title={t('language.title')}
+							name="language"
+							options={[
+								{ label: t('language.english'), value: 'en' },
+								{ label: t('language.arabic'), value: 'ar' },
+								{ label: t('language.turkish'), value: 'tr' },
+							]}
+							defaultValue={t('language.default')}
+							className={` ${AddFamiliesForm.errors.language ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values.language}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.language &&
+								AddFamiliesForm.errors.language &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.language &&
+							AddFamiliesForm.errors.language && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.language as any}
+								</p>
+							)}
+					</div>
 				</div>
 
+				{/* COMMENT  */}
 				<div className=" flex flex-col gap-3">
 					<h3 className=" text-sm font-bold">Comment</h3>
-					<div className="flex items-center justify-start w-full gap-x-4">
+					<div className="flex items-start justify-start w-full gap-x-4">
 						<Input
 							title={'In English'}
 							name="descriptionEn"
-							className="mb-[19px] min-w-[250px]"
+							className="mb-[10px] min-w-[250px]"
 							value={AddFamiliesForm.values?.descriptionEn}
 							onChange={AddFamiliesForm.handleChange}
 						/>
-						{AddFamiliesForm.touched.descriptionEn &&
-							Boolean(AddFamiliesForm.errors.descriptionEn) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionEn as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
 						<Input
 							title={'In Turkish'}
 							name="descriptionTr"
-							className="mb-[19px] min-w-[250px]"
+							className="mb-[10px] min-w-[250px]"
 							value={AddFamiliesForm.values?.descriptionTr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
-						{AddFamiliesForm.touched.descriptionTr &&
-							Boolean(AddFamiliesForm.errors.descriptionTr) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionTr as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
 						<Input
 							title={'In Arabic'}
 							name="descriptionAr"
-							className="mb-[19px] min-w-[250px]"
+							className="mb-[10px] min-w-[250px]"
 							value={AddFamiliesForm.values?.descriptionAr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
-						{AddFamiliesForm.touched.descriptionAr &&
-							Boolean(AddFamiliesForm.errors.descriptionAr) &&
-							toast.error(`${AddFamiliesForm.errors.descriptionAr as any}`, {
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							})}
 					</div>
 				</div>
 
 				{/* fifth */}
 
-				<div className="flex justify-start w-full mb-8 gap-x-4">
-					<Select
-						title={t('previousresidence.title')}
-						name="areaOfPreviousResidence"
-						options={[
-							{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-							{
-								label: t('previousresidence.JabaliaCamp'),
-								value: 'Jabalia Camp',
-							},
-							{ label: t('previousresidence.KhanYunis'), value: 'Khan Yunis' },
-							{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-							{
-								label: t('previousresidence.DeiralBalah'),
-								value: 'Deir al-Balah',
-							},
-							{
-								label: t('previousresidence.Beachrefugeecamp'),
-								value: 'Beach refugee camp',
-							},
-							{
-								label: t('previousresidence.NuseiratCamp'),
-								value: 'Nuseirat Camp',
-							},
-							{
-								label: t('previousresidence.MaghaziCamp'),
-								value: 'Maghazi Camp',
-							},
-							{
-								label: t('previousresidence.BureijCamp'),
-								value: 'Bureij Camp',
-							},
-							{
-								label: t('previousresidence.AlShatiCamp'),
-								value: 'Al-Shati Camp',
-							},
-						]}
-						defaultValue={t('previousresidence.default')}
-						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values?.areaOfPreviousResidence}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.areaOfPreviousResidence &&
-						Boolean(AddFamiliesForm.errors.areaOfPreviousResidence) &&
-						toast.error(
-							`${AddFamiliesForm.errors.areaOfPreviousResidence as any}`,
-							{
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							},
-						)}
-					<Select
-						title={t('currentresidence.title')}
-						name="areaOfCurrentResidence"
-						options={[
-							{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-							{
-								label: t('currentresidence.JabaliaCamp'),
-								value: 'Jabalia Camp',
-							},
-							{ label: t('currentresidence.KhanYunis'), value: 'Khan Yunis' },
-							{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-							{
-								label: t('currentresidence.DeiralBalah'),
-								value: 'Deir al-Balah',
-							},
-							{
-								label: t('currentresidence.Beachrefugeecamp'),
-								value: 'Beach refugee camp',
-							},
-							{
-								label: t('currentresidence.NuseiratCamp'),
-								value: 'Nuseirat Camp',
-							},
-							{
-								label: t('currentresidence.MaghaziCamp'),
-								value: 'Maghazi Camp',
-							},
-							{ label: t('currentresidence.BureijCamp'), value: 'Bureij Camp' },
-							{
-								label: t('currentresidence.AlShatiCamp'),
-								value: 'Al-Shati Camp',
-							},
-						]}
-						defaultValue={t('currentresidence.default')}
-						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values?.areaOfCurrentResidence}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.areaOfCurrentResidence &&
-						Boolean(AddFamiliesForm.errors.areaOfCurrentResidence) &&
-						toast.error(
-							`${AddFamiliesForm.errors.areaOfCurrentResidence as any}`,
-							{
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							},
-						)}
+				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
+					<div>
+						<Select
+							title={t('previousresidence.title')}
+							name="areaOfPreviousResidence"
+							options={[
+								{ label: t('previousresidence.Gaza'), value: 'Gaza' },
+								{
+									label: t('previousresidence.JabaliaCamp'),
+									value: 'Jabalia Camp',
+								},
+								{
+									label: t('previousresidence.KhanYunis'),
+									value: 'Khan Yunis',
+								},
+								{ label: t('previousresidence.Rafah'), value: 'Rafah' },
+								{
+									label: t('previousresidence.DeiralBalah'),
+									value: 'Deir al-Balah',
+								},
+								{
+									label: t('previousresidence.Beachrefugeecamp'),
+									value: 'Beach refugee camp',
+								},
+								{
+									label: t('previousresidence.NuseiratCamp'),
+									value: 'Nuseirat Camp',
+								},
+								{
+									label: t('previousresidence.MaghaziCamp'),
+									value: 'Maghazi Camp',
+								},
+								{
+									label: t('previousresidence.BureijCamp'),
+									value: 'Bureij Camp',
+								},
+								{
+									label: t('previousresidence.AlShatiCamp'),
+									value: 'Al-Shati Camp',
+								},
+							]}
+							defaultValue={t('previousresidence.default')}
+							className={` ${AddFamiliesForm.errors.areaOfPreviousResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values?.areaOfPreviousResidence}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.areaOfPreviousResidence &&
+								AddFamiliesForm.errors.areaOfPreviousResidence &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.areaOfPreviousResidence &&
+							AddFamiliesForm.errors.areaOfPreviousResidence && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.areaOfPreviousResidence as any}
+								</p>
+							)}
+					</div>
+					<div>
+						<Select
+							title={t('currentresidence.title')}
+							name="areaOfCurrentResidence"
+							options={[
+								{ label: t('currentresidence.Gaza'), value: 'Gaza' },
+								{
+									label: t('currentresidence.JabaliaCamp'),
+									value: 'Jabalia Camp',
+								},
+								{ label: t('currentresidence.KhanYunis'), value: 'Khan Yunis' },
+								{ label: t('currentresidence.Rafah'), value: 'Rafah' },
+								{
+									label: t('currentresidence.DeiralBalah'),
+									value: 'Deir al-Balah',
+								},
+								{
+									label: t('currentresidence.Beachrefugeecamp'),
+									value: 'Beach refugee camp',
+								},
+								{
+									label: t('currentresidence.NuseiratCamp'),
+									value: 'Nuseirat Camp',
+								},
+								{
+									label: t('currentresidence.MaghaziCamp'),
+									value: 'Maghazi Camp',
+								},
+								{
+									label: t('currentresidence.BureijCamp'),
+									value: 'Bureij Camp',
+								},
+								{
+									label: t('currentresidence.AlShatiCamp'),
+									value: 'Al-Shati Camp',
+								},
+							]}
+							defaultValue={t('currentresidence.default')}
+							className={` ${AddFamiliesForm.errors.areaOfCurrentResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values?.areaOfCurrentResidence}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.areaOfCurrentResidence &&
+								AddFamiliesForm.errors.areaOfCurrentResidence &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.areaOfCurrentResidence &&
+							AddFamiliesForm.errors.areaOfCurrentResidence && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.areaOfCurrentResidence as any}
+								</p>
+							)}
+					</div>
 				</div>
 
 				{/* Sixth */}
 
-				<div className="flex justify-start w-full mb-8 gap-x-4">
-					<Select
-						title={t('currentsituation.title')}
-						name="currentSituation"
-						options={[
-							{ label: t('currentsituation.good'), value: 'Good' },
-							{ label: t('currentsituation.bad'), value: 'Bad' },
-							{ label: t('currentsituation.worst'), value: 'Worst' },
-						]}
-						defaultValue={t('currentsituation.default')}
-						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values?.currentSituation}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.currentSituation &&
-						Boolean(AddFamiliesForm.errors.currentSituation) &&
-						toast.error(`${AddFamiliesForm.errors.currentSituation as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
-					<Select
-						title={t('losesinwar.title')}
-						name="lossesInWar"
-						options={[
-							{ label: t('losesinwar.none'), value: 'none' },
-							{ label: t('losesinwar.car'), value: 'car' },
-							{ label: t('losesinwar.furniture'), value: 'furniture' },
-							{ label: t('losesinwar.store'), value: 'store' },
-							{ label: t('losesinwar.house'), value: 'house' },
-							{ label: t('losesinwar.business'), value: 'business' },
-						]}
-						defaultValue={t('losesinwar.default')}
-						className=" mb-[19px] min-w-[460px] mt-[2px]"
-						value={AddFamiliesForm.values.lossesInWar}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.lossesInWar &&
-						Boolean(AddFamiliesForm.errors.lossesInWar) &&
-						toast.error(`${AddFamiliesForm.errors.lossesInWar as any}`, {
-							toastId: '',
-							position: 'bottom-right',
-							autoClose: 4000,
-						})}
+				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
+					<div>
+						<Select
+							title={t('currentsituation.title')}
+							name="currentSituation"
+							options={[
+								{ label: t('currentsituation.good'), value: 'Good' },
+								{ label: t('currentsituation.bad'), value: 'Bad' },
+								{ label: t('currentsituation.worst'), value: 'Worst' },
+							]}
+							defaultValue={t('currentsituation.default')}
+							className={` ${AddFamiliesForm.errors.currentSituation ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values?.currentSituation}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.currentSituation &&
+								AddFamiliesForm.errors.currentSituation &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.currentSituation &&
+							AddFamiliesForm.errors.currentSituation && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.currentSituation as any}
+								</p>
+							)}
+					</div>
+
+					<div>
+						<Select
+							title={t('losesinwar.title')}
+							name="lossesInWar"
+							options={[
+								{ label: t('losesinwar.none'), value: 'none' },
+								{ label: t('losesinwar.car'), value: 'car' },
+								{ label: t('losesinwar.furniture'), value: 'furniture' },
+								{ label: t('losesinwar.store'), value: 'store' },
+								{ label: t('losesinwar.house'), value: 'house' },
+								{ label: t('losesinwar.business'), value: 'business' },
+							]}
+							defaultValue={t('losesinwar.default')}
+							className={` ${AddFamiliesForm.errors.lossesInWar ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							value={AddFamiliesForm.values.lossesInWar}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.lossesInWar &&
+								AddFamiliesForm.errors.lossesInWar &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.lossesInWar &&
+							AddFamiliesForm.errors.lossesInWar && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.lossesInWar as any}
+								</p>
+							)}
+					</div>
 				</div>
 
 				{/* seventh */}
 
-				<div className="flex items-center justify-start w-full gap-x-4">
-					<Input
-						title={t('FamilyMembers.title')}
-						name="numberOfFamilyMembers"
-						type="number"
-						className="mb-[19px] min-w-[300px]"
-						value={AddFamiliesForm.values?.numberOfFamilyMembers}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.numberOfFamilyMembers &&
-						Boolean(AddFamiliesForm.errors.numberOfFamilyMembers) &&
-						toast.error(
-							`${AddFamiliesForm.errors.numberOfFamilyMembers as any}`,
-							{
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							},
-						)}
-					<Input
-						title={t('MartyrInFamily.title')}
-						name="numberOfMartyrInFamily"
-						type="number"
-						className="mb-[19px] min-w-[300px]"
-						value={AddFamiliesForm.values?.numberOfMartyrInFamily}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.numberOfMartyrInFamily &&
-						Boolean(AddFamiliesForm.errors.numberOfMartyrInFamily) &&
-						toast.error(
-							`${AddFamiliesForm.errors.numberOfMartyrInFamily as any}`,
-							{
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							},
-						)}
-					<Input
-						title={t('InfectedInFamily.title')}
-						name="numberOfInfectedInFamily"
-						type="number"
-						className="mb-[19px] min-w-[300px]"
-						value={AddFamiliesForm.values?.numberOfInfectedInFamily}
-						onChange={AddFamiliesForm.handleChange}
-					/>
-					{AddFamiliesForm.touched.numberOfInfectedInFamily &&
-						Boolean(AddFamiliesForm.errors.numberOfInfectedInFamily) &&
-						toast.error(
-							`${AddFamiliesForm.errors.numberOfInfectedInFamily as any}`,
-							{
-								toastId: '',
-								position: 'bottom-right',
-								autoClose: 4000,
-							},
-						)}
+				<div className="flex items-start justify-start w-full gap-x-4">
+					<div>
+						<Input
+							title={t('FamilyMembers.title')}
+							name="numberOfFamilyMembers"
+							type="number"
+							className="mb-[5px] min-w-[300px]"
+							value={AddFamiliesForm.values?.numberOfFamilyMembers}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.numberOfFamilyMembers &&
+								AddFamiliesForm.errors.numberOfFamilyMembers &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.numberOfFamilyMembers &&
+							AddFamiliesForm.errors.numberOfFamilyMembers && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.numberOfFamilyMembers as any}
+								</p>
+							)}
+					</div>
+
+					<div>
+						<Input
+							title={t('MartyrInFamily.title')}
+							name="numberOfMartyrInFamily"
+							type="number"
+							className="mb-[5px] min-w-[300px]"
+							value={AddFamiliesForm.values?.numberOfMartyrInFamily}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.numberOfMartyrInFamily &&
+								AddFamiliesForm.errors.numberOfMartyrInFamily &&
+								'border-2 border-solid border-red'
+							}
+						/>
+
+						{AddFamiliesForm.touched.numberOfMartyrInFamily &&
+							AddFamiliesForm.errors.numberOfMartyrInFamily && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.numberOfMartyrInFamily as any}
+								</p>
+							)}
+					</div>
+
+					<div>
+						<Input
+							title={t('InfectedInFamily.title')}
+							name="numberOfInfectedInFamily"
+							type="number"
+							className="mb-[5px] min-w-[300px]"
+							value={AddFamiliesForm.values?.numberOfInfectedInFamily}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.numberOfInfectedInFamily &&
+								AddFamiliesForm.errors.numberOfInfectedInFamily &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.numberOfInfectedInFamily &&
+							AddFamiliesForm.errors.numberOfInfectedInFamily && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.numberOfInfectedInFamily as any}
+								</p>
+							)}
+					</div>
 				</div>
 
 				{/* eigth */}
@@ -658,7 +744,7 @@ const FamilyForm = () => {
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
 											title={'Age'}
-											className="mb-[19px] min-w-[400px] "
+											className="mb-[5px] min-w-[400px] "
 											type="number"
 											onChange={(e) =>
 												handleMemberDetailChange(
@@ -670,7 +756,7 @@ const FamilyForm = () => {
 										/>
 										<Input
 											title={'Member ID Number'}
-											className="mb-[19px] min-w-[400px] "
+											className="mb-[5px] min-w-[400px] "
 											type="number"
 											onChange={(e) =>
 												handleMemberDetailChange(
@@ -689,7 +775,7 @@ const FamilyForm = () => {
 												{ label: t('gender.female'), value: 'female' },
 											]}
 											defaultValue={t('gender.default')}
-											className="mb-[60px] min-w-[400px] "
+											className="mb-[30px] min-w-[400px] "
 											onChange={(e) =>
 												handleMemberDetailChange(
 													i,
@@ -706,7 +792,7 @@ const FamilyForm = () => {
 				<div className="flex my-5">
 					<Button
 						title={t('title')}
-						type='submit'
+						type="submit"
 						className="max-w-[200px] px-6 shadow-custom"
 						isLoading={loading}
 						onClick={(e) => {

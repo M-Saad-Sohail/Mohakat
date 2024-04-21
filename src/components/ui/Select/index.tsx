@@ -6,7 +6,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	title: string;
 	options: Array<{ value: string; label: string }>;
 	className?: string;
-	errorClass?: string;
+	errorClass?: any;
 	defaultValue?: string;
 	titleColor?: string;
 	textColor?: string;
