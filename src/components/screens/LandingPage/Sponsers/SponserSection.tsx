@@ -12,12 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import SponserMain from './SponserMain';
+import { getUserFromLocalStorage } from '@/utils/auth';
 
 const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
+	const user = getUserFromLocalStorage();
 	const [featureData, setFeatureData] = useState<any[]>([]);
 	const t = useTranslations('HeroMainSection.btns');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -77,11 +79,13 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		>
 			<div className=" flex flex-col gap-4">
 				<SponserMain currentPath={currentPath} />
+				{!user &&
 				<div className=" flex md:flex-nowrap flex-wrap gap-4">
 					<Link href={url(PATHS.BECOME_SPONSOR)}>
 						<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
 					</Link>
 				</div>
+				}
 			</div>
 			<div
 				className={`flex md:flex-row flex-col justify-between ${currentPath === 'ar' ? ' md:gap-9' : 'md:gap-4'} gap-6`}

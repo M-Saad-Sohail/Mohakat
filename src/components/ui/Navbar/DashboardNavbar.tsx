@@ -8,6 +8,8 @@ import Cart from '../Cart';
 import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { FaHome } from 'react-icons/fa';
 
 type IProps = {
 	setting?: boolean;
@@ -25,6 +27,12 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	const cartItems = useSelector((state: any) => state.cart);
+	const localRouter = useLocaleRouter();
+
+	function redirectToHomePage() {
+		localRouter.replace('/'); // Change the URL to your landing page URL
+	}
+
 
 	return (
 		<>
@@ -40,6 +48,12 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 						className="w-8 h-8 mx-2 rounded-full"
 						style={{ filter: 'invert(100%)' }}
 					/> */}
+					<div
+						className="mr-2 text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 rounded-full p-2"
+						onClick={() => redirectToHomePage()}
+					>
+						<FaHome />
+					</div>
 					{user?.role === 'user' && (
 						<div className='flex items-center gap-6'>
 							<div

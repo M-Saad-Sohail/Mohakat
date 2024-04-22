@@ -8,7 +8,7 @@ import StickeyBar from '@/components/ui/StickeyBar';
 import { PATHS } from '@/contants';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type MainLayoutProps = {
 	children: React.ReactNode;
@@ -19,6 +19,16 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { user, isLoading } = useLoggedInUser();
 	const { redirectWithLocale } = useLocaleRouter();
 	const [isCartOpen, setIsCartOpen] = useState(false)
+
+	useEffect(() => {
+		if (!!user) {
+			let locale = 'en';
+			if (['en', 'ar', 'tr'].includes(user.language)) {
+				locale = user.language;
+			}
+			redirectWithLocale(locale, PATHS.HOME);
+		}
+	}, [user]);
 
 	if (fromGazaMap) {
 		return (
@@ -31,15 +41,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 		);
 	}
 
-	if (!!user) {
-		let locale = 'en';
-		if (['en', 'ar', 'tr'].includes(user.language)) {
-			locale = user.language;
-		}
-		redirectWithLocale(locale, PATHS.DASHBOARD);
-	}
-
-	if (isLoading || !!user) {
+	if (isLoading) {
 		return null;
 	}
 

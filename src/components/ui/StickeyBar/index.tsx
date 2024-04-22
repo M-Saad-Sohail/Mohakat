@@ -9,6 +9,7 @@ import { PATHS } from '@/contants';
 import { useTranslations } from 'next-intl';
 import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal'
 import Button from '@/components/ui/LandingPage/Button';
+import { getUserFromLocalStorage } from '@/utils/auth';
 
 
 
@@ -18,6 +19,7 @@ const StickeyBar = () => {
 
 	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
 	const cancelQuickDonationButtonRef = useRef(null);
+	const user = getUserFromLocalStorage();
 
 	return (
 		<>
@@ -26,6 +28,8 @@ const StickeyBar = () => {
 				setOpen={setQuickDonationOpen}
 				cancelButtonRef={cancelQuickDonationButtonRef}
 			/>
+		
+		{!user &&
 		<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
 			<Link href={''} className=" bg-[#CF7475] md:p-5 p-[10px] tooltip">
 				<Image
@@ -58,6 +62,7 @@ const StickeyBar = () => {
 				<span className="tooltiptext">{t('becomeSponser')}</span>
 			</Link>
 		</div>
+		}
 		</>
 	);
 };

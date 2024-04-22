@@ -11,7 +11,8 @@ import { PATHS } from '@/contants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
-import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal'
+import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal';
+import { getUserFromLocalStorage } from '@/utils/auth';
 
 interface HeroDataType {
 	heading: string;
@@ -22,6 +23,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
+	const user = getUserFromLocalStorage();
 	const currentPath = pathname?.slice(1);
 	const [imagesData, setImagesData] = useState<any>();
 	const t = useTranslations('HeroMainSection.btns');
@@ -33,8 +35,6 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 
 	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
 	const cancelQuickDonationButtonRef = useRef(null);
-
-
 
 	const handleHeroData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -103,7 +103,6 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, []);
 
 	return (
-
 		<section className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
 			<QuickDonationModal
 				open={quickDonationOpen}
@@ -144,6 +143,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					<p className="text-lg font-light text-center">
 						{currentHeroData.description}
 					</p>
+					{!user &&
 					<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
 						<Button title={t('DonateaShare.title')} Color="#CF7475" onClick={() => { setQuickDonationOpen(true); }} />
 						<Link href={url(PATHS.BECOME_SPONSOR)}>
@@ -161,6 +161,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							Color="#000000"
 						/>
 					</div>
+					}
 					<div className=" h-[45%] flex gap-3">
 						<div className=" flex-1">
 							<img
