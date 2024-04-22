@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { signIn__image } from '@/assests';
 import { useCallback, useEffect, useState } from 'react';
 import useDirection from '@/hooks/useDirection';
+import StickeyBar from '../StickeyBar';
 
 interface IProps {
 	children: React.ReactNode;

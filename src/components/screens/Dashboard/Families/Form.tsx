@@ -8,7 +8,8 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
 import { AddFamiliesValues } from '@/contants';
 import { useFormik, ErrorMessage } from 'formik';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
+import Button from '@/components/ui/LandingPage/Button';
 import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { number } from 'yup';
@@ -785,14 +786,15 @@ const FamilyForm = () => {
 					)}
 				<div className="flex my-5">
 					<Button
-						title={t('title')}
-						type="submit"
-						className="max-w-[200px] px-6 shadow-custom"
-						isLoading={loading}
 						onClick={(e) => {
 							e.preventDefault();
 							AddFamiliesForm.handleSubmit();
 						}}
+						type="submit"
+						className="max-w-[200px] px-6 shadow-custom"
+						isLoading={loading}
+						title={t('title')}
+						Color="#CF7475"
 					/>
 				</div>
 			</div>
