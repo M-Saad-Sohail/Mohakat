@@ -29,7 +29,7 @@ const StickeyBar = () => {
 				cancelButtonRef={cancelQuickDonationButtonRef}
 			/>
 		
-		{!user &&
+		{
 		<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
 			<Link href={''} className=" bg-[#CF7475] md:p-5 p-[10px] tooltip">
 				<Image

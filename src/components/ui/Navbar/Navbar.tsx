@@ -95,7 +95,7 @@ const AuthNavbar = ({
 								replace={currentPathName !== '/'}
 								locale={user?.language ?? locale}
 							>
-							<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
+								<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
 							</Link>
 						</>
 					) : (
@@ -107,6 +107,17 @@ const AuthNavbar = ({
 								<Button title={t('cta.become-sponsor')} Color="#8DAE8E" />
 							</Link>
 						</>
+					)}
+					{user?.role === 'user' && (
+						<div
+							className=" relative cursor-pointer"
+							onClick={() => setIsCartOpen(true)}
+						>
+							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								{cartItems.length > 0 ? cartItems.length : '0'}
+							</span>
+							<TbBasketDollar className=" text-[40px]" />
+						</div>
 					)}
 					<CurrencySelector />
 				</div>
