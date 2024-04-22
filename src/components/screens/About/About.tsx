@@ -83,6 +83,7 @@ const About = () => {
 
 	return (
 		<section
+			dir={dir}
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">

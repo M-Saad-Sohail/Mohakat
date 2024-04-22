@@ -6,6 +6,7 @@ import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import { getJson } from '@/api/api.instances';
 import { setIsLandingStateAction } from '@/state/landingpage';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 interface Testimonial {
 	name: string;
@@ -19,6 +20,7 @@ const TestimonialSlider = () => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1);
 	const [testimonialData, setTestimonialData] = useState<Testimonial[]>([]);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	const handleTestimonialData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -109,32 +111,39 @@ const TestimonialSlider = () => {
 	};
 
 	return (
-		<section className="md:w-[80%] w-[90%] mx-auto flex flex-col gap-2 ">
-			<Slider {...settings}>
+		<section
+			dir={dir}
+			className="md:w-[80%] w-[90%] mx-auto flex flex-col gap-2 "
+		>
+			<Slider {...settings} className=" h-full">
 				{testimonialData.map((testimonial, index) => (
-					<div key={index} style={{ margin: '0 20px' }}>
+					<div key={index} style={{ margin: ' 20px' }}>
 						<Card
-							sx={{ maxWidth: 'fit-content', minHeight: 150, padding: '0 8px' }}
-							className=" bg-[#FFFFFF] rounded-3xl p-10 shadow-md ring ring-gray-50 ring-opacity-40"
+							sx={{ maxWidth: 'fit-content', padding: '0 8px' }}
+							className=" flex items-start bg-[#FFFFFF] rounded-3xl p-10 shadow-md ring ring-gray-50 ring-opacity-40 mx-2 min-h-[222px] my-2 hover:bg-[#f8f8f8]"
 						>
-							<CardActionArea>
-								<CardContent>
-									<Typography variant="h5" component="div">
-										{testimonial.name}
-									</Typography>
-									<Typography
-										gutterBottom
-										variant="caption"
-										component="div"
-										sx={{ fontStyle: 'italic' }}
-									>
-										{testimonial.destination}
-									</Typography>
-									<Typography variant="body2" color="text.secondary">
-										{testimonial.description}
-									</Typography>
-								</CardContent>
-							</CardActionArea>
+							<CardContent
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									gap: '4px',
+								}}
+							>
+								<Typography variant="h5" component="div">
+									{testimonial.name}
+								</Typography>
+								<Typography
+									gutterBottom
+									variant="caption"
+									component="div"
+									sx={{ fontStyle: 'italic' }}
+								>
+									{testimonial.destination}
+								</Typography>
+								<Typography variant="body2" color="text.secondary">
+									{testimonial.description}
+								</Typography>
+							</CardContent>
 						</Card>
 					</div>
 				))}
