@@ -143,25 +143,31 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					<p className="text-lg font-light text-center">
 						{currentHeroData.description}
 					</p>
-					{!user &&
-					<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
-						<Button title={t('DonateaShare.title')} Color="#CF7475" onClick={() => { setQuickDonationOpen(true); }} />
-						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-						</Link>
-						<Button
-							onClick={() => {
-								toast.error(`This feature is in progress`, {
-									toastId: 'success',
-									position: 'bottom-right',
-									autoClose: 4000,
-								});
-							}}
-							title={t('RegisterasFamily.title')}
-							Color="#000000"
-						/>
-					</div>
-					}
+					{!user && (
+						<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
+							<Button
+								title={t('DonateaShare.title')}
+								Color="#CF7475"
+								onClick={() => {
+									setQuickDonationOpen(true);
+								}}
+							/>
+							<Link href={url(PATHS.BECOME_SPONSOR)}>
+								<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+							</Link>
+							<Button
+								onClick={() => {
+									toast.error(`This feature is in progress`, {
+										toastId: 'success',
+										position: 'bottom-right',
+										autoClose: 4000,
+									});
+								}}
+								title={t('RegisterasFamily.title')}
+								Color="#000000"
+							/>
+						</div>
+					)}
 					<div className=" h-[45%] flex gap-3">
 						<div className=" flex-1">
 							<img
@@ -237,9 +243,27 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData?.description}
 					</p>
 					<div className=" flex flex-wrap gap-4 justify-center">
-						<Button title="Donate a Share" Color="#CF7475" />
-						<Button title="Become a Sponser" Color="#8DAE8E" />
-						<Button title="Register as Family" Color="#000000" />
+						<Button
+							title={t('DonateaShare.title')}
+							Color="#CF7475"
+							onClick={() => {
+								setQuickDonationOpen(true);
+							}}
+						/>
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
+							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+						</Link>
+						<Button
+							onClick={() => {
+								toast.error(`This feature is in progress`, {
+									toastId: 'success',
+									position: 'top-center',
+									autoClose: 4000,
+								});
+							}}
+							title={t('RegisterasFamily.title')}
+							Color="#000000"
+						/>
 					</div>
 				</div>
 				<div className="carousel-container h-[40%]">

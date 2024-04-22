@@ -81,7 +81,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 						dir={dir}
 						className="fixed inset-0 z-10 w-screen overflow-y-auto"
 					>
-						<div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+						<div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
 							<Transition.Child
 								as={Fragment}
 								enter="ease-out duration-300"
@@ -92,7 +92,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${isTableView ? 'h-[500px]' : 'h-[600px]'}  flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
+									className={` ${isTableView ? 'md:h-[500px]' : 'md:h-[600px]'} h-fit flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">

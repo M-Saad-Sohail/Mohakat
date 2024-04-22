@@ -11,7 +11,6 @@ import ImagesSection from './Intiation/ImagesSection';
 import MainLayout from '@/components/common/MainLayout';
 import AboutSection from './AboutSection';
 import TestinomialSlider from './TestinomialSlider';
-import { TESTINOMIALS } from '@/contants';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -39,7 +38,7 @@ const LandingPage = () => {
 			<FamilySection isLoggedIn={!isLoading && !!user} />
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<ImagesSection />
-			<TestinomialSlider testimonials = {TESTINOMIALS} />
+			<TestinomialSlider />
 			<PartnersSection />
 		</MainLayout>
 	);
