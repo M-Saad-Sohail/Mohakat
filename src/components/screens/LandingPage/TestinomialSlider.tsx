@@ -2,7 +2,18 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
 
-const TestimonialSlider = ({ testimonials }) => {
+interface Testimonial {
+    name: string;
+    destination: string;
+    description: string;
+  }
+  
+  interface TestimonialSliderProps {
+    testimonials: Testimonial[];
+  }
+
+  
+const TestimonialSlider: React.FC<TestimonialSliderProps> = ({ testimonials }) => {
   const settings = {
     dots: false,
     infinite: true,
