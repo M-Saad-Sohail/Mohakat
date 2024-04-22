@@ -15,6 +15,7 @@ import { Links, PATHS } from '@/contants';
 import { TbBasketDollar } from 'react-icons/tb';
 import CurrencySelector from '../CurrencySelector';
 import LangSelector from '../LangSelector';
+import { useSelector } from 'react-redux';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -22,6 +23,7 @@ const MobileNavbar = ({
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const pathname = usePathname();
+	const cartItems = useSelector((state: any) => state.cart);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [active, setActive] = useState(false);
@@ -70,6 +72,17 @@ const MobileNavbar = ({
 								<CurrencySelector />
 							</>
 						)}
+						{user?.role === 'user' && (
+						<div
+							className=" relative cursor-pointer"
+							onClick={() => setIsCartOpen(true)}
+						>
+							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								{cartItems.length > 0 ? cartItems.length : '0'}
+							</span>
+							<TbBasketDollar className=" text-[40px]" />
+						</div>
+					)}
 						<Image
 							onClick={() => {
 								setActive((prev) => !prev);

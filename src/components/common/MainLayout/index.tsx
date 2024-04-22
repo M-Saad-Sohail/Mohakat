@@ -18,7 +18,7 @@ type MainLayoutProps = {
 const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { user, isLoading } = useLoggedInUser();
 	const { redirectWithLocale } = useLocaleRouter();
-	const [isCartOpen, setIsCartOpen] = useState(false)
+	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	useEffect(() => {
 		if (!!user) {
