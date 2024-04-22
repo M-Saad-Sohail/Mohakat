@@ -35,6 +35,7 @@ svg {
 }
 
 @keyframes scroll {
+
 	0%,
 	100% {
 		transform: translateX(0);
@@ -98,7 +99,7 @@ input[name='month'] {
 
 .tooltip .tooltiptext {
 	visibility: hidden;
-	width: 150px;
+	width: 180px;
 	background-color: #555555;
 	color: #fff;
 	text-align: center;
@@ -176,6 +177,31 @@ input[name='month'] {
 	transform: scaleX(1);
 }
 
+.dashboard-link {
+	position: relative;
+	text-decoration: none;
+}
+
+.dashboard-link::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2.6px;
+	border-radius: 4px;
+	background-color: #cf7475;
+	bottom: -4px;
+	left: 0;
+	transform-origin: right;
+	transform: scaleX(0);
+	transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-link:hover::before {
+	height: 3px;
+	transform-origin: left;
+	transform: scaleX(1);
+}
+
 ::selection {
 	color: #8dae8e;
 }
@@ -223,15 +249,15 @@ input[name='month'] {
 
 
 /* Bakhtawar CSS */
-.feature-shadow:hover{
-	box-shadow: 0 0 11px rgba(33,33,33,.2);
+.feature-shadow:hover {
+	box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 	border: 1px solid #f7f7f7;
 	cursor: pointer;
 	padding: 1.5rem;
 	border-radius: 8px;
 }
 
-.btn-transition{
+.btn-transition {
 	color: #FFF;
 	border: 2px solid rgb(216, 2, 134);
 	border-radius: 0px;
@@ -247,6 +273,6 @@ input[name='month'] {
 	transition: ease-out 0.4s;
 }
 
-.btn-transition:hover{
+.btn-transition:hover {
 	box-shadow: inset 400px 0 0 0 #D80286;
 }

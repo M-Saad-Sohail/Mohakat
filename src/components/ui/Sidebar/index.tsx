@@ -62,13 +62,13 @@ const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
-	{
-		title: 'credit_cards',
-		src: credit_card,
-		link: PATHS.CREDIT_CARDS,
-		gap: true,
-	},
-	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
+	// {
+	// 	title: 'credit_cards',
+	// 	src: credit_card,
+	// 	link: PATHS.CREDIT_CARDS,
+	// 	gap: true,
+	// },
+	{ title: 'settings', src: setting_icon, link: PATHS.SETTING,gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
 
@@ -172,10 +172,14 @@ const LeftSideBar = () => {
 				/>
 				<div className="flex-col flex gap-3 mx-auto items-center justify-center">
 					<div className=" flex flex-col items-center gap-3">
-						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						<p
+							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+						>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						<p
+							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+						>
 							Id: {user ? user.id : ''}
 						</p>
 					</div>
@@ -216,7 +220,7 @@ const LeftSideBar = () => {
 										<div
 											className={`${
 												!open && 'hidden'
-											} text-black hover:text-primary origin-left duration-200 text-[16px] font-[400] ${
+											} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300  ${
 												currentPath === menu.link
 													? 'text-primary font-semibold'
 													: ''

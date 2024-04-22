@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Input from '@/components/ui//Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { PATHS, ProfileValues, RESETINITIALVALUES } from '@/contants';
@@ -25,6 +25,7 @@ import Select from '@/components/ui/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
 import { countriesData } from '@/contants/countries';
+import Button from '@/components/ui/LandingPage/Button';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
@@ -182,7 +183,7 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 				/>
 
 				<div className="flex my-5">
-					<Button
+					{/* <Button
 						title={t('save_changes')}
 						className="max-w-[200px] px-6 shadow-custom"
 						disabled={changePasswordForm.isSubmitting}
@@ -190,6 +191,16 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 							e.preventDefault();
 							changePasswordForm.handleSubmit();
 						}}
+					/> */}
+					<Button
+						onClick={(e:any) => {
+							e.preventDefault();
+							changePasswordForm.handleSubmit();
+						}}
+						className="max-w-[200px] px-6 shadow-custom"
+						disabled={changePasswordForm.isSubmitting}
+						title={t('save_changes')}
+						Color="#CF7475"
 					/>
 				</div>
 			</div>

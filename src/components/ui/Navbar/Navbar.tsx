@@ -94,9 +94,8 @@ const AuthNavbar = ({
 								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
 								replace={currentPathName !== '/'}
 								locale={user?.language ?? locale}
-								className={`duration-500 md:flex hidden float-right mr-2 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
 							>
-								{t('cta.go-to-dashboard')}
+							<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
 							</Link>
 						</>
 					) : (
