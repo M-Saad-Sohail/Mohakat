@@ -40,7 +40,9 @@ const StickeyBar = () => {
 				<span className="tooltiptext">{t('familyRegister')}</span>
 			</Link>
 			<Link
-				href={url(PATHS.FAMILY)}
+				// href={url(PATHS.FAMILY)}
+				href='#' 
+				onClick={() => { setQuickDonationOpen(true); }} 
 				className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip"
 			>
 				<Image

@@ -284,3 +284,33 @@ export const dashboard = [
 		value: 56,
 	},
 ];
+
+export const TESTINOMIALS = [
+	{
+	  name: 'Dr. Maged Radwan',
+	  destination: 'Manager, Wijdan Charity',
+	  description: 'An initiative that came on time given the great need of our people in Gaza for such support and assistance'
+	},
+	{
+	  name: 'Jane Smith',
+	  destination: 'Marketing Manager at ABC Corp.',
+	  description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+	},
+	{
+	  name: 'Michael Johnson',
+	  destination: 'Head of Sales at DEF Company',
+	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+	},
+	{
+	  name: 'Michael Johnson',
+	  destination: 'Head of Sales at DEF Company',
+	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+	},
+	{
+	  name: 'Michael Johnson',
+	  destination: 'Head of Sales at DEF Company',
+	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+	},
+	// Add more testimonials as needed
+  ];
+  
