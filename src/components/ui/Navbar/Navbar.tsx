@@ -91,9 +91,9 @@ const AuthNavbar = ({
 					{isLoggedIn ? (
 						<>
 							<Link
-								href={`/${user?.language ?? locale}${PATHS.DASHBOARD}`}
+								href={`/${locale}${PATHS.DASHBOARD}`}
 								replace={currentPathName !== '/'}
-								locale={user?.language ?? locale}
+								locale={locale}
 							>
 								<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
 							</Link>

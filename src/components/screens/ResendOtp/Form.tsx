@@ -32,16 +32,15 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 				.join('&');
 			link += `?${hashedQuery}`;
 		}
-		return link
-	}
-
+		return link;
+	};
 
 	const onSubmit = async (values: { email: string }) => {
 		const success = await submitHandler(values.email);
 		if (!success || !params) return;
-		replace(getLink())
-	}
-	
+		replace(getLink());
+	};
+
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: {
 			email: '',
@@ -75,7 +74,13 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					className="max-w-[800px]"
 				/>
 				<div className="flex items-center justify-center w-full">
-					<Button title={t('submit')} type='submit' isLoading={isLoading} className=" bg-[#CF7475] w-56" />
+					<Button
+						title={t('submit')}
+						type="submit"
+						isLoading={isLoading}
+						className="w-56"
+						Color="#CF7475"
+					/>
 				</div>
 			</div>
 		</form>
