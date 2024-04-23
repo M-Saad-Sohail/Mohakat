@@ -52,8 +52,20 @@ const ForgotPassword = () => {
 					setEmail('');
 				}
 			}
-		} catch (error) {
-			console.log(error);
+		} catch (error: any) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				setLoading(false);
+				toast.error(error.response.data.message, {
+					position: 'top-right',
+					autoClose: 4000,
+				});
+			} else {
+				console.log(error);
+			}
 		}
 	};
 
@@ -85,7 +97,7 @@ const ForgotPassword = () => {
 						type="submit"
 						isLoading={loading}
 						className="w-56"
-						Color='#CF7475'
+						Color="#CF7475"
 						onClick={handleSubmit}
 					/>
 				</div>

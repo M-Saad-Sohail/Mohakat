@@ -12,9 +12,8 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { usePathname } from 'next/navigation';
 
 // REACT ICONS
-import { RiFacebookBoxFill } from 'react-icons/ri';
 import { FaTwitterSquare, FaFacebookSquare } from 'react-icons/fa';
-import { FaLinkedin } from 'react-icons/fa6';
+import { FaLinkedin, FaSquareInstagram } from 'react-icons/fa6';
 
 const footerLinks = [
 	{
@@ -87,9 +86,30 @@ const Footer = () => {
 					</div>
 					{/* social icons */}
 					<div className=" flex gap-3">
-						<FaFacebookSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
-						<FaTwitterSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
-						<FaLinkedin className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+						{/* fb */}
+						<Link
+							href={`${currentPath == 'en' ? 'https://www.facebook.com/profile.php?id=61558851476057' : currentPath == 'tr' ? 'https://www.facebook.com/profile.php?id=61558467735301' : 'https://www.facebook.com/moakhatorg/'}`}
+							target="_blank"
+						>
+							<FaFacebookSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+						</Link>
+
+						{/* twitter */}
+						<Link
+							href={`${currentPath == 'en' ? 'https://twitter.com/MoakhatEn' : currentPath == 'tr' ? 'https://twitter.com/MoakhatTr' : 'https://twitter.com/moakhatorg'}`}
+							target="_blank"
+						>
+							<FaTwitterSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+						</Link>
+
+						{/* insta */}
+
+						<Link
+							href={`${currentPath == 'en' ? 'https://www.instagram.com/moakhat.en/' : currentPath == 'tr' ? 'https://www.instagram.com/kardesliktr/' : 'https://www.instagram.com/moakhatorgtr/'}`}
+							target="_blank"
+						>
+							<FaSquareInstagram className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+						</Link>
 					</div>
 				</div>
 
@@ -99,25 +119,48 @@ const Footer = () => {
 				</div>
 
 				{/* third div */}
-				<div className=" flex md:justify-center justify-end items-center md:gap-10 gap-4">
-					<h3 className="hidden md:flex text-sm font-normal">
-						© 2024 {t('MuakhetAllrightsreserved')}
-					</h3>
-					<Link href={'/'}>
-						<h3 className=" md:text-sm text-[13px] font-normal">
-							{t('privacypolicy')}
+				<div className=" flex md:justify-between justify-center md:items-start items-center">
+					<div></div>
+					<div className=" flex md:justify-center justify-end items-center md:gap-10 gap-4">
+						<h3 className="hidden md:flex text-sm font-normal">
+							© 2024 {t('MuakhetAllrightsreserved')}
 						</h3>
-					</Link>
-					<Link href={'/'}>
-						<h3 className=" md:text-sm text-[13px] font-normal">
-							{t('termsofservice')}
-						</h3>
-					</Link>
+						<Link href={'/'}>
+							<h3 className=" md:text-sm text-[13px] font-normal">
+								{t('privacypolicy')}
+							</h3>
+						</Link>
+						<Link href={'/'}>
+							<h3 className=" md:text-sm text-[13px] font-normal">
+								{t('termsofservice')}
+							</h3>
+						</Link>
+					</div>
+					<div className=" hidden md:flex text-sm font-normal">
+						Powered by:{' '}
+						<Link
+							className=" hover:text-[#CF7475] transition-colors duration-300 ease-in-out"
+							href={'https://techxudo.com/'}
+							target="_blank"
+						>
+							Techxudo
+						</Link>
+					</div>
 				</div>
 				<div className="flex justify-center items-center">
 					<h3 className="md:hidden flex text-sm font-normal">
 						© 2024 {t('MuakhetAllrightsreserved')}
 					</h3>
+				</div>
+				<div className=" flex md:hidden justify-center items-center text-sm font-normal">
+					Powered by:{' '}
+					<Link
+						className=" hover:text-[#CF7475] transition-colors duration-300 ease-in-out"
+						href={'https://techxudo.com/'}
+						target="_blank"
+					>
+						Techxudo
+					</Link>
 				</div>
 			</div>
 		</>
