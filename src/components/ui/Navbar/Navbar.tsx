@@ -91,7 +91,7 @@ const AuthNavbar = ({
 					{isLoggedIn ? (
 						<>
 							<Link
-								href={`/${locale}${PATHS.DASHBOARD}`}
+								href={url(PATHS.DASHBOARD)}
 								replace={currentPathName !== '/'}
 								locale={locale}
 							>
