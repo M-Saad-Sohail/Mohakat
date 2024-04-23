@@ -41,7 +41,11 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	};
 
 	useEffect(() => {
-		handleCurrencyChange(options[0]);
+		if (Object.keys(currencyState).length !== 0) {
+			handleCurrencyChange(currencyState);
+		} else {
+			handleCurrencyChange(options[0]);
+		}
 	}, []);
 
 	useEffect(() => {
