@@ -440,6 +440,9 @@
 		"inputPlaceholder": "Bağış miktarını girin",
 		"button": "Ödeme Yapmaya Devam Et"
 	},
+	"CurrencyModal": {
+		"title": "Para Birimini Göster"
+	},
 	"FamiliesMainSection": {
 		"clearAll": "Hepsini Temizle",
 		"backPage": "Önceki Sayfa",

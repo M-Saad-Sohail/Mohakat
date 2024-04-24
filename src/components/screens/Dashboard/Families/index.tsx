@@ -14,7 +14,7 @@ const DashBoardFamilyPage = () => {
 		}
 	}, []);
 	return (
-		<div className="px-4">{isAdmin ? <FamilyForm /> : <FamiliesSection/>}</div>
+		<div className="md:px-4 px-0">{isAdmin ? <FamilyForm /> : <FamiliesSection/>}</div>
 	);
 };
 

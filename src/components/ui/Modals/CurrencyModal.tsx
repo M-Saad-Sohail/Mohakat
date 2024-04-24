@@ -19,18 +19,36 @@ interface CurrencyOption {
 	basePriceTwo: number;
 }
 
-const currencyOptions: CurrencyOption[] = [
+const currencyOptionsEnglish: CurrencyOption[] = [
 	{ label: 'Dollar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
 	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
 	{ label: 'Kuwaiti Dinar', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
 	{ label: 'Qatari Riyal', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
-	{ label: 'Suadi Riyal', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{ label: 'Saudi Riyal', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
 	{
 		label: 'Turkish Lira',
 		key: 'TRY',
 		basePriceOne: 9776,
 		basePriceTwo: 16294,
 	},
+];
+
+const currencyOptionsArabic: CurrencyOption[] = [
+	{ label: 'الدولار', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
+	{ label: 'اليورو', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
+	{ label: 'دينار كويتي', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	{ label: 'ريال قطري', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
+	{ label: 'ريال سعودي', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{ label: 'ليرة تركية', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },
+];
+
+const currencyOptionsTurkish: CurrencyOption[] = [
+	{ label: 'Dolar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
+	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
+	{ label: 'Kuveyt Dinarı', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	{ label: 'Katar Riyali', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
+	{ label: 'Suudi Riyali', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{ label: 'Türk Lirası', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },
 ];
 
 const CurrencyModal: React.FC<CurrencyModalType> = ({
@@ -41,6 +59,7 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 	const dispatch = useDispatch();
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
+	const [currencyOptions, setCurrencyOptions] = useState<CurrencyOption[]>([]);
 	const currencyState = useSelector((state: any) => state.currency);
 	const t = useTranslations('CurrencyModal');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -52,11 +71,25 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 
 	useEffect(() => {
 		if (Object.keys(currencyState).length !== 0) {
-			handleCurrencyChange(currencyState);
+			currencyOptions.forEach((currency) => {
+				if (currency.key === currencyState?.key) {
+					handleCurrencyChange(currencyState);
+				}
+			});
 		} else {
 			handleCurrencyChange(currencyOptions[0]);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (currentPath === 'en') {
+			setCurrencyOptions(currencyOptionsEnglish);
+		} else if (currentPath === 'ar') {
+			setCurrencyOptions(currencyOptionsArabic);
+		} else if (currentPath === 'tr') {
+			setCurrencyOptions(currencyOptionsTurkish);
+		}
+	}, [currentPath]);
 
 	return (
 		<>
@@ -109,25 +142,29 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 										</div>
 									</div>
 									<div className="grid grid-cols-1 divide-y">
-										{currencyOptions.map((currency: CurrencyOption) => (
-											<label
-												htmlFor={currency.key}
-												className="flex justify-between items-center py-4 pl-5 pr-7 cursor-pointer"
-												onClick={() => handleCurrencyChange(currency)}
-												key={currency.key}
-											>
-												<p className="text-lg text-[#4a4b65] font-medium w-full">
-													{currency.label} ({currency.key})
-												</p>
-												<input
-													type="radio"
-													name="selectedCurrency"
-													id={currency.key}
-													checked={currency.key === currencyState.key}
-                                                    className=' focus:outline-none'
-												/>
-											</label>
-										))}
+										{currencyOptions.map(
+											(currency: CurrencyOption, i: number) => (
+												<label
+													htmlFor={currency.key}
+													className={`flex justify-between items-center py-4 pl-5 pr-7 cursor-pointer ${currentPath === 'ar' ? 'pl-7 pr-5' : 'pl-5 pr-7'}`}
+													onClick={() => handleCurrencyChange(currency)}
+													key={currency.key}
+												>
+													<p
+														className={`text-lg text-[#4a4b65] font-medium w-full ${currentPath === 'ar' && 'text-right'}`}
+													>
+														{currency.label} ({currency.key})
+													</p>
+													<input
+														type="radio"
+														name="selectedCurrency"
+														id={currency.key}
+														checked={currency.key === currencyState.key}
+														className=" focus:outline-none"
+													/>
+												</label>
+											),
+										)}
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

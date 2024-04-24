@@ -440,6 +440,9 @@
 		"inputPlaceholder": "أدخل مبلغ التبرع",
 		"button": "الانتقال إلى الخروج"
 	},
+	"CurrencyModal": {
+		"title": "عرض العملة"
+	},
 	"FamiliesMainSection": {
 		"clearAll": "مسح الكل",
 		"backPage": "الصفحة السابقة",
