@@ -17,6 +17,7 @@ import CurrencySelector from '../CurrencySelector';
 import LangSelector from '../LangSelector';
 import { useSelector } from 'react-redux';
 import CurrencyModal from '../Modals/CurrencyModal';
+import Button from '../LandingPage/Button';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -121,20 +122,32 @@ const MobileNavbar = ({
 						</Link>
 					))}
 					<div className=" flex justify-start items-start mt-5 py-2 px-6">
-						<Link
-							href={url(PATHS.LOGIN)}
-							locale={locale}
-							className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
-						>
-							{t('cta.signin')}
-						</Link>
-						<Link
-							href={url(PATHS.BECOME_SPONSOR)}
-							locale={locale}
-							className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
-						>
-							{t('cta.become-sponsor')}
-						</Link>
+						{isLoggedIn ? (
+							<Link
+								href={url(PATHS.DASHBOARD)}
+								replace={currentPathName !== '/'}
+								locale={locale}
+							>
+								<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
+							</Link>
+						) : (
+							<>
+								<Link
+									href={url(PATHS.LOGIN)}
+									locale={locale}
+									className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+								>
+									{t('cta.signin')}
+								</Link>
+								<Link
+									href={url(PATHS.BECOME_SPONSOR)}
+									locale={locale}
+									className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+								>
+									{t('cta.become-sponsor')}
+								</Link>
+							</>
+						)}
 					</div>
 				</div>
 			</div>
