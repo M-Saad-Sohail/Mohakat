@@ -56,13 +56,13 @@ const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
-	{
-		title: 'credit_cards',
-		src: credit_card,
-		link: PATHS.CREDIT_CARDS,
-		gap: true,
-	},
-	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
+	// {
+	// 	title: 'credit_cards',
+	// 	src: credit_card,
+	// 	link: PATHS.CREDIT_CARDS,
+	// 	gap: true,
+	// },
+	{ title: 'settings', src: setting_icon, link: PATHS.SETTING, gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
 
@@ -175,10 +175,10 @@ const LeftSideBar = () => {
 						className="h-[50px] w-[50px] rounded-full mt-2"
 					/> */}
 					<div className=" flex flex-col items-center gap-3">
-						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p className={`${!open && 'hidden'} font-bold text-[14px]`}>
+						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
 							Id: {user ? user.id : ''}
 						</p>
 					</div>
@@ -205,7 +205,7 @@ const LeftSideBar = () => {
 								}}
 							>
 								<li
-									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4  ${
 										index === 0 && 'bg-light-white'
 									}  ${active !== menu.link && 'text-primary'}`}
 								>
@@ -220,7 +220,7 @@ const LeftSideBar = () => {
 										<div
 											className={`${
 												!open && 'hidden'
-											} text-black origin-left duration-200 text-[16px] font-[400] ${
+											} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300 ${
 												clickedMenu === index
 													? 'text-primary font-semibold'
 													: ''
