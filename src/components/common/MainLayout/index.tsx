@@ -20,15 +20,15 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { redirectWithLocale } = useLocaleRouter();
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
-	useEffect(() => {
-		if (!!user) {
-			let locale = 'en';
-			if (['en', 'ar', 'tr'].includes(user.language)) {
-				locale = user.language;
-			}
-			redirectWithLocale(locale, PATHS.HOME);
-		}
-	}, [user]);
+	// useEffect(() => {
+	// 	if (!!user) {
+	// 		let locale = 'en';
+	// 		if (['en', 'ar', 'tr'].includes(user.language)) {
+	// 			locale = user.language;
+	// 		}
+	// 		redirectWithLocale(locale, PATHS.HOME);
+	// 	}
+	// }, [user]);
 
 	if (fromGazaMap) {
 		return (
