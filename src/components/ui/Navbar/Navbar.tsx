@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { logo } from '@/assests';
 import Logo from '@/assests/icons/newlogo.svg';
 import { Links, PATHS } from '@/contants';
@@ -16,6 +16,7 @@ import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
 import Button from '../LandingPage/Button';
+import CurrencyModal from '../Modals/CurrencyModal';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -27,6 +28,9 @@ const AuthNavbar = ({
 	const currentPath = pathname?.slice(1, 3);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [currencyModalOpen, setCurrencyModalOpen] = useState(false);
+	const cancelCurrencyModalButtonRef = useRef(null);
+	const currencyState = useSelector((state: any) => state.currency);
 
 	const t = useTranslations('Navbar');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -119,7 +123,21 @@ const AuthNavbar = ({
 							<TbBasketDollar className=" text-[40px]" />
 						</div>
 					)}
-					<CurrencySelector />
+					<div
+						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
+						onClick={() => setCurrencyModalOpen((prev) => !prev)}
+					>
+						<p
+							className={` md:text-sm text-[10px] text-black font-bold uppercase`}
+						>
+							{currencyState?.key}
+						</p>
+					</div>
+					<CurrencyModal
+						open={currencyModalOpen}
+						setOpen={setCurrencyModalOpen}
+						cancelButtonRef={cancelCurrencyModalButtonRef}
+					/>
 				</div>
 			</div>
 		</div>

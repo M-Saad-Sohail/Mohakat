@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { language, profile } from '@/assests';
 import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { FaHome } from 'react-icons/fa';
+import CurrencyModal from '../Modals/CurrencyModal';
 
 type IProps = {
 	setting?: boolean;
@@ -18,21 +19,22 @@ type IProps = {
 
 const DashboardNavbar = ({ title, setting }: IProps) => {
 	let [user, setUser] = useState<{ name: string; role: string } | null>(null);
+	const [currencyModalOpen, setCurrencyModalOpen] = useState(false);
+	const [isCartOpen, setIsCartOpen] = useState(false);
+	const cancelCurrencyModalButtonRef = useRef(null);
+	const currencyState = useSelector((state: any) => state.currency);
+	const cartItems = useSelector((state: any) => state.cart);
 	useEffect(() => {
 		const loggedInUser = getUserFromLocalStorage();
 		setUser(loggedInUser);
 	}, []);
 
 	const dir = useDirection();
-	const [isCartOpen, setIsCartOpen] = useState(false);
-
-	const cartItems = useSelector((state: any) => state.cart);
 	const localRouter = useLocaleRouter();
 
 	function redirectToHomePage() {
 		localRouter.replace('/'); // Change the URL to your landing page URL
 	}
-
 
 	return (
 		<>
@@ -55,7 +57,7 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 						<FaHome />
 					</div>
 					{user?.role === 'user' && (
-						<div className='flex items-center gap-6'>
+						<div className="flex items-center gap-6">
 							<div
 								className=" relative cursor-pointer"
 								onClick={() => setIsCartOpen(true)}
@@ -65,7 +67,21 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 								</span>
 								<TbBasketDollar className=" text-[40px]" />
 							</div>
-							<CurrencySelector />
+							<div
+								className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
+								onClick={() => setCurrencyModalOpen((prev) => !prev)}
+							>
+								<p
+									className={` md:text-sm text-[10px] text-black font-bold uppercase`}
+								>
+									{currencyState?.key}
+								</p>
+							</div>
+							<CurrencyModal
+								open={currencyModalOpen}
+								setOpen={setCurrencyModalOpen}
+								cancelButtonRef={cancelCurrencyModalButtonRef}
+							/>
 						</div>
 					)}
 					<div dir={dir} className="flex items-center mx-6">

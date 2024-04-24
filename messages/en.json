@@ -465,6 +465,9 @@
 		"inputPlaceholder": "Enter donation amount",
 		"button": "Proceed to Checkout"
 	},
+	"CurrencyModal" :{
+		"title":"Display Currency"
+	},
 	"FamiliesMainSection": {
 		"clearAll": "Clear All",
 		"backPage": "Back Page",
