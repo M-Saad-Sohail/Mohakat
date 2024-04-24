@@ -136,10 +136,10 @@ const Footer = () => {
 							</h3>
 						</Link>
 					</div>
-					<div className=" hidden md:flex text-sm font-normal">
-						Powered by:{' '}
+					<div className=" hidden md:flex gap-1 items-center text-sm font-normal">
+						<span className=" font-semibold italic">Powered by</span>
 						<Link
-							className=" hover:text-[#CF7475] transition-colors duration-300 ease-in-out"
+							className="navbar-link text-sm hover:text-base transition-all duration-300"
 							href={'https://techxudo.com/'}
 							target="_blank"
 						>
@@ -152,10 +152,10 @@ const Footer = () => {
 						© 2024 {t('MuakhetAllrightsreserved')}
 					</h3>
 				</div>
-				<div className=" flex md:hidden justify-center items-center text-sm font-normal">
-					Powered by:{' '}
+				<div className="flex gap-1 md:hidden justify-center items-center text-sm font-normall">
+					<span className=" font-semibold italic">Powered by</span>
 					<Link
-						className=" hover:text-[#CF7475] transition-colors duration-300 ease-in-out"
+						className="navbar-link text-sm hover:text-base transition-all duration-300"
 						href={'https://techxudo.com/'}
 						target="_blank"
 					>

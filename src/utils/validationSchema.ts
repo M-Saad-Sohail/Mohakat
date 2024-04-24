@@ -15,7 +15,7 @@ export const resendOtpSchema = object({
 export const becomeSponsorSchema = object({
 	name: string()
 		.required('Name is Required')
-		.matches(/^[A-Za-z]+$/, 'Name should only contain alphabets'),
+		.matches(/^[a-zA-Z\s]+$/, 'Name should only contain alphabets'),
 	country: string().required('Country is Required'),
 	email: string().required('Email is Required'),
 	password: string().required('Password is required'),

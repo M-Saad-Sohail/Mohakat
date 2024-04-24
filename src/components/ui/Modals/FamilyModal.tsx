@@ -92,7 +92,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${isTableView ? 'md:h-[500px]' : 'md:h-[600px]'} h-fit flex flex-col justify-between px-5 py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] `}
+									className={` ${isTableView ? 'md:h-[500px]' : 'h-[600px] '} h-fit flex flex-col justify-between px-5  py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] w-full `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
@@ -112,7 +112,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 									<div className=" flex flex-col gap-2">
 										<div className=" flex justify-between">
-											<h2 className="  text-2xl font-semibold">
+											<h2 className=" text-xl md:text-2xl font-semibold">
 												{familyInfo?.breadWinnerName}
 											</h2>
 											<p className="flex gap-1 text-[#4a4b65] text-xl font-bold">
@@ -120,109 +120,127 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												<span>{amount}</span>
 											</p>
 										</div>
-										<div className=" flex gap-5">
+										<div className=" flex  md:gap-5">
 											{/* first column */}
-											<div className=" flex flex-col gap-3">
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+											<div className=" flex flex-1 flex-col gap-3">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('id.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.idNumber}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('age.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.age}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('martialstatus.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.maritalStatus}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('losesinwar.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.lossesInWar}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" hidden md:flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('previousresidence.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.areaOfPreviousResidence}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('MartyrInFamily.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.numberOfMartyrInFamily}
 													</span>
 												</div>
 											</div>
 
 											{/* second column */}
-											<div className=" flex flex-col gap-3">
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+											<div className=" flex flex-1 flex-col gap-3">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('gender.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.gender}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('dob.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.dateOfBirth}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('language.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.language}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('FamilyMembers.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.numberOfFamilyMembers}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" hidden md:flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('currentresidence.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.areaOfCurrentResidence}
 													</span>
 												</div>
-												<div className=" flex gap-[6px]">
-													<span className=" text-base font-semibold">
+												<div className=" flex items-center gap-1 md:gap-[6px]">
+													<span className=" text-xs md:text-base font-semibold">
 														{t('InfectedInFamily.title')}:
 													</span>
-													<span className=" text-base text-[#4a4b65] font-normal">
+													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
 														{familyInfo?.numberOfInfectedInFamily}
 													</span>
 												</div>
+											</div>
+										</div>
+										<div className=" mt-2 flex flex-col gap-3">
+											<div className=" flex md:hidden items-center gap-1 md:gap-[6px]">
+												<span className=" text-xs md:text-base font-semibold">
+													{t('previousresidence.title')}:
+												</span>
+												<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
+													{familyInfo?.areaOfPreviousResidence}
+												</span>
+											</div>
+											<div className=" flex md:hidden items-center gap-1 md:gap-[6px]">
+												<span className=" text-xs md:text-base font-semibold">
+													{t('currentresidence.title')}:
+												</span>
+												<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
+													{familyInfo?.areaOfCurrentResidence}
+												</span>
 											</div>
 										</div>
 									</div>
@@ -266,11 +284,11 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									{/* duration */}
 									{user && !isTableView && (
 										<div className=" flex flex-col gap-2">
-											<h2 className="  text-lg font-semibold">
+											<h2 className=" text-base md:text-lg font-semibold">
 												Select Duration
 											</h2>
 											{/* durations */}
-											<div className=" flex gap-3">
+											<div className=" flex gap-3 overflow-x-scroll scrollbarHide w-full">
 												<input
 													type="radio"
 													name="month"
@@ -279,8 +297,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													checked={selectedOption === '3'}
 													onChange={handleOptionChange}
 												/>
-												<label className=" text-sm font-semibold">
-													3 Month(s)
+												<label className=" flex items-center gap-2 text-sm font-semibold">
+													<span>3</span>
+													<span>Month(s)</span>
 												</label>
 
 												<input
@@ -291,8 +310,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													checked={selectedOption === '6'}
 													onChange={handleOptionChange}
 												/>
-												<label className=" text-sm font-semibold">
-													6 Month(s)
+												<label className=" flex items-center gap-2 text-sm font-semibold">
+													<span>6</span>
+													<span>Month(s)</span>
 												</label>
 
 												<input
@@ -303,8 +323,10 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													checked={selectedOption === '9'}
 													onChange={handleOptionChange}
 												/>
-												<label className=" text-sm font-semibold">
-													9 Month(s)
+
+												<label className=" flex items-center gap-2 text-sm font-semibold">
+													<span>9</span>
+													<span>Month(s)</span>
 												</label>
 
 												<input
@@ -315,8 +337,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													checked={selectedOption === '12'}
 													onChange={handleOptionChange}
 												/>
-												<label className=" text-sm font-semibold">
-													12 Month(s)
+												<label className=" flex items-center gap-2 text-sm font-semibold">
+													<span>12</span>
+													<span>Month(s)</span>
 												</label>
 											</div>
 										</div>
