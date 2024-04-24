@@ -26,7 +26,7 @@ import '@/styles/scroll.css';
 import useDirection from '@/hooks/useDirection';
 import { useTranslations } from 'next-intl';
 import { PATHS } from '@/contants';
-import { RedirectType } from 'next/navigation';
+import { RedirectType, usePathname } from 'next/navigation';
 
 const AdminMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
@@ -118,6 +118,8 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
 	const size = useWindowSize();
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(3);
 	const [open, setOpen] = useState(size.width > 768);
 	const [user, setUser] = useState<{
 		name: string;
@@ -175,10 +177,14 @@ const LeftSideBar = () => {
 						className="h-[50px] w-[50px] rounded-full mt-2"
 					/> */}
 					<div className=" flex flex-col items-center gap-3">
-						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						<p
+							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+						>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						<p
+							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+						>
 							Id: {user ? user.id : ''}
 						</p>
 					</div>
@@ -221,7 +227,7 @@ const LeftSideBar = () => {
 											className={`${
 												!open && 'hidden'
 											} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300 ${
-												clickedMenu === index
+												currentPath === menu.link
 													? 'text-primary font-semibold'
 													: ''
 											}  ${
