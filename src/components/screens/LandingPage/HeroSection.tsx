@@ -235,13 +235,17 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				</div>
 			</div>
 			<div
-				className={`md:hidden flex flex-col ${user ? 'justify-center gap-24' : 'justify-end gap-10'}  h-full`}
+				className={`md:hidden flex flex-col ${user ? 'justify-center gap-12' : 'justify-end gap-10'}  h-full`}
 			>
 				<div className=" px-4 flex flex-col gap-4">
-					<h1 className=" text-3xl leading-8 text-[#171717] font-bold text-center ">
+					<h1
+						className={` text-3xl ${user ? 'leading-10' : 'leading-8'}  text-[#171717] font-bold text-center `}
+					>
 						{currentHeroData?.heading}
 					</h1>
-					<p className="text-base leading-6 font-normal text-center">
+					<p
+						className={`text-base leading-6 font-normal text-center ${user && 'mt-2'}`}
+					>
 						{currentHeroData?.description}
 					</p>
 					{!user && (
