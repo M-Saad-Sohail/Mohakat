@@ -456,5 +456,10 @@
 		"Worst": "الأسوأ",
 		"worst": "الأسوأ",
 		"Urgently Needed": "مطلوب بشكل عاجل"
-	}
+	},
+	"LangSelect": {
+		"English": "الإنجليزية",
+		"Arabic": "العربية",
+		"Turkish": "التركية"
+	}	
 }
