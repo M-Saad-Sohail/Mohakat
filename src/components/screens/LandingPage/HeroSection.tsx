@@ -234,7 +234,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 				</div>
 			</div>
-			<div className="md:hidden flex flex-col justify-end gap-10 h-full">
+			<div
+				className={`md:hidden flex flex-col ${user ? 'justify-center gap-24' : 'justify-end gap-10'}  h-full`}
+			>
 				<div className=" px-4 flex flex-col gap-4">
 					<h1 className=" text-3xl leading-8 text-[#171717] font-bold text-center ">
 						{currentHeroData?.heading}
@@ -242,29 +244,31 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					<p className="text-base leading-6 font-normal text-center">
 						{currentHeroData?.description}
 					</p>
-					<div className=" flex flex-wrap gap-4 justify-center">
-						<Button
-							title={t('DonateaShare.title')}
-							Color="#CF7475"
-							onClick={() => {
-								setQuickDonationOpen(true);
-							}}
-						/>
-						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-						</Link>
-						<Button
-							onClick={() => {
-								toast.error(`This feature is in progress`, {
-									toastId: 'success',
-									position: 'top-center',
-									autoClose: 4000,
-								});
-							}}
-							title={t('RegisterasFamily.title')}
-							Color="#000000"
-						/>
-					</div>
+					{!user && (
+						<div className=" flex flex-wrap gap-4 justify-center">
+							<Button
+								title={t('DonateaShare.title')}
+								Color="#CF7475"
+								onClick={() => {
+									setQuickDonationOpen(true);
+								}}
+							/>
+							<Link href={url(PATHS.BECOME_SPONSOR)}>
+								<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+							</Link>
+							<Button
+								onClick={() => {
+									toast.error(`This feature is in progress`, {
+										toastId: 'success',
+										position: 'top-center',
+										autoClose: 4000,
+									});
+								}}
+								title={t('RegisterasFamily.title')}
+								Color="#000000"
+							/>
+						</div>
+					)}
 				</div>
 				<div className="carousel-container h-[40%]">
 					<div className="carousel h-full">
