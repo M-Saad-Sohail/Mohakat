@@ -49,7 +49,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 		<div className=" relative">
 			<Navbar setIsCartOpen={setIsCartOpen} />
 			<MobileNavbar setIsCartOpen={setIsCartOpen} />
-			<StickeyBar />
+			{!user && <StickeyBar />}
 			<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
 			{children}
 			<Footer />
