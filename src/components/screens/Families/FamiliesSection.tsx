@@ -3,13 +3,10 @@ import FamilyCard from '@/components/ui/FamilyCard';
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 // ICONS
-import Image from 'next/image';
 import { getJson } from '@/api/api.instances';
 import Loader from '@/components/ui/Loader';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useTranslations } from 'next-intl';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/state/store';
 import { areasData } from '@/contants/Areas';
 import { situationData } from '@/contants/Situations';
 import { FaArrowRightLong } from 'react-icons/fa6';
@@ -17,14 +14,15 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Button from '@/components/ui/LandingPage/Button';
+import { PATHS } from '@/contants';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
 }) => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
+	const landingFamilyPath = pathname?.slice(3);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
-	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies');
 	const t1 = useTranslations('FamiliesMainSection');
@@ -200,10 +198,10 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		<>
 			<section
 				dir={dir}
-				className={` ${user ? 'md:w-full py-8' : 'md:w-[80%] py-12'} w-[90%] mx-auto flex flex-col gap-8 `}
+				className={` ${(!user || PATHS.FAMILY === landingFamilyPath) ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 `}
 			>
 				{/* heading and content */}
-				{!user && (
+				{(!user || PATHS.FAMILY === landingFamilyPath) && (
 					<div className=" flex flex-col gap-2">
 						<h2 className=" md:text-3xl text-2xl font-semibold">
 							{t('title')}
