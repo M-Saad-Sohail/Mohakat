@@ -129,7 +129,11 @@ const TestimonialSlider = () => {
 									gap: '4px',
 								}}
 							>
-								<Typography variant="h5" component="div">
+								<Typography
+									variant="h5"
+									component="div"
+									sx={{ color: '#802434' }}
+								>
 									{testimonial.name}
 								</Typography>
 								<Typography
