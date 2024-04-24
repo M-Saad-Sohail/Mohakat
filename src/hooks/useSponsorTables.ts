@@ -130,3 +130,31 @@ export const fetchDashboardStats = async (token: string) => {
 		throw error;
 	}
 };
+
+export const fetchFamiliesData = async (token: string) => {
+	try {
+		const response = await api.get('/families', {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data
+	} catch (error) {
+		throw error;
+	}
+}
+
+export const DeleteFamily = async (token: string, id: string) => {
+	try {
+		const response = await api.delete(`/delete-family/${id}`, {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data;
+	} catch (error) {
+		throw error;
+	}
+};
+
+

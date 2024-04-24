@@ -18,10 +18,10 @@ export const PATHS = {
 	RESEND_OTP: '/resend-otp',
 	DASHBOARD: '/dashboard',
 	FAMILIES: '/dashboard/families',
+	MANAGEFAMILIES: '/dashboard/manage-family',
 	APPROVED_SPONSOR: '/dashboard/sponsor/approved',
 	PENDING_SPONSOR: '/dashboard/sponsor/pending',
 	REJECTED_SPONSOR: '/dashboard/sponsor/rejected',
-	DONATED_FAMILIES: '/dashboard/donated-families',
 	FORM_RESPONSES: '/dashboard/form-responses',
 	SETTING: '/dashboard/setting',
 	SPONSORING: '/dashboard/sponsoring',
@@ -68,6 +68,34 @@ export const AddFamiliesValues = {
 	familyMemberDetail: [],
 };
 
+export const UpdateFamilyValues = {
+	breadWinnerName: {},
+	breadWinnerNameEn: '',
+	breadWinnerNameTr: '',
+	breadWinnerNameAr: '',
+	description: {},
+	descriptionEn: '',
+	descriptionTr: '',
+	descriptionAr: '',
+	maritalStatus: '',
+	email: '',
+	gender: '',
+	age: '',
+	dateOfBirth: '',
+	language: '',
+	areaOfPreviousResidence: '',
+	areaOfCurrentResidence: '',
+	numberOfFamilyMembers: '',
+	lossesInWar: '',
+	numberOfMartyrInFamily: '',
+	numberOfInfectedInFamily: '',
+	telephoneNumber: '',
+	idNumber: '',
+	currentSituation: '',
+	familyMemberDetail: [],
+};
+
+
 // export const Links = [
 // 	{ localeId: 'links.0', name: 'Support', link: '/support' },
 // 	{ localeId: 'links.1', name: 'Sponsor', link: '/sponsor' },
@@ -87,6 +115,16 @@ export const AddFamiliesValues = {
 // 		link: '/contact',
 // 	},
 // ];
+
+export const FAMILIESCOLUMN: any = [
+	{ Header: 'Sno', accessor: 'no' },
+	{ Header: 'Id', accessor: '_id' },
+	{ Header: 'BreadWinnerName', accessor: (row: any) => row.breadWinnerName.inEnglish },
+	// { Header: 'MartyrInFamily', accessor: 'numberOfMartyrInFamily' },
+	{ Header: 'NumberOfFamilyMember', accessor: 'numberOfFamilyMembers' },
+	{ Header: 'Action', accessor: 'view' },
+
+]
 export const Links = [
 	{ localeId: 'links.0', name: 'Home', link: '/' },
 	{ localeId: 'links.2', name: 'About', link: '/about' },
@@ -287,30 +325,29 @@ export const dashboard = [
 
 export const TESTINOMIALS = [
 	{
-	  name: 'Dr. Maged Radwan',
-	  destination: 'Manager, Wijdan Charity',
-	  description: 'An initiative that came on time given the great need of our people in Gaza for such support and assistance'
+		name: 'Dr. Maged Radwan',
+		destination: 'Manager, Wijdan Charity',
+		description: 'An initiative that came on time given the great need of our people in Gaza for such support and assistance'
 	},
 	{
-	  name: 'Jane Smith',
-	  destination: 'Marketing Manager at ABC Corp.',
-	  description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+		name: 'Jane Smith',
+		destination: 'Marketing Manager at ABC Corp.',
+		description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 	},
 	{
-	  name: 'Michael Johnson',
-	  destination: 'Head of Sales at DEF Company',
-	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+		name: 'Michael Johnson',
+		destination: 'Head of Sales at DEF Company',
+		description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
 	},
 	{
-	  name: 'Michael Johnson',
-	  destination: 'Head of Sales at DEF Company',
-	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+		name: 'Michael Johnson',
+		destination: 'Head of Sales at DEF Company',
+		description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
 	},
 	{
-	  name: 'Michael Johnson',
-	  destination: 'Head of Sales at DEF Company',
-	  description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+		name: 'Michael Johnson',
+		destination: 'Head of Sales at DEF Company',
+		description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
 	},
 	// Add more testimonials as needed
-  ];
-  
+];

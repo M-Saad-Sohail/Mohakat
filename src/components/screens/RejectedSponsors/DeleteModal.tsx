@@ -8,6 +8,7 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 interface DeleteModalProps {
 	openModal: boolean | undefined;
 	onClose: () => void;
+	deleteService: (key: any, id: string) => Promise<void>;
 	id: string;
 	deleteAll: boolean;
 	resetData: any;
@@ -15,21 +16,24 @@ interface DeleteModalProps {
 const DeleteModal = ({
 	openModal,
 	onClose,
+	deleteService,
 	id,
 	deleteAll,
 	resetData,
 }: DeleteModalProps) => {
 	const [showTable, setShowTable] = useState(openModal);
-	const handleDelete = async () => {
-		const user = getUserFromLocalStorage();
+	const user = getUserFromLocalStorage();
+
+	const handleDelete = async (key: string, id: string) => {
 		if (!user) return;
-		await RejectDelete(user.key, id);
+		// await RejectDelete(user.key, id);
+		await deleteService(user.key, id);
 		onClose();
 		resetData();
 	};
 
 	const handleDeleteAll = async () => {
-		const user = getUserFromLocalStorage();
+		// const user = getUserFromLocalStorage();
 		if (!user) return;
 		await RejectDeleteAll(user.key);
 		onClose();
@@ -80,7 +84,19 @@ const DeleteModal = ({
 						</button>
 						<button
 							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary"
-							onClick={deleteAll ? handleDeleteAll : handleDelete}
+							onClick={() => {
+								if (deleteAll) {
+									handleDeleteAll();
+								} else {
+									const user = getUserFromLocalStorage();
+									if (user) {
+										handleDelete(user.key, id);
+									} else {
+										// Handle the case where user is null
+										console.error('User data not found.');
+									}
+								}
+							}}
 						>
 							Delete Records
 						</button>

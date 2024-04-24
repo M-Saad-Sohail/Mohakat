@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { use, useMemo, useState } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { reject, approved, delete_icon } from '@/assests';
 import NoData from '../NoData';
@@ -7,6 +7,8 @@ import {
 	ApprovedSponsor,
 	RejectSponsor,
 	RejectDeleteAll,
+	DeleteFamily,
+	RejectDelete,
 } from '@/hooks/useSponsorTables';
 import { getLastNameFromPathname, getUserFromLocalStorage } from '@/utils/auth';
 import Image from 'next/image';
@@ -18,15 +20,18 @@ import Pagination from './Pagination';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useTranslations } from 'next-intl';
+import { FaEye } from 'react-icons/fa';
+import ViewModal from '../Modals/ViewModal';
 
 interface IProps {
 	data: any;
 	columns: any;
 	search?: boolean;
 	setData?: any;
+	tableName?: string;
 }
 
-function Table({ columns, data, search, setData }: IProps) {
+function Table({ columns, data, search, setData, tableName }: IProps) {
 	const t = useTranslations();
 
 	const tableColumns = useMemo(() => {
@@ -80,6 +85,8 @@ function Table({ columns, data, search, setData }: IProps) {
 	const [openModal, setOpenModal] = useState(false);
 	const [deleteAll, setDeleteAll] = useState(false);
 	const [id, setId] = useState('');
+	const [viewModal, setViewModal] = useState(false);
+	const [editId, setEditId] = useState('');
 
 	const pathName = usePathname();
 	const value = getLastNameFromPathname(pathName ?? '');
@@ -132,7 +139,7 @@ function Table({ columns, data, search, setData }: IProps) {
 								return (
 									<th
 										{...column.getHeaderProps()}
-										className={`py-3 px-7 mobile:px-3 mobile:py-2 text-[15px] mobile:text-sm text-white font-medium font-sans bg-primary ${
+										className={`py-3 px-7 mobile:px-3 mobile:py-2 text-[15px] text-center mobile:text-sm text-white font-medium font-sans bg-primary ${
 											column.Header === t('Table.Header.Sno') ||
 											column.Header === t('Table.Header.Action')
 												? 'w-[10%]' // Set narrower width for S.NO and Action columns
@@ -144,12 +151,12 @@ function Table({ columns, data, search, setData }: IProps) {
 									>
 										{column.Header === t('Table.Header.Sno') ||
 										column.Header === t('Table.Header.Action') ? (
-											<div className="flex gap-x-2">
+											<div className="flex gap-x-2 justify-center">
 												<TableIcon show={false} /> {/* Your icon component */}
 												<div className="ml-2">{column.render('Header')}</div>
 											</div>
 										) : (
-											<div className="flex gap-x-2">
+											<div className="flex gap-x-2 justify-center">
 												<TableIcon show={true} src={column.Header} />{' '}
 												{/* Your icon component */}
 												<div className="ml-2">{column.render('Header')}</div>
@@ -209,7 +216,28 @@ function Table({ columns, data, search, setData }: IProps) {
 															setOpenModal(true);
 														}}
 													>
-														<Image src={delete_icon} alt="" />
+														<FaEye />
+													</button>
+												</td>
+											);
+										}
+										if (cell.column.id === 'view') {
+											return (
+												<td
+													{...cell.getCellProps()}
+													key={cell.id}
+													className="py-3 font-sans text-base font-normal text-center text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
+												>
+													<button
+														onClick={() => {
+															console.log('ID -> ', row.original._id);
+															setEditId(row.original._id);
+															console.log('edit ID -> ', editId);
+															setViewModal(true);
+															console.log('in edit');
+														}}
+													>
+														<FaEye />
 													</button>
 												</td>
 											);
@@ -228,7 +256,7 @@ function Table({ columns, data, search, setData }: IProps) {
 												<td
 													key={cell.id}
 													{...cell.getCellProps()}
-													className="py-3 px-7 mobile:p-3 text-black font-sans font-normal text-[14px] text-start"
+													className="py-3 px-7 mobile:p-3 text-black font-sans font-normal text-[14px] text-center"
 												>
 													{cell.render('Cell')}
 												</td>
@@ -270,6 +298,9 @@ function Table({ columns, data, search, setData }: IProps) {
 
 			{/* Modal */}
 			<DeleteModal
+				deleteService={
+					tableName === 'familySponser' ? DeleteFamily : RejectDelete
+				}
 				openModal={openModal}
 				id={deleteId}
 				onClose={() => {
@@ -289,6 +320,15 @@ function Table({ columns, data, search, setData }: IProps) {
 						setData(updatedData);
 					}
 				}}
+			/>
+
+			{/* view modal */}
+			<ViewModal
+				openModal={viewModal}
+				onClose={() => {
+					setViewModal(false);
+				}}
+				id={editId}
 			/>
 		</>
 	);

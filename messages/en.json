@@ -189,6 +189,13 @@
 			"save_changes": "Save Changes"
 		}
 	},
+	"UpdateFamily": {
+		"form": {
+			"title": "Update Family",
+			"submit": "Family update successfully",
+			"delete": "Delete"
+			} 
+	},
 	"AddFamilies": {
 		"title": "Families",
 		"description": "When families receive sponsorship, they gain access to essential resources and support, improving their quality of life. Donations are utilized to provide food, shelter, education, and medical assistance.",
@@ -202,6 +209,9 @@
 			"title": "Add Family",
 			"section1": "Personal Information",
 			"section2": "Change Password",
+			"titleForUpdate": "Update Family",
+			"submitForUpdate": "Family update successfully",
+			"delete": "Delete",
 			"name": {
 				"title": "Name"
 			},
@@ -304,6 +314,7 @@
 		"verified": "Verified",
 		"dashboard": "Dashboard",
 		"families": "Families",
+		"ManageFamilyPage": "Manage Families",
 		"settings": "Settings",
 		"logout": "Logout",
 		"sponsor": {
@@ -360,6 +371,9 @@
 	"Families": {
 		"title": "Families"
 	},
+	"ManageFamilies": {
+		"title": "Manage Families"
+	},
 	"ApprovedSponsors": {
 		"title": "Approved Sponsors"
 	},
@@ -380,7 +394,12 @@
 			"Email": "Email",
 			"Language": "Language",
 			"Action": "Action",
-			"Role": "Role"
+			"Role": "Role",
+			"BreadWinnerName": "Bread Winner Name",
+			"IdNumber": "ID number",
+			"MartyrInFamily": "Martyr In Family",
+			"NumberOfFamilyMember": "Number Of Family Members",
+			"Id": "Unique ID"
 		}
 	},
 	"Dashboard": {

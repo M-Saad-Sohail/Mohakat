@@ -85,6 +85,52 @@ export const AddFamiliesSchema = object({
 	familyMemberDetail: array().required('Family member detail is required'),
 });
 
+export const UpdateFamilySchema = object({
+	// breadWinnerName: string().required('Breadwinner name is required'),
+	breadWinnerNameEn: string().required(
+		'Breadwinner name (English) is required',
+	),
+	breadWinnerNameTr: string().required(
+		'Breadwinner name (Turkish) is required',
+	),
+	breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
+	// description: string().required('Description is required'),
+	descriptionEn: string(),
+	descriptionTr: string(),
+	descriptionAr: string(),
+	maritalStatus: string(),
+	email: string()
+		.email('Invalid email address')
+		.required('Email address is required'),
+	gender: string().required('Gender is required'),
+	age: number()
+		.positive('Age must be a positive number')
+		.integer('Age must be an integer')
+		.required('Age is required'),
+	dateOfBirth: string().required('Date of birth is required'),
+	language: string().required('Language is required'),
+	areaOfPreviousResidence: string().required(
+		'Previous residence area is required',
+	),
+	areaOfCurrentResidence: string().required(
+		'Current residence area is required',
+	),
+	numberOfFamilyMembers: number()
+		.min(0, 'Number of family members must be positive or zero')
+		.required('Number of family members is required'),
+	lossesInWar: string().required('Losses in war is required'),
+	numberOfMartyrInFamily: number()
+		.min(0, 'Number of martyrs in family must be positive or zero')
+		.required('Number of martyrs in family is required'),
+	numberOfInfectedInFamily: number()
+		.min(0, 'Number of infected in family must be positive or zero')
+		.required('Number of infected in family is required'),
+	telephoneNumber: number().required('Telephone number is required'),
+	idNumber: number().required('ID number is required'),
+	currentSituation: string().required('Current situation is required'),
+	familyMemberDetail: array().required('Family member detail is required'),
+});
+
 export const updateProfileSchema = object({
 	name: string().required('Name is Required'),
 	email: string().required('Email is Required'),
