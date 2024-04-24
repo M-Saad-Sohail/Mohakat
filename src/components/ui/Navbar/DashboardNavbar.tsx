@@ -39,25 +39,19 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 	return (
 		<>
 			<div dir={dir} className="flex w-full py-2">
-				<h2 className="text-black text-[32px] ps-4 flex items-center w-full my-4 font-bold">
+				<h2 className="text-black text-[32px] md:pl-4 pl-2 flex items-center w-full my-4 font-bold">
 					{title}
 				</h2>
 
-				<div className={`items-center  flex float-right w-full justify-end`}>
-					{/* <Image
-						src={language} // Replace with the path to the user profile image
-						alt={''}
-						className="w-8 h-8 mx-2 rounded-full"
-						style={{ filter: 'invert(100%)' }}
-					/> */}
+				<div className={` flex w-full items-center justify-end md:gap-6 gap-2 md:pr-4 pr-2`}>
 					<div
-						className="mr-2 text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 rounded-full p-2"
+						className=" text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 rounded-full"
 						onClick={() => redirectToHomePage()}
 					>
 						<FaHome />
 					</div>
 					{user?.role === 'user' && (
-						<div className="flex items-center gap-6">
+						<>
 							<div
 								className=" relative cursor-pointer"
 								onClick={() => setIsCartOpen(true)}
@@ -77,26 +71,16 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 									{currencyState?.key}
 								</p>
 							</div>
-							<CurrencyModal
-								open={currencyModalOpen}
-								setOpen={setCurrencyModalOpen}
-								cancelButtonRef={cancelCurrencyModalButtonRef}
-							/>
-						</div>
+						</>
 					)}
-					<div dir={dir} className="flex items-center mx-6">
-						{/* <Image
-							src={profile} // Replace with the path to the user profile image
-							alt={''}
-							className="w-10 h-10 mx-2 rounded-full"
-						/> */}
-						{/* <p className="text-black text-[16px]">
-							{user ? user.name.toUpperCase() : ''}
-						</p> */}
-					</div>
 				</div>
 			</div>
 			<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+			<CurrencyModal
+				open={currencyModalOpen}
+				setOpen={setCurrencyModalOpen}
+				cancelButtonRef={cancelCurrencyModalButtonRef}
+			/>
 		</>
 	);
 };
