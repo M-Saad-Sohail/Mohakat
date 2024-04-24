@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { logo } from '@/assests';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
@@ -16,6 +16,7 @@ import { TbBasketDollar } from 'react-icons/tb';
 import CurrencySelector from '../CurrencySelector';
 import LangSelector from '../LangSelector';
 import { useSelector } from 'react-redux';
+import CurrencyModal from '../Modals/CurrencyModal';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -27,6 +28,9 @@ const MobileNavbar = ({
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [active, setActive] = useState(false);
+	const [currencyModalOpen, setCurrencyModalOpen] = useState(false);
+	const cancelCurrencyModalButtonRef = useRef(null);
+	const currencyState = useSelector((state: any) => state.currency);
 
 	const t = useTranslations('Navbar');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
@@ -56,7 +60,7 @@ const MobileNavbar = ({
 					{/* logo */}
 
 					<Link href={url('/')}>
-					<Image className="mx-2 h-12 w-12" src={logo} alt="" />
+						<Image className="mx-2 h-12 w-12" src={logo} alt="" />
 					</Link>
 
 					{/* icons */}
@@ -71,20 +75,29 @@ const MobileNavbar = ({
 									handleChange={changeLocale}
 									className=" justify-center w-8 h-8"
 								/>
-								<CurrencySelector />
+								<div
+									className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
+									onClick={() => setCurrencyModalOpen((prev) => !prev)}
+								>
+									<p
+										className={` md:text-sm text-[10px] text-black font-bold uppercase`}
+									>
+										{currencyState?.key}
+									</p>
+								</div>
 							</>
 						)}
 						{user?.role === 'user' && (
-						<div
-							className=" relative cursor-pointer"
-							onClick={() => setIsCartOpen(true)}
-						>
-							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
-								{cartItems.length > 0 ? cartItems.length : '0'}
-							</span>
-							<TbBasketDollar className=" text-[40px]" />
-						</div>
-					)}
+							<div
+								className=" relative cursor-pointer"
+								onClick={() => setIsCartOpen(true)}
+							>
+								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+									{cartItems.length > 0 ? cartItems.length : '0'}
+								</span>
+								<TbBasketDollar className=" text-[40px]" />
+							</div>
+						)}
 						<Image
 							onClick={() => {
 								setActive((prev) => !prev);
@@ -125,6 +138,11 @@ const MobileNavbar = ({
 					</div>
 				</div>
 			</div>
+			<CurrencyModal
+				open={currencyModalOpen}
+				setOpen={setCurrencyModalOpen}
+				cancelButtonRef={cancelCurrencyModalButtonRef}
+			/>
 		</>
 	);
 };

@@ -82,7 +82,7 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` flex flex-col justify-between transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[500px] `}
+									className={` flex flex-col justify-between transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[500px] w-full`}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full px-5 py-4 border-b">
