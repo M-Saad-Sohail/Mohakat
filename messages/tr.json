@@ -456,5 +456,10 @@
 		"Worst": "En Kötü",
 		"worst": "En Kötü",
 		"Urgently Needed": "Acil Olarak Gerekli"
-	}
+	},
+	"LangSelect": {
+		"English": "İngilizce",
+		"Arabic": "Arapça",
+		"Turkish": "Türkçe"
+	}	
 }

@@ -481,5 +481,10 @@
 		"Worst": "Worst",
 		"worst": "Worst",
 		"Urgently Needed": "Urgently Needed"
+	},
+	"LangSelect": {
+		"English": "English",
+		"Arabic": "Arabic",
+		"Turkish": "Turkish"
 	}
 }
