@@ -73,8 +73,46 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 
 	const t = useTranslations('AddFamilies.form');
 
+	useEffect(() => {
+		if (user) {
+			fetchFamilyDetails(user.key, id)
+				.then((familySponsor) => {
+					console.log('Family Sponsor:', familySponsor);
+				})
+				.catch((error) => {
+					console.error('Error fetching family details:', error);
+				});
+		}
+	}, [id]);
+
+
 	const UpdateFamilyForm = useFormik({
-		initialValues: UpdateFamilyValues,
+		initialValues: {
+			breadWinnerName: {},
+			breadWinnerNameEn: '',
+			breadWinnerNameTr: '',
+			breadWinnerNameAr: '',
+			description: {},
+			descriptionEn: '',
+			descriptionTr: '',
+			descriptionAr: '',
+			maritalStatus: '',
+			email: familySponsor ? familySponsor.email : '',
+			gender: '',
+			age: '',
+			dateOfBirth: '',
+			language: '',
+			areaOfPreviousResidence: '',
+			areaOfCurrentResidence: '',
+			numberOfFamilyMembers: '',
+			lossesInWar: '',
+			numberOfMartyrInFamily: '',
+			numberOfInfectedInFamily: '',
+			telephoneNumber: '',
+			idNumber: '',
+			currentSituation: '',
+			familyMemberDetail: [],
+		},
 		// validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
 			const response = {
@@ -151,26 +189,13 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 			(sponsor: any) => sponsor._id === id,
 		);
 		setFamilySponsor(family_Sponsor);
+		console.log("🚀 ~ fetchFamilyDetails ~ family_Sponsor:", family_Sponsor)
+		// UpdateFamilyForm.setValues({email: family_Sponsor.email, breadWinnerNameTr: family_Sponsor?.breadWinnerName?.inTurkish})
+		if (family_Sponsor)
+		UpdateFamilyForm.setValues(family_Sponsor)
 		return family_Sponsor;
 	};
 
-	useEffect(() => {
-		if (user) {
-			fetchFamilyDetails(user.key, id)
-				.then((familySponsor) => {
-					console.log('Family Sponsor:', familySponsor);
-				})
-				.catch((error) => {
-					console.error('Error fetching family details:', error);
-				});
-		}
-	}, [id]);
-
-	useEffect(() => {
-		if (familySponsor) {
-			setAge(familySponsor.age);
-		}
-	}, [familySponsor]);
 
 	return (
 		<div className="text-black ">
@@ -227,11 +252,7 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 											title={'In Turkish *'}
 											name="breadWinnerNameTr"
 											className="mb-[19px] min-w-[250px]"
-											value={
-												familySponsor
-													? familySponsor.breadWinnerName.inTurkish
-													: ''
-											}
+											value={UpdateFamilyForm.values.breadWinnerNameTr}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
 									</div>
@@ -258,8 +279,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									title={`${t('email.title')} *`}
 									name="email"
 									className="mb-[5px] min-w-[460px]"
-									value={familySponsor ? familySponsor.email : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.email}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 							<div>
@@ -366,6 +387,7 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="descriptionEn"
 									className="mb-[10px] min-w-[250px]"
 									value={familySponsor ? familySponsor.descriptionEn : ''}
+									onChange={UpdateFamilyForm.handleChange}
 									// onChange={UpdateFamilyForm.handleChange}
 								/>
 								<Input

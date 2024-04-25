@@ -45,6 +45,7 @@ const Input: React.FC<IProps> = ({
 			{type === 'password' ? (
 				<div className="relative w-full h-[50px]">
 					<input
+						
 						autoComplete="off"
 						placeholder={placeholder}
 						onChange={onChange}
