@@ -2,43 +2,31 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { close_icon } from '@/assests';
 import Image from 'next/image';
-import { RejectDelete, RejectDeleteAll } from '@/hooks/useSponsorTables';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import { DeleteFamily } from '@/hooks/useSponsorTables';
 
-interface DeleteModalProps {
+interface DeleteFamilyModalProps {
 	openModal: boolean | undefined;
 	onClose: () => void;
-	deleteService: (key: any, id: string) => Promise<void>;
+	onDelete: () => void;
 	id: string;
-	deleteAll?: boolean;
-	resetData?: any;
 }
-const DeleteModal = ({
+const DeleteFamilyModal = ({
 	openModal,
 	onClose,
-	deleteService,
+	onDelete,
 	id,
-	deleteAll,
-	resetData,
-}: DeleteModalProps) => {
+}: DeleteFamilyModalProps) => {
 	const [showTable, setShowTable] = useState(openModal);
 	const user = getUserFromLocalStorage();
 
 	const handleDelete = async (key: string, id: string) => {
 		if (!user) return;
 		// await RejectDelete(user.key, id);
-		await deleteService(user.key, id);
+		await DeleteFamily(user.key, id);
 		onClose();
-		resetData();
 	};
 
-	const handleDeleteAll = async () => {
-		// const user = getUserFromLocalStorage();
-		if (!user) return;
-		await RejectDeleteAll(user.key);
-		onClose();
-		resetData();
-	};
 	return (
 		<div className="text-black ">
 			<Modal
@@ -57,7 +45,7 @@ const DeleteModal = ({
 				<div className="overflow-hidden rounded-md ">
 					<div className="flex items-center justify-between px-4 bg-primary">
 						<h1 className="flex items-center justify-center my-4 text-xl font-bold text-white uppercase">
-							Delete Records
+							Delete Family?
 						</h1>
 						<Image
 							src={close_icon}
@@ -73,7 +61,7 @@ const DeleteModal = ({
 						Are you sure?
 					</h1>
 					<h4 className="text-base my-4 text-[#001F12] justify-center text-center items-center flex ">
-						After deleting records you won’t be able to <br /> recover them.
+						After deleting family you won’t be able to <br /> recover it.
 					</h4>
 					<div className="flex items-center justify-center mt-4 gap-x-4">
 						<button
@@ -85,8 +73,8 @@ const DeleteModal = ({
 						<button
 							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary"
 							onClick={() => {
-								if (deleteAll) {
-									handleDeleteAll();
+								if (user) {
+									handleDelete(user.key, id);
 								} else {
 									const user = getUserFromLocalStorage();
 									if (user) {
@@ -98,7 +86,7 @@ const DeleteModal = ({
 								}
 							}}
 						>
-							Delete Records
+							Delete Family
 						</button>
 					</div>
 				</div>
@@ -107,4 +95,4 @@ const DeleteModal = ({
 	);
 };
 
-export default DeleteModal;
+export default DeleteFamilyModal;

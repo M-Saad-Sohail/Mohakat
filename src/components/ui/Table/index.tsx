@@ -226,7 +226,7 @@ function Table({ columns, data, search, setData, tableName }: IProps) {
 												<td
 													{...cell.getCellProps()}
 													key={cell.id}
-													className="py-3 font-sans text-base font-normal text-center text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
+													className="py-3 font-sans text-base font-normal text-center md:text-2xl text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
 												>
 													<button
 														onClick={() => {

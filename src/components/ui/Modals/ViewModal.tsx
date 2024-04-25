@@ -4,7 +4,11 @@ import { close_icon } from '@/assests';
 import Image from 'next/image';
 import Input from '@/components/ui//Input';
 import { getUserFromLocalStorage } from '@/utils/auth';
-import { fetchFamiliesData } from '@/hooks/useSponsorTables';
+import {
+	DeleteFamily,
+	RejectDelete,
+	fetchFamiliesData,
+} from '@/hooks/useSponsorTables';
 import Button from '../Button';
 import { useFormik } from 'formik';
 import { UpdateFamilyValues } from '@/contants';
@@ -13,11 +17,15 @@ import { postJson } from '@/api/api.instances';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import Select from '../Select';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
+import DeleteModal from '@/components/screens/RejectedSponsors/DeleteModal';
+import DeleteFamilyModal from './DeleteFamilyModal';
 
 interface ViewModalProps {
 	openModal: boolean | undefined;
 	onClose: () => void;
 	id: any;
+	tableName?: string;
 }
 
 interface FamilyMember {
@@ -31,14 +39,21 @@ interface FamilyMember {
 	memberGender: string;
 }
 
-const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
+const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
+	const [deleteId, setDeleteId] = useState('');
 	const [showTable, setShowTable] = useState(openModal);
 	const [familySponsor, setFamilySponsor] = useState<any>(null);
 	const [updateFamilyData, setUpdateFamilyData] = useState<any[]>([]);
-	const user = getUserFromLocalStorage();
+	const { user } = useLoggedInUser();
 	const [loading, setLoading] = useState<boolean>(false);
+	const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-	const [age, setAge] = useState('');
+	const handleDeleteConfirmed = (id: string) => {
+		setDeleteId(id);
+		setOpenDeleteModal(true);
+		setShowTable(false);
+		onClose();
+	};
 
 	const handleMemberDetailChange = (
 		index: any,
@@ -85,32 +100,45 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 		}
 	}, [id]);
 
-
 	const UpdateFamilyForm = useFormik({
 		initialValues: {
-			breadWinnerName: {},
-			breadWinnerNameEn: '',
-			breadWinnerNameTr: '',
-			breadWinnerNameAr: '',
-			description: {},
-			descriptionEn: '',
-			descriptionTr: '',
-			descriptionAr: '',
-			maritalStatus: '',
+			breadWinnerNameEn: familySponsor
+				? familySponsor.breadWinnerName.inEnglish
+				: '',
+			breadWinnerNameTr: familySponsor
+				? familySponsor.breadWinnerName.inTurkish
+				: '',
+			breadWinnerNameAr: familySponsor
+				? familySponsor.breadWinnerName.inArabic
+				: '',
+			descriptionEn: familySponsor ? familySponsor.description.inEnglish : '',
+			descriptionTr: familySponsor ? familySponsor.description.inTurkish : '',
+			descriptionAr: familySponsor ? familySponsor.description.inArabic : '',
+			maritalStatus: familySponsor ? familySponsor.maritalStatus : '',
 			email: familySponsor ? familySponsor.email : '',
-			gender: '',
-			age: '',
-			dateOfBirth: '',
-			language: '',
-			areaOfPreviousResidence: '',
-			areaOfCurrentResidence: '',
-			numberOfFamilyMembers: '',
-			lossesInWar: '',
-			numberOfMartyrInFamily: '',
-			numberOfInfectedInFamily: '',
-			telephoneNumber: '',
-			idNumber: '',
-			currentSituation: '',
+			gender: familySponsor ? familySponsor.gender : '',
+			age: familySponsor ? familySponsor.age : '',
+			dateOfBirth: familySponsor ? familySponsor.dateOfBirth : '',
+			language: familySponsor ? familySponsor.language : '',
+			areaOfPreviousResidence: familySponsor
+				? familySponsor.areaOfPreviousResidence
+				: '',
+			areaOfCurrentResidence: familySponsor
+				? familySponsor.areaOfCurrentResidence
+				: '',
+			numberOfFamilyMembers: familySponsor
+				? familySponsor.numberOfFamilyMembers
+				: '',
+			lossesInWar: familySponsor ? familySponsor.lossesInWar : '',
+			numberOfMartyrInFamily: familySponsor
+				? familySponsor.numberOfMartyrInFamily
+				: '',
+			numberOfInfectedInFamily: familySponsor
+				? familySponsor.numberOfInfectedInFamily
+				: '',
+			telephoneNumber: familySponsor ? familySponsor.telephoneNumber : '',
+			idNumber: familySponsor ? familySponsor.idNumber : '',
+			currentSituation: familySponsor ? familySponsor.currentSituation : '',
 			familyMemberDetail: [],
 		},
 		// validationSchema: UpdateFamilySchema,
@@ -189,13 +217,11 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 			(sponsor: any) => sponsor._id === id,
 		);
 		setFamilySponsor(family_Sponsor);
-		console.log("🚀 ~ fetchFamilyDetails ~ family_Sponsor:", family_Sponsor)
+		console.log('🚀 ~ fetchFamilyDetails ~ family_Sponsor:', family_Sponsor);
 		// UpdateFamilyForm.setValues({email: family_Sponsor.email, breadWinnerNameTr: family_Sponsor?.breadWinnerName?.inTurkish})
-		if (family_Sponsor)
-		UpdateFamilyForm.setValues(family_Sponsor)
+		if (family_Sponsor) UpdateFamilyForm.setValues(family_Sponsor);
 		return family_Sponsor;
 	};
-
 
 	return (
 		<div className="text-black ">
@@ -238,11 +264,7 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 											title={'In English *'}
 											name="breadWinnerNameEn"
 											className="mb-[19px] min-w-[250px]"
-											value={
-												familySponsor
-													? familySponsor.breadWinnerName.inEnglish
-													: ''
-											}
+											value={UpdateFamilyForm.values.breadWinnerNameEn}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
 									</div>
@@ -261,11 +283,7 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 											title={'In Arabic *'}
 											name="breadWinnerNameAr"
 											className="mb-[19px] min-w-[250px]"
-											value={
-												familySponsor
-													? familySponsor.breadWinnerName.inArabic
-													: ''
-											}
+											value={UpdateFamilyForm.values.breadWinnerNameAr}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
 									</div>
@@ -289,8 +307,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="age"
 									type="number"
 									className="mb-[5px] min-w-[460px]"
-									value={familySponsor ? familySponsor.age : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.age}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -302,8 +320,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="telephoneNumber"
 									type="number"
 									className="mb-[5px] min-w-[460px]"
-									value={familySponsor ? familySponsor.telephoneNumber : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.telephoneNumber}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -313,8 +331,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="idNumber"
 									type="number"
 									className="mb-[5px] min-w-[460px]"
-									value={familySponsor ? familySponsor.idNumber : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.idNumber}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -326,8 +344,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="dateOfBirth"
 									className="mb-[5px] min-w-[460px] "
 									type="date"
-									value={familySponsor ? familySponsor.dateOfBirth : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.dateOfBirth}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -341,8 +359,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('gender.default')}
 									className="mb-[40px] min-w-[460px] mt-[2px] "
-									value={familySponsor ? familySponsor.gender : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.gender}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -357,8 +375,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 										{ label: t('martialstatus.married'), value: 'married' },
 									]}
 									className={` ${UpdateFamilyForm.errors.maritalStatus ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={familySponsor ? familySponsor.maritalStatus : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.maritalStatus}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -373,8 +391,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('language.default')}
 									className={` ${UpdateFamilyForm.errors.language ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={familySponsor ? familySponsor.language : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.language}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -386,23 +404,22 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									title={'In English'}
 									name="descriptionEn"
 									className="mb-[10px] min-w-[250px]"
-									value={familySponsor ? familySponsor.descriptionEn : ''}
+									value={UpdateFamilyForm.values.descriptionEn}
 									onChange={UpdateFamilyForm.handleChange}
-									// onChange={UpdateFamilyForm.handleChange}
 								/>
 								<Input
 									title={'In Turkish'}
 									name="descriptionTr"
 									className="mb-[10px] min-w-[250px]"
-									value={familySponsor ? familySponsor.descriptionTr : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.descriptionTr}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 								<Input
 									title={'In Arabic'}
 									name="descriptionAr"
 									className="mb-[10px] min-w-[250px]"
-									value={familySponsor ? familySponsor.descriptionAr : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.descriptionAr}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -450,10 +467,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('previousresidence.default')}
 									className={` ${UpdateFamilyForm.errors.areaOfPreviousResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={
-										familySponsor ? familySponsor.areaOfPreviousResidence : ''
-									}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.previousresidence}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 							<div>
@@ -498,10 +513,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('currentresidence.default')}
 									className={` ${UpdateFamilyForm.errors.areaOfCurrentResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={
-										familySponsor ? familySponsor.areaOfCurrentResidence : ''
-									}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.currentresidence}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -518,8 +531,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('currentsituation.default')}
 									className={` ${UpdateFamilyForm.errors.currentSituation ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={familySponsor ? familySponsor.currentSituation : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.currentSituation}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -537,8 +550,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									]}
 									defaultValue={t('losesinwar.default')}
 									className={` ${UpdateFamilyForm.errors.lossesInWar ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={familySponsor ? familySponsor.lossesInWar : ''}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.lossesInWar}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -550,10 +563,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="numberOfFamilyMembers"
 									type="number"
 									className="mb-[5px] min-w-[300px]"
-									value={
-										familySponsor ? familySponsor.numberOfFamilyMembers : ''
-									}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.numberOfFamilyMembers}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -563,10 +574,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="numberOfMartyrInFamily"
 									type="number"
 									className="mb-[5px] min-w-[300px]"
-									value={
-										familySponsor ? familySponsor.numberOfMartyrInFamily : ''
-									}
-									// onChange={UpdateFamilyForm.handleChange
+									value={UpdateFamilyForm.values.numberOfMartyrInFamily}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 
@@ -576,10 +585,8 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 									name="numberOfInfectedInFamily"
 									type="number"
 									className="mb-[5px] min-w-[300px]"
-									value={
-										familySponsor ? familySponsor.numberOfInfectedInFamily : ''
-									}
-									// onChange={UpdateFamilyForm.handleChange}
+									value={UpdateFamilyForm.values.numberOfInfectedInFamily}
+									onChange={UpdateFamilyForm.handleChange}
 								/>
 							</div>
 						</div>
@@ -696,13 +703,23 @@ const ViewModal = ({ openModal, onClose, id }: ViewModalProps) => {
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
 							// isLoading={loading}
-							onClick={(e) => {
-								console.log('delete');
-							}}
+							onClick={() => handleDeleteConfirmed(id)}
 						/>
 					</div>
 				</div>
 			</Modal>
+
+			<DeleteFamilyModal
+				openModal={openDeleteModal}
+				id={deleteId}
+				onClose={() => {
+					setOpenDeleteModal(false);
+				}}
+				onDelete={() => {
+					console.log('Delete confirmed for ID:', deleteId);
+					setOpenDeleteModal(false);
+				}}
+			/>
 		</div>
 	);
 };
