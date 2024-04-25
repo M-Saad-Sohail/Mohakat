@@ -24,7 +24,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	const otpBoxReference = useRef<any[]>([]);
 
 	const onSubmit = async (values: { otp: any }) => {
-		const success = await submitHandler(otp.toString().replace(/,/g, ""));
+		const success = await submitHandler(otp.toString().replace(/,/g, ''));
 		if (!success) return;
 		const href = fromGazaMap ? PATHS.DASHBOARD : PATHS.LOGIN;
 		replace(href);
@@ -84,45 +84,40 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 
 	return (
 		<>
-			<form
-				className="my-[80px]"
-				noValidate
-				onSubmit={handleSubmit}
-			>
+			<form className="my-[80px]" noValidate onSubmit={handleSubmit}>
 				<div className="mx-4 flex flex-col justify-center items-center space-y-5">
 					<div>
-						<div className="pt-2  text-4xl font-extrabold leading-normal text-primary">
+						<div className="pt-2 text-2xl  md:text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
 						</div>
 					</div>
 					<div className="flex flex-col  items-center gap-4">
-						<div className='flex items-center gap-4'>
-						{otp.map((digit, index) => (
-							<input
-								key={index}
-								value={digit}
-								maxLength={1}
-								onChange={(e) => handleOtpChange(e.target.value, index)}
-								onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
-								ref={(reference) =>
-									(otpBoxReference.current[index] = reference)
-								}
-								className={`border-2 text-center w-14 h-auto text-[#CF7475] p-3 text-sm font-semibold rounded-md block bg-[#E8E8E8] focus:outline-none appearance-none ${
-									digit ? 'border-filled' : 'border-empty'
-								}`}
-							/>
-						))}
-
+						<div className="flex items-center gap-4">
+							{otp.map((digit, index) => (
+								<input
+									key={index}
+									value={digit}
+									maxLength={1}
+									onChange={(e) => handleOtpChange(e.target.value, index)}
+									onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
+									ref={(reference) =>
+										(otpBoxReference.current[index] = reference)
+									}
+									className={`border-2 text-center w-10 md:w-14 h-auto text-[#CF7475] p-3 text-sm font-semibold rounded-md block bg-[#E8E8E8] focus:outline-none appearance-none ${
+										digit ? 'border-filled' : 'border-empty'
+									}`}
+								/>
+							))}
 						</div>
-					<div className="flex justify-end items-end w-full my-2">
-						<Link
-							href={url(getResendOtpURL())}
-							replace={true}
-							className="text-primary text-right text-[12px] font-bold"
-						>
-							{t('resendOtp')}
-						</Link>
-					</div>
+						<div className="flex justify-end items-end w-full my-2">
+							<Link
+								href={url(getResendOtpURL())}
+								replace={true}
+								className="text-primary text-right text-[12px] font-bold"
+							>
+								{t('resendOtp')}
+							</Link>
+						</div>
 					</div>
 
 					<div className="flex items-center justify-center w-full">
@@ -137,7 +132,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 							type="submit"
 							isLoading={isLoading}
 							className="w-56"
-							Color='#CF7475'
+							Color="#CF7475"
 						/>
 					</div>
 				</div>

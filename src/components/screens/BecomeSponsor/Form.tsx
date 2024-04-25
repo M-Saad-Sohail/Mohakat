@@ -21,7 +21,7 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
-	const { url, replace } = useLocaleRouter();
+	const { url, replace, locale, redirectWithLocale } = useLocaleRouter();
 
 	const onSubmit = async (values: RegisterUserCredentials) => {
 		const { confirmPassword, ...rest } = values;
@@ -32,7 +32,8 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 		if (!success) return;
 		let url = PATHS.VERIFY_OTP;
 		if (fromGazaMap) url += `?from=${encodeURIComponent('gaza_map')}`;
-		replace(url);
+		redirectWithLocale(locale, url);
+		// replace(url);
 	};
 
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
@@ -143,7 +144,10 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 			</form>
 			<div className="text-center text-primary text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
 				{t('cta.0')}
-				<Link className="font-bold text-primary hover:text-black" href={url('/sign-in')}>
+				<Link
+					className="font-bold text-primary hover:text-black"
+					href={url('/sign-in')}
+				>
 					{t('cta.1')}
 				</Link>
 			</div>

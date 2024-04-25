@@ -13,6 +13,7 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { UserType } from '@/state/user/types';
 import UserNotVerifiedError from '@/errors/UserNotVerifiedError';
+import { useRouter } from 'next/navigation';
 
 type IProps = {
 	submitHandler: (arg: UserCredentials) => Promise<UserType | null>;
@@ -21,6 +22,7 @@ type IProps = {
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
 	const { url, locale, redirect, redirectWithLocale } = useLocaleRouter();
+	const router = useRouter();
 
 	const onSubmit = async (values: UserCredentials) => {
 		try {
@@ -36,7 +38,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 			redirectWithLocale(locale, PATHS.DASHBOARD);
 		} catch (error) {
 			if (error instanceof UserNotVerifiedError) {
-				return redirect(PATHS.RESEND_OTP);
+				redirectWithLocale(locale, PATHS.RESEND_OTP);
 			}
 		}
 	};
@@ -97,7 +99,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							type="submit"
 							isLoading={isLoading}
 							className="w-56"
-							Color='#CF7475'
+							Color="#CF7475"
 						/>
 					</div>
 				</div>
