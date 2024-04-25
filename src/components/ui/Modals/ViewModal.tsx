@@ -105,15 +105,11 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 			breadWinnerNameEn: familySponsor
 				? familySponsor.breadWinnerName.inEnglish
 				: '',
-			breadWinnerNameTr: familySponsor
-				? familySponsor.breadWinnerName.inTurkish
-				: '',
-			breadWinnerNameAr: familySponsor
-				? familySponsor.breadWinnerName.inArabic
-				: '',
-			descriptionEn: familySponsor ? familySponsor.description.inEnglish : '',
-			descriptionTr: familySponsor ? familySponsor.description.inTurkish : '',
-			descriptionAr: familySponsor ? familySponsor.description.inArabic : '',
+			breadWinnerNameTr: familySponsor ? familySponsor.breadWinnerNameTr : '',
+			breadWinnerNameAr: familySponsor ? familySponsor.breadWinnerNameAr : '',
+			descriptionEn: familySponsor ? familySponsor.descriptionEn : '',
+			descriptionTr: familySponsor ? familySponsor.descriptionTr : '',
+			descriptionAr: familySponsor ? familySponsor.descriptionAr : '',
 			maritalStatus: familySponsor ? familySponsor.maritalStatus : '',
 			email: familySponsor ? familySponsor.email : '',
 			gender: familySponsor ? familySponsor.gender : '',
