@@ -92,7 +92,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${isTableView ? 'md:h-[500px]' : 'h-[600px] '} h-fit flex flex-col justify-between px-5  py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] w-full `}
+									className={` ${isTableView ? 'md:h-[500px]' : 'h-[590px] '}  flex flex-col justify-between px-5  py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] w-full `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">

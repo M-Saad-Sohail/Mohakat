@@ -12,6 +12,7 @@ import { IoClose } from 'react-icons/io5';
 import Input from '@/components/ui//Input';
 import ModalInput from '../Input/ModalInput';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useSelector } from 'react-redux';
 
 const DonateModal: React.FC<DonateModalType> = ({
 	open,
@@ -22,6 +23,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	setAmount,
 }) => {
 	const { user } = useLoggedInUser();
+	const currencyState = useSelector((state: any) => state.currency);
 	useEffect(() => {
 		DonateForm.setFieldValue('totalAmount', amount);
 	}, [amount]);
@@ -157,7 +159,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 											<div className=" flex justify-between items-center">
 												<h3 className=" text-2xl font-bold">Total</h3>
 												<h3 className=" text-2xl font-bold">
-													${amount ? amount : DonateForm.values?.totalAmount}
+													{currencyState.key}{' '}
+													{amount ? amount : DonateForm.values?.totalAmount}
 												</h3>
 											</div>
 

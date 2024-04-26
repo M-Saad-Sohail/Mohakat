@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SponserMain from '../LandingPage/Sponsers/SponserMain';
 import IntiationMain from '../LandingPage/Intiation/IntiationMain';
 import PartnersSection from '../LandingPage/PartnersSection';
+import TestimonialSlider from '../LandingPage/TestinomialSlider';
 
 interface AboutDataType {
 	heading: string;
@@ -106,6 +107,7 @@ const About = () => {
 				</div>
 				<SponserMain currentPath={currentPath} />
 				<IntiationMain currentPath={currentPath} />
+				<TestimonialSlider />
 				<PartnersSection isAbout={true} />
 			</div>
 		</section>

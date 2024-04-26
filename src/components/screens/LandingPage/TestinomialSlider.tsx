@@ -18,7 +18,7 @@ const TestimonialSlider = () => {
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
-	const currentPath = pathname?.slice(1);
+	const currentPath = pathname?.slice(1, 3);
 	const [testimonialData, setTestimonialData] = useState<Testimonial[]>([]);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
@@ -68,6 +68,7 @@ const TestimonialSlider = () => {
 			);
 		}
 	};
+	console.log(currentPath);
 
 	useEffect(() => {
 		try {
@@ -113,7 +114,7 @@ const TestimonialSlider = () => {
 	return (
 		<section
 			dir={dir}
-			className="md:w-[80%] w-[90%] mx-auto flex flex-col gap-2 "
+			className={`${pathname?.slice(1) === currentPath ? 'md:w-[80%] w-[90%]' : 'w-full'} mx-auto flex flex-col gap-2`}
 		>
 			<Slider {...settings} className=" h-full">
 				{testimonialData.map((testimonial, index) => (
