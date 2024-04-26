@@ -98,7 +98,6 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		}
 	}, [id]);
 
-
 	const UpdateFamilyForm = useFormik({
 		initialValues: {
 			breadWinnerNameEn: '',
@@ -193,19 +192,19 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		},
 	});
 
-
 	useEffect(() => {
 		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
-			const newMembers = new Array(UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length).fill({
+			const newMembers = new Array(
+				UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length,
+			).fill({
 				memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
 				memberAge: '',
 				MemberIdNumber: '',
-				memberGender: ''
+				memberGender: '',
 			});
 			setFamilyMembers(familyMembers.concat(newMembers));
 		}
 	}, [UpdateFamilyForm.values.numberOfFamilyMembers]);
-
 
 	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
@@ -267,7 +266,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 					<div className="m-5 flex-col justify-center items-center">
 						<div className=" w-full gap-x-4">
 							<div className=" flex flex-col gap-3">
-								<h3 className=" text-sm font-bold">Bread Winner Name</h3>
+								<h3 className=" text-sm font-bold">{`${t('BreadWinnerName.title')} *`}</h3>
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Input
@@ -408,7 +407,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 						</div>
 
 						<div className=" flex flex-col gap-3">
-							<h3 className=" text-sm font-bold">Comment</h3>
+							<h3 className=" text-sm font-bold">{`${t('comment.title')} *`}</h3>
 							<div className="flex items-start justify-start w-full gap-x-4">
 								<Input
 									title={'In English'}
@@ -603,11 +602,11 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 
 						{/* TODO::FIX */}
 						<div className="flex flex-col gap-3">
-							<h3 className="text-sm font-bold">Family Member Details</h3>
+							<h3 className="text-sm font-bold">{`${t('familyMemberDetails.title')} *`}</h3>
 							{familyMembers.map((member: any, i: any) => (
 								<div key={i} className="flex flex-col gap-3">
 									<div>
-										<h3 className="text-sm font-bold">Name</h3>
+										<h3 className="text-sm font-bold">{`${t('name.title')} *`}</h3>
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
@@ -640,7 +639,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title="Age"
+											title={`${t('age.title')} *`}
 											className="mb-[5px] min-w-[300px]"
 											type="number"
 											value={member.memberAge}
@@ -653,7 +652,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 											}
 										/>
 										<Input
-											title="Member ID Number"
+											title={`${t('memberIdNumber.title')} *`}
 											className="mb-[5px] min-w-[300px]"
 											type="number"
 											value={member.MemberIdNumber}
@@ -666,7 +665,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 											}
 										/>
 										<Select
-											title="Gender"
+											title={`${t('gender.title')} *`}
 											name="memberGender"
 											options={[
 												{ label: 'Male', value: 'male' },

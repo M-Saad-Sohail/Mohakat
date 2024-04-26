@@ -210,7 +210,7 @@
 			"section1": "Personal Information",
 			"section2": "Change Password",
 			"titleForUpdate": "Update Family",
-			"submitForUpdate": "Family update successfully",
+			"submitForUpdate": "Family updated successfully",
 			"delete": "Delete",
 			"BreadWinnerName": {
 				"title": "Beard Winner Name"
