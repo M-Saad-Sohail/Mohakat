@@ -150,7 +150,7 @@ const FamilyForm = () => {
 
 				{/* first */}
 				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold"> {t("BreadWinnerName.title")} </h3>
+					<h3 className=" text-sm font-bold"> {t('BreadWinnerName.title')} </h3>
 					<div className="flex items-start justify-start w-full gap-x-4">
 						<div>
 							<Input
@@ -418,7 +418,7 @@ const FamilyForm = () => {
 
 				{/* COMMENT  */}
 				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold"> {t("comment.title")}</h3>
+					<h3 className=" text-sm font-bold"> {t('comment.title')}</h3>
 					<div className="flex items-start justify-start w-full gap-x-4">
 						<Input
 							title={'In English'}

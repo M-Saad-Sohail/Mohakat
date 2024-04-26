@@ -199,6 +199,9 @@
 			"all_fields": "Tüm alanlar zorunludur",
 			"submit": "Aile Başarıyla Eklendi",
 			"title": "Aile Ekle",
+			"titleForUpdate": "Aileyi Güncelle",
+			"submitForUpdate": "Aile başarıyla güncellendi",
+			"delete": "Silmek",
 			"name": {
 				"title": "İsim"
 			},
@@ -213,6 +216,9 @@
 			},
 			"age": {
 				"title": "Yaş"
+			},
+			"memberIdNumber":{
+				"title": "Üye Kimlik Numarası"
 			},
 			"gender": {
 				"title": "Cinsiyet"
@@ -300,6 +306,9 @@
 				"turkish": "Türkçe",
 				"default": "Dili Seçin"
 			},
+			"familyMemberDetails": {
+				"title": "Aile Üyesi Detayları"
+			},
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
@@ -341,6 +350,7 @@
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",
 		"families": "Aileler",
+		"ManageFamilyPage": "Aileleri Yönet",
 		"settings": "Ayarlar",
 		"logout": "Çıkış",
 		"sponsor": {
@@ -363,6 +373,9 @@
 	"Families": {
 		"title": "Aileler"
 	},
+	"ManageFamilies": {
+		"title": "Aileleri Yönet"
+	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
 	},
@@ -380,7 +393,12 @@
 			"Email": "Email",
 			"Language": "Language",
 			"Action": "Action",
-			"Role": "Rol"
+			"Role": "Rol",
+			"BreadWinnerName": "Ekmek Kazananının Adı",
+			"IdNumber": "kimlik Numarası",
+			"MartyrInFamily": "Aile İçinde Şehit",
+			"NumberOfFamilyMember": "Aile Üyesi Sayısı",
+			"Id": "Benzersiz kimlik"
 		}
 	},
 	"Dashboard": {

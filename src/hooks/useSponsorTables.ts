@@ -151,8 +151,12 @@ export const DeleteFamily = async (token: string, id: string) => {
 				Authorization: `${token}`,
 			},
 		});
+		if (response.status !== 201) {
+            throw new Error('Failed to delete the family');
+        }
 		return response.data;
 	} catch (error) {
+		console.error('Deletion error:', error);
 		throw error;
 	}
 };

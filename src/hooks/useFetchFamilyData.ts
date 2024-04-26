@@ -41,6 +41,17 @@ const useFetchFamilyData = (apiHandler: Apihandler) => {
         }
     }, [apiHandler]);
 
+    const refetch = useCallback(async () => {
+        const user = getUserFromLocalStorage();
+        if (!user) return;
+
+        const result = await fetchFamiliesData();
+        setData(result);
+    }, [fetchFamiliesData]);
+
+    useEffect(() => {
+        refetch();
+    }, [refetch]);
     const init = useCallback(async () => {
         const result = await fetchFamiliesData();
         setData(result);
@@ -50,7 +61,7 @@ const useFetchFamilyData = (apiHandler: Apihandler) => {
         init();
     }, [init]);
 
-    return { data, setData, isLoading }
+    return { data, isLoading, refetch }
 };
 
 export default useFetchFamilyData;
