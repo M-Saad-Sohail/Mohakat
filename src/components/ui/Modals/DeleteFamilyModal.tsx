@@ -4,6 +4,8 @@ import { close_icon } from '@/assests';
 import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { DeleteFamily } from '@/hooks/useSponsorTables';
+import { toast } from 'react-toastify';
+import { useTranslations } from 'next-intl';
 
 interface DeleteFamilyModalProps {
 	openModal: boolean | undefined;
@@ -19,12 +21,26 @@ const DeleteFamilyModal = ({
 }: DeleteFamilyModalProps) => {
 	const [showTable, setShowTable] = useState(openModal);
 	const user = getUserFromLocalStorage();
+	const t = useTranslations('DeleteFamily');
 
 	const handleDelete = async (key: string, id: string) => {
 		if (!user) return;
-		// await RejectDelete(user.key, id);
-		await DeleteFamily(user.key, id);
-		onClose();
+		try {
+			await DeleteFamily(user.key, id);
+			toast.success(`${t('family_deleted_successfully')}`, {
+				toastId: 'delete-success',
+				position: 'bottom-right',
+				autoClose: 4000,
+			});
+			onClose();
+		} catch {
+			toast.error(`${t('deletion_failed')}`, {
+				toastId: 'delete-error',
+				position: 'bottom-right',
+				autoClose: 4000,
+			});
+		}
+
 	};
 
 	return (

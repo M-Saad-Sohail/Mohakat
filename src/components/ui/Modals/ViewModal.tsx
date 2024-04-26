@@ -13,7 +13,7 @@ import Button from '../Button';
 import { useFormik } from 'formik';
 import { UpdateFamilyValues } from '@/contants';
 import { UpdateFamilySchema } from '@/utils/validationSchema';
-import { postJson } from '@/api/api.instances';
+import { postJson, putJson } from '@/api/api.instances';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import Select from '../Select';
@@ -90,7 +90,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 
 	useEffect(() => {
 		if (user) {
-			fetchFamilyDetails(user.key, id)
+			fetchFamilyDetails(id)
 				.then((familySponsor) => {
 					console.log('Family Sponsor:', familySponsor);
 				})
@@ -176,10 +176,9 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 			try {
 				setLoading(true);
 				console.log('1');
-				const res = await postJson(
+				const res = await putJson(
 					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/update-family/${id}`,
 					response,
-					user?.key,
 				);
 				console.log('????', response);
 				if (res.success) {
@@ -205,7 +204,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		},
 	});
 
-	const fetchFamilyDetails = async (key: string, id: string) => {
+	const fetchFamilyDetails = async ( id: string) => {
 		if (!user) return;
 
 		const familyData = await fetchFamiliesData(user.key);
