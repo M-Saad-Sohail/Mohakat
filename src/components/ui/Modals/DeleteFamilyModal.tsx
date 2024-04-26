@@ -12,12 +12,14 @@ interface DeleteFamilyModalProps {
 	onClose: () => void;
 	onDelete: () => void;
 	id: string;
+	onTableRefresh: () => void;
 }
 const DeleteFamilyModal = ({
 	openModal,
 	onClose,
 	onDelete,
 	id,
+	onTableRefresh
 }: DeleteFamilyModalProps) => {
 	const [showTable, setShowTable] = useState(openModal);
 	const user = getUserFromLocalStorage();
@@ -33,6 +35,7 @@ const DeleteFamilyModal = ({
 				autoClose: 4000,
 			});
 			onClose();
+			onTableRefresh();
 		} catch {
 			toast.error(`${t('deletion_failed')}`, {
 				toastId: 'delete-error',
@@ -112,3 +115,5 @@ const DeleteFamilyModal = ({
 };
 
 export default DeleteFamilyModal;
+
+
