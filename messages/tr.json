@@ -202,6 +202,12 @@
 			"name": {
 				"title": "İsim"
 			},
+			"BreadWinnerName": {
+				"title": "Aile Geçimini Sağlayanın Adı"
+			},
+			"comment": {
+				"title": "Yorum"
+			},
 			"email": {
 				"title": "E-posta"
 			},

@@ -212,6 +212,12 @@
 			"titleForUpdate": "Update Family",
 			"submitForUpdate": "Family update successfully",
 			"delete": "Delete",
+			"BreadWinnerName": {
+				"title": "Beard Winner Name"
+			},
+			"comment": {
+				"title": "Comment"
+			},
 			"name": {
 				"title": "Name"
 			},

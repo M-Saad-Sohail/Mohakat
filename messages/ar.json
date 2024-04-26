@@ -202,6 +202,12 @@
 			"email": {
 				"title": "البريد الإلكتروني"
 			},
+			"BreadWinnerName": {
+				"title": "اسم رب العائلة"
+			},
+			"comment": {
+				"title": "ملاحظات اخرى"
+			},
 			"name": {
 				"title": "اسم"
 			},
@@ -270,11 +276,11 @@
 				"default": "اختر الإقامة الحالية"
 			},
 			"currentsituation": {
-				"title": "الحالة الحالية",
-				"bad": "سيئة",
-				"good": "جيدة",
-				"worst": "الأسوأ",
-				"urgentneeded": "هناك حاجة ماسة",
+				"title": "حالة البيت الحالية",
+				"bad": "تدمير كلي",
+				"good": "تدمير جزئي",
+				"worst": "سليم",
+				"urgentneeded": "مستأجر",
 				"default": "اختر الحالة الحالية"
 			},
 			"losesinwar": {
