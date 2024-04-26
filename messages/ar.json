@@ -195,6 +195,7 @@
 		"situation": "وضع",
 		"no_of_member": "عدد الأعضاء",
 		"form": {
+			"formTitle": "تحرير تفاصيل العائلة",
 			"fill_form_correctly": "املأ النموذج بشكل صحيح",
 			"all_fields": "جميع الحقول مطلوبة",
 			"submit": "تمت إضافة العائلة بنجاح",
@@ -216,6 +217,9 @@
 			},
 			"age": {
 				"title": "العمر"
+			},
+			"memberIdNumber":{
+				"title": "رقم هوية العضو"
 			},
 			"gender": {
 				"title": "الجنس"
@@ -302,6 +306,9 @@
 				"english": "الإنجليزية",
 				"turkish": "التركية",
 				"default": "اختر اللغة"
+			},
+			"familyMemberDetails": {
+				"title": "تفاصيل أفراد العائلة"
 			},
 			"save_changes": "حفظ التغييرات"
 		}
@@ -479,5 +486,8 @@
 		"English": "الإنجليزية",
 		"Arabic": "العربية",
 		"Turkish": "التركية"
-	}	
+	},	
+	"editFamilyModal":{
+		"title": "تحرير تفاصيل العائلة"
+	}
 }

@@ -203,6 +203,7 @@
 		"situation": "Situation",
 		"no_of_member": "No. of Members",
 		"form": {
+			"formTitle": "Edit Family Details",
 			"fill_form_correctly": "Please fill the form correctly",
 			"all_fields": "All fields are required",
 			"submit": "Family Added Successfully",
@@ -226,6 +227,9 @@
 			},
 			"age": {
 				"title": "Age"
+			},
+			"memberIdNumber":{
+				"title": "Member ID number"
 			},
 			"gender": {
 				"title": "Gender"
@@ -312,6 +316,9 @@
 				"english": "English",
 				"turkish": "Turkish",
 				"default": "Select Language"
+			},
+			"familyMemberDetails": {
+				"title": "Family Member Details"
 			},
 			"save_changes": "Save Changes"
 		}

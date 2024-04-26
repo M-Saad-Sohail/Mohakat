@@ -249,7 +249,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 				<div className="rounded-md">
 					<div className="w-100 flex items-center justify-between px-4 bg-primary">
 						<h1 className="flex items-center justify-center my-4 text-xl font-bold text-white uppercase">
-							View Family Details
+							{`${t('formTitle')}`}
 						</h1>
 						<Image
 							src={close_icon}
