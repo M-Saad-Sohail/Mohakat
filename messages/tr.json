@@ -188,6 +188,13 @@
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
+	"UpdateFamily": {
+		"form": {
+			"title": "Aileyi Güncelle",
+			"submit": "Aile başarıyla güncellendi",
+			"delete": "Sil"
+		}
+	},	
 	"AddFamilies": {
 		"title": "Aileler",
 		"description": "Aileler sponsorluk aldığında temel kaynaklara ve desteğe erişerek yaşam kalitelerini artırırlar. Bağışlar yiyecek, barınma, eğitim ve tıbbi yardım sağlamak için kullanılıyor.",

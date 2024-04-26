@@ -9,7 +9,6 @@ import {
 	RejectDelete,
 	fetchFamiliesData,
 } from '@/hooks/useSponsorTables';
-import Button from '../Button';
 import { useFormik } from 'formik';
 import { UpdateFamilyValues } from '@/contants';
 import { UpdateFamilySchema } from '@/utils/validationSchema';
@@ -20,6 +19,7 @@ import Select from '../Select';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import DeleteModal from '@/components/screens/RejectedSponsors/DeleteModal';
 import DeleteFamilyModal from './DeleteFamilyModal';
+import Button from '@/components/ui/LandingPage/Button';
 
 interface ViewModalProps {
 	openModal: boolean | undefined;
@@ -193,19 +193,19 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		},
 	});
 
-	
+
 	useEffect(() => {
 		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
-		  const newMembers = new Array(UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length).fill({
-			memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
-			memberAge: '',
-			MemberIdNumber: '',
-			memberGender: ''
-		  });
-		  setFamilyMembers(familyMembers.concat(newMembers));
+			const newMembers = new Array(UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length).fill({
+				memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
+				memberAge: '',
+				MemberIdNumber: '',
+				memberGender: ''
+			});
+			setFamilyMembers(familyMembers.concat(newMembers));
 		}
-	  }, [UpdateFamilyForm.values.numberOfFamilyMembers]);
-	  
+	}, [UpdateFamilyForm.values.numberOfFamilyMembers]);
+
 
 	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
@@ -690,21 +690,23 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 
 					<div className="flex justify-center gap-7 mb-5">
 						<Button
-							title={t('titleForUpdate')}
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
 							isLoading={loading}
+							title={t('titleForUpdate')}
+							Color="#CF7475"
 							onClick={(e) => {
 								e.preventDefault();
 								UpdateFamilyForm.handleSubmit();
 							}}
 						/>
 						<Button
-							title={t('delete')}
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
-							// isLoading={loading}
+							title={t('delete')}
+							Color="#000000"
 							onClick={() => handleDeleteConfirmed(id)}
+							isLoading={loading}
 						/>
 					</div>
 				</div>
