@@ -61,7 +61,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						Color="#CF7475"
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
-						{familyData.numberOfFamilyMembers >= 3 ? (
+						{familyData.numberOfFamilyMembers > 4 ? (
 							<>
 								<span>{currencyState?.key}</span>
 								<span>{currencyState?.basePriceTwo}</span>
