@@ -1,45 +1,27 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { close_icon } from '@/assests';
 import Image from 'next/image';
 import Input from '@/components/ui//Input';
-import { getUserFromLocalStorage } from '@/utils/auth';
-import {
-	DeleteFamily,
-	RejectDelete,
-	fetchFamiliesData,
-} from '@/hooks/useSponsorTables';
+import { fetchFamiliesData } from '@/hooks/useSponsorTables';
 import { useFormik } from 'formik';
 import { UpdateFamilyValues } from '@/contants';
 import { UpdateFamilySchema } from '@/utils/validationSchema';
-import { postJson, putJson } from '@/api/api.instances';
+import { putJson } from '@/api/api.instances';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import Select from '../Select';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
-import DeleteModal from '@/components/screens/RejectedSponsors/DeleteModal';
 import DeleteFamilyModal from './DeleteFamilyModal';
 import Button from '@/components/ui/LandingPage/Button';
+import { FamilyMember, ViewModalProps } from './interfaces';
 
-interface ViewModalProps {
-	openModal: boolean | undefined;
-	onClose: () => void;
-	id: any;
-	tableName?: string;
-}
-
-interface FamilyMember {
-	memberName: {
-		inEnglish: string;
-		inTurkish: string;
-		inArabic: string;
-	};
-	memberAge: number | '';
-	MemberIdNumber: number | '';
-	memberGender: string;
-}
-
-const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
+const ViewModal = ({
+	openModal,
+	onClose,
+	id,
+	onTableRefresh,
+}: ViewModalProps) => {
 	const [deleteId, setDeleteId] = useState('');
 	const [showTable, setShowTable] = useState(openModal);
 	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
@@ -99,31 +81,8 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 	}, [id]);
 
 	const UpdateFamilyForm = useFormik({
-		initialValues: {
-			breadWinnerNameEn: '',
-			breadWinnerNameTr: '',
-			breadWinnerNameAr: '',
-			descriptionEn: '',
-			descriptionTr: '',
-			descriptionAr: '',
-			familyMemberDetail: [],
-			maritalStatus: '',
-			email: '',
-			gender: '',
-			age: '',
-			dateOfBirth: '',
-			language: '',
-			areaOfPreviousResidence: '',
-			areaOfCurrentResidence: '',
-			numberOfFamilyMembers: '',
-			lossesInWar: '',
-			numberOfMartyrInFamily: '',
-			numberOfInfectedInFamily: '',
-			telephoneNumber: '',
-			idNumber: '',
-			currentSituation: '',
-		},
-		// validationSchema: UpdateFamilySchema,
+		initialValues: UpdateFamilyValues,
+		validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
@@ -172,11 +131,12 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 					setShowTable(false);
 					onClose();
 					UpdateFamilyForm.resetForm();
-					toast.success(`${t('update')}`, {
+					toast.success(`${t('submitForUpdate')}`, {
 						toastId: 'success',
 						position: 'bottom-right',
 						autoClose: 4000,
 					});
+					onTableRefresh();
 				}
 			} catch (error) {
 				// console.log(error);
@@ -600,7 +560,6 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 							</div>
 						</div>
 
-						{/* TODO::FIX */}
 						<div className="flex flex-col gap-3">
 							<h3 className="text-sm font-bold">{`${t('familyMemberDetails.title')} *`}</h3>
 							{familyMembers.map((member: any, i: any) => (

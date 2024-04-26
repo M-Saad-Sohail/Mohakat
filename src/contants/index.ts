@@ -69,14 +69,13 @@ export const AddFamiliesValues = {
 };
 
 export const UpdateFamilyValues = {
-	breadWinnerName: {},
 	breadWinnerNameEn: '',
 	breadWinnerNameTr: '',
 	breadWinnerNameAr: '',
-	description: {},
 	descriptionEn: '',
 	descriptionTr: '',
 	descriptionAr: '',
+	familyMemberDetail: [],
 	maritalStatus: '',
 	email: '',
 	gender: '',
@@ -92,9 +91,7 @@ export const UpdateFamilyValues = {
 	telephoneNumber: '',
 	idNumber: '',
 	currentSituation: '',
-	familyMemberDetail: [],
-};
-
+}
 
 // export const Links = [
 // 	{ localeId: 'links.0', name: 'Support', link: '/support' },

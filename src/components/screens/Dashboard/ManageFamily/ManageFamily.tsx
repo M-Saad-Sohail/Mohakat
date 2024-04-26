@@ -6,14 +6,19 @@ import { fetchFamiliesData } from '@/hooks/useSponsorTables';
 import useFetchFamilyData from '@/hooks/useFetchFamilyData';
 
 const ManageFamily = () => {
-	const { data, isLoading } = useFetchFamilyData(fetchFamiliesData);
+	const { data, isLoading, refetch } = useFetchFamilyData(fetchFamiliesData);
 
+	const handleTableRefresh = () => {
+		refetch();
+	  };
+	
 	return (
 		<Table
 			data={data}
 			columns={FAMILIESCOLUMN}
 			tableName={'familySponser'}
 			search={true}
+			onTableRefresh={handleTableRefresh}
 		/>
 	);
 };

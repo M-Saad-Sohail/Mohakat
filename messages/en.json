@@ -499,5 +499,9 @@
 		"English": "English",
 		"Arabic": "Arabic",
 		"Turkish": "Turkish"
+	},
+	"DeleteFamily": {
+		"family_deleted_successfully": "Family Deleted Successfully",
+		"deletion_failed": "Failed to Delete Family"
 	}
 }
