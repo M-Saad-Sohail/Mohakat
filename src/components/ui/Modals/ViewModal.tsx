@@ -42,9 +42,7 @@ interface FamilyMember {
 const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 	const [deleteId, setDeleteId] = useState('');
 	const [showTable, setShowTable] = useState(openModal);
-	const [familySponsor, setFamilySponsor] = useState<any>(null);
 	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
-	const [updateFamilyData, setUpdateFamilyData] = useState<any[]>([]);
 	const { user } = useLoggedInUser();
 	const [loading, setLoading] = useState<boolean>(false);
 	const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -58,25 +56,32 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 
 	const handleMemberDetailChange = (
 		index: any,
-		field: string,
+		key: string,
 		value: string | number,
 	) => {
-		console.log(index);
-		const newFamilyMemberDetail = [
-			...UpdateFamilyForm.values.familyMemberDetail,
-		];
-		const memberToUpdate = { ...newFamilyMemberDetail[index] };
-
-		if (field.includes('.')) {
-			// Handle nested objects if field is like "memberName.inEnglish"
-			const [key, subKey] = field.split('.');
-			memberToUpdate[key][subKey] = value;
-		} else {
-			memberToUpdate[field] = value;
+		const updatedMembers = [...familyMembers];
+		if (!updatedMembers[index]) {
+			updatedMembers[index] = {
+				memberName: {
+					inEnglish: '',
+					inTurkish: '',
+					inArabic: '',
+				},
+				memberAge: '',
+				MemberIdNumber: '',
+				memberGender: '',
+			};
 		}
-
-		newFamilyMemberDetail[index] = memberToUpdate;
-		setFamilyMembers(newFamilyMemberDetail);
+		if (key.startsWith('in')) {
+			updatedMembers[index].memberName[
+				key as keyof FamilyMember['memberName']
+			] = (value as string).toUpperCase(); // Convert to uppercase
+		} else {
+			updatedMembers[index][key as keyof FamilyMember] = value as
+				| string
+				| number;
+		}
+		setFamilyMembers(updatedMembers);
 	};
 
 	const t = useTranslations('AddFamilies.form');
@@ -85,7 +90,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		if (user) {
 			fetchFamilyDetails(id)
 				.then((familySponsor) => {
-					console.log('Family Sponsor:', familySponsor);
+					console.log('Success');
 				})
 				.catch((error) => {
 					console.error('Error fetching family details:', error);
@@ -95,51 +100,28 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 
 	const UpdateFamilyForm = useFormik({
 		initialValues: {
-			breadWinnerNameEn: familySponsor
-				? familySponsor.breadWinnerName.inEnglish
-				: '',
-			breadWinnerNameTr: familySponsor ? familySponsor.breadWinnerNameTr : '',
-			breadWinnerNameAr: familySponsor ? familySponsor.breadWinnerNameAr : '',
-			descriptionEn: familySponsor ? familySponsor.descriptionEn : '',
-			descriptionTr: familySponsor ? familySponsor.descriptionTr : '',
-			descriptionAr: familySponsor ? familySponsor.descriptionAr : '',
-			familyMemberDetail: familySponsor
-				? familySponsor.familyMemberDetail.map((member: any) => ({
-						memberName: {
-							inEnglish: member.memberName.inEnglish,
-							inTurkish: member.memberName.inTurkish,
-							inArabic: member.memberName.inArabic,
-						},
-						memberAge: member.memberAge,
-						MemberIdNumber: member.MemberIdNumber,
-						memberGender: member.memberGender,
-					}))
-				: [],
-			maritalStatus: familySponsor ? familySponsor.maritalStatus : '',
-			email: familySponsor ? familySponsor.email : '',
-			gender: familySponsor ? familySponsor.gender : '',
-			age: familySponsor ? familySponsor.age : '',
-			dateOfBirth: familySponsor ? familySponsor.dateOfBirth : '',
-			language: familySponsor ? familySponsor.language : '',
-			areaOfPreviousResidence: familySponsor
-				? familySponsor.areaOfPreviousResidence
-				: '',
-			areaOfCurrentResidence: familySponsor
-				? familySponsor.areaOfCurrentResidence
-				: '',
-			numberOfFamilyMembers: familySponsor
-				? familySponsor.numberOfFamilyMembers
-				: '',
-			lossesInWar: familySponsor ? familySponsor.lossesInWar : '',
-			numberOfMartyrInFamily: familySponsor
-				? familySponsor.numberOfMartyrInFamily
-				: '',
-			numberOfInfectedInFamily: familySponsor
-				? familySponsor.numberOfInfectedInFamily
-				: '',
-			telephoneNumber: familySponsor ? familySponsor.telephoneNumber : '',
-			idNumber: familySponsor ? familySponsor.idNumber : '',
-			currentSituation: familySponsor ? familySponsor.currentSituation : '',
+			breadWinnerNameEn: '',
+			breadWinnerNameTr: '',
+			breadWinnerNameAr: '',
+			descriptionEn: '',
+			descriptionTr: '',
+			descriptionAr: '',
+			familyMemberDetail: [],
+			maritalStatus: '',
+			email: '',
+			gender: '',
+			age: '',
+			dateOfBirth: '',
+			language: '',
+			areaOfPreviousResidence: '',
+			areaOfCurrentResidence: '',
+			numberOfFamilyMembers: '',
+			lossesInWar: '',
+			numberOfMartyrInFamily: '',
+			numberOfInfectedInFamily: '',
+			telephoneNumber: '',
+			idNumber: '',
+			currentSituation: '',
 		},
 		// validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
@@ -180,15 +162,16 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 			};
 			try {
 				setLoading(true);
-				console.log('1');
 				const res = await putJson(
 					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/update-family/${id}`,
 					response,
+					user?.key,
 				);
-				console.log('????', response);
 				if (res.success) {
 					setLoading(false);
-					// UpdateFamilyForm.resetForm();
+					setShowTable(false);
+					onClose();
+					UpdateFamilyForm.resetForm();
 					toast.success(`${t('update')}`, {
 						toastId: 'success',
 						position: 'bottom-right',
@@ -216,10 +199,21 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		const family_Sponsor = familyData.familySponser.find(
 			(sponsor: any) => sponsor._id === id,
 		);
-		setFamilySponsor(family_Sponsor);
-		console.log('🚀 ~ fetchFamilyDetails ~ family_Sponsor:', family_Sponsor);
+		// setFamilySponsor(family_Sponsor);
+		// console.log('🚀 ~ fetchFamilyDetails ~ family_Sponsor:', family_Sponsor);
 		// UpdateFamilyForm.setValues({email: family_Sponsor.email, breadWinnerNameTr: family_Sponsor?.breadWinnerName?.inTurkish})
-		if (family_Sponsor) UpdateFamilyForm.setValues(family_Sponsor);
+		if (family_Sponsor) {
+			UpdateFamilyForm.setValues({
+				...family_Sponsor,
+				breadWinnerNameEn: family_Sponsor?.breadWinnerName.inEnglish,
+				breadWinnerNameAr: family_Sponsor?.breadWinnerName.inArabic,
+				breadWinnerNameTr: family_Sponsor?.breadWinnerName.inTurkish,
+				descriptionEn: family_Sponsor?.description.inEnglish,
+				descriptionAr: family_Sponsor?.description.inArabic,
+				descriptionTr: family_Sponsor?.description.inTurkish,
+			});
+			setFamilyMembers(family_Sponsor.familyMemberDetail);
+		}
 		return family_Sponsor;
 	};
 
@@ -250,6 +244,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 							onClick={() => {
 								setShowTable(false);
 								onClose();
+								UpdateFamilyForm.resetForm();
 							}}
 						/>
 					</div>
@@ -594,101 +589,87 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 						{/* TODO::FIX */}
 						<div className="flex flex-col gap-3">
 							<h3 className="text-sm font-bold">Family Member Details</h3>
-							{UpdateFamilyForm.values.familyMemberDetail.map(
-								(member: any, i: any) => (
-									<div key={i} className="flex flex-col gap-3">
-										<div>
-											<h3 className="text-sm font-bold">Name</h3>
-										</div>
-										<div className="flex items-center justify-start w-full gap-x-4">
-											<Input
-												title="In English"
-												name="inEnglish"
-												className="mb-[10px] min-w-[300px]"
-												value={member.memberName.inEnglish}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'inEnglish',
-														e.target.value,
-													)
-												}
-											/>
-											<Input
-												title="In Arabic"
-												name="inArabic"
-												className="mb-[10px] min-w-[300px]"
-												value={member.memberName.inArabic}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'inArabic',
-														e.target.value,
-													)
-												}
-											/>
-											<Input
-												title="In Turkish"
-												name="inTurkish"
-												className="mb-[10px] min-w-[300px]"
-												value={member.memberName.inTurkish}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'inTurkish',
-														e.target.value,
-													)
-												}
-											/>
-										</div>
-										<div className="flex items-center justify-start w-full gap-x-4">
-											<Input
-												title="Age"
-												className="mb-[5px] min-w-[300px]"
-												type="number"
-												value={member.memberAge}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'memberAge',
-														parseInt(e.target.value, 10),
-													)
-												}
-											/>
-											<Input
-												title="Member ID Number"
-												className="mb-[5px] min-w-[300px]"
-												type="number"
-												value={member.MemberIdNumber}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'MemberIdNumber',
-														parseInt(e.target.value, 10),
-													)
-												}
-											/>
-											<Select
-												title="Gender"
-												name="memberGender"
-												options={[
-													{ label: 'Male', value: 'male' },
-													{ label: 'Female', value: 'female' },
-												]}
-												className="mb-[30px] min-w-[300px]"
-												value={member.memberGender}
-												onChange={(e) =>
-													handleMemberDetailChange(
-														i,
-														'memberGender',
-														e.target.value,
-													)
-												}
-											/>
-										</div>
+							{familyMembers.map((member: any, i: any) => (
+								<div key={i} className="flex flex-col gap-3">
+									<div>
+										<h3 className="text-sm font-bold">Name</h3>
 									</div>
-								),
-							)}
+									<div className="flex items-center justify-start w-full gap-x-4">
+										<Input
+											title="In English"
+											name="inEnglish"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inEnglish}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+											}
+										/>
+										<Input
+											title="In Arabic"
+											name="inArabic"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inArabic}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inArabic', e.target.value)
+											}
+										/>
+										<Input
+											title="In Turkish"
+											name="inTurkish"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inTurkish}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+											}
+										/>
+									</div>
+									<div className="flex items-center justify-start w-full gap-x-4">
+										<Input
+											title="Age"
+											className="mb-[5px] min-w-[300px]"
+											type="number"
+											value={member.memberAge}
+											onChange={(e) =>
+												handleMemberDetailChange(
+													i,
+													'memberAge',
+													parseInt(e.target.value, 10),
+												)
+											}
+										/>
+										<Input
+											title="Member ID Number"
+											className="mb-[5px] min-w-[300px]"
+											type="number"
+											value={member.MemberIdNumber}
+											onChange={(e) =>
+												handleMemberDetailChange(
+													i,
+													'MemberIdNumber',
+													parseInt(e.target.value, 10),
+												)
+											}
+										/>
+										<Select
+											title="Gender"
+											name="memberGender"
+											options={[
+												{ label: 'Male', value: 'male' },
+												{ label: 'Female', value: 'female' },
+											]}
+											className="mb-[30px] min-w-[300px]"
+											value={member.memberGender}
+											onChange={(e) =>
+												handleMemberDetailChange(
+													i,
+													'memberGender',
+													e.target.value,
+												)
+											}
+										/>
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
 
@@ -699,7 +680,6 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 							className="max-w-[200px] px-6 shadow-custom"
 							isLoading={loading}
 							onClick={(e) => {
-								console.log('update');
 								e.preventDefault();
 								UpdateFamilyForm.handleSubmit();
 							}}
@@ -722,7 +702,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 					setOpenDeleteModal(false);
 				}}
 				onDelete={() => {
-					console.log('Delete confirmed for ID:', deleteId);
+					// console.log('Delete confirmed for ID:', deleteId);
 					setOpenDeleteModal(false);
 				}}
 			/>

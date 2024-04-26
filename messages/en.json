@@ -199,13 +199,14 @@
 	"AddFamilies": {
 		"title": "Families",
 		"description": "When families receive sponsorship, they gain access to essential resources and support, improving their quality of life. Donations are utilized to provide food, shelter, education, and medical assistance.",
-		"area": "Area",
+		"area": "Area", 
 		"situation": "Situation",
 		"no_of_member": "No. of Members",
 		"form": {
 			"fill_form_correctly": "Please fill the form correctly",
 			"all_fields": "All fields are required",
 			"submit": "Family Added Successfully",
+			"update": "Family Updated Successfully",
 			"title": "Add Family",
 			"section1": "Personal Information",
 			"section2": "Change Password",
