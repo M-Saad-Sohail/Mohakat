@@ -189,16 +189,20 @@
 		}
 	},
 	"AddFamilies": {
-		"title": "العائلات",
+		"title": "العائلات", 
 		"description": "عندما تتلقى الأسر الرعاية، فإنها تحصل على الموارد الأساسية والدعم، مما يحسن نوعية حياتهم. يتم استخدام التبرعات لتوفير الغذاء والمأوى والتعليم والمساعدة الطبية.",
 		"area": "منطقة",
 		"situation": "وضع",
 		"no_of_member": "عدد الأعضاء",
 		"form": {
+			"formTitle": "تحرير تفاصيل العائلة",
 			"fill_form_correctly": "املأ النموذج بشكل صحيح",
 			"all_fields": "جميع الحقول مطلوبة",
 			"submit": "تمت إضافة العائلة بنجاح",
 			"title": "إضافة عائلة",
+			"titleForUpdate": "تحديث العائلة",
+			"submitForUpdate": "تم تحديث العائلة بنجاح",
+			"delete": "يمسح",
 			"email": {
 				"title": "البريد الإلكتروني"
 			},
@@ -213,6 +217,9 @@
 			},
 			"age": {
 				"title": "العمر"
+			},
+			"memberIdNumber":{
+				"title": "رقم هوية العضو"
 			},
 			"gender": {
 				"title": "الجنس"
@@ -300,6 +307,9 @@
 				"turkish": "التركية",
 				"default": "اختر اللغة"
 			},
+			"familyMemberDetails": {
+				"title": "تفاصيل أفراد العائلة"
+			},
 			"save_changes": "حفظ التغييرات"
 		}
 	},
@@ -341,6 +351,7 @@
 		"verified": "تم التحقق",
 		"dashboard": "لوحة التحكم",
 		"families": "العائلات",
+		"ManageFamilyPage": "إدارة العائلات",
 		"settings": "الإعدادات",
 		"logout": "تسجيل الخروج",
 		"sponsor": {
@@ -363,6 +374,9 @@
 	"Families": {
 		"title": "عائلات"
 	},
+	"ManageFamilies": {
+		"title": "إدارة العائلات"
+	},
 	"ApprovedSponsors": {
 		"title": "الرعاة الموافق عليهم"
 	},
@@ -380,7 +394,12 @@
 			"Email": "البريد الإلكتروني",
 			"Language": "اللغة",
 			"Action": "الإجراء",
-			"Role": "دور"
+			"Role": "دور",
+			"BreadWinnerName": "اسم الفائز بالخبز",
+			"IdNumber": "رقم الهوية",
+			"MartyrInFamily": "شهيد في العائلة",
+			"NumberOfFamilyMember": "عدد أفراد الأسرة",
+			"Id": "معرف فريد"
 		}
 	},
 	"Dashboard": {
@@ -467,5 +486,8 @@
 		"English": "الإنجليزية",
 		"Arabic": "العربية",
 		"Turkish": "التركية"
-	}	
+	},	
+	"editFamilyModal":{
+		"title": "تحرير تفاصيل العائلة"
+	}
 }

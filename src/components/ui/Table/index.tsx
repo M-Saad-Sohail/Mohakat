@@ -29,9 +29,17 @@ interface IProps {
 	search?: boolean;
 	setData?: any;
 	tableName?: string;
+	onTableRefresh?: () => void;
 }
 
-function Table({ columns, data, search, setData, tableName }: IProps) {
+function Table({
+	columns,
+	data,
+	search,
+	setData,
+	tableName,
+	onTableRefresh,
+}: IProps) {
 	const t = useTranslations();
 
 	const tableColumns = useMemo(() => {
@@ -66,6 +74,13 @@ function Table({ columns, data, search, setData, tableName }: IProps) {
 	);
 	const { globalFilter, pageSize, pageIndex }: any = state;
 	const { replace, dir } = useLocaleRouter();
+
+	const handleTableRefresh = () => {
+		if (typeof onTableRefresh === 'function') {
+			console.log('handle 11');
+			onTableRefresh();
+		}
+	};
 
 	const handleActionApprovedClick = async (id: string) => {
 		const user = getUserFromLocalStorage();
@@ -329,6 +344,7 @@ function Table({ columns, data, search, setData, tableName }: IProps) {
 					setViewModal(false);
 				}}
 				id={editId}
+				onTableRefresh={handleTableRefresh}
 			/>
 		</>
 	);

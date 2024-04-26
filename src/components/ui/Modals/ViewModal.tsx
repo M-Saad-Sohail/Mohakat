@@ -1,49 +1,30 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { close_icon } from '@/assests';
 import Image from 'next/image';
 import Input from '@/components/ui//Input';
-import { getUserFromLocalStorage } from '@/utils/auth';
-import {
-	DeleteFamily,
-	RejectDelete,
-	fetchFamiliesData,
-} from '@/hooks/useSponsorTables';
-import Button from '../Button';
+import { fetchFamiliesData } from '@/hooks/useSponsorTables';
 import { useFormik } from 'formik';
 import { UpdateFamilyValues } from '@/contants';
 import { UpdateFamilySchema } from '@/utils/validationSchema';
-import { postJson } from '@/api/api.instances';
+import { putJson } from '@/api/api.instances';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import Select from '../Select';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
-import DeleteModal from '@/components/screens/RejectedSponsors/DeleteModal';
 import DeleteFamilyModal from './DeleteFamilyModal';
+import Button from '@/components/ui/LandingPage/Button';
+import { FamilyMember, ViewModalProps } from './interfaces';
 
-interface ViewModalProps {
-	openModal: boolean | undefined;
-	onClose: () => void;
-	id: any;
-	tableName?: string;
-}
-
-interface FamilyMember {
-	memberName: {
-		inEnglish: string;
-		inTurkish: string;
-		inArabic: string;
-	};
-	memberAge: number | '';
-	MemberIdNumber: number | '';
-	memberGender: string;
-}
-
-const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
+const ViewModal = ({
+	openModal,
+	onClose,
+	id,
+	onTableRefresh,
+}: ViewModalProps) => {
 	const [deleteId, setDeleteId] = useState('');
 	const [showTable, setShowTable] = useState(openModal);
-	const [familySponsor, setFamilySponsor] = useState<any>(null);
-	const [updateFamilyData, setUpdateFamilyData] = useState<any[]>([]);
+	const [familyMembers, setFamilyMembers] = useState<any[]>([]);
 	const { user } = useLoggedInUser();
 	const [loading, setLoading] = useState<boolean>(false);
 	const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -60,8 +41,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		key: string,
 		value: string | number,
 	) => {
-		// console.log(index);
-		const updatedMembers = [...familySponsor];
+		const updatedMembers = [...familyMembers];
 		if (!updatedMembers[index]) {
 			updatedMembers[index] = {
 				memberName: {
@@ -83,16 +63,16 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 				| string
 				| number;
 		}
-		setFamilySponsor(updatedMembers);
+		setFamilyMembers(updatedMembers);
 	};
 
 	const t = useTranslations('AddFamilies.form');
 
 	useEffect(() => {
 		if (user) {
-			fetchFamilyDetails(user.key, id)
+			fetchFamilyDetails(id)
 				.then((familySponsor) => {
-					console.log('Family Sponsor:', familySponsor);
+					console.log('Success');
 				})
 				.catch((error) => {
 					console.error('Error fetching family details:', error);
@@ -101,43 +81,8 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 	}, [id]);
 
 	const UpdateFamilyForm = useFormik({
-		initialValues: {
-			breadWinnerNameEn: familySponsor
-				? familySponsor.breadWinnerName.inEnglish
-				: '',
-			breadWinnerNameTr: familySponsor ? familySponsor.breadWinnerNameTr : '',
-			breadWinnerNameAr: familySponsor ? familySponsor.breadWinnerNameAr : '',
-			descriptionEn: familySponsor ? familySponsor.descriptionEn : '',
-			descriptionTr: familySponsor ? familySponsor.descriptionTr : '',
-			descriptionAr: familySponsor ? familySponsor.descriptionAr : '',
-			maritalStatus: familySponsor ? familySponsor.maritalStatus : '',
-			email: familySponsor ? familySponsor.email : '',
-			gender: familySponsor ? familySponsor.gender : '',
-			age: familySponsor ? familySponsor.age : '',
-			dateOfBirth: familySponsor ? familySponsor.dateOfBirth : '',
-			language: familySponsor ? familySponsor.language : '',
-			areaOfPreviousResidence: familySponsor
-				? familySponsor.areaOfPreviousResidence
-				: '',
-			areaOfCurrentResidence: familySponsor
-				? familySponsor.areaOfCurrentResidence
-				: '',
-			numberOfFamilyMembers: familySponsor
-				? familySponsor.numberOfFamilyMembers
-				: '',
-			lossesInWar: familySponsor ? familySponsor.lossesInWar : '',
-			numberOfMartyrInFamily: familySponsor
-				? familySponsor.numberOfMartyrInFamily
-				: '',
-			numberOfInfectedInFamily: familySponsor
-				? familySponsor.numberOfInfectedInFamily
-				: '',
-			telephoneNumber: familySponsor ? familySponsor.telephoneNumber : '',
-			idNumber: familySponsor ? familySponsor.idNumber : '',
-			currentSituation: familySponsor ? familySponsor.currentSituation : '',
-			familyMemberDetail: [],
-		},
-		// validationSchema: UpdateFamilySchema,
+		initialValues: UpdateFamilyValues,
+		validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
@@ -172,24 +117,26 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 				numberOfInfectedInFamily: parseInt(
 					UpdateFamilyForm.values.numberOfInfectedInFamily,
 				),
+				familyMemberDetail: familyMembers,
 			};
 			try {
 				setLoading(true);
-				console.log('1');
-				const res = await postJson(
+				const res = await putJson(
 					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/update-family/${id}`,
 					response,
 					user?.key,
 				);
-				console.log('????', response);
 				if (res.success) {
 					setLoading(false);
-					// UpdateFamilyForm.resetForm();
-					toast.success(`${t('update')}`, {
+					setShowTable(false);
+					onClose();
+					UpdateFamilyForm.resetForm();
+					toast.success(`${t('submitForUpdate')}`, {
 						toastId: 'success',
 						position: 'bottom-right',
 						autoClose: 4000,
 					});
+					onTableRefresh();
 				}
 			} catch (error) {
 				// console.log(error);
@@ -205,17 +152,42 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		},
 	});
 
-	const fetchFamilyDetails = async (key: string, id: string) => {
+	useEffect(() => {
+		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
+			const newMembers = new Array(
+				UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length,
+			).fill({
+				memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
+				memberAge: '',
+				MemberIdNumber: '',
+				memberGender: '',
+			});
+			setFamilyMembers(familyMembers.concat(newMembers));
+		}
+	}, [UpdateFamilyForm.values.numberOfFamilyMembers]);
+
+	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
 
 		const familyData = await fetchFamiliesData(user.key);
 		const family_Sponsor = familyData.familySponser.find(
 			(sponsor: any) => sponsor._id === id,
 		);
-		setFamilySponsor(family_Sponsor);
-		console.log('🚀 ~ fetchFamilyDetails ~ family_Sponsor:', family_Sponsor);
+		// setFamilySponsor(family_Sponsor);
+		// console.log('🚀 ~ fetchFamilyDetails ~ family_Sponsor:', family_Sponsor);
 		// UpdateFamilyForm.setValues({email: family_Sponsor.email, breadWinnerNameTr: family_Sponsor?.breadWinnerName?.inTurkish})
-		if (family_Sponsor) UpdateFamilyForm.setValues(family_Sponsor);
+		if (family_Sponsor) {
+			UpdateFamilyForm.setValues({
+				...family_Sponsor,
+				breadWinnerNameEn: family_Sponsor?.breadWinnerName.inEnglish,
+				breadWinnerNameAr: family_Sponsor?.breadWinnerName.inArabic,
+				breadWinnerNameTr: family_Sponsor?.breadWinnerName.inTurkish,
+				descriptionEn: family_Sponsor?.description.inEnglish,
+				descriptionAr: family_Sponsor?.description.inArabic,
+				descriptionTr: family_Sponsor?.description.inTurkish,
+			});
+			setFamilyMembers(family_Sponsor.familyMemberDetail);
+		}
 		return family_Sponsor;
 	};
 
@@ -237,7 +209,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 				<div className="rounded-md">
 					<div className="w-100 flex items-center justify-between px-4 bg-primary">
 						<h1 className="flex items-center justify-center my-4 text-xl font-bold text-white uppercase">
-							View Family Details
+							{`${t('formTitle')}`}
 						</h1>
 						<Image
 							src={close_icon}
@@ -246,6 +218,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 							onClick={() => {
 								setShowTable(false);
 								onClose();
+								UpdateFamilyForm.resetForm();
 							}}
 						/>
 					</div>
@@ -253,13 +226,13 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 					<div className="m-5 flex-col justify-center items-center">
 						<div className=" w-full gap-x-4">
 							<div className=" flex flex-col gap-3">
-								<h3 className=" text-sm font-bold">Bread Winner Name</h3>
+								<h3 className=" text-sm font-bold">{`${t('BreadWinnerName.title')} *`}</h3>
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Input
 											title={'In English *'}
 											name="breadWinnerNameEn"
-											className="mb-[19px] min-w-[250px]"
+											className="mb-[19px] min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameEn}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
@@ -269,7 +242,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 										<Input
 											title={'In Turkish *'}
 											name="breadWinnerNameTr"
-											className="mb-[19px] min-w-[250px]"
+											className="mb-[19px] min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameTr}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
@@ -278,7 +251,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 										<Input
 											title={'In Arabic *'}
 											name="breadWinnerNameAr"
-											className="mb-[19px] min-w-[250px]"
+											className="mb-[19px] min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameAr}
 											onChange={UpdateFamilyForm.handleChange}
 										/>
@@ -394,26 +367,26 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 						</div>
 
 						<div className=" flex flex-col gap-3">
-							<h3 className=" text-sm font-bold">Comment</h3>
+							<h3 className=" text-sm font-bold">{`${t('comment.title')} *`}</h3>
 							<div className="flex items-start justify-start w-full gap-x-4">
 								<Input
 									title={'In English'}
 									name="descriptionEn"
-									className="mb-[10px] min-w-[250px]"
+									className="mb-[10px] min-w-[300px]"
 									value={UpdateFamilyForm.values.descriptionEn}
 									onChange={UpdateFamilyForm.handleChange}
 								/>
 								<Input
 									title={'In Turkish'}
 									name="descriptionTr"
-									className="mb-[10px] min-w-[250px]"
+									className="mb-[10px] min-w-[300px]"
 									value={UpdateFamilyForm.values.descriptionTr}
 									onChange={UpdateFamilyForm.handleChange}
 								/>
 								<Input
 									title={'In Arabic'}
 									name="descriptionAr"
-									className="mb-[10px] min-w-[250px]"
+									className="mb-[10px] min-w-[300px]"
 									value={UpdateFamilyForm.values.descriptionAr}
 									onChange={UpdateFamilyForm.handleChange}
 								/>
@@ -587,45 +560,37 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 							</div>
 						</div>
 
-						{/* TODO::FIX */}
-						{/* {UpdateFamilyForm.values?.numberOfFamilyMembers > 0 &&
-					UpdateFamilyForm.values?.numberOfFamilyMembers && (
-						<div className=" flex flex-col gap-3">
-							<h3 className=" text-sm font-bold">Family Member Details</h3>
-							{[
-								...Array(
-									UpdateFamilyForm.values?.numberOfFamilyMembers > 0 &&
-										parseInt(UpdateFamilyForm.values?.numberOfFamilyMembers),
-								),
-							].map((item, i) => (
+						<div className="flex flex-col gap-3">
+							<h3 className="text-sm font-bold">{`${t('familyMemberDetails.title')} *`}</h3>
+							{familyMembers.map((member: any, i: any) => (
 								<div key={i} className="flex flex-col gap-3">
 									<div>
-										<h3 className=" text-sm font-bold">Name</h3>
+										<h3 className="text-sm font-bold">{`${t('name.title')} *`}</h3>
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title={'In English'}
-											name="inenglish"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.name}
+											title="In English"
+											name="inEnglish"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inEnglish}
 											onChange={(e) =>
 												handleMemberDetailChange(i, 'inEnglish', e.target.value)
 											}
 										/>
 										<Input
-											title={'In Arabic'}
-											name="inarabic"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
+											title="In Arabic"
+											name="inArabic"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inArabic}
 											onChange={(e) =>
 												handleMemberDetailChange(i, 'inArabic', e.target.value)
 											}
 										/>
 										<Input
-											title={'In Turkish'}
-											name="inturkish"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
+											title="In Turkish"
+											name="inTurkish"
+											className="mb-[10px] min-w-[300px]"
+											value={member.memberName.inTurkish}
 											onChange={(e) =>
 												handleMemberDetailChange(i, 'inTurkish', e.target.value)
 											}
@@ -633,40 +598,40 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title={'Age'}
-											className="mb-[5px] min-w-[400px] "
+											title={`${t('age.title')} *`}
+											className="mb-[5px] min-w-[300px]"
 											type="number"
+											value={member.memberAge}
 											onChange={(e) =>
 												handleMemberDetailChange(
 													i,
 													'memberAge',
-													parseInt(e.target.value),
+													parseInt(e.target.value, 10),
 												)
 											}
 										/>
 										<Input
-											title={'Member ID Number'}
-											className="mb-[5px] min-w-[400px] "
+											title={`${t('memberIdNumber.title')} *`}
+											className="mb-[5px] min-w-[300px]"
 											type="number"
+											value={member.MemberIdNumber}
 											onChange={(e) =>
 												handleMemberDetailChange(
 													i,
 													'MemberIdNumber',
-													e.target.value,
+													parseInt(e.target.value, 10),
 												)
 											}
 										/>
-
 										<Select
-											title={t('gender.title')}
-											name="language"
+											title={`${t('gender.title')} *`}
+											name="memberGender"
 											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
+												{ label: 'Male', value: 'male' },
+												{ label: 'Female', value: 'female' },
 											]}
-											defaultValue={t('gender.default')}
-            
-											className="mb-[30px] min-w-[400px] "
+											className="mb-[30px] min-w-[300px]"
+											value={member.memberGender}
 											onChange={(e) =>
 												handleMemberDetailChange(
 													i,
@@ -679,27 +644,27 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 								</div>
 							))}
 						</div>
-					)} */}
 					</div>
 
 					<div className="flex justify-center gap-7 mb-5">
 						<Button
-							title={t('titleForUpdate')}
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
 							isLoading={loading}
+							title={t('titleForUpdate')}
+							Color="#CF7475"
 							onClick={(e) => {
-								console.log('update');
 								e.preventDefault();
 								UpdateFamilyForm.handleSubmit();
 							}}
 						/>
 						<Button
-							title={t('delete')}
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
-							// isLoading={loading}
+							title={t('delete')}
+							Color="#000000"
 							onClick={() => handleDeleteConfirmed(id)}
+							isLoading={loading}
 						/>
 					</div>
 				</div>
@@ -712,7 +677,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 					setOpenDeleteModal(false);
 				}}
 				onDelete={() => {
-					console.log('Delete confirmed for ID:', deleteId);
+					// console.log('Delete confirmed for ID:', deleteId);
 					setOpenDeleteModal(false);
 				}}
 			/>
