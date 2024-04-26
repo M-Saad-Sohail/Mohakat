@@ -23,7 +23,7 @@
 	"Signin": {
 		"form": {
 			"title": "Oturum Aç",
-			"description": "Devam etmek için kimlik bilgilerinizi girin",
+			"description": "Devam etmek için Tc limlik no bilgilerinizi girin",
 			"email": {
 				"placeholder": "E-postanızı girin",
 				"title": "E-posta"
@@ -224,7 +224,7 @@
 				"title": "Ailede Şehit Sayısı"
 			},
 			"InfectedInFamily": {
-				"title": "Ailede Enfekte Olan Sayısı"
+				"title": "Ailedeki hasta sayısı"
 			},
 			"dob": {
 				"title": "Doğum Tarihi"
@@ -279,7 +279,7 @@
 				"title": "Mevcut Durum",
 				"bad": "Kötü",
 				"good": "İyi",
-				"worst": "En Kötü",
+				"worst": "Çok kötü",
 				"urgentneeded": "acilen gerekli",
 				"default": "Mevcut Durumu Seçin"
 			},
@@ -291,7 +291,7 @@
 				"store": "mobilya mağazası",
 				"house": "ev",
 				"business": "iş",
-				"default": "Savaşta Kayıp Sayısını Seçin"
+				"default": "Savaşta kayıp edilen eşyalar"
 			},
 			"language": {
 				"title": "Dil",
@@ -344,11 +344,11 @@
 		"settings": "Ayarlar",
 		"logout": "Çıkış",
 		"sponsor": {
-			"approved": "Onaylanmış Sponsor",
+			"approved": "Onaylanmış sponsorluklar",
 			"pending": "Bekleyen Sponsor",
 			"rejected": "Reddedilmiş Sponsor"
 		},
-		"donatedFamilies": "Bağışlanan Aileler",
+		"donatedFamilies": "Bağış yapılan aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
 		"sponsoring": "Sponsorluk"
@@ -358,7 +358,7 @@
 		"deleteAll": "Tümünü Sil"
 	},
 	"PendingSponsors": {
-		"title": "Bekleyen Sponsorlar"
+		"title": "Bekleyen sponsorluklar"
 	},
 	"Families": {
 		"title": "Aileler"
@@ -387,8 +387,8 @@
 		"title": "Pano",
 		"section1": "Yönetici ve Moderatörler",
 		"cards": {
-			"1": "Toplam Aileler",
-			"2": "Toplam Onaylanmış Sponsorlar",
+			"1": "Toplam Aile Sayısı",
+			"2": "Toplam onaylanmış sponsorluk",
 			"3": "Alınan Miktar",
 			"4": "Form Yanıtları"
 		},
@@ -459,8 +459,8 @@
 		"bad": "Kötü",
 		"Good": "İyi",
 		"good": "İyi",
-		"Worst": "En Kötü",
-		"worst": "En Kötü",
+		"Worst": "Çok kötü",
+		"worst": "Çok kötü",
 		"Urgently Needed": "Acil Olarak Gerekli"
 	},
 	"LangSelect": {
