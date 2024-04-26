@@ -23,7 +23,7 @@
 	"Signin": {
 		"form": {
 			"title": "Oturum Aç",
-			"description": "Devam etmek için kimlik bilgilerinizi girin",
+			"description": "Devam etmek için Tc limlik no bilgilerinizi girin",
 			"email": {
 				"placeholder": "E-postanızı girin",
 				"title": "E-posta"
@@ -188,13 +188,6 @@
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
-	"UpdateFamily": {
-		"form": {
-			"title": "Aileyi Güncelle",
-			"submit": "Aile başarıyla güncellendi",
-			"delete": "Sil"
-		}
-	},	
 	"AddFamilies": {
 		"title": "Aileler",
 		"description": "Aileler sponsorluk aldığında temel kaynaklara ve desteğe erişerek yaşam kalitelerini artırırlar. Bağışlar yiyecek, barınma, eğitim ve tıbbi yardım sağlamak için kullanılıyor.",
@@ -208,6 +201,12 @@
 			"title": "Aile Ekle",
 			"name": {
 				"title": "İsim"
+			},
+			"BreadWinnerName": {
+				"title": "Aile Geçimini Sağlayanın Adı"
+			},
+			"comment": {
+				"title": "Yorum"
 			},
 			"email": {
 				"title": "E-posta"
@@ -225,7 +224,7 @@
 				"title": "Ailede Şehit Sayısı"
 			},
 			"InfectedInFamily": {
-				"title": "Ailede Enfekte Olan Sayısı"
+				"title": "Ailedeki hasta sayısı"
 			},
 			"dob": {
 				"title": "Doğum Tarihi"
@@ -280,7 +279,7 @@
 				"title": "Mevcut Durum",
 				"bad": "Kötü",
 				"good": "İyi",
-				"worst": "En Kötü",
+				"worst": "Çok kötü",
 				"urgentneeded": "acilen gerekli",
 				"default": "Mevcut Durumu Seçin"
 			},
@@ -292,7 +291,7 @@
 				"store": "mobilya mağazası",
 				"house": "ev",
 				"business": "iş",
-				"default": "Savaşta Kayıp Sayısını Seçin"
+				"default": "Savaşta kayıp edilen eşyalar"
 			},
 			"language": {
 				"title": "Dil",
@@ -345,11 +344,11 @@
 		"settings": "Ayarlar",
 		"logout": "Çıkış",
 		"sponsor": {
-			"approved": "Onaylanmış Sponsor",
+			"approved": "Onaylanmış sponsorluklar",
 			"pending": "Bekleyen Sponsor",
 			"rejected": "Reddedilmiş Sponsor"
 		},
-		"donatedFamilies": "Bağışlanan Aileler",
+		"donatedFamilies": "Bağış yapılan aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
 		"sponsoring": "Sponsorluk"
@@ -359,7 +358,7 @@
 		"deleteAll": "Tümünü Sil"
 	},
 	"PendingSponsors": {
-		"title": "Bekleyen Sponsorlar"
+		"title": "Bekleyen sponsorluklar"
 	},
 	"Families": {
 		"title": "Aileler"
@@ -388,8 +387,8 @@
 		"title": "Pano",
 		"section1": "Yönetici ve Moderatörler",
 		"cards": {
-			"1": "Toplam Aileler",
-			"2": "Toplam Onaylanmış Sponsorlar",
+			"1": "Toplam Aile Sayısı",
+			"2": "Toplam onaylanmış sponsorluk",
 			"3": "Alınan Miktar",
 			"4": "Form Yanıtları"
 		},
@@ -460,8 +459,8 @@
 		"bad": "Kötü",
 		"Good": "İyi",
 		"good": "İyi",
-		"Worst": "En Kötü",
-		"worst": "En Kötü",
+		"Worst": "Çok kötü",
+		"worst": "Çok kötü",
 		"Urgently Needed": "Acil Olarak Gerekli"
 	},
 	"LangSelect": {
