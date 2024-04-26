@@ -651,7 +651,7 @@ const ViewModal = ({
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
 							isLoading={loading}
-							title={t('titleForUpdate')}
+							title={`${t('titleForUpdate')}`}
 							Color="#CF7475"
 							onClick={(e) => {
 								e.preventDefault();
@@ -661,7 +661,7 @@ const ViewModal = ({
 						<Button
 							type="submit"
 							className="max-w-[200px] px-6 shadow-custom"
-							title={t('delete')}
+							title={`${t('delete')}`}
 							Color="#000000"
 							onClick={() => handleDeleteConfirmed(id)}
 							isLoading={loading}
