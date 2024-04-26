@@ -98,6 +98,7 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 		}
 	}, [id]);
 
+
 	const UpdateFamilyForm = useFormik({
 		initialValues: {
 			breadWinnerNameEn: '',
@@ -191,6 +192,20 @@ const ViewModal = ({ openModal, onClose, id, tableName }: ViewModalProps) => {
 			// console.log('form submitted', response);
 		},
 	});
+
+	
+	useEffect(() => {
+		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
+		  const newMembers = new Array(UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length).fill({
+			memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
+			memberAge: '',
+			MemberIdNumber: '',
+			memberGender: ''
+		  });
+		  setFamilyMembers(familyMembers.concat(newMembers));
+		}
+	  }, [UpdateFamilyForm.values.numberOfFamilyMembers]);
+	  
 
 	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
