@@ -32,7 +32,7 @@ const ViewModal = ({
 	const handleDeleteConfirmed = (id: string) => {
 		setDeleteId(id);
 		setOpenDeleteModal(true);
-		// setShowTable(false);
+		setShowTable(true);
 		onClose();
 	};
 
