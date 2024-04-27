@@ -105,7 +105,7 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 				alt=""
 				src={sidebar_icon}
 				className={`w-5 cursor-pointer ${
-					dir === 'rtl' ? 'rotate-180' : 'rotate-0'
+					dir === 'rtl' ? 'rotate-0' : 'rotate-180'
 				}`}
 				width={50}
 				height={50}
@@ -211,7 +211,7 @@ const LeftSideBar = () => {
 								}}
 							>
 								<li
-									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4  ${
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg- hover:text-white text-[16px] items-center gap-x-4  ${
 										index === 0 && 'bg-light-white'
 									}  ${active !== menu.link && 'text-primary'}`}
 								>
