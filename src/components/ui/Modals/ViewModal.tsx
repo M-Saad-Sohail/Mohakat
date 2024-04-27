@@ -69,7 +69,7 @@ const ViewModal = ({
 	const t = useTranslations('AddFamilies.form');
 
 	useEffect(() => {
-		if (user) {
+		if (user && openModal) {
 			fetchFamilyDetails(id)
 				.then((familySponsor) => {
 					console.log('Success');
@@ -78,7 +78,7 @@ const ViewModal = ({
 					console.error('Error fetching family details:', error);
 				});
 		}
-	}, [id]);
+	}, [openModal, id, user]);
 
 	const UpdateFamilyForm = useFormik({
 		initialValues: UpdateFamilyValues,
