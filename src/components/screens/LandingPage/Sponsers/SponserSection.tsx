@@ -79,19 +79,22 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		>
 			<div className=" flex flex-col gap-4">
 				<SponserMain currentPath={currentPath} />
-				{!user &&
-				<div className=" flex md:flex-nowrap flex-wrap gap-4">
-					<Link href={url(PATHS.BECOME_SPONSOR)}>
-						<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-					</Link>
-				</div>
-				}
+				{!user && (
+					<div className=" flex md:flex-nowrap flex-wrap gap-4">
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
+							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+						</Link>
+					</div>
+				)}
 			</div>
 			<div
 				className={`flex md:flex-row flex-col justify-between ${currentPath === 'ar' ? ' md:gap-9' : 'md:gap-4'} gap-6`}
 			>
 				{featureData?.map((item: any, i: number) => (
-					<div key={i} className="flex-1 flex flex-col items-center gap-5 feature-shadow">
+					<div
+						key={i}
+						className="flex-1 flex flex-col items-center gap-5 feature-shadow"
+					>
 						<Image
 							src={`/svgs/landing-sponser/sponser-svg-${i + 1}.svg`}
 							alt={`img`}
@@ -99,7 +102,9 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							height={100}
 							className=" h-auto md:w-auto w-[70px]"
 						/>
-						<h2 className="text-2xl font-bold">{t('Step.title')} {i + 1}</h2>{' '}
+						<h2 className="text-2xl font-bold">
+							{t('Step.title')} {i + 1}
+						</h2>{' '}
 						<p className="md:text-lg text-base font-light text-center">
 							{item.description}
 						</p>
