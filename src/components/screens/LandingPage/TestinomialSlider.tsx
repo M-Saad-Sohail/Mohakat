@@ -68,7 +68,6 @@ const TestimonialSlider = () => {
 			);
 		}
 	};
-	console.log(currentPath);
 
 	useEffect(() => {
 		try {

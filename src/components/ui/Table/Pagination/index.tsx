@@ -44,10 +44,8 @@ function Pagination({
 	};
 
 	const t = useTranslations('Pagination');
-	const { locale } = useLocale();
-	console.log('🚀 ~ locale:', locale);
-	let pathName = usePathname();
-	console.log('🚀 ~ pathName:', pathName);
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
 
 	return (
 		<div className="w-full flex justify-between">
@@ -57,11 +55,18 @@ function Pagination({
 			</p>
 			<div className="w-fit flex">
 				<button onClick={previousPage} disabled={!canPreviousPage}>
-					<Image src={left_arrow} alt="left" className="" />
+					<Image
+						src={currentPath === 'ar' ? right_arrow : left_arrow}
+						alt="left"
+						className=""
+					/>
 				</button>
 				{getPageNumbers()}
 				<button onClick={nextPage} disabled={!canNextPage}>
-					<Image src={right_arrow} alt="right" />
+					<Image
+						src={currentPath === 'ar' ? left_arrow : right_arrow}
+						alt="right"
+					/>
 				</button>
 			</div>
 		</div>
