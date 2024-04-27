@@ -247,11 +247,19 @@ input[name='month'] {
 }
 
 /* Bakhtawar CSS */
+
+/* Zain CSS */
+.feature-shadow{
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+	box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 .feature-shadow:hover {
-	box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 	border: 1px solid #f7f7f7;
 	cursor: pointer;
-	padding: 1.5rem;
+	transform: scale(1.1);
+	padding-top: 10px; /* Scale the card slightly on hover */
 	border-radius: 8px;
 }
 
