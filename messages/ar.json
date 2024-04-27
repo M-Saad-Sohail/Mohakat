@@ -391,7 +391,7 @@
 			"Sno": "رقم السلسلة",
 			"Name": "الاسم",
 			"Country": "البلد",
-			"Email": "البريد الإلكتروني",
+			"Email": "البريد الإلكتروني", 
 			"Language": "اللغة",
 			"Action": "الإجراء",
 			"Role": "دور",
@@ -401,6 +401,9 @@
 			"NumberOfFamilyMember": "عدد أفراد الأسرة",
 			"Id": "معرف فريد"
 		}
+	},
+	"Pagination": {
+		"showing": "عرض"
 	},
 	"Dashboard": {
 		"title": "لوحة التحكم",
@@ -489,5 +492,9 @@
 	},	
 	"editFamilyModal":{
 		"title": "تحرير تفاصيل العائلة"
+	},
+	"DeleteFamily": {
+		"family_deleted_successfully": "تم حذف العائلة بنجاح",
+		"deletion_failed": "فشل في حذف العائلة"
 	}
 }

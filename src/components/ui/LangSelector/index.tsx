@@ -38,6 +38,13 @@ const LangSelector: React.FC<IProps> = ({
 		ar: arabic_flag,
 		tr: turkish_flag,
 	};
+
+	const arrows = {
+		en: { left: 'left_arrow', right: 'right_arrow' },
+		ar: { left: 'right_arrow', right: 'left_arrow' }, // Reverse arrow direction for Arabic
+		tr: { left: 'left_arrow', right: 'right_arrow' },
+	  };
+	  
 	const [langValue, setlangValue] = useState('');
 	const [open, setOpen] = useState(false);
 	const t = useTranslations('LangSelect');

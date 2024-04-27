@@ -415,6 +415,9 @@
 			"Id": "Unique ID"
 		}
 	},
+	"Pagination": {
+		"showing": "Showing"
+	},
 	"Dashboard": {
 		"title": "Dashboard",
 		"section1": "Admin & Moderators",

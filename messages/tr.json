@@ -401,6 +401,9 @@
 			"Id": "Benzersiz kimlik"
 		}
 	},
+	"Pagination": {
+		"showing": "Gösterilen"
+	},
 	"Dashboard": {
 		"title": "Pano",
 		"section1": "Yönetici ve Moderatörler",
@@ -485,5 +488,9 @@
 		"English": "İngilizce",
 		"Arabic": "Arapça",
 		"Turkish": "Türkçe"
-	}	
+	},	
+	"DeleteFamily": {
+		"family_deleted_successfully": "Aile Başarıyla Silindi",
+		"deletion_failed": "Aile Silinemedi"
+	}
 }
