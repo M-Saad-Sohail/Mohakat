@@ -36,7 +36,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 		},
 		// validationSchema: AddFamiliesSchema,
 		onSubmit: async (values: any) => {
-			console.log('submit', values);
+			console.log('submit');
 		},
 	});
 
