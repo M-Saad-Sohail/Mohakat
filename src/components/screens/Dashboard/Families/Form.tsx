@@ -416,33 +416,7 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-				{/* COMMENT  */}
-				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold"> {t('comment.title')}</h3>
-					<div className="flex items-start justify-start w-full gap-x-4">
-						<Input
-							title={'In English'}
-							name="descriptionEn"
-							className="mb-[10px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionEn}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						<Input
-							title={'In Turkish'}
-							name="descriptionTr"
-							className="mb-[10px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionTr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						<Input
-							title={'In Arabic'}
-							name="descriptionAr"
-							className="mb-[10px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionAr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-					</div>
-				</div>
+
 
 				{/* fifth */}
 
@@ -784,6 +758,33 @@ const FamilyForm = () => {
 							))}
 						</div>
 					)}
+									{/* COMMENT  */}
+				<div className=" flex flex-col gap-3">
+					<h3 className=" text-sm font-bold"> {t('comment.title')}</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<Input
+							title={'In English'}
+							name="descriptionEn"
+							className="mb-[10px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionEn}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						<Input
+							title={'In Turkish'}
+							name="descriptionTr"
+							className="mb-[10px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionTr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						<Input
+							title={'In Arabic'}
+							name="descriptionAr"
+							className="mb-[10px] min-w-[250px]"
+							value={AddFamiliesForm.values?.descriptionAr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+					</div>
+				</div>
 				<div className="flex my-5">
 					<Button
 						onClick={(e) => {
