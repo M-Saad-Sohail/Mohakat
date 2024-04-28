@@ -84,13 +84,13 @@ const DeleteFamilyModal = ({
 					</h4>
 					<div className="flex items-center justify-center mt-4 gap-x-4">
 						<button
-							className="py-3 border border-black rounded-md px-14 hover:text-white hover:bg-black"
+							className="py-3 border border-black rounded-md px-14 hover:text-white hover:bg-black transition-all duration-500"
 							onClick={onClose}
 						>
 							Cancel
 						</button>
 						<button
-							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary hover:bg-white hover:text-primary transition-all"
+							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary hover:bg-white hover:text-primary transition-all duration-500"
 							onClick={() => {
 								if (user) {
 									handleDelete(user.key, id);

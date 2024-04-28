@@ -125,6 +125,7 @@ const LeftSideBar = () => {
 		name: string;
 		email: string;
 		id: string;
+		role: string;
 	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
@@ -134,6 +135,8 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
+		console.log('🚀 ~ useEffect ~ user:', user);
+
 		// console.log('uses', user);
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
@@ -183,9 +186,11 @@ const LeftSideBar = () => {
 							{user ? user.name.toUpperCase() : ''}
 						</p>
 						<p
-							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
+								!open && 'hidden'
+							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : 'bg-[#f9a8a8]'}`}
 						>
-							Id: {user ? user.id : ''}
+							{user?.role === 'admin' ? 'Admin' : 'Moderator'}
 						</p>
 					</div>
 					<p

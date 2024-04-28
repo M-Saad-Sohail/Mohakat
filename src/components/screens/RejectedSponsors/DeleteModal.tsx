@@ -62,6 +62,7 @@ const DeleteModal = ({
 						<Image
 							src={close_icon}
 							alt="close"
+							className="cursor-pointer"
 							onClick={() => {
 								setShowTable(false);
 								onClose();
@@ -77,13 +78,13 @@ const DeleteModal = ({
 					</h4>
 					<div className="flex items-center justify-center mt-4 gap-x-4">
 						<button
-							className="py-3 border border-black rounded-md px-14"
+							className="py-3 border border-black rounded-md px-14 hover:text-white hover:bg-black transition-all duration-500"
 							onClick={onClose}
 						>
 							Cancel
 						</button>
 						<button
-							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary"
+							className="px-10 py-3 text-white border rounded-md shadow-custom border-main bg-primary hover:bg-white hover:text-primary transition-all duration-500"
 							onClick={() => {
 								if (deleteAll) {
 									handleDeleteAll();
