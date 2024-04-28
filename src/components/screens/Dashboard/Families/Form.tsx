@@ -416,8 +416,6 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-
-
 				{/* fifth */}
 
 				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
@@ -758,29 +756,38 @@ const FamilyForm = () => {
 							))}
 						</div>
 					)}
-									{/* COMMENT  */}
+				{/* COMMENT  */}
 				<div className=" flex flex-col gap-3">
 					<h3 className=" text-sm font-bold"> {t('comment.title')}</h3>
 					<div className="flex items-start justify-start w-full gap-x-4">
-						<Input
+						<textarea
 							title={'In English'}
 							name="descriptionEn"
-							className="mb-[10px] min-w-[250px]"
+							cols={30}
+							rows={4}
+							placeholder="Enter your message..."
+							className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
 							value={AddFamiliesForm.values?.descriptionEn}
 							onChange={AddFamiliesForm.handleChange}
 						/>
-						<Input
-							title={'In Turkish'}
-							name="descriptionTr"
-							className="mb-[10px] min-w-[250px]"
-							value={AddFamiliesForm.values?.descriptionTr}
-							onChange={AddFamiliesForm.handleChange}
-						/>
-						<Input
+						<textarea
 							title={'In Arabic'}
 							name="descriptionAr"
-							className="mb-[10px] min-w-[250px]"
+							cols={30}
+							rows={4}
+							placeholder="Enter your message..."
+							className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
 							value={AddFamiliesForm.values?.descriptionAr}
+							onChange={AddFamiliesForm.handleChange}
+						/>
+						<textarea
+							title={'In Turkish'}
+							name="descriptionTr"
+							cols={30}
+							rows={4}
+							placeholder="Enter your message..."
+							className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+							value={AddFamiliesForm.values?.descriptionTr}
 							onChange={AddFamiliesForm.handleChange}
 						/>
 					</div>
