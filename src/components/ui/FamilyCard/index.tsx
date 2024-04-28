@@ -186,6 +186,9 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				open={quickDonationOpen}
 				setOpen={setQuickDonationOpen}
 				cancelButtonRef={cancelQuickDonationButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				setDonate={setDonateOpen}
 			/>
 		</>
 	);

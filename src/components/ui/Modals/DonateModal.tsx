@@ -24,9 +24,11 @@ const DonateModal: React.FC<DonateModalType> = ({
 }) => {
 	const { user } = useLoggedInUser();
 	const currencyState = useSelector((state: any) => state.currency);
+
 	useEffect(() => {
 		DonateForm.setFieldValue('totalAmount', amount);
 	}, [amount]);
+
 	const DonateForm = useFormik({
 		initialValues: {
 			name: '',
@@ -39,6 +41,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 			console.log('submit', values);
 		},
 	});
+
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>
@@ -77,7 +80,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 										onSubmit={DonateForm.handleSubmit}
 										className="flex flex-col justify-between w-full h-full"
 									>
-										<div className="flex justify-between items-center w-full border-b-[2px] border-[#00000080] pb-3">
+										<div className="flex justify-between items-center w-full">
 											<h2 className="  text-2xl font-semibold">
 												Donate a Share
 											</h2>
@@ -89,7 +92,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 											</div>
 										</div>
 
-										<div className=" flex flex-col gap-3 pt-3 overflow-y-auto h-[70%] scrollbarHide">
+										<div className=" flex flex-col gap-3 pt-1 overflow-y-auto h-[70%] scrollbarHide">
 											<ModalInput
 												label="Name"
 												placeholder="John"
@@ -144,7 +147,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 													type="number"
 												/>
 											</div>
-											<ModalInput
+											{/* <ModalInput
 												label="Enter Amount"
 												placeholder="300"
 												name="totalAmount"
@@ -152,7 +155,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 												value={amount ? amount : DonateForm.values?.totalAmount}
 												onChange={DonateForm.handleChange}
 												disabled={user ? true : false}
-											/>
+											/> */}
 										</div>
 
 										<div className=" flex flex-col gap-3 w-full">

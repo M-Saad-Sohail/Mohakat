@@ -10,7 +10,7 @@ body {
 
 svg {
 	object-fit: cover;
-	width: 80% !important;
+	width: 80%;
 	margin: auto;
 	justify-content: center;
 }
@@ -247,9 +247,10 @@ input[name='month'] {
 }
 
 /* Zain CSS */
-.feature-shadow{
-	transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-	box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.feature-shadow {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	padding-top: 10px;
 }
 

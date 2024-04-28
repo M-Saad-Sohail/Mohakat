@@ -14,14 +14,16 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	open,
 	setOpen,
 	cancelButtonRef,
+	amount,
+	setAmount,
+	setDonate,
 }) => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const { user } = useLoggedInUser();
 	const t = useTranslations('QuickDonation');
-	const [totalAmount, setTotalAmount] = useState<number>(0);
 	const [openInputField, setOpenInputField] = useState<boolean>(false);
 	const [inputAmount, setInputAmount] = useState<number>(0);
-	const amountQuiclDonation: number[] = [25, 50, 100, 200, 400];
+	const amountQuickDonation: number[] = [25, 50, 100, 200, 400];
 	const currencyState = useSelector((state: any) => state.currency);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +32,15 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	};
 
 	useEffect(() => {
-		setTotalAmount(inputAmount === 0 ? 0 : inputAmount);
+		setAmount && setAmount(inputAmount === 0 ? 0 : inputAmount);
 	}, [inputAmount]);
+
+	const handleCheckout = () => {
+		if (amount as number > 0) {
+			setOpen(false);
+			setDonate && setDonate(true);
+		}
+	};
 
 	return (
 		<>
@@ -95,14 +104,14 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 										/>
 									</div>
 									<div className=" grid grid-cols-3 gap-4">
-										{amountQuiclDonation.map((price, i) => (
+										{amountQuickDonation.map((price, i) => (
 											<button
 												key={i}
 												onClick={() => {
 													setOpenInputField(false);
-													setTotalAmount(price);
+													setAmount && setAmount(price);
 												}}
-												className={` h-11 text-sm font-semibold border rounded-xl transition-colors duration-300 ease-in-out ${price === totalAmount ? 'text-[#CF7475] border-[#CF7475] ' : 'text-[#4a4b65] border-[#dfdfeb]'} hover:text-[#CF7475] hover:border-[#CF7475] `}
+												className={` h-11 text-sm font-semibold border rounded-xl transition-colors duration-300 ease-in-out ${price === amount ? 'text-[#CF7475] border-[#CF7475] ' : 'text-[#4a4b65] border-[#dfdfeb]'} hover:text-[#CF7475] hover:border-[#CF7475] `}
 											>
 												{currencyState.key} {price}
 											</button>
@@ -110,7 +119,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 										<button
 											className={` h-11 text-sm font-semibold border rounded-xl transition-colors duration-300 ease-in-out ${openInputField ? 'text-[#CF7475] border-[#CF7475] ' : 'text-[#4a4b65] border-[#dfdfeb]'} hover:text-[#CF7475] hover:border-[#CF7475] `}
 											onClick={() => {
-												setTotalAmount(0);
+												setAmount && setAmount(0);
 												setOpenInputField(true);
 											}}
 										>
@@ -134,17 +143,16 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 											{t('totalTitle')}
 										</h3>
 										<h3 className="text-lg text-[#4a4b65] font-semibold">
-											{currencyState.key} {totalAmount}
+											{currencyState.key} {amount}
 										</h3>
 									</div>
 									<div>
 										<Button
-											onClick={() => {
-												setOpen(false);
-											}}
+											onClick={handleCheckout}
 											title={t('button')}
 											className=" w-full"
 											Color="#CF7475"
+											disabled={amount as number > 0 ? false : true}
 										/>
 									</div>
 								</Dialog.Panel>
