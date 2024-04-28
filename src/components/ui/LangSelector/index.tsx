@@ -4,6 +4,7 @@ import { arabic_flag, english_flag, flag__icon, turkish_flag } from '@/assests';
 import downArrow from '@/assests/icons/down-arrow.svg';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
 import { useTranslations } from 'next-intl';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
 
 interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	error?: string | boolean | undefined;
@@ -27,6 +28,7 @@ const LangSelector: React.FC<IProps> = ({
 	title,
 	handleChange,
 }) => {
+	const { locale } = useLocaleRouter();
 	const options: LangOption[] = [
 		{ label: 'English', value: 'en' },
 		{ label: 'Arabic', value: 'ar' },
@@ -43,8 +45,8 @@ const LangSelector: React.FC<IProps> = ({
 		en: { left: 'left_arrow', right: 'right_arrow' },
 		ar: { left: 'right_arrow', right: 'left_arrow' }, // Reverse arrow direction for Arabic
 		tr: { left: 'left_arrow', right: 'right_arrow' },
-	  };
-	  
+	};
+
 	const [langValue, setlangValue] = useState('');
 	const [open, setOpen] = useState(false);
 	const t = useTranslations('LangSelect');
@@ -100,15 +102,18 @@ const LangSelector: React.FC<IProps> = ({
 			/>
 			{open && (
 				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-xl absolute flex flex-col gap-2 lang-dropdown z-50">
-					{options.map((opt) => (
-						<span
-							key={opt.value}
-							onClick={() => handleLangChange(opt)}
-							className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
-						>
-							{t(opt.label)}
-						</span>
-					))}
+					{options.map((opt) => {
+						if (opt.value === locale) return;
+						return (
+							<span
+								key={opt.value}
+								onClick={() => handleLangChange(opt)}
+								className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+							>
+								{t(opt.label)}
+							</span>
+						);
+					})}
 				</div>
 			)}
 
