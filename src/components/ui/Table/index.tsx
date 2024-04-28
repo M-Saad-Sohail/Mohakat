@@ -231,7 +231,11 @@ function Table({
 															setOpenModal(true);
 														}}
 													>
-														<FaEye />
+														<Image
+															src={delete_icon}
+															alt="delete"
+															className="w-3 h-3"
+														/>
 													</button>
 												</td>
 											);
