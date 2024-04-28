@@ -15,7 +15,7 @@ const Button: React.FC<IProps> = ({
 	className,
 	Color,
 	isPadding,
-	disabled
+	disabled,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -33,7 +33,7 @@ const Button: React.FC<IProps> = ({
 			type={type}
 			className={`${
 				isLoading || disabled
-					? 'rounded-[20px] flex items-center justify-center text-center cursor-not-allowed md:px-16 px-10'
+					? `rounded-[20px] flex items-center justify-center text-center cursor-not-allowed ${isPadding ? isPadding : 'md:px-16 px-10'} `
 					: `text-white cursor-pointer text-center ${isPadding ? isPadding : `md:px-6 md:py-2 px-4`} `
 			} rounded-xl shadow-lg font-semibold ${className} md:text-sm text-[13px] border-2 border-transparent outline-none py-2 w-fit transition-colors duration-300 ease-in-out`}
 			style={{

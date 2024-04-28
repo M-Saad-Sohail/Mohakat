@@ -18,9 +18,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	open,
 	setOpen,
 	cancelButtonRef,
-	isLoggedIn,
 	amount,
-	setAmount,
 }) => {
 	const { user } = useLoggedInUser();
 	const currencyState = useSelector((state: any) => state.currency);
@@ -82,7 +80,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 									>
 										<div className="flex justify-between items-center w-full">
 											<h2 className="  text-2xl font-semibold">
-												Donate a Share
+												{user ? 'Sponsor a Family' : 'Donate a Share'}
 											</h2>
 											<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 												<IoClose
