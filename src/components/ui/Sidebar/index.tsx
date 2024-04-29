@@ -187,9 +187,9 @@ const LeftSideBar = () => {
 								
 										{
 											user?.role === "user" && (
-												// {t('specialId')} :
+												
 												<p>
-													 {user?.uniqueId}
+													{t('specialId')} : {user?.uniqueId}
 												</p>
 											)
 										}

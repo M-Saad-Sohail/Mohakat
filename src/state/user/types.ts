@@ -9,7 +9,7 @@ export type UserType = {
 	role: string;
 	status: string;
 	verified: boolean;
-	uniqueId: any,
+	uniqueId: any;
 	__v: string;
 	id: string;
 };
