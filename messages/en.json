@@ -10,7 +10,8 @@
 		"cta": {
 			"become-sponsor": "Become a Sponsor",
 			"signin": "Sign In",
-			"go-to-dashboard": "Go to Dashboard"
+			"go-to-dashboard": "Go to Dashboard",
+			"logout": "Logout"
 		}
 	},
 	"LandingPage": {

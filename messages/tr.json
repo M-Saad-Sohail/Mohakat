@@ -10,7 +10,8 @@
 		"cta": {
 			"become-sponsor": "Sponsor Ol",
 			"signin": "Oturum Aç",
-			"go-to-dashboard": "Panoya Git"
+			"go-to-dashboard": "Panoya Git",
+			"logout": "Çıkış yap"
 		}
 	},
 	"LandingPage": {

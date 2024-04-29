@@ -10,7 +10,8 @@
 		"cta": {
 			"become-sponsor": "اكفل أسرة",
 			"signin": "تسجيل الدخول",
-			"go-to-dashboard": "الانتقال إلى لوحة التحكم"
+			"go-to-dashboard": "الانتقال إلى لوحة التحكم",
+			"logout": "تسجيل الخروج"
 		}
 	},
 	"LandingPage": {
