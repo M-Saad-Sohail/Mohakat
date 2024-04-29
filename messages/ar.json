@@ -468,6 +468,25 @@
 		"inputPlaceholder": "أدخل مبلغ التبرع",
 		"button": "الانتقال إلى الخروج"
 	},
+	"DonateModal":{
+		"title1": "تبرع بسهم",
+		"title2": "رعاية عائلة",
+		"name": "الاسم",
+		"email": "البريد الإلكتروني",
+		"address": "العنوان",
+		"country": "البلد",
+		"mobileNum": "رقم الجوال",
+		"identityNum": "الرقم الوطني",
+		"cardHolder": "اسم صاحب البطاقة",
+		"cardNum": "رقم البطاقة",
+		"expMonth": "شهر الانتهاء",
+		"expYear": "سنة الانتهاء",
+		"cvc": "رمز التحقق",
+		"total": "الإجمالي",
+		"success": "شكرًا لتبرعك",
+		"error": "حدث خطأ ما",
+		"submit": "تأكيد الدفع"
+	},	
 	"CurrencyModal": {
 		"title": "عرض العملة"
 	},

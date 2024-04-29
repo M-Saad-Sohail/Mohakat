@@ -458,6 +458,25 @@
 		"donateShare": "Pay Bağışla",
 		"becomeSponser": "Sponsor Ol"
 	},
+	"DonateModal":{
+		"title1": "Bir Pay Bağışla",
+		"title2": "Bir Aileye Sponsor Ol",
+		"name": "İsim",
+		"email": "E-posta",
+		"address": "Adres",
+		"country": "Ülke",
+		"mobileNum": "Cep Telefonu Numarası",
+		"identityNum": "Ulusal Kimlik Numarası",
+		"cardHolder": "Kart Sahibinin Adı",
+		"cardNum": "Kart Numarası",
+		"expMonth": "Son Kullanma Ayı",
+		"expYear": "Son Kullanma Yılı",
+		"cvc": "CVC",
+		"total": "Toplam",
+		"success": "Bağışınız için teşekkür ederiz",
+		"error": "Bir şeyler yanlış gitti",
+		"submit": "Ödemeyi Onayla"
+	},	
 	"QuickDonation": {
 		"title": "Genel ve Hızlı Bağış",
 		"purposeTitle": "Amaç",

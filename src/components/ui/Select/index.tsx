@@ -32,7 +32,7 @@ const Select: React.FC<IProps> = ({
 	return (
 		<div dir={dir} className={`flex flex-col gap-y-2 h-[50px] ${className}`}>
 			<label
-				className={`font-bold text-[14px] ${titleColor ? titleColor : `text-primary`}`}
+				className={`flex font-bold text-[14px] ${titleColor ? titleColor : `text-primary`}`}
 			>
 				{title}
 			</label>
