@@ -88,8 +88,10 @@ const AboutSection = () => {
 					{aboutData[0]?.heading}
 				</h3>
 				<div className="md:text-[20px] leading-8 text-lg font-light">
-					<p>{aboutData[0]?.description.split('.')[0]}.</p>
-					<p>{aboutData[0]?.description.split('.')[1]}.</p>
+					{aboutData[0]?.description.split('.').map((item, i) => {
+						if (aboutData[0].description.split('.').length - 1 === i) return;
+						return <p key={i}>{item}.</p>;
+					})}
 				</div>
 			</div>
 			<div className=" flex flex-col gap-3">

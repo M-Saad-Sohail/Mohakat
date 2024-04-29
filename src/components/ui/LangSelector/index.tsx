@@ -47,7 +47,9 @@ const LangSelector: React.FC<IProps> = ({
 		tr: { left: 'left_arrow', right: 'right_arrow' },
 	};
 
-	const [langValue, setlangValue] = useState('');
+	const [langValue, setlangValue] = useState(
+		options.find((opt) => opt.value === value)?.label,
+	);
 	const [open, setOpen] = useState(false);
 	const t = useTranslations('LangSelect');
 
