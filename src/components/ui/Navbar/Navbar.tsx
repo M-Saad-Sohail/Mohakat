@@ -46,19 +46,6 @@ const AuthNavbar = ({
 		setUser(user);
 	}, []);
 
-	if (!pathname) {
-		return null;
-	}
-
-	let currentPathName = pathname
-		.replace('/en', '')
-		.replace('/ar', '')
-		.replace('/tr', '');
-
-	if (currentPathName === '') {
-		currentPathName = '/';
-	}
-
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -74,6 +61,20 @@ const AuthNavbar = ({
 			document.body.removeEventListener('click', handleClickOutside);
 		};
 	}, []);
+	
+	if (!pathname) {
+		return null;
+	}
+
+	let currentPathName = pathname
+		.replace('/en', '')
+		.replace('/ar', '')
+		.replace('/tr', '');
+
+	if (currentPathName === '') {
+		currentPathName = '/';
+	}
+
 
 	return (
 		<div dir={dir} className="h-fit hidden md:block">
