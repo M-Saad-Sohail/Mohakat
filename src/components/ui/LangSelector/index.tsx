@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { arabic_flag, english_flag, flag__icon, turkish_flag } from '@/assests';
+import {
+	palestine_flag,
+} from '@/assests';
 import downArrow from '@/assests/icons/down-arrow.svg';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
 import { useTranslations } from 'next-intl';
@@ -34,12 +36,6 @@ const LangSelector: React.FC<IProps> = ({
 		{ label: 'Arabic', value: 'ar' },
 		{ label: 'Turkish', value: 'tr' },
 	];
-
-	const flags = {
-		en: english_flag,
-		ar: arabic_flag,
-		tr: turkish_flag,
-	};
 
 	const arrows = {
 		en: { left: 'left_arrow', right: 'right_arrow' },
@@ -87,7 +83,7 @@ const LangSelector: React.FC<IProps> = ({
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
-					src={value in flags ? flags[value as 'en' | 'ar' | 'tr'] : flag__icon}
+					src={palestine_flag}
 					alt="flag"
 					className="flex justify-center w-5 item-center"
 				/>

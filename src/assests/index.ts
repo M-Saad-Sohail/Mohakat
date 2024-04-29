@@ -45,6 +45,7 @@ import ham_icon from './icons/hamburger_icon.png';
 import turkish_flag from './icons/turkish_flag.svg';
 import english_flag from './icons/english_flag.svg';
 import arabic_flag from './icons/arabic_flag.svg';
+import palestine_flag from './icons/palestine_flag.svg';
 
 export {
 	logo,
@@ -93,4 +94,5 @@ export {
 	english_flag,
 	arabic_flag,
 	turkish_flag,
+	palestine_flag
 };
