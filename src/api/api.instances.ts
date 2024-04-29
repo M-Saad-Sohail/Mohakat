@@ -23,6 +23,14 @@ export const postJson = async (url: string, body: any, token?: any) => {
 	});
 	return response.data;
 };
+export const postJsonNoToken = async (url: string, body: any) => {
+	const response = await axios.post(url, body ,{
+		headers: {
+			'Content-Type': 'application/json',
+		  }
+	});
+	return response.data;
+};
 
 export const putJson = async (url: string, body: any, token?: any) => {
 	const response = await axios.put(url, body ,{
