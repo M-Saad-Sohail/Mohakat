@@ -47,6 +47,7 @@
 			"email": "Email",
 			"address": "Address",
 			"country": "Country",
+			"city": "City",
 			"mobileNum": "Mobile Number",
 			"identityNum": "National identity Number",
 			"cardHolder": "Card Holder Name",
