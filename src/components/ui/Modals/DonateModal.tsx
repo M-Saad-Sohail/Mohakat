@@ -39,29 +39,29 @@ const DonateModal: React.FC<DonateModalType> = ({
 
 	useEffect(() => {
 		fetch('https://api.ipify.org?format=json')
-				.then((response) => response.json())
-				.then((data) => {
-					console.log("kkk",data)
-					DonateForm.setFieldValue('buyerId', data.ip);
-				})
-				.catch((error) => {
-					console.error('Error fetching IP:', error);
-				});
-		
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('kkk', data);
+				DonateForm.setFieldValue('ip', data.ip);
+			})
+			.catch((error) => {
+				console.error('Error fetching IP:', error);
+			});
+
 		DonateForm.setFieldValue('amount', amount);
 		DonateForm.setFieldValue('family', familyId);
-		user && DonateForm.setFieldValue('sponser', user.id);
+		user && DonateForm.setFieldValue('sponsor', user.id);
 	}, [amount, familyId]);
 
 	const loginInitialValues = {
 		name: '',
-		city: '',
 		country: '',
+		city: '',
 		email: '',
 		address: '',
 		mobilePhoneNumber: '',
 		nationalIdentityNumber: '',
-		ip:''
+		ip: '',
 	};
 
 	const initialValues = {
@@ -86,7 +86,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 			if (res.success) {
 				setLoading(false);
 				// DonateForm.resetForm();
-				setOpen(false)
+				setOpen(false);
 				toast.success(`${t('success')}`, {
 					toastId: 'success',
 					position: 'top-right',
@@ -115,7 +115,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 			if (res.success) {
 				setLoading(false);
 				// DonateForm.resetForm();
-				setOpen(false)
+				setOpen(false);
 				toast.success(`${t('success')}`, {
 					toastId: 'success',
 					position: 'top-right',
@@ -137,7 +137,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 		initialValues: initialValues,
 		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
 		onSubmit: async (values: any) => {
-			console.log("values",values)
+			console.log('values', values);
 			if (user) {
 				postLoginData(values);
 			} else {
@@ -279,6 +279,20 @@ const DonateModal: React.FC<DonateModalType> = ({
 																	DonateForm.errors
 																		.nationalIdentityNumber as any
 																}
+															</p>
+														)}
+													<ModalInput
+														label={t('city')}
+														placeholder="Karachi"
+														type="text"
+														name="city"
+														value={DonateForm.values?.city}
+														onChange={DonateForm.handleChange}
+													/>
+													{DonateForm.touched.city &&
+														DonateForm.errors.city && (
+															<p className="text-sm mb-2 text-red">
+																{DonateForm.errors.city as any}
 															</p>
 														)}
 													<Select

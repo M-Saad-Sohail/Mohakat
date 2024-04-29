@@ -42,12 +42,12 @@ const AdminMenus = [
 		src: approved__icon,
 		link: PATHS.APPROVED_SPONSOR,
 	},
-	{
-		title: 'form_response',
-		src: form_icon,
-		link: PATHS.FORM_RESPONSES,
-		gap: true,
-	},
+	// {
+	// 	title: 'form_response',
+	// 	src: form_icon,
+	// 	link: PATHS.FORM_RESPONSES,
+	// 	gap: true,
+	// },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
