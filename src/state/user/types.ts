@@ -1,4 +1,5 @@
 export type UserType = {
+	uniqueId: string,
 	key: string;
 	avator: any;
 	createdAt: string;

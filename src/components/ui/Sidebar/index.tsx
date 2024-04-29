@@ -14,6 +14,7 @@ import {
 	form_icon,
 	logout,
 	sidebar_icon,
+	manage_family_png
 } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -31,7 +32,7 @@ import { RedirectType, usePathname } from 'next/navigation';
 const AdminMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
-	{ title: 'ManageFamilyPage', src: families, link: PATHS.MANAGEFAMILIES },
+	{ title: 'ManageFamilyPage', src: manage_family_png, link: PATHS.MANAGEFAMILIES },
 	{
 		title: 'sponsor.pending',
 		src: pending_icon,
@@ -104,9 +105,8 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 			<Image
 				alt=""
 				src={sidebar_icon}
-				className={`w-5 cursor-pointer ${
-					dir === 'rtl' ? 'rotate-0' : 'rotate-180'
-				}`}
+				className={`w-5 cursor-pointer ${dir === 'rtl' ? 'rotate-0' : 'rotate-180'
+					}`}
 				width={50}
 				height={50}
 				onClick={props.handleClose}
@@ -135,8 +135,6 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
-		console.log('🚀 ~ useEffect ~ user:', user);
-
 		// console.log('uses', user);
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
@@ -164,9 +162,8 @@ const LeftSideBar = () => {
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
-				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
-					open ? 'w-[270px]' : 'w-20 '
-				}`}
+				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${open ? 'w-[270px]' : 'w-20 '
+					}`}
 			>
 				<SideBarHeader
 					open={open}
@@ -174,11 +171,6 @@ const LeftSideBar = () => {
 					handleClose={() => setOpen(false)}
 				/>
 				<div className="flex-col flex gap-3 mx-auto items-center justify-center mt-[40px]">
-					{/* <Image
-						src={profile}
-						alt={''}
-						className="h-[50px] w-[50px] rounded-full mt-2"
-					/> */}
 					<div className=" flex flex-col items-center gap-3">
 						<p
 							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
@@ -188,15 +180,43 @@ const LeftSideBar = () => {
 						<p
 							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
 								!open && 'hidden'
-							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : 'bg-[#f9a8a8]'}`}
+							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : ''}`}
 						>
-							{user?.role === 'admin' ? 'Admin' : 'Moderator'}
+							{user?.role === 'admin' ? 'Admin' : ''}
+							<p>
+								{
+									user && open && (
+										<>
+										{
+											user?.role === "user" && (
+												<p>
+													{t('specialId')} : {user?.uniqueId}
+												</p>
+											)
+										}
+										</>
+									)
+								}
+							</p>
 						</p>
+						{/* {user && open && (
+							<>
+								{user.role === 'admin' && (
+									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#95dca9] px-4 py-1">
+										Admin
+									</p>
+								)}
+								{user.role === 'moderator' && (
+									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#f9a8a8] px-4 py-1">
+										Moderator
+									</p>
+								)}
+							</>
+						)} */}
 					</div>
 					<p
-						className={`${
-							!open || isAdmin ? 'hidden' : ''
-						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px]`}
+						className={`${!open || isAdmin ? 'hidden' : ''
+							} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px]`}
 					>
 						{t('verified')}
 					</p>
@@ -216,37 +236,31 @@ const LeftSideBar = () => {
 								}}
 							>
 								<li
-									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg- hover:text-white text-[16px] items-center gap-x-4  ${
-										index === 0 && 'bg-light-white'
-									}  ${active !== menu.link && 'text-primary'}`}
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg- hover:text-white text-[16px] items-center gap-x-4  ${index === 0 && 'bg-light-white'
+										}  ${active !== menu.link && 'text-primary'}`}
 								>
 									<div className="flex items-center gap-x-4">
 										<Image
 											src={menu.src}
-											className={`relative object-contain w-5 h-5  ${
-												menu.title === 'logout' ? 'left-[3px]' : ''
-											}`}
+											className={`relative object-contain w-5 h-5  ${menu.title === 'logout' ? 'left-[3px]' : ''
+												}`}
 											alt=""
 										/>
 										<div
-											className={`${
-												!open && 'hidden'
-											} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300 ${
-												currentPath === menu.link
+											className={`${!open && 'hidden'
+												} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300 ${currentPath === menu.link
 													? 'text-primary font-semibold'
 													: ''
-											}  ${
-												active === menu.link && 'text-primary font-semibold'
-											} `}
+												}  ${active === menu.link && 'text-primary font-semibold'
+												} `}
 										>
 											{t(menu.title)}
 										</div>
 									</div>
 									{menu.gap && (
 										<div
-											className={`${
-												!open && 'w-[20px] mt-5'
-											} w-[200px] h-[1.3px] mt-5 border-t-1 border-black bg-black `}
+											className={`${!open && 'w-[20px] mt-5'
+												} w-[200px] h-[1.3px] mt-5 border-t-1 border-black bg-black `}
 										></div>
 									)}
 								</li>

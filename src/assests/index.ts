@@ -34,6 +34,8 @@ import password_eye from './icons/eye_icon.svg';
 import notification from './icons/notification_icon.svg';
 import camera from './icons/camera_icon.svg';
 import add_icon from './icons/add__icon.svg';
+import manage_family from './icons/mange_family.svg';
+import manage_family_png from './icons/manage_family_png.png';
 import left_arrow from './icons/left_arrow_icon.svg';
 import right_arrow from './icons/right_arrow_icon.svg';
 import sidebar_icon from './icons/right_arrow_icon.svg';
@@ -94,5 +96,7 @@ export {
 	english_flag,
 	arabic_flag,
 	turkish_flag,
-	palestine_flag
+	palestine_flag,
+	manage_family,
+	manage_family_png
 };

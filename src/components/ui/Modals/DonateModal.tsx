@@ -41,11 +41,10 @@ const DonateModal: React.FC<DonateModalType> = ({
 		fetch('https://api.ipify.org?format=json')
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('kkk', data);
 				DonateForm.setFieldValue('ip', data.ip);
 			})
 			.catch((error) => {
-				console.error('Error fetching IP:', error);
+				console.error(error);
 			});
 
 		DonateForm.setFieldValue('amount', amount);

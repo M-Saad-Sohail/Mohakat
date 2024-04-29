@@ -349,6 +349,7 @@
 		}
 	},
 	"Sidebar": {
+		"specialId": "هوية خاصة",
 		"verified": "تم التحقق",
 		"dashboard": "لوحة التحكم",
 		"families": "العائلات",

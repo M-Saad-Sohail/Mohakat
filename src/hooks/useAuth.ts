@@ -37,6 +37,7 @@ export const useAuth = () => {
 					credentials,
 				);
 				const user: UserType = {
+					uniqueId: data.sponser?.uniqueId,
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
 					createdAt: data.sponser.createdAt, // Corrected key name

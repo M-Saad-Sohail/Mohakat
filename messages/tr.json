@@ -348,6 +348,7 @@
 		}
 	},
 	"Sidebar": {
+		"specialId": "Özel Kimlik",
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",
 		"families": "Aileler",

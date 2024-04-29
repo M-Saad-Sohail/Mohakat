@@ -345,6 +345,7 @@
 		}
 	},
 	"Sidebar": {
+		"specialId": "Special ID",
 		"verified": "Verified",
 		"dashboard": "Dashboard",
 		"families": "Families",
