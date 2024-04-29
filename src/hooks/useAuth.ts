@@ -36,8 +36,9 @@ export const useAuth = () => {
 					`/login`,
 					credentials,
 				);
+				console.log("data", data.sponser.uniqueId)
+
 				const user: UserType = {
-					uniqueId: data.sponser?.uniqueId,
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
 					createdAt: data.sponser.createdAt, // Corrected key name
@@ -46,11 +47,13 @@ export const useAuth = () => {
 					role: data.sponser.role, // Corrected key name
 					status: data.sponser?.status,
 					verified: data.sponser?.verified, // Corrected key name
+					uniqueId: data.sponser.uniqueId,
 					__v: data.sponser.__v, // Corrected key name
 					id: data.sponser._id, // Corrected key name,
 					country: data.sponser.country,
 					language: data.sponser?.language ?? 'en',
 				};
+				console.log("user", user)
 				if (!user.verified) {
 					throw new Error(`Please verify first`);
 				}

@@ -1,5 +1,4 @@
 export type UserType = {
-	uniqueId: string,
 	key: string;
 	avator: any;
 	createdAt: string;
@@ -10,6 +9,7 @@ export type UserType = {
 	role: string;
 	status: string;
 	verified: boolean;
+	uniqueId: any,
 	__v: string;
 	id: string;
 };

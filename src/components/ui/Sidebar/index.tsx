@@ -184,20 +184,16 @@ const LeftSideBar = () => {
 						>
 							{user?.role === 'admin' ? 'Admin' : ''}
 							<p>
-								{
-									user && open && (
-										<>
+								
 										{
 											user?.role === "user" && (
+												// {t('specialId')} :
 												<p>
-													{t('specialId')} : {user?.uniqueId}
+													 {user?.uniqueId}
 												</p>
 											)
 										}
-										</>
-									)
-								}
-							</p>
+							</p> 
 						</p>
 						{/* {user && open && (
 							<>
