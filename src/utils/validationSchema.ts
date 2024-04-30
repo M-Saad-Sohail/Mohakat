@@ -102,7 +102,6 @@ export const UpdateFamilySchema = object({
 	descriptionEn: string(),
 	descriptionTr: string(),
 	descriptionAr: string(),
-	maritalStatus: string(),
 	email: string()
 		.email('Invalid email address')
 		.required('Email address is required'),
@@ -112,6 +111,7 @@ export const UpdateFamilySchema = object({
 		.integer('Age must be an integer')
 		.required('Age is required'),
 	dateOfBirth: string().required('Date of birth is required'),
+	maritalStatus: string().required('Maritial status is required'),
 	language: string().required('Language is required'),
 	areaOfPreviousResidence: string().required(
 		'Previous residence area is required',

@@ -15,6 +15,7 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import DeleteFamilyModal from './DeleteFamilyModal';
 import Button from '@/components/ui/LandingPage/Button';
 import { FamilyMember, ViewModalProps } from './interfaces';
+import useDirection from '@/hooks/useDirection';
 
 const ViewModal = ({
 	openModal,
@@ -67,6 +68,7 @@ const ViewModal = ({
 	};
 
 	const t = useTranslations('AddFamilies.form');
+	const dir = useDirection();
 
 	useEffect(() => {
 		if (user && openModal) {
@@ -86,9 +88,9 @@ const ViewModal = ({
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
-					inEnglish: UpdateFamilyForm.values.breadWinnerNameEn,
-					inTurkish: UpdateFamilyForm.values.breadWinnerNameTr,
-					inArabic: UpdateFamilyForm.values.breadWinnerNameAr,
+					inEnglish: UpdateFamilyForm.values.breadWinnerNameEn.toUpperCase(),
+					inTurkish: UpdateFamilyForm.values.breadWinnerNameTr.toUpperCase(),
+					inArabic: UpdateFamilyForm.values.breadWinnerNameAr.toUpperCase(),
 				},
 				description: {
 					inEnglish: UpdateFamilyForm.values.descriptionEn,
@@ -232,29 +234,62 @@ const ViewModal = ({
 										<Input
 											title={'In English *'}
 											name="breadWinnerNameEn"
-											className="mb-[19px] min-w-[300px]"
+											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameEn}
 											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.breadWinnerNameEn &&
+												UpdateFamilyForm.errors.breadWinnerNameEn &&
+												'border-2 border-solid border-red'
+											}
 										/>
+										{UpdateFamilyForm.touched.breadWinnerNameEn &&
+											UpdateFamilyForm.errors.breadWinnerNameEn && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.breadWinnerNameEn as any}
+												</p>
+											)}
 									</div>
 
 									<div>
 										<Input
 											title={'In Turkish *'}
 											name="breadWinnerNameTr"
-											className="mb-[19px] min-w-[300px]"
+											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameTr}
 											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.breadWinnerNameTr &&
+												UpdateFamilyForm.errors.breadWinnerNameTr &&
+												'border-2 border-solid border-red'
+											}
 										/>
+										{UpdateFamilyForm.touched.breadWinnerNameTr &&
+											UpdateFamilyForm.errors.breadWinnerNameTr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.breadWinnerNameTr as any}
+												</p>
+											)}
 									</div>
 									<div>
 										<Input
 											title={'In Arabic *'}
 											name="breadWinnerNameAr"
-											className="mb-[19px] min-w-[300px]"
+											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameAr}
 											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.breadWinnerNameAr &&
+												UpdateFamilyForm.errors.breadWinnerNameAr &&
+												'border-2 border-solid border-red'
+											}
 										/>
+										{UpdateFamilyForm.touched.breadWinnerNameAr &&
+											UpdateFamilyForm.errors.breadWinnerNameAr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.breadWinnerNameAr as any}
+												</p>
+											)}
 									</div>
 								</div>
 							</div>
@@ -265,20 +300,42 @@ const ViewModal = ({
 								<Input
 									title={`${t('email.title')} *`}
 									name="email"
-									className="mb-[5px] min-w-[460px]"
+									className="mb-1 min-w-[460px]"
 									value={UpdateFamilyForm.values.email}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.email &&
+										UpdateFamilyForm.errors.email &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.email &&
+									UpdateFamilyForm.errors.email && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.email as any}
+										</p>
+									)}
 							</div>
 							<div>
 								<Input
 									title={`${t('age.title')} *`}
 									name="age"
 									type="number"
-									className="mb-[5px] min-w-[460px]"
+									className="mb-1 min-w-[460px]"
 									value={UpdateFamilyForm.values.age}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.age &&
+										UpdateFamilyForm.errors.age &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.errors.age && (
+									<p className="text-sm mb-2 text-red">
+										{UpdateFamilyForm.touched.age &&
+											(UpdateFamilyForm.errors.age as any)}
+									</p>
+								)}
 							</div>
 						</div>
 
@@ -288,10 +345,21 @@ const ViewModal = ({
 									title={`${t('telephone.title')} *`}
 									name="telephoneNumber"
 									type="number"
-									className="mb-[5px] min-w-[460px]"
+									className="mb-1 min-w-[460px]"
 									value={UpdateFamilyForm.values.telephoneNumber}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.telephoneNumber &&
+										UpdateFamilyForm.errors.telephoneNumber &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.telephoneNumber &&
+									UpdateFamilyForm.errors.telephoneNumber && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.telephoneNumber as any}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -299,10 +367,21 @@ const ViewModal = ({
 									title={`${t('id.title')} *`}
 									name="idNumber"
 									type="number"
-									className="mb-[5px] min-w-[460px]"
+									className="mb-1 min-w-[460px]"
 									value={UpdateFamilyForm.values.idNumber}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.idNumber &&
+										UpdateFamilyForm.errors.idNumber &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.idNumber &&
+									UpdateFamilyForm.errors.idNumber && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.idNumber as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -311,11 +390,22 @@ const ViewModal = ({
 								<Input
 									title={`${t('dob.title')} *`}
 									name="dateOfBirth"
-									className="mb-[5px] min-w-[460px] "
+									className="mb-1 min-w-[460px] "
 									type="date"
 									value={UpdateFamilyForm.values.dateOfBirth}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.dateOfBirth &&
+										UpdateFamilyForm.errors.dateOfBirth &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.dateOfBirth &&
+									UpdateFamilyForm.errors.dateOfBirth && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.dateOfBirth as any}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -330,7 +420,18 @@ const ViewModal = ({
 									className="mb-[40px] min-w-[460px] mt-[2px] "
 									value={UpdateFamilyForm.values.gender}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.gender &&
+										UpdateFamilyForm.errors.gender &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.gender &&
+									UpdateFamilyForm.errors.gender && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.gender as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -346,7 +447,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.maritalStatus ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.maritalStatus}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.maritalStatus &&
+										UpdateFamilyForm.errors.maritalStatus &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.errors.maritalStatus && (
+									<p className="text-sm mb-2 text-red">
+										{UpdateFamilyForm.touched.maritalStatus &&
+											(UpdateFamilyForm.errors.maritalStatus as any)}
+									</p>
+								)}
 							</div>
 
 							<div>
@@ -362,34 +474,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.language ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.language}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.language &&
+										UpdateFamilyForm.errors.language &&
+										'border-2 border-solid border-red'
+									}
 								/>
-							</div>
-						</div>
-
-						<div className=" flex flex-col gap-3">
-							<h3 className=" text-sm font-bold">{`${t('comment.title')} *`}</h3>
-							<div className="flex items-start justify-start w-full gap-x-4">
-								<Input
-									title={'In English'}
-									name="descriptionEn"
-									className="mb-[10px] min-w-[300px]"
-									value={UpdateFamilyForm.values.descriptionEn}
-									onChange={UpdateFamilyForm.handleChange}
-								/>
-								<Input
-									title={'In Turkish'}
-									name="descriptionTr"
-									className="mb-[10px] min-w-[300px]"
-									value={UpdateFamilyForm.values.descriptionTr}
-									onChange={UpdateFamilyForm.handleChange}
-								/>
-								<Input
-									title={'In Arabic'}
-									name="descriptionAr"
-									className="mb-[10px] min-w-[300px]"
-									value={UpdateFamilyForm.values.descriptionAr}
-									onChange={UpdateFamilyForm.handleChange}
-								/>
+								{UpdateFamilyForm.touched.language &&
+									UpdateFamilyForm.errors.language && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.language as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -438,7 +534,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.areaOfPreviousResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.previousresidence}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.areaOfPreviousResidence &&
+										UpdateFamilyForm.errors.areaOfPreviousResidence &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.areaOfPreviousResidence &&
+									UpdateFamilyForm.errors.areaOfPreviousResidence && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.areaOfPreviousResidence as any}
+										</p>
+									)}
 							</div>
 							<div>
 								<Select
@@ -484,7 +591,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.areaOfCurrentResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.currentresidence}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.areaOfCurrentResidence &&
+										UpdateFamilyForm.errors.areaOfCurrentResidence &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.areaOfCurrentResidence &&
+									UpdateFamilyForm.errors.areaOfCurrentResidence && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.areaOfCurrentResidence as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -502,7 +620,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.currentSituation ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.currentSituation}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.currentSituation &&
+										UpdateFamilyForm.errors.currentSituation &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.currentSituation &&
+									UpdateFamilyForm.errors.currentSituation && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.currentSituation as any}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -521,7 +650,18 @@ const ViewModal = ({
 									className={` ${UpdateFamilyForm.errors.lossesInWar ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
 									value={UpdateFamilyForm.values.lossesInWar}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.lossesInWar &&
+										UpdateFamilyForm.errors.lossesInWar &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.lossesInWar &&
+									UpdateFamilyForm.errors.lossesInWar && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.lossesInWar as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -531,10 +671,21 @@ const ViewModal = ({
 									title={`${t('FamilyMembers.title')} *`}
 									name="numberOfFamilyMembers"
 									type="number"
-									className="mb-[5px] min-w-[300px]"
+									className="mb-1 min-w-[300px]"
 									value={UpdateFamilyForm.values.numberOfFamilyMembers}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.numberOfFamilyMembers &&
+										UpdateFamilyForm.errors.numberOfFamilyMembers &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.numberOfFamilyMembers &&
+									UpdateFamilyForm.errors.numberOfFamilyMembers && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.numberOfFamilyMembers as any}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -542,10 +693,22 @@ const ViewModal = ({
 									title={`${t('MartyrInFamily.title')} *`}
 									name="numberOfMartyrInFamily"
 									type="number"
-									className="mb-[5px] min-w-[300px]"
+									className="mb-1 min-w-[300px]"
 									value={UpdateFamilyForm.values.numberOfMartyrInFamily}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.numberOfMartyrInFamily &&
+										UpdateFamilyForm.errors.numberOfMartyrInFamily &&
+										'border-2 border-solid border-red'
+									}
 								/>
+
+								{UpdateFamilyForm.touched.numberOfMartyrInFamily &&
+									UpdateFamilyForm.errors.numberOfMartyrInFamily && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.numberOfMartyrInFamily as any}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -553,10 +716,21 @@ const ViewModal = ({
 									title={`${t('InfectedInFamily.title')} *`}
 									name="numberOfInfectedInFamily"
 									type="number"
-									className="mb-[5px] min-w-[300px]"
+									className="mb-1 min-w-[300px]"
 									value={UpdateFamilyForm.values.numberOfInfectedInFamily}
 									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.numberOfInfectedInFamily &&
+										UpdateFamilyForm.errors.numberOfInfectedInFamily &&
+										'border-2 border-solid border-red'
+									}
 								/>
+								{UpdateFamilyForm.touched.numberOfInfectedInFamily &&
+									UpdateFamilyForm.errors.numberOfInfectedInFamily && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.numberOfInfectedInFamily as any}
+										</p>
+									)}
 							</div>
 						</div>
 
@@ -643,6 +817,67 @@ const ViewModal = ({
 									</div>
 								</div>
 							))}
+						</div>
+
+						<div className=" flex flex-col gap-3 mt-4">
+							<h3 className="text-sm font-bold" style={{ wordSpacing: '4px' }}>
+								{' '}
+								{t('comment.title')} (Optional)
+							</h3>
+							<div className="flex items-start justify-start w-full gap-x-4">
+								<div className="flex flex-col gap-y-3">
+									<label
+										className="text-[16px] font-bold font-sans text-primary"
+										htmlFor="descriptionEn"
+									>
+										{'In English'}
+									</label>
+									<textarea
+										title={'In English'}
+										name="descriptionEn"
+										cols={30}
+										rows={4}
+										className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[300px] text-[#000000]"
+										value={UpdateFamilyForm.values.descriptionEn}
+										onChange={UpdateFamilyForm.handleChange}
+									/>
+								</div>
+								<div className="flex flex-col gap-y-3">
+									<label
+										className="text-[16px] font-bold font-sans text-primary"
+										htmlFor="descriptionAr"
+									>
+										{'In Turkish'}
+									</label>
+									<textarea
+										dir={'rtl'}
+										title={'In Arabic'}
+										name="descriptionAr"
+										cols={30}
+										rows={4}
+										className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[300px] text-[#000000]"
+										value={UpdateFamilyForm.values.descriptionAr}
+										onChange={UpdateFamilyForm.handleChange}
+									/>
+								</div>
+								<div className="flex flex-col gap-y-3">
+									<label
+										className="text-[16px] font-bold font-sans text-primary"
+										htmlFor="descriptionTr"
+									>
+										{'In Turkish'}
+									</label>
+									<textarea
+										title={'In Turkish'}
+										name="descriptionTr"
+										cols={30}
+										rows={4}
+										className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[300px] text-[#000000]"
+										value={UpdateFamilyForm.values.descriptionTr}
+										onChange={UpdateFamilyForm.handleChange}
+									/>
+								</div>
+							</div>
 						</div>
 					</div>
 
