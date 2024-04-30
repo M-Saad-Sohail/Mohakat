@@ -29,6 +29,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
 	const t1 = useTranslations('HeroMainSection.btns');
+	const t3 = useTranslations("FamiliesMainSection");
 	const currencyState = useSelector((state: any) => state.currency);
 
 	const [selectedOption, setSelectedOption] = useState<string>('3');
@@ -97,7 +98,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
 										<Button
-											title={familyInfo?.currentSituation || 'Nil'}
+											title={familyInfo?.currentSituation || t3('Worst')}
 											Color="#CF7475"
 										/>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">

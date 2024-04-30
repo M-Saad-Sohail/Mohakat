@@ -38,7 +38,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		false,
 	]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const itemsPerPage = 9; // Change as needed
+	const itemsPerPage = 15; // Change as needed
 
 	const getCurrentItems = () => {
 		const startIndex = (currentPage - 1) * itemsPerPage;

@@ -33,6 +33,7 @@ const SponsoringFamilies = () => {
 	const cancelButtonRef = useRef(null);
 
 	const fetchSponserFamilies = async (sponserId: string, token: any) => {
+		let familyIdCounter = 1; // Initialize the counter
 		setIsLoading(true);
 		const response = await getJsonWithToken(
 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donated/${sponserId}/families`,
@@ -45,7 +46,7 @@ const SponsoringFamilies = () => {
 				})
 				.map((item: any) => ({
 					...item.family,
-					id: item.family._id,
+					id: familyIdCounter++,
 					amount: item.amount,
 				}));
 			setRows(familiesData);
@@ -65,7 +66,7 @@ const SponsoringFamilies = () => {
 	const columns: GridColDef[] = [
 		{
 			field: 'id',
-			headerName: 'Id',
+			headerName: 'S.NO',
 			headerAlign: 'center',
 			align: 'center',
 			sortable: false,
