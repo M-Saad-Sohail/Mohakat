@@ -189,7 +189,7 @@ const LeftSideBar = () => {
 										{
 											user?.role === "user" && (
 												
-												<p>
+												<p className = "navbar-link">
 													{t('specialId')} : { user?.uniqueId }
 												</p>
 											)
