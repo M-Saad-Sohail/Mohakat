@@ -47,6 +47,7 @@ export type DonateModalType = {
 	setAmount?: (value: number) => void;
 	amount?: number;
 	familyId?: string;
+	isAddToCart?:boolean
 };
 
 export type QuickDonationModalType = {

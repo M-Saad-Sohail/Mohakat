@@ -15,6 +15,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
 import QuickDonationModal from '../Modals/QuickDonationModal';
+import { calculateAmount } from '@/utils/calculateAmount';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
@@ -158,7 +159,17 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							isPadding="md:px-1 md:py-2"
 							onClick={(event) => {
 								event.stopPropagation();
-								dispatch(setIsAddCartStateAction(familyData));
+								dispatch(
+									setIsAddCartStateAction({
+										...familyData,
+										amount: calculateAmount(
+											'3',
+											familyData?.numberOfFamilyMembers,
+											currencyState?.basePriceOne,
+											currencyState?.basePriceTwo,
+										),
+									}),
+								);
 							}}
 						/>
 					)}

@@ -30,10 +30,13 @@ const DonateModal: React.FC<DonateModalType> = ({
 	cancelButtonRef,
 	amount,
 	familyId,
+	isAddToCart = false,
 }) => {
 	const { user } = useLoggedInUser();
 	const currencyState = useSelector((state: any) => state.currency);
+	const cartItems = useSelector((state: any) => state.cart);
 	const [loading, setLoading] = useState<boolean>(false);
+	const [isAddToCartValues, setIsAddToCartValues] = useState<any[]>([]);
 	const t = useTranslations('DonateModal');
 	const { dir } = useLocaleRouter();
 
@@ -75,6 +78,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 		Object.assign(initialValues, loginInitialValues);
 	}
 
+	console.log(cartItems);
+
 	const postNonLoginData = async (values: any) => {
 		try {
 			setLoading(true);
@@ -104,11 +109,20 @@ const DonateModal: React.FC<DonateModalType> = ({
 	};
 
 	const postLoginData = async (values: any) => {
+		if (isAddToCart) {
+			const updatedValues = cartItems.map((family: any) => ({
+				...values,
+				family: family._id,
+				amount: family.amount,
+			}));
+			console.log('hhh', updatedValues);
+			setIsAddToCartValues(updatedValues);
+		}
 		try {
 			setLoading(true);
 			const res = await postJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate/family`,
-				values,
+				isAddToCart ? { donations: isAddToCartValues } : values,
 				user?.key,
 			);
 			if (res.success) {

@@ -111,6 +111,7 @@ const Cart = ({
 				open={donateOpen}
 				cancelButtonRef={cancelDonateButtonRef}
 				amount={totalAmount}
+				isAddToCart={true}
 			/>
 		</>
 	);
