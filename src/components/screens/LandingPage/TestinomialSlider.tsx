@@ -117,7 +117,7 @@ const TestimonialSlider = () => {
 		>
 			<Slider {...settings} className=" h-full">
 				{testimonialData.map((testimonial, index) => (
-					<div key={index} style={{ margin: ' 20px' }}>
+					<div  dir={dir} key={index} style={{ margin: ' 20px' }}>
 						<Card
 							sx={{ maxWidth: 'fit-content', padding: '0 8px' }}
 							className=" flex items-start bg-[#FFFFFF] rounded-3xl p-10 shadow-md ring ring-gray-50 ring-opacity-40 mx-2 min-h-[222px] my-2 hover:bg-[#f8f8f8]"

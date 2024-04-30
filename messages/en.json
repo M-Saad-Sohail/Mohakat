@@ -10,7 +10,8 @@
 		"cta": {
 			"become-sponsor": "Become a Sponsor",
 			"signin": "Sign In",
-			"go-to-dashboard": "Go to Dashboard"
+			"go-to-dashboard": "Go to Dashboard",
+			"logout": "Logout"
 		}
 	},
 	"LandingPage": {
@@ -38,6 +39,26 @@
 				"1": "Become a Sponsor"
 			}
 		}
+	},
+	"DonateModal": {
+			"title1": "Donate a Share",
+			"title2": "Sponsor a Family",
+			"name": "Name",
+			"email": "Email",
+			"address": "Address",
+			"country": "Country",
+			"city": "City",
+			"mobileNum": "Mobile Number",
+			"identityNum": "National identity Number",
+			"cardHolder": "Card Holder Name",
+			"cardNum": "Card Number",
+			"expMonth": "Expiry Month",
+			"expYear": "Expiry Year",
+			"cvc": "CVC",
+			"total": "Total",
+			"submit": "Confirm Payment",
+			"success": "Thank you for your donation",
+			"error": "Something went wrong"
 	},
 	"forgotPassword": {
 		"form": {
@@ -324,6 +345,7 @@
 		}
 	},
 	"Sidebar": {
+		"specialId": "Special ID",
 		"verified": "Verified",
 		"dashboard": "Dashboard",
 		"families": "Families",

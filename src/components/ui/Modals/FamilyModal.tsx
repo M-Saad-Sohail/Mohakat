@@ -109,7 +109,6 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									</div>
 
 									{/* second div */}
-
 									<div className=" flex flex-col gap-2">
 										<div className=" flex justify-between">
 											<h2 className=" text-xl md:text-2xl font-semibold">
@@ -120,17 +119,17 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												<span>{amount}</span>
 											</p>
 										</div>
+										<div className=" flex items-center gap-1 md:gap-[6px]">
+											<span className=" text-xs md:text-base font-semibold">
+												{t('id.title')}:
+											</span>
+											<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
+												{familyInfo?.idNumber}
+											</span>
+										</div>
 										<div className=" flex  md:gap-5">
 											{/* first column */}
 											<div className=" flex flex-1 flex-col gap-3">
-												<div className=" flex items-center gap-1 md:gap-[6px]">
-													<span className=" text-xs md:text-base font-semibold">
-														{t('id.title')}:
-													</span>
-													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.idNumber}
-													</span>
-												</div>
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
 														{t('age.title')}:
@@ -177,14 +176,6 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											<div className=" flex flex-1 flex-col gap-3">
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
-														{t('gender.title')}:
-													</span>
-													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.gender}
-													</span>
-												</div>
-												<div className=" flex items-center gap-1 md:gap-[6px]">
-													<span className=" text-xs md:text-base font-semibold">
 														{t('dob.title')}:
 													</span>
 													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
@@ -193,10 +184,10 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												</div>
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
-														{t('language.title')}:
+														{t('gender.title')}:
 													</span>
 													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.language}
+														{familyInfo?.gender}
 													</span>
 												</div>
 												<div className=" flex items-center gap-1 md:gap-[6px]">

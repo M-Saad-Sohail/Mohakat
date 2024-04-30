@@ -87,9 +87,13 @@ const AboutSection = () => {
 				<h3 className="md:text-3xl text-2xl font-semibold">
 					{aboutData[0]?.heading}
 				</h3>
-				<p className="md:text-2xl text-lg font-light">
+				<div className="md:text-[20px] leading-8 text-lg font-light">
 					{aboutData[0]?.description}
-				</p>
+					{/* {aboutData[0]?.description.split('.').map((item, i) => {
+						if (aboutData[0].description.split('.').length - 1 === i) return;
+						return <p key={i}>{item}.</p>;
+					})} */}
+				</div>
 			</div>
 			<div className=" flex flex-col gap-3">
 				<div className="flex flex-col gap-[6px] bg-[#8DAE8E] rounded-[20px] p-6 custom-box-shadow">

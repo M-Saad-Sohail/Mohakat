@@ -46,12 +46,16 @@ export type DonateModalType = {
 	isLoggedIn?: boolean;
 	setAmount?: (value: number) => void;
 	amount?: number;
+	familyId?: string;
 };
 
 export type QuickDonationModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;
+	setDonate?: (value: boolean) => void;
 	cancelButtonRef: any;
+	amount?: number;
+	setAmount?: (value: number) => void;
 };
 
 export type CurrencyModalType = {

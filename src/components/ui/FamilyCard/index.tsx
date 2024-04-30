@@ -57,7 +57,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
-						title={t2(familyData?.currentSituation) || 'Nil'}
+						title={familyData?.currentSituation || 'Nil'}
 						Color="#CF7475"
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
@@ -181,11 +181,15 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				isLoggedIn={isLoggedIn}
 				amount={amount}
 				setAmount={setAmount}
+				familyId={familyData?._id}
 			/>
 			<QuickDonationModal
 				open={quickDonationOpen}
 				setOpen={setQuickDonationOpen}
 				cancelButtonRef={cancelQuickDonationButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				setDonate={setDonateOpen}
 			/>
 		</>
 	);

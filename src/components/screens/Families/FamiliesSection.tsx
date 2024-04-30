@@ -101,9 +101,16 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					...data,
 					breadWinnerName: data?.breadWinnerName?.inEnglish,
 					description: data?.description?.inEnglish,
+					maritalStatus: data?.maritalStatus?.inEnglish,
+					gender: data?.gender?.inEnglish,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inEnglish,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
+					currentSituation: data?.currentSituation?.inEnglish,
+					lossesInWar: data?.lossesInWar?.inEnglish,
 					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 						...member,
-						memberName: member?.memberName.inEnglish,
+						memberName: member?.memberName?.inEnglish,
+						memberGender: member?.memberGender?.inEnglish,
 					})),
 				},
 			]);
@@ -114,9 +121,16 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					...data,
 					breadWinnerName: data?.breadWinnerName?.inArabic,
 					description: data?.description?.inArabic,
+					maritalStatus: data?.maritalStatus?.inArabic,
+					gender: data?.gender?.inArabic,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inArabic,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inArabic,
+					currentSituation: data?.currentSituation?.inArabic,
+					lossesInWar: data?.lossesInWar?.inArabic,
 					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 						...member,
-						memberName: member?.memberName.inArabic,
+						memberName: member?.memberName?.inArabic,
+						memberGender: member?.memberGender?.inArabic,
 					})),
 				},
 			]);
@@ -127,9 +141,16 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					...data,
 					breadWinnerName: data?.breadWinnerName?.inTurkish,
 					description: data?.description?.inTurkish,
+					maritalStatus: data?.maritalStatus?.inTurkish,
+					gender: data?.gender?.inTurkish,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inTurkish,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inTurkish,
+					currentSituation: data?.currentSituation?.inTurkish,
+					lossesInWar: data?.lossesInWar?.inTurkish,
 					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 						...member,
-						memberName: member?.memberName.inTurkish,
+						memberName: member?.memberName?.inTurkish,
+						memberGender: member?.memberGender?.inTurkish,
 					})),
 				},
 			]);
@@ -194,11 +215,14 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		filterData(area, situation, value);
 	};
 
+	useEffect(() => {
+	}, [familiesData]);
+
 	return (
 		<>
 			<section
 				dir={dir}
-				className={` ${(!user || PATHS.FAMILY === landingFamilyPath) ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 `}
+				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 `}
 			>
 				{/* heading and content */}
 				{(!user || PATHS.FAMILY === landingFamilyPath) && (
@@ -337,7 +361,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				</div>
 				{isLoading ? (
 					<div className="flex justify-center items-center h-32">
-						<Loader />
+						<Loader style={{ width: 'fit-content' }} />
 					</div>
 				) : filteredData && filteredData.length > 0 ? (
 					<>

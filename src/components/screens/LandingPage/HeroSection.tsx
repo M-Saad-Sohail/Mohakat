@@ -144,7 +144,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						{currentHeroData.description}
 					</p>
 					{!user && (
-						<div className=" flex flex-wrap gap-0 justify-between w-[85%] mx-auto">
+						<div
+							className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
+						>
 							<Button
 								title={t('DonateaShare.title')}
 								Color="#CF7475"

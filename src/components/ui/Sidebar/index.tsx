@@ -14,6 +14,7 @@ import {
 	form_icon,
 	logout,
 	sidebar_icon,
+	manage_family_png,
 } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -31,7 +32,11 @@ import { RedirectType, usePathname } from 'next/navigation';
 const AdminMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
-	{ title: 'ManageFamilyPage', src: families, link: PATHS.MANAGEFAMILIES },
+	{
+		title: 'ManageFamilyPage',
+		src: manage_family_png,
+		link: PATHS.MANAGEFAMILIES,
+	},
 	{
 		title: 'sponsor.pending',
 		src: pending_icon,
@@ -42,12 +47,12 @@ const AdminMenus = [
 		src: approved__icon,
 		link: PATHS.APPROVED_SPONSOR,
 	},
-	{
-		title: 'form_response',
-		src: form_icon,
-		link: PATHS.FORM_RESPONSES,
-		gap: true,
-	},
+	// {
+	// 	title: 'form_response',
+	// 	src: form_icon,
+	// 	link: PATHS.FORM_RESPONSES,
+	// 	gap: true,
+	// },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
@@ -126,6 +131,7 @@ const LeftSideBar = () => {
 		email: string;
 		id: string;
 		role: string;
+		uniqueId: any;
 	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
@@ -135,8 +141,6 @@ const LeftSideBar = () => {
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
-		console.log('🚀 ~ useEffect ~ user:', user);
-
 		// console.log('uses', user);
 		if (user && user.role === 'admin') {
 			setIsAdmin(true);
@@ -164,7 +168,7 @@ const LeftSideBar = () => {
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
-				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
+				className={` bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
 					open ? 'w-[270px]' : 'w-20 '
 				}`}
 			>
@@ -174,18 +178,27 @@ const LeftSideBar = () => {
 					handleClose={() => setOpen(false)}
 				/>
 				<div className="flex-col flex gap-3 mx-auto items-center justify-center mt-[40px]">
-					{/* <Image
-						src={profile}
-						alt={''}
-						className="h-[50px] w-[50px] rounded-full mt-2"
-					/> */}
 					<div className=" flex flex-col items-center gap-3">
 						<p
 							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
 						>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						{user && open && (
+						<p
+							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
+								!open && 'hidden'
+							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : ''}`}
+						>
+							{user?.role === 'admin' ? 'Admin' : ''}
+							<p>
+								{user?.role === 'user' && (
+									<p className="navbar-link">
+										{t('specialId')} : {user?.uniqueId}
+									</p>
+								)}
+							</p>
+						</p>
+						{/* {user && open && (
 							<>
 								{user.role === 'admin' && (
 									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#95dca9] px-4 py-1">
@@ -198,7 +211,7 @@ const LeftSideBar = () => {
 									</p>
 								)}
 							</>
-						)}
+						)} */}
 					</div>
 					<p
 						className={`${
