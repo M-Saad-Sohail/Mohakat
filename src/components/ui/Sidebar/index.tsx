@@ -126,6 +126,7 @@ const LeftSideBar = () => {
 		email: string;
 		id: string;
 		role: string;
+		uniqueId: any;
 	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
@@ -189,7 +190,7 @@ const LeftSideBar = () => {
 											user?.role === "user" && (
 												
 												<p>
-													{user?.uniqueId}
+													{t('specialId')} : { user?.uniqueId }
 												</p>
 											)
 										}
