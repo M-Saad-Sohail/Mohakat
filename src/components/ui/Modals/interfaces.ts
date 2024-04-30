@@ -1,4 +1,4 @@
-export interface  ViewModalProps {
+export interface ViewModalProps {
 	openModal: boolean | undefined;
 	onClose: () => void;
 	id: any;
@@ -12,7 +12,11 @@ export interface FamilyMember {
 		inTurkish: string;
 		inArabic: string;
 	};
+	memberGender: {
+		inEnglish: string;
+		inTurkish: string;
+		inArabic: string;
+	};
 	memberAge: number | '';
 	MemberIdNumber: number | '';
-	memberGender: string;
 }

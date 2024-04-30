@@ -50,15 +50,22 @@ const ViewModal = ({
 					inTurkish: '',
 					inArabic: '',
 				},
+				memberGender: {
+					inEnglish: '',
+					inTurkish: '',
+					inArabic: '',
+				},
 				memberAge: '',
 				MemberIdNumber: '',
-				memberGender: '',
 			};
 		}
 		if (key.startsWith('in')) {
 			updatedMembers[index].memberName[
 				key as keyof FamilyMember['memberName']
-			] = (value as string).toUpperCase(); // Convert to uppercase
+			] = (value as string).toUpperCase();
+			updatedMembers[index].memberGender[
+				key as keyof FamilyMember['memberGender']
+			] = (value as string).toUpperCase();
 		} else {
 			updatedMembers[index][key as keyof FamilyMember] = value as
 				| string
@@ -84,7 +91,7 @@ const ViewModal = ({
 
 	const UpdateFamilyForm = useFormik({
 		initialValues: UpdateFamilyValues,
-		validationSchema: UpdateFamilySchema,
+		// validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
@@ -97,29 +104,51 @@ const ViewModal = ({
 					inTurkish: UpdateFamilyForm.values.descriptionTr,
 					inArabic: UpdateFamilyForm.values.descriptionAr,
 				},
-				maritalStatus: UpdateFamilyForm.values.maritalStatus,
+				maritalStatus: {
+					inEnglish: UpdateFamilyForm.values.maritalStatusEn,
+					inTurkish: UpdateFamilyForm.values.maritalStatusTr,
+					inArabic: UpdateFamilyForm.values.maritalStatusAr,
+				},
+				gender: {
+					inEnglish: UpdateFamilyForm.values.genderEn,
+					inTurkish: UpdateFamilyForm.values.genderTr,
+					inArabic: UpdateFamilyForm.values.genderAr,
+				},
+				areaOfPreviousResidence: {
+					inEnglish: UpdateFamilyForm.values.areaOfPreviousResidenceEn,
+					inTurkish: UpdateFamilyForm.values.areaOfPreviousResidenceTr,
+					inArabic: UpdateFamilyForm.values.areaOfPreviousResidenceAr,
+				},
+				areaOfCurrentResidence: {
+					inEnglish: UpdateFamilyForm.values.areaOfCurrentResidenceEn,
+					inTurkish: UpdateFamilyForm.values.areaOfCurrentResidenceTr,
+					inArabic: UpdateFamilyForm.values.areaOfCurrentResidenceAr,
+				},
+				currentSituation: {
+					inEnglish: UpdateFamilyForm.values.currentSituationEn,
+					inTurkish: UpdateFamilyForm.values.currentSituationTr,
+					inArabic: UpdateFamilyForm.values.currentSituationAr,
+				},
+				lossesInWar: {
+					inEnglish: UpdateFamilyForm.values.lossesInWarEn,
+					inTurkish: UpdateFamilyForm.values.lossesInWarTr,
+					inArabic: UpdateFamilyForm.values.lossesInWarAr,
+				},
 				email: UpdateFamilyForm.values.email,
 				language: UpdateFamilyForm.values.language,
-				gender: UpdateFamilyForm.values.gender,
-				age: UpdateFamilyForm.values.age,
 				dateOfBirth: UpdateFamilyForm.values.dateOfBirth,
-				areaOfPreviousResidence:
-					UpdateFamilyForm.values.areaOfPreviousResidence,
-				areaOfCurrentResidence: UpdateFamilyForm.values.areaOfCurrentResidence,
 				numberOfFamilyMembers: parseInt(
 					UpdateFamilyForm.values.numberOfFamilyMembers,
 				),
+				familyMemberDetail: familyMembers,
 				telephoneNumber: UpdateFamilyForm.values.telephoneNumber,
 				idNumber: parseInt(UpdateFamilyForm.values.idNumber),
-				lossesInWar: UpdateFamilyForm.values.lossesInWar,
-				currentSituation: UpdateFamilyForm.values.currentSituation,
 				numberOfMartyrInFamily: parseInt(
 					UpdateFamilyForm.values.numberOfMartyrInFamily,
 				),
 				numberOfInfectedInFamily: parseInt(
 					UpdateFamilyForm.values.numberOfInfectedInFamily,
 				),
-				familyMemberDetail: familyMembers,
 			};
 			try {
 				setLoading(true);
@@ -160,9 +189,9 @@ const ViewModal = ({
 				UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length,
 			).fill({
 				memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
+				memberGender: { inEnglish: '', inArabic: '', inTurkish: '' },
 				memberAge: '',
 				MemberIdNumber: '',
-				memberGender: '',
 			});
 			setFamilyMembers(familyMembers.concat(newMembers));
 		}
@@ -187,6 +216,30 @@ const ViewModal = ({
 				descriptionEn: family_Sponsor?.description.inEnglish,
 				descriptionAr: family_Sponsor?.description.inArabic,
 				descriptionTr: family_Sponsor?.description.inTurkish,
+				maritalStatusEn: family_Sponsor?.maritalStatus.inEnglish,
+				maritalStatusAr: family_Sponsor?.maritalStatus.inArabic,
+				maritalStatusTr: family_Sponsor?.maritalStatus.inTurkish,
+				genderEn: family_Sponsor?.gender.inEnglish,
+				genderAr: family_Sponsor?.gender.inArabic,
+				genderTr: family_Sponsor?.gender.inTurkish,
+				areaOfPreviousResidenceEn:
+					family_Sponsor?.areaOfPreviousResidence.inEnglish,
+				areaOfPreviousResidenceAr:
+					family_Sponsor?.areaOfPreviousResidence.inArabic,
+				areaOfPreviousResidenceTr:
+					family_Sponsor?.areaOfPreviousResidence.inTurkish,
+				areaOfCurrentResidenceEn:
+					family_Sponsor?.areaOfCurrentResidence.inEnglish,
+				areaOfCurrentResidenceAr:
+					family_Sponsor?.areaOfCurrentResidence.inArabic,
+				areaOfCurrentResidenceTr:
+					family_Sponsor?.areaOfCurrentResidence.inTurkish,
+				currentSituationEn: family_Sponsor?.currentSituation.inEnglish,
+				currentSituationAr: family_Sponsor?.currentSituation.inArabic,
+				currentSituationTr: family_Sponsor?.currentSituation.inTurkish,
+				lossesInWarEn: family_Sponsor?.lossesInWar.inEnglish,
+				lossesInWarAr: family_Sponsor?.lossesInWar.inArabic,
+				lossesInWarTr: family_Sponsor?.lossesInWar.inTurkish,
 			});
 			setFamilyMembers(family_Sponsor.familyMemberDetail);
 		}
@@ -292,10 +345,709 @@ const ViewModal = ({
 											)}
 									</div>
 								</div>
+								<h3 className=" text-sm font-bold">{`${t('martialstatus.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'In English *'}
+											name="maritalStatusEn"
+											options={[
+												{ label: t('martialstatus.single'), value: 'single' },
+												{ label: t('martialstatus.married'), value: 'married' },
+											]}
+											className={` ${UpdateFamilyForm.errors.maritalStatusEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.maritalStatusEn}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.maritalStatusEn &&
+												UpdateFamilyForm.errors.maritalStatusEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.errors.maritalStatusEn && (
+											<p className="text-sm mb-2 text-red">
+												{UpdateFamilyForm.touched.maritalStatusEn &&
+													(UpdateFamilyForm.errors.maritalStatusEn as any)}
+											</p>
+										)}
+									</div>
+									<div>
+										<Select
+											title={'In Arabic *'}
+											name="maritalStatusAr"
+											options={[
+												{ label: t('martialstatus.single'), value: 'single' },
+												{ label: t('martialstatus.married'), value: 'married' },
+											]}
+											className={` ${UpdateFamilyForm.errors.maritalStatusAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.maritalStatusAr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.maritalStatusAr &&
+												UpdateFamilyForm.errors.maritalStatusAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.errors.maritalStatusAr && (
+											<p className="text-sm mb-2 text-red">
+												{UpdateFamilyForm.touched.maritalStatusAr &&
+													(UpdateFamilyForm.errors.maritalStatusAr as any)}
+											</p>
+										)}
+									</div>
+									<div>
+										<Select
+											title={'In Turkish *'}
+											name="maritalStatusTr"
+											options={[
+												{ label: t('martialstatus.single'), value: 'single' },
+												{ label: t('martialstatus.married'), value: 'married' },
+											]}
+											className={` ${UpdateFamilyForm.errors.maritalStatusTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.maritalStatusTr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.maritalStatusTr &&
+												UpdateFamilyForm.errors.maritalStatusTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.errors.maritalStatusTr && (
+											<p className="text-sm mb-2 text-red">
+												{UpdateFamilyForm.touched.maritalStatusTr &&
+													(UpdateFamilyForm.errors.maritalStatusTr as any)}
+											</p>
+										)}
+									</div>
+								</div>
+								<h3 className="mt-5 text-sm font-bold">{`${t('gender.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'In English'}
+											name="genderEn"
+											options={[
+												{ label: t('gender.male'), value: 'male' },
+												{ label: t('gender.female'), value: 'female' },
+											]}
+											defaultValue={t('gender.default')}
+											className="mb-[40px] min-w-[300px] mt-[2px] "
+											value={UpdateFamilyForm.values.genderEn}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.genderEn &&
+												UpdateFamilyForm.errors.genderEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.genderEn &&
+											UpdateFamilyForm.errors.genderEn && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.genderEn as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Arabic'}
+											name="genderAr"
+											options={[
+												{ label: t('gender.male'), value: 'male' },
+												{ label: t('gender.female'), value: 'female' },
+											]}
+											defaultValue={t('gender.default')}
+											className="mb-[40px] min-w-[300px] mt-[2px] "
+											value={UpdateFamilyForm.values.genderAr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.genderAr &&
+												UpdateFamilyForm.errors.genderAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.genderAr &&
+											UpdateFamilyForm.errors.genderAr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.genderAr as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Turkish'}
+											name="genderTr"
+											options={[
+												{ label: t('gender.male'), value: 'male' },
+												{ label: t('gender.female'), value: 'female' },
+											]}
+											defaultValue={t('gender.default')}
+											className="mb-[40px] min-w-[300px] mt-[2px] "
+											value={UpdateFamilyForm.values.genderTr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.genderTr &&
+												UpdateFamilyForm.errors.genderTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.genderTr &&
+											UpdateFamilyForm.errors.genderTr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.genderTr as any}
+												</p>
+											)}
+									</div>
+								</div>
+								<h3 className="mt-3 text-sm font-bold">{`${t('previousresidence.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'in English *'}
+											name="areaOfPreviousResidenceEn"
+											options={[
+												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('previousresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('previousresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('previousresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('previousresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('previousresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('previousresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('previousresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('previousresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('previousresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.areaOfPreviousResidenceEn}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfPreviousResidenceEn &&
+												UpdateFamilyForm.errors.areaOfPreviousResidenceEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfPreviousResidenceEn &&
+											UpdateFamilyForm.errors.areaOfPreviousResidenceEn && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfPreviousResidenceEn as any
+													}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'in Arabic *'}
+											name="areaOfPreviousResidenceAr"
+											options={[
+												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('previousresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('previousresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('previousresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('previousresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('previousresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('previousresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('previousresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('previousresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('previousresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.areaOfPreviousResidenceAr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfPreviousResidenceAr &&
+												UpdateFamilyForm.errors.areaOfPreviousResidenceAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfPreviousResidenceAr &&
+											UpdateFamilyForm.errors.areaOfPreviousResidenceAr && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfPreviousResidenceAr as any
+													}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'in Turkish *'}
+											name="areaOfPreviousResidenceTr"
+											options={[
+												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('previousresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('previousresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('previousresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('previousresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('previousresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('previousresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('previousresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('previousresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('previousresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.areaOfPreviousResidenceTr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfPreviousResidenceTr &&
+												UpdateFamilyForm.errors.areaOfPreviousResidenceTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfPreviousResidenceTr &&
+											UpdateFamilyForm.errors.areaOfPreviousResidenceTr && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfPreviousResidenceTr as any
+													}
+												</p>
+											)}
+									</div>
+								</div>
+								<h3 className="mt-10 text-sm font-bold">{`${t('currentresidence.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'In English'}
+											name="areaOfCurrentResidenceEn"
+											options={[
+												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('currentresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('currentresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('currentresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('currentresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('currentresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('currentresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('currentresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('currentresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('currentresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentresidence}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfCurrentResidenceEn &&
+												UpdateFamilyForm.errors.areaOfCurrentResidenceEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfCurrentResidenceEn &&
+											UpdateFamilyForm.errors.areaOfCurrentResidenceEn && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfCurrentResidenceEn as any
+													}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Arabic'}
+											name="areaOfCurrentResidenceAr"
+											options={[
+												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('currentresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('currentresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('currentresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('currentresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('currentresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('currentresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('currentresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('currentresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('currentresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentresidence}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfCurrentResidenceAr &&
+												UpdateFamilyForm.errors.areaOfCurrentResidenceAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfCurrentResidenceAr &&
+											UpdateFamilyForm.errors.areaOfCurrentResidenceAr && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfCurrentResidenceAr as any
+													}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Turkish'}
+											name="areaOfCurrentResidenceTr"
+											options={[
+												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
+												{
+													label: t('currentresidence.JabaliaCamp'),
+													value: 'Jabalia Camp',
+												},
+												{
+													label: t('currentresidence.KhanYunis'),
+													value: 'Khan Yunis',
+												},
+												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
+												{
+													label: t('currentresidence.DeiralBalah'),
+													value: 'Deir al-Balah',
+												},
+												{
+													label: t('currentresidence.Beachrefugeecamp'),
+													value: 'Beach refugee camp',
+												},
+												{
+													label: t('currentresidence.NuseiratCamp'),
+													value: 'Nuseirat Camp',
+												},
+												{
+													label: t('currentresidence.MaghaziCamp'),
+													value: 'Maghazi Camp',
+												},
+												{
+													label: t('currentresidence.BureijCamp'),
+													value: 'Bureij Camp',
+												},
+												{
+													label: t('currentresidence.AlShatiCamp'),
+													value: 'Al-Shati Camp',
+												},
+											]}
+											defaultValue={t('currentresidence.default')}
+											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentresidence}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.areaOfCurrentResidenceTr &&
+												UpdateFamilyForm.errors.areaOfCurrentResidenceTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.areaOfCurrentResidenceTr &&
+											UpdateFamilyForm.errors.areaOfCurrentResidenceTr && (
+												<p className="text-sm mb-2 text-red">
+													{
+														UpdateFamilyForm.errors
+															.areaOfCurrentResidenceTr as any
+													}
+												</p>
+											)}
+									</div>
+								</div>
+								<h3 className="mt-10 text-sm font-bold">{`${t('currentsituation.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'In Engish'}
+											name="currentSituationEn"
+											options={[
+												{ label: t('currentsituation.good'), value: 'Good' },
+												{ label: t('currentsituation.bad'), value: 'Bad' },
+												{ label: t('currentsituation.worst'), value: 'Worst' },
+											]}
+											defaultValue={t('currentsituation.default')}
+											className={` ${UpdateFamilyForm.errors.currentSituationEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentSituationEn}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.currentSituationEn &&
+												UpdateFamilyForm.errors.currentSituationEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.currentSituationEn &&
+											UpdateFamilyForm.errors.currentSituationEn && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.currentSituationEn as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Arabic'}
+											name="currentSituationAr"
+											options={[
+												{ label: t('currentsituation.good'), value: 'Good' },
+												{ label: t('currentsituation.bad'), value: 'Bad' },
+												{ label: t('currentsituation.worst'), value: 'Worst' },
+											]}
+											defaultValue={t('currentsituation.default')}
+											className={` ${UpdateFamilyForm.errors.currentSituationAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentSituationAr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.currentSituationAr &&
+												UpdateFamilyForm.errors.currentSituationAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.currentSituationAr &&
+											UpdateFamilyForm.errors.currentSituationAr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.currentSituationAr as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Turkish'}
+											name="currentSituationTr"
+											options={[
+												{ label: t('currentsituation.good'), value: 'Good' },
+												{ label: t('currentsituation.bad'), value: 'Bad' },
+												{ label: t('currentsituation.worst'), value: 'Worst' },
+											]}
+											defaultValue={t('currentsituation.default')}
+											className={` ${UpdateFamilyForm.errors.currentSituationTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.currentSituationTr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.currentSituationTr &&
+												UpdateFamilyForm.errors.currentSituationTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.currentSituationTr &&
+											UpdateFamilyForm.errors.currentSituationTr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.currentSituationTr as any}
+												</p>
+											)}
+									</div>
+								</div>
+								<h3 className="mt-10 text-sm font-bold">{`${t('losesinwar.title')} *`}</h3>
+								<div className="flex items-start justify-start w-full gap-x-4">
+									<div>
+										<Select
+											title={'In English *'}
+											name="lossesInWarEn"
+											options={[
+												{ label: t('losesinwar.none'), value: 'none' },
+												{ label: t('losesinwar.car'), value: 'car' },
+												{
+													label: t('losesinwar.furniture'),
+													value: 'furniture',
+												},
+												{ label: t('losesinwar.store'), value: 'store' },
+												{ label: t('losesinwar.house'), value: 'house' },
+												{ label: t('losesinwar.business'), value: 'business' },
+											]}
+											defaultValue={t('losesinwar.default')}
+											className={` ${UpdateFamilyForm.errors.lossesInWarEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.lossesInWarEn}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.lossesInWarEn &&
+												UpdateFamilyForm.errors.lossesInWarEn &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.lossesInWarEn &&
+											UpdateFamilyForm.errors.lossesInWarEn && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.lossesInWarEn as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Arabic *'}
+											name="lossesInWarAr"
+											options={[
+												{ label: t('losesinwar.none'), value: 'none' },
+												{ label: t('losesinwar.car'), value: 'car' },
+												{
+													label: t('losesinwar.furniture'),
+													value: 'furniture',
+												},
+												{ label: t('losesinwar.store'), value: 'store' },
+												{ label: t('losesinwar.house'), value: 'house' },
+												{ label: t('losesinwar.business'), value: 'business' },
+											]}
+											defaultValue={t('losesinwar.default')}
+											className={` ${UpdateFamilyForm.errors.lossesInWarAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.lossesInWarAr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.lossesInWarAr &&
+												UpdateFamilyForm.errors.lossesInWarAr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.lossesInWarAr &&
+											UpdateFamilyForm.errors.lossesInWarAr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.lossesInWarAr as any}
+												</p>
+											)}
+									</div>
+									<div>
+										<Select
+											title={'In Turkish *'}
+											name="lossesInWarTr"
+											options={[
+												{ label: t('losesinwar.none'), value: 'none' },
+												{ label: t('losesinwar.car'), value: 'car' },
+												{
+													label: t('losesinwar.furniture'),
+													value: 'furniture',
+												},
+												{ label: t('losesinwar.store'), value: 'store' },
+												{ label: t('losesinwar.house'), value: 'house' },
+												{ label: t('losesinwar.business'), value: 'business' },
+											]}
+											defaultValue={t('losesinwar.default')}
+											className={` ${UpdateFamilyForm.errors.lossesInWarTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
+											value={UpdateFamilyForm.values.lossesInWarTr}
+											onChange={UpdateFamilyForm.handleChange}
+											errorClass={
+												UpdateFamilyForm.touched.lossesInWarTr &&
+												UpdateFamilyForm.errors.lossesInWarTr &&
+												'border-2 border-solid border-red'
+											}
+										/>
+										{UpdateFamilyForm.touched.lossesInWarTr &&
+											UpdateFamilyForm.errors.lossesInWarTr && (
+												<p className="text-sm mb-2 text-red">
+													{UpdateFamilyForm.errors.lossesInWarTr as any}
+												</p>
+											)}
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<div className="flex items-start justify-start w-full gap-x-4">
+						<div className="mt-10 flex items-start justify-start w-full gap-x-4">
 							<div>
 								<Input
 									title={`${t('email.title')} *`}
@@ -315,150 +1067,6 @@ const ViewModal = ({
 											{UpdateFamilyForm.errors.email as any}
 										</p>
 									)}
-							</div>
-							<div>
-								<Input
-									title={`${t('age.title')} *`}
-									name="age"
-									type="number"
-									className="mb-1 min-w-[460px]"
-									value={UpdateFamilyForm.values.age}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.age &&
-										UpdateFamilyForm.errors.age &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.errors.age && (
-									<p className="text-sm mb-2 text-red">
-										{UpdateFamilyForm.touched.age &&
-											(UpdateFamilyForm.errors.age as any)}
-									</p>
-								)}
-							</div>
-						</div>
-
-						<div className="flex items-start justify-start w-full gap-x-4">
-							<div>
-								<Input
-									title={`${t('telephone.title')} *`}
-									name="telephoneNumber"
-									type="number"
-									className="mb-1 min-w-[460px]"
-									value={UpdateFamilyForm.values.telephoneNumber}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.telephoneNumber &&
-										UpdateFamilyForm.errors.telephoneNumber &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.telephoneNumber &&
-									UpdateFamilyForm.errors.telephoneNumber && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.telephoneNumber as any}
-										</p>
-									)}
-							</div>
-
-							<div>
-								<Input
-									title={`${t('id.title')} *`}
-									name="idNumber"
-									type="number"
-									className="mb-1 min-w-[460px]"
-									value={UpdateFamilyForm.values.idNumber}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.idNumber &&
-										UpdateFamilyForm.errors.idNumber &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.idNumber &&
-									UpdateFamilyForm.errors.idNumber && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.idNumber as any}
-										</p>
-									)}
-							</div>
-						</div>
-
-						<div className="flex items-start justify-start w-full gap-x-4">
-							<div>
-								<Input
-									title={`${t('dob.title')} *`}
-									name="dateOfBirth"
-									className="mb-1 min-w-[460px] "
-									type="date"
-									value={UpdateFamilyForm.values.dateOfBirth}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.dateOfBirth &&
-										UpdateFamilyForm.errors.dateOfBirth &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.dateOfBirth &&
-									UpdateFamilyForm.errors.dateOfBirth && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.dateOfBirth as any}
-										</p>
-									)}
-							</div>
-
-							<div>
-								<Select
-									title={`${t('gender.title')} *`}
-									name="gender"
-									options={[
-										{ label: t('gender.male'), value: 'male' },
-										{ label: t('gender.female'), value: 'female' },
-									]}
-									defaultValue={t('gender.default')}
-									className="mb-[40px] min-w-[460px] mt-[2px] "
-									value={UpdateFamilyForm.values.gender}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.gender &&
-										UpdateFamilyForm.errors.gender &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.gender &&
-									UpdateFamilyForm.errors.gender && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.gender as any}
-										</p>
-									)}
-							</div>
-						</div>
-
-						<div className="flex items-start justify-start w-full mb-8 gap-x-4">
-							<div>
-								<Select
-									title={`${t('martialstatus.title')} *`}
-									name="maritalStatus"
-									options={[
-										{ label: t('martialstatus.single'), value: 'single' },
-										{ label: t('martialstatus.married'), value: 'married' },
-									]}
-									className={` ${UpdateFamilyForm.errors.maritalStatus ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={UpdateFamilyForm.values.maritalStatus}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.maritalStatus &&
-										UpdateFamilyForm.errors.maritalStatus &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.errors.maritalStatus && (
-									<p className="text-sm mb-2 text-red">
-										{UpdateFamilyForm.touched.maritalStatus &&
-											(UpdateFamilyForm.errors.maritalStatus as any)}
-									</p>
-								)}
 							</div>
 
 							<div>
@@ -489,177 +1097,68 @@ const ViewModal = ({
 							</div>
 						</div>
 
-						<div className="flex items-start justify-start w-full mb-8 gap-x-4">
+						<div className="flex items-start justify-start w-full gap-x-4">
 							<div>
-								<Select
-									title={`${t('previousresidence.title')} *`}
-									name="areaOfPreviousResidence"
-									options={[
-										{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-										{
-											label: t('previousresidence.JabaliaCamp'),
-											value: 'Jabalia Camp',
-										},
-										{
-											label: t('previousresidence.KhanYunis'),
-											value: 'Khan Yunis',
-										},
-										{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-										{
-											label: t('previousresidence.DeiralBalah'),
-											value: 'Deir al-Balah',
-										},
-										{
-											label: t('previousresidence.Beachrefugeecamp'),
-											value: 'Beach refugee camp',
-										},
-										{
-											label: t('previousresidence.NuseiratCamp'),
-											value: 'Nuseirat Camp',
-										},
-										{
-											label: t('previousresidence.MaghaziCamp'),
-											value: 'Maghazi Camp',
-										},
-										{
-											label: t('previousresidence.BureijCamp'),
-											value: 'Bureij Camp',
-										},
-										{
-											label: t('previousresidence.AlShatiCamp'),
-											value: 'Al-Shati Camp',
-										},
-									]}
-									defaultValue={t('previousresidence.default')}
-									className={` ${UpdateFamilyForm.errors.areaOfPreviousResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={UpdateFamilyForm.values.previousresidence}
+								<Input
+									title={`${t('telephone.title')} *`}
+									name="telephoneNumber"
+									type="number"
+									className="mb-1 min-w-[300px]"
+									value={UpdateFamilyForm.values.telephoneNumber}
 									onChange={UpdateFamilyForm.handleChange}
 									errorClass={
-										UpdateFamilyForm.touched.areaOfPreviousResidence &&
-										UpdateFamilyForm.errors.areaOfPreviousResidence &&
+										UpdateFamilyForm.touched.telephoneNumber &&
+										UpdateFamilyForm.errors.telephoneNumber &&
 										'border-2 border-solid border-red'
 									}
 								/>
-								{UpdateFamilyForm.touched.areaOfPreviousResidence &&
-									UpdateFamilyForm.errors.areaOfPreviousResidence && (
+								{UpdateFamilyForm.touched.telephoneNumber &&
+									UpdateFamilyForm.errors.telephoneNumber && (
 										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.areaOfPreviousResidence as any}
-										</p>
-									)}
-							</div>
-							<div>
-								<Select
-									title={`${t('currentresidence.title')} *`}
-									name="areaOfCurrentResidence"
-									options={[
-										{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-										{
-											label: t('currentresidence.JabaliaCamp'),
-											value: 'Jabalia Camp',
-										},
-										{
-											label: t('currentresidence.KhanYunis'),
-											value: 'Khan Yunis',
-										},
-										{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-										{
-											label: t('currentresidence.DeiralBalah'),
-											value: 'Deir al-Balah',
-										},
-										{
-											label: t('currentresidence.Beachrefugeecamp'),
-											value: 'Beach refugee camp',
-										},
-										{
-											label: t('currentresidence.NuseiratCamp'),
-											value: 'Nuseirat Camp',
-										},
-										{
-											label: t('currentresidence.MaghaziCamp'),
-											value: 'Maghazi Camp',
-										},
-										{
-											label: t('currentresidence.BureijCamp'),
-											value: 'Bureij Camp',
-										},
-										{
-											label: t('currentresidence.AlShatiCamp'),
-											value: 'Al-Shati Camp',
-										},
-									]}
-									defaultValue={t('currentresidence.default')}
-									className={` ${UpdateFamilyForm.errors.areaOfCurrentResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={UpdateFamilyForm.values.currentresidence}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.areaOfCurrentResidence &&
-										UpdateFamilyForm.errors.areaOfCurrentResidence &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.areaOfCurrentResidence &&
-									UpdateFamilyForm.errors.areaOfCurrentResidence && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.areaOfCurrentResidence as any}
-										</p>
-									)}
-							</div>
-						</div>
-
-						<div className="flex items-start justify-start w-full mb-8 gap-x-4">
-							<div>
-								<Select
-									title={`${t('currentsituation.title')} *`}
-									name="currentSituation"
-									options={[
-										{ label: t('currentsituation.good'), value: 'Good' },
-										{ label: t('currentsituation.bad'), value: 'Bad' },
-										{ label: t('currentsituation.worst'), value: 'Worst' },
-									]}
-									defaultValue={t('currentsituation.default')}
-									className={` ${UpdateFamilyForm.errors.currentSituation ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={UpdateFamilyForm.values.currentSituation}
-									onChange={UpdateFamilyForm.handleChange}
-									errorClass={
-										UpdateFamilyForm.touched.currentSituation &&
-										UpdateFamilyForm.errors.currentSituation &&
-										'border-2 border-solid border-red'
-									}
-								/>
-								{UpdateFamilyForm.touched.currentSituation &&
-									UpdateFamilyForm.errors.currentSituation && (
-										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.currentSituation as any}
+											{UpdateFamilyForm.errors.telephoneNumber as any}
 										</p>
 									)}
 							</div>
 
 							<div>
-								<Select
-									title={`${t('losesinwar.title')} *`}
-									name="lossesInWar"
-									options={[
-										{ label: t('losesinwar.none'), value: 'none' },
-										{ label: t('losesinwar.car'), value: 'car' },
-										{ label: t('losesinwar.furniture'), value: 'furniture' },
-										{ label: t('losesinwar.store'), value: 'store' },
-										{ label: t('losesinwar.house'), value: 'house' },
-										{ label: t('losesinwar.business'), value: 'business' },
-									]}
-									defaultValue={t('losesinwar.default')}
-									className={` ${UpdateFamilyForm.errors.lossesInWar ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-									value={UpdateFamilyForm.values.lossesInWar}
+								<Input
+									title={`${t('id.title')} *`}
+									name="idNumber"
+									type="number"
+									className="mb-1 min-w-[300px]"
+									value={UpdateFamilyForm.values.idNumber}
 									onChange={UpdateFamilyForm.handleChange}
 									errorClass={
-										UpdateFamilyForm.touched.lossesInWar &&
-										UpdateFamilyForm.errors.lossesInWar &&
+										UpdateFamilyForm.touched.idNumber &&
+										UpdateFamilyForm.errors.idNumber &&
 										'border-2 border-solid border-red'
 									}
 								/>
-								{UpdateFamilyForm.touched.lossesInWar &&
-									UpdateFamilyForm.errors.lossesInWar && (
+								{UpdateFamilyForm.touched.idNumber &&
+									UpdateFamilyForm.errors.idNumber && (
 										<p className="text-sm mb-2 text-red">
-											{UpdateFamilyForm.errors.lossesInWar as any}
+											{UpdateFamilyForm.errors.idNumber as any}
+										</p>
+									)}
+							</div>
+							<div>
+								<Input
+									title={`${t('dob.title')} *`}
+									name="dateOfBirth"
+									className="mb-1 min-w-[300px] "
+									type="date"
+									value={UpdateFamilyForm.values.dateOfBirth}
+									onChange={UpdateFamilyForm.handleChange}
+									errorClass={
+										UpdateFamilyForm.touched.dateOfBirth &&
+										UpdateFamilyForm.errors.dateOfBirth &&
+										'border-2 border-solid border-red'
+									}
+								/>
+								{UpdateFamilyForm.touched.dateOfBirth &&
+									UpdateFamilyForm.errors.dateOfBirth && (
+										<p className="text-sm mb-2 text-red">
+											{UpdateFamilyForm.errors.dateOfBirth as any}
 										</p>
 									)}
 							</div>
@@ -770,10 +1269,54 @@ const ViewModal = ({
 											}
 										/>
 									</div>
+									<div>
+										<h3 className="text-sm font-bold">{`${t('gender.title')} *`}</h3>
+									</div>
+									<div className="flex items-center justify-start w-full gap-x-4">
+										<Select
+											title={'in English'}
+											name="inEnglish"
+											options={[
+												{ label: 'Male', value: 'male' },
+												{ label: 'Female', value: 'female' },
+											]}
+											className="mb-[30px] min-w-[300px]"
+											value={member.memberGender.inEnglish}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+											}
+										/>
+										<Select
+											title={'in Arabic'}
+											name="inArabic"
+											options={[
+												{ label: 'Male', value: 'male' },
+												{ label: 'Female', value: 'female' },
+											]}
+											className="mb-[30px] min-w-[300px]"
+											value={member.memberGender.inArabic}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inArabic', e.target.value)
+											}
+										/>
+										<Select
+											title={'in Turkish'}
+											name="inTurkish"
+											options={[
+												{ label: 'Male', value: 'male' },
+												{ label: 'Female', value: 'female' },
+											]}
+											className="mb-[30px] min-w-[300px]"
+											value={member.memberGender.inTurkish}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+											}
+										/>
+									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
 											title={`${t('age.title')} *`}
-											className="mb-[5px] min-w-[300px]"
+											className="mb-[5px] min-w-[460px]"
 											type="number"
 											value={member.memberAge}
 											onChange={(e) =>
@@ -786,7 +1329,7 @@ const ViewModal = ({
 										/>
 										<Input
 											title={`${t('memberIdNumber.title')} *`}
-											className="mb-[5px] min-w-[300px]"
+											className="mb-[5px] min-w-[460px]"
 											type="number"
 											value={member.MemberIdNumber}
 											onChange={(e) =>
@@ -794,23 +1337,6 @@ const ViewModal = ({
 													i,
 													'MemberIdNumber',
 													parseInt(e.target.value, 10),
-												)
-											}
-										/>
-										<Select
-											title={`${t('gender.title')} *`}
-											name="memberGender"
-											options={[
-												{ label: 'Male', value: 'male' },
-												{ label: 'Female', value: 'female' },
-											]}
-											className="mb-[30px] min-w-[300px]"
-											value={member.memberGender}
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'memberGender',
-													e.target.value,
 												)
 											}
 										/>
