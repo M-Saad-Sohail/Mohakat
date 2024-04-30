@@ -36,8 +36,7 @@ export const useAuth = () => {
 					`/login`,
 					credentials,
 				);
-				console.log("data", data.sponser.uniqueId)
-
+				
 				const user: UserType = {
 					key: data.token,
 					avator: data.sponser.avator, // Corrected key name
@@ -53,7 +52,6 @@ export const useAuth = () => {
 					country: data.sponser.country,
 					language: data.sponser?.language ?? 'en',
 				};
-				console.log("user", user)
 				if (!user.verified) {
 					throw new Error(`Please verify first`);
 				}

@@ -122,7 +122,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 				});
 			}
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			setLoading(false);
 			toast.error(`${t('error')}`, {
 				toastId: 'error',
@@ -136,7 +136,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 		initialValues: initialValues,
 		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
 		onSubmit: async (values: any) => {
-			console.log('values', values);
 			if (user) {
 				postLoginData(values);
 			} else {

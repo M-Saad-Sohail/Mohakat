@@ -216,7 +216,6 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	};
 
 	useEffect(() => {
-		console.log(familiesData);
 	}, [familiesData]);
 
 	return (
