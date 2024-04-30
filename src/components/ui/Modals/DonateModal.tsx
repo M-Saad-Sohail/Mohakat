@@ -78,8 +78,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 		Object.assign(initialValues, loginInitialValues);
 	}
 
-	console.log(cartItems);
-
 	const postNonLoginData = async (values: any) => {
 		try {
 			setLoading(true);
@@ -115,7 +113,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 				family: family._id,
 				amount: family.amount,
 			}));
-			console.log('hhh', updatedValues);
 			setIsAddToCartValues(updatedValues);
 		}
 		try {
