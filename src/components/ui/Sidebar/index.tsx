@@ -168,7 +168,7 @@ const LeftSideBar = () => {
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
-				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
+				className={` bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
 					open ? 'w-[270px]' : 'w-20 '
 				}`}
 			>
