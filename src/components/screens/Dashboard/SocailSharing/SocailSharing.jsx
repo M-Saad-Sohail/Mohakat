@@ -20,7 +20,7 @@ import {
 
 
 const SocialSharing  = () => {
-    const shareUrl = "https://sponserinitial.netlify.app/en"
+    const shareUrl = "https://moakhat.org/en"
     const title = `I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website.`
     // const sponsorValue = generateRandomSponsorValue();
     // I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website. This is my Sponser Number ${sponsorValue}. 
