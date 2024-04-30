@@ -193,6 +193,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				amount={amount}
 				setAmount={setAmount}
 				familyId={familyData?._id}
+				isAddToCart={false}
 			/>
 			<QuickDonationModal
 				open={quickDonationOpen}

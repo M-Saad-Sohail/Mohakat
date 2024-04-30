@@ -30,7 +30,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	cancelButtonRef,
 	amount,
 	familyId,
-	isAddToCart = false,
+	isAddToCart,
 }) => {
 	const { user } = useLoggedInUser();
 	const currencyState = useSelector((state: any) => state.currency);
