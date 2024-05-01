@@ -8,7 +8,7 @@ import CrossSvg from '@/assests/images/landing-page/cross.svg';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { Links, PATHS } from '@/contants';
@@ -18,6 +18,7 @@ import LangSelector from '../LangSelector';
 import { useSelector } from 'react-redux';
 import CurrencyModal from '../Modals/CurrencyModal';
 import Button from '../LandingPage/Button';
+import { useAuth } from '@/hooks/useAuth';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -25,6 +26,8 @@ const MobileNavbar = ({
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const pathname = usePathname();
+	const router = useRouter();
+	const { logoutUser } = useAuth();
 	const cartItems = useSelector((state: any) => state.cart);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -123,30 +126,42 @@ const MobileNavbar = ({
 					))}
 					<div className=" flex justify-start items-start mt-5 py-2 px-6">
 						{isLoggedIn ? (
-							<Link
-								href={url(PATHS.DASHBOARD)}
-								replace={currentPathName !== '/'}
-								locale={locale}
-							>
-								<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
-							</Link>
+							<div className=" flex items-center gap-3">
+								<span
+									onClick={() => {
+										logoutUser();
+										router.replace(url(PATHS.LOGIN));
+									}}
+									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+								>
+									{t('cta.logout')}
+								</span>
+								<Link
+									href={url(PATHS.DASHBOARD)}
+									replace={currentPathName !== '/'}
+									locale={locale}
+								>
+									<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
+								</Link>
+							</div>
 						) : (
-							<>
+							<div className=" flex items-center gap-3">
 								<Link
 									href={url(PATHS.LOGIN)}
 									locale={locale}
-									className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.signin')}
 								</Link>
 								<Link
 									href={url(PATHS.BECOME_SPONSOR)}
 									locale={locale}
-									className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+									className="w-fit bg-[#CF7475] text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#CF7475] hover:text-[#CF7475] transition-colors duration-300 ease-in-out  "
+
 								>
 									{t('cta.become-sponsor')}
 								</Link>
-							</>
+							</div>
 						)}
 					</div>
 				</div>
