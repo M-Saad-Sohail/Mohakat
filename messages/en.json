@@ -228,6 +228,10 @@
 		"form": {
 			"formTitle": "Edit Family Details",
 			"fill_form_correctly": "Please fill the form correctly",
+			"in_eng":"In English",
+			"in_tur":"In Turkish",
+			"in_ar":"In Arabic",
+			"family_details_error": "Please fill the family member details",
 			"all_fields": "All fields are required",
 			"submit": "Family Added Successfully",
 			"title": "Add Family",
@@ -238,6 +242,24 @@
 			"delete": "Delete",
 			"BreadWinnerName": {
 				"title": "Beard Winner Name"
+			},
+			"maritalStatus": {
+				"title": "Martial Status"
+			},
+			"gender": {
+				"title": "Gender"
+			},
+			"areaOfPreviousResidence": {
+				"title": "Area Of Previous Residence"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Area Of Current Residence"
+			},
+			"currentSituation": {
+				"title": "Current Situation"
+			},
+			"lossesInWar": {
+				"title": "Loses In War"
 			},
 			"comment": {
 				"title": "Comment"
