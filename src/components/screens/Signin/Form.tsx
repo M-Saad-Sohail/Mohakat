@@ -54,7 +54,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[100px] max-w-[800px]"
+				className="w-full my-[100px] max-w-[800px] animated-div"
 				noValidate
 				onSubmit={handleSubmit}
 			>

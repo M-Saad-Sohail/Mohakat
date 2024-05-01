@@ -81,13 +81,13 @@ const AboutSection = () => {
 	return (
 		<div
 			dir={dir}
-			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10 grid md:grid-cols-2 grid-cols-1 gap-3"
+			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10 grid md:grid-cols-2 grid-cols-1 gap-3 animated-div"
 		>
-			<div className=" flex flex-col gap-5 bg-[#E8C08A] rounded-[20px] py-8 md:px-7 px-6 custom-box-shadow">
+			<div className=" flex flex-col gap-5 bg-[#E8C08A] rounded-[20px] py-8 md:px-7 px-6 custom-box-shadow feature-shadow">
 				<h3 className="md:text-3xl text-2xl font-semibold">
 					{aboutData[0]?.heading}
 				</h3>
-				<div className="md:text-[20px] leading-8 text-lg font-light">
+				<div className="md:text-[20px] leading-8 text-lg font-light ">
 					{aboutData[0]?.description}
 					{/* {aboutData[0]?.description.split('.').map((item, i) => {
 						if (aboutData[0].description.split('.').length - 1 === i) return;
@@ -96,7 +96,7 @@ const AboutSection = () => {
 				</div>
 			</div>
 			<div className=" flex flex-col gap-3">
-				<div className="flex flex-col gap-[6px] bg-[#8DAE8E] rounded-[20px] p-6 custom-box-shadow">
+				<div className="flex flex-col gap-[6px] bg-[#8DAE8E] rounded-[20px] p-6 custom-box-shadow feature-shadow">
 					<h3 className="md:text-xl text-lg font-semibold">
 						{aboutData[1]?.heading}
 					</h3>
@@ -104,7 +104,7 @@ const AboutSection = () => {
 						{aboutData[1]?.description}
 					</p>
 				</div>
-				<div className="flex flex-col gap-[6px] bg-[#CF7475] rounded-[20px] p-6 custom-box-shadow">
+				<div className="flex flex-col gap-[6px] bg-[#CF7475] rounded-[20px] p-6 custom-box-shadow feature-shadow">
 					<h3 className="md:text-xl text-lg font-semibold">
 						{aboutData[2]?.heading}
 					</h3>

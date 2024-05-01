@@ -47,7 +47,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[100px] max-w-[800px]" // Set form overflow to auto
+				className="w-full my-[100px] max-w-[800px] animated-div" // Set form overflow to auto
 				noValidate
 				onSubmit={handleSubmit}
 			>

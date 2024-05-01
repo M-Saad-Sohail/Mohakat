@@ -222,7 +222,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		<>
 			<section
 				dir={dir}
-				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 `}
+				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 animated-div`}
 			>
 				{/* heading and content */}
 				{(!user || PATHS.FAMILY === landingFamilyPath) && (

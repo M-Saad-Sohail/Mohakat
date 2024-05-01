@@ -70,7 +70,7 @@ const ForgotPassword = () => {
 	};
 
 	return (
-		<form className="w-full my-[100px] max-w-[800px]" noValidate>
+		<form className="w-full my-[100px] max-w-[800px] animated-div" noValidate>
 			<div className="mx-4 space-y-5">
 				<div>
 					<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">

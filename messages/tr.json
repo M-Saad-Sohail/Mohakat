@@ -491,7 +491,14 @@
 		"totalTitle": "Toplam",
 		"anotherAmount": "Başka Miktar",
 		"inputPlaceholder": "Bağış miktarını girin",
-		"button": "Ödeme Yapmaya Devam Et"
+		"button": "Ödeme Yapmaya Devam Et",
+		"cardname": "Lütfen Kart Adınızı Girin",
+		"cardNumber": "Lütfen Kart Numaranızı Girin",
+		"expMonth": "Lütfen Kart Son Kullanma Ayını Seçin",
+		"expYear": "Lütfen Kart Son Kullanma Yılını Girin",
+		"cvc": "Lütfen Kartınızın CVC'sini Girin",
+		"placeholdername": "Muhammed Ahmed",
+		"placeholderaddress": "İstanbul, Türkiye"
 	},
 	"CurrencyModal": {
 		"title": "Para Birimini Göster"

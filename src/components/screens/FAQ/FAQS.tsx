@@ -91,11 +91,11 @@ const FAQS = () => {
 
 			{/* faqs */}
 
-			<div className=" flex flex-col gap-3">
+			<div className=" flex flex-col gap-3 animated-div">
 				{faqData.map((item, i) => {
 					return (
 						<>
-							<div key={i} className=" flex gap-2">
+							<div key={i} className=" flex gap-2 feature-shadow-faq ">
 								<div key={i} className=" flex flex-col gap-2">
 									<h3 className=" text-lg font-bold text-[#CF7475]">Q:</h3>
 									<h3 className="text-lg font-bold text-[#000000]">A:</h3>

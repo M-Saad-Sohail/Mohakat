@@ -261,7 +261,38 @@ input[name='month'] {
 	transform: scale(1.1);
 	border-radius: 8px;
 }
+.feature-shadow-faq {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	padding: 10px;
+}
+
+.feature-shadow-faq:hover {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	transform: scale(1.1);
+	border-radius: 8px;
+}
 /* Zain CSS end */
+
+.animated-div {
+	position: relative;
+	animation: slideFromLeft 0.5s ease-out forwards;
+	/* Adjust width, height, and other styles as needed */
+  }
+
+  @keyframes slideFromLeft {
+	from {
+	  transform: translateX(-100%);
+	  opacity: 0;
+	}
+	to {
+	  transform: translateX(0);
+	  opacity: 1;
+	}
+  }
 
 /* Bakhtawar CSS */
 .btn-transition {

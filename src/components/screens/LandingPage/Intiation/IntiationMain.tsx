@@ -67,10 +67,10 @@ const IntiationMain = ({ currentPath }: { currentPath: any }) => {
 	}, []);
 	return (
 		<>
-			<h2 className=" md:text-3xl text-2xl font-semibold">
+			<h2 className=" md:text-3xl text-2xl font-semibold animated-div">
 				{initiationData.heading}
 			</h2>
-			<p className=" md:text-lg text-base font-light">
+			<p className=" md:text-lg text-base font-light animated-div">
 				{initiationData.description}
 			</p>
 		</>

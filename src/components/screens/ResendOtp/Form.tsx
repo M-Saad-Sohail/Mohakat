@@ -53,7 +53,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 
 	return (
 		<form
-			className="w-full my-[200px] max-w-[800px]"
+			className="w-full my-[200px] max-w-[800px] animated-div"
 			noValidate
 			onSubmit={handleSubmit}
 		>

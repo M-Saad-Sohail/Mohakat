@@ -109,9 +109,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				setOpen={setQuickDonationOpen}
 				cancelButtonRef={cancelQuickDonationButtonRef}
 			/>
-			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3">
+			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3 animated-div">
 				<div className=" flex flex-col justify-end gap-3">
-					<div className=" h-[50%]">
+					<div className=" h-[50%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[0].heroSliderImg) ||
@@ -123,7 +123,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
-					<div className=" h-[30%]">
+					<div className=" h-[30%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[1].heroSliderImg) ||
@@ -171,7 +171,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</div>
 					)}
 					<div className=" h-[45%] flex gap-3">
-						<div className=" flex-1">
+						<div className=" flex-1 feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[2].heroSliderImg) ||
@@ -183,7 +183,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className=" flex-1 h-[80%] self-end">
+						<div className=" flex-1 h-[80%] self-end feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[3].heroSliderImg) ||
@@ -195,7 +195,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className="flex-1">
+						<div className="flex-1 feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[4].heroSliderImg) ||
@@ -209,8 +209,8 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</div>
 					</div>
 				</div>
-				<div className=" flex flex-col justify-end gap-3">
-					<div className=" h-[50%]">
+				<div className=" flex flex-col justify-end gap-3 ">
+					<div className=" h-[50%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[5].heroSliderImg) ||
@@ -222,7 +222,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
-					<div className=" h-[30%]">
+					<div className=" h-[30%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[6].heroSliderImg) ||

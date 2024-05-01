@@ -502,7 +502,14 @@
 		"totalTitle": "Total",
 		"anotherAmount": "Another Amount",
 		"inputPlaceholder": "Enter donation amount",
-		"button": "Proceed to Checkout"
+		"button": "Proceed to Checkout",
+		"cardname": "Please Enter your Card Name",
+		"cardNumber": "Please Enter your Card Number",
+		"expMonth": "Please Select your Expire Month of Card",
+		"expYear": "Please Enter your Expire Year of Card",
+		"cvc": "Please Enter your Card CVC",
+		"placeholdername": "Muhammad Ahmed",
+		"placeholderaddress": "Istanbul, Turkey"
 	},
 	"CurrencyModal" :{
 		"title":"Display Currency"

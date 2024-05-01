@@ -39,6 +39,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	const [isAddToCartValues, setIsAddToCartValues] = useState<any[]>([]);
 	const t = useTranslations('DonateModal');
 	const { dir } = useLocaleRouter();
+	const t1 = useTranslations('QuickDonation');
 
 	useEffect(() => {
 		fetch('https://api.ipify.org?format=json')
@@ -270,7 +271,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 												<>
 													<ModalInput
 														label={t('name')}
-														placeholder="John Wick"
+														placeholder= {t1('placeholdername')} 
 														type="text"
 														name="name"
 														value={DonateForm.values?.name}
@@ -284,7 +285,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 														)}
 													<ModalInput
 														label={t('email')}
-														placeholder="example@example.com"
+														placeholder="Ahmed@gmail.com"
 														type="email"
 														name="email"
 														value={DonateForm.values?.email}
@@ -298,7 +299,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 														)}
 													<ModalInput
 														label={t('address')}
-														placeholder="123 Main St"
+														placeholder= {t1('placeholderaddress')} 
 														type="text"
 														name="address"
 														value={DonateForm.values?.address}
@@ -380,7 +381,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 											)}
 											<ModalInput
 												label={t('cardHolder')}
-												placeholder="John"
+												placeholder= {t1('cardname')}
 												type="text"
 												name="cardHolderName"
 												value={DonateForm.values?.cardHolderName}
