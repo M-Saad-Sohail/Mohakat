@@ -167,7 +167,13 @@ export const updateProfileSchema = object({
 
 export const checkOutSchemaNonLogin = object({
 	cardHolderName: string().required('Card holder name is required'),
-	cardNumber: number().required('Card number is required'),
+	cardNumber: string()
+		.required('Card number is required')
+		.test(
+			'no-spaces',
+			'Card number must not contain spaces',
+			(value: any) => !/\s/.test(value),
+		),
 	expireMonth: string().required('Expiration month is required'),
 	expireYear: number()
 		.required('Expiration year is required')
@@ -191,9 +197,16 @@ export const checkOutSchemaLogin = object({
 		.email('Invalid email address')
 		.required('Email address is required'),
 	country: string().required('Country is Required'),
+	city: string().required('City is Required'),
 	address: string().required('Address is Required'),
 	cardHolderName: string().required('Card holder name is required'),
-	cardNumber: number().required('Card number is required'),
+	cardNumber: string()
+		.required('Card number is required')
+		.test(
+			'no-spaces',
+			'Card number must not contain spaces',
+			(value: any) => !/\s/.test(value),
+		),
 	expireMonth: string().required('Expiration month is required'),
 	mobilePhoneNumber: number().required('Mobile number is required'),
 	nationalIdentityNumber: number()

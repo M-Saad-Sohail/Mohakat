@@ -52,7 +52,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 		user && DonateForm.setFieldValue('sponsor', user.id);
 	}, [amount, familyId]);
 
-	const loginInitialValues = {
+	const InitialValues = {
 		name: '',
 		country: '',
 		city: '',
@@ -61,6 +61,11 @@ const DonateModal: React.FC<DonateModalType> = ({
 		mobilePhoneNumber: '',
 		nationalIdentityNumber: '',
 		ip: '',
+		cardHolderName: '',
+		cardNumber: '',
+		expireMonth: '',
+		expireYear: '',
+		cvc: '',
 	};
 
 	const initialValues = {
@@ -71,9 +76,9 @@ const DonateModal: React.FC<DonateModalType> = ({
 		cvc: '',
 	};
 
-	if (user) {
-		Object.assign(initialValues, loginInitialValues);
-	}
+	// if (user) {
+	// 	Object.assign(initialValues, loginInitialValues);
+	// }
 
 	const postNonLoginData = async (values: any) => {
 		try {
@@ -133,7 +138,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	};
 
 	const DonateForm = useFormik({
-		initialValues: initialValues,
+		initialValues: InitialValues,
 		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
 		onSubmit: async (values: any) => {
 			if (user) {
@@ -214,7 +219,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.name}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.name &&
+													{user &&
+														DonateForm.touched.name &&
 														DonateForm.errors.name && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.name as any}
@@ -228,7 +234,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.email}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.email &&
+													{user &&
+														DonateForm.touched.email &&
 														DonateForm.errors.email && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.email as any}
@@ -242,7 +249,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.address}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.address &&
+													{user &&
+														DonateForm.touched.address &&
 														DonateForm.errors.address && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.address as any}
@@ -256,7 +264,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.mobilePhoneNumber}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.mobilePhoneNumber &&
+													{user &&
+														DonateForm.touched.mobilePhoneNumber &&
 														DonateForm.errors.mobilePhoneNumber && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.mobilePhoneNumber as any}
@@ -270,7 +279,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.nationalIdentityNumber}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.nationalIdentityNumber &&
+													{user &&
+														DonateForm.touched.nationalIdentityNumber &&
 														DonateForm.errors.nationalIdentityNumber && (
 															<p className="text-sm mb-2 text-red">
 																{
@@ -287,7 +297,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 														value={DonateForm.values?.city}
 														onChange={DonateForm.handleChange}
 													/>
-													{DonateForm.touched.city &&
+													{user &&
+														DonateForm.touched.city &&
 														DonateForm.errors.city && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.city as any}
@@ -299,7 +310,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 														className="max-w-[800px] w-full mb-8"
 														onChange={DonateForm.handleChange}
 														value={DonateForm.values.country}
-														// defaultValue={t('country.default')}
 														titleColor="text-[#000000]"
 														textColor="text-[#00000080]"
 														BgColor="bg-[#F8F8F8]"
@@ -308,7 +318,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 															value: country.code,
 														}))}
 													/>
-													{DonateForm.touched.country &&
+													{user &&
+														DonateForm.touched.country &&
 														DonateForm.errors.country && (
 															<p className="text-sm mb-2 text-red">
 																{DonateForm.errors.country as any}
