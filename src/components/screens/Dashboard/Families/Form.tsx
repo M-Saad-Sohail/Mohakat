@@ -52,7 +52,11 @@ interface FamilyMember {
 	};
 	memberAge: number | '';
 	MemberIdNumber: number | '';
-	memberGender: string;
+	memberGender: {
+		inEnglish: string;
+		inTurkish: string;
+		inArabic: string;
+	};
 }
 
 const FamilyForm = () => {
@@ -66,6 +70,7 @@ const FamilyForm = () => {
 		index: any,
 		key: string,
 		value: string | number,
+		type?: string,
 	) => {
 		// console.log(index);
 		const updatedMembers = [...familyMembers];
@@ -78,13 +83,23 @@ const FamilyForm = () => {
 				},
 				memberAge: '',
 				MemberIdNumber: '',
-				memberGender: '',
+				memberGender: {
+					inEnglish: '',
+					inTurkish: '',
+					inArabic: '',
+				},
 			};
 		}
 		if (key.startsWith('in')) {
-			updatedMembers[index].memberName[
-				key as keyof FamilyMember['memberName']
-			] = (value as string).toUpperCase(); // Convert to uppercase
+			if (type === 'name') {
+				updatedMembers[index].memberName[
+					key as keyof FamilyMember['memberName']
+				] = (value as string).toUpperCase(); // Convert to uppercase
+			} else if (type === 'gender') {
+				updatedMembers[index].memberGender[
+					key as keyof FamilyMember['memberGender']
+				] = value as string; // Convert to uppercase
+			}
 		} else {
 			updatedMembers[index][key as keyof FamilyMember] = value as
 				| string
@@ -101,8 +116,6 @@ const FamilyForm = () => {
 		initialValues: AddFamiliesValues,
 		validationSchema: AddFamiliesSchema,
 		onSubmit: async ({ values }: any) => {
-			console.log('va', AddFamiliesForm.values);
-
 			const response = {
 				breadWinnerName: {
 					inEnglish: AddFamiliesForm.values.breadWinnerNameEn.toUpperCase(),
@@ -193,6 +206,7 @@ const FamilyForm = () => {
 					position: 'bottom-right',
 					autoClose: 4000,
 				});
+				setLoading(false);
 			}
 		},
 	});
@@ -1017,7 +1031,12 @@ const FamilyForm = () => {
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.name}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inEnglish',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 										<Input
@@ -1026,7 +1045,12 @@ const FamilyForm = () => {
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.email}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inTurkish',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 										<Input
@@ -1035,7 +1059,12 @@ const FamilyForm = () => {
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.email}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inArabic', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inArabic',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 									</div>
@@ -1076,15 +1105,16 @@ const FamilyForm = () => {
 											<div>
 												<Select
 													title={`${t('in_eng')} *`}
-													name="genderEn"
+													name="inenglish"
 													options={genderInEnglish}
 													defaultValue={t('gender.default')}
 													className="mb-[30px] min-w-[400px] "
 													onChange={(e) =>
 														handleMemberDetailChange(
 															i,
-															'memberGender',
+															'inEnglish',
 															e.target.value,
+															'gender',
 														)
 													}
 												/>
@@ -1093,15 +1123,16 @@ const FamilyForm = () => {
 											<div>
 												<Select
 													title={`${t('in_tur')} *`}
-													name="genderTr"
+													name="inturkish"
 													options={genderInTurkish}
 													defaultValue={t('gender.default')}
 													className="mb-[30px] min-w-[400px] "
 													onChange={(e) =>
 														handleMemberDetailChange(
 															i,
-															'memberGender',
+															'inTurkish',
 															e.target.value,
+															'gender',
 														)
 													}
 												/>
@@ -1110,15 +1141,16 @@ const FamilyForm = () => {
 											<div>
 												<Select
 													title={`${t('in_ar')} *`}
-													name="genderAr"
+													name="inarabic"
 													options={genderInArabic}
 													defaultValue={t('gender.default')}
 													className="mb-[30px] min-w-[400px] "
 													onChange={(e) =>
 														handleMemberDetailChange(
 															i,
-															'memberGender',
+															'inArabic',
 															e.target.value,
+															'gender',
 														)
 													}
 												/>
