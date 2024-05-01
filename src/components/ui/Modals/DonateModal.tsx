@@ -96,7 +96,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 				});
 			}
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			setLoading(false);
 			toast.error(`${t('error')}`, {
 				toastId: 'error',
@@ -106,6 +106,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 		}
 	};
 
+
 	const postLoginData = async (values: any) => {
 		if (isAddToCart) {
 			const updatedValues = cartItems.map((family: any) => ({
@@ -114,13 +115,59 @@ const DonateModal: React.FC<DonateModalType> = ({
 				amount: family.amount,
 			}));
 			setIsAddToCartValues(updatedValues);
+	
+			setLoading(true);
+			try {
+				const res = await postJson(
+					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate/family`,
+					{ donations: updatedValues },
+					user?.key,
+				);
+				// console.log("res", res)
+				if (res.success) {
+					// console.log("res", res)
+					setLoading(false);
+					setOpen(false);
+					toast.success(`${t('success')}`, {
+						toastId: 'success',
+						position: 'top-right',
+						autoClose: 4000,
+					});
+				} else {
+					setLoading(false);
+					toast.error(`${t('donationFailed')}`, {
+						toastId: 'error',
+						position: 'top-right',
+						autoClose: 4000,
+					});
+				}
+			} catch (error) {
+				// console.log(error)
+				setLoading(false);
+				toast.error(`${t('error')}`, {
+					toastId: 'error',
+					position: 'top-right',
+					autoClose: 4000,
+				});
+			}
+		} else {
+			setLoading(false);
+			toast.error(`${t('donationFailed')}`, {
+				toastId: 'error',
+				position: 'top-right',
+				autoClose: 4000,
+			});
 		}
+	};
+	
+
+	const postLoginDataSingleDonate = async (values: any) => {
 		try {
 			setLoading(true);
 			const res = await postJson(
-				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate/family`,
-				isAddToCart ? { donations: isAddToCartValues } : values,
-				user?.key,
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate/single/family`,
+					values,
+					user?.key,
 			);
 			if (res.success) {
 				setLoading(false);
@@ -142,14 +189,18 @@ const DonateModal: React.FC<DonateModalType> = ({
 			});
 		}
 	};
-
+			
 	const DonateForm = useFormik({
 		initialValues: initialValues,
 		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
 		onSubmit: async (values: any) => {
-			if (user) {
+			if (user && isAddToCart) {
 				postLoginData(values);
-			} else {
+			} 
+			else if(user){
+				postLoginDataSingleDonate(values)
+			}
+			else {
 				postNonLoginData(values);
 			}
 		},

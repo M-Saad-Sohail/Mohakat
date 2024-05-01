@@ -58,7 +58,8 @@
 			"total": "Total",
 			"submit": "Confirm Payment",
 			"success": "Thank you for your donation",
-			"error": "Something went wrong"
+			"error": "Something went wrong",
+			"donationFailed": "Donation Process failed. Try Again"
 	},
 	"forgotPassword": {
 		"form": {
@@ -528,5 +529,11 @@
 	"DeleteFamily": {
 		"family_deleted_successfully": "Family Deleted Successfully",
 		"deletion_failed": "Failed to Delete Family"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponser Name",
+		"sponsoremail": "Sponser Email",
+		"sponsoramount": "Amount",
+		"sponsorfamily": "View Family Details"
 	}
 }

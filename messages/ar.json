@@ -382,6 +382,9 @@
 	"ApprovedSponsors": {
 		"title": "الرعاة الموافق عليهم"
 	},
+	"SponsoredFamilies": {
+		"title": "العائلات المدعومة"
+	},
 	"DonatedFamilies": {
 		"title": "العائلات المتبرع لها",
 		"sponserId": "معرف الراعي",
@@ -488,7 +491,8 @@
 		"total": "الإجمالي",
 		"success": "شكرًا لتبرعك",
 		"error": "حدث خطأ ما",
-		"submit": "تأكيد الدفع"
+		"submit": "تأكيد الدفع",
+		"donationFailed": "فشلت عملية التبرع. حاول مرة أخرى"
 	},	
 	"CurrencyModal": {
 		"title": "عرض العملة"
@@ -518,5 +522,11 @@
 	"DeleteFamily": {
 		"family_deleted_successfully": "تم حذف العائلة بنجاح",
 		"deletion_failed": "فشل في حذف العائلة"
+	},
+	"Sponsoring": {
+		"sponsorname": "اسم الكفيل",
+		"sponsoremail": "بريد الكفيل الإلكتروني",
+		"sponsoramount": "المبلغ",
+		"sponsorfamily": "عرض تفاصيل العائلة"
 	}
 }

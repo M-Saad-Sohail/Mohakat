@@ -381,6 +381,9 @@
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
 	},
+	"SponsoredFamilies": {
+		"title": "Desteklenen Aileler"
+	},
 	"DonatedFamilies": {
 		"title": "Bağışlanan Aileler",
 		"sponserId": "Sponsor Kimliği",
@@ -478,7 +481,8 @@
 		"total": "Toplam",
 		"success": "Bağışınız için teşekkür ederiz",
 		"error": "Bir şeyler yanlış gitti",
-		"submit": "Ödemeyi Onayla"
+		"submit": "Ödemeyi Onayla",
+		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin"
 	},	
 	"QuickDonation": {
 		"title": "Genel ve Hızlı Bağış",
@@ -514,5 +518,11 @@
 	"DeleteFamily": {
 		"family_deleted_successfully": "Aile Başarıyla Silindi",
 		"deletion_failed": "Aile Silinemedi"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponsor Adı",
+		"sponsoremail": "Sponsor E-posta",
+		"sponsoramount": "Miktar",
+		"sponsorfamily": "Aile Detaylarını Görüntüle"
 	}
 }

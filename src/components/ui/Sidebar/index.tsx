@@ -184,7 +184,7 @@ const LeftSideBar = () => {
 						>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p
+						<div
 							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
 								!open && 'hidden'
 							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : ''}`}
@@ -197,7 +197,7 @@ const LeftSideBar = () => {
 									</p>
 								)}
 							</p>
-						</p>
+						</div>
 						{/* {user && open && (
 							<>
 								{user.role === 'admin' && (
