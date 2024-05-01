@@ -1012,7 +1012,7 @@ const FamilyForm = () => {
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title={'In English'}
+											title={`${t('in_eng')} *`}
 											name="inenglish"
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.name}
@@ -1021,21 +1021,21 @@ const FamilyForm = () => {
 											}
 										/>
 										<Input
-											title={'In Arabic'}
-											name="inarabic"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
-											onChange={(e) =>
-												handleMemberDetailChange(i, 'inArabic', e.target.value)
-											}
-										/>
-										<Input
-											title={'In Turkish'}
+											title={`${t('in_tur')} *`}
 											name="inturkish"
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.email}
 											onChange={(e) =>
 												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+											}
+										/>
+										<Input
+											title={`${t('in_ar')} *`}
+											name="inarabic"
+											className="mb-[10px] min-w-[250px]"
+											// value={updateProfileForm.values?.email}
+											onChange={(e) =>
+												handleMemberDetailChange(i, 'inArabic', e.target.value)
 											}
 										/>
 									</div>
@@ -1064,24 +1064,66 @@ const FamilyForm = () => {
 												)
 											}
 										/>
+									</div>
+									{/* Gender */}
 
-										<Select
-											title={t('gender.title')}
-											name="language"
-											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
-											]}
-											defaultValue={t('gender.default')}
-											className="mb-[30px] min-w-[400px] "
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'memberGender',
-													e.target.value,
-												)
-											}
-										/>
+									<div className=" flex flex-col gap-3 mt-5">
+										<h3 className=" text-sm font-bold">
+											{' '}
+											{t('gender.title')}{' '}
+										</h3>
+										<div className="flex items-start justify-start w-full gap-x-4">
+											<div>
+												<Select
+													title={`${t('in_eng')} *`}
+													name="genderEn"
+													options={genderInEnglish}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'memberGender',
+															e.target.value,
+														)
+													}
+												/>
+											</div>
+
+											<div>
+												<Select
+													title={`${t('in_tur')} *`}
+													name="genderTr"
+													options={genderInTurkish}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'memberGender',
+															e.target.value,
+														)
+													}
+												/>
+											</div>
+
+											<div>
+												<Select
+													title={`${t('in_ar')} *`}
+													name="genderAr"
+													options={genderInArabic}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'memberGender',
+															e.target.value,
+														)
+													}
+												/>
+											</div>
+										</div>
 									</div>
 								</div>
 							))}
