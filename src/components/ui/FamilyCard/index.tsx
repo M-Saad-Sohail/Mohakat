@@ -60,6 +60,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 					<Button
 						title={familyData?.currentSituation || t2('Worst')}
 						Color="#CF7475"
+						className=' capitalize'
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers > 4 ? (

@@ -195,6 +195,7 @@
 		"area": "منطقة",
 		"situation": "وضع",
 		"no_of_member": "عدد الأعضاء",
+		"select":"قيمة",
 		"form": {
 			"formTitle": "تحرير تفاصيل العائلة",
 			"fill_form_correctly": "املأ النموذج بشكل صحيح",
@@ -288,6 +289,10 @@
 				"bad": "تدمير كلي",
 				"good": "تدمير جزئي",
 				"worst": "سليم",
+				"totaldestruction": "تدمير كلي",
+				"partialdestruction": "تدمير جزئي",
+				"intact": "سليم",
+				"rented": "مستأجر",
 				"urgentneeded": "مستأجر",
 				"default": "اختر الحالة الحالية"
 			},
@@ -516,6 +521,8 @@
 		"good": "جيد",
 		"Worst": "الأسوأ",
 		"worst": "الأسوأ",
+		"month":"أشهر",
+		"selectduration":"اختر المدة",
 		"Urgently Needed": "مطلوب بشكل عاجل"
 	},
 	"LangSelect": {

@@ -79,7 +79,8 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			}
 
 			if (situationValue !== '') {
-				situationMatch = item.currentSituation === situationValue;
+				situationMatch =
+					item.currentSituation.toLowerCase() === situationValue.toLowerCase();
 			}
 
 			if (memberValue !== null) {
@@ -215,8 +216,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		filterData(area, situation, value);
 	};
 
-	useEffect(() => {
-	}, [familiesData]);
+	useEffect(() => {}, [familiesData]);
 
 	return (
 		<>
@@ -246,7 +246,8 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								onClick={() => handleDropDownClick(0)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-									{area ? area : 'Select'}
+									{area ? area : t('select')}
+									
 								</span>
 								<span>
 									{openDropDown[0] ? (
@@ -282,7 +283,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								onClick={() => handleDropDownClick(1)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-									{situation ? situation : 'Select'}
+									{situation ? situation : t('select')}
 								</span>
 								<span>
 									{openDropDown[1] ? (
@@ -295,16 +296,20 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							<div
 								className={`${
 									openDropDown[1] ? 'block' : 'hidden'
-								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+								}  top-20 rounded-lg z-50 absolute w-64 h-fit py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 							>
 								{situationData.map((item, i) => {
 									return (
 										<p
 											key={i}
 											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-											onClick={() => handleSituationChange(item.value)}
+											onClick={() => handleSituationChange(t(
+												`form.currentsituation.${item.value.toLowerCase().trim().replace(' ', '')}`,
+											))}
 										>
-											{t(`form.currentsituation.${item.label}`)}
+											{t(
+												`form.currentsituation.${item.label.toLowerCase().trim().replace(' ', '')}`,
+											)}
 										</p>
 									);
 								})}
@@ -318,7 +323,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								onClick={() => handleDropDownClick(2)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
-									{member ? member : 'Select'}
+									{member ? member : t('select')}
 								</span>
 								<span>
 									{openDropDown[2] ? (

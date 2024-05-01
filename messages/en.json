@@ -41,25 +41,25 @@
 		}
 	},
 	"DonateModal": {
-			"title1": "Donate a Share",
-			"title2": "Sponsor a Family",
-			"name": "Name",
-			"email": "Email",
-			"address": "Address",
-			"country": "Country",
-			"city": "City",
-			"mobileNum": "Mobile Number",
-			"identityNum": "National identity Number",
-			"cardHolder": "Card Holder Name",
-			"cardNum": "Card Number",
-			"expMonth": "Expiry Month",
-			"expYear": "Expiry Year",
-			"cvc": "CVC",
-			"total": "Total",
-			"submit": "Confirm Payment",
-			"success": "Thank you for your donation",
-			"error": "Something went wrong",
-			"donationFailed": "Donation Process failed. Try Again"
+		"title1": "Donate a Share",
+		"title2": "Sponsor a Family",
+		"name": "Name",
+		"email": "Email",
+		"address": "Address",
+		"country": "Country",
+		"city": "City",
+		"mobileNum": "Mobile Number",
+		"identityNum": "National identity Number",
+		"cardHolder": "Card Holder Name",
+		"cardNum": "Card Number",
+		"expMonth": "Expiry Month",
+		"expYear": "Expiry Year",
+		"cvc": "CVC",
+		"total": "Total",
+		"submit": "Confirm Payment",
+		"success": "Thank you for your donation",
+		"error": "Something went wrong",
+		"donationFailed": "Donation Process failed. Try Again"
 	},
 	"forgotPassword": {
 		"form": {
@@ -216,7 +216,7 @@
 			"title": "Update Family",
 			"submit": "Family update successfully",
 			"delete": "Delete"
-			} 
+		}
 	},
 	"AddFamilies": {
 		"title": "Families",
@@ -224,6 +224,7 @@
 		"area": "Area",
 		"situation": "Situation",
 		"no_of_member": "No. of Members",
+		"select":"Select",
 		"form": {
 			"formTitle": "Edit Family Details",
 			"fill_form_correctly": "Please fill the form correctly",
@@ -250,7 +251,7 @@
 			"age": {
 				"title": "Age"
 			},
-			"memberIdNumber":{
+			"memberIdNumber": {
 				"title": "Member ID number"
 			},
 			"gender": {
@@ -320,6 +321,10 @@
 				"good": "Good",
 				"worst": "Worst",
 				"urgentneeded": "Urgently Needed",
+				"totaldestruction": "Total Destruction",
+				"partialdestruction": "Partial Destruction",
+				"intact": "Intact",
+				"rented": "Rented",
 				"default": "Select Current Situation"
 			},
 			"losesinwar": {
@@ -418,9 +423,9 @@
 	},
 	"DonatedFamilies": {
 		"title": "Donated Families",
-		"sponserId":"Sponser Id",
-		"familyId":"Family Id",
-		"amountDonated":"Amount Donated"
+		"sponserId": "Sponser Id",
+		"familyId": "Family Id",
+		"amountDonated": "Amount Donated"
 	},
 	"Table": {
 		"Header": {
@@ -511,8 +516,8 @@
 		"placeholdername": "Muhammad Ahmed",
 		"placeholderaddress": "Istanbul, Turkey"
 	},
-	"CurrencyModal" :{
-		"title":"Display Currency"
+	"CurrencyModal": {
+		"title": "Display Currency"
 	},
 	"FamiliesMainSection": {
 		"clearAll": "Clear All",
@@ -526,6 +531,8 @@
 		"good": "Good",
 		"Worst": "Worst",
 		"worst": "Worst",
+		"month":"Month(s)",
+		"selectduration":"Select Duration",
 		"Urgently Needed": "Urgently Needed"
 	},
 	"LangSelect": {

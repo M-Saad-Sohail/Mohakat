@@ -195,6 +195,7 @@
 		"area": "alan",
 		"situation": "durum",
 		"no_of_member": "Üye Sayısı",
+		"select": "değer",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
 			"all_fields": "Tüm alanlar zorunludur",
@@ -218,7 +219,7 @@
 			"age": {
 				"title": "Yaş"
 			},
-			"memberIdNumber":{
+			"memberIdNumber": {
 				"title": "Üye Kimlik Numarası"
 			},
 			"gender": {
@@ -288,6 +289,10 @@
 				"good": "İyi",
 				"worst": "Çok kötü",
 				"urgentneeded": "acilen gerekli",
+				"totaldestruction": "Toplam Yıkım",
+				"partialdestruction": "Kısmi Yıkım",
+				"intact": "Bozulmamış",
+				"rented": "Kiralık",
 				"default": "Mevcut Durumu Seçin"
 			},
 			"losesinwar": {
@@ -463,7 +468,7 @@
 		"donateShare": "Pay Bağışla",
 		"becomeSponser": "Sponsor Ol"
 	},
-	"DonateModal":{
+	"DonateModal": {
 		"title1": "Bir Pay Bağışla",
 		"title2": "Bir Aileye Sponsor Ol",
 		"name": "İsim",
@@ -483,7 +488,7 @@
 		"error": "Bir şeyler yanlış gitti",
 		"submit": "Ödemeyi Onayla",
 		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin"
-	},	
+	},
 	"QuickDonation": {
 		"title": "Genel ve Hızlı Bağış",
 		"purposeTitle": "Amaç",
@@ -515,13 +520,15 @@
 		"good": "İyi",
 		"Worst": "Çok kötü",
 		"worst": "Çok kötü",
+		"month": "Aylar",
+		"selectduration":"Süre Seç",
 		"Urgently Needed": "Acil Olarak Gerekli"
 	},
 	"LangSelect": {
 		"English": "İngilizce",
 		"Arabic": "Arapça",
 		"Turkish": "Türkçe"
-	},	
+	},
 	"DeleteFamily": {
 		"family_deleted_successfully": "Aile Başarıyla Silindi",
 		"deletion_failed": "Aile Silinemedi"
