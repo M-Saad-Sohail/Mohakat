@@ -114,7 +114,8 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, [data?.randomFamilies]);
 
 	return (
-		<section className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
+		<section className = "md:w-[100%]">
+			<div className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
 			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3 animated-div">
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%] feature-shadow">
@@ -154,7 +155,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 						>
 							<Button
-								title={t('DonateaShare.title')}
+								title= {t('DonateaShare.title')}
 								Color="#CF7475"
 								onClick={() => {
 									setQuickDonationOpen(true);
@@ -323,6 +324,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				familyId={randomFamily && randomFamily?._id}
 				isAddToCart={false}
 			/>
+		</div>
 		</section>
 	);
 };

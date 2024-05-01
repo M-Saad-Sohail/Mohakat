@@ -87,7 +87,7 @@ const AboutSection = () => {
 				<h3 className="md:text-3xl text-2xl font-semibold">
 					{aboutData[0]?.heading}
 				</h3>
-				<div className="md:text-[20px] leading-8 text-lg font-light ">
+				<div className="md:text-[20px] leading-8 text-lg font-semibold ">
 					{aboutData[0]?.description}
 					{/* {aboutData[0]?.description.split('.').map((item, i) => {
 						if (aboutData[0].description.split('.').length - 1 === i) return;

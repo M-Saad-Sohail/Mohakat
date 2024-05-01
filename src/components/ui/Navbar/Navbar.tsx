@@ -77,7 +77,7 @@ const AuthNavbar = ({
 
 
 	return (
-		<div dir={dir} className="h-fit hidden md:block">
+		<div dir={dir} className="h-fit hidden md:block bg-[#e9f1f8] ">
 			<div className="flex items-center justify-between py-4 mx-10 mobile:pt-4">
 				<div className=" flex gap-6">
 					<div className="flex items-center ">

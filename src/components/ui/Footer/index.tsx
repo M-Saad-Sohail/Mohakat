@@ -55,7 +55,7 @@ const Footer = () => {
 
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] flex flex-col gap-8 md:px-20 px-8 py-10">
+			<div className=" bg-[#e9f1f8] flex flex-col gap-8 md:px-20 px-8 py-10">
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					{/* logo */}

@@ -87,7 +87,7 @@ const LangSelector: React.FC<IProps> = ({
 					alt="flag"
 					className="flex justify-center w-5 item-center"
 				/>
-				<p className={`bg-white text-sm text-black font-bold uppercase`}>
+				<p className={`text-sm text-black font-bold uppercase`}>
 					{t(langValue)}
 				</p>
 				<Image src={downArrow} alt="downArrow" className="w-[10px]" />
