@@ -13,6 +13,7 @@ import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
 import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import DonateModal from '@/components/ui/Modals/DonateModal';
 
 interface HeroDataType {
 	heading: string;
@@ -34,7 +35,11 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	});
 
 	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
+	const [donateOpen, setDonateOpen] = useState(false);
+	const cancelDonateButtonRef = useRef(null);
+	const [amount, setAmount] = useState<number>(0);
 	const cancelQuickDonationButtonRef = useRef(null);
+	const [randomFamily, setRandomFamily] = useState<any>();
 
 	const handleHeroData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -102,13 +107,14 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		if (data?.randomFamilies) {
+			setRandomFamily(data?.randomFamilies[0]);
+		}
+	}, [data?.randomFamilies]);
+
 	return (
 		<section className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
-			<QuickDonationModal
-				open={quickDonationOpen}
-				setOpen={setQuickDonationOpen}
-				cancelButtonRef={cancelQuickDonationButtonRef}
-			/>
 			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3 animated-div">
 				<div className=" flex flex-col justify-end gap-3">
 					<div className=" h-[50%] feature-shadow">
@@ -298,6 +304,25 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 				</div>
 			</div>
+
+			<QuickDonationModal
+				open={quickDonationOpen}
+				setOpen={setQuickDonationOpen}
+				cancelButtonRef={cancelQuickDonationButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				setDonate={setDonateOpen}
+			/>
+			<DonateModal
+				setOpen={setDonateOpen}
+				open={donateOpen}
+				cancelButtonRef={cancelDonateButtonRef}
+				isLoggedIn={isLoggedIn}
+				amount={amount}
+				setAmount={setAmount}
+				familyId={randomFamily && randomFamily?._id}
+				isAddToCart={false}
+			/>
 		</section>
 	);
 };
