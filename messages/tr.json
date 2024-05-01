@@ -197,7 +197,11 @@
 		"no_of_member": "Üye Sayısı",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
+			"family_details_error": "Aile üye detaylarını doldurun",
 			"all_fields": "Tüm alanlar zorunludur",
+			"in_eng": "İngilizce",
+"in_tur": "Türkçe",
+"in_ar": "Arapça",
 			"submit": "Aile Başarıyla Eklendi",
 			"title": "Aile Ekle",
 			"titleForUpdate": "Aileyi Güncelle",
@@ -221,9 +225,24 @@
 			"memberIdNumber":{
 				"title": "Üye Kimlik Numarası"
 			},
+			"maritalStatus": {
+				"title": "Medeni Durum"
+			},
 			"gender": {
 				"title": "Cinsiyet"
 			},
+			"areaOfPreviousResidence": {
+				"title": "Önceki İkamet Alanı"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Mevcut İkamet Alanı"
+			},
+			"currentSituation": {
+				"title": "Mevcut Durum"
+			},
+			"lossesInWar": {
+				"title": "Savaşta Kayıplar"
+			},			
 			"FamilyMembers": {
 				"title": "Aile Üyeleri Sayısı"
 			},

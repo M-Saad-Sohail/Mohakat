@@ -198,6 +198,10 @@
 		"form": {
 			"formTitle": "تحرير تفاصيل العائلة",
 			"fill_form_correctly": "املأ النموذج بشكل صحيح",
+			"family_details_error":  "يرجى ملء تفاصيل أفراد العائلة",
+			"in_eng": "بالإنجليزية",
+"in_tur": "بالتركية",
+"in_ar": "بالعربية",
 			"all_fields": "جميع الحقول مطلوبة",
 			"submit": "تمت إضافة العائلة بنجاح",
 			"title": "إضافة عائلة",
@@ -222,6 +226,21 @@
 			"memberIdNumber":{
 				"title": "رقم هوية العضو"
 			},
+			"maritalStatus": {
+				"title": "الحالة الزوجية"
+			},
+			"areaOfPreviousResidence": {
+				"title": "منطقة الإقامة السابقة"
+			},
+			"areaOfCurrentResidence": {
+				"title": "منطقة الإقامة الحالية"
+			},
+			"currentSituation": {
+				"title": "الوضع الحالي"
+			},
+			"lossesInWar": {
+				"title": "الخسائر في الحرب"
+			},			
 			"gender": {
 				"title": "الجنس"
 			},
