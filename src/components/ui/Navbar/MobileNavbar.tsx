@@ -60,7 +60,7 @@ const MobileNavbar = ({
 	return (
 		<>
 			<div className={` md:hidden flex flex-col ${active && 'active'}`}>
-				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#00000080]">
+				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#8DAE8E]">
 					{/* logo */}
 
 					<Link href={url('/')}>
@@ -77,7 +77,7 @@ const MobileNavbar = ({
 									title=""
 									onChange={() => {}}
 									handleChange={changeLocale}
-									className=" justify-center w-8 h-8"
+									className=" justify-center w-8 h-8 login-icon"
 								/>
 								<div
 									className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
@@ -96,10 +96,10 @@ const MobileNavbar = ({
 								className=" relative cursor-pointer"
 								onClick={() => setIsCartOpen(true)}
 							>
-								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								<span className=" absolute top-0 right-0 bg-[#8DAE8E] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
 									{cartItems.length > 0 ? cartItems.length : '0'}
 								</span>
-								<TbBasketDollar className=" text-[40px]" />
+								<TbBasketDollar className=" text-[40px] login-icon" />
 							</div>
 						)}
 						<Image

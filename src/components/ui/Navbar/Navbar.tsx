@@ -17,8 +17,9 @@ import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
 import Button from '../LandingPage/Button';
 import CurrencyModal from '../Modals/CurrencyModal';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaRegUser  } from 'react-icons/fa';
 import { useAuth } from '@/hooks/useAuth';
+import { TbLogout2, TbHomeShare  } from "react-icons/tb";
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -77,7 +78,7 @@ const AuthNavbar = ({
 
 
 	return (
-		<div dir={dir} className="h-fit hidden md:block bg-[#e9f1f8] ">
+		<div dir={dir} className="h-fit hidden md:block bg-white">
 			<div className="flex items-center justify-between py-4 mx-10 mobile:pt-4">
 				<div className=" flex gap-6">
 					<div className="flex items-center ">
@@ -141,10 +142,10 @@ const AuthNavbar = ({
 							className=" relative cursor-pointer"
 							onClick={() => setIsCartOpen(true)}
 						>
-							<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+							<span className=" absolute top-0 right-0 bg-[#8DAE8E] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
 								{cartItems.length > 0 ? cartItems.length : '0'}
 							</span>
-							<TbBasketDollar className=" text-[42px]" />
+							<TbBasketDollar className="text-[42px] login-icon" />
 						</div>
 					)}
 					{isLoggedIn && (
@@ -153,7 +154,7 @@ const AuthNavbar = ({
 								className=" profile-dropdown cursor-pointer"
 								onClick={() => setDropdownOpen((prev) => !prev)}
 							>
-								<FaUser className=" text-[28px]" />
+								<FaRegUser className="text-[28px]  login-icon" />
 							</div>
 							{dropdownOpen && (
 								<div
@@ -165,18 +166,20 @@ const AuthNavbar = ({
 											setDropdownOpen((prev) => !prev);
 											router.replace(url(PATHS.LOGIN));
 										}}
-										className="w-full bg-black text-white md:text-sm text-[13px] rounded-xl px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+										className="bg-[#8DAE8E] text-white md:text-sm text-[13px] rounded-md px-3 py-[6px] text-center  cursor-pointer hover:bg-white hover:font-bold border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out flex items-start justify-center gap-2 "
 									>
 										{t('cta.logout')}
+										<span> <TbLogout2 className= "text-[20px] hover:font-bold" /></span>
 									</span>
 									<span
 										onClick={() => {
 											setDropdownOpen((prev) => !prev);
 											router.replace(url(PATHS.DASHBOARD));
 										}}
-										className="w-full bg-[#CF7475] text-white md:text-sm text-[13px] rounded-xl px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#CF7475] hover:text-[#CF7475] transition-colors duration-300 ease-in-out  "
+										className="bg-[#8DAE8E] text-white md:text-sm text-[13px] rounded-md px-3 py-[6px] text-center  cursor-pointer hover:bg-white hover:font-bold border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out flex items-start justify-center gap-2 "
 									>
-										{t('cta.go-to-dashboard')}
+										{t('cta.dashboard')}
+										<span><TbHomeShare  className= "text-[20px] hover:font-bold"/></span>
 									</span>
 								</div>
 							)}

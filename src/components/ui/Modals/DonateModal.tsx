@@ -498,7 +498,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 												className="  w-full"
 												isLoading={loading}
 												type="submit"
-												Color="#CF7475"
+												Color="#8DAE8E"
 											/>
 										</div>
 									</form>

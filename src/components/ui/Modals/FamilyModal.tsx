@@ -99,7 +99,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									<div className="flex justify-between items-center w-full">
 										<Button
 											title={familyInfo?.currentSituation || t3('Worst')}
-											Color="#CF7475"
+											Color="#BB9B6C"
 										/>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
@@ -218,7 +218,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									{familyInfo?.familyMemberDetail.length > 0 && (
 										<div className=" flex flex-col gap-2">
 											<h2 className="  text-lg font-semibold">
-												Member Details
+												{t3("memberDetail")}
 											</h2>
 
 											{/* members */}
@@ -325,7 +325,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													setDonate && setDonate(true);
 												}}
 												title={t1('Donate.title')}
-												Color="#CF7475"
+												Color="#8DAE8E"
 												className=" md:px-12"
 											/>
 										</div>

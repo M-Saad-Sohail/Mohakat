@@ -79,7 +79,7 @@ const LangSelector: React.FC<IProps> = ({
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="md:flex hidden border border-black rounded-xl py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
+				className="md:flex hidden border-2 border-solid border-[#8DAE8E] rounded-md py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
@@ -99,14 +99,14 @@ const LangSelector: React.FC<IProps> = ({
 				onClick={() => setOpen((prev) => !prev)}
 			/>
 			{open && (
-				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-xl absolute flex flex-col gap-2 lang-dropdown z-50">
+				<div className=" top-12 md:right-auto right-0 shadow-custom bg-white px-2 py-2 rounded-lg absolute flex flex-col gap-2 lang-dropdown z-50">
 					{options.map((opt) => {
 						if (opt.value === locale) return;
 						return (
 							<span
 								key={opt.value}
 								onClick={() => handleLangChange(opt)}
-								className="bg-black text-white text-sm rounded-xl w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+								className="bg-[#8DAE8E] text-white text-sm rounded-md w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out hover:font-bold  "
 							>
 								{t(opt.label)}
 							</span>

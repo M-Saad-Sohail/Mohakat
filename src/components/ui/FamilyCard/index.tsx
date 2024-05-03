@@ -59,8 +59,8 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				<div className=" flex justify-between items-center">
 					<Button
 						title={familyData?.currentSituation || t2('Worst')}
-						Color="#CF7475"
-						className=' capitalize'
+						Color="#BB9B6C"
+						className=' capitalize '
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers > 4 ? (
@@ -156,7 +156,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						<Button
 							title={t1('AddtoBasket.title')}
 							className="md:px-1 md:py-2 w-full"
-							Color="#000000"
+							Color="#CF7475"
 							isPadding="md:px-1 md:py-2"
 							onClick={(event) => {
 								event.stopPropagation();

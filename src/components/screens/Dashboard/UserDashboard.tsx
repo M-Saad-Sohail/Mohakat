@@ -5,11 +5,13 @@ import { getUserFromLocalStorage } from '@/utils/auth';
 import SocailSharing from './SocailSharing/SocailSharing';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
-import { FaHome } from 'react-icons/fa';
-
+import DashboardNavbar from '@/components/ui/Navbar/DashboardNavbar';
+import { useTranslations } from 'next-intl';
+import SponsoringFamilies from "../SponsoringFamilies/index.tsx"
 const UserDashboard = () => {
 	const [user, setUser] = useState<UserType | null>(null);
 	const router = useLocaleRouter();
+    const t = useTranslations('Socail');
 
 	function redirectToHomePage() {
 		router.replace('/'); // Change the URL to your landing page URL
@@ -29,23 +31,25 @@ const UserDashboard = () => {
 
 	return (
 		<div className="relative">
-			<div
-				className=" absolute right-4 -top-4 text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 rounded-full"
-				onClick={() => redirectToHomePage()}
-			>
-				<FaHome />
+			<div className = "mb-6">
+				<DashboardNavbar />
 			</div>
-			<div className="text-center">
-				<h1 className="pt-2 mt-10 text-4xl font-bold leading-normal text-primary">
-					Welcome {user.name}
+			<div className="text-start ml-10 w-full md:w-1/2 feature-shadow-social social-sharing">
+				<h1 className="pt-2 mt-10 text-4xl font-bold leading-normal text-primary social-sharing-h1">
+					{t("welcome")} {user.name}	
 				</h1>
-			</div>
-			<div className="text-center">
-				<h6>
-					Congratulation!! You've become a Sponser. You can share your
-					sponsership to others on the social media
+				<h6 className = "social-sharing-para">
+					{t("title")}
 				</h6>
 				<SocailSharing />
+			</div>
+			
+			<div className = "mt-10 mb-10"> 
+			<div className = "text-center text-[24px] mb-4 text-[#8DAE8E] font-bold"> 
+			{t("thankyou")}
+				<h1 className = "text-red"> فِلَـٓسَـٓــِٰٓطٓـيَنَُ</h1>
+			</div>
+			<SponsoringFamilies />
 			</div>
 		</div>
 	);

@@ -18,6 +18,11 @@ body {
 .bg-color{
 	background-color: #DDDDDD;
 }
+.login-icon:hover{
+	color: #8DAE8E;
+	font-weight: bold;
+}
+
 svg {
 	object-fit: cover;
 	width: 80%;
@@ -96,7 +101,8 @@ svg {
 }
 
 input[name='month'] {
-	accent-color: #cf7475;
+	/* accent-color: #cf7475; */
+	accent-color: #8DAE8E;
 }
 
 /* tooltip */
@@ -172,7 +178,8 @@ input[name='month'] {
 	width: 100%;
 	height: 2.6px;
 	border-radius: 4px;
-	background-color: #cf7475;
+	/* background-color: #cf7475; */
+	background-color: #8DAE8E;
 	bottom: -4px;
 	left: 0;
 	transform-origin: right;
@@ -197,7 +204,7 @@ input[name='month'] {
 	width: 100%;
 	height: 2.6px;
 	border-radius: 4px;
-	background-color: #cf7475;
+	background-color: #8DAE8E;
 	bottom: -4px;
 	left: 0;
 	transform-origin: right;
@@ -212,7 +219,10 @@ input[name='month'] {
 }
 
 ::selection {
-	color: #8dae8e;
+	/* color: #27850D; */
+	/* color: #6B8167; */
+	color: #fff;
+	background-color: #8DAE8E;
 }
 
 /* TOAST CUSTOMIZATION */
@@ -326,7 +336,50 @@ input[name='month'] {
 }
 
 input[name='selectedCurrency'] {
-	accent-color: #cf7475;
+	/* accent-color: #cf7475; */
+	accent-color: #8DAE8E;
 	height: 17px; /* Adjust the size of the radio button */
 	width: 17px;
 }
+
+/* Use in User Dashboard */
+.feature-shadow-social {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	padding-top: 3px;
+}
+
+.feature-shadow-social:hover {
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	transform: scale(1.1);
+	border-radius: 8px;
+}
+
+@media screen and (max-width: 425px) {
+	.social-sharing{
+		
+	}
+	.social-sharing-h1{
+		font-size: .8rem !important;
+
+	}
+	.social-sharing-para{
+		font-size: .6rem !important;
+	}
+	.feature-shadow-social {
+		/* padding-top: 3px !important; */
+		transform: none;
+		margin: 0 !important;
+		padding: 0!important;
+	}
+	
+	.feature-shadow-social:hover {
+		box-shadow: none !important;
+		border: none !important;
+		cursor: none !important;
+		border-radius: none;
+	}
+  }

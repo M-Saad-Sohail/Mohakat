@@ -80,7 +80,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 
 			if (situationValue !== '') {
 				situationMatch =
-					item.currentSituation.toLowerCase() === situationValue.toLowerCase();
+					item.currentSituation === situationValue;
 			}
 
 			if (memberValue !== null) {
@@ -354,14 +354,14 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div className="md:hidden flex items-end w-[48%]">
 							<Button
 								title={t1('clearAll')}
-								Color="#000000"
+								Color="#BB9B6C"
 								onClick={clearAll}
 								className=" w-full"
 							/>
 						</div>
 					</div>
 					<div className="md:flex hidden items-end">
-						<Button title={t1('clearAll')} Color="#000000" onClick={clearAll} />
+						<Button title={t1('clearAll')} Color="#BB9B6C" onClick={clearAll} />
 					</div>
 				</div>
 				{isLoading ? (

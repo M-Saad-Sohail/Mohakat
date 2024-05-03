@@ -173,7 +173,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									});
 								}}
 								title={t('RegisterasFamily.title')}
-								Color="#000000"
+								Color="#BB9B6C"
 							/>
 						</div>
 					)}

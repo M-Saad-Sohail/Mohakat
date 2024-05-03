@@ -11,6 +11,7 @@
 			"become-sponsor": "Sponsor Ol",
 			"signin": "Oturum Aç",
 			"go-to-dashboard": "Panoya Git",
+			"dashboard": "Gösterge Paneli",
 			"logout": "Çıkış yap"
 		}
 	},
@@ -361,7 +362,7 @@
 				"title": "Zaten Eklendi"
 			},
 			"seeMore": {
-				"title": "Daha fazla görüntüle"
+				"title": "Daha fazla görüntüle ➜"
 			},
 			"Step": {
 				"title": "Aşama"
@@ -541,7 +542,8 @@
 		"worst": "Çok kötü",
 		"month": "Aylar",
 		"selectduration":"Süre Seç",
-		"Urgently Needed": "Acil Olarak Gerekli"
+		"Urgently Needed": "Acil Olarak Gerekli",
+		"memberDetail": "Üye Detayları"
 	},
 	"LangSelect": {
 		"English": "İngilizce",
@@ -557,5 +559,11 @@
 		"sponsoremail": "Sponsor E-posta",
 		"sponsoramount": "Miktar",
 		"sponsorfamily": "Aile Detaylarını Görüntüle"
+	},
+	"Socail": {
+		"title": "Tebrikler! Bir Sponsor oldunuz. Sponsorluğunuzu sosyal medyada diğerleriyle paylaşabilirsiniz",
+		"welcome": "Hoş geldiniz",
+		"thankyou": "Gazze'nin İhtiyaç Sahibi Ailelerine Bağış Yapın"
 	}
+	
 }

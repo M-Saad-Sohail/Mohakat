@@ -198,20 +198,6 @@ const LeftSideBar = () => {
 								)}
 							</p>
 						</div>
-						{/* {user && open && (
-							<>
-								{user.role === 'admin' && (
-									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#95dca9] px-4 py-1">
-										Admin
-									</p>
-								)}
-								{user.role === 'moderator' && (
-									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#f9a8a8] px-4 py-1">
-										Moderator
-									</p>
-								)}
-							</>
-						)} */}
 					</div>
 					<p
 						className={`${

@@ -77,7 +77,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			dir={dir}
 			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto animated-div"
 		>
-			<div className=" flex flex-col gap-4">
+			<div className="flex flex-col gap-4 ">
 				<SponserMain currentPath={currentPath} />
 				{!user && (
 					<div className=" flex md:flex-nowrap flex-wrap gap-4">
@@ -93,7 +93,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				{featureData?.map((item: any, i: number) => (
 					<div
 						key={i}
-						className="flex-1 flex flex-col items-center gap-5 feature-shadow"
+						className="flex-1 flex flex-col items-center gap-5 feature-shadow border border-transparent md:hover:border-[#8DAE8E]"
 					>
 						<Image
 							src={`/svgs/landing-sponser/sponser-svg-${i + 1}.svg`}

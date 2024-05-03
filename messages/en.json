@@ -11,6 +11,7 @@
 			"become-sponsor": "Become a Sponsor",
 			"signin": "Sign In",
 			"go-to-dashboard": "Go to Dashboard",
+			"dashboard": "Dashboard",
 			"logout": "Logout"
 		}
 	},
@@ -405,7 +406,7 @@
 				"title": "Already Added"
 			},
 			"seeMore": {
-				"title": "see more"
+				"title": "Sponsor More Families ➜"
 			},
 			"BecomeaSponser": {
 				"title": "Become a Sponser"
@@ -555,7 +556,8 @@
 		"worst": "Worst",
 		"month":"Month(s)",
 		"selectduration":"Select Duration",
-		"Urgently Needed": "Urgently Needed"
+		"Urgently Needed": "Urgently Needed",
+		"memberDetail": "Member Details"
 	},
 	"LangSelect": {
 		"English": "English",
@@ -571,5 +573,10 @@
 		"sponsoremail": "Sponser Email",
 		"sponsoramount": "Amount",
 		"sponsorfamily": "View Family Details"
+	},
+	"Socail": {
+		"title": "Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media",
+		"welcome": "Welcome",
+		"thankyou": "Donate For Needy Families of Gaza"
 	}
 }

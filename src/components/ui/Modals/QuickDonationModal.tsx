@@ -151,7 +151,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 											onClick={handleCheckout}
 											title={t('button')}
 											className=" w-full"
-											Color="#CF7475"
+											Color="#8DAE8E"
 											disabled={amount as number > 0 ? false : true}
 										/>
 									</div>

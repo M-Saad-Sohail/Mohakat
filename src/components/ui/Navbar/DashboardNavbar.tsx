@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import useDirection from '@/hooks/useDirection';
 import Cart from '../Cart';
-import { TbBasketDollar } from 'react-icons/tb';
+import { TbBasketDollar, TbHomeShare } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import CurrencySelector from '../CurrencySelector';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
@@ -45,10 +45,10 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 
 				<div className={` flex w-full items-center justify-end md:gap-6 gap-2 md:pr-4 pr-2`}>
 					<div
-						className=" text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 rounded-full"
+						className=" text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:text-[#8DAE8E] hover:font-bold rounded-full"
 						onClick={() => redirectToHomePage()}
 					>
-						<FaHome />
+						<TbHomeShare />
 					</div>
 					{user?.role === 'user' && (
 						<>
@@ -56,10 +56,10 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 								className=" relative cursor-pointer"
 								onClick={() => setIsCartOpen(true)}
 							>
-								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								<span className=" absolute top-0 right-0 bg-[#8DAE8E] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
 									{cartItems.length > 0 ? cartItems.length : '0'}
 								</span>
-								<TbBasketDollar className=" text-[40px]" />
+								<TbBasketDollar className=" text-[40px] hover:text-[#8DAE8E] hover:font-bold" />
 							</div>
 							<div
 								className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
