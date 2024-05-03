@@ -7,7 +7,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import DashboardNavbar from '@/components/ui/Navbar/DashboardNavbar';
 import { useTranslations } from 'next-intl';
-import SponsoringFamilies from "../SponsoringFamilies/index.tsx"
+import SponsoringFamilies from "../SponsoringFamilies"
 const UserDashboard = () => {
 	const [user, setUser] = useState<UserType | null>(null);
 	const router = useLocaleRouter();
@@ -28,11 +28,11 @@ const UserDashboard = () => {
 	}, []);
 
 	if (!user) return <></>;
-
+	
 	return (
 		<div className="relative">
 			<div className = "mb-6">
-				<DashboardNavbar />
+				<DashboardNavbar  title={t('dashboard')} />
 			</div>
 			<div className="text-start ml-10 w-full md:w-1/2 feature-shadow-social social-sharing">
 				<h1 className="pt-2 mt-10 text-4xl font-bold leading-normal text-primary social-sharing-h1">
