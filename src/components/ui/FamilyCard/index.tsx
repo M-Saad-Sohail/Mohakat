@@ -60,7 +60,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 					<Button
 						title={familyData?.currentSituation || t2('Worst')}
 						Color="#BB9B6C"
-						className=' capitalize '
+						className=" capitalize "
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers > 4 ? (
@@ -176,16 +176,18 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 					)}
 				</div>
 			</div>
-			<FamilyModal
-				setOpen={setOpen}
-				open={open}
-				setDonate={setDonateOpen}
-				cancelButtonRef={cancelButtonRef}
-				isLoggedIn={isLoggedIn}
-				familyInfo={currentFamilyInfo}
-				amount={amount}
-				setAmount={setAmount}
-			/>
+			{user && (
+				<FamilyModal
+					setOpen={setOpen}
+					open={open}
+					setDonate={setDonateOpen}
+					cancelButtonRef={cancelButtonRef}
+					isLoggedIn={isLoggedIn}
+					familyInfo={currentFamilyInfo}
+					amount={amount}
+					setAmount={setAmount}
+				/>
+			)}
 			<DonateModal
 				setOpen={setDonateOpen}
 				open={donateOpen}

@@ -14,7 +14,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	open,
 	setOpen,
 	cancelButtonRef,
-	amount,
+	amount=0,
 	setAmount,
 	setDonate,
 }) => {
@@ -36,7 +36,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	}, [inputAmount]);
 
 	const handleCheckout = () => {
-		if (amount as number > 0) {
+		if ((amount as number) > 0) {
 			setOpen(false);
 			setDonate && setDonate(true);
 		}
@@ -152,7 +152,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 											title={t('button')}
 											className=" w-full"
 											Color="#8DAE8E"
-											disabled={amount as number > 0 ? false : true}
+											disabled={(amount as number) > 0 ? false : true}
 										/>
 									</div>
 								</Dialog.Panel>

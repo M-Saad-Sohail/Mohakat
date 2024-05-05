@@ -1,11 +1,14 @@
 'use client';
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CurrencyModalType } from '@/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsCurrencyStateAction } from '@/state/currency';
 // ICONS
 import { IoClose } from 'react-icons/io5';
+import { usePathname } from 'next/navigation';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { useTranslations } from 'next-intl';
 
 interface CurrencyOption {
 	label: string;
@@ -14,7 +17,7 @@ interface CurrencyOption {
 	basePriceTwo: number;
 }
 
-const currencyOptions: CurrencyOption[] = [
+const currencyOptionsEnglish: CurrencyOption[] = [
 	{ label: 'Dollar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
 	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
 	{ label: 'Kuwaiti Dinar', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
@@ -28,13 +31,36 @@ const currencyOptions: CurrencyOption[] = [
 	},
 ];
 
+const currencyOptionsArabic: CurrencyOption[] = [
+	{ label: 'الدولار', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
+	{ label: 'اليورو', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
+	{ label: 'دينار كويتي', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	{ label: 'ريال قطري', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
+	{ label: 'ريال سعودي', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{ label: 'ليرة تركية', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },
+];
+
+const currencyOptionsTurkish: CurrencyOption[] = [
+	{ label: 'Dolar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
+	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
+	{ label: 'Kuveyt Dinarı', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	{ label: 'Katar Riyali', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
+	{ label: 'Suudi Riyali', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
+	{ label: 'Türk Lirası', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },
+];
+
 const CurrencyModal: React.FC<CurrencyModalType> = ({
 	open,
 	setOpen,
 	cancelButtonRef,
 }) => {
 	const dispatch = useDispatch();
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const [currencyOptions, setCurrencyOptions] = useState<CurrencyOption[]>([]);
 	const currencyState = useSelector((state: any) => state.currency);
+	const t = useTranslations('CurrencyModal');
 
 	const handleCurrencyChange = (opt: CurrencyOption) => {
 		dispatch(setIsCurrencyStateAction(opt));
@@ -42,12 +68,26 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 	};
 
 	useEffect(() => {
+		if (currentPath === 'en') {
+			setCurrencyOptions(currencyOptionsEnglish);
+		} else if (currentPath === 'ar') {
+			setCurrencyOptions(currencyOptionsArabic);
+		} else if (currentPath === 'tr') {
+			setCurrencyOptions(currencyOptionsTurkish);
+		}
+	}, []);
+
+	useEffect(() => {
 		if (Object.keys(currencyState).length !== 0) {
-			handleCurrencyChange(currencyState);
+			currencyOptions.forEach((currency) => {
+				if (currency.key === currencyState?.key) {
+					handleCurrencyChange(currency);
+				}
+			});
 		} else {
 			handleCurrencyChange(currencyOptions[0]);
 		}
-	}, []);
+	}, [currencyOptions]);
 
 	return (
 		<>
@@ -70,7 +110,10 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 						<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 					</Transition.Child>
 
-					<div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+					<div
+						dir={dir}
+						className="fixed inset-0 z-10 w-screen overflow-y-auto"
+					>
 						<div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
 							<Transition.Child
 								as={Fragment}
@@ -87,7 +130,7 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 									{/* first div */}
 									<div className="flex justify-between items-center w-full px-5 py-4 border-b">
 										<h2 className="  text-xl text-[#4a4b65] font-semibold">
-											Display Currency
+											{t('title')}
 										</h2>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
@@ -101,12 +144,12 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 											(currency: CurrencyOption, i: number) => (
 												<label
 													htmlFor={currency.key}
-													className={`flex justify-between items-center py-4 pl-5 pr-7 cursor-pointer`}
+													className={`flex justify-between items-center py-4 cursor-pointer ${currentPath === 'ar' ? 'pl-7 pr-5' : 'pl-5 pr-7'}`}
 													onClick={() => handleCurrencyChange(currency)}
 													key={currency.key}
 												>
 													<p
-														className={`text-lg text-[#4a4b65] font-medium w-full`}
+														className={`text-lg text-[#4a4b65] font-medium w-full ${currentPath === 'ar' && 'text-right'}`}
 													>
 														{currency.label} ({currency.key})
 													</p>
