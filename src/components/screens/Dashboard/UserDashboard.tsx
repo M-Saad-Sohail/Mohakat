@@ -35,7 +35,7 @@ const UserDashboard = () => {
 				<DashboardNavbar  title={t('dashboard')} />
 			</div>
 			<div className="text-start ml-10 w-full md:w-1/2 feature-shadow-social social-sharing">
-				<h1 className="pt-2 mt-10 text-4xl font-bold leading-normal text-primary social-sharing-h1">
+				<h1 className="pt-2 mt-10 text-4xl font-bold leading-normal text-[#36454F] social-sharing-h1">
 					{t("welcome")} {user.name}	
 				</h1>
 				<h6 className = "social-sharing-para">
@@ -45,7 +45,7 @@ const UserDashboard = () => {
 			</div>
 			
 			<div className = "mt-10 mb-10"> 
-			<div className = "text-center text-[24px] mb-4 text-[#8DAE8E] font-bold"> 
+			<div className = "text-center text-[24px] mb-4 text-[#36454F] font-bold"> 
 			{t("thankyou")}
 				<h1 className = "text-red"> فِلَـٓسَـٓــِٰٓطٓـيَنَُ</h1>
 			</div>

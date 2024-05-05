@@ -60,13 +60,7 @@ const AdminMenus = [
 const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
-	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
-	// {
-	// 	title: 'credit_cards',
-	// 	src: credit_card,
-	// 	link: PATHS.CREDIT_CARDS,
-	// 	gap: true,
-	// },
+	// { title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING, gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
