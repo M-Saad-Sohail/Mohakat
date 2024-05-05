@@ -12,6 +12,7 @@ import { PATHS } from '@/contants';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/LandingPage/Button';
 import { useTranslations } from 'next-intl';
+import Heading from '@/components/ui/Heading/Heading';
 
 const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const pathname = usePathname();
@@ -122,12 +123,16 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 
 	return (
 		<>
-			<section
+		<section className = "bg-[#e4e5f1]">
+			<div
 				dir={dir}
-				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12 animated-div"
+				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12 animated-div bg-[#e4e5f1]"
 			>
-				<div className=" flex justify-between">
+				{/* <div className=" flex justify-between">
 					<h2 className=" md:text-3xl text-2xl font-semibold"> {t("Families.title")} </h2>
+				</div> */}
+				<div className = "flex flex-col justify-center items-center">
+					<Heading heading = {t("Families.title")} className = "main_heading-black" />
 				</div>
 				{isLoading ? (
 					<div className=" flex justify-center items-center h-32">
@@ -149,7 +154,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								<Button
 									title={t('seeMore.title')}
 									className=" md:font-medium"
-									Color='#8DAE8E'
+									Color='#BB9B6C'
 								/>
 							</Link>
 						</div>
@@ -157,10 +162,11 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				) : (
 					<div className=" flex justify-center items-center h-32">
 						<h2 className=" text-center md:text-3xl text-2xl font-semibold">
-							Families Not Found
+						{t("Families.notFound")}
 						</h2>
 					</div>
 				)}
+			</div>
 			</section>
 		</>
 	);

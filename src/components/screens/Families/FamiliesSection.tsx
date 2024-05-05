@@ -11,10 +11,12 @@ import { areasData } from '@/contants/Areas';
 import { situationData } from '@/contants/Situations';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FaArrowLeftLong } from 'react-icons/fa6';
+import { PATHS } from '@/contants';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+
 import Button from '@/components/ui/LandingPage/Button';
-import { PATHS } from '@/contants';
+import Heading from '@/components/ui/Heading/Heading';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
@@ -26,6 +28,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies');
 	const t1 = useTranslations('FamiliesMainSection');
+	const t2 = useTranslations("HeroMainSection.btns");
 	const [isLoading, setIsLoading] = useState(true);
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
 	const [filteredData, setFilteredData] = useState<any[]>([]);
@@ -227,9 +230,9 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				{/* heading and content */}
 				{(!user || PATHS.FAMILY === landingFamilyPath) && (
 					<div className=" flex flex-col gap-2">
-						<h2 className=" md:text-3xl text-2xl font-semibold">
-							{t('title')}
-						</h2>
+						<div className = "flex flex-col justify-start items-start">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
 						<p className="md:text-lg text-base font-light">
 							{t('description')}
 						</p>
@@ -245,15 +248,15 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 								onClick={() => handleDropDownClick(0)}
 							>
-								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
+								<span className="md:text-base text-sm font-medium text-[#36454F] capitalize ">
 									{area ? area : t('select')}
 									
 								</span>
 								<span>
 									{openDropDown[0] ? (
-										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+										<IoIosArrowUp className="text-lg text-[#36454F] cursor-pointer" />
 									) : (
-										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+										<IoIosArrowDown className="text-lg text-[#36454F] cursor-pointer" />
 									)}
 								</span>
 							</button>
@@ -439,7 +442,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				) : (
 					<div className="flex justify-center items-center h-32">
 						<h2 className=" text-center md:text-3xl text-2xl font-semibold">
-							Families Not Found
+							{t2("Families.notFound")}
 						</h2>
 					</div>
 				)}

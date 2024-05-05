@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
+import Heading from '@/components/ui/Heading/Heading';
 
 const PartnersSection = ({ isAbout }: { isAbout?: boolean }) => {
 	const dispatch = useDispatch();
@@ -103,12 +104,16 @@ const PartnersSection = ({ isAbout }: { isAbout?: boolean }) => {
 				dir={dir}
 				className={` ${isAbout ? 'md:w-full' : 'md:w-[80%]'} w-[90%] mx-auto flex flex-col gap-8 py-12`}
 			>
-				<div>
+				{/* <div>
 					<h2 className=" md:text-3xl text-2xl font-semibold">
 						{' '}
 						{t('title')}{' '}
 					</h2>
+				</div> */}
+				<div className = "flex flex-col justify-center items-center">
+					<Heading heading = {t('title')} className = "main_heading-black" />
 				</div>
+
 
 				{/* partners card */}
 

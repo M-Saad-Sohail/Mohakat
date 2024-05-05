@@ -421,7 +421,8 @@
 				"title": "Step"
 			},
 			"Families": {
-				"title": "Families"
+				"title": "Families",
+				"notFound": "Family Not Located"
 			}
 		}
 	},
@@ -482,7 +483,8 @@
 	},
 	"GazaMap": {
 		"red": "This pixel has already booked.",
-		"grey": "Click on this to get registered as a sponsor"
+		"grey": "Click on this to get registered as a sponsor",
+		"book": "Book Your Sponsorship from Gaza Map."
 	},
 	"OurPartner": {
 		"title": "Our Partners"
@@ -510,7 +512,8 @@
 		"allfields": "All fields are required"
 	},
 	"About": {
-		"title": "About"
+		"title": "About",
+		"aboutUs": "About Us"
 	},
 	"Cart": {
 		"title": "Basket",

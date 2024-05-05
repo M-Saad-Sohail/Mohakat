@@ -39,7 +39,7 @@ const StickeyBar = () => {
 			<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
 				<Link
 					href={'#'}
-					className=" bg-[#CF7475] md:p-5 p-[10px] tooltip"
+					className=" bg-[#BB9B6C] md:p-5 p-[10px] tooltip"
 					onClick={() => {
 						toast.error(`This feature is in progress`, {
 							toastId: 'success',
@@ -61,7 +61,7 @@ const StickeyBar = () => {
 					onClick={() => {
 						setQuickDonationOpen(true);
 					}}
-					className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip"
+					className=" bg-[#CF7475] md:p-5 p-[10px] tooltip"
 				>
 					<Image
 						src={stickeySvg2}

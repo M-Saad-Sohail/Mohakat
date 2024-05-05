@@ -78,7 +78,7 @@ const AuthNavbar = ({
 
 
 	return (
-		<div dir={dir} className="h-fit hidden md:block bg-white">
+		<div dir={dir} className="h-fit hidden md:block bg-[#e9f1f8]">
 			<div className="flex items-center justify-between py-4 mx-10 mobile:pt-4">
 				<div className=" flex gap-6">
 					<div className="flex items-center ">
@@ -120,7 +120,7 @@ const AuthNavbar = ({
 					{!isLoggedIn && (
 						<>
 							<Link href={url(PATHS.LOGIN)} locale={locale}>
-								<Button title={t('cta.signin')} Color="#000000" />
+								<Button title={t('cta.signin')} Color="#36454F" />
 							</Link>
 							<Link href={url(PATHS.BECOME_SPONSOR)} locale={locale}>
 								<Button title={t('cta.become-sponsor')} Color="#8DAE8E" />

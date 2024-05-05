@@ -13,7 +13,7 @@ const ModalInput = ({
 	return (
 		<>
 			<div className=" flex flex-col gap-2" dir={dir}>
-				<h3 dir={dir} className=" flex text-sm font-semibold text-[#000000]">{label}</h3>
+				<h3 dir={dir} className=" flex text-sm font-semibold text-[#36454F]">{label}</h3>
 				<input
 					dir={dir}
 					onChange={onChange}

@@ -14,6 +14,7 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
 import Link from 'next/link';
+import Heading from '@/components/ui/Heading/Heading';
 
 interface ContactDataType {
 	heading: string;
@@ -94,32 +95,30 @@ const ContactUs = () => {
 			<div className=" flex flex-1 flex-col gap-8">
 				{contactData && (
 					<>
-						<h2 className=" flex flex-col gap-4 text-5xl font-extrabold text-[#CF7475]">
-							{' '}
-							<span>{contactData?.heading}</span>
-							{/* <span>Information</span> */}
-						</h2>
-						<p className=" text-lg font-medium text-[#000000] w-[65%]">
+						<div className = "flex flex-col justify-start items-start">
+							<Heading heading = {contactData?.heading} className = "main_heading-black" />
+						</div>
+						<p className=" text-lg font-medium text-[#36454F] w-[65%]">
 							{contactData?.shortDescription}
 						</p>
 						<div className="flex flex-col gap-5">
 							<div className=" flex gap-3 items-center">
 								<Image src={Email} alt="" />
-								<span className=" text-base font-medium text-[#000000]">
+								<span className=" text-base font-medium text-[#36454F]">
 									{contactData?.email}
 								</span>
 							</div>
 
 							<div className=" flex gap-3 items-center">
 								<Image src={Phone} alt="" />
-								<span className=" text-base font-medium text-[#000000]">
+								<span className=" text-base font-medium text-[#36454F]">
 									{contactData?.phoneNumber}
 								</span>
 							</div>
 
 							<div className=" flex gap-3 items-center">
 								<Image src={EarthSvg} alt="" />
-								<span className=" text-base font-medium text-[#000000]">
+								<span className=" text-base font-medium text-[#36454F]">
 									<Link href={contactData?.address} target='_blank'>
 									{contactData?.address}
 									</Link>

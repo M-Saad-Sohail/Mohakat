@@ -11,6 +11,7 @@ import { RegisterUserCredentials } from '@/types';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useTranslations } from 'next-intl';
 import { countriesData } from '@/contants/countries';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (
@@ -52,10 +53,13 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4">
-					<h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
+				<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
+					{/* <h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
-					</h2>
-					<p className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+					</h2> */}
+					<p className="pt-2 mb-8 text-xl font-semibold leading-normal text-[#36454F] text-center">
 						{t('description')}
 					</p>
 					<div className="flex flex-col w-full gap-4">
@@ -136,16 +140,16 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 								type="submit"
 								isLoading={isLoading}
 								className="max-w-[300px]"
-								Color="#CF7475"
+								Color="#BB9B6C"
 							/>
 						</div>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
+			<div className="text-center text-[#36454F] text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
 				{t('cta.0')}
 				<Link
-					className="font-bold text-primary hover:text-black"
+					className="font-bold text-[#BB9B6C] hover:text-[#36454F]"
 					href={url('/sign-in')}
 				>
 					{t('cta.1')}

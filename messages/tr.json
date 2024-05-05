@@ -368,7 +368,8 @@
 				"title": "Aşama"
 			},
 			"Families": {
-				"title": "aileler"
+				"title": "aileler",
+				"notFound": "Aile Bulunamadı"
 			}
 		}
 	},
@@ -447,7 +448,9 @@
 	},
 	"GazaMap": {
 		"red": "Bu piksel zaten rezerve edilmiş.",
-		"grey": "Sponsor olarak kaydolmak için buna tıklayın."
+		"grey": "Sponsor olarak kaydolmak için buna tıklayın.",
+		"book": "Gazze Haritası'ndan Sponsorluğunuzu Rezerve Edin."
+
 	},
 	"OurPartner": {
 		"title": "Ortaklarımız"
@@ -475,7 +478,8 @@
 		"allfields": "Tüm alanlar zorunludur"
 	},
 	"About": {
-		"title": "Hakkında"
+		"title": "Hakkında",
+		"aboutUs": "Hakkımızda"
 	},
 	"Cart": {
 		"title": "Sepet",

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { usePathname } from 'next/navigation';
 import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
+import Heading from '@/components/ui/Heading/Heading';
 
 interface SponserDataType {
 	heading: string;
@@ -63,9 +64,12 @@ const SponserMain = ({currentPath}:{currentPath:any}) => {
 
 	return (
 		<>
-			<h2 className=" md:text-3xl text-2xl font-semibold">
+			{/* <h2 className=" md:text-3xl text-2xl font-semibold">
 				{sponserData?.heading}
-			</h2>
+			</h2> */}
+			<div className = "flex flex-col justify-center items-center">
+					<Heading heading = {sponserData?.heading} className = "main_heading-black" />
+			</div>
 			<p className=" md:text-lg text-base font-light">
 				{sponserData?.description}
 			</p>

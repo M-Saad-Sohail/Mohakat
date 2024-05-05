@@ -119,7 +119,7 @@ const MobileNavbar = ({
 							key={link.name}
 							href={url(link.link)}
 							locale={locale}
-							className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
+							className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg text-[#36454F]'}`}
 						>
 							{t(link.localeId)}
 						</Link>
@@ -132,7 +132,7 @@ const MobileNavbar = ({
 										logoutUser();
 										router.replace(url(PATHS.LOGIN));
 									}}
-									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+									className="w-fit bg-[#36454F] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#36454F] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.logout')}
 								</span>
@@ -141,7 +141,7 @@ const MobileNavbar = ({
 									replace={currentPathName !== '/'}
 									locale={locale}
 								>
-									<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
+									<Button title={t('cta.go-to-dashboard')} Color="#BB9B6C" />
 								</Link>
 							</div>
 						) : (
@@ -149,14 +149,14 @@ const MobileNavbar = ({
 								<Link
 									href={url(PATHS.LOGIN)}
 									locale={locale}
-									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out  "
+									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.signin')}
 								</Link>
 								<Link
 									href={url(PATHS.BECOME_SPONSOR)}
 									locale={locale}
-									className="w-fit bg-[#CF7475] text-white font-semibold md:text-sm text-[13px] rounded-xl px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#CF7475] hover:text-[#CF7475] transition-colors duration-300 ease-in-out  "
+									className="w-fit bg-[#BB9B6C] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#BB9B6C] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
 
 								>
 									{t('cta.become-sponsor')}

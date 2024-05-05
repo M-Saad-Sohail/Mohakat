@@ -8,6 +8,7 @@ import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Heading from '@/components/ui/Heading/Heading';
 
 const ForgotPassword = () => {
 	const t = useTranslations('forgotPassword.form');
@@ -73,10 +74,13 @@ const ForgotPassword = () => {
 		<form className="w-full my-[100px] max-w-[800px] animated-div" noValidate>
 			<div className="mx-4 space-y-5">
 				<div>
-					<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
+					{/* <div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
-					</div>
-					<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+					</div> */}
+					<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
+					<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-[#36454F] text-center">
 						{t('description')}
 					</div>
 				</div>
@@ -97,7 +101,7 @@ const ForgotPassword = () => {
 						type="submit"
 						isLoading={loading}
 						className="w-56"
-						Color="#CF7475"
+						Color="#BB9B6C"
 						onClick={handleSubmit}
 					/>
 				</div>

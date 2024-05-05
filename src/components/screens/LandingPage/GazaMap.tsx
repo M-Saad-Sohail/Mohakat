@@ -12,6 +12,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import { coordinates } from '@/contants/coordinates';
 import { useTranslations } from 'next-intl';
+import Heading from '@/components/ui/Heading/Heading';
 
 const COLORS = {
 	GRAY: '#808080',
@@ -346,6 +347,9 @@ function GazaMap() {
 
 	return (
 		<>
+		<div className = "flex flex-col justify-center items-center">
+				<Heading heading = {t("book")} className = "main_heading-black" />
+		</div>
 			<svg
 				// width={1645}
 				// height={600}

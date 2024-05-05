@@ -7,10 +7,18 @@ import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
+import { getUserFromLocalStorage } from '@/utils/auth';
+import Link from 'next/link';
+import { PATHS } from '@/contants';
+
 import SponserMain from '../LandingPage/Sponsers/SponserMain';
 import IntiationMain from '../LandingPage/Intiation/IntiationMain';
 import PartnersSection from '../LandingPage/PartnersSection';
 import TestimonialSlider from '../LandingPage/TestinomialSlider';
+import AboutSection from '../LandingPage/AboutSection';
+import Heading from '@/components/ui/Heading/Heading';
+import Button from '@/components/ui/LandingPage/Button';
+
 
 interface AboutDataType {
 	heading: string;
@@ -18,7 +26,9 @@ interface AboutDataType {
 }
 
 const About = () => {
+	const user = getUserFromLocalStorage();
 	const t = useTranslations('About');
+	const t1 = useTranslations('HeroMainSection.btns');
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
@@ -83,34 +93,48 @@ const About = () => {
 	}, []);
 
 	return (
-		<section
+	<>
+	<section className = "bg-[#e4e5f1] pt-6 pb-6">
+		<div
 			dir={dir}
-			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
+			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
 		>
-			<div className=" flex flex-col gap-2">
-				<h2 className=" md:text-3xl text-2xl font-semibold">{t('title')}</h2>
-			</div>
-			<div className=" flex flex-col gap-3">
-				<div className=" flex flex-col gap-2">
-					<h2 className="md:text-3xl text-2xl font-semibold">
-						{aboutData[0]?.heading}
-					</h2>
-					<p className=" md:text-lg text-base font-light">
-						{aboutData[0]?.description}
-					</p>
-					<p className=" md:text-lg text-base font-light">
+			<div className=" flex flex-col gap-5 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
+				<Heading heading = {aboutData[0]?.heading} className = "main_heading-black" />
+				<div className="md:text-[20px] leading-8 text-lg font-light ">
+					{aboutData[0]?.description}
+				</div>
+				<div className=" flex flex-col gap-3">
+				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6 ">
+					<h3 className="md:text-xl text-lg font-semibold ">
+						{aboutData[1]?.heading}
+					</h3>
+					<p className="md:text-[18px] text-sm font-light">
 						{aboutData[1]?.description}
 					</p>
-					<p className=" md:text-lg text-base font-light">
+				</div>
+				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6">
+					<h3 className="md:text-xl text-lg font-semibold ">
+						{aboutData[2]?.heading}
+					</h3>
+					<p className="md:text-[18px] text-sm font-light">
 						{aboutData[2]?.description}
 					</p>
 				</div>
 				<SponserMain currentPath={currentPath} />
-				<IntiationMain currentPath={currentPath} />
-				<TestimonialSlider />
+				{!user && (
+					<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
+							<Button title={t1('BecomeaSponser.title')} Color="#BB9B6C" />
+						</Link>
+					</div>
+				)}
 				<PartnersSection isAbout={true} />
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
+	</>
 	);
 };
 
