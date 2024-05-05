@@ -12,11 +12,11 @@ export interface FamilyMember {
 		inTurkish: string;
 		inArabic: string;
 	};
+	memberAge: number | '';
+	MemberIdNumber: number | '';
 	memberGender: {
 		inEnglish: string;
 		inTurkish: string;
 		inArabic: string;
 	};
-	memberAge: number | '';
-	MemberIdNumber: number | '';
 }

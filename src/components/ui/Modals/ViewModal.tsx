@@ -16,6 +16,27 @@ import DeleteFamilyModal from './DeleteFamilyModal';
 import Button from '@/components/ui/LandingPage/Button';
 import { FamilyMember, ViewModalProps } from './interfaces';
 import useDirection from '@/hooks/useDirection';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+import {
+	genderInEnglish,
+	genderInTurkish,
+	genderInArabic,
+	maritalStatusInEnglish,
+	maritalStatusInTurkish,
+	maritalStatusInArabic,
+	previousResidenceInEnglish,
+	previousResidenceInTurkish,
+	previousResidenceInArabic,
+	currentResidenceInEnglish,
+	currentResidenceInTurkish,
+	currentResidenceInArabic,
+	currentSituationInEnglish,
+	currentSituationInTurkish,
+	currentSituationInArabic,
+	lossesInWarInEnglish,
+	lossesInWarInTurkish,
+	lossesInWarInArabic,
+} from '@/contants/addform';
 
 const ViewModal = ({
 	openModal,
@@ -41,6 +62,7 @@ const ViewModal = ({
 		index: any,
 		key: string,
 		value: string | number,
+		type?: string,
 	) => {
 		const updatedMembers = [...familyMembers];
 		if (!updatedMembers[index]) {
@@ -50,22 +72,25 @@ const ViewModal = ({
 					inTurkish: '',
 					inArabic: '',
 				},
+				memberAge: '',
+				MemberIdNumber: '',
 				memberGender: {
 					inEnglish: '',
 					inTurkish: '',
 					inArabic: '',
 				},
-				memberAge: '',
-				MemberIdNumber: '',
 			};
 		}
 		if (key.startsWith('in')) {
-			updatedMembers[index].memberName[
-				key as keyof FamilyMember['memberName']
-			] = (value as string).toUpperCase();
-			updatedMembers[index].memberGender[
-				key as keyof FamilyMember['memberGender']
-			] = (value as string).toUpperCase();
+			if (type === 'name') {
+				updatedMembers[index].memberName[
+					key as keyof FamilyMember['memberName']
+				] = (value as string).toUpperCase();
+			} else if (type === 'gender') {
+				updatedMembers[index].memberGender[
+					key as keyof FamilyMember['memberGender']
+				] = value as string;
+			}
 		} else {
 			updatedMembers[index][key as keyof FamilyMember] = value as
 				| string
@@ -76,6 +101,7 @@ const ViewModal = ({
 
 	const t = useTranslations('AddFamilies.form');
 	const dir = useDirection();
+	const { changeLocale } = useLocaleRouter();
 
 	useEffect(() => {
 		if (user && openModal) {
@@ -140,7 +166,6 @@ const ViewModal = ({
 				numberOfFamilyMembers: parseInt(
 					UpdateFamilyForm.values.numberOfFamilyMembers,
 				),
-				familyMemberDetail: familyMembers,
 				telephoneNumber: UpdateFamilyForm.values.telephoneNumber,
 				idNumber: parseInt(UpdateFamilyForm.values.idNumber),
 				numberOfMartyrInFamily: parseInt(
@@ -149,6 +174,7 @@ const ViewModal = ({
 				numberOfInfectedInFamily: parseInt(
 					UpdateFamilyForm.values.numberOfInfectedInFamily,
 				),
+				familyMemberDetail: familyMembers,
 			};
 			try {
 				setLoading(true);
@@ -285,7 +311,7 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Input
-											title={'In English *'}
+											title={`${t('in_eng')}`}
 											name="breadWinnerNameEn"
 											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameEn}
@@ -306,7 +332,7 @@ const ViewModal = ({
 
 									<div>
 										<Input
-											title={'In Turkish *'}
+											title={`${t('in_tur')} *`}
 											name="breadWinnerNameTr"
 											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameTr}
@@ -326,7 +352,7 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Input
-											title={'In Arabic *'}
+											title={`${t('in_ar')} *`}
 											name="breadWinnerNameAr"
 											className="mb-1 min-w-[300px]"
 											value={UpdateFamilyForm.values.breadWinnerNameAr}
@@ -349,12 +375,9 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'In English *'}
+											title={`${t('in_eng')} *`}
 											name="maritalStatusEn"
-											options={[
-												{ label: t('martialstatus.single'), value: 'single' },
-												{ label: t('martialstatus.married'), value: 'married' },
-											]}
+											options={maritalStatusInEnglish}
 											className={` ${UpdateFamilyForm.errors.maritalStatusEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.maritalStatusEn}
 											onChange={UpdateFamilyForm.handleChange}
@@ -373,12 +396,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Arabic *'}
+											title={`${t('in_ar')} *`}
 											name="maritalStatusAr"
-											options={[
-												{ label: t('martialstatus.single'), value: 'single' },
-												{ label: t('martialstatus.married'), value: 'married' },
-											]}
+											options={maritalStatusInArabic}
 											className={` ${UpdateFamilyForm.errors.maritalStatusAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.maritalStatusAr}
 											onChange={UpdateFamilyForm.handleChange}
@@ -397,12 +417,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Turkish *'}
+											title={`${t('in_tur')} *`}
 											name="maritalStatusTr"
-											options={[
-												{ label: t('martialstatus.single'), value: 'single' },
-												{ label: t('martialstatus.married'), value: 'married' },
-											]}
+											options={maritalStatusInTurkish}
 											className={` ${UpdateFamilyForm.errors.maritalStatusTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.maritalStatusTr}
 											onChange={UpdateFamilyForm.handleChange}
@@ -424,7 +441,7 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'In English'}
+											title={`${t('in_eng')} *`}
 											name="genderEn"
 											options={[
 												{ label: t('gender.male'), value: 'male' },
@@ -449,7 +466,7 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Arabic'}
+											title={`${t('in_ar')} *`}
 											name="genderAr"
 											options={[
 												{ label: t('gender.male'), value: 'male' },
@@ -474,7 +491,7 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Turkish'}
+											title={`${t('in_tur')} *`}
 											name="genderTr"
 											options={[
 												{ label: t('gender.male'), value: 'male' },
@@ -502,44 +519,9 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'in English *'}
+											title={`${t('in_eng')} *`}
 											name="areaOfPreviousResidenceEn"
-											options={[
-												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('previousresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('previousresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('previousresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('previousresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('previousresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('previousresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('previousresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('previousresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={previousResidenceInEnglish}
 											defaultValue={t('previousresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.areaOfPreviousResidenceEn}
@@ -562,44 +544,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'in Arabic *'}
+											title={`${t('in_ar')} *`}
 											name="areaOfPreviousResidenceAr"
-											options={[
-												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('previousresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('previousresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('previousresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('previousresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('previousresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('previousresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('previousresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('previousresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={previousResidenceInArabic}
 											defaultValue={t('previousresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.areaOfPreviousResidenceAr}
@@ -622,44 +569,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'in Turkish *'}
+											title={`${t('in_tur')} *`}
 											name="areaOfPreviousResidenceTr"
-											options={[
-												{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('previousresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('previousresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('previousresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('previousresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('previousresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('previousresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('previousresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('previousresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={previousResidenceInTurkish}
 											defaultValue={t('previousresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfPreviousResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.areaOfPreviousResidenceTr}
@@ -685,44 +597,9 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'In English'}
+											title={`${t('in_eng')} *`}
 											name="areaOfCurrentResidenceEn"
-											options={[
-												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('currentresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('currentresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('currentresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('currentresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('currentresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('currentresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('currentresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('currentresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={currentResidenceInEnglish}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentresidence}
@@ -745,44 +622,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Arabic'}
+											title={`${t('in_ar')} *`}
 											name="areaOfCurrentResidenceAr"
-											options={[
-												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('currentresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('currentresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('currentresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('currentresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('currentresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('currentresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('currentresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('currentresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={currentResidenceInArabic}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentresidence}
@@ -805,44 +647,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Turkish'}
+											title={`${t('in_tur')} *`}
 											name="areaOfCurrentResidenceTr"
-											options={[
-												{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-												{
-													label: t('currentresidence.JabaliaCamp'),
-													value: 'Jabalia Camp',
-												},
-												{
-													label: t('currentresidence.KhanYunis'),
-													value: 'Khan Yunis',
-												},
-												{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-												{
-													label: t('currentresidence.DeiralBalah'),
-													value: 'Deir al-Balah',
-												},
-												{
-													label: t('currentresidence.Beachrefugeecamp'),
-													value: 'Beach refugee camp',
-												},
-												{
-													label: t('currentresidence.NuseiratCamp'),
-													value: 'Nuseirat Camp',
-												},
-												{
-													label: t('currentresidence.MaghaziCamp'),
-													value: 'Maghazi Camp',
-												},
-												{
-													label: t('currentresidence.BureijCamp'),
-													value: 'Bureij Camp',
-												},
-												{
-													label: t('currentresidence.AlShatiCamp'),
-													value: 'Al-Shati Camp',
-												},
-											]}
+											options={currentResidenceInTurkish}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentresidence}
@@ -868,13 +675,9 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'In Engish'}
+											title={`${t('in_eng')} *`}
 											name="currentSituationEn"
-											options={[
-												{ label: t('currentsituation.good'), value: 'Good' },
-												{ label: t('currentsituation.bad'), value: 'Bad' },
-												{ label: t('currentsituation.worst'), value: 'Worst' },
-											]}
+											options={currentSituationInEnglish}
 											defaultValue={t('currentsituation.default')}
 											className={` ${UpdateFamilyForm.errors.currentSituationEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentSituationEn}
@@ -894,13 +697,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Arabic'}
+											title={`${t('in_ar')} *`}
 											name="currentSituationAr"
-											options={[
-												{ label: t('currentsituation.good'), value: 'Good' },
-												{ label: t('currentsituation.bad'), value: 'Bad' },
-												{ label: t('currentsituation.worst'), value: 'Worst' },
-											]}
+											options={currentSituationInArabic}
 											defaultValue={t('currentsituation.default')}
 											className={` ${UpdateFamilyForm.errors.currentSituationAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentSituationAr}
@@ -920,13 +719,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Turkish'}
+											title={`${t('in_tur')} *`}
 											name="currentSituationTr"
-											options={[
-												{ label: t('currentsituation.good'), value: 'Good' },
-												{ label: t('currentsituation.bad'), value: 'Bad' },
-												{ label: t('currentsituation.worst'), value: 'Worst' },
-											]}
+											options={currentSituationInTurkish}
 											defaultValue={t('currentsituation.default')}
 											className={` ${UpdateFamilyForm.errors.currentSituationTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.currentSituationTr}
@@ -949,19 +744,9 @@ const ViewModal = ({
 								<div className="flex items-start justify-start w-full gap-x-4">
 									<div>
 										<Select
-											title={'In English *'}
+											title={`${t('in_eng')} *`}
 											name="lossesInWarEn"
-											options={[
-												{ label: t('losesinwar.none'), value: 'none' },
-												{ label: t('losesinwar.car'), value: 'car' },
-												{
-													label: t('losesinwar.furniture'),
-													value: 'furniture',
-												},
-												{ label: t('losesinwar.store'), value: 'store' },
-												{ label: t('losesinwar.house'), value: 'house' },
-												{ label: t('losesinwar.business'), value: 'business' },
-											]}
+											options={lossesInWarInEnglish}
 											defaultValue={t('losesinwar.default')}
 											className={` ${UpdateFamilyForm.errors.lossesInWarEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.lossesInWarEn}
@@ -981,19 +766,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Arabic *'}
+											title={`${t('in_ar')} *`}
 											name="lossesInWarAr"
-											options={[
-												{ label: t('losesinwar.none'), value: 'none' },
-												{ label: t('losesinwar.car'), value: 'car' },
-												{
-													label: t('losesinwar.furniture'),
-													value: 'furniture',
-												},
-												{ label: t('losesinwar.store'), value: 'store' },
-												{ label: t('losesinwar.house'), value: 'house' },
-												{ label: t('losesinwar.business'), value: 'business' },
-											]}
+											options={lossesInWarInArabic}
 											defaultValue={t('losesinwar.default')}
 											className={` ${UpdateFamilyForm.errors.lossesInWarAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.lossesInWarAr}
@@ -1013,19 +788,9 @@ const ViewModal = ({
 									</div>
 									<div>
 										<Select
-											title={'In Turkish *'}
+											title={`${t('in_tur')} *`}
 											name="lossesInWarTr"
-											options={[
-												{ label: t('losesinwar.none'), value: 'none' },
-												{ label: t('losesinwar.car'), value: 'car' },
-												{
-													label: t('losesinwar.furniture'),
-													value: 'furniture',
-												},
-												{ label: t('losesinwar.store'), value: 'store' },
-												{ label: t('losesinwar.house'), value: 'house' },
-												{ label: t('losesinwar.business'), value: 'business' },
-											]}
+											options={lossesInWarInTurkish}
 											defaultValue={t('losesinwar.default')}
 											className={` ${UpdateFamilyForm.errors.lossesInWarTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 											value={UpdateFamilyForm.values.lossesInWarTr}
@@ -1242,30 +1007,45 @@ const ViewModal = ({
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title="In English"
+											title={`${t('in_eng')} *`}
 											name="inEnglish"
 											className="mb-[10px] min-w-[300px]"
 											value={member.memberName.inEnglish}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inEnglish',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 										<Input
-											title="In Arabic"
+											title={`${t('in_ar')} *`}
 											name="inArabic"
 											className="mb-[10px] min-w-[300px]"
 											value={member.memberName.inArabic}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inArabic', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inArabic',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 										<Input
-											title="In Turkish"
+											title={`${t('in_tur')} *`}
 											name="inTurkish"
 											className="mb-[10px] min-w-[300px]"
 											value={member.memberName.inTurkish}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inTurkish',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 									</div>
@@ -1274,42 +1054,48 @@ const ViewModal = ({
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Select
-											title={'in English'}
+											title={`${t('in_eng')} *`}
 											name="inEnglish"
-											options={[
-												{ label: 'Male', value: 'male' },
-												{ label: 'Female', value: 'female' },
-											]}
+											options={genderInEnglish}
 											className="mb-[30px] min-w-[300px]"
 											value={member.memberGender.inEnglish}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inEnglish',
+													e.target.value,
+													'gender',
+												)
 											}
 										/>
 										<Select
-											title={'in Arabic'}
+											title={`${t('in_ar')} *`}
 											name="inArabic"
-											options={[
-												{ label: 'Male', value: 'male' },
-												{ label: 'Female', value: 'female' },
-											]}
+											options={genderInArabic}
 											className="mb-[30px] min-w-[300px]"
 											value={member.memberGender.inArabic}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inArabic', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inArabic',
+													e.target.value,
+													'gender',
+												)
 											}
 										/>
 										<Select
-											title={'in Turkish'}
+											title={`${t('in_tur')} *`}
 											name="inTurkish"
-											options={[
-												{ label: 'Male', value: 'male' },
-												{ label: 'Female', value: 'female' },
-											]}
+											options={genderInTurkish}
 											className="mb-[30px] min-w-[300px]"
 											value={member.memberGender.inTurkish}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inTurkish',
+													e.target.value,
+													'gender',
+												)
 											}
 										/>
 									</div>
