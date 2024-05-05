@@ -11,10 +11,12 @@ import { areasData } from '@/contants/Areas';
 import { situationData } from '@/contants/Situations';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FaArrowLeftLong } from 'react-icons/fa6';
+import { PATHS } from '@/contants';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+
 import Button from '@/components/ui/LandingPage/Button';
-import { PATHS } from '@/contants';
+import Heading from '@/components/ui/Heading/Heading';
 
 const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	isLoggedIn,
@@ -26,6 +28,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies');
 	const t1 = useTranslations('FamiliesMainSection');
+	const t2 = useTranslations("HeroMainSection.btns");
 	const [isLoading, setIsLoading] = useState(true);
 	const [familiesData, setFamiliesData] = useState<any[]>([]);
 	const [filteredData, setFilteredData] = useState<any[]>([]);
@@ -38,7 +41,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		false,
 	]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const itemsPerPage = 9; // Change as needed
+	const itemsPerPage = 15; // Change as needed
 
 	const getCurrentItems = () => {
 		const startIndex = (currentPage - 1) * itemsPerPage;
@@ -79,7 +82,8 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			}
 
 			if (situationValue !== '') {
-				situationMatch = item.currentSituation === situationValue;
+				situationMatch =
+					item.currentSituation === situationValue;
 			}
 
 			if (memberValue !== null) {
@@ -215,21 +219,20 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		filterData(area, situation, value);
 	};
 
-	useEffect(() => {
-	}, [familiesData]);
+	useEffect(() => {}, [familiesData]);
 
 	return (
 		<>
 			<section
 				dir={dir}
-				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 `}
+				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 animated-div`}
 			>
 				{/* heading and content */}
 				{(!user || PATHS.FAMILY === landingFamilyPath) && (
 					<div className=" flex flex-col gap-2">
-						<h2 className=" md:text-3xl text-2xl font-semibold">
-							{t('title')}
-						</h2>
+						<div className = "flex flex-col justify-start items-start">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
 						<p className="md:text-lg text-base font-light">
 							{t('description')}
 						</p>
@@ -245,14 +248,15 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
 								onClick={() => handleDropDownClick(0)}
 							>
-								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-									{area ? area : 'Select'}
+								<span className="md:text-base text-sm font-medium text-[#36454F] capitalize ">
+									{area ? area : t('select')}
+									
 								</span>
 								<span>
 									{openDropDown[0] ? (
-										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+										<IoIosArrowUp className="text-lg text-[#36454F] cursor-pointer" />
 									) : (
-										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+										<IoIosArrowDown className="text-lg text-[#36454F] cursor-pointer" />
 									)}
 								</span>
 							</button>
@@ -282,7 +286,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								onClick={() => handleDropDownClick(1)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
-									{situation ? situation : 'Select'}
+									{situation ? situation : t('select')}
 								</span>
 								<span>
 									{openDropDown[1] ? (
@@ -295,16 +299,20 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 							<div
 								className={`${
 									openDropDown[1] ? 'block' : 'hidden'
-								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+								}  top-20 rounded-lg z-50 absolute w-64 h-fit py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 							>
 								{situationData.map((item, i) => {
 									return (
 										<p
 											key={i}
 											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
-											onClick={() => handleSituationChange(item.value)}
+											onClick={() => handleSituationChange(t(
+												`form.currentsituation.${item.value.toLowerCase().trim().replace(' ', '')}`,
+											))}
 										>
-											{t(`form.currentsituation.${item.label}`)}
+											{t(
+												`form.currentsituation.${item.label.toLowerCase().trim().replace(' ', '')}`,
+											)}
 										</p>
 									);
 								})}
@@ -318,7 +326,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 								onClick={() => handleDropDownClick(2)}
 							>
 								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
-									{member ? member : 'Select'}
+									{member ? member : t('select')}
 								</span>
 								<span>
 									{openDropDown[2] ? (
@@ -349,14 +357,14 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 						<div className="md:hidden flex items-end w-[48%]">
 							<Button
 								title={t1('clearAll')}
-								Color="#000000"
+								Color="#BB9B6C"
 								onClick={clearAll}
 								className=" w-full"
 							/>
 						</div>
 					</div>
 					<div className="md:flex hidden items-end">
-						<Button title={t1('clearAll')} Color="#000000" onClick={clearAll} />
+						<Button title={t1('clearAll')} Color="#BB9B6C" onClick={clearAll} />
 					</div>
 				</div>
 				{isLoading ? (
@@ -434,7 +442,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				) : (
 					<div className="flex justify-center items-center h-32">
 						<h2 className=" text-center md:text-3xl text-2xl font-semibold">
-							Families Not Found
+							{t2("Families.notFound")}
 						</h2>
 					</div>
 				)}

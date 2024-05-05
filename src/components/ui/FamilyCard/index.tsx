@@ -15,6 +15,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
 import QuickDonationModal from '../Modals/QuickDonationModal';
+import { calculateAmount } from '@/utils/calculateAmount';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
@@ -57,8 +58,9 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
-						title={familyData?.currentSituation || 'Nil'}
-						Color="#CF7475"
+						title={familyData?.currentSituation || t2('Worst')}
+						Color="#BB9B6C"
+						className=' capitalize '
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers > 4 ? (
@@ -154,11 +156,21 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						<Button
 							title={t1('AddtoBasket.title')}
 							className="md:px-1 md:py-2 w-full"
-							Color="#000000"
+							Color="#CF7475"
 							isPadding="md:px-1 md:py-2"
 							onClick={(event) => {
 								event.stopPropagation();
-								dispatch(setIsAddCartStateAction(familyData));
+								dispatch(
+									setIsAddCartStateAction({
+										...familyData,
+										amount: calculateAmount(
+											'3',
+											familyData?.numberOfFamilyMembers,
+											currencyState?.basePriceOne,
+											currencyState?.basePriceTwo,
+										),
+									}),
+								);
 							}}
 						/>
 					)}
@@ -182,6 +194,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				amount={amount}
 				setAmount={setAmount}
 				familyId={familyData?._id}
+				isAddToCart={false}
 			/>
 			<QuickDonationModal
 				open={quickDonationOpen}

@@ -14,6 +14,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { UserType } from '@/state/user/types';
 import UserNotVerifiedError from '@/errors/UserNotVerifiedError';
 import { useRouter } from 'next/navigation';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (arg: UserCredentials) => Promise<UserType | null>;
@@ -54,16 +55,19 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[100px] max-w-[800px]"
+				className="w-full my-[100px] max-w-[800px] animated-div"
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4 space-y-5">
 					<div>
-						<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
+						{/* <div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
+						</div> */}
+						<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
 						</div>
-						<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+						<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-[#36454F] text-center">
 							{t('description')}
 						</div>
 					</div>
@@ -88,7 +92,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						className="max-w-[800px]"
 					/>
 					<Link href={url('/forgot-password')}>
-						<p className="text-primary hover:text-black w-full text-right text-[12px] mt-5 font-bold">
+						<p className="text-black hover:text-[#BB9B6C] w-full text-right text-[12px] mt-5 font-bold">
 							{t('forgot')}
 						</p>
 					</Link>
@@ -99,16 +103,16 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							type="submit"
 							isLoading={isLoading}
 							className="w-56"
-							Color="#CF7475"
+							Color="#BB9B6C"
 						/>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
+			<div className="text-center text-[#BB9B6C] font-bold w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
 				{t('cta.0')}
 				<Link
 					locale={locale}
-					className="font-bold text-primary hover:text-black"
+					className="font-bold text-black hover:text-[#BB9B6C]"
 					href={url('/become-sponsor')}
 				>
 					{t('cta.1')}

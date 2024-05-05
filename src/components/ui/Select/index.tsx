@@ -32,14 +32,14 @@ const Select: React.FC<IProps> = ({
 	return (
 		<div dir={dir} className={`flex flex-col gap-y-2 h-[50px] ${className}`}>
 			<label
-				className={`flex font-bold text-[14px] ${titleColor ? titleColor : `text-primary`}`}
+				className={`flex font-bold text-[14px] ${titleColor ? titleColor : `text-[#36454F]`}`}
 			>
 				{title}
 			</label>
 
 			<div dir={dir} className="relative h-full w-full">
 				<select
-					className={`py-1 px-5 w-full focus:outline-none text-[15px] ${BgColor ? BgColor : `bg-[#E8E8E8]`}  h-[50px] max-w-[700px] ${textColor ? textColor : `text-primary`} appearance-none ${className} ${errorClass}`}
+					className={`py-1 px-5 w-full focus:outline-none text-[15px] ${BgColor ? BgColor : `bg-[#E8E8E8]`}  h-[50px] max-w-[700px] ${textColor ? textColor : `text-[#36454F]`} appearance-none ${className} ${errorClass}`}
 					onChange={(e) => {
 						onChange?.(e);
 					}}

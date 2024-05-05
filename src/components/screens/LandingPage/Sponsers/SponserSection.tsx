@@ -13,6 +13,13 @@ import { RootState } from '@/state/store';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import SponserMain from './SponserMain';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import { 
+	MdOutlinePayments as Feature_1, 
+	MdOutlineFamilyRestroom as Feature_2, 
+	MdMobileFriendly as Feature_3
+} from "react-icons/md";
+
+
 
 const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const dispatch = useDispatch();
@@ -75,17 +82,11 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	return (
 		<section
 			dir={dir}
-			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto"
+			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto animated-div"
 		>
-			<div className=" flex flex-col gap-4">
+			<div className="flex flex-col gap-4 ">
 				<SponserMain currentPath={currentPath} />
-				{!user && (
-					<div className=" flex md:flex-nowrap flex-wrap gap-4">
-						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-						</Link>
-					</div>
-				)}
+				
 			</div>
 			<div
 				className={`flex md:flex-row flex-col justify-between ${currentPath === 'ar' ? ' md:gap-9' : 'md:gap-4'} gap-6`}
@@ -93,15 +94,11 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				{featureData?.map((item: any, i: number) => (
 					<div
 						key={i}
-						className="flex-1 flex flex-col items-center gap-5 feature-shadow"
+						className="flex-1 flex flex-col items-center gap-5 feature-shadow border border-transparent md:hover:border-[#8DAE8E]"
 					>
-						<Image
-							src={`/svgs/landing-sponser/sponser-svg-${i + 1}.svg`}
-							alt={`img`}
-							width={100}
-							height={100}
-							className=" h-auto md:w-auto w-[70px]"
-						/>
+						 {i === 0 && <Feature_3 className = "feature-icons  h-auto md:w-auto w-[70px]" />}
+        				 {i === 1 && <Feature_2 className = "feature-icons  h-auto md:w-auto w-[70px]"/>}
+        				 {i === 2 && <Feature_1 className = "feature-icons  h-auto md:w-auto w-[70px]"/>}
 						<h2 className="text-2xl font-bold">
 							{t('Step.title')} {i + 1}
 						</h2>{' '}
@@ -111,6 +108,13 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 				))}
 			</div>
+			{!user && (
+					<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
+						<Link href={url(PATHS.BECOME_SPONSOR)}>
+							<Button title={t('BecomeaSponser.title')} Color="#BB9B6C" />
+						</Link>
+					</div>
+				)}
 		</section>
 	);
 };

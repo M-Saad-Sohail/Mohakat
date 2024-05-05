@@ -11,6 +11,7 @@
 			"become-sponsor": "Sponsor Ol",
 			"signin": "Oturum Aç",
 			"go-to-dashboard": "Panoya Git",
+			"dashboard": "Gösterge Paneli",
 			"logout": "Çıkış yap"
 		}
 	},
@@ -195,9 +196,14 @@
 		"area": "alan",
 		"situation": "durum",
 		"no_of_member": "Üye Sayısı",
+		"select": "değer",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
+			"family_details_error": "Aile üye detaylarını doldurun",
 			"all_fields": "Tüm alanlar zorunludur",
+			"in_eng": "İngilizce",
+"in_tur": "Türkçe",
+"in_ar": "Arapça",
 			"submit": "Aile Başarıyla Eklendi",
 			"title": "Aile Ekle",
 			"titleForUpdate": "Aileyi Güncelle",
@@ -218,12 +224,27 @@
 			"age": {
 				"title": "Yaş"
 			},
-			"memberIdNumber":{
+			"memberIdNumber": {
 				"title": "Üye Kimlik Numarası"
+			},
+			"maritalStatus": {
+				"title": "Medeni Durum"
 			},
 			"gender": {
 				"title": "Cinsiyet"
 			},
+			"areaOfPreviousResidence": {
+				"title": "Önceki İkamet Alanı"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Mevcut İkamet Alanı"
+			},
+			"currentSituation": {
+				"title": "Mevcut Durum"
+			},
+			"lossesInWar": {
+				"title": "Savaşta Kayıplar"
+			},			
 			"FamilyMembers": {
 				"title": "Aile Üyeleri Sayısı"
 			},
@@ -288,6 +309,10 @@
 				"good": "İyi",
 				"worst": "Çok kötü",
 				"urgentneeded": "acilen gerekli",
+				"totaldestruction": "Toplam Yıkım",
+				"partialdestruction": "Kısmi Yıkım",
+				"intact": "Bozulmamış",
+				"rented": "Kiralık",
 				"default": "Mevcut Durumu Seçin"
 			},
 			"losesinwar": {
@@ -316,7 +341,7 @@
 	"HeroMainSection": {
 		"btns": {
 			"DonateaShare": {
-				"title": "Bir Pay Bağışla"
+				"title": "Bir Pay Bağışla ❤️"
 			},
 			"BecomeaSponser": {
 				"title": "Sponsor Ol"
@@ -337,13 +362,14 @@
 				"title": "Zaten Eklendi"
 			},
 			"seeMore": {
-				"title": "Daha fazla görüntüle"
+				"title": "Daha fazla görüntüle ➜"
 			},
 			"Step": {
 				"title": "Aşama"
 			},
 			"Families": {
-				"title": "aileler"
+				"title": "aileler",
+				"notFound": "Aile Bulunamadı"
 			}
 		}
 	},
@@ -380,6 +406,9 @@
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
+	},
+	"SponsoredFamilies": {
+		"title": "Desteklenen Aileler"
 	},
 	"DonatedFamilies": {
 		"title": "Bağışlanan Aileler",
@@ -419,7 +448,9 @@
 	},
 	"GazaMap": {
 		"red": "Bu piksel zaten rezerve edilmiş.",
-		"grey": "Sponsor olarak kaydolmak için buna tıklayın."
+		"grey": "Sponsor olarak kaydolmak için buna tıklayın.",
+		"book": "Gazze Haritası'ndan Sponsorluğunuzu Rezerve Edin."
+
 	},
 	"OurPartner": {
 		"title": "Ortaklarımız"
@@ -447,7 +478,8 @@
 		"allfields": "Tüm alanlar zorunludur"
 	},
 	"About": {
-		"title": "Hakkında"
+		"title": "Hakkında",
+		"aboutUs": "Hakkımızda"
 	},
 	"Cart": {
 		"title": "Sepet",
@@ -460,7 +492,7 @@
 		"donateShare": "Pay Bağışla",
 		"becomeSponser": "Sponsor Ol"
 	},
-	"DonateModal":{
+	"DonateModal": {
 		"title1": "Bir Pay Bağışla",
 		"title2": "Bir Aileye Sponsor Ol",
 		"name": "İsim",
@@ -478,8 +510,9 @@
 		"total": "Toplam",
 		"success": "Bağışınız için teşekkür ederiz",
 		"error": "Bir şeyler yanlış gitti",
-		"submit": "Ödemeyi Onayla"
-	},	
+		"submit": "Ödemeyi Onayla",
+		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin"
+	},
 	"QuickDonation": {
 		"title": "Genel ve Hızlı Bağış",
 		"purposeTitle": "Amaç",
@@ -487,7 +520,14 @@
 		"totalTitle": "Toplam",
 		"anotherAmount": "Başka Miktar",
 		"inputPlaceholder": "Bağış miktarını girin",
-		"button": "Ödeme Yapmaya Devam Et"
+		"button": "Ödeme Yapmaya Devam Et",
+		"cardname": "Lütfen Kart Adınızı Girin",
+		"cardNumber": "Lütfen Kart Numaranızı Girin",
+		"expMonth": "Lütfen Kart Son Kullanma Ayını Seçin",
+		"expYear": "Lütfen Kart Son Kullanma Yılını Girin",
+		"cvc": "Lütfen Kartınızın CVC'sini Girin",
+		"placeholdername": "Muhammed Ahmed",
+		"placeholderaddress": "İstanbul, Türkiye"
 	},
 	"CurrencyModal": {
 		"title": "Para Birimini Göster"
@@ -504,15 +544,31 @@
 		"good": "İyi",
 		"Worst": "Çok kötü",
 		"worst": "Çok kötü",
-		"Urgently Needed": "Acil Olarak Gerekli"
+		"month": "Aylar",
+		"selectduration":"Süre Seç",
+		"Urgently Needed": "Acil Olarak Gerekli",
+		"memberDetail": "Üye Detayları"
 	},
 	"LangSelect": {
 		"English": "İngilizce",
 		"Arabic": "Arapça",
 		"Turkish": "Türkçe"
-	},	
+	},
 	"DeleteFamily": {
 		"family_deleted_successfully": "Aile Başarıyla Silindi",
 		"deletion_failed": "Aile Silinemedi"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponsor Adı",
+		"sponsoremail": "Sponsor E-posta",
+		"sponsoramount": "Miktar",
+		"sponsorfamily": "Aile Detaylarını Görüntüle"
+	},
+	"Socail": {
+		"title": "Tebrikler! Bir Sponsor oldunuz. Sponsorluğunuzu sosyal medyada diğerleriyle paylaşabilirsiniz",
+		"welcome": "Hoş geldiniz",
+		"thankyou": "Gazze'nin İhtiyaç Sahibi Ailelerine Bağış Yapın",
+		"dashboard": "Gösterge Paneli"
 	}
+	
 }

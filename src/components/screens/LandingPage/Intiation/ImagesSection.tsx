@@ -23,35 +23,36 @@ const ImagesSection = () => {
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const [imagesData, setImagesData] = useState<any>();
 
-	const fetchLandingImages = async () => {
-		const res = await getJson(
-			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-landing-img`,
-		);
-		if (res.success) {
-			setImagesData(res.landingPageSlider);
-			dispatch(
-				setIsLandingStateAction({
-					key: 'landingPageSlider',
-					value: res.landingPageSlider,
-				}),
-			);
-		}
-	};
+	// const fetchLandingImages = async () => {
+	// 	const res = await getJson(
+	// 		`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-landing-img`,
+	// 	);
+	// 	if (res.success) {
+	// 		setImagesData(res.landingPageSlider);
+	// 		dispatch(
+	// 			setIsLandingStateAction({
+	// 				key: 'landingPageSlider',
+	// 				value: res.landingPageSlider,
+	// 			}),
+	// 		);
+	// 	}
+	// };
 
-	useEffect(() => {
-		try {
-			if (data.landingPageSlider) {
-				setImagesData(data.landingPageSlider);
-			} else {
-				fetchLandingImages();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	try {
+	// 		if (data.landingPageSlider) {
+	// 			setImagesData(data.landingPageSlider);
+	// 		} else {
+	// 			fetchLandingImages();
+	// 		}
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// }, []);
 
 	return (
-		<section
+		<section className = "bg-[#e4e5f1]">
+		<div
 			dir={dir}
 			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 md:my-12 mt-6 mb-12 mx-auto"
 		>
@@ -148,6 +149,7 @@ const ImagesSection = () => {
 					</div>
 				</div> */}
 			</div>
+		</div>
 		</section>
 	);
 };

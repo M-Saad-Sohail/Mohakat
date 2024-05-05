@@ -13,6 +13,7 @@ import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
 import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal';
 import { getUserFromLocalStorage } from '@/utils/auth';
+import DonateModal from '@/components/ui/Modals/DonateModal';
 
 interface HeroDataType {
 	heading: string;
@@ -34,7 +35,11 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	});
 
 	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
+	const [donateOpen, setDonateOpen] = useState(false);
+	const cancelDonateButtonRef = useRef(null);
+	const [amount, setAmount] = useState<number>(0);
 	const cancelQuickDonationButtonRef = useRef(null);
+	const [randomFamily, setRandomFamily] = useState<any>();
 
 	const handleHeroData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -102,16 +107,18 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		if (data?.randomFamilies) {
+			setRandomFamily(data?.randomFamilies[0]);
+		}
+	}, [data?.randomFamilies]);
+
 	return (
-		<section className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
-			<QuickDonationModal
-				open={quickDonationOpen}
-				setOpen={setQuickDonationOpen}
-				cancelButtonRef={cancelQuickDonationButtonRef}
-			/>
-			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3">
+		<section className = "md:w-[100%]">
+			<div className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
+			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3 animated-div">
 				<div className=" flex flex-col justify-end gap-3">
-					<div className=" h-[50%]">
+					<div className=" h-[50%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[0].heroSliderImg) ||
@@ -123,7 +130,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
-					<div className=" h-[30%]">
+					<div className=" h-[30%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[1].heroSliderImg) ||
@@ -148,7 +155,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 						>
 							<Button
-								title={t('DonateaShare.title')}
+								title= {t('DonateaShare.title')}
 								Color="#CF7475"
 								onClick={() => {
 									setQuickDonationOpen(true);
@@ -166,12 +173,12 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									});
 								}}
 								title={t('RegisterasFamily.title')}
-								Color="#000000"
+								Color="#BB9B6C"
 							/>
 						</div>
 					)}
 					<div className=" h-[45%] flex gap-3">
-						<div className=" flex-1">
+						<div className=" flex-1 feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[2].heroSliderImg) ||
@@ -183,7 +190,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className=" flex-1 h-[80%] self-end">
+						<div className=" flex-1 h-[80%] self-end feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[3].heroSliderImg) ||
@@ -195,7 +202,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className=" w-full h-full rounded-[20px] object-cover"
 							/>
 						</div>
-						<div className="flex-1">
+						<div className="flex-1 feature-shadow">
 							<img
 								src={
 									(imagesData && imagesData[4].heroSliderImg) ||
@@ -209,8 +216,8 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</div>
 					</div>
 				</div>
-				<div className=" flex flex-col justify-end gap-3">
-					<div className=" h-[50%]">
+				<div className=" flex flex-col justify-end gap-3 ">
+					<div className=" h-[50%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[5].heroSliderImg) ||
@@ -222,7 +229,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							className=" w-full h-full rounded-[20px] object-cover"
 						/>
 					</div>
-					<div className=" h-[30%]">
+					<div className=" h-[30%] feature-shadow">
 						<img
 							src={
 								(imagesData && imagesData[6].heroSliderImg) ||
@@ -298,6 +305,26 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 				</div>
 			</div>
+
+			<QuickDonationModal
+				open={quickDonationOpen}
+				setOpen={setQuickDonationOpen}
+				cancelButtonRef={cancelQuickDonationButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				setDonate={setDonateOpen}
+			/>
+			<DonateModal
+				setOpen={setDonateOpen}
+				open={donateOpen}
+				cancelButtonRef={cancelDonateButtonRef}
+				isLoggedIn={isLoggedIn}
+				amount={amount}
+				setAmount={setAmount}
+				familyId={randomFamily && randomFamily?._id}
+				isAddToCart={false}
+			/>
+		</div>
 		</section>
 	);
 };

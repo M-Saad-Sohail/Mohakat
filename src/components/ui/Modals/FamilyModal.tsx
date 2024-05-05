@@ -29,6 +29,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const { user } = useLoggedInUser();
 	const t = useTranslations('AddFamilies.form');
 	const t1 = useTranslations('HeroMainSection.btns');
+	const t3 = useTranslations('FamiliesMainSection');
 	const currencyState = useSelector((state: any) => state.currency);
 
 	const [selectedOption, setSelectedOption] = useState<string>('3');
@@ -92,13 +93,13 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 							>
 								<Dialog.Panel
-									className={` ${isTableView ? 'md:h-[500px]' : 'h-[590px] '}  flex flex-col justify-between px-5  py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] w-full `}
+									className={` ${isTableView ? 'md:h-[500px]' : familyInfo?.familyMemberDetail.length > 0 ? 'h-[590px]' : 'h-[500px] '}  flex flex-col justify-between px-5  py-5 transform overflow-hidden rounded-2xl bg-[#fff] text-left shadow-xl transition-all md:w-[600px] w-full `}
 								>
 									{/* first div */}
 									<div className="flex justify-between items-center w-full">
 										<Button
-											title={familyInfo?.currentSituation || 'Nil'}
-											Color="#CF7475"
+											title={familyInfo?.currentSituation || t3('Worst')}
+											Color="#BB9B6C"
 										/>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
@@ -108,34 +109,26 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 										</div>
 									</div>
 
+									<div className=" flex justify-between">
+										<h2 className=" text-xl md:text-2xl font-semibold">
+											{familyInfo?.breadWinnerName}
+										</h2>
+										<p className="flex gap-1 text-[#4a4b65] text-xl font-bold">
+											{!isTableView && <span>{currencyState?.key}</span>}
+											<span>{amount}</span>
+										</p>
+									</div>
 									{/* second div */}
 									<div className=" flex flex-col gap-2">
-										<div className=" flex justify-between">
-											<h2 className=" text-xl md:text-2xl font-semibold">
-												{familyInfo?.breadWinnerName}
-											</h2>
-											<p className="flex gap-1 text-[#4a4b65] text-xl font-bold">
-												{!isTableView && <span>{currencyState?.key}</span>}
-												<span>{amount}</span>
-											</p>
-										</div>
-										<div className=" flex items-center gap-1 md:gap-[6px]">
-											<span className=" text-xs md:text-base font-semibold">
-												{t('id.title')}:
-											</span>
-											<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-												{familyInfo?.idNumber}
-											</span>
-										</div>
 										<div className=" flex  md:gap-5">
 											{/* first column */}
 											<div className=" flex flex-1 flex-col gap-3">
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
-														{t('age.title')}:
+														{t('id.title')}:
 													</span>
 													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.age}
+														{familyInfo?.idNumber}
 													</span>
 												</div>
 												<div className=" flex items-center gap-1 md:gap-[6px]">
@@ -154,14 +147,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 														{familyInfo?.lossesInWar}
 													</span>
 												</div>
-												<div className=" hidden md:flex items-center gap-1 md:gap-[6px]">
-													<span className=" text-xs md:text-base font-semibold">
-														{t('previousresidence.title')}:
-													</span>
-													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.areaOfPreviousResidence}
-													</span>
-												</div>
+
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
 														{t('MartyrInFamily.title')}:
@@ -198,14 +184,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 														{familyInfo?.numberOfFamilyMembers}
 													</span>
 												</div>
-												<div className=" hidden md:flex items-center gap-1 md:gap-[6px]">
-													<span className=" text-xs md:text-base font-semibold">
-														{t('currentresidence.title')}:
-													</span>
-													<span className=" text-xs md:text-base text-[#4a4b65] font-normal">
-														{familyInfo?.areaOfCurrentResidence}
-													</span>
-												</div>
+
 												<div className=" flex items-center gap-1 md:gap-[6px]">
 													<span className=" text-xs md:text-base font-semibold">
 														{t('InfectedInFamily.title')}:
@@ -217,7 +196,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											</div>
 										</div>
 										<div className=" mt-2 flex flex-col gap-3">
-											<div className=" flex md:hidden items-center gap-1 md:gap-[6px]">
+											<div className=" flex items-center gap-1 md:gap-[6px]">
 												<span className=" text-xs md:text-base font-semibold">
 													{t('previousresidence.title')}:
 												</span>
@@ -225,7 +204,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													{familyInfo?.areaOfPreviousResidence}
 												</span>
 											</div>
-											<div className=" flex md:hidden items-center gap-1 md:gap-[6px]">
+											<div className=" flex items-center gap-1 md:gap-[6px]">
 												<span className=" text-xs md:text-base font-semibold">
 													{t('currentresidence.title')}:
 												</span>
@@ -236,47 +215,49 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 										</div>
 									</div>
 
-									{/* member details */}
-									<div className=" flex flex-col gap-2">
-										<h2 className="  text-lg font-semibold">Member Details</h2>
+									{familyInfo?.familyMemberDetail.length > 0 && (
+										<div className=" flex flex-col gap-2">
+											<h2 className="  text-lg font-semibold">
+												{t3("memberDetail")}
+											</h2>
 
-										{/* members */}
-										<div className="flex gap-4 w-full overflow-x-scroll scrollbarHide">
-											{familyInfo?.familyMemberDetail.map(
-												(item: any, i: number) => (
-													<div
-														key={i}
-														className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]"
-													>
-														<p className=" text-sm font-normal w-max h-max">
-															<span className=" text-sm font-semibold">
-																{t('name.title')}:{' '}
-															</span>
-															{item.memberName}
-														</p>
-														<p className=" text-sm font-normal w-max h-max">
-															<span className=" text-sm font-semibold">
-																{t('gender.title')}:{' '}
-															</span>
-															{item.memberGender}
-														</p>
-														<p className=" text-sm font-normal w-max h-max">
-															<span className=" text-sm font-semibold">
-																{t('age.title')}:{' '}
-															</span>
-															{item.memberAge}
-														</p>
-													</div>
-												),
-											)}
+											{/* members */}
+											<div className="flex gap-4 w-full overflow-x-scroll scrollbarHide">
+												{familyInfo?.familyMemberDetail.map(
+													(item: any, i: number) => (
+														<div
+															key={i}
+															className=" flex flex-col gap-1 rounded-lg bg-[#CF7475] py-[10px] px-[20px] text-[#FFFFFF]"
+														>
+															<p className=" text-sm font-normal w-max h-max">
+																<span className=" text-sm font-semibold">
+																	{t('name.title')}:{' '}
+																</span>
+																{item.memberName}
+															</p>
+															<p className=" text-sm font-normal w-max h-max">
+																<span className=" text-sm font-semibold">
+																	{t('gender.title')}:{' '}
+																</span>
+																{item.memberGender}
+															</p>
+															<p className=" text-sm font-normal w-max h-max">
+																<span className=" text-sm font-semibold">
+																	{t('age.title')}:{' '}
+																</span>
+																{item.memberAge}
+															</p>
+														</div>
+													),
+												)}
+											</div>
 										</div>
-									</div>
-
+									)}
 									{/* duration */}
 									{user && !isTableView && (
 										<div className=" flex flex-col gap-2">
-											<h2 className=" text-base md:text-lg font-semibold">
-												Select Duration
+											<h2 className="flex text-base md:text-lg font-semibold">
+												{t3('selectduration')}
 											</h2>
 											{/* durations */}
 											<div className=" flex gap-3 overflow-x-scroll scrollbarHide w-full">
@@ -290,7 +271,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												/>
 												<label className=" flex items-center gap-2 text-sm font-semibold">
 													<span>3</span>
-													<span>Month(s)</span>
+													<span>{t3('month')}</span>
 												</label>
 
 												<input
@@ -303,7 +284,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												/>
 												<label className=" flex items-center gap-2 text-sm font-semibold">
 													<span>6</span>
-													<span>Month(s)</span>
+													<span>{t3('month')}</span>
 												</label>
 
 												<input
@@ -317,7 +298,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 
 												<label className=" flex items-center gap-2 text-sm font-semibold">
 													<span>9</span>
-													<span>Month(s)</span>
+													<span>{t3('month')}</span>
 												</label>
 
 												<input
@@ -330,7 +311,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 												/>
 												<label className=" flex items-center gap-2 text-sm font-semibold">
 													<span>12</span>
-													<span>Month(s)</span>
+													<span>{t3('month')}</span>
 												</label>
 											</div>
 										</div>
@@ -344,7 +325,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 													setDonate && setDonate(true);
 												}}
 												title={t1('Donate.title')}
-												Color="#CF7475"
+												Color="#8DAE8E"
 												className=" md:px-12"
 											/>
 										</div>

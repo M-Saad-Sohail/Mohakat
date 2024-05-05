@@ -48,6 +48,8 @@ import turkish_flag from './icons/turkish_flag.svg';
 import english_flag from './icons/english_flag.svg';
 import arabic_flag from './icons/arabic_flag.svg';
 import palestine_flag from './icons/palestine_flag.svg';
+import section_pic from './icons/sectionimg.png';
+
 
 export {
 	logo,
@@ -98,5 +100,6 @@ export {
 	turkish_flag,
 	palestine_flag,
 	manage_family,
-	manage_family_png
+	manage_family_png,
+	section_pic
 };

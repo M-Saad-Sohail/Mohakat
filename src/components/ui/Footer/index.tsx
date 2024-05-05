@@ -55,7 +55,7 @@ const Footer = () => {
 
 	return (
 		<>
-			<div className=" bg-[#F8F8F8] flex flex-col gap-8 md:px-20 px-8 py-10">
+			<div className=" bg-[#e4e5f1] flex flex-col gap-8 md:px-20 px-8 py-10">
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					{/* logo */}
@@ -91,7 +91,7 @@ const Footer = () => {
 							href={`${currentPath == 'en' ? 'https://www.facebook.com/profile.php?id=61558851476057' : currentPath == 'tr' ? 'https://www.facebook.com/profile.php?id=61558467735301' : 'https://www.facebook.com/moakhatorg/'}`}
 							target="_blank"
 						>
-							<FaFacebookSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+							<FaFacebookSquare className=" text-[30px] text-[#1877F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3b5998]" />
 						</Link>
 
 						{/* twitter */}
@@ -99,7 +99,7 @@ const Footer = () => {
 							href={`${currentPath == 'en' ? 'https://twitter.com/MoakhatEn' : currentPath == 'tr' ? 'https://twitter.com/MoakhatTr' : 'https://twitter.com/moakhatorg'}`}
 							target="_blank"
 						>
-							<FaTwitterSquare className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+							<FaTwitterSquare className=" text-[30px] text-[#1DA1F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3ea9f4]" />
 						</Link>
 
 						{/* insta */}
@@ -108,7 +108,7 @@ const Footer = () => {
 							href={`${currentPath == 'en' ? 'https://www.instagram.com/moakhat.en/' : currentPath == 'tr' ? 'https://www.instagram.com/kardesliktr/' : 'https://www.instagram.com/moakhatorgtr/'}`}
 							target="_blank"
 						>
-							<FaSquareInstagram className=" text-[26px] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#CF7475]" />
+							<FaSquareInstagram className=" text-[30px] text-[#C13584] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#833ab4] rounded-[10]" />
 						</Link>
 					</div>
 				</div>

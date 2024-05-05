@@ -8,7 +8,7 @@ import CrossSvg from '@/assests/images/landing-page/cross.svg';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { Links, PATHS } from '@/contants';
@@ -18,6 +18,7 @@ import LangSelector from '../LangSelector';
 import { useSelector } from 'react-redux';
 import CurrencyModal from '../Modals/CurrencyModal';
 import Button from '../LandingPage/Button';
+import { useAuth } from '@/hooks/useAuth';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -25,6 +26,8 @@ const MobileNavbar = ({
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const pathname = usePathname();
+	const router = useRouter();
+	const { logoutUser } = useAuth();
 	const cartItems = useSelector((state: any) => state.cart);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,7 +60,7 @@ const MobileNavbar = ({
 	return (
 		<>
 			<div className={` md:hidden flex flex-col ${active && 'active'}`}>
-				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#00000080]">
+				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#8DAE8E]">
 					{/* logo */}
 
 					<Link href={url('/')}>
@@ -74,7 +77,7 @@ const MobileNavbar = ({
 									title=""
 									onChange={() => {}}
 									handleChange={changeLocale}
-									className=" justify-center w-8 h-8"
+									className=" justify-center w-8 h-8 login-icon"
 								/>
 								<div
 									className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
@@ -93,10 +96,10 @@ const MobileNavbar = ({
 								className=" relative cursor-pointer"
 								onClick={() => setIsCartOpen(true)}
 							>
-								<span className=" absolute top-0 right-0 bg-[#CF7475] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
+								<span className=" absolute top-0 right-0 bg-[#8DAE8E] text-white text-[10px] rounded-[50%] px-[6px] py-[2px]">
 									{cartItems.length > 0 ? cartItems.length : '0'}
 								</span>
-								<TbBasketDollar className=" text-[40px]" />
+								<TbBasketDollar className=" text-[40px] login-icon" />
 							</div>
 						)}
 						<Image
@@ -116,37 +119,49 @@ const MobileNavbar = ({
 							key={link.name}
 							href={url(link.link)}
 							locale={locale}
-							className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg'}`}
+							className={`block py-2 px-6 duration-500  ${link.link === currentPathName ? ' font-semibold text-xl' : ' font-normal text-lg text-[#36454F]'}`}
 						>
 							{t(link.localeId)}
 						</Link>
 					))}
 					<div className=" flex justify-start items-start mt-5 py-2 px-6">
 						{isLoggedIn ? (
-							<Link
-								href={url(PATHS.DASHBOARD)}
-								replace={currentPathName !== '/'}
-								locale={locale}
-							>
-								<Button title={t('cta.go-to-dashboard')} Color="#CF7475" />
-							</Link>
+							<div className=" flex items-center gap-3">
+								<span
+									onClick={() => {
+										logoutUser();
+										router.replace(url(PATHS.LOGIN));
+									}}
+									className="w-fit bg-[#36454F] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#36454F] transition-colors duration-300 ease-in-out  "
+								>
+									{t('cta.logout')}
+								</span>
+								<Link
+									href={url(PATHS.DASHBOARD)}
+									replace={currentPathName !== '/'}
+									locale={locale}
+								>
+									<Button title={t('cta.go-to-dashboard')} Color="#BB9B6C" />
+								</Link>
+							</div>
 						) : (
-							<>
+							<div className=" flex items-center gap-3">
 								<Link
 									href={url(PATHS.LOGIN)}
 									locale={locale}
-									className={` duration-500 flex float-right mr-4 bg-black rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit `}
+									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.signin')}
 								</Link>
 								<Link
 									href={url(PATHS.BECOME_SPONSOR)}
 									locale={locale}
-									className={`duration-500 flex float-right mr-4 bg-[#CF7475] rounded-[20px] font-semibold text-white text-sm border-none outline-none px-6 py-2 w-fit`}
+									className="w-fit bg-[#BB9B6C] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#BB9B6C] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
+
 								>
 									{t('cta.become-sponsor')}
 								</Link>
-							</>
+							</div>
 						)}
 					</div>
 				</div>

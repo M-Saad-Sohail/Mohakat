@@ -11,6 +11,7 @@
 			"become-sponsor": "اكفل أسرة",
 			"signin": "تسجيل الدخول",
 			"go-to-dashboard": "الانتقال إلى لوحة التحكم",
+			"dashboard": "لوحة القيادة",
 			"logout": "تسجيل الخروج"
 		}
 	},
@@ -195,9 +196,14 @@
 		"area": "منطقة",
 		"situation": "وضع",
 		"no_of_member": "عدد الأعضاء",
+		"select":"قيمة",
 		"form": {
 			"formTitle": "تحرير تفاصيل العائلة",
 			"fill_form_correctly": "املأ النموذج بشكل صحيح",
+			"family_details_error":  "يرجى ملء تفاصيل أفراد العائلة",
+			"in_eng": "بالإنجليزية",
+"in_tur": "بالتركية",
+"in_ar": "بالعربية",
 			"all_fields": "جميع الحقول مطلوبة",
 			"submit": "تمت إضافة العائلة بنجاح",
 			"title": "إضافة عائلة",
@@ -222,6 +228,21 @@
 			"memberIdNumber":{
 				"title": "رقم هوية العضو"
 			},
+			"maritalStatus": {
+				"title": "الحالة الزوجية"
+			},
+			"areaOfPreviousResidence": {
+				"title": "منطقة الإقامة السابقة"
+			},
+			"areaOfCurrentResidence": {
+				"title": "منطقة الإقامة الحالية"
+			},
+			"currentSituation": {
+				"title": "الوضع الحالي"
+			},
+			"lossesInWar": {
+				"title": "الخسائر في الحرب"
+			},			
 			"gender": {
 				"title": "الجنس"
 			},
@@ -288,6 +309,10 @@
 				"bad": "تدمير كلي",
 				"good": "تدمير جزئي",
 				"worst": "سليم",
+				"totaldestruction": "تدمير كلي",
+				"partialdestruction": "تدمير جزئي",
+				"intact": "سليم",
+				"rented": "مستأجر",
 				"urgentneeded": "مستأجر",
 				"default": "اختر الحالة الحالية"
 			},
@@ -317,7 +342,7 @@
 	"HeroMainSection": {
 		"btns": {
 			"DonateaShare": {
-				"title": "تبرع بسهم"
+				"title": "❤️ تبرع بسهم"
 			},
 			"BecomeaSponser": {
 				"title": "كن راعياً"
@@ -337,14 +362,15 @@
 			"AlreadyAdded": {
 				"title": "تمت الإضافة بالفعل"
 			},
-			"seeMore": {
-				"title": "رؤية المزيد"
+			"seeMore": { 
+				"title": "رؤية المزيد  ⬅"  
 			},
 			"Step": {
 				"title": "الخطوة"
 			},
 			"Families": {
-				"title": "الأسر"
+				"title": "الأسر",
+				"notFound": "العائلة غير موجودة"
 			}
 		}
 	},
@@ -381,6 +407,9 @@
 	},
 	"ApprovedSponsors": {
 		"title": "الرعاة الموافق عليهم"
+	},
+	"SponsoredFamilies": {
+		"title": "العائلات المدعومة"
 	},
 	"DonatedFamilies": {
 		"title": "العائلات المتبرع لها",
@@ -420,7 +449,8 @@
 	},
 	"GazaMap": {
 		"red": "هذا البكسل تم حجزه بالفعل.",
-		"grey": "انقر هنا للتسجيل كراعي"
+		"grey": "انقر هنا للتسجيل كراعي",
+		"book": "احجز رعايتك من خريطة غزة."
 	},
 	"OurPartner": {
 		"title": "شركاؤنا"
@@ -448,7 +478,8 @@
 		"allfields": "جميع الحقول مطلوبة"
 	},
 	"About": {
-		"title": "حول"
+		"title": "حول",
+		"aboutUs": "حولنا"
 	},
 	"Cart": {
 		"title": "سلة التسوق",
@@ -468,7 +499,14 @@
 		"totalTitle": "الإجمالي",
 		"anotherAmount": "مبلغ آخر",
 		"inputPlaceholder": "أدخل مبلغ التبرع",
-		"button": "الانتقال إلى الخروج"
+		"button": "الانتقال إلى الخروج",
+		"cardname": "الرجاء إدخال اسم بطاقتك",
+		"cardNumber": "الرجاء إدخال رقم بطاقتك",
+		"expMonth": "الرجاء تحديد شهر انتهاء صلاحية البطاقة",
+		"expYear": "الرجاء إدخال سنة انتهاء صلاحية البطاقة",
+		"cvc": "الرجاء إدخال رمز CVC لبطاقتك",
+		"placeholdername": "محمد أحمد",
+		"placeholderaddress": "اسطنبول، تركيا"
 	},
 	"DonateModal":{
 		"title1": "تبرع بسهم",
@@ -488,7 +526,8 @@
 		"total": "الإجمالي",
 		"success": "شكرًا لتبرعك",
 		"error": "حدث خطأ ما",
-		"submit": "تأكيد الدفع"
+		"submit": "تأكيد الدفع",
+		"donationFailed": "فشلت عملية التبرع. حاول مرة أخرى"
 	},	
 	"CurrencyModal": {
 		"title": "عرض العملة"
@@ -505,7 +544,10 @@
 		"good": "جيد",
 		"Worst": "الأسوأ",
 		"worst": "الأسوأ",
-		"Urgently Needed": "مطلوب بشكل عاجل"
+		"month":"أشهر",
+		"selectduration":"اختر المدة",
+		"Urgently Needed": "مطلوب بشكل عاجل",
+		"memberDetail": "تفاصيل العضو"
 	},
 	"LangSelect": {
 		"English": "الإنجليزية",
@@ -518,5 +560,17 @@
 	"DeleteFamily": {
 		"family_deleted_successfully": "تم حذف العائلة بنجاح",
 		"deletion_failed": "فشل في حذف العائلة"
+	},
+	"Sponsoring": {
+		"sponsorname": "اسم الكفيل",
+		"sponsoremail": "بريد الكفيل الإلكتروني",
+		"sponsoramount": "المبلغ",
+		"sponsorfamily": "عرض تفاصيل العائلة"
+	},
+	"Socail": {
+		"title": "تهانينا! لقد أصبحت راعيًا. يمكنك مشاركة رعايتك مع الآخرين على وسائل التواصل الاجتماعي",
+		"welcome": "مرحباً",
+		"thankyou": "تبرع لعائلات غزة المحتاجة",
+		"dashboard": "لوحة القيادة"
 	}
 }

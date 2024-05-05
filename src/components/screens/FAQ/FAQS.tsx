@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import Heading from '@/components/ui/Heading/Heading';
 
 interface FaqDataType {
 	questions: string;
@@ -85,26 +86,28 @@ const FAQS = () => {
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">
-				<h2 className=" md:text-3xl text-2xl font-semibold">{t('title')}</h2>
+				<div className = "flex flex-col justify-start items-start">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
 				<p className="md:text-lg text-base font-light">{t('description')}</p>
 			</div>
 
 			{/* faqs */}
 
-			<div className=" flex flex-col gap-3">
+			<div className=" flex flex-col gap-3 animated-div">
 				{faqData.map((item, i) => {
 					return (
 						<>
-							<div key={i} className=" flex gap-2">
+							<div key={i} className=" flex gap-2 feature-shadow-faq ">
 								<div key={i} className=" flex flex-col gap-2">
-									<h3 className=" text-lg font-bold text-[#CF7475]">Q:</h3>
-									<h3 className="text-lg font-bold text-[#000000]">A:</h3>
+									<h3 className=" text-lg font-bold text-[#BB9B6C]">Q:</h3>
+									<h3 className="text-lg font-bold text-[#36454F]">A:</h3>
 								</div>
 								<div className=" flex flex-col gap-2">
-									<h3 className=" text-lg font-bold text-[#CF7475]">
+									<h3 className=" text-lg font-bold text-[#BB9B6C]">
 										{item.questions}
 									</h3>
-									<h3 className=" text-lg font-normal text-[#000000]">
+									<h3 className=" text-lg font-normal text-[#36454F]">
 										{item.answers}
 									</h3>
 								</div>

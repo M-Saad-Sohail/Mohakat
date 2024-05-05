@@ -60,13 +60,7 @@ const AdminMenus = [
 const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
-	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
-	// {
-	// 	title: 'credit_cards',
-	// 	src: credit_card,
-	// 	link: PATHS.CREDIT_CARDS,
-	// 	gap: true,
-	// },
+	// { title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING, gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
@@ -184,7 +178,7 @@ const LeftSideBar = () => {
 						>
 							{user ? user.name.toUpperCase() : ''}
 						</p>
-						<p
+						<div
 							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
 								!open && 'hidden'
 							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : ''}`}
@@ -197,21 +191,7 @@ const LeftSideBar = () => {
 									</p>
 								)}
 							</p>
-						</p>
-						{/* {user && open && (
-							<>
-								{user.role === 'admin' && (
-									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#95dca9] px-4 py-1">
-										Admin
-									</p>
-								)}
-								{user.role === 'moderator' && (
-									<p className="font-bold text-[14px] cursor-pointer rounded-lg bg-[#f9a8a8] px-4 py-1">
-										Moderator
-									</p>
-								)}
-							</>
-						)} */}
+						</div>
 					</div>
 					<p
 						className={`${

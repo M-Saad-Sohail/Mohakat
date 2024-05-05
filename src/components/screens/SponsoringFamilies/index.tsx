@@ -9,6 +9,7 @@ import { FaRegListAlt } from 'react-icons/fa';
 import Loader from '@/components/ui/Loader';
 import FamilyModal from '@/components/ui/Modals/FamilyModal';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface Row {
 	_id: number;
@@ -31,8 +32,12 @@ const SponsoringFamilies = () => {
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
 	const cancelButtonRef = useRef(null);
+	const t1 = useTranslations('Sponsoring');
+	
 
 	const fetchSponserFamilies = async (sponserId: string, token: any) => {
+		let familyIdCounter = 1; // Initialize the counter
+		const userData = getUserFromLocalStorage();
 		setIsLoading(true);
 		const response = await getJsonWithToken(
 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donated/${sponserId}/families`,
@@ -45,8 +50,10 @@ const SponsoringFamilies = () => {
 				})
 				.map((item: any) => ({
 					...item.family,
-					id: item.family._id,
+					id: familyIdCounter++,
 					amount: item.amount,
+					username: userData?.name,
+					email: userData?.email					
 				}));
 			setRows(familiesData);
 			setIsLoading(false);
@@ -65,7 +72,7 @@ const SponsoringFamilies = () => {
 	const columns: GridColDef[] = [
 		{
 			field: 'id',
-			headerName: 'Id',
+			headerName: `S.NO`,
 			headerAlign: 'center',
 			align: 'center',
 			sortable: false,
@@ -73,8 +80,8 @@ const SponsoringFamilies = () => {
 			disableColumnMenu: true,
 		},
 		{
-			field: 'lossesInWar',
-			headerName: 'Losses In War',
+			field: 'username',
+			headerName: `${t1('sponsorname')}`,
 			headerAlign: 'center',
 			width: 150,
 			align: 'center',
@@ -82,8 +89,8 @@ const SponsoringFamilies = () => {
 			disableColumnMenu: true,
 		},
 		{
-			field: 'areaOfCurrentResidence',
-			headerName: 'Area Of Current Residence',
+			field: 'email',
+			headerName: `${t1('sponsoremail')}`,
 			width: 250,
 			headerAlign: 'center',
 			align: 'center',
@@ -91,17 +98,8 @@ const SponsoringFamilies = () => {
 			disableColumnMenu: true,
 		},
 		{
-			field: 'numberOfMartyrInFamily',
-			headerName: 'No. Of Martyr In Family',
-			headerAlign: 'center',
-			align: 'center',
-			width: 230,
-			sortable: true,
-			disableColumnMenu: true,
-		},
-		{
 			field: 'amount',
-			headerName: 'Amount Donated',
+			headerName: `${t1('sponsoramount')}`,
 			headerAlign: 'center',
 			align: 'center',
 			width: 230,
@@ -110,7 +108,7 @@ const SponsoringFamilies = () => {
 		},
 		{
 			field: 'view',
-			headerName: 'View',
+			headerName: `${t1('sponsorfamily')}`,
 			sortable: false,
 			headerAlign: 'center',
 			align: 'center',
@@ -134,7 +132,13 @@ const SponsoringFamilies = () => {
 			setFamiliesData({
 				...data,
 				breadWinnerName: data?.breadWinnerName?.inEnglish,
+				lossesInWar: data?.lossesInWar?.inEnglish,
 				description: data?.description?.inEnglish,
+				currentSituation: data?.currentSituation?.inEnglish,
+				areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
+				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inEnglish,
+				gender: data?.gender?.inEnglish,
+				maritalStatus: data?.maritalStatus?.inEnglish,
 				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inEnglish,
@@ -145,6 +149,12 @@ const SponsoringFamilies = () => {
 				...data,
 				breadWinnerName: data?.breadWinnerName?.inArabic,
 				description: data?.description?.inArabic,
+				lossesInWar: data?.lossesInWar?.inArabic,
+				currentSituation: data?.currentSituation?.inArabic,
+				areaOfCurrentResidence: data?.areaOfCurrentResidence?.inArabic,
+				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inArabic,
+				gender: data?.gender?.inArabic,
+				maritalStatus: data?.maritalStatus?.inArabic,
 				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inArabic,
@@ -155,6 +165,12 @@ const SponsoringFamilies = () => {
 				...data,
 				breadWinnerName: data?.breadWinnerName?.inTurkish,
 				description: data?.description?.inTurkish,
+				lossesInWar: data?.lossesInWar?.inTurkish,
+				currentSituation: data?.currentSituation?.inTurkish,
+				areaOfCurrentResidence: data?.areaOfCurrentResidence?.inTurkish,
+				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inTurkish,
+				gender: data?.gender?.inTurkish,
+				maritalStatus: data?.maritalStatus?.inTurkish,
 				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inTurkish,

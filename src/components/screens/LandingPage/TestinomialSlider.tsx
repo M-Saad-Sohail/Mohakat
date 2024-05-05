@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { getJson } from '@/api/api.instances';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import ImagesSection from './Intiation/ImagesSection';
 
 interface Testimonial {
 	name: string;
@@ -111,7 +112,9 @@ const TestimonialSlider = () => {
 	};
 
 	return (
-		<section
+		<section className = "bg-[#e4e5f1] pt-4 pb-4">
+			<ImagesSection />
+		<div
 			dir={dir}
 			className={`${pathname?.slice(1) === currentPath ? 'md:w-[80%] w-[90%]' : 'w-full'} mx-auto flex flex-col gap-2`}
 		>
@@ -132,7 +135,7 @@ const TestimonialSlider = () => {
 								<Typography
 									variant="h5"
 									component="div"
-									sx={{ color: '#802434' }}
+									sx={{ color: '#BB9B6C', fontWeight: "bold"}}
 								>
 									{testimonial.name}
 								</Typography>
@@ -140,7 +143,7 @@ const TestimonialSlider = () => {
 									gutterBottom
 									variant="caption"
 									component="div"
-									sx={{ fontStyle: 'italic' }}
+									sx={{ fontStyle: 'italic', color: "#36454F" }}
 								>
 									{testimonial.destination}
 								</Typography>
@@ -152,6 +155,7 @@ const TestimonialSlider = () => {
 					</div>
 				))}
 			</Slider>
+		</div>
 		</section>
 	);
 };

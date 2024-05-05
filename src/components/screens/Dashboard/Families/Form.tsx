@@ -16,6 +16,29 @@ import { number } from 'yup';
 import { toast } from 'react-toastify';
 import { AddFamiliesSchema } from '@/utils/validationSchema';
 
+// DATA
+
+import {
+	genderInEnglish,
+	genderInTurkish,
+	genderInArabic,
+	maritalStatusInEnglish,
+	maritalStatusInTurkish,
+	maritalStatusInArabic,
+	previousResidenceInEnglish,
+	previousResidenceInTurkish,
+	previousResidenceInArabic,
+	currentResidenceInEnglish,
+	currentResidenceInTurkish,
+	currentResidenceInArabic,
+	currentSituationInEnglish,
+	currentSituationInTurkish,
+	currentSituationInArabic,
+	lossesInWarInEnglish,
+	lossesInWarInTurkish,
+	lossesInWarInArabic,
+} from '@/contants/addform';
+
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
 	isLoading: boolean;
@@ -29,7 +52,11 @@ interface FamilyMember {
 	};
 	memberAge: number | '';
 	MemberIdNumber: number | '';
-	memberGender: string;
+	memberGender: {
+		inEnglish: string;
+		inTurkish: string;
+		inArabic: string;
+	};
 }
 
 const FamilyForm = () => {
@@ -43,6 +70,7 @@ const FamilyForm = () => {
 		index: any,
 		key: string,
 		value: string | number,
+		type?: string,
 	) => {
 		// console.log(index);
 		const updatedMembers = [...familyMembers];
@@ -55,13 +83,23 @@ const FamilyForm = () => {
 				},
 				memberAge: '',
 				MemberIdNumber: '',
-				memberGender: '',
+				memberGender: {
+					inEnglish: '',
+					inTurkish: '',
+					inArabic: '',
+				},
 			};
 		}
 		if (key.startsWith('in')) {
-			updatedMembers[index].memberName[
-				key as keyof FamilyMember['memberName']
-			] = (value as string).toUpperCase(); // Convert to uppercase
+			if (type === 'name') {
+				updatedMembers[index].memberName[
+					key as keyof FamilyMember['memberName']
+				] = (value as string).toUpperCase(); // Convert to uppercase
+			} else if (type === 'gender') {
+				updatedMembers[index].memberGender[
+					key as keyof FamilyMember['memberGender']
+				] = value as string; // Convert to uppercase
+			}
 		} else {
 			updatedMembers[index][key as keyof FamilyMember] = value as
 				| string
@@ -89,21 +127,44 @@ const FamilyForm = () => {
 					inTurkish: AddFamiliesForm.values.descriptionTr,
 					inArabic: AddFamiliesForm.values.descriptionAr,
 				},
-				maritalStatus: AddFamiliesForm.values.maritalStatus,
+				maritalStatus: {
+					inEnglish: AddFamiliesForm.values.maritalStatusEn,
+					inTurkish: AddFamiliesForm.values.maritalStatusTr,
+					inArabic: AddFamiliesForm.values.maritalStatusAr,
+				},
+				gender: {
+					inEnglish: AddFamiliesForm.values.genderEn,
+					inTurkish: AddFamiliesForm.values.genderTr,
+					inArabic: AddFamiliesForm.values.genderAr,
+				},
+				areaOfPreviousResidence: {
+					inEnglish: AddFamiliesForm.values.areaOfPreviousResidenceEn,
+					inTurkish: AddFamiliesForm.values.areaOfPreviousResidenceTr,
+					inArabic: AddFamiliesForm.values.areaOfPreviousResidenceAr,
+				},
+				areaOfCurrentResidence: {
+					inEnglish: AddFamiliesForm.values.areaOfCurrentResidenceEn,
+					inTurkish: AddFamiliesForm.values.areaOfCurrentResidenceTr,
+					inArabic: AddFamiliesForm.values.areaOfCurrentResidenceAr,
+				},
+				currentSituation: {
+					inEnglish: AddFamiliesForm.values.currentSituationEn,
+					inTurkish: AddFamiliesForm.values.currentSituationTr,
+					inArabic: AddFamiliesForm.values.currentSituationAr,
+				},
+				lossesInWar: {
+					inEnglish: AddFamiliesForm.values.lossesInWarEn,
+					inTurkish: AddFamiliesForm.values.lossesInWarTr,
+					inArabic: AddFamiliesForm.values.lossesInWarAr,
+				},
 				email: AddFamiliesForm.values.email,
 				language: AddFamiliesForm.values.language,
-				gender: AddFamiliesForm.values.gender,
-				age: AddFamiliesForm.values.age,
 				dateOfBirth: AddFamiliesForm.values.dateOfBirth,
-				areaOfPreviousResidence: AddFamiliesForm.values.areaOfPreviousResidence,
-				areaOfCurrentResidence: AddFamiliesForm.values.areaOfCurrentResidence,
 				numberOfFamilyMembers: parseInt(
 					AddFamiliesForm.values.numberOfFamilyMembers,
 				),
 				telephoneNumber: AddFamiliesForm.values.telephoneNumber,
 				idNumber: parseInt(AddFamiliesForm.values.idNumber),
-				lossesInWar: AddFamiliesForm.values.lossesInWar,
-				currentSituation: AddFamiliesForm.values.currentSituation,
 				numberOfMartyrInFamily: parseInt(
 					AddFamiliesForm.values.numberOfMartyrInFamily,
 				),
@@ -113,20 +174,31 @@ const FamilyForm = () => {
 				familyMemberDetail: familyMembers,
 			};
 			try {
-				setLoading(true);
-				const res = await postJson(
-					`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
-					response,
-					user?.key,
-				);
-				if (res.success) {
-					setLoading(false);
-					AddFamiliesForm.resetForm();
-					toast.success(`${t('submit')}`, {
-						toastId: 'success',
+				if (
+					AddFamiliesForm.values.numberOfFamilyMembers > 0 &&
+					familyMembers.length === 0
+				) {
+					toast.error(`${t('family_details_error')}`, {
+						toastId: 'error',
 						position: 'bottom-right',
 						autoClose: 4000,
 					});
+				} else {
+					setLoading(true);
+					const res = await postJson(
+						`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
+						response,
+						user?.key,
+					);
+					if (res.success) {
+						setLoading(false);
+						AddFamiliesForm.resetForm();
+						toast.success(`${t('submit')}`, {
+							toastId: 'success',
+							position: 'bottom-right',
+							autoClose: 4000,
+						});
+					}
 				}
 			} catch (error) {
 				toast.error(`${t('fill_form_correctly')}`, {
@@ -134,6 +206,7 @@ const FamilyForm = () => {
 					position: 'bottom-right',
 					autoClose: 4000,
 				});
+				setLoading(false);
 			}
 		},
 	});
@@ -154,7 +227,7 @@ const FamilyForm = () => {
 					<div className="flex items-start justify-start w-full gap-x-4">
 						<div>
 							<Input
-								title={'In English *'}
+								title={`${t('in_eng')} *`}
 								name="breadWinnerNameEn"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameEn}
@@ -175,7 +248,7 @@ const FamilyForm = () => {
 
 						<div>
 							<Input
-								title={'In Turkish *'}
+								title={`${t('in_tur')} *`}
 								name="breadWinnerNameTr"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameTr}
@@ -195,7 +268,7 @@ const FamilyForm = () => {
 						</div>
 						<div>
 							<Input
-								title={'In Arabic *'}
+								title={`${t('in_ar')} *`}
 								name="breadWinnerNameAr"
 								className="mb-1 min-w-[250px]"
 								value={AddFamiliesForm.values?.breadWinnerNameAr}
@@ -240,30 +313,6 @@ const FamilyForm = () => {
 					</div>
 					<div>
 						<Input
-							title={`${t('age.title')} *`}
-							name="age"
-							type="number"
-							className="mb-[5px] min-w-[460px]"
-							value={AddFamiliesForm.values?.age}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.age &&
-								AddFamiliesForm.errors.age &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.errors.age && (
-							<p className="text-sm mb-2 text-red">
-								{AddFamiliesForm.touched.age &&
-									(AddFamiliesForm.errors.age as any)}
-							</p>
-						)}
-					</div>
-				</div>
-
-				<div className="flex items-start justify-start w-full gap-x-4">
-					<div>
-						<Input
 							title={`${t('telephone.title')} *`}
 							name="telephoneNumber"
 							type="number"
@@ -280,6 +329,30 @@ const FamilyForm = () => {
 							AddFamiliesForm.errors.telephoneNumber && (
 								<p className="text-sm mb-2 text-red">
 									{AddFamiliesForm.errors.telephoneNumber as any}
+								</p>
+							)}
+					</div>
+				</div>
+
+				<div className="flex items-start justify-start w-full gap-x-4">
+					<div>
+						<Input
+							title={`${t('dob.title')} *`}
+							name="dateOfBirth"
+							className="mb-[5px] min-w-[460px] "
+							type="date"
+							value={AddFamiliesForm.values?.dateOfBirth}
+							onChange={AddFamiliesForm.handleChange}
+							errorClass={
+								AddFamiliesForm.touched.dateOfBirth &&
+								AddFamiliesForm.errors.dateOfBirth &&
+								'border-2 border-solid border-red'
+							}
+						/>
+						{AddFamiliesForm.touched.dateOfBirth &&
+							AddFamiliesForm.errors.dateOfBirth && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.errors.dateOfBirth as any}
 								</p>
 							)}
 					</div>
@@ -307,87 +380,9 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-				{/* third */}
-
-				<div className="flex items-start justify-start w-full gap-x-4">
-					<div>
-						<Input
-							title={`${t('dob.title')} *`}
-							name="dateOfBirth"
-							className="mb-[5px] min-w-[460px] "
-							type="date"
-							value={AddFamiliesForm.values?.dateOfBirth}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.dateOfBirth &&
-								AddFamiliesForm.errors.dateOfBirth &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.dateOfBirth &&
-							AddFamiliesForm.errors.dateOfBirth && (
-								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.dateOfBirth as any}
-								</p>
-							)}
-					</div>
-
-					<div>
-						<Select
-							title={`${t('gender.title')} *`}
-							name="gender"
-							options={[
-								{ label: t('gender.male'), value: 'male' },
-								{ label: t('gender.female'), value: 'female' },
-							]}
-							defaultValue={t('gender.default')}
-							className="mb-[40px] min-w-[460px] mt-[2px] "
-							value={AddFamiliesForm.values?.gender}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.gender &&
-								AddFamiliesForm.errors.gender &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.gender &&
-							AddFamiliesForm.errors.gender && (
-								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.gender as any}
-								</p>
-							)}
-					</div>
-				</div>
-
-				{/* fourth */}
+				{/* language */}
 
 				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
-					<div>
-						<Select
-							title={`${t('martialstatus.title')} *`}
-							name="maritalStatus"
-							options={[
-								{ label: t('martialstatus.single'), value: 'single' },
-								{ label: t('martialstatus.married'), value: 'married' },
-							]}
-							defaultValue={t('martialstatus.default')}
-							className={` ${AddFamiliesForm.errors.maritalStatus ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-							value={AddFamiliesForm.values?.maritalStatus}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.maritalStatus &&
-								AddFamiliesForm.errors.maritalStatus &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.errors.maritalStatus && (
-							<p className="text-sm mb-2 text-red">
-								{AddFamiliesForm.touched.maritalStatus &&
-									(AddFamiliesForm.errors.maritalStatus as any)}
-							</p>
-						)}
-					</div>
-
 					<div>
 						<Select
 							title={`${t('language.title')} *`}
@@ -398,7 +393,7 @@ const FamilyForm = () => {
 								{ label: t('language.turkish'), value: 'tr' },
 							]}
 							defaultValue={t('language.default')}
-							className={` ${AddFamiliesForm.errors.language ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
+							className={` ${AddFamiliesForm.errors.language ? 'mb-[40px]' : 'mb-[5px]'} min-w-[380px] mt-[2px]`}
 							value={AddFamiliesForm.values.language}
 							onChange={AddFamiliesForm.handleChange}
 							errorClass={
@@ -416,186 +411,536 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-				{/* fifth */}
+				{/* Marital Status */}
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold"> {t('maritalStatus.title')} </h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="maritalStatusEn"
+								options={maritalStatusInEnglish}
+								defaultValue={t('martialstatus.default')}
+								className={` ${AddFamiliesForm.errors.maritalStatusEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.maritalStatusEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.maritalStatusEn &&
+									AddFamiliesForm.errors.maritalStatusEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.maritalStatusEn && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.touched.maritalStatusEn &&
+										(AddFamiliesForm.errors.maritalStatusEn as any)}
+								</p>
+							)}
+						</div>
 
-				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
-					<div>
-						<Select
-							title={`${t('previousresidence.title')} *`}
-							name="areaOfPreviousResidence"
-							options={[
-								{ label: t('previousresidence.Gaza'), value: 'Gaza' },
-								{
-									label: t('previousresidence.JabaliaCamp'),
-									value: 'Jabalia Camp',
-								},
-								{
-									label: t('previousresidence.KhanYunis'),
-									value: 'Khan Yunis',
-								},
-								{ label: t('previousresidence.Rafah'), value: 'Rafah' },
-								{
-									label: t('previousresidence.DeiralBalah'),
-									value: 'Deir al-Balah',
-								},
-								{
-									label: t('previousresidence.Beachrefugeecamp'),
-									value: 'Beach refugee camp',
-								},
-								{
-									label: t('previousresidence.NuseiratCamp'),
-									value: 'Nuseirat Camp',
-								},
-								{
-									label: t('previousresidence.MaghaziCamp'),
-									value: 'Maghazi Camp',
-								},
-								{
-									label: t('previousresidence.BureijCamp'),
-									value: 'Bureij Camp',
-								},
-								{
-									label: t('previousresidence.AlShatiCamp'),
-									value: 'Al-Shati Camp',
-								},
-							]}
-							defaultValue={t('previousresidence.default')}
-							className={` ${AddFamiliesForm.errors.areaOfPreviousResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-							value={AddFamiliesForm.values?.areaOfPreviousResidence}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.areaOfPreviousResidence &&
-								AddFamiliesForm.errors.areaOfPreviousResidence &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.areaOfPreviousResidence &&
-							AddFamiliesForm.errors.areaOfPreviousResidence && (
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="maritalStatusTr"
+								options={maritalStatusInTurkish}
+								defaultValue={t('martialstatus.default')}
+								className={` ${AddFamiliesForm.errors.maritalStatusTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.maritalStatusTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.maritalStatusTr &&
+									AddFamiliesForm.errors.maritalStatusTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.maritalStatusTr && (
 								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.areaOfPreviousResidence as any}
+									{AddFamiliesForm.touched.maritalStatusTr &&
+										(AddFamiliesForm.errors.maritalStatusTr as any)}
 								</p>
 							)}
-					</div>
-					<div>
-						<Select
-							title={`${t('currentresidence.title')} *`}
-							name="areaOfCurrentResidence"
-							options={[
-								{ label: t('currentresidence.Gaza'), value: 'Gaza' },
-								{
-									label: t('currentresidence.JabaliaCamp'),
-									value: 'Jabalia Camp',
-								},
-								{ label: t('currentresidence.KhanYunis'), value: 'Khan Yunis' },
-								{ label: t('currentresidence.Rafah'), value: 'Rafah' },
-								{
-									label: t('currentresidence.DeiralBalah'),
-									value: 'Deir al-Balah',
-								},
-								{
-									label: t('currentresidence.Beachrefugeecamp'),
-									value: 'Beach refugee camp',
-								},
-								{
-									label: t('currentresidence.NuseiratCamp'),
-									value: 'Nuseirat Camp',
-								},
-								{
-									label: t('currentresidence.MaghaziCamp'),
-									value: 'Maghazi Camp',
-								},
-								{
-									label: t('currentresidence.BureijCamp'),
-									value: 'Bureij Camp',
-								},
-								{
-									label: t('currentresidence.AlShatiCamp'),
-									value: 'Al-Shati Camp',
-								},
-							]}
-							defaultValue={t('currentresidence.default')}
-							className={` ${AddFamiliesForm.errors.areaOfCurrentResidence ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-							value={AddFamiliesForm.values?.areaOfCurrentResidence}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.areaOfCurrentResidence &&
-								AddFamiliesForm.errors.areaOfCurrentResidence &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.areaOfCurrentResidence &&
-							AddFamiliesForm.errors.areaOfCurrentResidence && (
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="maritalStatusAr"
+								options={maritalStatusInArabic}
+								defaultValue={t('martialstatus.default')}
+								className={` ${AddFamiliesForm.errors.maritalStatusAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.maritalStatusAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.maritalStatusAr &&
+									AddFamiliesForm.errors.maritalStatusAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.maritalStatusAr && (
 								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.areaOfCurrentResidence as any}
+									{AddFamiliesForm.touched.maritalStatusAr &&
+										(AddFamiliesForm.errors.maritalStatusAr as any)}
 								</p>
 							)}
+						</div>
 					</div>
 				</div>
 
-				{/* Sixth */}
+				{/* Gender */}
 
-				<div className="flex items-start justify-start w-full mb-8 gap-x-4">
-					<div>
-						<Select
-							title={`${t('currentsituation.title')} *`}
-							name="currentSituation"
-							options={[
-								{ label: t('currentsituation.good'), value: 'Good' },
-								{ label: t('currentsituation.bad'), value: 'Bad' },
-								{ label: t('currentsituation.worst'), value: 'Worst' },
-							]}
-							defaultValue={t('currentsituation.default')}
-							className={` ${AddFamiliesForm.errors.currentSituation ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-							value={AddFamiliesForm.values?.currentSituation}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.currentSituation &&
-								AddFamiliesForm.errors.currentSituation &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.currentSituation &&
-							AddFamiliesForm.errors.currentSituation && (
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold"> {t('gender.title')} </h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="genderEn"
+								options={genderInEnglish}
+								defaultValue={t('gender.default')}
+								className={` ${AddFamiliesForm.errors.genderEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.genderEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.genderEn &&
+									AddFamiliesForm.errors.genderEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.genderEn && (
 								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.currentSituation as any}
+									{AddFamiliesForm.touched.genderEn &&
+										(AddFamiliesForm.errors.genderEn as any)}
 								</p>
 							)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="genderTr"
+								options={genderInTurkish}
+								defaultValue={t('gender.default')}
+								className={` ${AddFamiliesForm.errors.genderTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.genderTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.genderTr &&
+									AddFamiliesForm.errors.genderTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.genderTr && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.touched.genderTr &&
+										(AddFamiliesForm.errors.genderTr as any)}
+								</p>
+							)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="genderAr"
+								options={genderInArabic}
+								defaultValue={t('gender.default')}
+								className={` ${AddFamiliesForm.errors.genderAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.genderAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.genderAr &&
+									AddFamiliesForm.errors.genderAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.errors.genderAr && (
+								<p className="text-sm mb-2 text-red">
+									{AddFamiliesForm.touched.genderAr &&
+										(AddFamiliesForm.errors.genderAr as any)}
+								</p>
+							)}
+						</div>
 					</div>
+				</div>
 
-					<div>
-						<Select
-							title={`${t('losesinwar.title')} *`}
-							name="lossesInWar"
-							options={[
-								{ label: t('losesinwar.none'), value: 'none' },
-								{ label: t('losesinwar.car'), value: 'car' },
-								{ label: t('losesinwar.furniture'), value: 'furniture' },
-								{ label: t('losesinwar.store'), value: 'store' },
-								{ label: t('losesinwar.house'), value: 'house' },
-								{ label: t('losesinwar.business'), value: 'business' },
-							]}
-							defaultValue={t('losesinwar.default')}
-							className={` ${AddFamiliesForm.errors.lossesInWar ? 'mb-[40px]' : 'mb-[5px]'} min-w-[460px] mt-[2px]`}
-							value={AddFamiliesForm.values.lossesInWar}
-							onChange={AddFamiliesForm.handleChange}
-							errorClass={
-								AddFamiliesForm.touched.lossesInWar &&
-								AddFamiliesForm.errors.lossesInWar &&
-								'border-2 border-solid border-red'
-							}
-						/>
-						{AddFamiliesForm.touched.lossesInWar &&
-							AddFamiliesForm.errors.lossesInWar && (
-								<p className="text-sm mb-2 text-red">
-									{AddFamiliesForm.errors.lossesInWar as any}
-								</p>
-							)}
+				{/* Previous Residence */}
+
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold">
+						{' '}
+						{t('areaOfPreviousResidence.title')}{' '}
+					</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="areaOfPreviousResidenceEn"
+								options={previousResidenceInEnglish}
+								defaultValue={t('previousresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfPreviousResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfPreviousResidenceEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfPreviousResidenceEn &&
+									AddFamiliesForm.errors.areaOfPreviousResidenceEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfPreviousResidenceEn &&
+								AddFamiliesForm.errors.areaOfPreviousResidenceEn && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfPreviousResidenceEn as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="areaOfPreviousResidenceTr"
+								options={previousResidenceInTurkish}
+								defaultValue={t('previousresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfPreviousResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfPreviousResidenceTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfPreviousResidenceTr &&
+									AddFamiliesForm.errors.areaOfPreviousResidenceTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfPreviousResidenceTr &&
+								AddFamiliesForm.errors.areaOfPreviousResidenceTr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfPreviousResidenceTr as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="areaOfPreviousResidenceAr"
+								options={previousResidenceInArabic}
+								defaultValue={t('previousresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfPreviousResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfPreviousResidenceAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfPreviousResidenceAr &&
+									AddFamiliesForm.errors.areaOfPreviousResidenceAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfPreviousResidenceAr &&
+								AddFamiliesForm.errors.areaOfPreviousResidenceAr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfPreviousResidenceAr as any}
+									</p>
+								)}
+						</div>
+					</div>
+				</div>
+
+				{/* Current Residence */}
+
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold">
+						{' '}
+						{t('areaOfCurrentResidence.title')}{' '}
+					</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="areaOfCurrentResidenceEn"
+								options={currentResidenceInEnglish}
+								defaultValue={t('currentresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfCurrentResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfCurrentResidenceEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfCurrentResidenceEn &&
+									AddFamiliesForm.errors.areaOfCurrentResidenceEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfCurrentResidenceEn &&
+								AddFamiliesForm.errors.areaOfCurrentResidenceEn && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfCurrentResidenceEn as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="areaOfCurrentResidenceTr"
+								options={currentResidenceInTurkish}
+								defaultValue={t('currentresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfCurrentResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfCurrentResidenceTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfCurrentResidenceTr &&
+									AddFamiliesForm.errors.areaOfCurrentResidenceTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfCurrentResidenceTr &&
+								AddFamiliesForm.errors.areaOfCurrentResidenceTr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfCurrentResidenceTr as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="areaOfCurrentResidenceAr"
+								options={currentResidenceInArabic}
+								defaultValue={t('currentresidence.default')}
+								className={` ${AddFamiliesForm.errors.areaOfCurrentResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.areaOfCurrentResidenceAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.areaOfCurrentResidenceAr &&
+									AddFamiliesForm.errors.areaOfCurrentResidenceAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.areaOfCurrentResidenceAr &&
+								AddFamiliesForm.errors.areaOfCurrentResidenceAr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.areaOfCurrentResidenceAr as any}
+									</p>
+								)}
+						</div>
+					</div>
+				</div>
+
+				{/* Current Situation */}
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold">
+						{' '}
+						{t('currentSituation.title')}{' '}
+					</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="currentSituationEn"
+								options={currentSituationInEnglish}
+								defaultValue={t('currentsituation.default')}
+								className={` ${AddFamiliesForm.errors.currentSituationEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.currentSituationEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.currentSituationEn &&
+									AddFamiliesForm.errors.currentSituationEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.currentSituationEn &&
+								AddFamiliesForm.errors.currentSituationEn && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.currentSituationEn as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="currentSituationTr"
+								options={currentSituationInTurkish}
+								defaultValue={t('currentsituation.default')}
+								className={` ${AddFamiliesForm.errors.currentSituationTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.currentSituationTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.currentSituationTr &&
+									AddFamiliesForm.errors.currentSituationTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.currentSituationTr &&
+								AddFamiliesForm.errors.currentSituationTr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.currentSituationTr as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="currentSituationAr"
+								options={currentSituationInArabic}
+								defaultValue={t('currentsituation.default')}
+								className={` ${AddFamiliesForm.errors.currentSituationAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values?.currentSituationAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.currentSituationAr &&
+									AddFamiliesForm.errors.currentSituationAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.currentSituationAr &&
+								AddFamiliesForm.errors.currentSituationAr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.currentSituationAr as any}
+									</p>
+								)}
+						</div>
+					</div>
+				</div>
+
+				{/* Losses In War */}
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold"> {t('lossesInWar.title')} </h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div>
+							<Select
+								title={`${t('in_eng')} *`}
+								name="lossesInWarEn"
+								options={lossesInWarInEnglish}
+								defaultValue={t('losesinwar.default')}
+								className={` ${AddFamiliesForm.errors.lossesInWarEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values.lossesInWarEn}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.lossesInWarEn &&
+									AddFamiliesForm.errors.lossesInWarEn &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.lossesInWarEn &&
+								AddFamiliesForm.errors.lossesInWarEn && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.lossesInWarEn as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_tur')} *`}
+								name="lossesInWarTr"
+								options={lossesInWarInTurkish}
+								defaultValue={t('losesinwar.default')}
+								className={` ${AddFamiliesForm.errors.lossesInWarTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values.lossesInWarTr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.lossesInWarTr &&
+									AddFamiliesForm.errors.lossesInWarTr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.lossesInWarTr &&
+								AddFamiliesForm.errors.lossesInWarTr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.lossesInWarTr as any}
+									</p>
+								)}
+						</div>
+
+						<div>
+							<Select
+								title={`${t('in_ar')} *`}
+								name="lossesInWarAr"
+								options={lossesInWarInArabic}
+								defaultValue={t('losesinwar.default')}
+								className={` ${AddFamiliesForm.errors.lossesInWarAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
+								value={AddFamiliesForm.values.lossesInWarAr}
+								onChange={AddFamiliesForm.handleChange}
+								errorClass={
+									AddFamiliesForm.touched.lossesInWarAr &&
+									AddFamiliesForm.errors.lossesInWarAr &&
+									'border-2 border-solid border-red'
+								}
+							/>
+							{AddFamiliesForm.touched.lossesInWarAr &&
+								AddFamiliesForm.errors.lossesInWarAr && (
+									<p className="text-sm mb-2 text-red">
+										{AddFamiliesForm.errors.lossesInWarAr as any}
+									</p>
+								)}
+						</div>
 					</div>
 				</div>
 
 				{/* seventh */}
 
-				<div className="flex items-start justify-start w-full gap-x-4">
+				{/* COMMENT  */}
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold " style={{ wordSpacing: '4px' }}>
+						{' '}
+						{t('comment.title')} (Optional)
+					</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionEn"
+							>
+								{'In English'}
+							</label>
+							<textarea
+								title={'In English'}
+								name="descriptionEn"
+								cols={30}
+								rows={4}
+								placeholder="Enter your message..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionEn}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionAr"
+							>
+								{'In Arabic'}
+							</label>
+							<textarea
+								dir={'rtl'}
+								title={'In Arabic'}
+								name="descriptionAr"
+								cols={30}
+								rows={4}
+								placeholder="أدخل رسالتك..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionAr}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionTr"
+							>
+								{'In Turkish'}
+							</label>
+							<textarea
+								title={'In Turkish'}
+								name="descriptionTr"
+								cols={30}
+								rows={4}
+								placeholder="Mesajınızı girin..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionTr}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div className="flex items-start justify-start w-full gap-x-4 mt-8">
 					<div>
 						<Input
 							title={`${t('FamilyMembers.title')} *`}
@@ -681,30 +1026,45 @@ const FamilyForm = () => {
 									</div>
 									<div className="flex items-center justify-start w-full gap-x-4">
 										<Input
-											title={'In English'}
+											title={`${t('in_eng')} *`}
 											name="inenglish"
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.name}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inEnglish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inEnglish',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 										<Input
-											title={'In Arabic'}
-											name="inarabic"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
-											onChange={(e) =>
-												handleMemberDetailChange(i, 'inArabic', e.target.value)
-											}
-										/>
-										<Input
-											title={'In Turkish'}
+											title={`${t('in_tur')} *`}
 											name="inturkish"
 											className="mb-[10px] min-w-[250px]"
 											// value={updateProfileForm.values?.email}
 											onChange={(e) =>
-												handleMemberDetailChange(i, 'inTurkish', e.target.value)
+												handleMemberDetailChange(
+													i,
+													'inTurkish',
+													e.target.value,
+													'name',
+												)
+											}
+										/>
+										<Input
+											title={`${t('in_ar')} *`}
+											name="inarabic"
+											className="mb-[10px] min-w-[250px]"
+											// value={updateProfileForm.values?.email}
+											onChange={(e) =>
+												handleMemberDetailChange(
+													i,
+													'inArabic',
+													e.target.value,
+													'name',
+												)
 											}
 										/>
 									</div>
@@ -733,93 +1093,75 @@ const FamilyForm = () => {
 												)
 											}
 										/>
+									</div>
+									{/* Gender */}
 
-										<Select
-											title={t('gender.title')}
-											name="language"
-											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
-											]}
-											defaultValue={t('gender.default')}
-											className="mb-[30px] min-w-[400px] "
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'memberGender',
-													e.target.value,
-												)
-											}
-										/>
+									<div className=" flex flex-col gap-3 mt-5">
+										<h3 className=" text-sm font-bold">
+											{' '}
+											{t('gender.title')}{' '}
+										</h3>
+										<div className="flex items-start justify-start w-full gap-x-4">
+											<div>
+												<Select
+													title={`${t('in_eng')} *`}
+													name="inenglish"
+													options={genderInEnglish}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'inEnglish',
+															e.target.value,
+															'gender',
+														)
+													}
+												/>
+											</div>
+
+											<div>
+												<Select
+													title={`${t('in_tur')} *`}
+													name="inturkish"
+													options={genderInTurkish}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'inTurkish',
+															e.target.value,
+															'gender',
+														)
+													}
+												/>
+											</div>
+
+											<div>
+												<Select
+													title={`${t('in_ar')} *`}
+													name="inarabic"
+													options={genderInArabic}
+													defaultValue={t('gender.default')}
+													className="mb-[30px] min-w-[400px] "
+													onChange={(e) =>
+														handleMemberDetailChange(
+															i,
+															'inArabic',
+															e.target.value,
+															'gender',
+														)
+													}
+												/>
+											</div>
+										</div>
 									</div>
 								</div>
 							))}
 						</div>
 					)}
-				{/* COMMENT  */}
-				<div className=" flex flex-col gap-3 mt-8">
-					<h3 className=" text-sm font-bold " style={{ wordSpacing: '4px' }}>
-						{' '}
-						{t('comment.title')} (Optional)
-					</h3>
-					<div className="flex items-start justify-start w-full gap-x-4">
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionEn"
-							>
-								{'In English'}
-							</label>
-							<textarea
-								title={'In English'}
-								name="descriptionEn"
-								cols={30}
-								rows={4}
-								placeholder="Enter your message..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionEn}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionAr"
-							>
-								{'In Arabic'}
-							</label>
-							<textarea
-								dir={'rtl'}
-								title={'In Arabic'}
-								name="descriptionAr"
-								cols={30}
-								rows={4}
-								placeholder="أدخل رسالتك..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionAr}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionTr"
-							>
-								{'In Turkish'}
-							</label>
-							<textarea
-								title={'In Turkish'}
-								name="descriptionTr"
-								cols={30}
-								rows={4}
-								placeholder="Mesajınızı girin..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionTr}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-					</div>
-				</div>
+
 				<div className="flex my-5">
 					<Button
 						onClick={(e) => {

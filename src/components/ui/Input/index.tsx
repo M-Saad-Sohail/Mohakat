@@ -23,6 +23,7 @@ const Input: React.FC<IProps> = ({
 	name,
 	readOnly,
 	title,
+	min,
 	setting,
 	disabled,
 }) => {
@@ -37,7 +38,7 @@ const Input: React.FC<IProps> = ({
 			style={style}
 		>
 			<label
-				className="text-[16px] font-bold font-sans text-primary"
+				className="text-[16px] font-bold font-sans text-[#36454F]"
 				htmlFor={name}
 			>
 				{title}
@@ -51,6 +52,7 @@ const Input: React.FC<IProps> = ({
 						onChange={onChange}
 						name={name}
 						readOnly={readOnly}
+						min={min}
 						id={name}
 						type={showPassword ? 'text' : 'password'}
 						value={value}
@@ -82,6 +84,7 @@ const Input: React.FC<IProps> = ({
 					name={name}
 					readOnly={readOnly}
 					id={name}
+					min={min}
 					type={type || 'text'}
 					value={value}
 					disabled={disabled ? disabled : false}

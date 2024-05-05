@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsLandingStateAction } from '@/state/landingpage';
 import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
+import Heading from '@/components/ui/Heading/Heading';
 
 interface InitiationDataType {
 	heading: string;
@@ -67,12 +68,15 @@ const IntiationMain = ({ currentPath }: { currentPath: any }) => {
 	}, []);
 	return (
 		<>
-			<h2 className=" md:text-3xl text-2xl font-semibold">
+			{/* <h2 className=" md:text-3xl text-2xl font-semibold animated-div">
 				{initiationData.heading}
-			</h2>
-			<p className=" md:text-lg text-base font-light">
+			</h2> */}
+			<div className = "flex flex-col justify-center items-center">
+					<Heading heading = {initiationData.heading} className = "main_heading-black" />
+				</div>
+			{/* <p className=" md:text-lg text-base font-light animated-div">
 				{initiationData.description}
-			</p>
+			</p> */}
 		</>
 	);
 };

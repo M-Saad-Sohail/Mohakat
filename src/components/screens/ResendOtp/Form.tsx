@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 import { useSearchParams } from 'next/navigation';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (email: string) => Promise<boolean>;
@@ -53,15 +54,18 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 
 	return (
 		<form
-			className="w-full my-[200px] max-w-[800px]"
+			className="w-full my-[200px] max-w-[800px] animated-div"
 			noValidate
 			onSubmit={handleSubmit}
 		>
 			<div className="mx-4 my-10 space-y-5">
 				<div>
-					<div className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+					{/* <div className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
-					</div>
+					</div> */}
+					<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
 				</div>
 				<Input
 					title={t('email.title')}
@@ -79,7 +83,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						type="submit"
 						isLoading={isLoading}
 						className="w-56"
-						Color="#CF7475"
+						Color="#BB9B6C"
 					/>
 				</div>
 			</div>

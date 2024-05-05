@@ -67,7 +67,8 @@ const CurrencySelector: React.FC<CurrencySelectorType> = ({ className }) => {
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
+				className="flex items-center justify-center gap-3 border-2 border-solid 
+				border-[#8DAE8E] rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<p className={` md:text-sm text-[10px] text-black font-bold uppercase`}>

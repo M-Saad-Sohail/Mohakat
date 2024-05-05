@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import stickeySvg1 from '@/assests/svgs/stickeybar/stickeybar-1.svg';
 import stickeySvg2 from '@/assests/svgs/stickeybar/stickeybar-2.svg';
 import stickeySvg3 from '@/assests/svgs/stickeybar/stickeybar-3.svg';
@@ -11,27 +11,35 @@ import QuickDonationModal from '@/components/ui/Modals/QuickDonationModal';
 import Button from '@/components/ui/LandingPage/Button';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/state/store';
+import DonateModal from '../Modals/DonateModal';
 
 const StickeyBar = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const t = useTranslations('toolTips');
+	const user = getUserFromLocalStorage();
+	const data = useSelector<RootState, any>((state) => state.landingpage);
 
 	const [quickDonationOpen, setQuickDonationOpen] = useState(false);
+	const [donateOpen, setDonateOpen] = useState(false);
+	const cancelDonateButtonRef = useRef(null);
+	const [amount, setAmount] = useState<number>(0);
 	const cancelQuickDonationButtonRef = useRef(null);
-	const user = getUserFromLocalStorage();
+	const [randomFamily, setRandomFamily] = useState<any>();
+
+	useEffect(() => {
+		if (data?.randomFamilies) {
+			setRandomFamily(data?.randomFamilies[0]);
+		}
+	}, [data?.randomFamilies]);
 
 	return (
 		<>
-			<QuickDonationModal
-				open={quickDonationOpen}
-				setOpen={setQuickDonationOpen}
-				cancelButtonRef={cancelQuickDonationButtonRef}
-			/>
-
 			<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
 				<Link
 					href={'#'}
-					className=" bg-[#CF7475] md:p-5 p-[10px] tooltip"
+					className=" bg-[#BB9B6C] md:p-5 p-[10px] tooltip"
 					onClick={() => {
 						toast.error(`This feature is in progress`, {
 							toastId: 'success',
@@ -53,7 +61,7 @@ const StickeyBar = () => {
 					onClick={() => {
 						setQuickDonationOpen(true);
 					}}
-					className=" bg-[#E8C08A] md:p-5 p-[10px] tooltip"
+					className=" bg-[#CF7475] md:p-5 p-[10px] tooltip"
 				>
 					<Image
 						src={stickeySvg2}
@@ -74,6 +82,23 @@ const StickeyBar = () => {
 					<span className="tooltiptext">{t('becomeSponser')}</span>
 				</Link>
 			</div>
+			<QuickDonationModal
+				open={quickDonationOpen}
+				setOpen={setQuickDonationOpen}
+				cancelButtonRef={cancelQuickDonationButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				setDonate={setDonateOpen}
+			/>
+			<DonateModal
+				setOpen={setDonateOpen}
+				open={donateOpen}
+				cancelButtonRef={cancelDonateButtonRef}
+				amount={amount}
+				setAmount={setAmount}
+				familyId={randomFamily && randomFamily?._id}
+				isAddToCart={false}
+			/>
 		</>
 	);
 };

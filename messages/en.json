@@ -11,6 +11,7 @@
 			"become-sponsor": "Become a Sponsor",
 			"signin": "Sign In",
 			"go-to-dashboard": "Go to Dashboard",
+			"dashboard": "Dashboard",
 			"logout": "Logout"
 		}
 	},
@@ -41,24 +42,25 @@
 		}
 	},
 	"DonateModal": {
-			"title1": "Donate a Share",
-			"title2": "Sponsor a Family",
-			"name": "Name",
-			"email": "Email",
-			"address": "Address",
-			"country": "Country",
-			"city": "City",
-			"mobileNum": "Mobile Number",
-			"identityNum": "National identity Number",
-			"cardHolder": "Card Holder Name",
-			"cardNum": "Card Number",
-			"expMonth": "Expiry Month",
-			"expYear": "Expiry Year",
-			"cvc": "CVC",
-			"total": "Total",
-			"submit": "Confirm Payment",
-			"success": "Thank you for your donation",
-			"error": "Something went wrong"
+		"title1": "Donate a Share",
+		"title2": "Sponsor a Family",
+		"name": "Name",
+		"email": "Email",
+		"address": "Address",
+		"country": "Country",
+		"city": "City",
+		"mobileNum": "Mobile Number",
+		"identityNum": "National identity Number",
+		"cardHolder": "Card Holder Name",
+		"cardNum": "Card Number",
+		"expMonth": "Expiry Month",
+		"expYear": "Expiry Year",
+		"cvc": "CVC",
+		"total": "Total",
+		"submit": "Confirm Payment",
+		"success": "Thank you for your donation",
+		"error": "Something went wrong",
+		"donationFailed": "Donation Process failed. Try Again"
 	},
 	"forgotPassword": {
 		"form": {
@@ -215,7 +217,7 @@
 			"title": "Update Family",
 			"submit": "Family update successfully",
 			"delete": "Delete"
-			} 
+		}
 	},
 	"AddFamilies": {
 		"title": "Families",
@@ -223,9 +225,14 @@
 		"area": "Area",
 		"situation": "Situation",
 		"no_of_member": "No. of Members",
+		"select":"Select",
 		"form": {
 			"formTitle": "Edit Family Details",
 			"fill_form_correctly": "Please fill the form correctly",
+			"in_eng":"In English",
+			"in_tur":"In Turkish",
+			"in_ar":"In Arabic",
+			"family_details_error": "Please fill the family member details",
 			"all_fields": "All fields are required",
 			"submit": "Family Added Successfully",
 			"title": "Add Family",
@@ -236,6 +243,24 @@
 			"delete": "Delete",
 			"BreadWinnerName": {
 				"title": "Beard Winner Name"
+			},
+			"maritalStatus": {
+				"title": "Martial Status"
+			},
+			"gender": {
+				"title": "Gender"
+			},
+			"areaOfPreviousResidence": {
+				"title": "Area Of Previous Residence"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Area Of Current Residence"
+			},
+			"currentSituation": {
+				"title": "Current Situation"
+			},
+			"lossesInWar": {
+				"title": "Loses In War"
 			},
 			"comment": {
 				"title": "Comment"
@@ -249,7 +274,7 @@
 			"age": {
 				"title": "Age"
 			},
-			"memberIdNumber":{
+			"memberIdNumber": {
 				"title": "Member ID number"
 			},
 			"gender": {
@@ -319,6 +344,10 @@
 				"good": "Good",
 				"worst": "Worst",
 				"urgentneeded": "Urgently Needed",
+				"totaldestruction": "Total Destruction",
+				"partialdestruction": "Partial Destruction",
+				"intact": "Intact",
+				"rented": "Rented",
 				"default": "Select Current Situation"
 			},
 			"losesinwar": {
@@ -365,7 +394,7 @@
 	"HeroMainSection": {
 		"btns": {
 			"DonateaShare": {
-				"title": "Donate a Share"
+				"title": "Donate a Share ❤️"
 			},
 			"Sponser": {
 				"title": "Sponser"
@@ -377,7 +406,7 @@
 				"title": "Already Added"
 			},
 			"seeMore": {
-				"title": "see more"
+				"title": "Sponsor More Families ➜"
 			},
 			"BecomeaSponser": {
 				"title": "Become a Sponser"
@@ -392,7 +421,8 @@
 				"title": "Step"
 			},
 			"Families": {
-				"title": "Families"
+				"title": "Families",
+				"notFound": "Family Not Located"
 			}
 		}
 	},
@@ -417,9 +447,9 @@
 	},
 	"DonatedFamilies": {
 		"title": "Donated Families",
-		"sponserId":"Sponser Id",
-		"familyId":"Family Id",
-		"amountDonated":"Amount Donated"
+		"sponserId": "Sponser Id",
+		"familyId": "Family Id",
+		"amountDonated": "Amount Donated"
 	},
 	"Table": {
 		"Header": {
@@ -453,7 +483,8 @@
 	},
 	"GazaMap": {
 		"red": "This pixel has already booked.",
-		"grey": "Click on this to get registered as a sponsor"
+		"grey": "Click on this to get registered as a sponsor",
+		"book": "Book Your Sponsorship from Gaza Map."
 	},
 	"OurPartner": {
 		"title": "Our Partners"
@@ -481,7 +512,8 @@
 		"allfields": "All fields are required"
 	},
 	"About": {
-		"title": "About"
+		"title": "About",
+		"aboutUs": "About Us"
 	},
 	"Cart": {
 		"title": "Basket",
@@ -501,10 +533,17 @@
 		"totalTitle": "Total",
 		"anotherAmount": "Another Amount",
 		"inputPlaceholder": "Enter donation amount",
-		"button": "Proceed to Checkout"
+		"button": "Proceed to Checkout",
+		"cardname": "Please Enter your Card Name",
+		"cardNumber": "Please Enter your Card Number",
+		"expMonth": "Please Select your Expire Month of Card",
+		"expYear": "Please Enter your Expire Year of Card",
+		"cvc": "Please Enter your Card CVC",
+		"placeholdername": "Muhammad Ahmed",
+		"placeholderaddress": "Istanbul, Turkey"
 	},
-	"CurrencyModal" :{
-		"title":"Display Currency"
+	"CurrencyModal": {
+		"title": "Display Currency"
 	},
 	"FamiliesMainSection": {
 		"clearAll": "Clear All",
@@ -518,7 +557,10 @@
 		"good": "Good",
 		"Worst": "Worst",
 		"worst": "Worst",
-		"Urgently Needed": "Urgently Needed"
+		"month":"Month(s)",
+		"selectduration":"Select Duration",
+		"Urgently Needed": "Urgently Needed",
+		"memberDetail": "Member Details"
 	},
 	"LangSelect": {
 		"English": "English",
@@ -528,5 +570,17 @@
 	"DeleteFamily": {
 		"family_deleted_successfully": "Family Deleted Successfully",
 		"deletion_failed": "Failed to Delete Family"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponser Name",
+		"sponsoremail": "Sponser Email",
+		"sponsoramount": "Amount",
+		"sponsorfamily": "View Family Details"
+	},
+	"Socail": {
+		"title": "Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media",
+		"welcome": "Welcome",
+		"thankyou": "Donate For Needy Families of Gaza",
+		"dashboard": "Dashboard"
 	}
 }

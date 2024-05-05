@@ -79,7 +79,7 @@ const ContactForm = () => {
 				<span style={{ color: 'red' }}>{ContactForm.errors.email as any}</span>
 			) : null}
 			<div className=" flex flex-col gap-4">
-				<label className="text-[16px] font-bold font-sans text-primary mt-3">
+				<label className="text-[16px] font-bold font-sans text-[#36454F] mt-3">
 					{t('message')}
 				</label>
 				<textarea
@@ -88,7 +88,7 @@ const ContactForm = () => {
 					cols={50}
 					rows={5}
 					placeholder="Enter your message..."
-					className="py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+					className="py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#36454F]"
 					value={ContactForm.values?.message}
 					onChange={ContactForm.handleChange}
 				/>
@@ -103,7 +103,7 @@ const ContactForm = () => {
 					title={t('send')}
 					isLoading={loading}
 					type="submit"
-					Color="#000000"
+					Color="#BB9B6C"
 				/>
 			</div>
 		</form>
