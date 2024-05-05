@@ -128,24 +128,47 @@ export const UpdateFamilySchema = object({
 	email: string()
 		.email('Invalid email address')
 		.required('Email address is required'),
-	gender: string().required('Gender is required'),
-	age: number()
-		.positive('Age must be a positive number')
-		.integer('Age must be an integer')
-		.required('Age is required'),
+	genderEn: string().required('Gender (English) is required'),
+	genderTr: string().required('Gender (Turkish) is required'),
+	genderAr: string().required('Gender (Arabic) is required'),
 	dateOfBirth: string().required('Date of birth is required'),
-	maritalStatus: string().required('Maritial status is required'),
+	maritalStatusEn: string().required('Maritial status (English) is required'),
+	maritalStatusTr: string().required('Maritial status (Turkish) is required'),
+	maritalStatusAr: string().required('Maritial status (Arabic) is required'),
 	language: string().required('Language is required'),
-	areaOfPreviousResidence: string().required(
-		'Previous residence area is required',
+	areaOfPreviousResidenceEn: string().required(
+		'Previous residence area (in English) is required',
 	),
-	areaOfCurrentResidence: string().required(
-		'Current residence area is required',
+	areaOfPreviousResidenceTr: string().required(
+		'Previous residence area (in Turkish) is required',
 	),
+	areaOfPreviousResidenceAr: string().required(
+		'Previous residence area (in English) is required',
+	),
+	areaOfCurrentResidenceEn: string().required(
+		'Current residence area (in English) is required',
+	),
+	areaOfCurrentResidenceTr: string().required(
+		'Current residence area (in Turkish) is required',
+	),
+	areaOfCurrentResidenceAr: string().required(
+		'Current residence area (in English) is required',
+	),
+	currentSituationEn: string().required(
+		'Current situation (in English) is required',
+	),
+	currentSituationTr: string().required(
+		'Current situation  (in Turkish) is required',
+	),
+	currentSituationAr: string().required(
+		'Current situation  (in Arabic) is required',
+	),
+	lossesInWarEn: string().required('Losses In War (in English) is required'),
+	lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
+	lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
 	numberOfFamilyMembers: number()
 		.min(0, 'Number of family members must be positive or zero')
 		.required('Number of family members is required'),
-	lossesInWar: string().required('Losses in war is required'),
 	numberOfMartyrInFamily: number()
 		.min(0, 'Number of martyrs in family must be positive or zero')
 		.required('Number of martyrs in family is required'),
@@ -154,7 +177,7 @@ export const UpdateFamilySchema = object({
 		.required('Number of infected in family is required'),
 	telephoneNumber: number().required('Telephone number is required'),
 	idNumber: number().required('ID number is required'),
-	currentSituation: string().required('Current situation is required'),
+
 	familyMemberDetail: array().required('Family member detail is required'),
 });
 

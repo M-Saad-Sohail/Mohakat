@@ -15,8 +15,6 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import DeleteFamilyModal from './DeleteFamilyModal';
 import Button from '@/components/ui/LandingPage/Button';
 import { FamilyMember, ViewModalProps } from './interfaces';
-import useDirection from '@/hooks/useDirection';
-import useLocaleRouter from '@/hooks/useLocaleRouter';
 import {
 	genderInEnglish,
 	genderInTurkish,
@@ -100,8 +98,6 @@ const ViewModal = ({
 	};
 
 	const t = useTranslations('AddFamilies.form');
-	const dir = useDirection();
-	const { changeLocale } = useLocaleRouter();
 
 	useEffect(() => {
 		if (user && openModal) {
@@ -117,7 +113,7 @@ const ViewModal = ({
 
 	const UpdateFamilyForm = useFormik({
 		initialValues: UpdateFamilyValues,
-		// validationSchema: UpdateFamilySchema,
+		validationSchema: UpdateFamilySchema,
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
@@ -443,10 +439,7 @@ const ViewModal = ({
 										<Select
 											title={`${t('in_eng')} *`}
 											name="genderEn"
-											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
-											]}
+											options={genderInEnglish}
 											defaultValue={t('gender.default')}
 											className="mb-[40px] min-w-[300px] mt-[2px] "
 											value={UpdateFamilyForm.values.genderEn}
@@ -468,10 +461,7 @@ const ViewModal = ({
 										<Select
 											title={`${t('in_ar')} *`}
 											name="genderAr"
-											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
-											]}
+											options={genderInArabic}
 											defaultValue={t('gender.default')}
 											className="mb-[40px] min-w-[300px] mt-[2px] "
 											value={UpdateFamilyForm.values.genderAr}
@@ -493,10 +483,7 @@ const ViewModal = ({
 										<Select
 											title={`${t('in_tur')} *`}
 											name="genderTr"
-											options={[
-												{ label: t('gender.male'), value: 'male' },
-												{ label: t('gender.female'), value: 'female' },
-											]}
+											options={genderInTurkish}
 											defaultValue={t('gender.default')}
 											className="mb-[40px] min-w-[300px] mt-[2px] "
 											value={UpdateFamilyForm.values.genderTr}
@@ -602,7 +589,7 @@ const ViewModal = ({
 											options={currentResidenceInEnglish}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
-											value={UpdateFamilyForm.values.currentresidence}
+											value={UpdateFamilyForm.values.areaOfCurrentResidenceEn}
 											onChange={UpdateFamilyForm.handleChange}
 											errorClass={
 												UpdateFamilyForm.touched.areaOfCurrentResidenceEn &&
@@ -627,7 +614,7 @@ const ViewModal = ({
 											options={currentResidenceInArabic}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
-											value={UpdateFamilyForm.values.currentresidence}
+											value={UpdateFamilyForm.values.areaOfCurrentResidenceAr}
 											onChange={UpdateFamilyForm.handleChange}
 											errorClass={
 												UpdateFamilyForm.touched.areaOfCurrentResidenceAr &&
@@ -652,7 +639,7 @@ const ViewModal = ({
 											options={currentResidenceInTurkish}
 											defaultValue={t('currentresidence.default')}
 											className={` ${UpdateFamilyForm.errors.areaOfCurrentResidenceTr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
-											value={UpdateFamilyForm.values.currentresidence}
+											value={UpdateFamilyForm.values.areaOfCurrentResidenceTr}
 											onChange={UpdateFamilyForm.handleChange}
 											errorClass={
 												UpdateFamilyForm.touched.areaOfCurrentResidenceTr &&
