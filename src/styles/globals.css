@@ -401,10 +401,14 @@ input[name='selectedCurrency'] {
 }
 
 .slick-prev:before, .slick-next:before{
-	font-size: 2.2rem !important;
-	color: #BB9B6C !important;
+	/* font-size: 2.2rem !important; */
+	/* color: #BB9B6C !important; */
+	display: none !important;
+
 }
 
 .slick-prev {
-    left: -36px !important;
+    /* left: -36px !important; */
+	display: none !important;
+
 }
