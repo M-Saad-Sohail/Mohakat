@@ -28,18 +28,24 @@ const AboutLandingPage = () => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	const nextImage = () => {
-		setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagesData.length);
+		setCurrentImageIndex(
+			(prevIndex) => (prevIndex + 1) % (imagesData && imagesData.length),
+		);
 	};
 
 	const prevImage = () => {
 		setCurrentImageIndex(
-			(prevIndex) => (prevIndex - 1 + imagesData.length) % imagesData.length,
+			(prevIndex) =>
+				(prevIndex - 1 + (imagesData && imagesData.length)) %
+				(imagesData && imagesData.length),
 		);
 	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagesData.length);
+			setCurrentImageIndex(
+				(prevIndex) => (prevIndex + 1) % imagesData && imagesData.length,
+			);
 		}, 3000);
 
 		return () => clearInterval(interval);
@@ -105,7 +111,6 @@ const AboutLandingPage = () => {
 	useEffect(() => {
 		if (data.heroSlider) {
 			setImagesData(data.heroSlider);
-			console.log(data.heroSlider);
 		}
 	}, [data.heroSlider]);
 
