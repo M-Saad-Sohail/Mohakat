@@ -15,11 +15,11 @@ body {
 	/* font-family: "Al-Jazeera", "Helvetica Neue", "Helvetica", "Arial"; */
 }
 
-.bg-color{
-	background-color: #DDDDDD;
+.bg-color {
+	background-color: #dddddd;
 }
-.login-icon:hover{
-	color: #8DAE8E;
+.login-icon:hover {
+	color: #8dae8e;
 	font-weight: bold;
 }
 
@@ -102,7 +102,7 @@ svg {
 
 input[name='month'] {
 	/* accent-color: #cf7475; */
-	accent-color: #8DAE8E;
+	accent-color: #8dae8e;
 }
 
 /* tooltip */
@@ -179,7 +179,7 @@ input[name='month'] {
 	height: 2.6px;
 	border-radius: 4px;
 	/* background-color: #cf7475; */
-	background-color: #8DAE8E;
+	background-color: #8dae8e;
 	bottom: -4px;
 	left: 0;
 	transform-origin: right;
@@ -204,7 +204,7 @@ input[name='month'] {
 	width: 100%;
 	height: 2.6px;
 	border-radius: 4px;
-	background-color: #8DAE8E;
+	background-color: #8dae8e;
 	bottom: -4px;
 	left: 0;
 	transform-origin: right;
@@ -222,7 +222,7 @@ input[name='month'] {
 	/* color: #27850D; */
 	/* color: #6B8167; */
 	color: #fff;
-	background-color: #8DAE8E;
+	background-color: #8dae8e;
 }
 
 /* TOAST CUSTOMIZATION */
@@ -301,18 +301,18 @@ input[name='month'] {
 	position: relative;
 	animation: slideFromLeft 0.5s ease-out forwards;
 	/* Adjust width, height, and other styles as needed */
-  }
+}
 
-  @keyframes slideFromLeft {
+@keyframes slideFromLeft {
 	from {
-	  transform: translateX(-100%);
-	  opacity: 0;
+		transform: translateX(-100%);
+		opacity: 0;
 	}
 	to {
-	  transform: translateX(0);
-	  opacity: 1;
+		transform: translateX(0);
+		opacity: 1;
 	}
-  }
+}
 
 /* Bakhtawar CSS */
 .btn-transition {
@@ -337,7 +337,7 @@ input[name='month'] {
 
 input[name='selectedCurrency'] {
 	/* accent-color: #cf7475; */
-	accent-color: #8DAE8E;
+	accent-color: #8dae8e;
 	height: 17px; /* Adjust the size of the radio button */
 	width: 17px;
 }
@@ -359,56 +359,66 @@ input[name='selectedCurrency'] {
 }
 
 @media screen and (max-width: 425px) {
-	.social-sharing{
-		
+	.social-sharing {
 	}
-	.social-sharing-h1{
-		font-size: .8rem !important;
-
+	.social-sharing-h1 {
+		font-size: 0.8rem !important;
 	}
-	.social-sharing-para{
-		font-size: .6rem !important;
+	.social-sharing-para {
+		font-size: 0.6rem !important;
 	}
 	.feature-shadow-social {
 		/* padding-top: 3px !important; */
 		transform: none;
 		margin: 0 !important;
-		padding: 0!important;
+		padding: 0 !important;
 	}
-	
+
 	.feature-shadow-social:hover {
 		box-shadow: none !important;
 		border: none !important;
 		cursor: none !important;
 		border-radius: none;
 	}
-  }
+}
 
 /* Heading Component */
-.main_heading-black{
-    font-size: 2rem;
-    color: black;
+.main_heading-black {
+	font-size: 2rem;
+	color: black;
 }
-.main_heading-white{
-    font-size: 2rem;
-    color: #fff;
+.main_heading-white {
+	font-size: 2rem;
+	color: #fff;
 }
 
-.feature-icons{
+.feature-icons {
 	font-size: 5rem;
-	color: #BB9B6C;
+	color: #bb9b6c;
 	font-weight: bold;
 }
 
-.slick-prev:before, .slick-next:before{
+.slick-prev:before,
+.slick-next:before {
 	/* font-size: 2.2rem !important; */
 	/* color: #BB9B6C !important; */
 	display: none !important;
-
 }
 
 .slick-prev {
-    /* left: -36px !important; */
+	/* left: -36px !important; */
 	display: none !important;
+}
 
+.sidebar-about {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.about-card-image {
+	height: 250px;
+	width: 100%;
+	border-radius: 15px;
+	box-shadow:
+		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

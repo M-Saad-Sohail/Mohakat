@@ -15,7 +15,7 @@ interface AboutDataType {
 
 const AboutSection = () => {
 	const t = useTranslations('FAQ');
-	const t1 = useTranslations("About")
+	const t1 = useTranslations('About');
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
@@ -82,38 +82,38 @@ const AboutSection = () => {
 
 	return (
 		<>
-		<section className = "bg-[#e4e5f1] pt-6 pb-6">
-		<div
-			dir={dir}
-			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
-		>
-			<div className=" flex flex-col gap-5 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
-				{/* <h3 className="md:text-3xl text-2xl font-semibold text-center ">
-					{aboutData[0]?.heading}
-				</h3> */}
-				<Heading heading = {aboutData[0]?.heading} className = "main_heading-black" />
-				<div className="md:text-[20px] leading-8 text-lg font-light ">
-					{aboutData[0]?.description}
-				</div>
-				<div className=" flex flex-col gap-3">
-				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6 ">
-					<h3 className="md:text-xl text-lg font-semibold ">
-						{aboutData[1]?.heading}
-					</h3>
-					<p className="md:text-[18px] text-sm font-light">
-						{aboutData[1]?.description}
-					</p>
-				</div>
-				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6">
-					<h3 className="md:text-xl text-lg font-semibold ">
-						{aboutData[2]?.heading}
-					</h3>
-					<p className="md:text-[18px] text-sm font-light">
-						{aboutData[2]?.description}
-					</p>
-				</div>
-			</div>
-			{/* <div className=" flex flex-col gap-3">
+			<section className="bg-[#e4e5f1] pt-6 pb-6">
+				<div
+					dir={dir}
+					className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
+				>
+					<div className=" flex flex-col gap-5 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
+						<Heading
+							heading={aboutData[0]?.heading}
+							className="main_heading-black"
+						/>
+						<div className="md:text-[20px] leading-8 text-lg font-light ">
+							{aboutData[0]?.description}
+						</div>
+						<div className=" flex flex-col gap-3">
+							<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6 ">
+								<h3 className="md:text-xl text-lg font-semibold ">
+									{aboutData[1]?.heading}
+								</h3>
+								<p className="md:text-[18px] text-sm font-light">
+									{aboutData[1]?.description}
+								</p>
+							</div>
+							<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6">
+								<h3 className="md:text-xl text-lg font-semibold ">
+									{aboutData[2]?.heading}
+								</h3>
+								<p className="md:text-[18px] text-sm font-light">
+									{aboutData[2]?.description}
+								</p>
+							</div>
+						</div>
+						{/* <div className=" flex flex-col gap-3">
 				<div className="flex flex-col gap-[6px] bg-[#8DAE8E] rounded-[20px] p-6 custom-box-shadow">
 					<h3 className="md:text-xl text-lg font-semibold">
 						{aboutData[1]?.heading}
@@ -122,7 +122,7 @@ const AboutSection = () => {
 						{aboutData[1]?.description}
 					</p>
 				</div> */}
-				{/* <div className="flex flex-col gap-[6px] bg-[#CF7475] rounded-[20px] p-6 custom-box-shadow">
+						{/* <div className="flex flex-col gap-[6px] bg-[#CF7475] rounded-[20px] p-6 custom-box-shadow">
 					<h3 className="md:text-xl text-lg font-semibold">
 						{aboutData[2]?.heading}
 					</h3>
@@ -130,9 +130,9 @@ const AboutSection = () => {
 						{aboutData[2]?.description}
 					</p>
 				</div> */}
-			</div>
-		</div>
-		</section>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 };
