@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
+// import Logo from '@/assests/icons/newlogo.svg';
+import Logo from '@/assests/images/test.png';
+import { logo } from '@/assests';
 
 import SponserMain from '../LandingPage/Sponsers/SponserMain';
 import IntiationMain from '../LandingPage/Intiation/IntiationMain';
@@ -18,7 +21,7 @@ import TestimonialSlider from '../LandingPage/TestinomialSlider';
 import AboutSection from '../LandingPage/AboutSection';
 import Heading from '@/components/ui/Heading/Heading';
 import Button from '@/components/ui/LandingPage/Button';
-
+import Image from 'next/image';
 
 interface AboutDataType {
 	heading: string;
@@ -35,6 +38,7 @@ const About = () => {
 	const currentPath = pathname?.slice(1, 3);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
+	const [item, setItem] = useState<any>([]);
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setAboutData((prev: any) => [
@@ -92,49 +96,86 @@ const About = () => {
 		}
 	}, []);
 
+	useEffect(() => {
+		filterItem(0);
+	}, [aboutData]);
+
+	const filterItem = (tabNum: any) => {
+		if (tabNum === 0) {
+			setItem(aboutData[0]?.description);
+		} else if (tabNum === 1) {
+			setItem(aboutData[1]?.description);
+		} else if (tabNum === 2) {
+			setItem(aboutData[2]?.description);
+		}
+	};
+
 	return (
-	<>
-	<section className = "bg-[#e4e5f1] pt-6 pb-6">
-		<div
-			dir={dir}
-			className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
-		>
-			<div className=" flex flex-col gap-5 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
-				<Heading heading = {aboutData[0]?.heading} className = "main_heading-black" />
-				<div className="md:text-[20px] leading-8 text-lg font-light ">
-					{aboutData[0]?.description}
-				</div>
-				<div className=" flex flex-col gap-3">
-				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6 ">
-					<h3 className="md:text-xl text-lg font-semibold ">
-						{aboutData[1]?.heading}
-					</h3>
-					<p className="md:text-[18px] text-sm font-light">
-						{aboutData[1]?.description}
-					</p>
-				</div>
-				<div className="flex flex-col gap-[6px] bg-[#e4e5f1] rounded-[6px] p-6">
-					<h3 className="md:text-xl text-lg font-semibold ">
-						{aboutData[2]?.heading}
-					</h3>
-					<p className="md:text-[18px] text-sm font-light">
-						{aboutData[2]?.description}
-					</p>
-				</div>
-				<SponserMain currentPath={currentPath} />
-				{!user && (
-					<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
-						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button title={t1('BecomeaSponser.title')} Color="#BB9B6C" />
-						</Link>
+		<>
+			<section className="pt-6 pb-6">
+				<div
+					dir={dir}
+					className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
+				>
+					<div className=" flex flex-col gap-10 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
+						{/* main section */}
+						<div className="flex md:flex-row flex-col justify-start items-start md:gap-20 gap-10 mb-10">
+							{/* img div */}
+							<div className="img_div flex justify-center items-start flex-1 ">
+								<Image
+									src={Logo}
+									alt=""
+									width={300}
+									height={100}
+									// className=" w-full h-full"
+								/>
+							</div>
+
+							<div className=" flex flex-1 flex-col md:justify-start md:items-start justify-center items-center gap-5 md:mt-5">
+								{/* tabs */}
+								<div className=" flex md:justify-start justify-center items-center md:items-start md:w-[90%] w-full gap-8 h-8">
+									<h2
+										onClick={() => filterItem(0)}
+										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+									>
+										{aboutData[0]?.heading}
+									</h2>
+									<h2
+										onClick={() => filterItem(1)}
+										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+									>
+										{aboutData[1]?.heading}
+									</h2>
+									<h2
+										onClick={() => filterItem(2)}
+										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+									>
+										{aboutData[2]?.heading}
+									</h2>
+								</div>
+
+								<div className=" md:w-[90%] w-full">
+									<p className="md:text-[18px] text-sm font-light text-justify leading-6">
+										{item}
+									</p>
+								</div>
+							</div>
+						</div>
+
+						{/* remaining sections */}
+						<SponserMain currentPath={currentPath} />
+						{!user && (
+							<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
+								<Link href={url(PATHS.BECOME_SPONSOR)}>
+									<Button title={t1('BecomeaSponser.title')} Color="#BB9B6C" />
+								</Link>
+							</div>
+						)}
+						<PartnersSection isAbout={true} />
 					</div>
-				)}
-				<PartnersSection isAbout={true} />
-			</div>
-		</div>
-	</div>
-</section>
-	</>
+				</div>
+			</section>
+		</>
 	);
 };
 
