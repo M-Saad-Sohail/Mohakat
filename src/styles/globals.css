@@ -50,6 +50,7 @@ svg {
 }
 
 @keyframes scroll {
+
 	0%,
 	100% {
 		transform: translateX(0);
@@ -281,6 +282,7 @@ input[name='month'] {
 	transform: scale(1.1);
 	border-radius: 8px;
 }
+
 .feature-shadow-faq {
 	transition:
 		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -295,6 +297,7 @@ input[name='month'] {
 	transform: scale(1.1);
 	border-radius: 8px;
 }
+
 /* Zain CSS end */
 
 .animated-div {
@@ -308,6 +311,7 @@ input[name='month'] {
 		transform: translateX(-100%);
 		opacity: 0;
 	}
+
 	to {
 		transform: translateX(0);
 		opacity: 1;
@@ -367,6 +371,7 @@ input[name='selectedCurrency'] {
 	.social-sharing-para {
 		font-size: 0.6rem !important;
 	}
+
 	.feature-shadow-social {
 		/* padding-top: 3px !important; */
 		transform: none;
@@ -421,4 +426,37 @@ input[name='selectedCurrency'] {
 	box-shadow:
 		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 		rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+
+/* new about*/
+
+.img_div img {
+	animation: float 2.5s ease infinite;
+	/* margin-bottom: 2.8rem; */
+}
+
+@keyframes float {
+	50% {
+		transform: translate(10px, 20px);
+	}
+}
+
+.menu-tab-h2::after {
+	content: "";
+	height: 2.6px;
+	width: 0%;
+	background-color: #8DAE8E;
+	display: block;
+	transition: 0.5s ease-in-out;
+}
+
+.menu-tab-h2:hover:after {
+	content: "";
+	height: 3px;
+	border-radius: 4px;
+	width: 100%;
+	background-color: #8DAE8E;
+	display: block;
+	transition: 0.3s ease-in-out;
 }

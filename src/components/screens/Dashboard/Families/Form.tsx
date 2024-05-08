@@ -211,6 +211,19 @@ const FamilyForm = () => {
 		},
 	});
 
+	const handleNumChange = (e: any, setFieldValue: Function) => {
+		const inputValue = e.target.value;
+		const inputName = e.target.name;
+		// Check if the input is a non-negative integer or empty
+		if (!inputValue.includes('-') && /^\d*$/.test(inputValue)) {
+			// Set the value of the specific field in Formik
+			setFieldValue(inputName, inputValue);
+		} else {
+			// Clear the field if a minus sign is entered
+			setFieldValue(inputName, '');
+		}
+	};
+
 	return (
 		<div
 			className=" scrollbarHide"
@@ -946,9 +959,13 @@ const FamilyForm = () => {
 							title={`${t('FamilyMembers.title')} *`}
 							name="numberOfFamilyMembers"
 							type="number"
+							min={0}
 							className="mb-[5px] min-w-[300px]"
 							value={AddFamiliesForm.values?.numberOfFamilyMembers}
-							onChange={AddFamiliesForm.handleChange}
+							// onChange={AddFamiliesForm.handleChange}
+							onChange={(e) =>
+								handleNumChange(e, AddFamiliesForm.setFieldValue)
+							}
 							errorClass={
 								AddFamiliesForm.touched.numberOfFamilyMembers &&
 								AddFamiliesForm.errors.numberOfFamilyMembers &&
@@ -968,9 +985,13 @@ const FamilyForm = () => {
 							title={`${t('MartyrInFamily.title')} *`}
 							name="numberOfMartyrInFamily"
 							type="number"
+							min={0}
 							className="mb-[5px] min-w-[300px]"
 							value={AddFamiliesForm.values?.numberOfMartyrInFamily}
-							onChange={AddFamiliesForm.handleChange}
+							// onChange={AddFamiliesForm.handleChange}
+							onChange={(e) =>
+								handleNumChange(e, AddFamiliesForm.setFieldValue)
+							}
 							errorClass={
 								AddFamiliesForm.touched.numberOfMartyrInFamily &&
 								AddFamiliesForm.errors.numberOfMartyrInFamily &&
@@ -991,9 +1012,13 @@ const FamilyForm = () => {
 							title={`${t('InfectedInFamily.title')} *`}
 							name="numberOfInfectedInFamily"
 							type="number"
+							min={0}
 							className="mb-[5px] min-w-[300px]"
 							value={AddFamiliesForm.values?.numberOfInfectedInFamily}
-							onChange={AddFamiliesForm.handleChange}
+							// onChange={AddFamiliesForm.handleChange}
+							onChange={(e) =>
+								handleNumChange(e, AddFamiliesForm.setFieldValue)
+							}
 							errorClass={
 								AddFamiliesForm.touched.numberOfInfectedInFamily &&
 								AddFamiliesForm.errors.numberOfInfectedInFamily &&
