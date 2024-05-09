@@ -114,217 +114,127 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, [data?.randomFamilies]);
 
 	return (
-		<section className = "md:w-[100%]">
+		<section className="w-full h-screen bg-[#75846a] bg-herosection">
 			<div className="md:w-[80%] w-full h-[85vh] flex items-center mx-auto">
-			<div className=" hidden md:grid grid-cols-5 h-[90%] gap-3 animated-div">
-				<div className=" flex flex-col justify-end gap-3">
-					<div className=" h-[50%] feature-shadow">
-						<img
-							src={
-								(imagesData && imagesData[0].heroSliderImg) ||
-								'/images/light-gray-background.png'
-							}
-							alt="img"
-							width={100}
-							height={100}
-							className=" w-full h-full rounded-[20px] object-cover"
-						/>
-					</div>
-					<div className=" h-[30%] feature-shadow">
-						<img
-							src={
-								(imagesData && imagesData[1].heroSliderImg) ||
-								'/images/light-gray-background.png'
-							}
-							alt="img"
-							width={100}
-							height={100}
-							className=" w-full h-full rounded-[20px] object-cover"
-						/>
-					</div>
-				</div>
-				<div className=" col-span-3 flex flex-col justify-between">
-					<h1 className=" text-3xl text-[#171717] font-bold text-center ">
-						{currentHeroData?.heading}
-					</h1>
-					<p className="text-lg font-light text-center">
-						{currentHeroData.description}
-					</p>
-					{!user && (
-						<div
-							className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
-						>
-							<Button
-								title= {t('DonateaShare.title')}
-								Color="#CF7475"
-								onClick={() => {
-									setQuickDonationOpen(true);
-								}}
-							/>
-							<Link href={url(PATHS.BECOME_SPONSOR)}>
-								<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-							</Link>
-							<Button
-								onClick={() => {
-									toast.error(`This feature is in progress`, {
-										toastId: 'success',
-										position: 'bottom-right',
-										autoClose: 4000,
-									});
-								}}
-								title={t('RegisterasFamily.title')}
-								Color="#BB9B6C"
-							/>
-						</div>
-					)}
-					<div className=" h-[45%] flex gap-3">
-						<div className=" flex-1 feature-shadow">
-							<img
-								src={
-									(imagesData && imagesData[2].heroSliderImg) ||
-									'/images/light-gray-background.png'
-								}
-								alt="img"
-								width={100}
-								height={100}
-								className=" w-full h-full rounded-[20px] object-cover"
-							/>
-						</div>
-						<div className=" flex-1 h-[80%] self-end feature-shadow">
-							<img
-								src={
-									(imagesData && imagesData[3].heroSliderImg) ||
-									'/images/light-gray-background.png'
-								}
-								alt="img"
-								width={100}
-								height={100}
-								className=" w-full h-full rounded-[20px] object-cover"
-							/>
-						</div>
-						<div className="flex-1 feature-shadow">
-							<img
-								src={
-									(imagesData && imagesData[4].heroSliderImg) ||
-									'/images/light-gray-background.png'
-								}
-								alt="img"
-								width={100}
-								height={100}
-								className=" w-full h-full rounded-[20px] object-cover"
-							/>
-						</div>
-					</div>
-				</div>
-				<div className=" flex flex-col justify-end gap-3 ">
-					<div className=" h-[50%] feature-shadow">
-						<img
-							src={
-								(imagesData && imagesData[5].heroSliderImg) ||
-								'/images/light-gray-background.png'
-							}
-							alt="img"
-							width={100}
-							height={100}
-							className=" w-full h-full rounded-[20px] object-cover"
-						/>
-					</div>
-					<div className=" h-[30%] feature-shadow">
-						<img
-							src={
-								(imagesData && imagesData[6].heroSliderImg) ||
-								'/images/light-gray-background.png'
-							}
-							alt="img"
-							width={100}
-							height={100}
-							className=" w-full h-full rounded-[20px] object-cover"
-						/>
-					</div>
-				</div>
-			</div>
-			<div
-				className={`md:hidden flex flex-col ${user ? 'justify-center gap-12' : 'justify-end gap-10'}  h-full`}
-			>
-				<div className=" px-4 flex flex-col gap-4">
-					<h1
-						className={` text-3xl ${user ? 'leading-10' : 'leading-8'}  text-[#171717] font-bold text-center `}
-					>
-						{currentHeroData?.heading}
-					</h1>
-					<p
-						className={`text-base leading-6 font-normal text-center ${user && 'mt-2'}`}
-					>
-						{currentHeroData?.description}
-					</p>
-					{!user && (
-						<div className=" flex flex-wrap gap-4 justify-center">
-							<Button
-								title={t('DonateaShare.title')}
-								Color="#CF7475"
-								onClick={() => {
-									setQuickDonationOpen(true);
-								}}
-							/>
-							<Link href={url(PATHS.BECOME_SPONSOR)}>
-								<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-							</Link>
-							<Button
-								onClick={() => {
-									toast.error(`This feature is in progress`, {
-										toastId: 'success',
-										position: 'top-center',
-										autoClose: 4000,
-									});
-								}}
-								title={t('RegisterasFamily.title')}
-								Color="#000000"
-							/>
-						</div>
-					)}
-				</div>
-				<div className="carousel-container h-[40%]">
-					<div className="carousel h-full">
-						{imagesData?.map((item: any, i: number) => (
+				<div className=" mt-24 flex justify-center items-center mx-auto w-[600px]">
+					<div className=" flex flex-col justify-between gap-8">
+						<h1 className=" text-[42px] leading-[52px] text-[#171717] font-bold text-center ">
+							{currentHeroData?.heading}
+						</h1>
+						<p className="text-xl font-light text-center">
+							{currentHeroData.description}
+						</p>
+						{!user && (
 							<div
-								key={i}
-								className="carousel-item flex even:items-end odd:items-start px-2"
+								className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 							>
-								<img
-									src={
-										(imagesData && item?.heroSliderImg) ||
-										'/images/light-gray-background.png'
-									}
-									alt="img"
-									width={100}
-									height={100}
-									className=" w-full h-[90%] rounded-[20px] "
+								<Button
+									title={t('DonateaShare.title')}
+									Color="#CF7475"
+									onClick={() => {
+										setQuickDonationOpen(true);
+									}}
+								/>
+								<Link href={url(PATHS.BECOME_SPONSOR)}>
+									<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+								</Link>
+								<Button
+									onClick={() => {
+										toast.error(`This feature is in progress`, {
+											toastId: 'success',
+											position: 'bottom-right',
+											autoClose: 4000,
+										});
+									}}
+									title={t('RegisterasFamily.title')}
+									Color="#BB9B6C"
 								/>
 							</div>
-						))}
+						)}
 					</div>
 				</div>
-			</div>
+				<div
+					className={`md:hidden flex flex-col ${user ? 'justify-center gap-12' : 'justify-end gap-10'}  h-full`}
+				>
+					<div className=" px-4 flex flex-col gap-4">
+						<h1
+							className={` text-3xl ${user ? 'leading-10' : 'leading-8'}  text-[#171717] font-bold text-center `}
+						>
+							{currentHeroData?.heading}
+						</h1>
+						<p
+							className={`text-base leading-6 font-normal text-center ${user && 'mt-2'}`}
+						>
+							{currentHeroData?.description}
+						</p>
+						{!user && (
+							<div className=" flex flex-wrap gap-4 justify-center">
+								<Button
+									title={t('DonateaShare.title')}
+									Color="#CF7475"
+									onClick={() => {
+										setQuickDonationOpen(true);
+									}}
+								/>
+								<Link href={url(PATHS.BECOME_SPONSOR)}>
+									<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
+								</Link>
+								<Button
+									onClick={() => {
+										toast.error(`This feature is in progress`, {
+											toastId: 'success',
+											position: 'top-center',
+											autoClose: 4000,
+										});
+									}}
+									title={t('RegisterasFamily.title')}
+									Color="#000000"
+								/>
+							</div>
+						)}
+					</div>
+					<div className="carousel-container h-[40%]">
+						<div className="carousel h-full">
+							{imagesData?.map((item: any, i: number) => (
+								<div
+									key={i}
+									className="carousel-item flex even:items-end odd:items-start px-2"
+								>
+									<img
+										src={
+											(imagesData && item?.heroSliderImg) ||
+											'/images/light-gray-background.png'
+										}
+										alt="img"
+										width={100}
+										height={100}
+										className=" w-full h-[90%] rounded-[20px] "
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
 
-			<QuickDonationModal
-				open={quickDonationOpen}
-				setOpen={setQuickDonationOpen}
-				cancelButtonRef={cancelQuickDonationButtonRef}
-				amount={amount}
-				setAmount={setAmount}
-				setDonate={setDonateOpen}
-			/>
-			<DonateModal
-				setOpen={setDonateOpen}
-				open={donateOpen}
-				cancelButtonRef={cancelDonateButtonRef}
-				isLoggedIn={isLoggedIn}
-				amount={amount}
-				setAmount={setAmount}
-				familyId={randomFamily && randomFamily?._id}
-				isAddToCart={false}
-			/>
-		</div>
+				<QuickDonationModal
+					open={quickDonationOpen}
+					setOpen={setQuickDonationOpen}
+					cancelButtonRef={cancelQuickDonationButtonRef}
+					amount={amount}
+					setAmount={setAmount}
+					setDonate={setDonateOpen}
+				/>
+				<DonateModal
+					setOpen={setDonateOpen}
+					open={donateOpen}
+					cancelButtonRef={cancelDonateButtonRef}
+					isLoggedIn={isLoggedIn}
+					amount={amount}
+					setAmount={setAmount}
+					familyId={randomFamily && randomFamily?._id}
+					isAddToCart={false}
+				/>
+			</div>
 		</section>
 	);
 };

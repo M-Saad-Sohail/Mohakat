@@ -8,18 +8,16 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import LangSelector from '../LangSelector';
 import { useTranslations } from 'next-intl';
-import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import { UserType } from '@/state/user/types';
 import { TbBasketDollar } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
-import CurrencySelector from '../CurrencySelector';
 import Button from '../LandingPage/Button';
 import CurrencyModal from '../Modals/CurrencyModal';
-import { FaUser, FaRegUser  } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
 import { useAuth } from '@/hooks/useAuth';
-import { TbLogout2, TbHomeShare  } from "react-icons/tb";
+import { TbLogout2, TbHomeShare } from 'react-icons/tb';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -62,7 +60,7 @@ const AuthNavbar = ({
 			document.body.removeEventListener('click', handleClickOutside);
 		};
 	}, []);
-	
+
 	if (!pathname) {
 		return null;
 	}
@@ -78,36 +76,37 @@ const AuthNavbar = ({
 
 
 	return (
-		<div dir={dir} className="h-fit hidden md:block bg-[#e9f1f8]">
-			<div className="flex items-center justify-between py-4 mx-10 mobile:pt-4">
-				<div className=" flex gap-6">
-					<div className="flex items-center ">
-						<Link locale={locale} href={url('/')}>
-							<Image
-								src={currentPath === 'en' || currentPath === 'tr' ? logo : Logo}
-								alt="Logo"
-								width={56}
-								height={56}
-								className="mx-2 h-14 w-14"
-							/>
+		<div
+			dir={dir}
+			className=" absolute top-0 bg-transparent h-fit hidden md:block w-full"
+		>
+			<div className=" flex items-center justify-between pt-1 px-10 mobile:pt-4">
+				<div className="hidden md:flex justify-start gap-8 items-center pb-4 border-b border-white w-[40%]">
+					{Links.map((link, i) => (
+						<Link
+							key={link.name}
+							href={url(link.link)}
+							locale={locale}
+							// className={` block py-2 px-4 transition-colors duration-300 ease-in-out  ${link.link === currentPathName ? ' font-semibold text-xl text-[#CF7475]' : ' font-normal text-lg hover:text-[#CF7475]'}`}
+							className=" pt-2 text-lg font-medium hover:text-xl transition-all duration-300  text-white"
+						>
+							{t(link.localeId)}
 						</Link>
-					</div>
-					<div className="hidden md:flex items-center">
-						{Links.map((link, i) => (
-							<Link
-								key={link.name}
-								href={url(link.link)}
-								locale={locale}
-								// className={` block py-2 px-4 transition-colors duration-300 ease-in-out  ${link.link === currentPathName ? ' font-semibold text-xl text-[#CF7475]' : ' font-normal text-lg hover:text-[#CF7475]'}`}
-								className="navbar-link text-lg font-medium hover:text-xl transition-all duration-300 mx-4"
-							>
-								{t(link.localeId)}
-							</Link>
-						))}
-					</div>
+					))}
+				</div>
+				<div className="flex items-center">
+					<Link locale={locale} href={url('/')} className="">
+						<Image
+							src={currentPath === 'en' || currentPath === 'tr' ? logo : Logo}
+							alt="Logo"
+							width={56}
+							height={56}
+							className=" h-16 w-16 "
+						/>
+					</Link>
 				</div>
 				<div
-					className={`flex flex-row items-center justify-center ${isLoggedIn ? 'gap-x-6' : 'gap-x-4'} `}
+					className={`flex flex-row items-center justify-end ${isLoggedIn ? 'gap-x-6' : 'gap-x-4'} pb-4 border-b border-white w-[45%]`}
 				>
 					<LangSelector
 						name="language"
@@ -169,7 +168,10 @@ const AuthNavbar = ({
 										className="bg-[#8DAE8E] text-white md:text-sm text-[13px] rounded-md px-3 py-[6px] text-center  cursor-pointer hover:bg-white hover:font-bold border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out flex items-start justify-center gap-2 "
 									>
 										{t('cta.logout')}
-										<span> <TbLogout2 className= "text-[20px] hover:font-bold" /></span>
+										<span>
+											{' '}
+											<TbLogout2 className="text-[20px] hover:font-bold" />
+										</span>
 									</span>
 									<span
 										onClick={() => {
@@ -179,7 +181,9 @@ const AuthNavbar = ({
 										className="bg-[#8DAE8E] text-white md:text-sm text-[13px] rounded-md px-3 py-[6px] text-center  cursor-pointer hover:bg-white hover:font-bold border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out flex items-start justify-center gap-2 "
 									>
 										{t('cta.dashboard')}
-										<span><TbHomeShare  className= "text-[20px] hover:font-bold"/></span>
+										<span>
+											<TbHomeShare className="text-[20px] hover:font-bold" />
+										</span>
 									</span>
 								</div>
 							)}
