@@ -51,6 +51,7 @@ svg {
 }
 
 @keyframes scroll {
+
 	0%,
 	100% {
 		transform: translateX(0);
@@ -364,8 +365,7 @@ input[name='selectedCurrency'] {
 }
 
 @media screen and (max-width: 425px) {
-	.social-sharing {
-	}
+	.social-sharing {}
 
 	.social-sharing-h1 {
 		font-size: 0.8rem !important;

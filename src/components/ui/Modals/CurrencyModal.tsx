@@ -94,7 +94,7 @@ const CurrencyModal: React.FC<CurrencyModalType> = ({
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					as="div"
-					className="relative z-10"
+					className="relative z-[99999999]"
 					initialFocus={cancelButtonRef}
 					onClose={setOpen}
 				>

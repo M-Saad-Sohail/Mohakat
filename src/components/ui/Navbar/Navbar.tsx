@@ -18,6 +18,7 @@ import CurrencyModal from '../Modals/CurrencyModal';
 import { FaRegUser } from 'react-icons/fa';
 import { useAuth } from '@/hooks/useAuth';
 import { TbLogout2, TbHomeShare } from 'react-icons/tb';
+import TopBar from '../TopBar/TopBar';
 
 const AuthNavbar = ({
 	setIsCartOpen,
@@ -79,7 +80,8 @@ const AuthNavbar = ({
 			dir={dir}
 			className="z-[99999] absolute top-0 bg-transparent h-fit hidden md:block w-full"
 		>
-			<div className=" flex items-center justify-between pt-2 px-10 mobile:pt-4">
+			<TopBar />
+			<div className=" flex items-center justify-between pt-3 px-10 mobile:pt-4">
 				<div className="hidden md:flex justify-start gap-8 items-center pb-4 border-b border-white w-[40%]">
 					{Links.map((link, i) => (
 						<Link
@@ -125,7 +127,7 @@ const AuthNavbar = ({
 							</Link>
 						</>
 					)}
-					<div
+					{/* <div
 						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[30px] md:w-[42px] h-[30px] md:h-10 cursor-pointer currency-dropdown"
 						onClick={() => setCurrencyModalOpen((prev) => !prev)}
 					>
@@ -134,7 +136,7 @@ const AuthNavbar = ({
 						>
 							{currencyState?.key}
 						</p>
-					</div>
+					</div> */}
 					{user?.role === 'user' && (
 						<div
 							className=" relative cursor-pointer"
