@@ -18,6 +18,7 @@ body {
 .bg-color {
 	background-color: #dddddd;
 }
+
 .login-icon:hover {
 	color: #8dae8e;
 	font-weight: bold;
@@ -342,7 +343,8 @@ input[name='month'] {
 input[name='selectedCurrency'] {
 	/* accent-color: #cf7475; */
 	accent-color: #8dae8e;
-	height: 17px; /* Adjust the size of the radio button */
+	height: 17px;
+	/* Adjust the size of the radio button */
 	width: 17px;
 }
 
@@ -363,11 +365,12 @@ input[name='selectedCurrency'] {
 }
 
 @media screen and (max-width: 425px) {
-	.social-sharing {
-	}
+	.social-sharing {}
+
 	.social-sharing-h1 {
 		font-size: 0.8rem !important;
 	}
+
 	.social-sharing-para {
 		font-size: 0.6rem !important;
 	}
@@ -392,6 +395,7 @@ input[name='selectedCurrency'] {
 	font-size: 2rem;
 	color: black;
 }
+
 .main_heading-white {
 	font-size: 2rem;
 	color: #fff;
@@ -442,6 +446,11 @@ input[name='selectedCurrency'] {
 	}
 }
 
+/* Add this CSS to your stylesheets */
+.menu-tab-h2 {
+	position: relative;
+}
+
 .menu-tab-h2::after {
 	content: "";
 	height: 2.6px;
@@ -459,4 +468,16 @@ input[name='selectedCurrency'] {
 	background-color: #8DAE8E;
 	display: block;
 	transition: 0.3s ease-in-out;
+}
+
+/* This will add a line under the active tab */
+.menu-tab-h2.active-tab::after {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	border-radius: 4px;
+	height: 3px;
+	background-color: #8DAE8E;
 }

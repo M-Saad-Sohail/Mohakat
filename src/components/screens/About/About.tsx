@@ -39,6 +39,7 @@ const About = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
 	const [item, setItem] = useState<any>([]);
+	const [activeTab, setActiveTab] = useState<number>(0);
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setAboutData((prev: any) => [
@@ -97,8 +98,8 @@ const About = () => {
 	}, []);
 
 	useEffect(() => {
-		filterItem(0);
-	}, [aboutData]);
+		filterItem(activeTab);
+	}, [aboutData, activeTab]);
 
 	const filterItem = (tabNum: any) => {
 		if (tabNum === 0) {
@@ -135,20 +136,29 @@ const About = () => {
 								{/* tabs */}
 								<div className=" flex md:justify-start justify-center items-center md:items-start md:w-[90%] w-full gap-8 h-8">
 									<h2
-										onClick={() => filterItem(0)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(0);
+											setActiveTab(0); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 0 ? 'active-tab' : ''}`}
 									>
 										{aboutData[0]?.heading}
 									</h2>
 									<h2
-										onClick={() => filterItem(1)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(1);
+											setActiveTab(1); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 1 ? 'active-tab' : ''}`}
 									>
 										{aboutData[1]?.heading}
 									</h2>
 									<h2
-										onClick={() => filterItem(2)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(2);
+											setActiveTab(2); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 2 ? 'active-tab' : ''}`}
 									>
 										{aboutData[2]?.heading}
 									</h2>
