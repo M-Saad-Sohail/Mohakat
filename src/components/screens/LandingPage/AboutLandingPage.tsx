@@ -23,33 +23,58 @@ const AboutLandingPage = () => {
 	const currentPath = pathname?.slice(1);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
-	const [imagesData, setImagesData] = useState<any>();
+	const [imagesData1, setImagesData1] = useState<any>();
+	const [imagesData2, setImagesData2] = useState<any>();
+	const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
+	const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
 
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-	const nextImage = () => {
-		setCurrentImageIndex(
-			(prevIndex) => (prevIndex + 1) % (imagesData && imagesData.length),
+	const nextImageFirst = () => {
+		setCurrentImageIndex1(
+			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
 		);
 	};
 
-	const prevImage = () => {
-		setCurrentImageIndex(
+	const prevImageFirst = () => {
+		setCurrentImageIndex1(
 			(prevIndex) =>
-				(prevIndex - 1 + (imagesData && imagesData.length)) %
-				(imagesData && imagesData.length),
+				(prevIndex - 1 + (imagesData1 && imagesData1.length)) %
+				(imagesData1 && imagesData1.length),
+		);
+	};
+
+	const nextImageSecond = () => {
+		setCurrentImageIndex2(
+			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
+		);
+	};
+
+	const prevImageSecond = () => {
+		setCurrentImageIndex2(
+			(prevIndex) =>
+				(prevIndex - 1 + (imagesData1 && imagesData1.length)) %
+				(imagesData1 && imagesData1.length),
 		);
 	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentImageIndex(
-				(prevIndex) => (prevIndex + 1) % imagesData && imagesData.length,
+			setCurrentImageIndex1(
+				(prevIndex) => (prevIndex + 1) % imagesData1.length,
 			);
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imagesData && imagesData.length]);
+	}, [imagesData1]);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentImageIndex2(
+				(prevIndex) => (prevIndex + 1) % imagesData2.length,
+			);
+		}, 3000);
+
+		return () => clearInterval(interval);
+	}, [imagesData2]);
 
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -110,9 +135,15 @@ const AboutLandingPage = () => {
 
 	useEffect(() => {
 		if (data.heroSlider) {
-			setImagesData(data.heroSlider);
+			setImagesData1(data.heroSlider.slice(0, 3));
+			setImagesData2(data.heroSlider.slice(3));
 		}
 	}, [data.heroSlider]);
+
+	useEffect(() => {
+		console.log('kk', imagesData1);
+		console.log('kk2', imagesData2);
+	}, [imagesData1, imagesData2]);
 
 	return (
 		<section
@@ -144,7 +175,8 @@ const AboutLandingPage = () => {
 					<div className="about-card-image mt-4  transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] ">
 						<img
 							src={
-								(imagesData && imagesData[currentImageIndex]?.heroSliderImg) ||
+								(imagesData1 &&
+									imagesData1[currentImageIndex1]?.heroSliderImg) ||
 								'/images/light-gray-background.png'
 							}
 							alt="img"
@@ -154,13 +186,13 @@ const AboutLandingPage = () => {
 						/>
 						<div className="absolute top-0 bottom-0 left-0 right-0 flex justify-between items-center pointer-events-none">
 							<button
-								onClick={prevImage}
+								onClick={prevImageFirst}
 								className="cursor-pointer pointer-events-auto"
 							>
 								<IoIosArrowBack className=" text-6xl text-white" />
 							</button>
 							<button
-								onClick={nextImage}
+								onClick={nextImageFirst}
 								className="cursor-pointer pointer-events-auto"
 							>
 								<IoIosArrowForward className=" text-6xl text-white" />
@@ -182,7 +214,8 @@ const AboutLandingPage = () => {
 					<div className="about-card-image mt-4  transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] ">
 						<img
 							src={
-								(imagesData && imagesData[currentImageIndex]?.heroSliderImg) ||
+								(imagesData2 &&
+									imagesData2[currentImageIndex2]?.heroSliderImg) ||
 								'/images/light-gray-background.png'
 							}
 							alt="img"
@@ -192,13 +225,13 @@ const AboutLandingPage = () => {
 						/>
 						<div className="absolute top-0 bottom-0 left-0 right-0 flex justify-between items-center pointer-events-none">
 							<button
-								onClick={prevImage}
+								onClick={prevImageSecond}
 								className="cursor-pointer pointer-events-auto"
 							>
 								<IoIosArrowBack className=" text-6xl text-white" />
 							</button>
 							<button
-								onClick={nextImage}
+								onClick={nextImageSecond}
 								className="cursor-pointer pointer-events-auto"
 							>
 								<IoIosArrowForward className=" text-6xl text-white" />
