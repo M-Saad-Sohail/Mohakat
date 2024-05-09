@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
-// import Logo from '@/assests/icons/newlogo.svg';
-import Logo from '@/assests/images/test.png';
+import enLogo from '@/assests/svgs/logo_En.svg';
+import arLogo from '@/assests/svgs/logo_Ar.svg';
+// import Logo from '@/assests/images/test.png';
 import { logo } from '@/assests';
 
 import SponserMain from '../LandingPage/Sponsers/SponserMain';
@@ -39,6 +40,7 @@ const About = () => {
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [aboutData, setAboutData] = useState<AboutDataType[]>([]);
 	const [item, setItem] = useState<any>([]);
+	const [activeTab, setActiveTab] = useState<number>(0);
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
 			setAboutData((prev: any) => [
@@ -97,8 +99,8 @@ const About = () => {
 	}, []);
 
 	useEffect(() => {
-		filterItem(0);
-	}, [aboutData]);
+		filterItem(activeTab);
+	}, [aboutData, activeTab]);
 
 	const filterItem = (tabNum: any) => {
 		if (tabNum === 0) {
@@ -123,9 +125,13 @@ const About = () => {
 							{/* img div */}
 							<div className="img_div flex justify-center items-start flex-1 ">
 								<Image
-									src={Logo}
+									src={
+										currentPath === 'en' || currentPath === 'tr'
+											? enLogo
+											: arLogo
+									}
 									alt=""
-									width={300}
+									width={250}
 									height={100}
 									// className=" w-full h-full"
 								/>
@@ -135,20 +141,29 @@ const About = () => {
 								{/* tabs */}
 								<div className=" flex md:justify-start justify-center items-center md:items-start md:w-[90%] w-full gap-8 h-8">
 									<h2
-										onClick={() => filterItem(0)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(0);
+											setActiveTab(0); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 0 ? 'active-tab' : ''}`}
 									>
 										{aboutData[0]?.heading}
 									</h2>
 									<h2
-										onClick={() => filterItem(1)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(1);
+											setActiveTab(1); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 1 ? 'active-tab' : ''}`}
 									>
 										{aboutData[1]?.heading}
 									</h2>
 									<h2
-										onClick={() => filterItem(2)}
-										className=" md:text-xl text-base font-semibold cursor-pointer menu-tab-h2"
+										onClick={() => {
+											filterItem(2);
+											setActiveTab(2); // Set active tab on click
+										}}
+										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 2 ? 'active-tab' : ''}`}
 									>
 										{aboutData[2]?.heading}
 									</h2>
