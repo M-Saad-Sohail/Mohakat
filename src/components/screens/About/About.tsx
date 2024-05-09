@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserFromLocalStorage } from '@/utils/auth';
 import Link from 'next/link';
 import { PATHS } from '@/contants';
-// import Logo from '@/assests/icons/newlogo.svg';
-import Logo from '@/assests/images/test.png';
+import enLogo from '@/assests/svgs/logo_En.svg';
+import arLogo from '@/assests/svgs/logo_Ar.svg';
+// import Logo from '@/assests/images/test.png';
 import { logo } from '@/assests';
 
 import SponserMain from '../LandingPage/Sponsers/SponserMain';
@@ -124,9 +125,13 @@ const About = () => {
 							{/* img div */}
 							<div className="img_div flex justify-center items-start flex-1 ">
 								<Image
-									src={Logo}
+									src={
+										currentPath === 'en' || currentPath === 'tr'
+											? enLogo
+											: arLogo
+									}
 									alt=""
-									width={300}
+									width={250}
 									height={100}
 									// className=" w-full h-full"
 								/>
