@@ -57,6 +57,11 @@ const TopBar = () => {
 					</Link>
 				</div>
 
+				{/* Text Silder */}
+				<div id="scroll-container">
+					<div id="scroll-text">{t("topbar")}</div>
+				</div>
+				
 				{/* currency */}
 				<div>
 					<div
