@@ -28,7 +28,7 @@ const TopBar = () => {
 	const currencyState = useSelector((state: any) => state.currency);
 	return (
 		<>
-			<div className=" bg-[#BB9B6C] px-10 py-2 flex justify-between items-center z-[99999]">
+			<div className=" bg-[#BB9B6C] px-10 py-1 flex justify-between items-center z-[99999]">
 				{/* social links */}
 				<div className=" flex gap-3">
 					{/* fb */}
@@ -36,7 +36,7 @@ const TopBar = () => {
 						href={`${currentPath == 'en' ? 'https://www.facebook.com/profile.php?id=61558851476057' : currentPath == 'tr' ? 'https://www.facebook.com/profile.php?id=61558467735301' : 'https://www.facebook.com/moakhatorg/'}`}
 						target="_blank"
 					>
-						<FaFacebookSquare className=" text-[25px] text-[#1877F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3b5998]" />
+						<FaFacebookSquare className=" text-[22px] text-[#1877F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3b5998]" />
 					</Link>
 
 					{/* twitter */}
@@ -44,7 +44,7 @@ const TopBar = () => {
 						href={`${currentPath == 'en' ? 'https://twitter.com/MoakhatEn' : currentPath == 'tr' ? 'https://twitter.com/MoakhatTr' : 'https://twitter.com/moakhatorg'}`}
 						target="_blank"
 					>
-						<FaTwitterSquare className=" text-[25px] text-[#1DA1F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3ea9f4]" />
+						<FaTwitterSquare className=" text-[22px] text-[#1DA1F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3ea9f4]" />
 					</Link>
 
 					{/* insta */}
@@ -53,18 +53,18 @@ const TopBar = () => {
 						href={`${currentPath == 'en' ? 'https://www.instagram.com/moakhat.en/' : currentPath == 'tr' ? 'https://www.instagram.com/kardesliktr/' : 'https://www.instagram.com/moakhatorgtr/'}`}
 						target="_blank"
 					>
-						<FaSquareInstagram className=" text-[25px] text-[#C13584] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#833ab4] rounded-[10]" />
+						<FaSquareInstagram className=" text-[22px] text-[#C13584] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#833ab4] rounded-[10]" />
 					</Link>
 				</div>
 
 				{/* currency */}
 				<div>
 					<div
-						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[37px] h-[25px] md:h-9 cursor-pointer currency-dropdown"
+						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[26px] h-[25px] md:h-6 cursor-pointer currency-dropdown"
 						onClick={() => setCurrencyModalOpen((prev) => !prev)}
 					>
 						<p
-							className={` md:text-sm text-[10px] text-black font-bold uppercase`}
+							className={` md:text-[10px] text-[10px] text-black font-bold uppercase`}
 						>
 							{currencyState?.key}
 						</p>

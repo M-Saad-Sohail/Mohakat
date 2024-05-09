@@ -117,7 +117,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		<section className="w-full h-screen  bg-[#75846a]">
 			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
 			<div className="  absolute w-full h-[85vh] flex items-center mx-auto">
-				<div className="mt-32 flex justify-center items-center mx-auto w-[600px]">
+				<div className=" mt-40 flex justify-center items-center mx-auto w-[600px]">
 					<div className=" flex flex-col justify-between gap-8">
 						<h1 className=" text-[56px] leading-[64px] text-[#36454F] font-bold text-center ">
 							{currentHeroData?.heading}
@@ -127,7 +127,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</p>
 						{!user && (
 							<div
-								className={` flex flex-wrap justify-center mx-auto ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
+								className={` flex flex-wrap justify-center mx-auto  w-[610px] ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 							>
 								<Button
 									title={t('DonateaShare.title')}
