@@ -59,22 +59,22 @@ const AboutLandingPage = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex1(
-				(prevIndex) => (prevIndex + 1) % imagesData1.length,
+				(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
 			);
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imagesData1]);
+	}, [imagesData1 && imagesData1]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex2(
-				(prevIndex) => (prevIndex + 1) % imagesData2.length,
+				(prevIndex) => (prevIndex + 1) % (imagesData2 && imagesData2.length),
 			);
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imagesData2]);
+	}, [imagesData2 && imagesData2]);
 
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
