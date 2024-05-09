@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import {
-	palestine_flag,
-} from '@/assests';
+import { palestine_flag } from '@/assests';
 import downArrow from '@/assests/icons/down-arrow.svg';
 import EarthSvg from '@/assests/images/landing-page/earth.svg';
 import { useTranslations } from 'next-intl';
@@ -79,7 +77,7 @@ const LangSelector: React.FC<IProps> = ({
 	return (
 		<div className={` relative flex flex-col ${className}`}>
 			<div
-				className="md:flex hidden border-2 border-solid border-[#8DAE8E] rounded-md py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
+				className="md:flex hidden border border-solid border-[#fff] rounded-md py-2 w-36 justify-center gap-3 cursor-pointer lang-dropdown"
 				onClick={() => setOpen((prev) => !prev)}
 			>
 				<Image
@@ -87,10 +85,14 @@ const LangSelector: React.FC<IProps> = ({
 					alt="flag"
 					className="flex justify-center w-5 item-center"
 				/>
-				<p className={`text-sm text-black font-bold uppercase`}>
+				<p className={`text-sm text-white font-semibold uppercase`}>
 					{t(langValue)}
 				</p>
-				<Image src={downArrow} alt="downArrow" className="w-[10px]" />
+				<Image
+					src={downArrow}
+					alt="downArrow"
+					className="w-[10px] text-white"
+				/>
 			</div>
 			<Image
 				src={EarthSvg}
