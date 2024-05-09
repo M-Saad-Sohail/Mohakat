@@ -79,7 +79,7 @@ const AuthNavbar = ({
 			dir={dir}
 			className="z-[99999] absolute top-0 bg-transparent h-fit hidden md:block w-full"
 		>
-			<div className=" flex items-center justify-between pt-1 px-10 mobile:pt-4">
+			<div className=" flex items-center justify-between pt-2 px-10 mobile:pt-4">
 				<div className="hidden md:flex justify-start gap-8 items-center pb-4 border-b border-white w-[40%]">
 					{Links.map((link, i) => (
 						<Link
