@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 import CurrencyModal from '../Modals/CurrencyModal';
 import Button from '../LandingPage/Button';
 import { useAuth } from '@/hooks/useAuth';
+import TopBar from '../TopBar/TopBar';
 
 const MobileNavbar = ({
 	setIsCartOpen,
@@ -157,7 +158,6 @@ const MobileNavbar = ({
 									href={url(PATHS.BECOME_SPONSOR)}
 									locale={locale}
 									className="w-fit bg-[#BB9B6C] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#BB9B6C] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
-
 								>
 									{t('cta.become-sponsor')}
 								</Link>

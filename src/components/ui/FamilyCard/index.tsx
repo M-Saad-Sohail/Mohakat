@@ -45,7 +45,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 		<>
 			<div
 				dir={dir}
-				className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md cursor-pointer"
+				className=" bg-[#F8F8F8] rounded-[20px] px-6 py-6 w-full max-w-[400px] flex flex-1 flex-col justify-between gap-4 shadow-md cursor-pointer family_card"
 				onClick={() => {
 					if (user) {
 						setOpen(true);

@@ -114,20 +114,20 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, [data?.randomFamilies]);
 
 	return (
-		<section className="w-full h-screen  bg-[#75846a]">
+		<section className="w-full  h-screen  bg-[#75846a]">
 			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
 			<div className="  absolute w-full h-[85vh] flex items-center mx-auto">
-				<div className=" mt-40 flex justify-center items-center mx-auto w-[600px]">
+				<div className=" mt-40 flex justify-center items-center mx-auto md:w-[600px]">
 					<div className=" flex flex-col justify-between gap-8">
-						<h1 className=" text-[56px] leading-[64px] text-[#36454F] font-bold text-center ">
+						<h1 className="md:text-[56px] text-3xl leading-[64px] text-[#36454F] font-bold text-center ">
 							{currentHeroData?.heading}
 						</h1>
-						<p className="text-xl font-light text-center">
+						<p className="md:text-xl text-base font-light text-center">
 							{currentHeroData.description}
 						</p>
 						{!user && (
 							<div
-								className={` flex flex-wrap justify-center mx-auto  w-[610px] ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
+								className={` flex flex-wrap justify-center mx-auto  md:w-[610px] ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 							>
 								<Button
 									title={t('DonateaShare.title')}
@@ -154,7 +154,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						)}
 					</div>
 				</div>
-				<div
+				{/* <div
 					className={`md:hidden w-[80%] flex flex-col ${user ? 'justify-center gap-12' : 'justify-end gap-10'}  h-full`}
 				>
 					<div className=" px-4 flex flex-col gap-4">
@@ -215,7 +215,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							))}
 						</div>
 					</div>
-				</div>
+				</div> */}
 
 				<QuickDonationModal
 					open={quickDonationOpen}
