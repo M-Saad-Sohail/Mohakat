@@ -29,9 +29,11 @@ const AuthNavbar = ({
 	const cartItems = useSelector((state: any) => state.cart);
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
+	const navcurrentPath = pathname?.slice(4);
 	const [user, setUser] = useState<UserType | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [isVisible, setVisible] = useState(false);
 	const [currencyModalOpen, setCurrencyModalOpen] = useState(false);
 	const cancelCurrencyModalButtonRef = useRef(null);
 	const currencyState = useSelector((state: any) => state.currency);
@@ -39,6 +41,17 @@ const AuthNavbar = ({
 
 	const t = useTranslations('Navbar');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
+
+	const listenToScroll = () => {
+		let heightScroll = 500; // apko kb ussy display krana woh value
+		const windowScroll =
+			document.body.scrollTop || document.documentElement.scrollTop; // ap kitna scroll krchuky woh btaega
+		if (windowScroll > heightScroll) {
+			setVisible(true);
+		} else {
+			setVisible(false);
+		}
+	};
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
@@ -62,6 +75,11 @@ const AuthNavbar = ({
 		};
 	}, []);
 
+	useEffect(() => {
+		window.addEventListener('scroll', listenToScroll); // yh listen krega
+		return () => window.removeEventListener('scroll', listenToScroll);
+	}, []);
+
 	if (!pathname) {
 		return null;
 	}
@@ -74,14 +92,15 @@ const AuthNavbar = ({
 	if (currentPathName === '') {
 		currentPathName = '/';
 	}
-
 	return (
 		<div
 			dir={dir}
-			className="z-[99999] absolute top-0 bg-transparent h-fit hidden md:block w-full"
+			className={`z-[99999] ${navcurrentPath === '' && 'absolute top-0'}  bg-transparent h-fit hidden md:block w-full`}
 		>
 			<TopBar />
-			<div className=" flex items-center justify-between pt-3 px-10 mobile:pt-4">
+			<div
+				className={`flex items-center justify-between pt-3 px-10 mobile:pt-4 ${isVisible && 'scroll-header'} ${navcurrentPath !== '' && 'navbar_other '}`}
+			>
 				<div className="hidden md:flex justify-start gap-8 items-center pb-4 border-b border-white w-[40%]">
 					{Links.map((link, i) => (
 						<Link
@@ -96,13 +115,13 @@ const AuthNavbar = ({
 					))}
 				</div>
 				<div className="flex items-center">
-					<Link locale={locale} href={url('/')} className="">
+					<Link locale={locale} href={url('/')} className=" absolute">
 						<Image
 							src={currentPath === 'en' || currentPath === 'tr' ? logo : Logo}
 							alt="Logo"
 							width={56}
 							height={56}
-							className=" h-16 w-16 "
+							className=" h-16 w-16 relative top-6 -left-[32px] "
 						/>
 					</Link>
 				</div>

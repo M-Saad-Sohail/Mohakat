@@ -495,43 +495,77 @@ input[name='selectedCurrency'] {
 	cursor: pointer;
 }
 
-#scroll-container:hover{
+#scroll-container:hover {
 	color: #fff;
 	font-weight: 400;
 }
-  #scroll-text {
+
+#scroll-text {
 	/* animation properties */
 	-moz-transform: translateX(100%);
 	-webkit-transform: translateX(100%);
 	transform: translateX(100%);
-	
+
 	-moz-animation: my-animation 15s linear infinite;
 	-webkit-animation: my-animation 15s linear infinite;
 	animation: my-animation 15s linear infinite;
-  }
-  
-  /* for Firefox */
-  @-moz-keyframes my-animation {
-	from { -moz-transform: translateX(100%); }
-	to { -moz-transform: translateX(-100%); }
-  }
-  
-  /* for Chrome */
-  @-webkit-keyframes my-animation {
-	from { -webkit-transform: translateX(100%); }
-	to { -webkit-transform: translateX(-100%); }
-  }
-  
-  @keyframes my-animation {
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
 	from {
-	  -moz-transform: translateX(100%);
-	  -webkit-transform: translateX(100%);
-	  transform: translateX(100%);
+		-moz-transform: translateX(100%);
 	}
+
 	to {
-	  -moz-transform: translateX(-100%);
-	  -webkit-transform: translateX(-100%);
-	  transform: translateX(-100%);
+		-moz-transform: translateX(-100%);
 	}
-  }  
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+	from {
+		-webkit-transform: translateX(100%);
+	}
+
+	to {
+		-webkit-transform: translateX(-100%);
+	}
+}
+
+@keyframes my-animation {
+	from {
+		-moz-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+	}
+
+	to {
+		-moz-transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+	}
+}
+
 /* Text Sliding Topbar End */
+
+
+/* navbar scrolling effect */
+
+.navbar_other {
+	background: rgba(54, 69, 79, 0.35);
+}
+
+.scroll-header {
+	position: fixed !important;
+	top: -70px;
+	width: 100%;
+	z-index: 99;
+	background: rgba(54, 69, 79, 0.35);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(8.5px);
+	-webkit-backdrop-filter: blur(8.5px);
+	transform: translateY(70px);
+	transition: transform 500ms ease;
+	-webkit-transition: transform 500ms ease;
+}
