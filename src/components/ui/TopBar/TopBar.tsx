@@ -59,13 +59,13 @@ const TopBar = () => {
 
 				{/* Text Silder */}
 				<div id="scroll-container">
-					<div id="scroll-text">{t("topbar")}</div>
+					<div id="scroll-text">{t('topbar')}</div>
 				</div>
-				
+
 				{/* currency */}
 				<div>
 					<div
-						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[26px] h-[25px] md:h-6 cursor-pointer currency-dropdown"
+						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[26px] h-[27px] md:h-6 cursor-pointer currency-dropdown"
 						onClick={() => setCurrencyModalOpen((prev) => !prev)}
 					>
 						<p

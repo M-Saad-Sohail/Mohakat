@@ -1,5 +1,6 @@
 'use client';
 
+import BottomToTop from '@/components/ui/BottomToTop/BottomToTop';
 import Cart from '@/components/ui/Cart';
 import Footer from '@/components/ui/Footer';
 import { Navbar } from '@/components/ui/Navbar';
@@ -33,6 +34,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	if (fromGazaMap) {
 		return (
 			<div>
+				<BottomToTop/>
 				<Navbar setIsCartOpen={setIsCartOpen} />
 				<MobileNavbar setIsCartOpen={setIsCartOpen} />
 				{children}
@@ -53,6 +55,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 			<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
 			{children}
 			<Footer />
+			<BottomToTop/>
 		</div>
 	);
 };

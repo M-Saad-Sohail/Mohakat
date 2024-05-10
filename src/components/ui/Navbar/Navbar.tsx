@@ -43,7 +43,7 @@ const AuthNavbar = ({
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 
 	const listenToScroll = () => {
-		let heightScroll = 500; // apko kb ussy display krana woh value
+		let heightScroll = 450; // apko kb ussy display krana woh value
 		const windowScroll =
 			document.body.scrollTop || document.documentElement.scrollTop; // ap kitna scroll krchuky woh btaega
 		if (windowScroll > heightScroll) {
@@ -99,9 +99,11 @@ const AuthNavbar = ({
 		>
 			<TopBar />
 			<div
-				className={`flex items-center justify-between pt-3 px-10 mobile:pt-4 ${isVisible && 'scroll-header'} ${navcurrentPath !== '' && 'navbar_other '}`}
+				className={`flex items-center justify-between pt-3 px-10 mobile:pt-4 ${isVisible && 'scroll-header border-b border-white'} ${navcurrentPath !== '' && 'navbar_other'} `}
 			>
-				<div className="hidden md:flex justify-start gap-8 items-center pb-4 border-b border-white w-[40%]">
+				<div
+					className={`hidden md:flex justify-start gap-8 items-center pb-4 ${!isVisible && navcurrentPath === '' && 'border-b border-white'} w-[40%]`}
+				>
 					{Links.map((link, i) => (
 						<Link
 							key={link.name}
@@ -121,12 +123,12 @@ const AuthNavbar = ({
 							alt="Logo"
 							width={56}
 							height={56}
-							className=" h-16 w-16 relative top-6 -left-[32px] "
+							className={`${isVisible ? 'h-16 w-16' : ' h-20 w-20'} relative top-6 -left-[40px] trasnition-all duration-200 ease-in-out`}
 						/>
 					</Link>
 				</div>
 				<div
-					className={`flex flex-row items-center justify-end ${isLoggedIn ? 'gap-x-6' : 'gap-x-4'} pb-4 border-b border-white w-[45%]`}
+					className={`flex flex-row items-center justify-end ${isLoggedIn ? 'gap-x-6' : 'gap-x-4'} pb-4 ${!isVisible && navcurrentPath === '' && 'border-b border-white'} w-[45%]`}
 				>
 					<LangSelector
 						name="language"
