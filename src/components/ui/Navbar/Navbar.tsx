@@ -123,7 +123,7 @@ const AuthNavbar = ({
 							alt="Logo"
 							width={56}
 							height={56}
-							className={`${isVisible ? 'h-16 w-16' : ' h-20 w-20'} relative top-6 -left-[40px] trasnition-all duration-200 ease-in-out`}
+							className={`${isVisible ? 'h-16 w-16' : ' h-20 w-20'} relative top-6 ${currentPath === 'ar' ? '-right-[40px]' : '-left-[40px]'} trasnition-all duration-200 ease-in-out`}
 						/>
 					</Link>
 				</div>
