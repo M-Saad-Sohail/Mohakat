@@ -114,12 +114,12 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, [data?.randomFamilies]);
 
 	return (
-		<section className="w-full  h-screen  bg-[#75846a]">
+		<section className="w-full h-screen  bg-[#75846a]">
 			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
-			<div className="  absolute w-full h-[85vh] flex items-center mx-auto">
-				<div className=" mt-40 flex justify-center items-center mx-auto md:w-[600px]">
+			<div className="  absolute w-full md:h-[85vh] h-[75vh] flex items-center mx-auto">
+				<div className=" md:mt-40 mt-30 flex justify-center items-center mx-auto md:w-[600px]">
 					<div className=" flex flex-col justify-between gap-8">
-						<h1 className="md:text-[56px] text-3xl leading-[64px] text-[#36454F] font-bold text-center ">
+						<h1 className="md:text-[56px] text-3xl md:leading-[64px] leading-10 text-[#36454F] font-bold text-center ">
 							{currentHeroData?.heading}
 						</h1>
 						<p className="md:text-xl text-base font-light text-center">
