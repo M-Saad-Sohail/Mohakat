@@ -154,7 +154,7 @@ const AboutLandingPage = () => {
 			dir={dir}
 			className="md:w-[80%] w-[90%] grid md:grid-cols-3 grid-cols-1 gap-8 mx-auto mt-14 mb-10  animated-div"
 		>
-			<div className="sidebar-about flex flex-col justify-center items-start px-8 py-8 gap-3 bg-[#8DAE8E] rounded-[15px] transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] cursor-pointer">
+			<div className="sidebar-about flex flex-col justify-center items-start px-8 py-8 gap-3 bg-[#75846a] rounded-[15px] transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] cursor-pointer">
 				<span>
 					<FiCodesandbox className=" text-6xl text-[#fff] mx-0 w-full" />
 				</span>

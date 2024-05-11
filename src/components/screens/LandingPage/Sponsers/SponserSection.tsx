@@ -80,9 +80,10 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, []);
 
 	return (
-		<section
+	<section className="w-full h-full bg-[#75846a] ">
+			<div
 			dir={dir}
-			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto animated-div"
+			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto animated-div "
 		>
 			<div className="flex flex-col gap-4 ">
 				<SponserMain currentPath={currentPath} />
@@ -115,7 +116,8 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						</Link>
 					</div>
 				)}
-		</section>
+		</div>
+	</section>
 	);
 };
 
