@@ -95,7 +95,7 @@ const AuthNavbar = ({
 	return (
 		<div
 			dir={dir}
-			className={`z-[99999] ${navcurrentPath === '' && 'absolute top-0'}  bg-transparent h-fit hidden md:block w-full`}
+			className={`z-50 ${navcurrentPath === '' && 'absolute top-0'}  bg-transparent h-fit hidden md:block w-full`}
 		>
 			<TopBar />
 			<div

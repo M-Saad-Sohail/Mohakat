@@ -120,6 +120,22 @@ const AboutLandingPage = () => {
 		}
 	};
 
+	const fetchHeroImages = async () => {
+		const res = await getJson(
+			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
+		);
+		if (res.success) {
+			setImagesData1(res.heroSlider.slice(0, 3));
+			setImagesData2(res.heroSlider.slice(3));
+			dispatch(
+				setIsLandingStateAction({
+					key: 'heroSlider',
+					value: res.heroSlider,
+				}),
+			);
+		}
+	};
+
 	useEffect(() => {
 		try {
 			if (data.newAbout) {
@@ -128,26 +144,16 @@ const AboutLandingPage = () => {
 			} else {
 				fetchAbout();
 			}
+			if (data.heroSlider) {
+				setImagesData1(data.heroSlider.slice(0, 3));
+				setImagesData2(data.heroSlider.slice(3));
+			} else {
+				fetchHeroImages();
+			}
 		} catch (error) {
 			console.log(error);
 		}
 	}, []);
-
-	useEffect(() => {
-		if (data.heroSlider) {
-			setImagesData1(data.heroSlider.slice(0, 3));
-			setImagesData2(data.heroSlider.slice(3));
-		}
-	}, [data.heroSlider]);
-
-	useEffect(() => {
-		console.log('kk', imagesData1);
-		console.log('kk2', imagesData2);
-	}, [imagesData1, imagesData2]);
-
-	useEffect(() => {
-		console.log('kk333', aboutData);
-	}, [aboutData]);
 
 	return (
 		<section
@@ -155,6 +161,7 @@ const AboutLandingPage = () => {
 			className="md:w-[80%] w-[90%] grid md:grid-cols-3 grid-cols-1 gap-8 mx-auto mt-14 mb-10 animated-div"
 		>
 			<div className="sidebar-about flex flex-col justify-center items-start px-8 py-8 gap-3 bg-[#75846a] rounded-[15px] transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] cursor-pointer">
+				<div className=" absolute left-0 bg-herosection w-full h-full opacity-30"></div>
 				<span>
 					<FiCodesandbox className=" text-6xl text-[#fff] mx-0 w-full" />
 				</span>
@@ -172,7 +179,7 @@ const AboutLandingPage = () => {
 						<h3 className=" text-2xl text-[#171717] font-semibold">
 							{aboutData[1]?.heading}
 						</h3>
-						<p className=" text-sm font-medium leading-6 text-[#888]">
+						<p className=" text-sm font-semibold leading-6 text-[#888]">
 							{aboutData[1]?.description}
 						</p>
 					</div>
@@ -193,13 +200,21 @@ const AboutLandingPage = () => {
 								onClick={prevImageFirst}
 								className="cursor-pointer pointer-events-auto"
 							>
-								<IoIosArrowBack className=" text-6xl text-white" />
+								{currentPath === 'ar' ? (
+									<IoIosArrowForward className=" text-6xl text-white" />
+								) : (
+									<IoIosArrowBack className=" text-6xl text-white" />
+								)}
 							</button>
 							<button
 								onClick={nextImageFirst}
 								className="cursor-pointer pointer-events-auto"
 							>
-								<IoIosArrowForward className=" text-6xl text-white" />
+								{currentPath === 'ar' ? (
+									<IoIosArrowBack className=" text-6xl text-white" />
+								) : (
+									<IoIosArrowForward className=" text-6xl text-white" />
+								)}
 							</button>
 						</div>
 					</div>
@@ -211,7 +226,7 @@ const AboutLandingPage = () => {
 						<h3 className=" text-2xl text-[#171717] font-semibold">
 							{aboutData[2]?.heading}
 						</h3>
-						<p className=" text-sm font-medium leading-6 text-[#888]">
+						<p className=" text-sm font-semibold leading-6 text-[#888]">
 							{aboutData[2]?.description}
 						</p>
 					</div>
@@ -232,13 +247,21 @@ const AboutLandingPage = () => {
 								onClick={prevImageSecond}
 								className="cursor-pointer pointer-events-auto"
 							>
-								<IoIosArrowBack className=" text-6xl text-white" />
+								{currentPath === 'ar' ? (
+									<IoIosArrowForward className=" text-6xl text-white" />
+								) : (
+									<IoIosArrowBack className=" text-6xl text-white" />
+								)}
 							</button>
 							<button
 								onClick={nextImageSecond}
 								className="cursor-pointer pointer-events-auto"
 							>
-								<IoIosArrowForward className=" text-6xl text-white" />
+								{currentPath === 'ar' ? (
+									<IoIosArrowBack className=" text-6xl text-white" />
+								) : (
+									<IoIosArrowForward className=" text-6xl text-white" />
+								)}
 							</button>
 						</div>
 					</div>

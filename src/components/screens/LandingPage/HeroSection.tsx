@@ -26,7 +26,6 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const pathname = usePathname();
 	const user = getUserFromLocalStorage();
 	const currentPath = pathname?.slice(1);
-	const [imagesData, setImagesData] = useState<any>();
 	const t = useTranslations('HeroMainSection.btns');
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [currentHeroData, setCurrentHeroData] = useState<HeroDataType>({
@@ -75,32 +74,12 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	};
 
-	const fetchHeroImages = async () => {
-		const res = await getJson(
-			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
-		);
-		if (res.success) {
-			setImagesData(res.heroSlider);
-			dispatch(
-				setIsLandingStateAction({
-					key: 'heroSlider',
-					value: res.heroSlider,
-				}),
-			);
-		}
-	};
-
 	useEffect(() => {
 		try {
 			if (data.newHero) {
 				handleHeroData(currentPath, data.newHero);
 			} else {
 				fetchHeroData();
-			}
-			if (data.heroSlider) {
-				setImagesData(data.heroSlider);
-			} else {
-				fetchHeroImages();
 			}
 		} catch (error) {
 			console.log(error);
