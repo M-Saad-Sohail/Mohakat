@@ -42,7 +42,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			
 			</section> */}
 
-			<section className=" w-full h-full bg-[#75846a] pt-5 pb-5">
+			<section className=" relative w-full h-full bg-[#75846a] pt-5 pb-5">
+			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
+
 				<div className = "relative">
 				<GazaMap />
 				<Image
