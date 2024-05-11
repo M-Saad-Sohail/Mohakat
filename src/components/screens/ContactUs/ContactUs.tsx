@@ -90,7 +90,7 @@ const ContactUs = () => {
 	return (
 		<section
 			dir={dir}
-			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-wrap gap-8 animated-div`}
+			className={`relative -z-10 md:w-[80%] py-12 w-[90%] mx-auto flex flex-wrap gap-8 animated-div`}
 		>
 			<div className=" flex flex-1 flex-col gap-8">
 				{contactData && (
