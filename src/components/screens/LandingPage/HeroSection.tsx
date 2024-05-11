@@ -94,7 +94,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 
 	return (
 		<section className="w-full h-screen  bg-[#75846a]">
-			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
+			<div className=" absolute bg-herosection w-full h-screen opacity-30"></div>
 			<div className="  absolute w-full md:h-[85vh] h-[75vh] flex items-center mx-auto">
 				<div className=" md:mt-40 mt-30 flex justify-center items-center mx-auto md:w-[600px]">
 					<div className=" flex flex-col justify-between gap-8">
