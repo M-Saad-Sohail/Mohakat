@@ -347,9 +347,11 @@ function GazaMap() {
 
 	return (
 		<>
-		<div className = "flex flex-col justify-center items-center">
+			<section className="w-full h-full animated-div">
+							
+			<div className = "flex flex-col justify-center items-center">
 				<Heading heading = {t("book")} className = "main_heading-black" />
-		</div>
+			</div>
 			<svg
 				// width={1645}
 				// height={600}
@@ -474,6 +476,8 @@ function GazaMap() {
 					fill="#792532"
 				/>
 			</svg>
+			</section>
+
 		</>
 	);
 }

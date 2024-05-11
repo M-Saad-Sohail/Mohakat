@@ -8,6 +8,7 @@ import useLocaleRouter from '@/hooks/useLocaleRouter';
 import GazaMap from './GazaMap';
 import { PATHS } from '@/contants';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
+import Heading from '@/components/ui/Heading/Heading';
 
 const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	const t = useTranslations('LandingPage.hero');
@@ -30,7 +31,19 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					/>}
 				</div>
 			</div> */}
-			<div className="relative w-[80%] md:mt-8 mb-16 mx-auto">
+			{/* <section className="relative pt-5 pb-5 w-full h-full bg-herosection ">
+			<div className = "bg-[#75846a]"><GazaMap />
+				<Image
+					alt="hero-image"
+					src={consult}
+					className=" md:w-32 w-10 h-auto absolute md:bottom-36 bottom-5 right-2"
+					loading="lazy"
+				/></div>
+			
+			</section> */}
+
+			<section className=" w-full h-full bg-[#75846a] pt-5 pb-5">
+				<div className = "relative">
 				<GazaMap />
 				<Image
 					alt="hero-image"
@@ -38,7 +51,8 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					className=" md:w-32 w-10 h-auto absolute md:bottom-36 bottom-5 right-2"
 					loading="lazy"
 				/>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 };

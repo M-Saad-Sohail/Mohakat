@@ -12,6 +12,7 @@ import MainLayout from '@/components/common/MainLayout';
 import AboutSection from './AboutSection';
 import TestinomialSlider from './TestinomialSlider';
 import AboutLandingPage from './AboutLandingPage';
+import StartModol from '@/components/ui/Modals/StartModol';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -34,7 +35,6 @@ const LandingPage = () => {
 	return (
 		<MainLayout>
 			<HeroSection isLoggedIn={!isLoading && !!user} />
-			{/* <AboutSection /> */}
 			<AboutLandingPage />
 			<SponserSection isLoggedIn={!isLoading && !!user} />
 			<FamilySection isLoggedIn={!isLoading && !!user} />

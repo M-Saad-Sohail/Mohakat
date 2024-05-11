@@ -126,7 +126,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		<section className = "bg-[#e4e5f1]">
 			<div
 				dir={dir}
-				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12 animated-div bg-[#e4e5f1]"
+				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12 animated-div"
 			>
 				{/* <div className=" flex justify-between">
 					<h2 className=" md:text-3xl text-2xl font-semibold"> {t("Families.title")} </h2>
