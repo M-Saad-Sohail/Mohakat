@@ -380,7 +380,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 				) : filteredData && filteredData.length > 0 ? (
 					<>
 						{/* cards */}
-						<div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+						<div className="grid md:grid-cols-3 grid-cols-1 gap-6">
 							{getCurrentItems().map((family, i) => (
 								<FamilyCard
 									key={i}
