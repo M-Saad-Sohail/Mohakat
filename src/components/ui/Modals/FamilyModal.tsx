@@ -99,7 +99,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 									<div className="flex justify-between items-center w-full">
 										<Button
 											title={familyInfo?.currentSituation || t3('Worst')}
-											Color="#BB9B6C"
+											Color="#CF7475"
 										/>
 										<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
 											<IoClose
