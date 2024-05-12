@@ -31,8 +31,8 @@ const LangSelector: React.FC<IProps> = ({
 	const { locale } = useLocaleRouter();
 	const options: LangOption[] = [
 		{ label: 'English', value: 'en' },
-		{ label: 'Arabic', value: 'ar' },
-		{ label: 'Turkish', value: 'tr' },
+		{ label: 'العربية', value: 'ar' },
+		{ label: 'Türkçe', value: 'tr' },
 	];
 
 	const arrows = {
@@ -86,7 +86,7 @@ const LangSelector: React.FC<IProps> = ({
 					className="flex justify-center w-5 item-center"
 				/>
 				<p className={`text-sm text-white font-semibold uppercase`}>
-					{t(langValue)}
+					{langValue}
 				</p>
 				<Image
 					src={downArrow}
@@ -110,7 +110,7 @@ const LangSelector: React.FC<IProps> = ({
 								onClick={() => handleLangChange(opt)}
 								className="bg-[#8DAE8E] text-white text-sm rounded-md w-32 px-3 py-[6px] text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out hover:font-bold  "
 							>
-								{t(opt.label)}
+								{opt.label}
 							</span>
 						);
 					})}
