@@ -888,71 +888,6 @@ const FamilyForm = () => {
 
 				{/* seventh */}
 
-				{/* COMMENT  */}
-				<div className=" flex flex-col gap-3 mt-8">
-					<h3 className=" text-sm font-bold " style={{ wordSpacing: '4px' }}>
-						{' '}
-						{t('comment.title')} (Optional)
-					</h3>
-					<div className="flex items-start justify-start w-full gap-x-4">
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionEn"
-							>
-								{'In English'}
-							</label>
-							<textarea
-								title={'In English'}
-								name="descriptionEn"
-								cols={30}
-								rows={4}
-								placeholder="Enter your message..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionEn}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionAr"
-							>
-								{'In Arabic'}
-							</label>
-							<textarea
-								dir={'rtl'}
-								title={'In Arabic'}
-								name="descriptionAr"
-								cols={30}
-								rows={4}
-								placeholder="أدخل رسالتك..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionAr}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-						<div className="flex flex-col gap-y-3">
-							<label
-								className="text-[16px] font-bold font-sans text-primary"
-								htmlFor="descriptionTr"
-							>
-								{'In Turkish'}
-							</label>
-							<textarea
-								title={'In Turkish'}
-								name="descriptionTr"
-								cols={30}
-								rows={4}
-								placeholder="Mesajınızı girin..."
-								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
-								value={AddFamiliesForm.values?.descriptionTr}
-								onChange={AddFamiliesForm.handleChange}
-							/>
-						</div>
-					</div>
-				</div>
-
 				<div className="flex items-start justify-start w-full gap-x-4 mt-8">
 					<div>
 						<Input
@@ -1186,6 +1121,71 @@ const FamilyForm = () => {
 							))}
 						</div>
 					)}
+
+				{/* COMMENT  */}
+				<div className=" flex flex-col gap-3 mt-8">
+					<h3 className=" text-sm font-bold " style={{ wordSpacing: '4px' }}>
+						{' '}
+						{t('comment.title')} (Optional)
+					</h3>
+					<div className="flex items-start justify-start w-full gap-x-4">
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionEn"
+							>
+								{'In English'}
+							</label>
+							<textarea
+								title={'In English'}
+								name="descriptionEn"
+								cols={30}
+								rows={4}
+								placeholder="Enter your message..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionEn}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionAr"
+							>
+								{'In Arabic'}
+							</label>
+							<textarea
+								dir={'rtl'}
+								title={'In Arabic'}
+								name="descriptionAr"
+								cols={30}
+								rows={4}
+								placeholder="أدخل رسالتك..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionAr}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+						<div className="flex flex-col gap-y-3">
+							<label
+								className="text-[16px] font-bold font-sans text-primary"
+								htmlFor="descriptionTr"
+							>
+								{'In Turkish'}
+							</label>
+							<textarea
+								title={'In Turkish'}
+								name="descriptionTr"
+								cols={30}
+								rows={4}
+								placeholder="Mesajınızı girin..."
+								className="py-3 px-5 focus:outline-none bg-[#E8E8E8] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#000000]"
+								value={AddFamiliesForm.values?.descriptionTr}
+								onChange={AddFamiliesForm.handleChange}
+							/>
+						</div>
+					</div>
+				</div>
 
 				<div className="flex my-5">
 					<Button
