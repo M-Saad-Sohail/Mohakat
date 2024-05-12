@@ -61,6 +61,7 @@ const MobileNavbar = ({
 	return (
 		<>
 			<div className={` md:hidden flex flex-col ${active && 'active'}`}>
+				<TopBar/>
 				<div className="flex justify-between items-center px-5 py-3 border-b-[0.5px] border-[#8DAE8E]">
 					{/* logo */}
 

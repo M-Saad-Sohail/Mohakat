@@ -114,14 +114,14 @@ const About = () => {
 
 	return (
 		<>
-			<section className="relative -z-10 pt-6 pb-6">
+			<section className="relative z-[50] pt-6 pb-6">
 				<div
 					dir={dir}
-					className="md:w-[80%] w-[90%] mx-auto mt-14 mb-10  animated-div"
+					className=" md:w-[80%] py-12 w-[90%] mx-auto animated-div "
 				>
-					<div className=" flex flex-col gap-10 bg-[#f7f7f7] rounded-[10px] py-8 md:px-7 px-6 custom-box-shadow">
+					<div className=" flex flex-col gap-10">
 						{/* main section */}
-						<div className="flex md:flex-row flex-col justify-start items-start md:gap-20 gap-10 mb-10">
+						<div className="flex md:flex-row flex-col justify-center items-center md:gap-32 gap-10 mb-10">
 							{/* img div */}
 							<div className="img_div flex justify-center items-start flex-1 ">
 								<Image
@@ -182,7 +182,7 @@ const About = () => {
 						{!user && (
 							<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
 								<Link href={url(PATHS.BECOME_SPONSOR)}>
-									<Button title={t1('BecomeaSponser.title')} Color="#BB9B6C" />
+									<Button title={t1('BecomeaSponser.title')} Color="#ae6667" />
 								</Link>
 							</div>
 						)}

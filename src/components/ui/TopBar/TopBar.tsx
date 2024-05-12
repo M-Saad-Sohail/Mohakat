@@ -28,9 +28,9 @@ const TopBar = () => {
 	const currencyState = useSelector((state: any) => state.currency);
 	return (
 		<>
-			<div className=" bg-[#BB9B6C] px-10 py-1 flex justify-between items-center z-[99999]">
+			<div className=" bg-[#BB9B6C] px-10 md:py-1 py-2 flex justify-between items-center z-[99999]">
 				{/* social links */}
-				<div className=" flex gap-3">
+				<div className="gap-3 md:flex hidden">
 					{/* fb */}
 					<Link
 						href={`${currentPath == 'en' ? 'https://www.facebook.com/profile.php?id=61558851476057' : currentPath == 'tr' ? 'https://www.facebook.com/profile.php?id=61558467735301' : 'https://www.facebook.com/moakhatorg/'}`}
@@ -59,11 +59,11 @@ const TopBar = () => {
 
 				{/* Text Silder */}
 				<div id="scroll-container">
-					<div id="scroll-text">{t('topbar')}</div>
+					<div id="scroll-text" className=' md:text-base text-xs w-full'>{t('topbar')}</div>
 				</div>
 
 				{/* currency */}
-				<div>
+				<div className=' hidden md:block'>
 					<div
 						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[26px] h-[27px] md:h-6 cursor-pointer currency-dropdown"
 						onClick={() => setCurrencyModalOpen((prev) => !prev)}

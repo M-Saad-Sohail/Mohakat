@@ -36,7 +36,7 @@ const StickeyBar = () => {
 
 	return (
 		<>
-			<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-50">
+			<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-[9999]">
 				<Link
 					href={'#'}
 					className=" bg-[#BB9B6C] md:p-5 p-[10px] tooltip"

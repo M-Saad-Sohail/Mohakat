@@ -108,6 +108,9 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 							<div
 								className={` flex flex-wrap justify-center mx-auto  md:w-[610px] ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 							>
+								<Link href={url(PATHS.BECOME_SPONSOR)}>
+									<Button title={t('BecomeaSponser.title')} Color="#f9af42" />
+								</Link>
 								<Button
 									title={t('DonateaShare.title')}
 									Color="#CF7475"
@@ -115,9 +118,6 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 										setQuickDonationOpen(true);
 									}}
 								/>
-								<Link href={url(PATHS.BECOME_SPONSOR)}>
-									<Button title={t('BecomeaSponser.title')} Color="#8DAE8E" />
-								</Link>
 								<Button
 									onClick={() => {
 										toast.error(`This feature is in progress`, {
@@ -127,7 +127,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 										});
 									}}
 									title={t('RegisterasFamily.title')}
-									Color="#BB9B6C"
+									Color="#f9af42"
 								/>
 							</div>
 						)}

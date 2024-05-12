@@ -123,7 +123,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 
 	return (
 		<>
-		<section className = "bg-[#e4e5f1]">
+		<section className = "">
 			<div
 				dir={dir}
 				className=" md:w-[80%] w-[90%] mx-auto flex flex-col gap-8 py-12 animated-div"
@@ -154,7 +154,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								<Button
 									title={t('seeMore.title')}
 									className=" md:font-medium"
-									Color='#BB9B6C'
+									Color='#ae6667'
 								/>
 							</Link>
 						</div>
