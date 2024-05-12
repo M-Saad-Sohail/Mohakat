@@ -7,6 +7,7 @@ import Button from '../LandingPage/Button';
 // ICONS
 import { IoClose } from 'react-icons/io5';
 import { SiTicktick } from 'react-icons/si';
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 
@@ -77,7 +78,7 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 										<div className=" flex flex-col justify-center items-center gap-11 text-center">
 											{/* image */}
 											<div className=" flex justify-center items-center w-full h-full">
-												<SiTicktick className="text-[85px] text-[#8DAE8E]" />
+												<IoMdCheckmarkCircleOutline className="text-[85px] text-[#8DAE8E]" />
 											</div>
 
 											<div className="flex flex-col justify-center items-center gap-1">
