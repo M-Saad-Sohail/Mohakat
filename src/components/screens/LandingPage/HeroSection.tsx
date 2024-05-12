@@ -98,7 +98,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			<div className="  absolute w-full md:h-[85vh] h-[75vh] flex items-center mx-auto">
 				<div className=" md:mt-52 mt-30 flex justify-center items-center mx-auto md:w-[80%]">
 					<div className=" flex flex-col justify-between gap-8">
-						<h1 className="md:text-[90px] text-3xl md:leading-[96px] leading-10 text-[#fff] font-bold text-center ">
+						<h1 className="md:text-[90px] text-[32px] md:leading-[96px] leading-[44px] text-[#fff] font-bold text-center ">
 							{currentHeroData?.heading}
 						</h1>
 						<p className="md:text-xl text-white text-base font-medium text-center">
