@@ -1,5 +1,5 @@
 'use client';
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { DonateModalType } from '@/types';
 import Button from '../LandingPage/Button';
@@ -23,6 +23,7 @@ import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import ThankYouModal from './ThankYouModal';
 
 const DonateModal: React.FC<DonateModalType> = ({
 	open,
@@ -33,6 +34,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 	isAddToCart,
 }) => {
 	const { user } = useLoggedInUser();
+	const [openThankYou, setOpenThankYou] = useState(false);
+	const cancelThankYouButtonRef = useRef(null);
 	const currencyState = useSelector((state: any) => state.currency);
 	const cartItems = useSelector((state: any) => state.cart);
 	const [loading, setLoading] = useState<boolean>(false);
@@ -100,6 +103,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 					position: 'top-right',
 					autoClose: 4000,
 				});
+				setOpenThankYou(true)
 			}
 		} catch (error) {
 			// console.log(error);
@@ -112,7 +116,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 		}
 	};
 
-
 	const postLoginData = async (values: any) => {
 		if (isAddToCart) {
 			const updatedValues = cartItems.map((family: any) => ({
@@ -121,7 +124,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 				amount: family.amount,
 			}));
 			setIsAddToCartValues(updatedValues);
-	
+
 			setLoading(true);
 			try {
 				const res = await postJson(
@@ -165,15 +168,14 @@ const DonateModal: React.FC<DonateModalType> = ({
 			});
 		}
 	};
-	
 
 	const postLoginDataSingleDonate = async (values: any) => {
 		try {
 			setLoading(true);
 			const res = await postJson(
 				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate/single/family`,
-					values,
-					user?.key,
+				values,
+				user?.key,
 			);
 			if (res.success) {
 				setLoading(false);
@@ -195,18 +197,16 @@ const DonateModal: React.FC<DonateModalType> = ({
 			});
 		}
 	};
-			
+
 	const DonateForm = useFormik({
 		initialValues: InitialValues,
 		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
 		onSubmit: async (values: any) => {
 			if (user && isAddToCart) {
 				postLoginData(values);
-			} 
-			else if(user){
-				postLoginDataSingleDonate(values)
-			}
-			else {
+			} else if (user) {
+				postLoginDataSingleDonate(values);
+			} else {
 				postNonLoginData(values);
 			}
 		},
@@ -276,7 +276,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 												<>
 													<ModalInput
 														label={t('name')}
-														placeholder= {t1('placeholdername')} 
+														placeholder={t1('placeholdername')}
 														type="text"
 														name="name"
 														value={DonateForm.values?.name}
@@ -306,7 +306,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 														)}
 													<ModalInput
 														label={t('address')}
-														placeholder= {t1('placeholderaddress')} 
+														placeholder={t1('placeholderaddress')}
 														type="text"
 														name="address"
 														value={DonateForm.values?.address}
@@ -392,7 +392,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 											)}
 											<ModalInput
 												label={t('cardHolder')}
-												placeholder= {t1('cardname')}
+												placeholder={t1('cardname')}
 												type="text"
 												name="cardHolderName"
 												value={DonateForm.values?.cardHolderName}
@@ -508,6 +508,11 @@ const DonateModal: React.FC<DonateModalType> = ({
 					</div>
 				</Dialog>
 			</Transition.Root>
+			<ThankYouModal
+				open={openThankYou}
+				setOpen={setOpenThankYou}
+				cancelButtonRef={cancelThankYouButtonRef}
+			/>
 		</>
 	);
 };

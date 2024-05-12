@@ -402,6 +402,10 @@
 	"Families": {
 		"title": "عائلات"
 	},
+	"ThankModal": {
+		"title": "شكرًا لتبرعك، أنت من أنقذة غزة.",
+		"button":"زر التبرع المستمر"
+	},	
 	"ManageFamilies": {
 		"title": "إدارة العائلات"
 	},

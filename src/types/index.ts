@@ -39,6 +39,12 @@ export type FamilyModalType = {
 	isTableView?: any;
 };
 
+export type ThankYouModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+};
+
 export type DonateModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;

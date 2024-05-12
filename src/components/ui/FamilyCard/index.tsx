@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { PATHS } from '@/contants';
 import QuickDonationModal from '../Modals/QuickDonationModal';
 import { calculateAmount } from '@/utils/calculateAmount';
+import ThankYouModal from '../Modals/ThankYouModal';
 
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,

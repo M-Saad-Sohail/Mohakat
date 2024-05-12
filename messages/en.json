@@ -436,6 +436,10 @@
 	"Families": {
 		"title": "Families"
 	},
+	"ThankModal": {
+		"title": "Thank you for donating, You are among the saviors of gaza.",
+		"button":"Continue Donation"
+	},
 	"ManageFamilies": {
 		"title": "Manage Families"
 	},
