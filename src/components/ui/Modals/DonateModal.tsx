@@ -103,7 +103,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 					position: 'top-right',
 					autoClose: 4000,
 				});
-				setOpenThankYou(true)
+				setOpenThankYou(true);
 			}
 		} catch (error) {
 			// console.log(error);
@@ -142,6 +142,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 						position: 'top-right',
 						autoClose: 4000,
 					});
+					setOpenThankYou(true);
 				} else {
 					setLoading(false);
 					toast.error(`${t('donationFailed')}`, {
