@@ -28,7 +28,7 @@ const TopBar = () => {
 	const currencyState = useSelector((state: any) => state.currency);
 	return (
 		<>
-			<div className=" bg-[#BB9B6C] px-10 md:py-1 py-2 flex justify-between items-center z-[99999]">
+			<div className=" bg-[#BB9B6C] px-10 md:py-1 py-2 flex justify-between items-center relative z-10">
 				{/* social links */}
 				<div className="gap-3 md:flex hidden">
 					{/* fb */}
