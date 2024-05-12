@@ -89,7 +89,7 @@ const FAQS = () => {
 				<div className = "flex flex-col justify-start items-start">
 							<Heading heading = {t('title')} className = "main_heading-black" />
 						</div>
-				<p className="md:text-lg text-base font-light">{t('description')}</p>
+				<p className="md:text-lg text-base font-light text-[#36454F]">{t('description')}</p>
 			</div>
 
 			{/* faqs */}

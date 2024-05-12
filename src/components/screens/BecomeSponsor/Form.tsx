@@ -59,7 +59,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 					{/* <h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
 					</h2> */}
-					<p className="pt-2 mb-8 text-xl font-semibold leading-normal text-[#36454F] text-center">
+					<p className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 						{t('description')}
 					</p>
 					<div className="flex flex-col w-full gap-4">

@@ -176,7 +176,7 @@ const AboutLandingPage = () => {
 			<div className="  flex gap-8 mx-auto">
 				<div className="flex flex-1 justify-between flex-col gap-2 mx-auto">
 					<div className=" flex flex-col gap-2">
-						<h3 className=" text-2xl text-[#171717] font-semibold">
+						<h3 className=" text-2xl text-[#36454F] font-semibold">
 							{aboutData[1]?.heading}
 						</h3>
 						<p className=" text-sm font-semibold leading-6 text-[#888]">
@@ -223,7 +223,7 @@ const AboutLandingPage = () => {
 			<div className="  flex gap-8 mx-auto">
 				<div className="flex flex-1 justify-between flex-col gap-2 mx-auto">
 					<div className=" flex flex-col gap-2">
-						<h3 className=" text-2xl text-[#171717] font-semibold">
+						<h3 className=" text-2xl text-[#36454F] font-semibold">
 							{aboutData[2]?.heading}
 						</h3>
 						<p className=" text-sm font-semibold leading-6 text-[#888]">

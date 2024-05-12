@@ -70,7 +70,7 @@ const SponserMain = ({currentPath}:{currentPath:any}) => {
 			<div className = "flex flex-col justify-center items-center">
 					<Heading heading = {sponserData?.heading} className = "main_heading-black" />
 			</div>
-			<p className=" md:text-lg text-base font-light">
+			<p className=" md:text-lg text-base text-[#36454F] font-light">
 				{sponserData?.description}
 			</p>
 		</>

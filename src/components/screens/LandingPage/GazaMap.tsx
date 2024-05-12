@@ -347,7 +347,7 @@ function GazaMap() {
 
 	return (
 		<>
-			<section className="w-full h-full animated-div">
+			<section className="w-full h-full animated-div flex flex-col gap-10">
 							
 			<div className = "flex flex-col justify-center items-center">
 				<Heading heading = {t("book")} className = "main_heading-black" />

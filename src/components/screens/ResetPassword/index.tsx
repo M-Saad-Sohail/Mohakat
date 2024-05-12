@@ -73,7 +73,7 @@ const ResetPassword = () => {
 					<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
 					</div>
-					<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+					<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-primary">
 						{t('description')}
 					</div>
 				</div>

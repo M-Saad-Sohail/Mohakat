@@ -67,7 +67,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						<div className = "flex flex-col justify-center items-center">
 							<Heading heading = {t('title')} className = "main_heading-black" />
 						</div>
-						<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-[#36454F] text-center">
+						<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 							{t('description')}
 						</div>
 					</div>

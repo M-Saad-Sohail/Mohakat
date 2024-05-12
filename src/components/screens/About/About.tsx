@@ -145,7 +145,7 @@ const About = () => {
 											filterItem(0);
 											setActiveTab(0); // Set active tab on click
 										}}
-										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 0 ? 'active-tab' : ''}`}
+										className={`md:text-2xl text-[#36454F] text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 0 ? 'active-tab' : ''}`}
 									>
 										{aboutData[0]?.heading}
 									</h2>
@@ -154,7 +154,7 @@ const About = () => {
 											filterItem(1);
 											setActiveTab(1); // Set active tab on click
 										}}
-										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 1 ? 'active-tab' : ''}`}
+										className={`md:text-2xl text-[#36454F] text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 1 ? 'active-tab' : ''}`}
 									>
 										{aboutData[1]?.heading}
 									</h2>
@@ -163,14 +163,14 @@ const About = () => {
 											filterItem(2);
 											setActiveTab(2); // Set active tab on click
 										}}
-										className={`md:text-xl text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 2 ? 'active-tab' : ''}`}
+										className={`md:text-2xl text-[#36454F] text-base font-semibold cursor-pointer menu-tab-h2 ${activeTab === 2 ? 'active-tab' : ''}`}
 									>
 										{aboutData[2]?.heading}
 									</h2>
 								</div>
 
 								<div className=" md:w-[90%] w-full">
-									<p className="md:text-[18px] text-sm font-light text-justify leading-6">
+									<p className="md:text-lg text-sm text-[#888] font-light text-justify leading-6">
 										{item}
 									</p>
 								</div>
