@@ -8,6 +8,7 @@ import { postJson, putJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Heading from '@/components/ui/Heading/Heading';
 
 const ResetPassword = () => {
 	const { user } = useLoggedInUser();
@@ -70,10 +71,10 @@ const ResetPassword = () => {
 		>
 			<div className="mx-4 space-y-5">
 				<div>
-					<div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
-						{t('title')}
-					</div>
-					<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-primary">
+				<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
+					<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 						{t('description')}
 					</div>
 				</div>

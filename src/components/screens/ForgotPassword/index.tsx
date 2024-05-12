@@ -101,7 +101,7 @@ const ForgotPassword = () => {
 						type="submit"
 						isLoading={loading}
 						className="w-56"
-						Color="#BB9B6C"
+						Color="#CF7475"
 						onClick={handleSubmit}
 					/>
 				</div>

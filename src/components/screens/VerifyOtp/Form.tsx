@@ -10,6 +10,7 @@ import { otpSchema } from '@/utils/validationSchema';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (otp: any) => Promise<boolean>;
@@ -87,8 +88,8 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 			<form className="my-[80px]" noValidate onSubmit={handleSubmit}>
 				<div className="mx-4 flex flex-col justify-center items-center space-y-5">
 					<div>
-						<div className="pt-2 text-2xl  md:text-4xl font-extrabold leading-normal text-primary">
-							{t('title')}
+					<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
 						</div>
 					</div>
 					<div className="flex flex-col  items-center gap-4">

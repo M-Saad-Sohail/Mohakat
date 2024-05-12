@@ -83,7 +83,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						type="submit"
 						isLoading={isLoading}
 						className="w-56"
-						Color="#BB9B6C"
+						Color="#CF7475"
 					/>
 				</div>
 			</div>
