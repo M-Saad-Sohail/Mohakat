@@ -109,7 +109,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								className={` flex flex-wrap justify-center mx-auto  md:w-[610px] ${currentPath === 'ar' ? 'gap-5' : 'gap-4'}`}
 							>
 								<Link href={url(PATHS.BECOME_SPONSOR)}>
-									<Button title={t('BecomeaSponser.title')} Color="#f9af42" />
+									<Button title={t('BecomeaSponser.title')} Color="#BB9B6C" />
 								</Link>
 								<Button
 									title={t('DonateaShare.title')}
@@ -127,7 +127,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 										});
 									}}
 									title={t('RegisterasFamily.title')}
-									Color="#f9af42"
+									Color="#BB9B6C"
 								/>
 							</div>
 						)}

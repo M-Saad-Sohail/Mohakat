@@ -182,7 +182,7 @@ const About = () => {
 						{!user && (
 							<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
 								<Link href={url(PATHS.BECOME_SPONSOR)}>
-									<Button title={t1('BecomeaSponser.title')} Color="#ae6667" />
+									<Button title={t1('BecomeaSponser.title')} Color="#CF7475" />
 								</Link>
 							</div>
 						)}

@@ -154,7 +154,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 								<Button
 									title={t('seeMore.title')}
 									className=" md:font-medium"
-									Color='#ae6667'
+									Color='#CF7475'
 								/>
 							</Link>
 						</div>

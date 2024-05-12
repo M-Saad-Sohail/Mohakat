@@ -59,7 +59,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				<div className=" flex justify-between items-center">
 					<Button
 						title={familyData?.currentSituation || t2('Worst')}
-						Color="#ae6667"
+						Color="#CF7475"
 						className=" capitalize "
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
@@ -128,7 +128,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 							}}
 							title={t1('DonateaShare.title')}
 							className="md:px-0 md:py-2 w-full"
-							Color={'#ae6667'}
+							Color={'#CF7475'}
 							isPadding="md:px-0 md:py-2"
 						/>
 					)}
@@ -140,7 +140,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 						>
 							<Button
 								title={t1('BecomeaSponser.title')}
-								Color="#75846a"
+								Color="#8DAE8E"
 								className="md:px-1 md:py-2 w-full"
 								isPadding="md:px-1 md:py-2"
 							/>

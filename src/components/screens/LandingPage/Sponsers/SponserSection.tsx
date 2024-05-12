@@ -122,7 +122,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 				{!user && (
 					<div className="flex md:flex-nowrap flex-wrap gap-4 justify-center">
 						<Link href={url(PATHS.BECOME_SPONSOR)}>
-							<Button title={t('BecomeaSponser.title')} Color="#BB9B6C" />
+							<Button title={t('BecomeaSponser.title')} Color="#CF7475" />
 						</Link>
 					</div>
 				)}
