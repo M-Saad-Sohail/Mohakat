@@ -55,7 +55,9 @@ const Footer = () => {
 
 	return (
 		<>
-			<div className=" bg-[#e4e5f1] flex flex-col gap-8 md:px-20 px-8 py-10">
+			<div className=" relative bg-[#75846a] flex flex-col gap-8 md:px-20 px-8 py-10">
+				<div className=" absolute top-0 left-0 bg-herosection w-full h-full opacity-20"></div>
+
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					{/* logo */}
@@ -77,7 +79,7 @@ const Footer = () => {
 									// 		className={`
 									// 	${link.link === currentPathName ? 'font-semibold text-base text-[#CF7475]' : 'font-normal text-sm hover:text-[#CF7475]'}
 									//   `}
-									className="navbar-link text-base font-medium hover:text-lg transition-all duration-300"
+									className="navbar-link text-white text-lg font-medium hover:text-xl transition-all duration-300"
 								>
 									<h3>{t(`${link.title}`)}</h3>
 								</Link>
@@ -90,16 +92,18 @@ const Footer = () => {
 						<Link
 							href={`${currentPath == 'en' ? 'https://www.facebook.com/profile.php?id=61558851476057' : currentPath == 'tr' ? 'https://www.facebook.com/profile.php?id=61558467735301' : 'https://www.facebook.com/moakhatorg/'}`}
 							target="_blank"
+							className="z-10"
 						>
-							<FaFacebookSquare className=" text-[30px] text-[#1877F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3b5998]" />
+							<FaFacebookSquare className=" text-[30px] text-[#fff] cursor-pointer transition-colors duration-500 ease-out hover:scale-110 rounded-[8px]" />
 						</Link>
 
 						{/* twitter */}
 						<Link
 							href={`${currentPath == 'en' ? 'https://twitter.com/MoakhatEn' : currentPath == 'tr' ? 'https://twitter.com/MoakhatTr' : 'https://twitter.com/moakhatorg'}`}
 							target="_blank"
+							className="z-10"
 						>
-							<FaTwitterSquare className=" text-[30px] text-[#1DA1F2] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#3ea9f4]" />
+							<FaTwitterSquare className=" text-[30px] text-[#fff] cursor-pointer transition-colors duration-500 ease-out hover:scale-110  rounded-[8px]" />
 						</Link>
 
 						{/* insta */}
@@ -107,39 +111,39 @@ const Footer = () => {
 						<Link
 							href={`${currentPath == 'en' ? 'https://www.instagram.com/moakhat.en/' : currentPath == 'tr' ? 'https://www.instagram.com/kardesliktr/' : 'https://www.instagram.com/moakhatorgtr/'}`}
 							target="_blank"
+							className="z-10"
 						>
-							<FaSquareInstagram className=" text-[30px] text-[#C13584] cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#833ab4] rounded-[10]" />
+							<FaSquareInstagram className=" text-[30px] text-[#fff] cursor-pointer transition-colors duration-500 ease-out hover:scale-110  rounded-[8px]" />
 						</Link>
 					</div>
 				</div>
 
 				{/* second (line) div */}
 				<div>
-					<hr className="h-[3px] bg-[#00000080] border-0" />
+					<hr className="h-[3px] bg-[#fff] border-0" />
 				</div>
 
 				{/* third div */}
-				<div className=" flex md:justify-between justify-center md:items-start items-center">
-					<div></div>
+				<div className="relative text-white flex md:justify-center justify-center md:items-start items-center">
 					<div className=" flex md:justify-center justify-end items-center md:gap-10 gap-4">
-						<h3 className="hidden md:flex text-sm font-normal">
+						<h3 className="hidden md:flex text-base font-normal">
 							© 2024 {t('MuakhetAllrightsreserved')}
 						</h3>
 						<Link href={'/'}>
-							<h3 className=" md:text-sm text-[13px] font-normal">
+							<h3 className=" md:text-base text-[13px] font-normal">
 								{t('privacypolicy')}
 							</h3>
 						</Link>
 						<Link href={'/'}>
-							<h3 className=" md:text-sm text-[13px] font-normal">
+							<h3 className=" md:text-base text-[13px] font-normal">
 								{t('termsofservice')}
 							</h3>
 						</Link>
 					</div>
-					<div className=" hidden md:flex gap-1 items-center text-sm font-normal">
+					<div className=" absolute right-0 hidden md:flex gap-1 items-center text-base font-normal">
 						<span className=" font-semibold italic">Powered by</span>
 						<Link
-							className="navbar-link text-sm hover:text-base transition-all duration-300"
+							className="navbar-link text-base hover:text-lg transition-all duration-300"
 							href={'https://techxudo.com/'}
 							target="_blank"
 						>
@@ -148,11 +152,11 @@ const Footer = () => {
 					</div>
 				</div>
 				<div className="flex justify-center items-center">
-					<h3 className="md:hidden flex text-sm font-normal">
+					<h3 className="md:hidden flex text-sm font-normal text-white">
 						© 2024 {t('MuakhetAllrightsreserved')}
 					</h3>
 				</div>
-				<div className="flex gap-1 md:hidden justify-center items-center text-sm font-normall">
+				<div className="flex text-white gap-1 md:hidden justify-center items-center text-sm font-normal">
 					<span className=" font-semibold italic">Powered by</span>
 					<Link
 						className="navbar-link text-sm hover:text-base transition-all duration-300"

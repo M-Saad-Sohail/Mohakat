@@ -51,7 +51,7 @@ const ImagesSection = () => {
 	// }, []);
 
 	return (
-		<section className = "bg-[#e4e5f1]">
+		<section className = "">
 		<div
 			dir={dir}
 			className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 md:my-12 mt-6 mb-12 mx-auto"

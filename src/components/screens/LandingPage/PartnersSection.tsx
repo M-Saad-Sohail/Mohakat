@@ -116,8 +116,8 @@ const PartnersSection = ({ isAbout }: { isAbout?: boolean }) => {
 					<Slider {...settings1} className=" w-full">
 						{partnerData?.map((item: any, i: any) => {
 							return (
-								<div key={i} className="slide">
-									<div className=" bg-[#FFFFFF] rounded-3xl p-10 w-[200px] h-[200px] shadow-md ring ring-gray-50 ring-opacity-40 feature-shadow">
+								<div key={i} className="slide my-3">
+									<div className=" bg-[#FFFFFF] rounded-[15px] p-10 w-[200px] h-[200px] shadow-sm ring ring-gray-50 ring-opacity-40 feature-shadow">
 										<Image
 											src={(partnerData && item?.partnerImg) || defaultImg}
 											alt="img"

@@ -27,7 +27,7 @@ const AuthLayout: React.FC<IProps> = ({ children, className = '', margin }) => {
 	const dir = useDirection();
 
 	return (
-		<div dir={dir} className="relative -z-10 bg-main overflow-y-hidden">
+		<div dir={dir} className=" bg-main overflow-y-hidden">
 			<div className="flex flex-col" style={{ overflow: 'hidden' }}>
 				<div className="flex-1 w-full flex justify-center items-center md:flex-row gap-x-5">
 					<div className={`md:w-1/2 w-full relative ${className}`}>

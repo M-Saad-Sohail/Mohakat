@@ -78,9 +78,7 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 	}, []);
 
 	return (
-		<section className="relative w-full h-full bg-[#75846a] ">
-			<div className=" absolute bg-herosection w-full h-full opacity-30"></div>
-
+		<section className=" w-full h-full">
 			<div
 				dir={dir}
 				className=" md:w-[80%] w-[90%] flex flex-col md:gap-16 gap-12 pt-6 pb-14 mx-auto animated-div "
@@ -94,18 +92,25 @@ const SponserSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					{featureData?.map((item: any, i: number) => (
 						<div
 							key={i}
-							className="flex-1 flex flex-col items-center gap-5 feature-shadow border border-transparent md:hover:border-[#8DAE8E]"
+							className="relative bg-[#75846a] text-white p-8 flex-1 flex flex-col items-center gap-5 rounded-[15px] transition-all duration-500 ease-out transform-gpu hover:scale-[1.07] cursor-pointer"
 						>
+							<div className=" absolute top-0 bg-herosection w-full h-full opacity-20"></div>
 							{i === 0 && (
-								<Feature_3 className="feature-icons  h-auto md:w-auto w-[70px]" />
+								<span>
+									<Feature_3 className=" text-8xl h-auto md:w-auto w-[70px]" />
+								</span>
 							)}
 							{i === 1 && (
-								<Feature_2 className="feature-icons  h-auto md:w-auto w-[70px]" />
+								<span>
+									<Feature_2 className=" text-8xl h-auto md:w-auto w-[70px]" />
+								</span>
 							)}
 							{i === 2 && (
-								<Feature_1 className="feature-icons  h-auto md:w-auto w-[70px]" />
+								<span>
+									<Feature_1 className=" text-8xl h-auto md:w-auto w-[70px]" />
+								</span>
 							)}
-							<h2 className="text-2xl font-bold">
+							<h2 className="text-3xl font-bold">
 								{t('Step.title')} {i + 1}
 							</h2>{' '}
 							<p className="md:text-lg text-base font-light text-center">

@@ -112,50 +112,58 @@ const TestimonialSlider = () => {
 	};
 
 	return (
-		<section className = "bg-[#e4e5f1] pt-4 pb-4">
+		<section className=" pt-4 pb-4">
 			<ImagesSection />
-		<div
-			dir={dir}
-			className={`${pathname?.slice(1) === currentPath ? 'md:w-[80%] w-[90%]' : 'w-full'} mx-auto flex flex-col gap-2`}
-		>
-			<Slider {...settings} className=" h-full">
-				{testimonialData.map((testimonial, index) => (
-					<div  dir={dir} key={index} style={{ margin: ' 20px' }}>
-						<Card
-							sx={{ maxWidth: 'fit-content', padding: '0 8px' }}
-							className=" flex items-start bg-[#FFFFFF] rounded-3xl p-10 shadow-md ring ring-gray-50 ring-opacity-40 mx-2 min-h-[222px] my-2 hover:bg-[#f8f8f8]"
-						>
-							<CardContent
+			<div
+				dir={dir}
+				className={`${pathname?.slice(1) === currentPath ? 'md:w-[80%] w-[90%]' : 'w-full'} mx-auto flex flex-col gap-2`}
+			>
+				<Slider {...settings} className=" h-full">
+					{testimonialData.map((testimonial, index) => (
+						<div dir={dir} key={index} style={{ margin: ' 20px' }}>
+							<Card
 								sx={{
-									display: 'flex',
-									flexDirection: 'column',
-									gap: '4px',
+									background: '#75846a',
+									maxWidth: 'fit-content',
+									padding: '0 8px',
+									borderRadius: '15px',
+									transitionDuration: '500 !important',
 								}}
+								className="  relative flex items-start p-10  mx-2 min-h-[222px] my-2 transition-all duration-500 ease-out transform-gpu hover:scale-105 cursor-pointer"
 							>
-								<Typography
-									variant="h5"
-									component="div"
-									sx={{ color: '#BB9B6C', fontWeight: "bold"}}
+								<div className=" absolute left-0 bg-herosection w-full h-full opacity-20"></div>
+
+								<CardContent
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										gap: '4px',
+									}}
 								>
-									{testimonial.name}
-								</Typography>
-								<Typography
-									gutterBottom
-									variant="caption"
-									component="div"
-									sx={{ fontStyle: 'italic', color: "#36454F" }}
-								>
-									{testimonial.destination}
-								</Typography>
-								<Typography variant="body2" color="text.secondary">
-									{testimonial.description}
-								</Typography>
-							</CardContent>
-						</Card>
-					</div>
-				))}
-			</Slider>
-		</div>
+									<Typography
+										variant="h5"
+										component="div"
+										sx={{ color: '#fff', fontWeight: 'bold' }}
+									>
+										{testimonial.name}
+									</Typography>
+									<Typography
+										gutterBottom
+										variant="caption"
+										component="div"
+										sx={{ fontStyle: 'italic', color: '#fff' }}
+									>
+										{testimonial.destination}
+									</Typography>
+									<Typography variant="body2" color="#fff">
+										{testimonial.description}
+									</Typography>
+								</CardContent>
+							</Card>
+						</div>
+					))}
+				</Slider>
+			</div>
 		</section>
 	);
 };

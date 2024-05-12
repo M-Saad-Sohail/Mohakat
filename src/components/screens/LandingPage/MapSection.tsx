@@ -42,17 +42,15 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 			
 			</section> */}
 
-			<section className=" relative w-full h-full pt-5 pb-5">
-			<div className=" absolute w-full h-full opacity-30"></div>
-
-				<div className = "relative">
-				<GazaMap />
-				<Image
-					alt="hero-image"
-					src={consult}
-					className=" md:w-32 w-10 h-auto absolute md:bottom-36 bottom-5 right-2"
-					loading="lazy"
-				/>
+			<section className=" w-full h-full pt-5 pb-5">
+				<div className="relative">
+					<GazaMap />
+					<Image
+						alt="hero-image"
+						src={consult}
+						className=" md:w-32 w-10 h-auto absolute md:bottom-36 bottom-5 right-2"
+						loading="lazy"
+					/>
 				</div>
 			</section>
 		</>

@@ -114,7 +114,7 @@ const About = () => {
 
 	return (
 		<>
-			<section className="relative z-[50] pt-6 pb-6">
+			<section className=" pt-6 pb-6">
 				<div
 					dir={dir}
 					className=" md:w-[80%] py-12 w-[90%] mx-auto animated-div "
