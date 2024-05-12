@@ -95,11 +95,11 @@ const AuthNavbar = ({
 	return (
 		<div
 			dir={dir}
-			className={`z-50 ${navcurrentPath === '' && 'absolute top-0'}  bg-transparent h-fit hidden md:block w-full`}
+			className={` ${navcurrentPath === '' && 'absolute top-0'}  bg-transparent h-fit hidden md:block w-full`}
 		>
 			<TopBar />
 			<div
-				className={`flex items-center justify-between pt-3 px-10 mobile:pt-4 ${isVisible && 'scroll-header border-b border-white'} ${navcurrentPath !== '' && 'navbar_other'} `}
+				className={` relative z-10 flex items-center justify-between pt-3 px-10 mobile:pt-4 ${isVisible && 'scroll-header border-b border-white'} ${navcurrentPath !== '' && 'navbar_other'} `}
 			>
 				<div
 					className={`hidden md:flex justify-start gap-8 items-center pb-4 ${!isVisible && navcurrentPath === '' && 'border-b border-white'} w-[40%]`}
