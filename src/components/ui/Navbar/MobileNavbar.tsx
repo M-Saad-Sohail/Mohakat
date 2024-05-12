@@ -151,14 +151,14 @@ const MobileNavbar = ({
 								<Link
 									href={url(PATHS.LOGIN)}
 									locale={locale}
-									className="w-fit bg-black text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
+									className="w-fit bg-[#36454F] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#36454F] hover:text-[#36454F] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.signin')}
 								</Link>
 								<Link
 									href={url(PATHS.BECOME_SPONSOR)}
 									locale={locale}
-									className="w-fit bg-[#BB9B6C] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#BB9B6C] hover:text-[#BB9B6C] transition-colors duration-300 ease-in-out  "
+									className="w-fit bg-[#8DAE8E] text-white font-semibold md:text-sm text-[13px] rounded-md px-3 py-2 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#8DAE8E] hover:text-[#8DAE8E] transition-colors duration-300 ease-in-out  "
 								>
 									{t('cta.become-sponsor')}
 								</Link>
