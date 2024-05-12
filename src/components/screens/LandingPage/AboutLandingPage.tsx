@@ -170,7 +170,15 @@ const AboutLandingPage = () => {
 					{aboutData[0]?.heading}
 				</p>
 				<h2 className=" text-lg font-medium text-[#fff]">
-					{aboutData[0]?.description}
+					{currentPath === 'ar' ? (
+						<span>{aboutData[0]?.description}</span>
+					) : (
+						<>
+							<span>{aboutData[0]?.description.split('.')[0]}.</span>
+							<br />
+							<span>{aboutData[0]?.description.split('.')[1]}.</span>
+						</>
+					)}
 				</h2>
 			</div>
 			<div className="  flex gap-8 mx-auto">
