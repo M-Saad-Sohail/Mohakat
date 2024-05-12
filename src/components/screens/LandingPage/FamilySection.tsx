@@ -140,7 +140,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					</div>
 				) : familiesData && familiesData.length > 0 ? (
 					<>
-						<div className=" grid md:grid-cols-3 grid-cols-1 gap-4">
+						<div className=" grid md:grid-cols-3 grid-cols-1 gap-6">
 							{familiesData.map((family, i) => (
 								<FamilyCard
 									key={i}

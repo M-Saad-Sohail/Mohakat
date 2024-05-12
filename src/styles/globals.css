@@ -575,10 +575,10 @@ input[name='selectedCurrency'] {
 /* family card effect */
 
 .family_card {
-	transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .family_card:hover {
 	border: 1px solid #CF7475;
-	transform: scale(1.03);
+	transform: scale(1.04);
 }
