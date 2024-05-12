@@ -101,7 +101,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 						<h1 className="md:text-[90px] text-3xl md:leading-[96px] leading-10 text-[#fff] font-bold text-center ">
 							{currentHeroData?.heading}
 						</h1>
-						<p className="md:text-xl text-white text-base font-light text-center">
+						<p className="md:text-xl text-white text-base font-medium text-center">
 							{currentHeroData.description}
 						</p>
 						{!user && (
