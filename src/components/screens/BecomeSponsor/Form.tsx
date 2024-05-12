@@ -53,9 +53,9 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4">
-				<div className = "flex flex-col justify-center items-center">
-							<Heading heading = {t('title')} className = "main_heading-black" />
-						</div>
+					<div className="flex flex-col justify-center items-center">
+						<Heading heading={t('title')} className="main_heading-black" />
+					</div>
 					{/* <h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
 					</h2> */}
@@ -140,7 +140,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 								type="submit"
 								isLoading={isLoading}
 								className="max-w-[300px]"
-								Color="#BB9B6C"
+								Color="#CF7475"
 							/>
 						</div>
 					</div>
@@ -149,7 +149,7 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 			<div className="text-center text-[#36454F] text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
 				{t('cta.0')}
 				<Link
-					className="font-bold text-[#BB9B6C] hover:text-[#36454F]"
+					className="font-bold text-[#CF7475] hover:text-[#36454F]"
 					href={url('/sign-in')}
 				>
 					{t('cta.1')}

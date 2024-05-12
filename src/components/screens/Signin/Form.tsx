@@ -64,8 +64,8 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						{/* <div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
 						</div> */}
-						<div className = "flex flex-col justify-center items-center">
-							<Heading heading = {t('title')} className = "main_heading-black" />
+						<div className="flex flex-col justify-center items-center">
+							<Heading heading={t('title')} className="main_heading-black" />
 						</div>
 						<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 							{t('description')}
@@ -103,16 +103,16 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 							type="submit"
 							isLoading={isLoading}
 							className="w-56"
-							Color="#BB9B6C"
+							Color="#CF7475"
 						/>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-[#BB9B6C] font-bold w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
+			<div className="text-center text-[#CF7475] font-bold w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
 				{t('cta.0')}
 				<Link
 					locale={locale}
-					className="font-bold text-black hover:text-[#BB9B6C]"
+					className="font-bold text-black hover:text-[#CF7475]"
 					href={url('/become-sponsor')}
 				>
 					{t('cta.1')}
