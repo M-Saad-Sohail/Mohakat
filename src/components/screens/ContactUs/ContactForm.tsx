@@ -103,7 +103,7 @@ const ContactForm = () => {
 					title={t('send')}
 					isLoading={loading}
 					type="submit"
-					Color="#BB9B6C"
+					Color="#CF7475"
 				/>
 			</div>
 		</form>
