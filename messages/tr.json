@@ -401,6 +401,10 @@
 	"Families": {
 		"title": "Aileler"
 	},
+	"ThankModal": {
+		"title": "Bağışınız için teşekkür ederiz, Gazze'nin kurtarıcılarından birisiniz.",
+		"button": "Bağışa Devam Et"
+	},	
 	"ManageFamilies": {
 		"title": "Aileleri Yönet"
 	},
