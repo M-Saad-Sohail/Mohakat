@@ -32,7 +32,7 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	const t3 = useTranslations('FamiliesMainSection');
 	const currencyState = useSelector((state: any) => state.currency);
 
-	const [selectedOption, setSelectedOption] = useState<string>('3');
+	const [selectedOption, setSelectedOption] = useState<string>('1');
 
 	// Function to handle radio button change
 	const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +47,9 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 	};
 
 	useEffect(() => {
-		setSelectedOption('3');
+		setSelectedOption('1');
 		let newAmount = calculateAmount(
-			'3',
+			'1',
 			familyInfo?.numberOfFamilyMembers,
 			currencyState?.basePriceOne,
 			currencyState?.basePriceTwo,
@@ -261,6 +261,18 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 											</h2>
 											{/* durations */}
 											<div className=" flex gap-3 overflow-x-scroll scrollbarHide w-full">
+												<input
+													type="radio"
+													name="month"
+													id="1month"
+													value="1"
+													checked={selectedOption === '1'}
+													onChange={handleOptionChange}
+												/>
+												<label className=" flex items-center gap-2 text-sm font-semibold">
+													<span>1</span>
+													<span>{t3('month')}</span>
+												</label>
 												<input
 													type="radio"
 													name="month"

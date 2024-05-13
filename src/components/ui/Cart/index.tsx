@@ -56,13 +56,13 @@ const Cart = ({
 			<div className="  relative">
 				{/* Dimmed overlay */}
 				{isCartOpen && (
-					<div className="fixed inset-0 bg-black opacity-50 z-50"></div>
+					<div className="fixed inset-0 bg-black opacity-50 z-[100]"></div>
 				)}
 				{/* Cart */}
 				<div
 					className={`cart fixed top-0 h-screen w-80 flex flex-col right-0 transform ${
 						isCartOpen ? 'translate-x-0' : 'translate-x-full'
-					} transition-transform duration-500 ease-out z-50 bg-white shadow-lg`}
+					} transition-transform duration-500 ease-out z-[1000] bg-white shadow-lg`}
 				>
 					<div className="flex justify-between px-6 py-5 border-b-[0.5px] border-[#00000080]">
 						<h3 className="text-xl font-semibold">{t('title')}</h3>

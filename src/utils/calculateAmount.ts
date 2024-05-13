@@ -5,7 +5,10 @@ export const calculateAmount = (
 	basePriceTwo: number,
 ) => {
 	let newAmount = 0;
-	if (selectedOption === '3') {
+	if (selectedOption === '1') {
+		newAmount = numberOfPersons <= 4 ? basePriceOne : basePriceTwo;
+		return newAmount;
+	} else if (selectedOption === '3') {
 		newAmount = numberOfPersons <= 4 ? basePriceOne * 3 : basePriceTwo * 3;
 		return newAmount;
 	} else if (selectedOption === '6') {
