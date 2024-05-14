@@ -117,6 +117,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									onClick={() => {
 										setQuickDonationOpen(true);
 									}}
+									className = "button-animated"
 								/>
 								<Button
 									onClick={() => {

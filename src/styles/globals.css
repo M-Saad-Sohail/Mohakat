@@ -582,3 +582,14 @@ input[name='selectedCurrency'] {
 	border: 1px solid #CF7475;
 	transform: scale(1.04);
 }
+
+@keyframes scale-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); } /* Scale to 110% halfway through the animation */
+    100% { transform: scale(1); } /* Return to the original scale at the end */
+}
+
+.button-animated{
+	animation: scale-animation 1.5s;
+    animation-iteration-count: infinite;
+}
