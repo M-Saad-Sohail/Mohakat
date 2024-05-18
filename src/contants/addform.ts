@@ -1,6 +1,6 @@
 export const genderInEnglish = [
-	{ label: 'male', value: 'male' },
-	{ label: 'female', value: 'female' },
+	{ label: 'Male', value: 'Male' },
+	{ label: 'Female', value: 'Female' },
 ];
 
 export const genderInArabic = [
@@ -9,13 +9,13 @@ export const genderInArabic = [
 ];
 
 export const genderInTurkish = [
-	{ label: 'erkek', value: 'erkek' },
+	{ label: 'Erkek', value: 'Erkek' },
 	{ label: 'kadın', value: 'kadın' },
 ];
 
 export const maritalStatusInEnglish = [
 	{ label: 'single', value: 'single' },
-	{ label: 'married', value: 'married' },
+	{ label: 'Married', value: 'Married' },
 	{ label: 'widow', value: 'widow' },
 	{ label: 'divorced', value: 'divorced' },
 ];
@@ -29,13 +29,17 @@ export const maritalStatusInArabic = [
 
 export const maritalStatusInTurkish = [
 	{ label: 'bekar', value: 'bekar' },
-	{ label: 'evli', value: 'evli' },
+	{ label: 'Evli', value: 'Evli' },
 	{ label: 'dul', value: 'dul' },
 	{ label: 'boşanmış', value: 'boşanmış' },
 ];
 
 export const previousResidenceInEnglish = [
 	{ label: 'Gaza', value: 'Gaza' },
+	{
+		label: 'Sheikh Radwan',
+		value: 'Sheikh Radwan'
+	},
 	{
 		label: 'Jabalia Camp',
 		value: 'Jabalia Camp',
@@ -99,6 +103,10 @@ export const previousResidenceInTurkish = [
 
 export const currentResidenceInEnglish = [
 	{ label: 'Gaza', value: 'Gaza' },
+	{
+		label: 'Al-Zawaida',
+		value: 'Al-Zawaida'
+	},
 	{
 		label: 'Jabalia Camp',
 		value: 'Jabalia Camp',

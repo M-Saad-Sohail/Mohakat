@@ -207,6 +207,7 @@ const ViewModal = ({
 
 	useEffect(() => {
 		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
+			// Add new members
 			const newMembers = new Array(
 				UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length,
 			).fill({
@@ -216,8 +217,17 @@ const ViewModal = ({
 				MemberIdNumber: '',
 			});
 			setFamilyMembers(familyMembers.concat(newMembers));
+		} else if (
+			UpdateFamilyForm.values.numberOfFamilyMembers < familyMembers.length
+		) {
+			// Remove excess members while preserving their details
+			const updatedMembers = familyMembers.slice(
+				0,
+				UpdateFamilyForm.values.numberOfFamilyMembers,
+			);
+			setFamilyMembers(updatedMembers);
 		}
-	}, [UpdateFamilyForm.values.numberOfFamilyMembers]);
+	}, [UpdateFamilyForm.values.numberOfFamilyMembers, familyMembers]);
 
 	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
