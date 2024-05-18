@@ -64,7 +64,7 @@ const AboutLandingPage = () => {
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imagesData1 && imagesData1]);
+	}, [imagesData1]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -74,7 +74,7 @@ const AboutLandingPage = () => {
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imagesData2 && imagesData2]);
+	}, [imagesData2]);
 
 	const handleAboutData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -125,6 +125,8 @@ const AboutLandingPage = () => {
 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
 		);
 		if (res.success) {
+			console.log(res.heroSlider.slice(0, 3), 'dd', res.heroSlider.slice(3));
+
 			setImagesData1(res.heroSlider.slice(0, 3));
 			setImagesData2(res.heroSlider.slice(3));
 			dispatch(
@@ -195,7 +197,7 @@ const AboutLandingPage = () => {
 						<img
 							src={
 								(imagesData1 &&
-									imagesData1[currentImageIndex1]?.heroSliderImg) ||
+									imagesData1[currentImageIndex1].heroSliderImg) ||
 								'/images/light-gray-background.png'
 							}
 							alt="img"
