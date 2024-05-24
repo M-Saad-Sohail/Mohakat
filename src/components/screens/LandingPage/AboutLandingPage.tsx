@@ -30,36 +30,36 @@ const AboutLandingPage = () => {
 
 	const nextImageFirst = () => {
 		setCurrentImageIndex1(
-			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
+			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1?.length),
 		);
 	};
 
 	const prevImageFirst = () => {
 		setCurrentImageIndex1(
 			(prevIndex) =>
-				(prevIndex - 1 + (imagesData1 && imagesData1.length)) %
-				(imagesData1 && imagesData1.length),
+				(prevIndex - 1 + (imagesData1 && imagesData1?.length)) %
+				(imagesData1 && imagesData1?.length),
 		);
 	};
 
 	const nextImageSecond = () => {
 		setCurrentImageIndex2(
-			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
+			(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1?.length),
 		);
 	};
 
 	const prevImageSecond = () => {
 		setCurrentImageIndex2(
 			(prevIndex) =>
-				(prevIndex - 1 + (imagesData1 && imagesData1.length)) %
-				(imagesData1 && imagesData1.length),
+				(prevIndex - 1 + (imagesData1 && imagesData1?.length)) %
+				(imagesData1 && imagesData1?.length),
 		);
 	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex1(
-				(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1.length),
+				(prevIndex) => (prevIndex + 1) % (imagesData1 && imagesData1?.length),
 			);
 		}, 3000);
 
@@ -69,7 +69,7 @@ const AboutLandingPage = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex2(
-				(prevIndex) => (prevIndex + 1) % (imagesData2 && imagesData2.length),
+				(prevIndex) => (prevIndex + 1) % (imagesData2 && imagesData2?.length),
 			);
 		}, 3000);
 
@@ -125,14 +125,13 @@ const AboutLandingPage = () => {
 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/get-hero-img`,
 		);
 		if (res.success) {
-			console.log(res.heroSlider.slice(0, 3), 'dd', res.heroSlider.slice(3));
-
-			setImagesData1(res.heroSlider.slice(0, 3));
-			setImagesData2(res.heroSlider.slice(3));
+			// console.log(res?.heroSlider?.slice(0, 3), 'dd', res?.heroSlider?.slice(3));
+			setImagesData1(res?.heroSlider?.slice(0, 3));
+			setImagesData2(res?.heroSlider?.slice(3));
 			dispatch(
 				setIsLandingStateAction({
 					key: 'heroSlider',
-					value: res.heroSlider,
+					value: res?.heroSlider,
 				}),
 			);
 		}
@@ -146,9 +145,9 @@ const AboutLandingPage = () => {
 			} else {
 				fetchAbout();
 			}
-			if (data.heroSlider) {
-				setImagesData1(data.heroSlider.slice(0, 3));
-				setImagesData2(data.heroSlider.slice(3));
+			if (data?.heroSlider) {
+				setImagesData1(data?.heroSlider?.slice(0, 3));
+				setImagesData2(data?.heroSlider?.slice(3));
 			} else {
 				fetchHeroImages();
 			}
@@ -197,7 +196,7 @@ const AboutLandingPage = () => {
 						<img
 							src={
 								(imagesData1 &&
-									imagesData1[currentImageIndex1].heroSliderImg) ||
+									imagesData1[currentImageIndex1]?.heroSliderImg) ||
 								'/images/light-gray-background.png'
 							}
 							alt="img"
