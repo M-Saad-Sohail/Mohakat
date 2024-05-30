@@ -229,7 +229,7 @@ const FamilyRegistrationForm = () => {
 
 	return (
 		<div
-			className=" scrollbarHide md:p-10"
+			className=" scrollbarHide flex items-center justify-center md:mr-auto md:p-10 "
 			dir={dir} // Set form overflow to auto
 		>
 			<div className="scrollbarHide ">
