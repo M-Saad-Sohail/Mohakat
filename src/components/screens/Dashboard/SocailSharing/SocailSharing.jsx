@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import "./SocailSharing.css"
 
 import {
@@ -12,9 +12,22 @@ import {
     TwitterShareButton
 } from 'react-share';
 import { useTranslations } from 'next-intl';
+import { getUserFromLocalStorage } from '@/utils/auth';
 
 
 const SocialSharing  = () => {
+    const [user, setUser] = useState(false)
+
+    useEffect(() => {
+		const loggedInUser = getUserFromLocalStorage();
+		if (!loggedInUser) {
+			router.redirect(PATHS.LOGIN);
+			return;
+		}
+		setUser(loggedInUser);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
     const shareUrl = "https://moakhat.org/en"
     const title = `I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website.`
     const t = useTranslations('Socail');

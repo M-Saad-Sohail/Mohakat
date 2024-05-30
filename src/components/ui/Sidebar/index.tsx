@@ -15,6 +15,7 @@ import {
 	logout,
 	sidebar_icon,
 	manage_family_png,
+	chat
 } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -61,8 +62,16 @@ const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
 	// { title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
+	{ title: 'chat', src: chat, link: PATHS.CHAT_FOR_LOGIN },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING, gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
+];
+const FamilyMenus = [
+	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
+	{ title: 'sponsors', src: families, link: PATHS.FAMILY_SPONSOR, gap: true },
+	{ title: 'chat', src: chat, link: PATHS.CHAT_FOR_LOGIN },
+	{ title: 'settings', src: setting_icon, link: PATHS.FAMILY_SETTINGS, gap: true },
+	{ title: 'logout', src: logout, link: PATHS.LOGIN_FAMILY },
 ];
 
 type SideBarHeaderProps = {
@@ -129,6 +138,7 @@ const LeftSideBar = () => {
 	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
+	const [isFamily, setIsFamily] = useState(false);
 	const { logoutUser } = useAuth();
 
 	const { url, locale, dir, replace } = useLocaleRouter();
@@ -136,11 +146,15 @@ const LeftSideBar = () => {
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
 		// console.log('uses', user);
-		if (user && user.role === 'admin') {
+		if (user && user?.role === 'admin') {
 			setIsAdmin(true);
 			setUser(user);
 		}
-		if (user && user.role === 'user') {
+		if (user && user?.role === 'user') {
+			setUser(user);
+		}
+		if (user && user?.role === 'family') {
+			setIsFamily(true);
 			setUser(user);
 		}
 		const pathname = window.location.pathname;
@@ -157,7 +171,8 @@ const LeftSideBar = () => {
 		logoutUser();
 	};
 
-	const menus = isAdmin ? AdminMenus : UserMenus;
+	// const menus = isAdmin ? AdminMenus : UserMenus;
+	const menus = isAdmin ? AdminMenus : isFamily ? FamilyMenus : UserMenus;
 
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
@@ -176,8 +191,14 @@ const LeftSideBar = () => {
 						<p
 							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
 						>
-							{user ? user.name.toUpperCase() : ''}
+							{user ? user?.name?.toUpperCase() : ''}					
 						</p>
+
+					<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						{
+							user?.role === "family" ? user?.email: ''
+						}
+					</p>
 						<div
 							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
 								!open && 'hidden'

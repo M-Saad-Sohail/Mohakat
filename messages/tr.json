@@ -24,8 +24,19 @@
 	},
 	"Signin": {
 		"form": {
-			"title": "Oturum Aç",
+			"title": "Sponsor Olarak Giriş Yapın",
+			"title1": "Sponsor Olarak Giriş Yapın?",
 			"description": "Devam etmek için Tc limlik no bilgilerinizi girin",
+			"leaveChat": "Sohbetten Ayrıl",
+			"hello": "Merhaba, orada mısın?",
+			"contact": "Sponsor Olduğunuz Ailelerle İletişime Geçin",
+			"startChat": "Devam etmek için lütfen bir sohbet seçin",
+			"yourSponsorFamily": "Sponsor Aileleriniz",
+			"yourDonator": "Sponsorlarınız",
+			"firstContact": "Yalnızca Sponsor size ilk olarak ulaşacaktır.",
+			"initiateChat": "Sadece Sponsor bir sohbet başlatacak.",
+			"message": "Mesajınızı girin",
+			"noSponsor": "Kimse size bağışta bulunmadı ve siz de herhangi bir aileyi sponsorluk yapmıyorsunuz",
 			"email": {
 				"placeholder": "E-postanızı girin",
 				"title": "E-posta"
@@ -38,7 +49,8 @@
 			"cta": {
 				"0": "Hesabınız yok mu?",
 				"1": "Sponsor Ol"
-			}
+			},
+			"familySignIn": "Aile Olarak Giriş Yapın"
 		}
 	},
 	"forgotPassword": {
@@ -197,6 +209,7 @@
 		"situation": "durum",
 		"no_of_member": "Üye Sayısı",
 		"select": "değer",
+		"chat": "Sohbet",
 		"form": {
 			"fill_form_correctly": "Formu doğru şekilde doldurun",
 			"family_details_error": "Aile üye detaylarını doldurun",
@@ -209,6 +222,9 @@
 			"titleForUpdate": "Aileyi Güncelle",
 			"submitForUpdate": "Aile başarıyla güncellendi",
 			"delete": "Silmek",
+			"password": "Şifre",
+			"registerFamily": "Aile Kaydı",
+			"register": "Kaydol",
 			"name": {
 				"title": "İsim"
 			},
@@ -218,6 +234,8 @@
 			"comment": {
 				"title": "Yorum"
 			},
+			"commentPlaceHolder": "Durumunuzu buraya yazın!",
+			"optional": "(İsteğe Bağlı)",
 			"email": {
 				"title": "E-posta"
 			},
@@ -335,7 +353,8 @@
 			"familyMemberDetails": {
 				"title": "Aile Üyesi Detayları"
 			},
-			"save_changes": "Değişiklikleri Kaydet"
+			"save_changes": "Değişiklikleri Kaydet",
+			"verification": "Doğrulama Kodu için E-postanızı Kontrol Edin"
 		}
 	},
 	"HeroMainSection": {
@@ -389,7 +408,9 @@
 		"donatedFamilies": "Bağış yapılan aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
-		"sponsoring": "Sponsorluk"
+		"sponsoring": "Sponsorluk",
+		"sponsors": "Sponsorlar",
+		"chat": "Sohbet"
 	},
 	"RejectedSponsors": {
 		"title": "Reddedilen Sponsorlar",
@@ -567,13 +588,16 @@
 		"sponsorname": "Sponsor Adı",
 		"sponsoremail": "Sponsor E-posta",
 		"sponsoramount": "Miktar",
-		"sponsorfamily": "Aile Detaylarını Görüntüle"
+		"sponsorfamily": "Aile Detaylarını Görüntüle",
+		"nodonation": "Sizin için hiçbir Sponsor veya bağış bulunamadı",
+		"sponsorcity": "Şehir"
 	},
 	"Socail": {
 		"title": "Tebrikler! Bir Sponsor oldunuz. Sponsorluğunuzu sosyal medyada diğerleriyle paylaşabilirsiniz",
 		"welcome": "Hoş geldiniz",
 		"thankyou": "Gazze'nin İhtiyaç Sahibi Ailelerine Bağış Yapın",
-		"dashboard": "Gösterge Paneli"
+		"dashboard": "Gösterge Paneli",
+		"family": "Aile olarak kayıtlısınız. İnşallah insanlar size yardım etmek için öne çıkacaklar."
 	}
 	
 }

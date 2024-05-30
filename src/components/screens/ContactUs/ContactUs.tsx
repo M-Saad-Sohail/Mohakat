@@ -74,7 +74,8 @@ const ContactUs = () => {
 			);
 		}
 	};
-
+	
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.newContactInformation) {

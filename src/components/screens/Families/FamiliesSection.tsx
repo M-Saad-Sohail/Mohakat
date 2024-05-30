@@ -162,6 +162,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		(async () => {
 			setIsLoading(true);

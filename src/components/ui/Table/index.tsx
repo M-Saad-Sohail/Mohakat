@@ -77,7 +77,7 @@ function Table({
 
 	const handleTableRefresh = () => {
 		if (typeof onTableRefresh === 'function') {
-			console.log('handle 11');
+			// console.log('handle 11');
 			onTableRefresh();
 		}
 	};

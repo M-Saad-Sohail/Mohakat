@@ -55,6 +55,7 @@ const IntiationMain = ({ currentPath }: { currentPath: any }) => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.initiationData) {

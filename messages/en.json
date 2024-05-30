@@ -24,8 +24,19 @@
 	},
 	"Signin": {
 		"form": {
-			"title": "Sign In",
+			"title": "Sign In as Sponsor",
+			"title1": "Sign In as Sponsor?",
 			"description": "Enter your credentials to continue",
+			"leaveChat": "Leave Chat",
+			"hello": "Hello, Are you there?",
+			"contact": "Contact to your Sponsored Families",
+			"startChat": "Please Select a chat to continue",
+			"noSponsor": "No one donated you nor you sponsor any family",
+			"yourSponsorFamily": "Your Sponsor Families",
+			"message": "Enter your message",
+			"firstContact": "Only Sponsor will contact you first.",
+			"initiateChat": "Only Sponsor will intiate a chat",
+			"yourDonator": "Yours Sponsor",
 			"email": {
 				"placeholder": "Enter your Email",
 				"title": "Email"
@@ -38,7 +49,8 @@
 			"cta": {
 				"0": "Don't have an account?",
 				"1": "Become a Sponsor"
-			}
+			},
+			"familySignIn": "Sign In As Family"
 		}
 	},
 	"DonateModal": {
@@ -226,6 +238,7 @@
 		"situation": "Situation",
 		"no_of_member": "No. of Members",
 		"select":"Select",
+		"chat": "Chat",
 		"form": {
 			"formTitle": "Edit Family Details",
 			"fill_form_correctly": "Please fill the form correctly",
@@ -241,6 +254,9 @@
 			"titleForUpdate": "Update Family",
 			"submitForUpdate": "Family updated successfully",
 			"delete": "Delete",
+			"password": "Password",
+			"registerFamily": "Family Registration",
+			"register": "Register",
 			"BreadWinnerName": {
 				"title": "Beard Winner Name"
 			},
@@ -265,6 +281,8 @@
 			"comment": {
 				"title": "Comment"
 			},
+			"commentPlaceHolder": "Describe Your Situtaion here!",
+			"optional": "(Optional)",
 			"name": {
 				"title": "Name"
 			},
@@ -370,7 +388,8 @@
 			"familyMemberDetails": {
 				"title": "Family Member Details"
 			},
-			"save_changes": "Save Changes"
+			"save_changes": "Save Changes",
+			"verification": "Check Email for Verification Code"
 		}
 	},
 	"Sidebar": {
@@ -389,7 +408,9 @@
 		"donatedFamilies": "Donated Families",
 		"form_response": "Form Response",
 		"credit_cards": "Credit Cards",
-		"sponsoring": "Sponsoring"
+		"sponsoring": "Sponsoring",
+		"sponsors": "Sponsors",
+		"chat": "Chat"
 	},
 	"HeroMainSection": {
 		"btns": {
@@ -580,12 +601,15 @@
 		"sponsorname": "Sponser Name",
 		"sponsoremail": "Sponser Email",
 		"sponsoramount": "Amount",
-		"sponsorfamily": "View Family Details"
+		"sponsorfamily": "View Family Details",
+		"nodonation": "No Sponsors or donation Found for you",
+		"sponsorcity": "City"
 	},
 	"Socail": {
 		"title": "Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media",
 		"welcome": "Welcome",
 		"thankyou": "Donate For Needy Families of Gaza",
-		"dashboard": "Dashboard"
+		"dashboard": "Dashboard",
+		"family": "You are registered as a Family. God willing, people will come forward to help you."
 	}
 }

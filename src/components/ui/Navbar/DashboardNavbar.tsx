@@ -43,7 +43,9 @@ const DashboardNavbar = ({ title, setting }: IProps) => {
 					{title}
 				</h2>
 
-				<div className={` flex w-full items-center justify-end md:gap-6 gap-2 md:pr-4 pr-2`}>
+				<div
+					className={` flex w-full items-center justify-end md:gap-6 gap-2 md:pr-4 pr-2`}
+				>
 					<div
 						className=" text-[40px] cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:text-[#8DAE8E] hover:font-bold rounded-full"
 						onClick={() => redirectToHomePage()}

@@ -26,6 +26,10 @@ export enum KEYS {
 	USER = 'user',
 	TOKEN = 'token_dg',
 }
+export enum FAMILY_KEYS {
+	FAMILY = 'family',
+	TOKEN = 'token_dg',
+}
 
 export type FamilyModalType = {
 	open: boolean;
@@ -69,4 +73,10 @@ export type CurrencyModalType = {
 	open: boolean;
 	setOpen: (value: boolean) => void;
 	cancelButtonRef: any;
+};
+
+
+export type FamilyCredentials = {
+	password: string;
+	email: string;
 };

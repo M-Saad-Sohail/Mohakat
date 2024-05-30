@@ -48,55 +48,55 @@ export const AddFamiliesSchema = object({
 	breadWinnerNameEn: string().required(
 		'Breadwinner name (English) is required',
 	),
-	breadWinnerNameTr: string().required(
-		'Breadwinner name (Turkish) is required',
-	),
-	breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
+	// breadWinnerNameTr: string().required(
+	// 	'Breadwinner name (Turkish) is required',
+	// ),
+	// breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
 	// description: string().required('Description is required'),
 	descriptionEn: string(),
-	descriptionTr: string(),
-	descriptionAr: string(),
+	// descriptionTr: string(),
+	// descriptionAr: string(),
 	email: string()
 		.email('Invalid email address')
 		.required('Email address is required'),
 	genderEn: string().required('Gender (English) is required'),
-	genderTr: string().required('Gender (Turkish) is required'),
-	genderAr: string().required('Gender (Arabic) is required'),
+	// genderTr: string().required('Gender (Turkish) is required'),
+	// genderAr: string().required('Gender (Arabic) is required'),
 	dateOfBirth: string().required('Date of birth is required'),
 	maritalStatusEn: string().required('Maritial status (English) is required'),
-	maritalStatusTr: string().required('Maritial status (Turkish) is required'),
-	maritalStatusAr: string().required('Maritial status (Arabic) is required'),
+	// maritalStatusTr: string().required('Maritial status (Turkish) is required'),
+	// maritalStatusAr: string().required('Maritial status (Arabic) is required'),
 	language: string().required('Language is required'),
 	areaOfPreviousResidenceEn: string().required(
 		'Previous residence area (in English) is required',
 	),
-	areaOfPreviousResidenceTr: string().required(
-		'Previous residence area (in Turkish) is required',
-	),
-	areaOfPreviousResidenceAr: string().required(
-		'Previous residence area (in English) is required',
-	),
+	// areaOfPreviousResidenceTr: string().required(
+	// 	'Previous residence area (in Turkish) is required',
+	// ),
+	// areaOfPreviousResidenceAr: string().required(
+	// 	'Previous residence area (in English) is required',
+	// ),
 	areaOfCurrentResidenceEn: string().required(
 		'Current residence area (in English) is required',
 	),
-	areaOfCurrentResidenceTr: string().required(
-		'Current residence area (in Turkish) is required',
-	),
-	areaOfCurrentResidenceAr: string().required(
-		'Current residence area (in English) is required',
-	),
+	// areaOfCurrentResidenceTr: string().required(
+	// 	'Current residence area (in Turkish) is required',
+	// ),
+	// areaOfCurrentResidenceAr: string().required(
+	// 	'Current residence area (in English) is required',
+	// ),
 	currentSituationEn: string().required(
 		'Current situation (in English) is required',
 	),
-	currentSituationTr: string().required(
-		'Current situation  (in Turkish) is required',
-	),
-	currentSituationAr: string().required(
-		'Current situation  (in Arabic) is required',
-	),
+	// currentSituationTr: string().required(
+	// 	'Current situation  (in Turkish) is required',
+	// ),
+	// currentSituationAr: string().required(
+	// 	'Current situation  (in Arabic) is required',
+	// ),
 	lossesInWarEn: string().required('Losses In War (in English) is required'),
-	lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
-	lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
+	// lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
+	// lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
 	numberOfFamilyMembers: number()
 		.min(0, 'Number of family members must be positive or zero')
 		.required('Number of family members is required'),

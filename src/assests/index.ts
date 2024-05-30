@@ -49,6 +49,7 @@ import english_flag from './icons/english_flag.svg';
 import arabic_flag from './icons/arabic_flag.svg';
 import palestine_flag from './icons/palestine_flag.svg';
 import section_pic from './icons/sectionimg.png';
+import chat from './icons/chat.svg';
 
 
 export {
@@ -101,5 +102,6 @@ export {
 	palestine_flag,
 	manage_family,
 	manage_family_png,
-	section_pic
+	section_pic,
+	chat
 };

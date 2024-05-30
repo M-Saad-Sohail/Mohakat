@@ -117,6 +117,15 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 				>
 					{t('cta.1')}
 				</Link>
+
+				<Link
+					locale={locale}
+					className="font-bold text-black hover:text-[#CF7475]"
+					href={url('/sign-in-family')}
+					style={{ color: "#CF7475" }}
+				>
+					{t("familySignIn")}
+				</Link>
 			</div>
 		</>
 	);

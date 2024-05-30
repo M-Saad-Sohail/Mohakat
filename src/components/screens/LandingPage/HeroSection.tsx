@@ -21,6 +21,7 @@ interface HeroDataType {
 }
 
 const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
+
 	const dispatch = useDispatch();
 	const data = useSelector<RootState, any>((state) => state.landingpage);
 	const pathname = usePathname();
@@ -74,6 +75,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.newHero) {
@@ -86,6 +88,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 		}
 	}, []);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		if (data?.randomFamilies) {
 			setRandomFamily(data?.randomFamilies[0]);
@@ -117,9 +120,24 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									onClick={() => {
 										setQuickDonationOpen(true);
 									}}
-									className = "button-animated"
+									className="button-animated"
 								/>
-								<Button
+								<Link href={url(PATHS.FAMILY_REGISTRATION)}>
+									<Button
+										// onClick={
+										// 	() => {
+										// 		toast.error(`This feature is in progress`, {
+										// 			toastId: 'success',
+										// 			position: 'bottom-right',
+										// 			autoClose: 4000,
+										// 		});
+										// 	}
+										// }
+										title={t('RegisterasFamily.title')}
+										Color="#BB9B6C"
+									/>
+								</Link>
+								{/* <Button
 									onClick={() => {
 										toast.error(`This feature is in progress`, {
 											toastId: 'success',
@@ -129,7 +147,7 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									}}
 									title={t('RegisterasFamily.title')}
 									Color="#BB9B6C"
-								/>
+								/> */}
 							</div>
 						)}
 					</div>

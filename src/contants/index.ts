@@ -26,6 +26,15 @@ export const PATHS = {
 	SETTING: '/dashboard/setting',
 	SPONSORING: '/dashboard/sponsoring',
 	CREDIT_CARDS: '/dashboard/credit-cards',
+	FAMILY_REGISTRATION: '/family-registration',
+	LOGIN_FAMILY: '/sign-in-family',
+	FORGOT_PASSWORD_FAMILY: '/forgot-password-family',
+	FAMILY_VERIFY_OTP: '/family-verify-otp',
+	FAMILY_RESET_PASSWORD: '/familyresetpassword',
+	FAMILY_RESENT_OTP: "/family-resend-otp",
+	FAMILY_SETTINGS: "/dashboard/family-settings",
+	FAMILY_SPONSOR: '/dashboard/family-sponsors',
+	CHAT_FOR_LOGIN: '/dashboard/chats'
 };
 
 export const RESETINITIALVALUES: ResetPasswordSchema = {

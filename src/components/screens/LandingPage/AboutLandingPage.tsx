@@ -66,6 +66,7 @@ const AboutLandingPage = () => {
 		return () => clearInterval(interval);
 	}, [imagesData1]);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex2(
@@ -137,6 +138,7 @@ const AboutLandingPage = () => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.newAbout) {

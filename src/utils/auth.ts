@@ -1,5 +1,6 @@
 import { redirect, RedirectType } from 'next/navigation';
-import { UserType } from '../state/user/types';
+import { UserType, FamilyType } from '../state/user/types';
+// import { FamilyType } from '../state/family/types';
 
 export const navigateIfLoggedIn = (url: string) => {
 	const tokenString = localStorage.getItem('user');
@@ -36,3 +37,18 @@ export function getLastNameFromPathname(pathname: String) {
 	const lastName = parts[parts.length - 1];
 	return lastName;
 }
+
+
+export const getFamilyFromLocalStorage = () => {
+	if (typeof window !== 'undefined') {
+		const userString = localStorage.getItem('family');
+		if (userString) {
+			try {
+				return JSON.parse(userString) as FamilyType;
+			} catch (error) {
+				return null;
+			}
+		}
+	}
+	return null; // or any other default value if needed
+};

@@ -38,15 +38,8 @@ const StickeyBar = () => {
 		<>
 			<div className="fixed flex flex-col left-0 top-1/2 transform -translate-y-1/2 z-[9999]">
 				<Link
-					href={'#'}
+					href={url(PATHS.FAMILY_REGISTRATION)}
 					className=" bg-[#BB9B6C] md:p-5 p-[10px] tooltip"
-					onClick={() => {
-						toast.error(`This feature is in progress`, {
-							toastId: 'success',
-							position: 'top-right',
-							autoClose: 4000,
-						});
-					}}
 				>
 					<Image
 						src={stickeySvg1}

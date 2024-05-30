@@ -593,3 +593,40 @@ input[name='selectedCurrency'] {
 	animation: scale-animation 1.5s;
     animation-iteration-count: infinite;
 }
+
+.chat{
+	display: flex;
+	justify-content: "start"
+}
+.chatReciver{
+	display: flex;
+	justify-content: "end";
+	flex-direction: row-reverse;
+}
+
+.divide{
+	display: flex !important;
+	flex-direction: row !important;
+	gap: 4rem !important;
+	justify-content: center;
+}
+.sent{
+	display: flex !important;
+	flex-direction: row !important;
+	gap: 4rem !important;
+}
+
+@media (max-width: 1024px) {
+	.divide {
+	  flex-direction: column !important;
+	  gap: 2rem !important;
+	}
+  }
+  
+  /* Media query for mobile devices (up to 768px) */
+  @media (max-width: 768px) {
+	.divide {
+	  flex-direction: column !important;
+	  gap: 1rem !important;
+	}
+  }

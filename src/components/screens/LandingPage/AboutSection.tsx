@@ -67,6 +67,7 @@ const AboutSection = () => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.newAbout) {

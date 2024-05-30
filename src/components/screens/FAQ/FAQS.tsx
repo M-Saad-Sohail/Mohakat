@@ -67,6 +67,7 @@ const FAQS = () => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		try {
 			if (data.newFaq) {
