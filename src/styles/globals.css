@@ -630,3 +630,13 @@ input[name='selectedCurrency'] {
 	  gap: 1rem !important;
 	}
   }
+
+  /* Media query for mobile devices (up to 768px) */
+  @media (max-width: 400px) {
+	.register_form_res{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto 19px;
+	}
+  }

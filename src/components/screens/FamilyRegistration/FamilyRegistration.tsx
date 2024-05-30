@@ -229,20 +229,20 @@ const FamilyRegistrationForm = () => {
 
 	return (
 		<div
-			className=" scrollbarHide flex items-center justify-center md:mr-auto md:p-10 "
+			className=" scrollbarHide w-full my-[100px] max-w-[800px] animated-div flex items-center justify-center md:mr-auto register_form_res"
 			dir={dir} // Set form overflow to auto
 		>
-			<div className="scrollbarHide ">
-				 {/* <h2
-					className="text-[24px] font-bold text-main mt-2 leading-normal py-2 "
-					style={{ textAlign: "center", paddingTop: '3%' }}
+			<div className="scrollbarHide">
+				 <h2
+					className="text-[24px] text-[#36454F] font-bold text-main mt-2 leading-normal py-2 mt-20 "
+					style={{ textAlign: "center", paddingTop: '3%', fontSize: "2rem" }}
 				>
-					Register Family
-				</h2>  */}
-					{/* {t('title')} */}
-				<div className="flex flex-col justify-center items-center mt-20">
+					{t('registerFamily')}
+				</h2> 
+					{/* {t('title')} */}	
+				{/* <div className="flex flex-col justify-center items-center mt-20">
 						<Heading heading={t('registerFamily')} className="main_heading-black" />
-					</div>
+					</div> */}
 				
 
 				{/* first */}
