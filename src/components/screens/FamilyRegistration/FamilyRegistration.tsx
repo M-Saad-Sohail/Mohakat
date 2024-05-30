@@ -234,8 +234,8 @@ const FamilyRegistrationForm = () => {
 		>
 			<div className="scrollbarHide">
 				 <h2
-					className="text-[24px] text-[#36454F] font-bold text-main mt-2 leading-normal py-2 mt-20 "
-					style={{ textAlign: "center", paddingTop: '3%', fontSize: "2rem" }}
+					className="text-[24px] text-[#36454F] font-bold text-main leading-normal"
+					style={{ textAlign: "center", paddingTop: '2%', fontSize: "2rem" }}
 				>
 					{t('registerFamily')}
 				</h2> 
