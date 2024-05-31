@@ -497,7 +497,7 @@
 	},
 	"Dashboard": {
 		"title": "Dashboard",
-		"section1": "Admin & Moderators",
+		"section1": "Admins",
 		"cards": {
 			"1": "Total Families",
 			"2": "Total Approved Sponsors",

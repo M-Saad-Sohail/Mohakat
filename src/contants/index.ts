@@ -212,7 +212,7 @@ export const DASHBOARDCOLUMN: any = [
 	{ Header: 'Name', accessor: 'name' },
 	{ Header: 'Email', accessor: 'email' },
 	{ Header: 'Role', accessor: 'role' },
-	{ Header: 'Action', accessor: 'delete' },
+	// { Header: 'Action', accessor: 'delete' },
 ];
 export const PENDINGCOLUMN: any = [
 	{ Header: 'Sno', accessor: 'no' },

@@ -462,7 +462,7 @@
 	},
 	"Dashboard": {
 		"title": "Pano",
-		"section1": "Yönetici ve Moderatörler",
+		"section1": "Yönetici",
 		"cards": {
 			"1": "Toplam Aile Sayısı",
 			"2": "Toplam onaylanmış sponsorluk",
