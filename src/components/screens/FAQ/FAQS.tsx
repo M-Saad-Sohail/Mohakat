@@ -14,6 +14,10 @@ interface FaqDataType {
 	answers: string;
 }
 
+interface SanitizedHTML {
+	__html: string;
+}
+
 const FAQS = () => {
 	const t = useTranslations('FAQ');
 	const dispatch = useDispatch();
@@ -24,7 +28,7 @@ const FAQS = () => {
 	const [faqData, setFaqData] = useState<FaqDataType[]>([]);
 
 	// Function to sanitize HTML content
-	const sanitizeHTML = (data) => {
+	const sanitizeHTML = (data: string): SanitizedHTML => {
 		return { __html: DOMPurify.sanitize(data) };
 	};
 
