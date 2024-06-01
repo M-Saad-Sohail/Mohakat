@@ -235,7 +235,7 @@
 		"title": "Families",
 		"description": "When families receive sponsorship, they gain access to essential resources and support, improving their quality of life. Donations are utilized to provide food, shelter, education, and medical assistance.",
 		"area": "Area",
-		"situation": "Situation",
+		"situation": "Situation of House",
 		"no_of_member": "No. of Members",
 		"select":"Select",
 		"chat": "Chat",
@@ -433,7 +433,7 @@
 				"title": "Become a Sponser"
 			},
 			"RegisterasFamily": {
-				"title": "Register Family in Gaza"
+				"title": "Register a Family in Gaza"
 			},
 			"Donate": {
 				"title": "Donate"
@@ -519,10 +519,10 @@
 		"families": "Families",
 		"faqs": "FAQs",
 		"contact": "Contact",
-		"MuakhetAllrightsreserved": "Muakhet. All rights reserved.",
+		"MuakhetAllrightsreserved": "Moakhat. All rights reserved.",
 		"privacypolicy": "Privacy Policy",
 		"termsofservice": "Terms of Service",
-		"topbar": "Raise funds for the Gaza. Donate, sponsor, and spread love"
+		"topbar": "Gaza: Donate, sponsor, and spread love"
 	},
 	"FAQ": {
 		"title": "FAQs",
@@ -548,7 +548,7 @@
 		"emptyMessage": "No Family Added"
 	},
 	"toolTips": {
-		"familyRegister": "Register Family In Gaza",
+		"familyRegister": "Register a Family In Gaza",
 		"donateShare": "Donate a Share",
 		"becomeSponser": "Become Sponser"
 	},
@@ -569,7 +569,7 @@
 		"placeholderaddress": "Istanbul, Turkey"
 	},
 	"CurrencyModal": {
-		"title": "Display Currency"
+		"title": "Currency"
 	},
 	"FamiliesMainSection": {
 		"clearAll": "Clear All",

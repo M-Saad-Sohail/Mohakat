@@ -206,7 +206,7 @@
 		"title": "Aileler",
 		"description": "Aileler sponsorluk aldığında temel kaynaklara ve desteğe erişerek yaşam kalitelerini artırırlar. Bağışlar yiyecek, barınma, eğitim ve tıbbi yardım sağlamak için kullanılıyor.",
 		"area": "alan",
-		"situation": "durum",
+		"situation": "Evin durumu",
 		"no_of_member": "Üye Sayısı",
 		"select": "değer",
 		"chat": "Sohbet",
@@ -366,7 +366,7 @@
 				"title": "Sponsor Ol"
 			},
 			"RegisterasFamily": {
-				"title": "Gazze'deki aileyi kaydettirmek"
+				"title": "Gazze'de Bir Aileyi Kaydedin"
 			},
 			"Sponser": {
 				"title": "Bir Pay Bağışla"
@@ -485,10 +485,10 @@
 		"families": "Aileler",
 		"faqs": "SSS",
 		"contact": "İletişim",
-		"MuakhetAllrightsreserved": "Muakhet. Tüm hakları saklıdır.",
+		"MuakhetAllrightsreserved": "Moakhat. Tüm hakları saklıdır.",
 		"privacypolicy": "Gizlilik Politikası",
 		"termsofservice": "Hizmet Şartları",
-		"topbar": "Gazze için bağış topla. Bağış yap, sponsor ol, ve sevgiyi yay."
+		"topbar": "Gazze: Bağış yapın, sponsor olun ve sevgiyi yayın"
 	},
 	"FAQ": {
 		"title": "SSS",
@@ -556,7 +556,7 @@
 		"placeholderaddress": "İstanbul, Türkiye"
 	},
 	"CurrencyModal": {
-		"title": "Para Birimini Göster"
+		"title": "Para Birimi"
 	},
 	"FamiliesMainSection": {
 		"clearAll": "Hepsini Temizle",

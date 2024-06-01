@@ -88,7 +88,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			}
 
 			if (memberValue !== null) {
-				memberMatch = item.numberOfFamilyMembers <= memberValue;
+				memberMatch = item.numberOfFamilyMembers == memberValue;
 			}
 
 			return areaMatch && situationMatch && memberMatch;

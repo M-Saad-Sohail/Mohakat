@@ -8,7 +8,7 @@ import { RootState } from '@/state/store';
 import { usePathname } from 'next/navigation';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import Heading from '@/components/ui/Heading/Heading';
-
+import DOMPurify from 'dompurify'; // For Saafetly Rendering HTML from the db
 interface FaqDataType {
 	questions: string;
 	answers: string;
@@ -22,6 +22,11 @@ const FAQS = () => {
 	const currentPath = pathname?.slice(1, 3);
 	const { url, dir, locale, changeLocale } = useLocaleRouter();
 	const [faqData, setFaqData] = useState<FaqDataType[]>([]);
+
+	// Function to sanitize HTML content
+	const sanitizeHTML = (data) => {
+		return { __html: DOMPurify.sanitize(data) };
+	};
 
 	const handleFaqData = (path: string | undefined, data: any) => {
 		if (path === 'en') {
@@ -87,9 +92,9 @@ const FAQS = () => {
 			className={` md:w-[80%] py-12 w-[90%] mx-auto flex flex-col gap-8 `}
 		>
 			<div className=" flex flex-col gap-2">
-				<div className = "flex flex-col justify-start items-start">
-							<Heading heading = {t('title')} className = "main_heading-black" />
-						</div>
+				<div className="flex flex-col justify-start items-start">
+					<Heading heading={t('title')} className="main_heading-black" />
+				</div>
 				<p className="md:text-lg text-base font-light text-[#36454F]">{t('description')}</p>
 			</div>
 
@@ -108,9 +113,8 @@ const FAQS = () => {
 									<h3 className=" text-lg font-bold text-[#BB9B6C]">
 										{item.questions}
 									</h3>
-									<h3 className=" text-lg font-normal text-[#36454F]">
-										{item.answers}
-									</h3>
+									<h3 className=" text-lg font-normal text-[#36454F]"
+										dangerouslySetInnerHTML={sanitizeHTML(item.answers)} />
 								</div>
 							</div>
 						</>
