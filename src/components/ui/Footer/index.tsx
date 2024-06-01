@@ -64,7 +64,7 @@ const Footer = () => {
 					<div>
 						<Image
 							src={currentPath === 'ar' ? Logo : logo}
-							className={`${currentPath === 'ar' ? ' w-14' : ' w-11'}`}
+							className={`${currentPath === 'ar' ? ' w-14' : ' w-11'} footer_img_url`}
 							alt="logo"
 						/>
 					</div>

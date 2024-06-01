@@ -640,3 +640,8 @@ input[name='selectedCurrency'] {
 		margin: auto 19px;
 	}
   }
+
+  /* Footer Logo */
+.footer_img_url{
+	filter: url() !important;
+}
