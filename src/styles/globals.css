@@ -643,5 +643,5 @@ input[name='selectedCurrency'] {
 
   /* Footer Logo */
 .footer_img_url{
-	filter: url() !important;
+	filter: url(#footer_logo) !important;
 }

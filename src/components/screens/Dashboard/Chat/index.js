@@ -27,7 +27,6 @@ import socketIO from "socket.io-client"
 import socketIOClient from 'socket.io-client';
 import io from 'socket.io-client';
 // import WebSocket from "websocket";
-const SOCKET_SERVER_URL = "http://localhost:4000";
 import Button from '@/components/ui/LandingPage/Button';
 import { useTranslations } from 'next-intl';
 import { MdOutlinePresentToAll } from "react-icons/md";
@@ -40,6 +39,7 @@ import { logo } from '@/assests';
 import Input from '@/components/ui/Input';
 import { searching } from '@/assests';
 import { toast } from 'react-toastify';
+
 
 const Chats = () => {
 	const user = getUserFromLocalStorage();
@@ -73,18 +73,22 @@ const Chats = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		if (socketState === undefined || socketState === false) {
+			// const socketState = socketIO.connect("http://localhost:4000", { transports: ['websocket'], path: "/socket.io" })
+			const socketState = socketIO.connect("sponserendpoint.netlify.app/.netlify/functions/server", { transports: ['websocket'] })
 			// const socketState = socketIO.connect("https://sponserendpoint.netlify.app/.netlify/functions/server/", { transports: ['websocket'], path: "/socket.io" })
 			// const socketState = io("https://sponserendpoint.netlify.app", { transports: ['websocket'], path: "/socket.io" })
 			// const socketState = new WebSocket('wss://netlifyhost/socket.io')
+			// const SOCKET_SERVER_URL = "https://sponserendpoint.netlify.app/.netlify/functions/server";
+			// const SOCKET_SERVER_URL = "http://localhost:4000";
 
-			const socketState = io('https://sponserendpoint.netlify.app/.netlify/functions/server', {
-				transports: ['websocket'],
-				secure: true, // Ensure the connection is secure
-				reconnection: true, // Enable reconnection
-				reconnectionAttempts: 5, // Number of reconnection attempts
-				reconnectionDelay: 2000, // Time to wait before reconnection attempts
-				timeout: 5000, // Connection timeout duration
-			});
+			// const socketState = io(SOCKET_SERVER_URL, {
+			// 	transports: ['websocket'],
+			// 	secure: true, // Ensure the connection is secure
+			// 	reconnection: true, // Enable reconnection
+			// 	reconnectionAttempts: 5, // Number of reconnection attempts
+			// 	reconnectionDelay: 2000, // Time to wait before reconnection attempts
+			// 	timeout: 5000, // Connection timeout duration
+			// });
 
 			// const socket = socketIOClient("https://sponserendpoint.netlify.app/", {
 			// 	transports: ['websocket'],
@@ -102,7 +106,7 @@ const Chats = () => {
 
 			// Note: Receiving message from server...!
 			socketState.on("message-received", (message) => {
-				// console.log("New message received from server: ", message)
+				console.log("New message received from server: ", message)
 				fetchMessages(messageCollectionId)
 			})
 		}
