@@ -355,7 +355,7 @@
 				"title": "تفاصيل أفراد العائلة"
 			},
 			"save_changes": "حفظ التغييرات",
-			"verification": "تحقق من البريد الإلكتروني للحصول على رمز التحقق"
+			"verification": "تحقق من البريد الإلكتروني لمزيد من المعلومات"
 		}
 	},
 	"HeroMainSection": {
@@ -406,6 +406,11 @@
 			"pending": "الراعي المعلق",
 			"rejected": "الراعي المرفوض"
 		},
+		"family": {
+			"approved": "العائلات المعتمدة",
+            "pending": "العائلات المعلقة",
+            "rejected": "العائلات المرفوضة"
+		},
 		"donatedFamilies": "العائلات المتبرع لها",
 		"form_response": "استجابة النموذج",
 		"credit_cards": "بطاقات الائتمان",
@@ -431,7 +436,16 @@
 		"title": "إدارة العائلات"
 	},
 	"ApprovedSponsors": {
-		"title": "الرعاة الموافق عليهم"
+		"title": "العائلة المعتمدة"
+	},
+	"ApprovedFamily": {
+		"title": "العائلة المعتمدة"
+	},
+	"PendingFamily": {
+		"title": "عائلة في انتظار"
+	},
+	"RejectedFamily": {
+		"title": "العائلة المرفوضة"
 	},
 	"SponsoredFamilies": {
 		"title": "العائلات المدعومة"

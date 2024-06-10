@@ -34,7 +34,10 @@ export const PATHS = {
 	FAMILY_RESENT_OTP: "/family-resend-otp",
 	FAMILY_SETTINGS: "/dashboard/family-settings",
 	FAMILY_SPONSOR: '/dashboard/family-sponsors',
-	CHAT_FOR_LOGIN: '/dashboard/chats'
+	CHAT_FOR_LOGIN: '/dashboard/chats',
+	APPROVED_FAMILY: '/dashboard/family/approved',
+	PENDING_FAMILY: '/dashboard/family/pending',
+	REJECTED_FAMILY: '/dashboard/family/rejected',
 };
 
 export const RESETINITIALVALUES: ResetPasswordSchema = {
@@ -161,6 +164,14 @@ export const FAMILIESCOLUMN: any = [
 	{ Header: 'NumberOfFamilyMember', accessor: 'numberOfFamilyMembers' },
 	{ Header: 'Action', accessor: 'view' },
 ];
+export const PENDINGFAMILIESCOLUMN: any = [
+	{ Header: 'Sno', accessor: 'no' },
+	{ Header: 'Email', accessor: 'email' },
+	{ Header: 'NumberOfFamilyMember', accessor: 'numberOfFamilyMembers' },
+	{ Header: 'Action', accessor: 'view' },
+	// { Header: 'Action', accessor: 'approved' },
+	{ Header: 'Action', accessor: 'approval' },
+];
 export const Links = [
 	{ localeId: 'links.0', name: 'Home', link: '/' },
 	{ localeId: 'links.2', name: 'About', link: '/about' },
@@ -221,6 +232,7 @@ export const PENDINGCOLUMN: any = [
 	{ Header: 'Country', accessor: 'country' },
 	{ Header: 'Language', accessor: 'language' },
 ];
+
 
 export const SPONSORDATA: any = [
 	{

@@ -187,7 +187,7 @@ const FamilyRegistrationForm = () => {
 						response,
 						user?.key,
 					);
-					console.log('Api res: ', res);
+					// console.log('Api res: ', res);
 					if (res.success) {
 						setLoading(false);
 						AddFamiliesForm.resetForm();
@@ -197,7 +197,7 @@ const FamilyRegistrationForm = () => {
 							autoClose: 4000,
 						});
 						localStorage.setItem("FAMILY_OTP_KEY", res?.familyId);
-						let url = PATHS.FAMILY_VERIFY_OTP;
+						let url = PATHS.VERIFICATION;
 						redirectWithLocale(locale, url);
 					}
 				

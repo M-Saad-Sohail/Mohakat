@@ -14,3 +14,4 @@ export { default as ResendOtp } from './ResendOtp';
 export { default as FamilyRegistration } from "./FamilyRegistration";
 export { default as SignInFamily } from "./SignInFamily";
 export { default as FamilyResendOtp } from './FamilyResendOtp';
+export { default as PendingFamily } from './PendingFamily';

@@ -86,14 +86,14 @@ function Table({
 		const user = getUserFromLocalStorage();
 		if (!user) return;
 		await ApprovedSponsor(user.key, id);
-		replace('/dashboard/sponsor/approved');
+		replace('/dashboard/family/approved');
 	};
 
 	const handleActionRejectClick = async (id: string) => {
 		const user = getUserFromLocalStorage();
 		if (!user) return;
 		await RejectSponsor(user.key, id);
-		replace('/dashboard/sponsor/rejected');
+		replace('/dashboard/family/pending');
 	};
 
 	const [deleteId, setDeleteId] = useState('');
@@ -190,7 +190,7 @@ function Table({
 							return (
 								<tr {...row.getRowProps()} key={row.id}>
 									{row.cells.map((cell: any, cellIndex: number) => {
-										if (cell.column.id === 'action') {
+										if (cell.column.id === 'approval') {
 											return (
 												<td
 													{...cell.getCellProps()}

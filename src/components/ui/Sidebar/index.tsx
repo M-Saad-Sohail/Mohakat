@@ -15,7 +15,8 @@ import {
 	logout,
 	sidebar_icon,
 	manage_family_png,
-	chat
+	chat,
+	reject
 } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -37,6 +38,7 @@ const AdminMenus = [
 		title: 'ManageFamilyPage',
 		src: manage_family_png,
 		link: PATHS.MANAGEFAMILIES,
+		gap: true
 	},
 	{
 		title: 'sponsor.pending',
@@ -47,7 +49,25 @@ const AdminMenus = [
 		title: 'sponsor.approved',
 		src: approved__icon,
 		link: PATHS.APPROVED_SPONSOR,
+		gap: true
 	},
+	{
+		title: 'family.approved',
+		src: approved__icon,
+		link: PATHS.APPROVED_FAMILY,
+	},
+	{
+		title: 'family.pending',
+		src: pending_icon,
+		link: PATHS.PENDING_FAMILY,
+		gap: true
+	},
+	// {
+	// 	title: 'family.rejected',
+	// 	src: reject,
+	// 	link: PATHS.REJECTED_FAMILY,
+	// 	gap: true
+	// },
 	// {
 	// 	title: 'form_response',
 	// 	src: form_icon,

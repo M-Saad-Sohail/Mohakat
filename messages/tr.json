@@ -354,7 +354,7 @@
 				"title": "Aile Üyesi Detayları"
 			},
 			"save_changes": "Değişiklikleri Kaydet",
-			"verification": "Doğrulama Kodu için E-postanızı Kontrol Edin"
+			"verification": "Daha fazla bilgi için E-postayı kontrol edin"
 		}
 	},
 	"HeroMainSection": {
@@ -405,6 +405,11 @@
 			"pending": "Bekleyen Sponsor",
 			"rejected": "Reddedilmiş Sponsor"
 		},
+		"family": {
+			"approved": "Onaylı Aileler",
+            "pending": "Bekleyen Aileler",
+            "rejected": "Reddedilen Aileler"
+		},
 		"donatedFamilies": "Bağış yapılan aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
@@ -431,6 +436,15 @@
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
+	},
+	"ApprovedFamily": {
+		"title": "Onaylanmış Aile"
+	},
+	"PendingFamily": {
+		"title": "Bekleyen Aile"
+	},
+	"RejectedFamily": {
+		"title": "Reddedilen Aile"
 	},
 	"SponsoredFamilies": {
 		"title": "Desteklenen Aileler"

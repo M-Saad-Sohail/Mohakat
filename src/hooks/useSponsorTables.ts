@@ -16,11 +16,11 @@ export const fetchApprovedData = async (token: string) => {
 	try {
 		const response = await api.get(
 			'sponsers/approved',
-			// {
-			// 	headers: {
-			// 		Authorization: `${token}`,
-			// 	},
-			// },
+			{
+				headers: {
+					Authorization: `${token}`,
+				},
+			},
 		);
 
 		return response.data;
@@ -45,7 +45,7 @@ export const fetchRejectededData = async (token: string) => {
 export const RejectSponsor = async (token: string, id: string) => {
 	try {
 		const response = await api.put(
-			`/admin/reject/sponser/${id}`,
+			`/admin/family/rejected/${id}`,
 			{},
 			{
 				headers: {
@@ -89,10 +89,7 @@ export const RejectDeleteAll = async (token: string) => {
 export const ApprovedSponsor = async (token: string, id: string) => {
 	try {
 		const response = await api.put(
-			`/admin/approved/sponser/${id}`,
-			{
-				status: 'approved',
-			},
+			`/admin/family/approved/${id}`,
 			{
 				headers: {
 					Authorization: `${token}`,
@@ -143,6 +140,30 @@ export const fetchFamiliesData = async (token: string) => {
 		throw error;
 	}
 }
+export const fetchApprovedFamiliesData = async (token: string) => {
+	try {
+		const response = await api.get('/approved/families', {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data
+	} catch (error) {
+		throw error;
+	}
+}
+export const fetchPendingFamiliesData = async (token: string) => {
+	try {
+		const response = await api.get('/pending/families', {
+			headers: {
+				Authorization: `${token}`,
+			},
+		});
+		return response.data
+	} catch (error) {
+		throw error;
+	}
+}
 
 export const DeleteFamily = async (token: string, id: string) => {
 	try {
@@ -152,8 +173,8 @@ export const DeleteFamily = async (token: string, id: string) => {
 			},
 		});
 		if (response.status !== 201) {
-            throw new Error('Failed to delete the family');
-        }
+			throw new Error('Failed to delete the family');
+		}
 		return response.data;
 	} catch (error) {
 		console.error('Deletion error:', error);

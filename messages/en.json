@@ -389,7 +389,7 @@
 				"title": "Family Member Details"
 			},
 			"save_changes": "Save Changes",
-			"verification": "Check Email for Verification Code"
+			"verification": "Check Email for further Information"
 		}
 	},
 	"Sidebar": {
@@ -404,6 +404,11 @@
 			"approved": "Approved Sponsor",
 			"pending": "Pending Sponsor",
 			"rejected": "Rejected Sponsor"
+		},
+		"family": {
+			"approved": "Approved Families",
+			"pending": "Pending Families",
+			"rejected": "Rejected Families"
 		},
 		"donatedFamilies": "Donated Families",
 		"form_response": "Form Response",
@@ -467,6 +472,15 @@
 	"ApprovedSponsors": {
 		"title": "Approved Sponsors"
 	},
+	"ApprovedFamily": {
+		"title": "Approved Family"
+	},
+	"PendingFamily": {
+		"title": "Pending Family"
+	},
+	"RejectedFamily": {
+		"title": "Rejected Family"
+	},
 	"SponsoredFamilies": {
 		"title": "Sponsored Families"
 	},
@@ -489,7 +503,8 @@
 			"IdNumber": "ID number",
 			"MartyrInFamily": "Martyr In Family",
 			"NumberOfFamilyMember": "Number Of Family Members",
-			"Id": "Unique ID"
+			"Id": "Unique ID",
+			"approval": "Approval Action"
 		}
 	},
 	"Pagination": {
