@@ -229,7 +229,7 @@
 				"title": "İsim"
 			},
 			"BreadWinnerName": {
-				"title": "Aile Geçimini Sağlayanın Adı"
+				"title": "Ekmek Kazananının Adı"
 			},
 			"comment": {
 				"title": "Yorum"
@@ -291,6 +291,8 @@
 				"title": "Medeni Durum",
 				"single": "Bekar",
 				"married": "Evli",
+				"widow": "Dul",
+				"divorced": "boşanmış",
 				"default": "Medeni Durumu Seçin"
 			},
 			"previousresidence": {
@@ -322,7 +324,7 @@
 				"default": "Mevcut İkameti Seçin"
 			},
 			"currentsituation": {
-				"title": "Mevcut Durum",
+				"title": "Evin Güncel Durumu",
 				"bad": "Kötü",
 				"good": "İyi",
 				"worst": "Çok kötü",

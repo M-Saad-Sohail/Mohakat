@@ -7,6 +7,8 @@ import useFetchSponsors from '@/hooks/useFetchSponsors';
 
 const RejectedSponsor = () => {
 	const { data, setData } = useFetchSponsors(fetchRejectededData)
+
+	
 	return (
 		<Table
 			data={data}

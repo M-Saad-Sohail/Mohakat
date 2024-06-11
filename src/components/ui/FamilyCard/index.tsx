@@ -18,6 +18,7 @@ import QuickDonationModal from '../Modals/QuickDonationModal';
 import { calculateAmount } from '@/utils/calculateAmount';
 import ThankYouModal from '../Modals/ThankYouModal';
 
+
 const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 	familyData,
 	isLoggedIn,
@@ -61,7 +62,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 					<Button
 						title={familyData?.currentSituation || t2('Worst')}
 						Color="#CF7475"
-						className=" capitalize "
+						className=" capitalize"
 					/>
 					<p className=" flex gap-1 text-lg font-semibold">
 						{familyData.numberOfFamilyMembers > 4 ? (

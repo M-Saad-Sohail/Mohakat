@@ -165,6 +165,7 @@ export const fetchPendingFamiliesData = async (token: string) => {
 	}
 }
 
+
 export const DeleteFamily = async (token: string, id: string) => {
 	try {
 		const response = await api.delete(`/delete-family/${id}`, {

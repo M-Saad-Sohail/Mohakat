@@ -247,7 +247,7 @@ const FamilyRegistrationForm = () => {
 
 				{/* first */}
 				<div className=" flex flex-col gap-3">
-					<h3 className=" text-sm font-bold"> {t('BreadWinnerName.title')} </h3>
+					{/* <h3 className=" text-sm font-bold"> {t('BreadWinnerName.title')} </h3> */}
 					<div className="flex flex-col sm:flex-row items-start justify-start w-full gap-x-4">
 						<div>
 							<Input
@@ -463,10 +463,15 @@ const FamilyRegistrationForm = () => {
 					<div className="flex flex-col sm:flex-row items-start justify-start w-full gap-x-4">
 						<div>
 							<Select
-								title="Select Marital Status"
-								// title={`${t('in_eng')} *`}
+								// title="Select Marital Status"
+								title={`${t('martialstatus.title')} *`}
 								name="maritalStatusEn"
-								options={maritalStatusInEnglish}
+								options={[
+									{ label: t('martialstatus.single'), value: t('martialstatus.single')},
+									{ label: t('martialstatus.married'), value: t('martialstatus.married')},
+									{ label: t('martialstatus.widow'), value: t('martialstatus.widow')},
+									{ label: t('martialstatus.divorced'), value: t('martialstatus.divorced')},
+								]}
 								defaultValue={t('martialstatus.default')}
 								className={` ${AddFamiliesForm.errors.maritalStatusEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values?.maritalStatusEn}
@@ -487,10 +492,13 @@ const FamilyRegistrationForm = () => {
 
 						<div>
 							<Select
-								title='Select Gender'
-								// title={`${t('in_eng')} *`}
+								// title='Select Gender'
+								title={`${t('gender.title')} *`}
 								name="genderEn"
-								options={genderInEnglish}
+								options={[
+									{ label: t('gender.male'), value: t('gender.male')},
+									{ label: t('gender.female'), value: t('gender.female')},
+								]}
 								defaultValue={t('gender.default')}
 								className={` ${AddFamiliesForm.errors.genderEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values?.genderEn}
@@ -644,10 +652,21 @@ const FamilyRegistrationForm = () => {
 					<div className="flex flex-col sm:flex-row items-start justify-start w-full gap-x-4">
 						<div>
 							<Select
-								title='Select Area Of Previous Residence'
-								// title={`${t('in_eng')} *`}
+								// title='Select Area Of Previous Residence'
+								title={`${t('previousresidence.title')} *`}
 								name="areaOfPreviousResidenceEn"
-								options={previousResidenceInEnglish}
+								options={[
+									{ label: t('previousresidence.Gaza'), value: t('previousresidence.Gaza')},
+									{ label: t('previousresidence.JabaliaCamp'), value: t('previousresidence.JabaliaCamp')},
+									{ label: t('previousresidence.KhanYunis'), value: t('previousresidence.KhanYunis')},
+									{ label: t('previousresidence.DeiralBalah'), value: t('previousresidence.DeiralBalah')},
+									{ label: t('previousresidence.Beachrefugeecamp'), value: t('previousresidence.Beachrefugeecamp')},
+									{ label: t('previousresidence.NuseiratCamp'), value: t('previousresidence.NuseiratCamp')},
+									{ label: t('previousresidence.NuseiratCamp'), value: t('previousresidence.NuseiratCamp')},
+									{ label: t('previousresidence.MaghaziCamp'), value: t('previousresidence.MaghaziCamp')},
+									{ label: t('previousresidence.BureijCamp'), value: t('previousresidence.BureijCamp')},
+									{ label: t('previousresidence.AlShatiCamp'), value: t('previousresidence.AlShatiCamp')},
+								]}
 								defaultValue={t('previousresidence.default')}
 								className={` ${AddFamiliesForm.errors.areaOfPreviousResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values?.areaOfPreviousResidenceEn}
@@ -668,10 +687,21 @@ const FamilyRegistrationForm = () => {
 
 						<div>
 							<Select
-								title="Select Area Of Current Residence"
-								// title={`${t('in_eng')} *`}
+								// title="Select Area Of Current Residence"
+								title={`${t('currentresidence.title')} *`}
 								name="areaOfCurrentResidenceEn"
-								options={currentResidenceInEnglish}
+								options={[
+									{ label: t('currentresidence.Gaza'), value: t('currentresidence.Gaza')},
+									{ label: t('currentresidence.JabaliaCamp'), value: t('currentresidence.JabaliaCamp')},
+									{ label: t('currentresidence.KhanYunis'), value: t('currentresidence.KhanYunis')},
+									{ label: t('currentresidence.DeiralBalah'), value: t('currentresidence.DeiralBalah')},
+									{ label: t('currentresidence.Beachrefugeecamp'), value: t('currentresidence.Beachrefugeecamp')},
+									{ label: t('currentresidence.NuseiratCamp'), value: t('currentresidence.NuseiratCamp')},
+									{ label: t('currentresidence.NuseiratCamp'), value: t('currentresidence.NuseiratCamp')},
+									{ label: t('currentresidence.MaghaziCamp'), value: t('currentresidence.MaghaziCamp')},
+									{ label: t('currentresidence.BureijCamp'), value: t('currentresidence.BureijCamp')},
+									{ label: t('currentresidence.AlShatiCamp'), value: t('currentresidence.AlShatiCamp')},
+								]}
 								defaultValue={t('currentresidence.default')}
 								className={` ${AddFamiliesForm.errors.areaOfCurrentResidenceEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values?.areaOfCurrentResidenceEn}
@@ -827,10 +857,15 @@ const FamilyRegistrationForm = () => {
 					<div className="flex flex-col sm:flex-row items-start justify-start w-full gap-x-4">
 						<div>
 							<Select
-								title="Select Current Situation"
-								// title={`${t('in_eng')} *`}
+								// title="Select Current Situation"
+								title={`${t('currentsituation.title')} *`}
 								name="currentSituationEn"
-								options={currentSituationInEnglish}
+								options={[
+									{ label: t('currentsituation.totaldestruction'), value: t('currentsituation.totaldestruction')},
+									{ label: t('currentsituation.partialdestruction'), value: t('currentsituation.partialdestruction')},
+									{ label: t('currentsituation.intact'), value: t('currentsituation.intact')},
+									{ label: t('currentsituation.rented'), value: t('currentsituation.rented')},
+								]}
 								defaultValue={t('currentsituation.default')}
 								className={` ${AddFamiliesForm.errors.currentSituationEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values?.currentSituationEn}
@@ -851,10 +886,18 @@ const FamilyRegistrationForm = () => {
 
 						<div>
 							<Select
-								title="Select Losses In War"
-								// title={`${t('in_eng')} *`}
+								// title="Select Losses In War"
+								title={`${t('losesinwar.title')} *`}
 								name="lossesInWarEn"
-								options={lossesInWarInEnglish}
+								// options={lossesInWarInEnglish}
+								options={[
+									{ label: t('losesinwar.none'), value: t('losesinwar.none') },
+									{ label: t('losesinwar.car'), value: t('losesinwar.car'), },
+									{ label: t('losesinwar.furniture'), value:  t('losesinwar.furniture') },
+									{ label: t('losesinwar.store'), value: t('losesinwar.store') },
+									{ label: t('losesinwar.house'), value: t('losesinwar.house') },
+									{ label: t('losesinwar.business'), value: t('losesinwar.business')},
+								]}
 								defaultValue={t('losesinwar.default')}
 								className={` ${AddFamiliesForm.errors.lossesInWarEn ? 'mb-[40px]' : 'mb-[5px]'} min-w-[300px] mt-[2px]`}
 								value={AddFamiliesForm.values.lossesInWarEn}

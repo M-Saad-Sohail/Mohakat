@@ -258,7 +258,7 @@
 			"registerFamily": "Family Registration",
 			"register": "Register",
 			"BreadWinnerName": {
-				"title": "Beard Winner Name"
+				"title": "Bread Winner Name"
 			},
 			"maritalStatus": {
 				"title": "Martial Status"
@@ -326,10 +326,12 @@
 				"title": "Martial Status",
 				"single": "Single",
 				"married": "Married",
+				"widow": "Widow",
+				"divorced": "Divorced",
 				"default": "Select Martial Status"
 			},
 			"previousresidence": {
-				"title": "Previous Residence",
+				"title": "Select Area Of Previous Residence",
 				"Gaza": "Gaza City",
 				"JabaliaCamp": "Jabalia Camp",
 				"KhanYunis": "Khan Yunis",
@@ -357,7 +359,7 @@
 				"default": "Select Current Residence"
 			},
 			"currentsituation": {
-				"title": "Current Situation",
+				"title": "Current Situation of House",
 				"bad": "Bad",
 				"good": "Good",
 				"worst": "Worst",
