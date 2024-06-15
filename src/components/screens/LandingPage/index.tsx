@@ -12,7 +12,7 @@ import MainLayout from '@/components/common/MainLayout';
 import AboutSection from './AboutSection';
 import TestinomialSlider from './TestinomialSlider';
 import AboutLandingPage from './AboutLandingPage';
-import StartModol from '@/components/ui/Modals/StartModol';
+import ThankYouModal from '@/components/ui/Modals/ThankYouModal';
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,

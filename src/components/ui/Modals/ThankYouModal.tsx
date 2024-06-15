@@ -10,13 +10,14 @@ import { SiTicktick } from 'react-icons/si';
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
+import { PATHS } from '@/contants';
 
 const ThankYouModal: React.FC<ThankYouModalType> = ({
 	open,
 	setOpen,
 	cancelButtonRef,
 }) => {
-	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const { url, dir, locale, changeLocale, replace } = useLocaleRouter();
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
 	const t = useTranslations('ThankModal');
@@ -98,6 +99,7 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 												Color="#8DAE8E"
 												onClick={() => {
 													setOpen(false);
+													replace('/');
 												}}
 											/>
 										</div>
