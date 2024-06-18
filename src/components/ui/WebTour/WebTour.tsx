@@ -37,15 +37,6 @@ const WebTour = () => {
               }
             },
             { 
-              element: '.from_map', 
-              popover: { 
-                title:  t("bookPixelTitle"), 
-                description:  t("bookPixelDesc"),
-                side: "top", 
-                align: 'start' 
-              }
-            },
-            { 
               element: '.change_language', 
               popover: { 
                 title:  t("changeLanguageTitle"), 
