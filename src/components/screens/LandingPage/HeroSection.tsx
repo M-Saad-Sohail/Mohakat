@@ -120,9 +120,10 @@ const HeroSection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 									onClick={() => {
 										setQuickDonationOpen(true);
 									}}
-									className="button-animated"
+									className="button-animated anonomous"
+								
 								/>
-								<Link href={url(PATHS.FAMILY_REGISTRATION)}>
+								<Link href={url(PATHS.FAMILY_REGISTRATION)} id = "register_family">
 									<Button
 										// onClick={
 										// 	() => {

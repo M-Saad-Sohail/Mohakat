@@ -614,6 +614,21 @@
 		"thankyou": "Gazze'nin İhtiyaç Sahibi Ailelerine Bağış Yapın",
 		"dashboard": "Gösterge Paneli",
 		"family": "Aile olarak kayıtlısınız. İnşallah insanlar size yardım etmek için öne çıkacaklar."
-	}
+	},
+	"WebTour": {
+		"sponsorTitle": "Sponsor Olun",
+		"sponsorDesc": "'Sponsor Olun' düğmesine tıklayarak Gazze halkını destekleyin ve önemli bir etki yaratın.",
+		"anonymousTitle": "Anonim Bağış Yapın",
+		"anonymousDesc": "Gizliliğinizi koruyarak Gazze halkına yardım etmek için anonim bağış yapmayı seçin.",
+		"registerFamilyTitle": "Gazze Ailesi Olarak Kaydolun",
+		"registerFamilyDesc": "Gazze'de ikamet eden bir aile olarak kaydolarak destek ve yardım alın.",
+		"bookPixelTitle": "Gazze Haritasında Piksel Rezerve Edin",
+		"bookPixelDesc": "Etkileşimli haritamızda bir piksel sponsorluğu yaparak Gazze'yi destekleyin.",
+		"changeLanguageTitle": "Tercih Ettiğiniz Dili Seçin",
+		"changeLanguageDesc": "Platformumuz, dil tercihlerinize göre Arapça, Türkçe ve İngilizce dillerini desteklemektedir.",
+		"next": "sonraki",
+		"previous": "önceki",
+		"close": "kapat"
+  }
 	
 }

@@ -628,5 +628,20 @@
 		"thankyou": "Donate For Needy Families of Gaza",
 		"dashboard": "Dashboard",
 		"family": "You are registered as a Family. God willing, people will come forward to help you."
+	},
+	"WebTour": {
+		"sponsorTitle": "Become a Sponsor",
+		"sponsorDesc": "Click the Become a Sponsor button to support the people of Gaza and make a significant impact",
+		"anonymousTitle": "Donate Anonymously",
+		"anonymousDesc": "Choose to donate anonymously to aid the people of Gaza while maintaining your privacy.",
+		"registerFamilyTitle": "Register as a Gaza Family",
+		"registerFamilyDesc": "Sign up to receive support and assistance by registering as a family residing in Gaza.",
+		"bookPixelTitle": "Book a Pixel on the Gaza Map",
+		"bookPixelDesc": "Support Gaza by sponsoring and booking a pixel on our interactive map.",
+		"changeLanguageTitle": "Select Your Preferred Language",
+		"changeLanguageDesc": "Our platform supports Arabic, Turkish, and English to cater to your language preference.",
+		"next": "next",
+		"previous": "previous",
+		"close": "close"
 	}
 }

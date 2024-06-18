@@ -66,6 +66,7 @@ const StickeyBar = () => {
 				<Link
 					href={url(PATHS.BECOME_SPONSOR)}
 					className=" bg-[#8DAE8E] md:p-5 p-[10px] tooltip"
+					id = "sponsor"
 				>
 					<Image
 						src={stickeySvg3}

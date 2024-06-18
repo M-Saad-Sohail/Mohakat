@@ -13,6 +13,10 @@ import AboutSection from './AboutSection';
 import TestinomialSlider from './TestinomialSlider';
 import AboutLandingPage from './AboutLandingPage';
 import ThankYouModal from '@/components/ui/Modals/ThankYouModal';
+import WebTour from '@/components/ui/WebTour/WebTour';
+
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
@@ -41,6 +45,7 @@ const LandingPage = () => {
 			<MapSection isLoggedIn={!isLoading && !!user} />
 			<TestinomialSlider />
 			<PartnersSection />
+			<WebTour />
 		</MainLayout>
 	);
 };

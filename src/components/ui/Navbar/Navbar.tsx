@@ -136,7 +136,7 @@ const AuthNavbar = ({
 						title=""
 						onChange={() => {}}
 						handleChange={changeLocale}
-						className="px-1"
+						className="px-1 change_language"
 					/>
 					{!isLoggedIn && (
 						<>
