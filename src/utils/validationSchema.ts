@@ -52,7 +52,7 @@ export const resendOtpSchema = object({
 // 	})
 // }
 
-export const becomeSponsorSchema = (t: (key: string) => string): ObjectSchema<any> => {
+export const becomeSponsorSchema = (t: any): ObjectSchema<any>=> {
 	return object({
 	  name: string()
 		.required(t("name"))
