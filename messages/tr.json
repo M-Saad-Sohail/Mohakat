@@ -270,7 +270,7 @@
 				"title": "Ailede Şehit Sayısı"
 			},
 			"InfectedInFamily": {
-				"title": "Ailedeki hasta sayısı"
+				"title": "Ailedeki yaralıların sayısı"
 			},
 			"dob": {
 				"title": "Doğum Tarihi"
@@ -504,7 +504,8 @@
 		"MuakhetAllrightsreserved": "Moakhat. Tüm hakları saklıdır.",
 		"privacypolicy": "Gizlilik Politikası",
 		"termsofservice": "Hizmet Şartları",
-		"topbar": "Gazze: Bağış yapın, sponsor olun ve sevgiyi yayın"
+		"topbar": "Gazze: Bağış yapın, sponsor olun ve sevgiyi yayın",
+		"currency": "para birimi"
 	},
 	"FAQ": {
 		"title": "SSS",
@@ -629,6 +630,38 @@
 		"next": "sonraki",
 		"previous": "önceki",
 		"close": "kapat"
-  }
+  },
+  "FamilyValidationSchema": {
+	"breadWinnerNameEn": "Evin geçindirenin adı gerekli",
+    "genderEn": "Cinsiyet gerekli",
+    "dateOfBirth": "Doğum tarihi gerekli",
+    "maritalStatusEn": "Medeni durum gerekli",
+    "language": "Dil gerekli",
+    "areaOfPreviousResidenceEn": "Önceki ikamet bölgesi gerekli",
+    "areaOfCurrentResidenceEn": "Mevcut ikamet bölgesi gerekli",
+    "currentSituationEn": "Mevcut durum gerekli",
+    "lossesInWarEn": "Savaş kayıpları gerekli",
+    "numberOfFamilyMembers": "Aile üyelerinin sayısı gerekli",
+    "numberOfMartyrInFamily": "Ailedeki şehitlerin sayısı gerekli",
+    "numberOfInfectedInFamily": "Ailedeki enfekte olanların sayısı gerekli",
+    "telephoneNumber": "Telefon numarası gerekli",
+    "idNumber": "Kimlik numarası gerekli",
+    "email": "E-posta adresi gerekli",
+	"invalidEmail": "Geçersiz e-posta adresi",
+	"password": "Şifre gerekli",
+  	"minPassword": "Şifre 8 karakterden uzun olmalıdır"
+	},
+	"SponsorValidationSchema": {
+		"name": "İsim gerekli",
+		"nameMatch": "İsim yalnızca alfabe ve kelimeler arasında boşluklar içermelidir",
+		"nameNotSpace": "İsim sadece boşluklardan oluşamaz",
+		"country": "Ülke gerekli",
+		"email": "E-posta gerekli",
+		"password": "Şifre gerekli",
+		"language": "Dil gerekli",
+		"confirmPassword": "Şifreyi doğrulamak gerekli",
+		"passowordNotMatch": "Şifreler eşleşmelidir",
+		"invalidEmail": "Geçersiz e-posta adresi"
+	}
 	
 }

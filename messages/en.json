@@ -305,7 +305,7 @@
 				"title": "No of Martyr In Family"
 			},
 			"InfectedInFamily": {
-				"title": "No of Infected In Family"
+				"title": "No of Injured In Family"
 			},
 			"dob": {
 				"title": "Date of Birth"
@@ -539,7 +539,8 @@
 		"MuakhetAllrightsreserved": "Moakhat. All rights reserved.",
 		"privacypolicy": "Privacy Policy",
 		"termsofservice": "Terms of Service",
-		"topbar": "Gaza: Donate, sponsor, and spread love"
+		"topbar": "Gaza: Donate, sponsor, and spread love",
+		"currency": "Currency"
 	},
 	"FAQ": {
 		"title": "FAQs",
@@ -643,5 +644,37 @@
 		"next": "next",
 		"previous": "previous",
 		"close": "close"
+	},
+	"FamilyValidationSchema": {
+		"breadWinnerNameEn": "Breadwinner name is required",
+		"genderEn": "Gender is required",
+		"dateOfBirth": "Date of birth is required",
+		"maritalStatusEn": "Maritial status is required",
+		"language": "Language is required",
+		"areaOfPreviousResidenceEn": "Previous residence area is required",
+		"areaOfCurrentResidenceEn": "Current residence area is required",
+		"currentSituationEn": "Current situation is required",
+		"lossesInWarEn": "Losses In War is required",
+		"numberOfFamilyMembers": "Number of family members is required",
+		"numberOfMartyrInFamily": "Number of martyrs in family is required",
+		"numberOfInfectedInFamily": "Number of infected in family is required",
+		"telephoneNumber": "Telephone number is required",
+		"idNumber": "ID number is required",
+		"email": "Email address is required",
+		"invalidEmail": "Invalid email address",
+		"password": "Password is required",
+		"minPassword": "Password Should be greater than 8 character"
+	},
+	"SponsorValidationSchema": {
+		"name": "Name is Required",
+		"nameMatch": "Name should only contain alphabets and spaces between words",
+		"nameNotSpace": "Name cannot be just spaces",
+		"country": "Country is Required",
+		"email": "Email is Required",
+		"password": "Password is required",
+		"language": "Language is Required",
+		"confirmPassword": "Confirm Password is Required",
+		"passowordNotMatch": "Passwords must match",
+		"invalidEmail": "Invalid email address"
 	}
 }

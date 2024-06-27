@@ -114,12 +114,13 @@ const FamilyRegistrationForm = () => {
 	// };
 
 	const t = useTranslations('AddFamilies.form');
+	const t1 = useTranslations('FamilyValidationSchema'); // For Validation 
 	const dir = useDirection();
 	const { changeLocale } = useLocaleRouter();
 
 	const AddFamiliesForm = useFormik({
 		initialValues: AddFamiliesValues,
-		validationSchema: AddFamiliesSchema,
+		validationSchema: AddFamiliesSchema(t1),
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {

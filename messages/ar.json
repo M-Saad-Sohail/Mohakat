@@ -271,7 +271,7 @@
 				"title": "عدد الشهداء في العائلة"
 			},
 			"InfectedInFamily": {
-				"title": "عدد المصابين في العائلة"
+				 "title": "عدد الجرحى في الأسرة"
 			},
 			"dob": {
 				"title": "تاريخ الميلاد"
@@ -504,7 +504,8 @@
 		"MuakhetAllrightsreserved": "مؤاخاة. جميع الحقوق محفوظة.",
 		"privacypolicy": "سياسة الخصوصية",
 		"termsofservice": "شروط الخدمة",
-		"topbar": "غزة: تبرع وارع وانشر الحب"
+		"topbar": "غزة: تبرع وارع وانشر الحب",
+		"currency": "عملة"
 	},
 	"FAQ": {
 		"title": "أسئلة شائعة",
@@ -632,5 +633,37 @@
 		"next": "التالي",
 		"previous": "السابق",
 		"close": "إغلاق"
-	  }
+	  },
+	  "FamilyValidationSchema": {	
+		"breadWinnerNameEn": "اسم المعيل مطلوب",
+		"genderEn": "الجنس مطلوب",
+		"dateOfBirth": "تاريخ الميلاد مطلوب",
+		"maritalStatusEn": "الحالة الاجتماعية مطلوبة",
+		"language": "اللغة مطلوبة",
+		"areaOfPreviousResidenceEn": "منطقة السكن السابقة مطلوبة",
+		"areaOfCurrentResidenceEn": "منطقة السكن الحالية مطلوبة",
+		"currentSituationEn": "الوضع الحالي مطلوب",
+		"lossesInWarEn": "الخسائر في الحرب مطلوبة",
+		"numberOfFamilyMembers": "عدد أفراد الأسرة مطلوب",
+		"numberOfMartyrInFamily": "عدد الشهداء في الأسرة مطلوب",
+		"numberOfInfectedInFamily": "عدد المصابين في الأسرة مطلوب",
+		"telephoneNumber": "رقم الهاتف مطلوب",
+		"idNumber": "رقم الهوية مطلوب",
+		"email": "عنوان البريد الإلكتروني مطلوب",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+		"password": "كلمة المرور مطلوبة",
+  		"minPassword": "يجب أن تكون كلمة المرور أكثر من 8 أحرف"
+	},
+	"SponsorValidationSchema": {
+		"name": "الاسم مطلوب",
+		"nameMatch": "يجب أن يحتوي الاسم فقط على الأحرف والمسافات بين الكلمات",
+		"nameNotSpace": "لا يمكن أن يكون الاسم مجرد مسافات",
+		"country": "الدولة مطلوبة",
+		"email": "البريد الإلكتروني مطلوب",
+		"password": "كلمة المرور مطلوبة",
+		"language": "اللغة مطلوبة",
+		"confirmPassword": "تأكيد كلمة المرور مطلوب",
+		"passowordNotMatch": "يجب أن تتطابق كلمات المرور",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح"
+	}
 }

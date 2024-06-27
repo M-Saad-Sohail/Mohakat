@@ -24,6 +24,7 @@ type IProps = {
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 	const { url, replace, locale, redirectWithLocale } = useLocaleRouter();
 
+	
 	const onSubmit = async (values: RegisterUserCredentials) => {
 		const { confirmPassword, ...rest } = values;
 		const success = await submitHandler({
@@ -37,13 +38,15 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 		// replace(url);
 	};
 
+	const t1 = useTranslations('SponsorValidationSchema'); // For Validition in 3 language
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: BECOMESPONSORINITIALVALUES,
-		validationSchema: becomeSponsorSchema,
+		validationSchema: becomeSponsorSchema(t1),
 		onSubmit,
 	});
 
 	const t = useTranslations('BecomeSponsor.form');
+	
 
 	return (
 		<>

@@ -68,7 +68,8 @@ const TopBar = () => {
 				</div>
 
 				{/* currency */}
-				<div className=" hidden md:block">
+				<div className=" hidden md:flex flex items-center justify-center gap-3">
+					<div className={` md:text-[10px] text-[10px] text-black font-bold uppercase`}>{t('currency')}</div>
 					<div
 						className="flex items-center justify-center gap-3 border border-black rounded-[50%] w-[25px] md:w-[26px] h-[27px] md:h-6 cursor-pointer currency-dropdown"
 						onClick={() => setCurrencyModalOpen((prev) => !prev)}

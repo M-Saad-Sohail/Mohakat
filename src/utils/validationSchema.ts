@@ -1,4 +1,7 @@
 import { object, array, string, ref, number } from 'yup';
+import { useTranslations } from 'next-intl';
+
+
 export const loginSchema = object({
 	email: string().required('Username is Required'),
 	password: string().required('Password is Required'),
@@ -12,22 +15,42 @@ export const resendOtpSchema = object({
 	email: string().required('Email is required'),
 });
 
-export const becomeSponsorSchema = object({
-	name: string()
-		.required('Name is Required')
+// export const becomeSponsorSchema = object({
+// 	name: string()
+// 		.required('Name is Required')
+// 		.matches(
+// 			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
+// 			'Name should only contain alphabets and spaces between words',
+// 		)
+// 		.notOneOf([' '], 'Name cannot be just spaces'),
+// 	country: string().required('Country is Required'),
+// 	email: string().required('Email is Required'),
+// 	password: string().required('Password is required'),
+// 	language: string().required('Language is Required'),
+// 	confirmPassword: string()
+// 		.required('Confirm Password is Required')
+// 		.oneOf([ref('password')], 'Passwords must match'),
+// });
+
+export const becomeSponsorSchema =  (t: (key: string) => string) => {
+
+	return object({
+		name: string()
+		.required(t("name"))
 		.matches(
 			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
-			'Name should only contain alphabets and spaces between words',
+			t("nameMatch"),
 		)
-		.notOneOf([' '], 'Name cannot be just spaces'),
-	country: string().required('Country is Required'),
-	email: string().required('Email is Required'),
-	password: string().required('Password is required'),
-	language: string().required('Language is Required'),
+		.notOneOf([' '], t("nameNotSpace")),
+	country: string().required(t("country")),
+	email: string().email(t("invalidEmail")).required(t("email")),
+	password: string().required(t("password")),
+	language: string().required(t("language")),
 	confirmPassword: string()
-		.required('Confirm Password is Required')
-		.oneOf([ref('password')], 'Passwords must match'),
-});
+		.required(t("confirmPassword"))
+		.oneOf([ref('password')], t("passowordNotMatch")),
+	})
+}
 
 export const resetPasswordSchema = object({
 	password: string().required('Password is required'),
@@ -43,74 +66,116 @@ export const resetPasswordSchema = object({
 //     .required('Number of family members is required'),
 // });
 
-export const AddFamiliesSchema = object({
-	// breadWinnerName: string().required('Breadwinner name is required'),
-	breadWinnerNameEn: string().required(
-		'Breadwinner name (English) is required',
-	),
-	// breadWinnerNameTr: string().required(
-	// 	'Breadwinner name (Turkish) is required',
-	// ),
-	// breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
-	// description: string().required('Description is required'),
-	descriptionEn: string(),
-	// descriptionTr: string(),
-	// descriptionAr: string(),
-	email: string()
-		.email('Invalid email address')
-		.required('Email address is required'),
-	genderEn: string().required('Gender (English) is required'),
-	// genderTr: string().required('Gender (Turkish) is required'),
-	// genderAr: string().required('Gender (Arabic) is required'),
-	dateOfBirth: string().required('Date of birth is required'),
-	maritalStatusEn: string().required('Maritial status (English) is required'),
-	// maritalStatusTr: string().required('Maritial status (Turkish) is required'),
-	// maritalStatusAr: string().required('Maritial status (Arabic) is required'),
-	language: string().required('Language is required'),
-	areaOfPreviousResidenceEn: string().required(
-		'Previous residence area (in English) is required',
-	),
-	// areaOfPreviousResidenceTr: string().required(
-	// 	'Previous residence area (in Turkish) is required',
-	// ),
-	// areaOfPreviousResidenceAr: string().required(
-	// 	'Previous residence area (in English) is required',
-	// ),
-	areaOfCurrentResidenceEn: string().required(
-		'Current residence area (in English) is required',
-	),
-	// areaOfCurrentResidenceTr: string().required(
-	// 	'Current residence area (in Turkish) is required',
-	// ),
-	// areaOfCurrentResidenceAr: string().required(
-	// 	'Current residence area (in English) is required',
-	// ),
-	currentSituationEn: string().required(
-		'Current situation (in English) is required',
-	),
-	// currentSituationTr: string().required(
-	// 	'Current situation  (in Turkish) is required',
-	// ),
-	// currentSituationAr: string().required(
-	// 	'Current situation  (in Arabic) is required',
-	// ),
-	lossesInWarEn: string().required('Losses In War (in English) is required'),
-	// lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
-	// lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
-	numberOfFamilyMembers: number()
-		.min(0, 'Number of family members must be positive or zero')
-		.required('Number of family members is required'),
-	numberOfMartyrInFamily: number()
-		.min(0, 'Number of martyrs in family must be positive or zero')
-		.required('Number of martyrs in family is required'),
-	numberOfInfectedInFamily: number()
-		.min(0, 'Number of infected in family must be positive or zero')
-		.required('Number of infected in family is required'),
-	telephoneNumber: number().required('Telephone number is required'),
-	idNumber: number().required('ID number is required'),
+// export const AddFamiliesSchema = object({
+// 	const t = useTranslations('FamilyValidationSchema');
 
-	familyMemberDetail: array().required('Family member detail is required'),
-});
+// 	// breadWinnerName: string().required('Breadwinner name is required'),
+// 	breadWinnerNameEn: string().required(
+// 		// 'Breadwinner name (English) is required',
+// 		t("breadWinnerNameEn")
+// 	),
+// 	// breadWinnerNameTr: string().required(
+// 	// 	'Breadwinner name (Turkish) is required',
+// 	// ),
+// 	// breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
+// 	// description: string().required('Description is required'),
+// 	descriptionEn: string(),
+// 	// descriptionTr: string(),
+// 	// descriptionAr: string(),
+// 	email: string()
+// 		.email('Invalid email address')
+// 		.required('Email address is required'),
+// 	genderEn: string().required(t("genderEn")),
+// 	// genderTr: string().required('Gender (Turkish) is required'),
+// 	// genderAr: string().required('Gender (Arabic) is required'),
+// 	dateOfBirth: string().required('Date of birth is required'),
+// 	maritalStatusEn: string().required('Maritial status (English) is required'),
+// 	// maritalStatusTr: string().required('Maritial status (Turkish) is required'),
+// 	// maritalStatusAr: string().required('Maritial status (Arabic) is required'),
+// 	language: string().required('Language is required'),
+// 	areaOfPreviousResidenceEn: string().required(
+// 		'Previous residence area (in English) is required',
+// 	),
+// 	// areaOfPreviousResidenceTr: string().required(
+// 	// 	'Previous residence area (in Turkish) is required',
+// 	// ),
+// 	// areaOfPreviousResidenceAr: string().required(
+// 	// 	'Previous residence area (in English) is required',
+// 	// ),
+// 	areaOfCurrentResidenceEn: string().required(
+// 		'Current residence area (in English) is required',
+// 	),
+// 	// areaOfCurrentResidenceTr: string().required(
+// 	// 	'Current residence area (in Turkish) is required',
+// 	// ),
+// 	// areaOfCurrentResidenceAr: string().required(
+// 	// 	'Current residence area (in English) is required',
+// 	// ),
+// 	currentSituationEn: string().required(
+// 		'Current situation (in English) is required',
+// 	),
+// 	// currentSituationTr: string().required(
+// 	// 	'Current situation  (in Turkish) is required',
+// 	// ),
+// 	// currentSituationAr: string().required(
+// 	// 	'Current situation  (in Arabic) is required',
+// 	// ),
+// 	lossesInWarEn: string().required('Losses In War (in English) is required'),
+// 	// lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
+// 	// lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
+// 	numberOfFamilyMembers: number()
+// 		.min(0, 'Number of family members must be positive or zero')
+// 		.required('Number of family members is required'),
+// 	numberOfMartyrInFamily: number()
+// 		.min(0, 'Number of martyrs in family must be positive or zero')
+// 		.required('Number of martyrs in family is required'),
+// 	numberOfInfectedInFamily: number()
+// 		.min(0, 'Number of infected in family must be positive or zero')
+// 		.required('Number of infected in family is required'),
+// 	telephoneNumber: number().required('Telephone number is required'),
+// 	idNumber: number().required('ID number is required'),
+
+// 	familyMemberDetail: array().required('Family member detail is required'),
+// });
+
+export const AddFamiliesSchema =  (t: (key: string) => string) => {
+	return object({
+	  breadWinnerNameEn: string().required(t('breadWinnerNameEn')),
+	  descriptionEn: string(),
+	  email: string()
+		.email(t("invalidEmail"))
+		.required(t("email")),
+	  genderEn: string().required(t('genderEn')),
+	  dateOfBirth: string().required(t('dateOfBirth')),
+	  maritalStatusEn: string().required(t('maritalStatusEn')),
+	  language: string().required(t('language')),
+	  areaOfPreviousResidenceEn: string().required(
+		t('areaOfPreviousResidenceEn')
+	  ),
+	  areaOfCurrentResidenceEn: string().required(
+		t('areaOfCurrentResidenceEn')
+	  ),
+	  currentSituationEn: string().required(
+		t('currentSituationEn')
+	  ),
+	  lossesInWarEn: string().required(t('lossesInWarEn')),
+	  numberOfFamilyMembers: number()
+		.min(0, 'Number of family members must be positive or zero')
+		.required(t('numberOfFamilyMembers')),
+	  numberOfMartyrInFamily: number()
+		.min(0, 'Number of martyrs in family must be positive or zero')
+		.required(t('numberOfMartyrInFamily')),
+	  numberOfInfectedInFamily: number()
+		.min(0, 'Number of infected in family must be positive or zero')
+		.required(t('numberOfInfectedInFamily')),
+	  password: number()
+		.min(8, t("minPassword"))
+		.required(t('password')),
+	  telephoneNumber: number().required(t('telephoneNumber')),
+	  idNumber: number().required(t('idNumber')),
+	  familyMemberDetail: array().required('Family member detail is required')
+	});
+  };
 
 export const UpdateFamilySchema = object({
 	// breadWinnerName: string().required('Breadwinner name is required'),
