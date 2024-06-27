@@ -1,4 +1,4 @@
-import { object, array, string, ref, number } from 'yup';
+import { object, array, string, ref, number, ObjectSchema  } from 'yup';
 import { useTranslations } from 'next-intl';
 
 
@@ -32,25 +32,41 @@ export const resendOtpSchema = object({
 // 		.oneOf([ref('password')], 'Passwords must match'),
 // });
 
-export const becomeSponsorSchema =  (t: (key: string) => string) => {
+// export const becomeSponsorSchema =  (t: (key: string) => string) => {
 
+// 	return object({
+// 		name: string()
+// 		.required(t("name"))
+// 		.matches(
+// 			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
+// 			t("nameMatch"),
+// 		)
+// 		.notOneOf([' '], t("nameNotSpace")),
+// 	country: string().required(t("country")),
+// 	email: string().required(t("email")),
+// 	password: string().required(t("password")),
+// 	language: string().required(t("language")),
+// 	confirmPassword: string()
+// 		.required(t("confirmPassword"))
+// 		.oneOf([ref('password')], t("passowordNotMatch")),
+// 	})
+// }
+
+export const becomeSponsorSchema = (t: (key: string) => string): ObjectSchema<any> => {
 	return object({
-		name: string()
+	  name: string()
 		.required(t("name"))
-		.matches(
-			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
-			t("nameMatch"),
-		)
+		.matches(/^[a-zA-Z]+(\s[a-zA-Z]+)*$/, t("nameMatch"))
 		.notOneOf([' '], t("nameNotSpace")),
-	country: string().required(t("country")),
-	email: string().email(t("invalidEmail")).required(t("email")),
-	password: string().required(t("password")),
-	language: string().required(t("language")),
-	confirmPassword: string()
+	  country: string().required(t("country")),
+	  email: string().required(t("email")),
+	  password: string().required(t("password")),
+	  language: string().required(t("language")),
+	  confirmPassword: string()
 		.required(t("confirmPassword"))
-		.oneOf([ref('password')], t("passowordNotMatch")),
-	})
-}
+		.oneOf([ref('password')], t("passwordNotMatch")),
+	});
+  };
 
 export const resetPasswordSchema = object({
 	password: string().required('Password is required'),
