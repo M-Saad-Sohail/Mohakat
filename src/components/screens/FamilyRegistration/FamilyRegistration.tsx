@@ -209,7 +209,7 @@ const FamilyRegistrationForm = () => {
 				// 	position: 'bottom-right',
 				// 	autoClose: 4000,
 				// });
-				toast.error(response.data.message, {
+				toast.error(error.response.data.message, {
 					toastId: 'error',
 					position: 'bottom-right',
 					autoClose: 4000,
