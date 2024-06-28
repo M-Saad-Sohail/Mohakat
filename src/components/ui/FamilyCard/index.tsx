@@ -60,7 +60,7 @@ const FamilyCard: React.FC<{ familyData?: any; isLoggedIn?: boolean }> = ({
 				{/* first div */}
 				<div className=" flex justify-between items-center">
 					<Button
-						title={familyData?.currentSituation || t2('Worst')}
+						title={`🏠 ${familyData?.currentSituation ||  t2('Worst')}`}
 						Color="#CF7475"
 						className=" capitalize"
 					/>

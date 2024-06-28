@@ -204,7 +204,12 @@ const FamilyRegistrationForm = () => {
 				
 			} catch (error) {
 				console.log('Something went wrong while registering a family: ', error);
-				toast.error(`${t('fill_form_correctly')}`, {
+				// toast.error(`${t('fill_form_correctly')}`, {
+				// 	toastId: 'error',
+				// 	position: 'bottom-right',
+				// 	autoClose: 4000,
+				// });
+				toast.error(response.data.message, {
 					toastId: 'error',
 					position: 'bottom-right',
 					autoClose: 4000,
