@@ -185,7 +185,7 @@ export const LOGININITIALVALUES: LoginSchema = {
 	password: '',
 };
 
-export const BECOMESPONSORINITIALVALUES: BecomeSponsorSchema = {
+export const BECOMESPONSORINITIALVALUES = {
 	name: '',
 	country: '',
 	email: '',

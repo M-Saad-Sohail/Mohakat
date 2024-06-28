@@ -15,42 +15,42 @@ export const resendOtpSchema = object({
 	email: string().required('Email is required'),
 });
 
-export const becomeSponsorSchema = object({
-	name: string()
-		.required('Name is Required')
-		.matches(
-			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
-			'Name should only contain alphabets and spaces between words',
-		)
-		.notOneOf([' '], 'Name cannot be just spaces'),
-	country: string().required('Country is Required'),
-	email: string().required('Email is Required'),
-	password: string().required('Password is required'),
-	language: string().required('Language is Required'),
-	confirmPassword: string()
-		.required('Confirm Password is Required')
-		.oneOf([ref('password')], 'Passwords must match'),
-});
-
-// export const becomeSponsorSchema =  (t: (key: string) => string) => {
-
-// 	return object({
-// 		name: string()
-// 		.required(t("name"))
+// export const becomeSponsorSchema = object({
+// 	name: string()
+// 		.required('Name is Required')
 // 		.matches(
 // 			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
-// 			t("nameMatch"),
+// 			'Name should only contain alphabets and spaces between words',
 // 		)
-// 		.notOneOf([' '], t("nameNotSpace")),
-// 	country: string().required(t("country")),
-// 	email: string().required(t("email")),
-// 	password: string().required(t("password")),
-// 	language: string().required(t("language")),
+// 		.notOneOf([' '], 'Name cannot be just spaces'),
+// 	country: string().required('Country is Required'),
+// 	email: string().required('Email is Required'),
+// 	password: string().required('Password is required'),
+// 	language: string().required('Language is Required'),
 // 	confirmPassword: string()
-// 		.required(t("confirmPassword"))
-// 		.oneOf([ref('password')], t("passowordNotMatch")),
-// 	})
-// }
+// 		.required('Confirm Password is Required')
+// 		.oneOf([ref('password')], 'Passwords must match'),
+// });
+
+export const becomeSponsorSchema =  (t: (key: string) => string) => {
+
+	return object({
+		name: string()
+		.required(t("name"))
+		.matches(
+			/^[a-zA-Z]+(\s[a-zA-Z]+)*$/,
+			t("nameMatch"),
+		)
+		.notOneOf([' '], t("nameNotSpace")),
+	country: string().required(t("country")),
+	email: string().required(t("email")),
+	password: string().required(t("password")),
+	language: string().required(t("language")),
+	confirmPassword: string()
+		.required(t("confirmPassword"))
+		.oneOf([ref('password')], t("passowordNotMatch")),
+	})
+}
 
 // export const becomeSponsorSchema = (t: any): ObjectSchema<any> => {
 // 	return object({
@@ -184,7 +184,7 @@ export const AddFamiliesSchema =  (t: (key: string) => string) => {
 	  numberOfInfectedInFamily: number()
 		.min(0, 'Number of infected in family must be positive or zero')
 		.required(t('numberOfInfectedInFamily')),
-	  password: number()
+	  password: string()
 		.min(8, t("minPassword"))
 		.required(t('password')),
 	  telephoneNumber: number().required(t('telephoneNumber')),
