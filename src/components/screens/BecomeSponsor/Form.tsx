@@ -40,8 +40,8 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 
 	const t1 = useTranslations('SponsorValidationSchema'); // For Validition in 3 language
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
-		initialValues: BECOMESPONSORINITIALVALUES as RegisterUserCredentials,
-		validationSchema: becomeSponsorSchema(t1),
+		initialValues: BECOMESPONSORINITIALVALUES,
+		validationSchema: becomeSponsorSchema,
 		onSubmit,
 	});
 
