@@ -695,5 +695,28 @@
 		"cvcTypeError": "CVC must be a number",
 		"cvcMin": "CVC must be 3 digits",
 		"cvcMax": "CVC must be 3 digits"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "Name is Required",
+		"email": "Email is Required",
+		"invalidEmail": "Invalid email address",
+		"country": "Country is Required",
+		"city": "City is Required",
+		"address": "Address is Required",
+		"cardHolderName": "Card holder name is required",
+		"cardNumber": "Card number is required",
+		"cardNumberNoSpace": "Card number must not contain spaces",
+		"expireMonth": "Expiration month is required",
+		"mobilePhoneNumber": "Mobile number is required",
+		"nationalIdentityNumber": "Identity number is required",
+		"nationalIdentityNumberMin": "Identity number should be at least 5 digits",
+		"expireYear": "Expiration year is required",
+		"expireYearMin": "Expiration year must be in the future",
+		"expireYearMax": "Invalid expiration year",
+		"expireDigitLimit": "Expiration year must be 4 digits",
+		"cvc": "CVC is required",
+		"cvcTypeError": "CVC must be a number",
+		"cvcMin": "CVC must be 3 digits",
+		"cvcMax": "CVC must be 3 digits"
 	}
 }

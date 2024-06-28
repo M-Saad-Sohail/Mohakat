@@ -684,5 +684,28 @@
 		"cvcTypeError": "يجب أن يكون CVC رقمًا",
 		"cvcMin": "يجب أن يكون CVC 3 أرقام",
 		"cvcMax": "يجب أن يكون CVC 3 أرقام"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "الاسم مطلوب",
+		"email": "البريد الإلكتروني مطلوب",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+		"country": "البلد مطلوب",
+		"city": "المدينة مطلوبة",
+		"address": "العنوان مطلوب",
+		"cardHolderName": "اسم حامل البطاقة مطلوب",
+		"cardNumber": "رقم البطاقة مطلوب",
+		"cardNumberNoSpace": "يجب ألا يحتوي رقم البطاقة على مسافات",
+		"expireMonth": "شهر انتهاء الصلاحية مطلوب",
+		"mobilePhoneNumber": "رقم الجوال مطلوب",
+		"nationalIdentityNumber": "رقم الهوية مطلوب",
+		"nationalIdentityNumberMin": "يجب أن يكون رقم الهوية مكونًا من 5 أرقام على الأقل",
+		"expireYear": "سنة انتهاء الصلاحية مطلوبة",
+		"expireYearMin": "يجب أن تكون سنة انتهاء الصلاحية في المستقبل",
+		"expireYearMax": "سنة انتهاء الصلاحية غير صالحة",
+		"expireDigitLimit": "يجب أن تكون سنة انتهاء الصلاحية 4 أرقام",
+		"cvc": "CVC مطلوب",
+		"cvcTypeError": "يجب أن يكون CVC رقمًا",
+		"cvcMin": "يجب أن يكون CVC 3 أرقام",
+		"cvcMax": "يجب أن يكون CVC 3 أرقام"
 	}
 }

@@ -681,6 +681,29 @@
 		"cvcTypeError": "CVC bir sayı olmalıdır",
 		"cvcMin": "CVC 3 haneli olmalıdır",
 		"cvcMax": "CVC 3 haneli olmalıdır"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "İsim gerekli",
+		"email": "E-posta gerekli",
+		"invalidEmail": "Geçersiz e-posta adresi",
+		"country": "Ülke gerekli",
+		"city": "Şehir gerekli",
+		"address": "Adres gerekli",
+		"cardHolderName": "Kart sahibi adı gerekli",
+		"cardNumber": "Kart numarası gerekli",
+		"cardNumberNoSpace": "Kart numarası boşluk içermemelidir",
+		"expireMonth": "Son kullanma ayı gerekli",
+		"mobilePhoneNumber": "Cep telefonu numarası gerekli",
+		"nationalIdentityNumber": "Kimlik numarası gerekli",
+		"nationalIdentityNumberMin": "Kimlik numarası en az 5 haneli olmalıdır",
+		"expireYear": "Son kullanma yılı gerekli",
+		"expireYearMin": "Son kullanma yılı gelecekte olmalıdır",
+		"expireYearMax": "Geçersiz son kullanma yılı",
+		"expireDigitLimit": "Son kullanma yılı 4 haneli olmalıdır",
+		"cvc": "CVC gerekli",
+		"cvcTypeError": "CVC bir sayı olmalıdır",
+		"cvcMin": "CVC 3 haneli olmalıdır",
+		"cvcMax": "CVC 3 haneli olmalıdır"
 	}
 	
 }
