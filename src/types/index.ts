@@ -4,10 +4,11 @@ import {
 	resetPasswordSchema,
 	updateProfileSchema,
 } from './../utils/validationSchema';
-import { InferType } from 'yup';
+import { InferType, ObjectSchema } from 'yup';
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 export type LoginSchema = InferType<typeof loginSchema>;
-export type BecomeSponsorSchema = InferType<typeof becomeSponsorSchema>;
+// export type BecomeSponsorSchema = InferType<typeof becomeSponsorSchema>;
+export type BecomeSponsorSchemaType = ObjectSchema<any>;
 export type UpdateProfileSchema = InferType<typeof updateProfileSchema>;
 export type UserCredentials = {
 	password: string;
