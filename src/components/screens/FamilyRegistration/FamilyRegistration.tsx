@@ -118,6 +118,11 @@ const FamilyRegistrationForm = () => {
 	const dir = useDirection();
 	const { changeLocale } = useLocaleRouter();
 
+	// const translateError = (errorMessage) => {
+	// 	const translationKey = getTranslationKeyForError(errorMessage);
+	// 	return t(translationKey);
+	//   };
+	
 	const AddFamiliesForm = useFormik({
 		initialValues: AddFamiliesValues,
 		validationSchema: AddFamiliesSchema(t1),
@@ -202,13 +207,9 @@ const FamilyRegistrationForm = () => {
 						redirectWithLocale(locale, url);
 					}
 				
-			} catch (error) {
-				console.log('Something went wrong while registering a family: ', error);
-				// toast.error(`${t('fill_form_correctly')}`, {
-				// 	toastId: 'error',
-				// 	position: 'bottom-right',
-				// 	autoClose: 4000,
-				// });
+			} catch (error: any) {
+				// console.log('Something went wrong while registering a family: ', error);
+				// const translatedMessage = translateError(error.response.data.message);
 				toast.error(error.response.data.message, {
 					toastId: 'error',
 					position: 'bottom-right',
