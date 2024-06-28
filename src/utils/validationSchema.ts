@@ -1,6 +1,8 @@
 import { object, array, string, ref, number, ObjectSchema  } from 'yup';
 import { useTranslations } from 'next-intl';
-
+import {
+	BecomeSponsorSchemaType
+} from '../types';
 
 export const loginSchema = object({
 	email: string().required('Username is Required'),

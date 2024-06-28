@@ -1,5 +1,4 @@
 import {
-	BecomeSponsorSchema,
 	LoginSchema,
 	ResetPasswordSchema,
 } from '../types';
