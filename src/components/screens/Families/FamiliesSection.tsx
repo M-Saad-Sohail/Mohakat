@@ -348,7 +348,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 									openDropDown[2] ? 'block' : 'hidden'
 								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 							>
-								{[3, 6, 9, 12].map((item, i) => {
+								{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, i) => {
 									return (
 										<p
 											key={i}
