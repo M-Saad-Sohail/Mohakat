@@ -674,7 +674,26 @@
 		"password": "Password is required",
 		"language": "Language is Required",
 		"confirmPassword": "Confirm Password is Required",
-		"passowordNotMatch": "Passwords must match",
+		"passwordNotMatch": "Passwords must match",
 		"invalidEmail": "Invalid email address"
+	},
+	"ContactFormSchema": {
+		"name": "Name is Required",
+		"email": "Email is Required",
+		"message": "Message is Required"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "Card holder name is required",
+		"cardNumber": "Card number is required",
+		"cardNumberNoSpace": "Card number must not contain spaces",
+		"expireMonth": "Expiration month is required",
+		"expireYear": "Expiration year is required",
+		"expireYearMin": "Expiration year must be in the future",
+		"expireYearMax": "Invalid expiration year",
+		"expireDigitLimit": "Expiration year must be 4 digits",
+		"cvc": "CVC is required",
+		"cvcTypeError": "CVC must be a number",
+		"cvcMin": "CVC must be 3 digits",
+		"cvcMax": "CVC must be 3 digits"
 	}
 }

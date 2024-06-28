@@ -14,13 +14,14 @@ const ContactForm = () => {
 	const { user } = useLoggedInUser();
 	const [loading, setLoading] = useState(false);
 	const t = useTranslations('ContactUs');
+	const t1 = useTranslations('ContactFormSchema');
 	const ContactForm = useFormik({
 		initialValues: {
 			name: '',
 			email: '',
 			message: '',
 		},
-		validationSchema: contactFormSchema,
+		validationSchema: contactFormSchema(t1),
 		onSubmit: async (values: any) => {
 			const response = {
 				name: values.name,

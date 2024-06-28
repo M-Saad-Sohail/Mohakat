@@ -663,7 +663,26 @@
 		"password": "كلمة المرور مطلوبة",
 		"language": "اللغة مطلوبة",
 		"confirmPassword": "تأكيد كلمة المرور مطلوب",
-		"passowordNotMatch": "يجب أن تتطابق كلمات المرور",
+		"passwordNotMatch": "يجب أن تتطابق كلمات المرور",
 		"invalidEmail": "عنوان البريد الإلكتروني غير صالح"
+	},
+	"ContactFormSchema": {
+		"name": "الاسم مطلوب",
+		"email": "البريد الإلكتروني مطلوب",
+		"message": "الرسالة مطلوبة"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "اسم حامل البطاقة مطلوب",
+		"cardNumber": "رقم البطاقة مطلوب",
+		"cardNumberNoSpace": "يجب ألا يحتوي رقم البطاقة على مسافات",
+		"expireMonth": "شهر انتهاء الصلاحية مطلوب",
+		"expireYear": "سنة انتهاء الصلاحية مطلوبة",
+		"expireYearMin": "يجب أن تكون سنة انتهاء الصلاحية في المستقبل",
+		"expireYearMax": "سنة انتهاء الصلاحية غير صالحة",
+		"expireDigitLimit": "يجب أن تكون سنة انتهاء الصلاحية 4 أرقام",
+		"cvc": "CVC مطلوب",
+		"cvcTypeError": "يجب أن يكون CVC رقمًا",
+		"cvcMin": "يجب أن يكون CVC 3 أرقام",
+		"cvcMax": "يجب أن يكون CVC 3 أرقام"
 	}
 }

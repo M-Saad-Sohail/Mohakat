@@ -288,31 +288,31 @@ export const updateProfileSchema = object({
 	language: string().required('Language is Required'),
 });
 
-export const checkOutSchemaNonLogin = object({
-	cardHolderName: string().required('Card holder name is required'),
-	cardNumber: string()
-		.required('Card number is required')
-		.test(
-			'no-spaces',
-			'Card number must not contain spaces',
-			(value: any) => !/\s/.test(value),
-		),
-	expireMonth: string().required('Expiration month is required'),
-	expireYear: number()
-		.required('Expiration year is required')
-		.min(new Date().getFullYear(), 'Expiration year must be in the future')
-		.max(9999, 'Invalid expiration year')
-		.test(
-			'len',
-			'Expiration year must be 4 digits',
-			(val) => val.toString().length === 4,
-		),
-	cvc: number()
-		.required('CVC is required')
-		.typeError('CVC must be a number')
-		.min(100, 'CVC must be 3 digits')
-		.max(999, 'CVC must be 3 digits'),
-});
+// export const checkOutSchemaNonLogin = object({
+// 	cardHolderName: string().required('Card holder name is required'),
+// 	cardNumber: string()
+// 		.required('Card number is required')
+// 		.test(
+// 			'no-spaces',
+// 			'Card number must not contain spaces',
+// 			(value: any) => !/\s/.test(value),
+// 		),
+// 	expireMonth: string().required('Expiration month is required'),
+// 	expireYear: number()
+// 		.required('Expiration year is required')
+// 		.min(new Date().getFullYear(), 'Expiration year must be in the future')
+// 		.max(9999, 'Invalid expiration year')
+// 		.test(
+// 			'len',
+// 			'Expiration year must be 4 digits',
+// 			(val) => val.toString().length === 4,
+// 		),
+// 	cvc: number()
+// 		.required('CVC is required')
+// 		.typeError('CVC must be a number')
+// 		.min(100, 'CVC must be 3 digits')
+// 		.max(999, 'CVC must be 3 digits'),
+// });
 
 export const checkOutSchemaLogin = object({
 	name: string().required('Name is Required'),
@@ -352,8 +352,46 @@ export const checkOutSchemaLogin = object({
 		.max(999, 'CVC must be 3 digits'),
 });
 
-export const contactFormSchema = object({
-	name: string().required('Name is Required'),
-	email: string().required('Email is Required'),
-	message: string().required('Message is Required'),
-});
+// export const contactFormSchema = object({
+// 	name: string().required('Name is Required'),
+// 	email: string().required('Email is Required'),
+// 	message: string().required('Message is Required'),
+// });
+
+export const contactFormSchema =  (t: (key: string) => string) => {
+	return object({
+		name: string().required(t("name")),
+		email: string().required(t("email")),
+		message: string().required(t("message")),
+	})
+
+}
+
+export const checkOutSchemaNonLogin =  (t: (key: string) => string) => {
+	return object({
+		cardHolderName: string().required(t("cardHolderName")),
+		cardNumber: string()
+			.required(t("cardNumber"))
+			.test(
+				'no-spaces',
+				t("cardNumberNoSpace"),
+				(value: any) => !/\s/.test(value),
+			),
+		expireMonth: string().required(t("expireMonth")),
+		expireYear: number()
+			.required(t("expireYear"))
+			.min(new Date().getFullYear(), t("expireYearMin"))
+			.max(9999, t("expireYearMax"))
+			.test(
+				'len',
+				t("expireDigitLimit"),
+				(val) => val.toString().length === 4,
+			),
+		cvc: number()
+			.required(t("cvc"))
+			.typeError(t("cvcTypeError"))
+			.min(100, t("cvcMin"))
+			.max(999, t("cvcMax")),
+	});
+
+}

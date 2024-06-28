@@ -43,6 +43,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 	const t = useTranslations('DonateModal');
 	const { dir } = useLocaleRouter();
 	const t1 = useTranslations('QuickDonation');
+	const t2 = useTranslations('CheckOutSchemaNonLogin');
 
 	useEffect(() => {
 		fetch('https://api.ipify.org?format=json')
@@ -201,7 +202,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 
 	const DonateForm = useFormik({
 		initialValues: InitialValues,
-		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin,
+		validationSchema: user ? checkOutSchemaLogin : checkOutSchemaNonLogin(t2),
 		onSubmit: async (values: any) => {
 			if (user && isAddToCart) {
 				postLoginData(values);

@@ -660,8 +660,27 @@
 		"password": "Şifre gerekli",
 		"language": "Dil gerekli",
 		"confirmPassword": "Şifreyi doğrulamak gerekli",
-		"passowordNotMatch": "Şifreler eşleşmelidir",
+		"passwordNotMatch": "Şifreler eşleşmelidir",
 		"invalidEmail": "Geçersiz e-posta adresi"
+	},
+	"ContactFormSchema": {
+		"name": "İsim gerekli",
+		"email": "E-posta gerekli",
+		"message": "Mesaj gerekli"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "Kart sahibi adı gerekli",
+		"cardNumber": "Kart numarası gerekli",
+		"cardNumberNoSpace": "Kart numarası boşluk içermemelidir",
+		"expireMonth": "Son kullanma ayı gerekli",
+		"expireYear": "Son kullanma yılı gerekli",
+		"expireYearMin": "Son kullanma yılı gelecekte olmalıdır",
+		"expireYearMax": "Geçersiz son kullanma yılı",
+		"expireDigitLimit": "Son kullanma yılı 4 haneli olmalıdır",
+		"cvc": "CVC gerekli",
+		"cvcTypeError": "CVC bir sayı olmalıdır",
+		"cvcMin": "CVC 3 haneli olmalıdır",
+		"cvcMax": "CVC 3 haneli olmalıdır"
 	}
 	
 }
