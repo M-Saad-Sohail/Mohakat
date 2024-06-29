@@ -60,7 +60,7 @@ const ContactForm = () => {
 			<Input
 				title={t('name')}
 				name="name"
-				placeholder="name"
+				placeholder= {t("namePlaceHolder")}
 				className="mb-[5px] min-w-[250px] text-[#000000]"
 				value={ContactForm.values?.name}
 				onChange={ContactForm.handleChange}
@@ -71,7 +71,7 @@ const ContactForm = () => {
 			<Input
 				title={t('email')}
 				name="email"
-				placeholder="example@example.com"
+				placeholder={t("emailPlaceHolder")}
 				className="mb-[5px] min-w-[250px] text-[#000000] mt-2"
 				value={ContactForm.values?.email}
 				onChange={ContactForm.handleChange}
@@ -88,7 +88,7 @@ const ContactForm = () => {
 					name="message"
 					cols={50}
 					rows={5}
-					placeholder="Enter your message..."
+					placeholder= {t("messagePlaceHolder")}
 					className="py-3 px-5 w-full focus:outline-none bg-[#E8E8E8] h-[50px] text-[15px] max-w-[700px] mb-[5px] min-w-[250px] text-[#36454F]"
 					value={ContactForm.values?.message}
 					onChange={ContactForm.handleChange}

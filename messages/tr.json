@@ -518,7 +518,10 @@
 		"send": "Göndermek",
 		"success": "Başarıyla Gönderildi",
 		"error": "Bir şeyler yanlış gitti",
-		"allfields": "Tüm alanlar zorunludur"
+		"allfields": "Tüm alanlar zorunludur",
+		"namePlaceHolder": "Adınızı giriniz",
+		"emailPlaceHolder": "E-postanızı giriniz",
+		"messagePlaceHolder": "Mesajınızı giriniz"
 	},
 	"About": {
 		"title": "Hakkında",

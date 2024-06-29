@@ -553,7 +553,10 @@
 		"send": "Send",
 		"success": "Submitted Successfully",
 		"error": "Something went wrong",
-		"allfields": "All fields are required"
+		"allfields": "All fields are required",
+		"namePlaceHolder": "Enter your Name",
+		"emailPlaceHolder": "Enter your email",
+		"messagePlaceHolder": "Enter your Message"
 	},
 	"About": {
 		"title": "About",

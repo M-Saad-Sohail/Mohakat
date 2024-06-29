@@ -518,7 +518,10 @@
 		"send": "يرسل",
 		"success": "تم الإرسال بنجاح",
 		"error": "حدث خطأ ما",
-		"allfields": "جميع الحقول مطلوبة"
+		"allfields": "جميع الحقول مطلوبة",
+		"namePlaceHolder": "أدخل اسمك",
+		"emailPlaceHolder": "أدخل بريدك الإلكتروني",
+		"messagePlaceHolder": "أدخل رسالتك"
 	},
 	"About": {
 		"title": "حول",
