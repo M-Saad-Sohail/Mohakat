@@ -101,63 +101,61 @@ export const resetPasswordSchema = object({
 //     .required('Number of family members is required'),
 // });
 
-// export const AddFamiliesSchema = object({
-// 	const t = useTranslations('FamilyValidationSchema');
+// export const AddFamiliesSchemaAdmin = object({
 
 // 	// breadWinnerName: string().required('Breadwinner name is required'),
 // 	breadWinnerNameEn: string().required(
-// 		// 'Breadwinner name (English) is required',
-// 		t("breadWinnerNameEn")
+// 		'Breadwinner name (English) is required',
 // 	),
-// 	// breadWinnerNameTr: string().required(
-// 	// 	'Breadwinner name (Turkish) is required',
-// 	// ),
-// 	// breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
+// 	breadWinnerNameTr: string().required(
+// 		'Breadwinner name (Turkish) is required',
+// 	),
+// 	breadWinnerNameAr: string().required('Breadwinner name (Arabic) is required'),
 // 	// description: string().required('Description is required'),
-// 	descriptionEn: string(),
+// 	// descriptionEn: string(),
 // 	// descriptionTr: string(),
 // 	// descriptionAr: string(),
 // 	email: string()
 // 		.email('Invalid email address')
 // 		.required('Email address is required'),
-// 	genderEn: string().required(t("genderEn")),
-// 	// genderTr: string().required('Gender (Turkish) is required'),
-// 	// genderAr: string().required('Gender (Arabic) is required'),
+// 	genderEn: string().required("Gender is Required"),
+// 	genderTr: string().required('Gender (Turkish) is required'),
+// 	genderAr: string().required('Gender (Arabic) is required'),
 // 	dateOfBirth: string().required('Date of birth is required'),
 // 	maritalStatusEn: string().required('Maritial status (English) is required'),
-// 	// maritalStatusTr: string().required('Maritial status (Turkish) is required'),
-// 	// maritalStatusAr: string().required('Maritial status (Arabic) is required'),
+// 	maritalStatusTr: string().required('Maritial status (Turkish) is required'),
+// 	maritalStatusAr: string().required('Maritial status (Arabic) is required'),
 // 	language: string().required('Language is required'),
 // 	areaOfPreviousResidenceEn: string().required(
 // 		'Previous residence area (in English) is required',
 // 	),
-// 	// areaOfPreviousResidenceTr: string().required(
-// 	// 	'Previous residence area (in Turkish) is required',
-// 	// ),
-// 	// areaOfPreviousResidenceAr: string().required(
-// 	// 	'Previous residence area (in English) is required',
-// 	// ),
+// 	areaOfPreviousResidenceTr: string().required(
+// 		'Previous residence area (in Turkish) is required',
+// 	),
+// 	areaOfPreviousResidenceAr: string().required(
+// 		'Previous residence area (in English) is required',
+// 	),
 // 	areaOfCurrentResidenceEn: string().required(
 // 		'Current residence area (in English) is required',
 // 	),
-// 	// areaOfCurrentResidenceTr: string().required(
-// 	// 	'Current residence area (in Turkish) is required',
-// 	// ),
-// 	// areaOfCurrentResidenceAr: string().required(
-// 	// 	'Current residence area (in English) is required',
-// 	// ),
+// 	areaOfCurrentResidenceTr: string().required(
+// 		'Current residence area (in Turkish) is required',
+// 	),
+// 	areaOfCurrentResidenceAr: string().required(
+// 		'Current residence area (in English) is required',
+// 	),
 // 	currentSituationEn: string().required(
 // 		'Current situation (in English) is required',
 // 	),
-// 	// currentSituationTr: string().required(
-// 	// 	'Current situation  (in Turkish) is required',
-// 	// ),
-// 	// currentSituationAr: string().required(
-// 	// 	'Current situation  (in Arabic) is required',
-// 	// ),
+// 	currentSituationTr: string().required(
+// 		'Current situation  (in Turkish) is required',
+// 	),
+// 	currentSituationAr: string().required(
+// 		'Current situation  (in Arabic) is required',
+// 	),
 // 	lossesInWarEn: string().required('Losses In War (in English) is required'),
-// 	// lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
-// 	// lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
+// 	lossesInWarTr: string().required('Losses In War  (in Turkish) is required'),
+// 	lossesInWarAr: string().required('Losses In War  (in Arabic) is required'),
 // 	numberOfFamilyMembers: number()
 // 		.min(0, 'Number of family members must be positive or zero')
 // 		.required('Number of family members is required'),
@@ -170,8 +168,51 @@ export const resetPasswordSchema = object({
 // 	telephoneNumber: number().required('Telephone number is required'),
 // 	idNumber: number().required('ID number is required'),
 
-// 	familyMemberDetail: array().required('Family member detail is required'),
+// 	// familyMemberDetail: array().required('Family member detail is required'),
 // });
+
+export const AddFamiliesSchemaAdmin = (t: (key: string) => string) => {
+	return object({
+		breadWinnerNameEn: string().required(t('breadWinnerNameEn')),
+		breadWinnerNameTr: string().required(t('breadWinnerNameTr')),
+		breadWinnerNameAr: string().required(t('breadWinnerNameAr')),
+		email: string()
+			.email(t('invalidEmail'))
+			.required(t('email')),
+		genderEn: string().required(t('genderEn')),
+		genderTr: string().required(t('genderTr')),
+		genderAr: string().required(t('genderAr')),
+		dateOfBirth: string().required(t('dateOfBirth')),
+		maritalStatusEn: string().required(t('maritalStatusEn')),
+		maritalStatusTr: string().required(t('maritalStatusTr')),
+		maritalStatusAr: string().required(t('maritalStatusAr')),
+		language: string().required(t('language')),
+		areaOfPreviousResidenceEn: string().required(t('areaOfPreviousResidenceEn')),
+		areaOfPreviousResidenceTr: string().required(t('areaOfPreviousResidenceTr')),
+		areaOfPreviousResidenceAr: string().required(t('areaOfPreviousResidenceAr')),
+		areaOfCurrentResidenceEn: string().required(t('areaOfCurrentResidenceEn')),
+		areaOfCurrentResidenceTr: string().required(t('areaOfCurrentResidenceTr')),
+		areaOfCurrentResidenceAr: string().required(t('areaOfCurrentResidenceAr')),
+		currentSituationEn: string().required(t('currentSituationEn')),
+		currentSituationTr: string().required(t('currentSituationTr')),
+		currentSituationAr: string().required(t('currentSituationAr')),
+		lossesInWarEn: string().required(t('lossesInWarEn')),
+		lossesInWarTr: string().required(t('lossesInWarTr')),
+		lossesInWarAr: string().required(t('lossesInWarAr')),
+		numberOfFamilyMembers: number()
+			.min(0, t('numberOfFamilyMembersMin'))
+			.required(t('numberOfFamilyMembers')),
+		numberOfMartyrInFamily: number()
+			.min(0, t('numberOfMartyrInFamilyMin'))
+			.required(t('numberOfMartyrInFamily')),
+		numberOfInfectedInFamily: number()
+			.min(0, t('numberOfInfectedInFamilyMin'))
+			.required(t('numberOfInfectedInFamily')),
+		telephoneNumber: number().required(t('telephoneNumber')),
+		idNumber: number().required(t('idNumber')),
+	});
+};
+
 
 export const AddFamiliesSchema =  (t: (key: string) => string) => {
 	return object({
@@ -208,7 +249,7 @@ export const AddFamiliesSchema =  (t: (key: string) => string) => {
 		.required(t('password')),
 	  telephoneNumber: number().required(t('telephoneNumber')),
 	  idNumber: number().required(t('idNumber')),
-	  familyMemberDetail: array().required('Family member detail is required')
+	//   familyMemberDetail: array().required('Family member detail is required')
 	});
   };
 

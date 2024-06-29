@@ -14,7 +14,7 @@ import { postJson } from '@/api/api.instances';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { number } from 'yup';
 import { toast } from 'react-toastify';
-import { AddFamiliesSchema } from '@/utils/validationSchema';
+import { AddFamiliesSchema, AddFamiliesSchemaAdmin} from '@/utils/validationSchema';
 
 // DATA
 
@@ -109,12 +109,14 @@ const FamilyForm = () => {
 	};
 
 	const t = useTranslations('AddFamilies.form');
+	const t1 = useTranslations('FamilyValidationSchemaAdmin'); // For Validation 
 	const dir = useDirection();
 	const { changeLocale } = useLocaleRouter();
 
 	const AddFamiliesForm = useFormik({
+		
 		initialValues: AddFamiliesValues,
-		validationSchema: AddFamiliesSchema,
+		validationSchema: AddFamiliesSchemaAdmin(t1),
 		onSubmit: async ({ values }: any) => {
 			const response = {
 				breadWinnerName: {
@@ -171,19 +173,10 @@ const FamilyForm = () => {
 				numberOfInfectedInFamily: parseInt(
 					AddFamiliesForm.values.numberOfInfectedInFamily,
 				),
-				familyMemberDetail: familyMembers,
+				familyMemberDetail: null,
 			};
 			try {
-				if (
-					AddFamiliesForm.values.numberOfFamilyMembers > 0 &&
-					familyMembers.length === 0
-				) {
-					toast.error(`${t('family_details_error')}`, {
-						toastId: 'error',
-						position: 'bottom-right',
-						autoClose: 4000,
-					});
-				} else {
+					// console.log("ADDFORMADMIN_WALA")
 					setLoading(true);
 					const res = await postJson(
 						`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/admin-family-register`,
@@ -198,7 +191,6 @@ const FamilyForm = () => {
 							position: 'bottom-right',
 							autoClose: 4000,
 						});
-					}
 				}
 			} catch (error) {
 				toast.error(`${t('fill_form_correctly')}`, {
@@ -210,6 +202,7 @@ const FamilyForm = () => {
 			}
 		},
 	});
+
 
 	const handleNumChange = (e: any, setFieldValue: Function) => {
 		const inputValue = e.target.value;
@@ -969,158 +962,7 @@ const FamilyForm = () => {
 					</div>
 				</div>
 
-				{/* eigth */}
-				{AddFamiliesForm.values.numberOfFamilyMembers > 0 &&
-					AddFamiliesForm.values.numberOfFamilyMembers && (
-						<div className=" flex flex-col gap-3">
-							<h3 className=" text-sm font-bold">Family Member Details</h3>
-							{[
-								...Array(
-									AddFamiliesForm.values.numberOfFamilyMembers > 0 &&
-										parseInt(AddFamiliesForm.values.numberOfFamilyMembers),
-								),
-							].map((item, i) => (
-								<div key={i} className="flex flex-col gap-3">
-									<div>
-										<h3 className=" text-sm font-bold">Name</h3>
-									</div>
-									<div className="flex items-center justify-start w-full gap-x-4">
-										<Input
-											title={`${t('in_eng')} *`}
-											name="inenglish"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.name}
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'inEnglish',
-													e.target.value,
-													'name',
-												)
-											}
-										/>
-										<Input
-											title={`${t('in_tur')} *`}
-											name="inturkish"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'inTurkish',
-													e.target.value,
-													'name',
-												)
-											}
-										/>
-										<Input
-											title={`${t('in_ar')} *`}
-											name="inarabic"
-											className="mb-[10px] min-w-[250px]"
-											// value={updateProfileForm.values?.email}
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'inArabic',
-													e.target.value,
-													'name',
-												)
-											}
-										/>
-									</div>
-									<div className="flex items-center justify-start w-full gap-x-4">
-										<Input
-											title={'Age'}
-											className="mb-[5px] min-w-[400px] "
-											type="number"
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'memberAge',
-													parseInt(e.target.value),
-												)
-											}
-										/>
-										<Input
-											title={'Member ID Number'}
-											className="mb-[5px] min-w-[400px] "
-											type="number"
-											onChange={(e) =>
-												handleMemberDetailChange(
-													i,
-													'MemberIdNumber',
-													e.target.value,
-												)
-											}
-										/>
-									</div>
-									{/* Gender */}
-
-									<div className=" flex flex-col gap-3 mt-5">
-										<h3 className=" text-sm font-bold">
-											{' '}
-											{t('gender.title')}{' '}
-										</h3>
-										<div className="flex items-start justify-start w-full gap-x-4">
-											<div>
-												<Select
-													title={`${t('in_eng')} *`}
-													name="inenglish"
-													options={genderInEnglish}
-													defaultValue={t('gender.default')}
-													className="mb-[30px] min-w-[400px] "
-													onChange={(e) =>
-														handleMemberDetailChange(
-															i,
-															'inEnglish',
-															e.target.value,
-															'gender',
-														)
-													}
-												/>
-											</div>
-
-											<div>
-												<Select
-													title={`${t('in_tur')} *`}
-													name="inturkish"
-													options={genderInTurkish}
-													defaultValue={t('gender.default')}
-													className="mb-[30px] min-w-[400px] "
-													onChange={(e) =>
-														handleMemberDetailChange(
-															i,
-															'inTurkish',
-															e.target.value,
-															'gender',
-														)
-													}
-												/>
-											</div>
-
-											<div>
-												<Select
-													title={`${t('in_ar')} *`}
-													name="inarabic"
-													options={genderInArabic}
-													defaultValue={t('gender.default')}
-													className="mb-[30px] min-w-[400px] "
-													onChange={(e) =>
-														handleMemberDetailChange(
-															i,
-															'inArabic',
-															e.target.value,
-															'gender',
-														)
-													}
-												/>
-											</div>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					)}
+				
 
 				{/* COMMENT  */}
 				<div className=" flex flex-col gap-3 mt-8">
