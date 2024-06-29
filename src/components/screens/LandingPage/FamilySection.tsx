@@ -38,7 +38,7 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
 					currentSituation: data?.currentSituation?.inEnglish,
 					lossesInWar: data?.lossesInWar?.inEnglish,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 						...member,
 						memberName: member?.memberName?.inEnglish,
 						memberGender: member?.memberGender?.inEnglish,
