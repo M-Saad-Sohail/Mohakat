@@ -61,7 +61,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 	// DropDown
 	const handleDropDownClick = (index: number) => {
 		let newOpenDropDown: boolean[] = [];
-		newOpenDropDown = openDropDown.map((item, i) => {
+		newOpenDropDown = openDropDown?.map((item, i) => {
 			return i === index ? !openDropDown[i] : false;
 		});
 		setOpenDropDown(newOpenDropDown);
@@ -112,7 +112,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
 					currentSituation: data?.currentSituation?.inEnglish,
 					lossesInWar: data?.lossesInWar?.inEnglish,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 						...member,
 						memberName: member?.memberName?.inEnglish,
 						memberGender: member?.memberGender?.inEnglish,
@@ -132,7 +132,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inArabic,
 					currentSituation: data?.currentSituation?.inArabic,
 					lossesInWar: data?.lossesInWar?.inArabic,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 						...member,
 						memberName: member?.memberName?.inArabic,
 						memberGender: member?.memberGender?.inArabic,
@@ -171,7 +171,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 			);
 			if (res.success) {
 				setFamiliesData([]);
-				res.familySponser.map((item: any) =>
+				res.familySponser?.map((item: any) =>
 					handleFamiliesData(currentPath, item),
 				);
 				setIsLoading(false);
@@ -264,7 +264,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 									openDropDown[0] ? 'block' : 'hidden'
 								}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 							>
-								{areasData.map((item, i) => {
+								{areasData?.map((item, i) => {
 									return (
 										<p
 											key={i}
@@ -304,7 +304,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 									openDropDown[1] ? 'block' : 'hidden'
 								}  top-20 rounded-lg z-50 absolute w-64 h-fit py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
 							>
-								{situationData.map((item, i) => {
+								{situationData?.map((item, i) => {
 									return (
 										<p
 											key={i}
