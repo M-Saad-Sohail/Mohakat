@@ -152,7 +152,7 @@ const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inTurkish,
 					currentSituation: data?.currentSituation?.inTurkish,
 					lossesInWar: data?.lossesInWar?.inTurkish,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 						...member,
 						memberName: member?.memberName?.inTurkish,
 						memberGender: member?.memberGender?.inTurkish,
