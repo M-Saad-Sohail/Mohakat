@@ -192,8 +192,8 @@ const FamilyForm = () => {
 							autoClose: 4000,
 						});
 				}
-			} catch (error) {
-				toast.error(`${t('fill_form_correctly')}`, {
+			} catch (error: any) {
+				toast.error(error?.response?.data?.message, {
 					toastId: 'error',
 					position: 'bottom-right',
 					autoClose: 4000,

@@ -210,7 +210,7 @@ const FamilyRegistrationForm = () => {
 			} catch (error: any) {
 				// console.log('Something went wrong while registering a family: ', error);
 				// const translatedMessage = translateError(error.response.data.message);
-				toast.error(error.response.data.message, {
+				toast.error(error?.response?.data?.message, {
 					toastId: 'error',
 					position: 'bottom-right',
 					autoClose: 4000,
