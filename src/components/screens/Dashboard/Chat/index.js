@@ -39,6 +39,7 @@ import { logo } from '@/assests';
 import Input from '@/components/ui/Input';
 import { searching } from '@/assests';
 import { toast } from 'react-toastify';
+import useNetworkStatus  from '@/hooks/useNetworkStatus ';
 
 
 const Chats = () => {
@@ -490,7 +491,6 @@ const Chats = () => {
 									: "Chat Messages"
 							}
 						</span>
-
 					</div>
 					<Button
 						onClick={leaveChatRoom}

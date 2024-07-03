@@ -171,7 +171,7 @@ export const useAuth = () => {
 				throw new Error(`Otp expired`);
 			}
 			const { data } = await publicApi.put(
-				`/family-verify//${id}`,
+				`/family-verify/${id}`,
 				{ otp },
 			);
 			toast.success(data.message);
