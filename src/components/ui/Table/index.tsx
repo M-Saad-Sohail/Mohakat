@@ -43,7 +43,7 @@ function Table({
 	const t = useTranslations();
 
 	const tableColumns = useMemo(() => {
-		return columns.map((col: any) => ({
+		return columns?.map((col: any) => ({
 			...col,
 			Header: t(`Table.Header.${col.Header}`),
 		}));
@@ -74,7 +74,7 @@ function Table({
 	);
 	const { globalFilter, pageSize, pageIndex }: any = state;
 	const { replace, dir } = useLocaleRouter();
-
+	
 	const handleTableRefresh = () => {
 		if (typeof onTableRefresh === 'function') {
 			// console.log('handle 11');
@@ -108,7 +108,7 @@ function Table({
 	const rejected = value === 'rejected' ? true : false;
 
 	// Calculate pageCount based on rows.length and pageSize
-	const calculatedPageCount = Math.ceil(rows.length / pageSize);
+	const calculatedPageCount = Math.ceil(rows?.length / pageSize);
 
 	return (
 		<>
@@ -144,13 +144,13 @@ function Table({
 				className="w-full mt-4 mb-4 font-helvetica sm:table-fixed"
 			>
 				<thead>
-					{headerGroups.map((headerGroup: any) => (
+					{headerGroups?.map((headerGroup: any) => (
 						<tr
 							{...headerGroup.getHeaderGroupProps()}
 							key={headerGroup.id}
 							className=""
 						>
-							{headerGroup.headers.map((column: any) => {
+							{headerGroup?.headers?.map((column: any) => {
 								return (
 									<th
 										{...column.getHeaderProps()}
@@ -185,11 +185,11 @@ function Table({
 				</thead>
 				{data.length > 0 ? (
 					<tbody {...getTableBodyProps()} className="bg-white">
-						{page.map((row: any, index: Number) => {
+						{page?.map((row: any, index: Number) => {
 							prepareRow(row);
 							return (
 								<tr {...row.getRowProps()} key={row.id}>
-									{row.cells.map((cell: any, cellIndex: number) => {
+									{row.cells?.map((cell: any, cellIndex: number) => {
 										if (cell.column.id === 'approval') {
 											return (
 												<td
@@ -240,20 +240,20 @@ function Table({
 												</td>
 											);
 										}
-										if (cell.column.id === 'view') {
+										if (cell?.column?.id === 'view') {
 											return (
 												<td
 													{...cell.getCellProps()}
-													key={cell.id}
+													key={cell?.id}
 													className="py-3 font-sans text-base font-normal text-center md:text-2xl text-black px-7 mobile:p-3 mobile:text-sm gap-x-7"
 												>
 													<button
 														onClick={() => {
-															console.log('ID -> ', row.original._id);
+															
 															setEditId(row.original._id);
-															console.log('edit ID -> ', editId);
+									
 															setViewModal(true);
-															console.log('in edit');
+															
 														}}
 													>
 														<FaEye />
@@ -312,6 +312,7 @@ function Table({
 					goToPage={gotoPage}
 					dataCount={rows.length}
 					pageCount={calculatedPageCount} // Pass pageCount here
+					
 				/>
 			)}
 

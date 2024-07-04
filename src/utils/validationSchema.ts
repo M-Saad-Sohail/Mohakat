@@ -319,7 +319,7 @@ export const UpdateFamilySchema = object({
 	telephoneNumber: number().required('Telephone number is required'),
 	idNumber: number().required('ID number is required'),
 
-	familyMemberDetail: array().required('Family member detail is required'),
+	// familyMemberDetail: array().required('Family member detail is required'),
 });
 
 export const updateProfileSchema = object({

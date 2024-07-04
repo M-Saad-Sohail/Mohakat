@@ -630,7 +630,7 @@ const FamilyForm = () => {
 								defaultValue={t('previousresidence.default')}
 								className={` ${AddFamiliesForm.errors.areaOfPreviousResidenceAr ? 'mb-[40px]' : 'mb-[5px]'} min-w-[360px] mt-[2px]`}
 								value={AddFamiliesForm.values?.areaOfPreviousResidenceAr}
-								onChange={AddFamiliesForm.handleChange}
+								onChange={AddFamiliesForm.handleChange} 	
 								errorClass={
 									AddFamiliesForm.touched.areaOfPreviousResidenceAr &&
 									AddFamiliesForm.errors.areaOfPreviousResidenceAr &&

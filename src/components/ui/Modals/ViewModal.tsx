@@ -103,7 +103,7 @@ const ViewModal = ({
 		if (user && openModal) {
 			fetchFamilyDetails(id)
 				.then((familySponsor) => {
-					console.log('Success');
+					// console.log('Success');
 				})
 				.catch((error) => {
 					console.error('Error fetching family details:', error);
@@ -170,7 +170,7 @@ const ViewModal = ({
 				numberOfInfectedInFamily: parseInt(
 					UpdateFamilyForm.values.numberOfInfectedInFamily,
 				),
-				familyMemberDetail: familyMembers,
+				familyMemberDetail: null,
 			};
 			try {
 				setLoading(true);
@@ -205,29 +205,29 @@ const ViewModal = ({
 		},
 	});
 
-	useEffect(() => {
-		if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers.length) {
-			// Add new members
-			const newMembers = new Array(
-				UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers.length,
-			).fill({
-				memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
-				memberGender: { inEnglish: '', inArabic: '', inTurkish: '' },
-				memberAge: '',
-				MemberIdNumber: '',
-			});
-			setFamilyMembers(familyMembers.concat(newMembers));
-		} else if (
-			UpdateFamilyForm.values.numberOfFamilyMembers < familyMembers.length
-		) {
-			// Remove excess members while preserving their details
-			const updatedMembers = familyMembers.slice(
-				0,
-				UpdateFamilyForm.values.numberOfFamilyMembers,
-			);
-			setFamilyMembers(updatedMembers);
-		}
-	}, [UpdateFamilyForm.values.numberOfFamilyMembers, familyMembers]);
+	// useEffect(() => {
+	// 	if (UpdateFamilyForm.values.numberOfFamilyMembers > familyMembers?.length) {
+	// 		// Add new members
+	// 		const newMembers = new Array(
+	// 			UpdateFamilyForm.values.numberOfFamilyMembers - familyMembers?.length,
+	// 		).fill({
+	// 			memberName: { inEnglish: '', inArabic: '', inTurkish: '' },
+	// 			memberGender: { inEnglish: '', inArabic: '', inTurkish: '' },
+	// 			memberAge: '',
+	// 			MemberIdNumber: '',
+	// 		});
+	// 		setFamilyMembers(familyMembers?.concat(newMembers));
+	// 	} else if (
+	// 		UpdateFamilyForm.values.numberOfFamilyMembers < familyMembers?.length
+	// 	) {
+	// 		// Remove excess members while preserving their details
+	// 		const updatedMembers = familyMembers?.slice(
+	// 			0,
+	// 			UpdateFamilyForm.values.numberOfFamilyMembers,
+	// 		);
+	// 		setFamilyMembers(updatedMembers);
+	// 	}
+	// }, [UpdateFamilyForm.values?.numberOfFamilyMembers, familyMembers]);
 
 	const fetchFamilyDetails = async (id: string) => {
 		if (!user) return;
@@ -273,7 +273,7 @@ const ViewModal = ({
 				lossesInWarAr: family_Sponsor?.lossesInWar.inArabic,
 				lossesInWarTr: family_Sponsor?.lossesInWar.inTurkish,
 			});
-			setFamilyMembers(family_Sponsor.familyMemberDetail);
+			setFamilyMembers(family_Sponsor?.familyMemberDetail);
 		}
 		return family_Sponsor;
 	};
@@ -997,7 +997,7 @@ const ViewModal = ({
 
 						<div className="flex flex-col gap-3">
 							<h3 className="text-sm font-bold">{`${t('familyMemberDetails.title')} *`}</h3>
-							{familyMembers.map((member: any, i: any) => (
+							{familyMembers?.map((member: any, i: any) => (
 								<div key={i} className="flex flex-col gap-3">
 									<div>
 										<h3 className="text-sm font-bold">{`${t('name.title')} *`}</h3>
