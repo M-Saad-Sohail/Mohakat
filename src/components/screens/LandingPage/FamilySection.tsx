@@ -38,11 +38,11 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
 					currentSituation: data?.currentSituation?.inEnglish,
 					lossesInWar: data?.lossesInWar?.inEnglish,
-					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
-						...member,
-						memberName: member?.memberName?.inEnglish,
-						memberGender: member?.memberGender?.inEnglish,
-					})),
+					// familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
+					// 	...member,
+					// 	memberName: member?.memberName?.inEnglish,
+					// 	memberGender: member?.memberGender?.inEnglish,
+					// })),
 				},
 			]);
 		} else if (path === 'ar') {
@@ -58,11 +58,11 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inArabic,
 					currentSituation: data?.currentSituation?.inArabic,
 					lossesInWar: data?.lossesInWar?.inArabic,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
-						...member,
-						memberName: member?.memberName?.inArabic,
-						memberGender: member?.memberGender?.inArabic,
-					})),
+					// familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					// 	...member,
+					// 	memberName: member?.memberName?.inArabic,
+					// 	memberGender: member?.memberGender?.inArabic,
+					// })),
 				},
 			]);
 		} else if (path === 'tr') {
@@ -78,11 +78,11 @@ const FamilySection: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn }) => {
 					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inTurkish,
 					currentSituation: data?.currentSituation?.inTurkish,
 					lossesInWar: data?.lossesInWar?.inTurkish,
-					familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
-						...member,
-						memberName: member?.memberName?.inTurkish,
-						memberGender: member?.memberGender?.inTurkish,
-					})),
+					// familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+					// 	...member,
+					// 	memberName: member?.memberName?.inTurkish,
+					// 	memberGender: member?.memberGender?.inTurkish,
+					// })),
 				},
 			]);
 		}
