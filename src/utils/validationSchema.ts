@@ -329,75 +329,7 @@ export const updateProfileSchema = object({
 	language: string().required('Language is Required'),
 });
 
-// export const checkOutSchemaNonLogin = object({
-// 	cardHolderName: string().required('Card holder name is required'),
-// 	cardNumber: string()
-// 		.required('Card number is required')
-// 		.test(
-// 			'no-spaces',
-// 			'Card number must not contain spaces',
-// 			(value: any) => !/\s/.test(value),
-// 		),
-// 	expireMonth: string().required('Expiration month is required'),
-// 	expireYear: number()
-// 		.required('Expiration year is required')
-// 		.min(new Date().getFullYear(), 'Expiration year must be in the future')
-// 		.max(9999, 'Invalid expiration year')
-// 		.test(
-// 			'len',
-// 			'Expiration year must be 4 digits',
-// 			(val) => val.toString().length === 4,
-// 		),
-// 	cvc: number()
-// 		.required('CVC is required')
-// 		.typeError('CVC must be a number')
-// 		.min(100, 'CVC must be 3 digits')
-// 		.max(999, 'CVC must be 3 digits'),
-// });
 
-// export const checkOutSchemaLogin = object({
-// 	name: string().required('Name is Required'),
-// 	email: string()
-// 		.email('Invalid email address')
-// 		.required('Email address is required'),
-// 	country: string().required('Country is Required'),
-// 	city: string().required('City is Required'),
-// 	address: string().required('Address is Required'),
-// 	cardHolderName: string().required('Card holder name is required'),
-// 	cardNumber: string()
-// 		.required('Card number is required')
-// 		.test(
-// 			'no-spaces',
-// 			'Card number must not contain spaces',
-// 			(value: any) => !/\s/.test(value),
-// 		),
-// 	expireMonth: string().required('Expiration month is required'),
-// 	mobilePhoneNumber: number().required('Mobile number is required'),
-// 	nationalIdentityNumber: number()
-// 		.required('Identity number is required')
-// 		.min(14522, 'identity number should be at least 5 digits'),
-// 	expireYear: number()
-// 		.required('Expiration year is required')
-// 		.min(new Date().getFullYear(), 'Expiration year must be in the future')
-// 		.max(9999, 'Invalid expiration year')
-// 		.test(
-// 			'len',
-// 			'Expiration year must be 4 digits',
-// 			(val) => val.toString().length === 4,
-// 		),
-
-// 	cvc: number()
-// 		.required('CVC is required')
-// 		.typeError('CVC must be a number')
-// 		.min(100, 'CVC must be 3 digits')
-// 		.max(999, 'CVC must be 3 digits'),
-// });
-
-// export const contactFormSchema = object({
-// 	name: string().required('Name is Required'),
-// 	email: string().required('Email is Required'),
-// 	message: string().required('Message is Required'),
-// });
 
 export const contactFormSchema =  (t: (key: string) => string) => {
 	return object({
@@ -443,9 +375,6 @@ export const checkOutSchemaLogin =  (t: (key: string) => string) => {
 		email: string()
 			.email(t("invalidEmail"))
 			.required(t("email")),
-		country: string().required(t("country")),
-		city: string().required(t("city")),
-		address: string().required(t("address")),
 		cardHolderName: string().required(t("cardHolderName")),
 		cardNumber: string()
 			.required(t("cardNumber"))
@@ -455,10 +384,6 @@ export const checkOutSchemaLogin =  (t: (key: string) => string) => {
 				(value: any) => !/\s/.test(value),
 			),
 		expireMonth: string().required(t("expireMonth")),
-		mobilePhoneNumber: number().required(t("mobilePhoneNumber")),
-		nationalIdentityNumber: number()
-			.required(t("nationalIdentityNumber"))
-			.min(14522, t("nationalIdentityNumberMin")),
 		expireYear: number()
 			.required(t("expireYear"))
 			.min(new Date().getFullYear(), t("expireYearMin"))

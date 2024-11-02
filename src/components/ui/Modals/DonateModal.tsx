@@ -24,6 +24,9 @@ import { useTranslations } from 'next-intl';
 import useDirection from '@/hooks/useDirection';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import ThankYouModal from './ThankYouModal';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const DonateModal: React.FC<DonateModalType> = ({
 	open,
@@ -33,6 +36,9 @@ const DonateModal: React.FC<DonateModalType> = ({
 	familyId,
 	isAddToCart,
 }) => {
+	const stripe = useStripe();
+	const elements = useElements();
+	const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`);
 	const { user } = useLoggedInUser();
 	const [openThankYou, setOpenThankYou] = useState(false);
 	const cancelThankYouButtonRef = useRef(null);
@@ -40,6 +46,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 	const cartItems = useSelector((state: any) => state.cart);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [isAddToCartValues, setIsAddToCartValues] = useState<any[]>([]);
+	const [clientSecret, setClientSecret] = useState<any>("");
+
 	const t = useTranslations('DonateModal');
 	const { dir } = useLocaleRouter();
 	const t1 = useTranslations('QuickDonation');
@@ -63,13 +71,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 
 	const InitialValues = {
 		name: '',
-		country: '',
-		city: '',
 		email: '',
-		address: '',
-		mobilePhoneNumber: '',
-		nationalIdentityNumber: '',
-		ip: '',
 		cardHolderName: '',
 		cardNumber: '',
 		expireMonth: '',
@@ -84,21 +86,98 @@ const DonateModal: React.FC<DonateModalType> = ({
 		expireYear: '',
 		cvc: '',
 	};
+	const initialValuesNonLogin = {
+		cardHolderName: '',
+		cardNumber: '',
+		expireMonth: '',
+		expireYear: '',
+		cvc: '',
+	};
 
-	// if (user) {
-	// 	Object.assign(initialValues, loginInitialValues);
-	// }
+
+
+
+	// const postNonLoginData = async (values: any) => {
+	// 	try {
+	// setLoading(true);
+	// const res = await postJsonNoToken(
+	// 	`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate`,
+	// 	values,
+	// );
+	// if (res.success) {
+	// 	setLoading(false);
+	// 	// DonateForm.resetForm();
+	// 	setOpen(false);
+	// 	toast.success(`${t('success')}`, {
+	// 		toastId: 'success',
+	// 		position: 'top-right',
+	// 		autoClose: 4000,
+	// 	});
+	// 	setOpenThankYou(true);
+	// 		}
+	// 	} catch (error) {
+	// 		// console.log(error);
+	// 		setLoading(false);
+	// 		toast.error(`${t('error')}`, {
+	// 			toastId: 'error',
+	// 			position: 'top-right',
+	// 			autoClose: 4000,
+	// 		});
+	// 	}
+	// };
+
+
+	// const postNonLoginData = async (values: any) => {
+	// 	try {
+	// 		setLoading(true);
+	// 		const res = await postJsonNoToken(
+	// 			`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate`,
+	// 			values,
+	// 		);
+	// 		setClientSecret(res?.data?.clientSecret)
+
+	// 		if (res.success) {
+	// 			setLoading(false);
+	// 			// DonateForm.resetForm();
+	// 			setOpen(false);
+	// 			toast.success(`${t('success')}`, {
+	// 				toastId: 'success',
+	// 				position: 'top-right',
+	// 				autoClose: 4000,
+	// 			});
+	// 			setOpenThankYou(true);
+	// 		}
+	// 	} catch (error) {
+	// 		// console.log(error);
+	// 		setLoading(false);
+	// 		toast.error(`${t('error')}`, {
+	// 			toastId: 'error',
+	// 			position: 'top-right',
+	// 			autoClose: 4000,
+	// 		});
+	// 	}
+	// };
 
 	const postNonLoginData = async (values: any) => {
 		try {
 			setLoading(true);
 			const res = await postJsonNoToken(
-				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/non/donate/family`,
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/donate`,
 				values,
 			);
+
+			const receivedClientSecret = res?.data?.clientSecret;
+			console.log("Client Secret:", receivedClientSecret);
+
+			// Ensure clientSecret follows the required format
+			if (receivedClientSecret && receivedClientSecret.includes("_secret_")) {
+				setClientSecret(receivedClientSecret);
+			} else {
+				throw new Error("Invalid client secret format received");
+			}
+
 			if (res.success) {
 				setLoading(false);
-				// DonateForm.resetForm();
 				setOpen(false);
 				toast.success(`${t('success')}`, {
 					toastId: 'success',
@@ -108,7 +187,6 @@ const DonateModal: React.FC<DonateModalType> = ({
 				setOpenThankYou(true);
 			}
 		} catch (error) {
-			// console.log(error);
 			setLoading(false);
 			toast.error(`${t('error')}`, {
 				toastId: 'error',
@@ -117,6 +195,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 			});
 		}
 	};
+
+
 
 	const postLoginData = async (values: any) => {
 		if (isAddToCart) {
@@ -154,7 +234,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 					});
 				}
 			} catch (error) {
-				// console.log(error)
+				console.log(error)
 				setLoading(false);
 				toast.error(`${t('error')}`, {
 					toastId: 'error',
@@ -201,6 +281,9 @@ const DonateModal: React.FC<DonateModalType> = ({
 		}
 	};
 
+	const options = {
+		clientSecret
+	}
 	const DonateForm = useFormik({
 		initialValues: InitialValues,
 		validationSchema: user ? checkOutSchemaLogin(t3) : checkOutSchemaNonLogin(t2),
@@ -217,6 +300,8 @@ const DonateModal: React.FC<DonateModalType> = ({
 
 	return (
 		<>
+			{/* <CardElement /> */}
+
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					as="div"
@@ -252,231 +337,232 @@ const DonateModal: React.FC<DonateModalType> = ({
 							>
 								<Dialog.Panel className=" py-4 px-5 rounded-2xl transform overflow-hidden bg-[#fff] text-left shadow-xl transition-all md:w-[500px] h-[550px]">
 									{/* first div */}
-									<form
-										onSubmit={DonateForm.handleSubmit}
-										className="flex flex-col justify-between w-full h-full"
-									>
-										<div
-											className="flex justify-between items-center w-full"
-											dir={dir}
+									<Elements stripe={stripePromise} options={{ clientSecret }}>
+										<form
+											onSubmit={DonateForm.handleSubmit}
+											className="flex flex-col justify-between w-full h-full"
 										>
-											<h2 className="  text-2xl font-semibold">
-												{user ? t('title2') : t('title1')}
-											</h2>
-											<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
-												<IoClose
-													className=" text-[26px] text-[#4a4b65] cursor-pointer"
-													onClick={() => setOpen(false)}
-												/>
-											</div>
-										</div>
-
-										<div
-											className=" flex flex-col gap-3 pt-1 overflow-y-auto h-[70%] scrollbarHide"
-											dir={dir}
-										>
-											{user && (
-												<>
-													<ModalInput
-														label={t('name')}
-														placeholder={t1('placeholdername')}
-														type="text"
-														name="name"
-														value={DonateForm.values?.name}
-														onChange={DonateForm.handleChange}
+											<div
+												className="flex justify-between items-center w-full"
+												dir={dir}
+											>
+												<h2 className="  text-2xl font-semibold">
+													{user ? t('title2') : t('title1')}
+												</h2>
+												<div className=" rounded-[50%] bg-[#857b7b40] hover:bg-[#857b7b80] p-1">
+													<IoClose
+														className=" text-[26px] text-[#4a4b65] cursor-pointer"
+														onClick={() => setOpen(false)}
 													/>
-													{user &&
-														DonateForm.touched.name &&
-														DonateForm.errors.name && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.name as any}
-															</p>
-														)}
-													<ModalInput
-														label={t('email')}
-														placeholder="Ahmed@gmail.com"
-														type="email"
-														name="email"
-														value={DonateForm.values?.email}
-														onChange={DonateForm.handleChange}
-													/>
-													{user &&
-														DonateForm.touched.email &&
-														DonateForm.errors.email && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.email as any}
-															</p>
-														)}
-													<ModalInput
-														label={t('address')}
-														placeholder={t1('placeholderaddress')}
-														type="text"
-														name="address"
-														value={DonateForm.values?.address}
-														onChange={DonateForm.handleChange}
-													/>
-													{user &&
-														DonateForm.touched.address &&
-														DonateForm.errors.address && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.address as any}
-															</p>
-														)}
-													<ModalInput
-														label={t('mobileNum')}
-														placeholder="526397444"
-														type="number"
-														name="mobilePhoneNumber"
-														value={DonateForm.values?.mobilePhoneNumber}
-														onChange={DonateForm.handleChange}
-													/>
-													{user &&
-														DonateForm.touched.mobilePhoneNumber &&
-														DonateForm.errors.mobilePhoneNumber && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.mobilePhoneNumber as any}
-															</p>
-														)}
-													<ModalInput
-														label={t('identityNum')}
-														placeholder="526397444999"
-														type="number"
-														name="nationalIdentityNumber"
-														value={DonateForm.values?.nationalIdentityNumber}
-														onChange={DonateForm.handleChange}
-													/>
-													{user &&
-														DonateForm.touched.nationalIdentityNumber &&
-														DonateForm.errors.nationalIdentityNumber && (
-															<p className="text-sm mb-2 text-red">
-																{
-																	DonateForm.errors
-																		.nationalIdentityNumber as any
-																}
-															</p>
-														)}
-													<ModalInput
-														label={t('city')}
-														placeholder="Karachi"
-														type="text"
-														name="city"
-														value={DonateForm.values?.city}
-														onChange={DonateForm.handleChange}
-													/>
-													{user &&
-														DonateForm.touched.city &&
-														DonateForm.errors.city && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.city as any}
-															</p>
-														)}
-													<Select
-														title={t('country')}
-														name="country"
-														className="max-w-[800px] w-full mb-8"
-														onChange={DonateForm.handleChange}
-														value={DonateForm.values.country}
-														titleColor="text-[#000000]"
-														textColor="text-[#00000080]"
-														BgColor="bg-[#F8F8F8]"
-														options={countriesData.map((country) => ({
-															label: country.name,
-															value: country.code,
-														}))}
-													/>
-													{user &&
-														DonateForm.touched.country &&
-														DonateForm.errors.country && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.country as any}
-															</p>
-														)}
-												</>
-											)}
-											<ModalInput
-												label={t('cardHolder')}
-												placeholder={t1('cardname')}
-												type="text"
-												name="cardHolderName"
-												value={DonateForm.values?.cardHolderName}
-												onChange={DonateForm.handleChange}
-											/>
-											{DonateForm.touched.cardHolderName &&
-												DonateForm.errors.cardHolderName && (
-													<p className="text-sm mb-2 text-red">
-														{DonateForm.errors.cardHolderName as any}
-													</p>
-												)}
-											<ModalInput
-												label={t('cardNum')}
-												placeholder="123654125852"
-												type="text"
-												name="cardNumber"
-												value={DonateForm.values?.cardNumber}
-												onChange={DonateForm.handleChange}
-											/>
-											{DonateForm.touched.cardNumber &&
-												DonateForm.errors.cardNumber && (
-													<p className="text-sm mb-2 text-red">
-														{DonateForm.errors.cardNumber as any}
-													</p>
-												)}
-											<Select
-												title={t('expMonth')}
-												name="expireMonth"
-												className="max-w-[800px] w-full mb-8"
-												onChange={DonateForm.handleChange}
-												value={DonateForm.values.expireMonth}
-												// defaultValue={t('country.default')}
-												titleColor="text-[#000000]"
-												textColor="text-[#00000080]"
-												BgColor="bg-[#F8F8F8]"
-												options={monthsData.map((month) => ({
-													label: month,
-													value: month,
-												}))}
-											/>
-											{DonateForm.touched.expireMonth &&
-												DonateForm.errors.expireMonth && (
-													<p className="text-sm mb-2 text-red">
-														{DonateForm.errors.expireMonth as any}
-													</p>
-												)}
-											<div className=" flex gap-3">
-												<div className=" flex flex-col gap-2">
-													<ModalInput
-														label={t('expYear')}
-														placeholder="2023"
-														type="number"
-														name="expireYear"
-														value={DonateForm.values?.expireYear}
-														onChange={DonateForm.handleChange}
-													/>
-													{DonateForm.touched.expireYear &&
-														DonateForm.errors.expireYear && (
-															<p className="text-sm mb-2 text-red">
-																{DonateForm.errors.expireYear as any}
-															</p>
-														)}
 												</div>
+											</div>
 
-												<div className=" flex flex-col gap-2">
-													<ModalInput
-														label={t('cvc')}
-														placeholder="551"
-														type="number"
-														name="cvc"
-														value={DonateForm.values?.cvc}
-														onChange={DonateForm.handleChange}
-													/>
-													{DonateForm.touched.cvc && DonateForm.errors.cvc && (
+											<div
+												className=" flex flex-col gap-3 pt-1 overflow-y-auto h-[70%] scrollbarHide"
+												dir={dir}
+											>
+												{user && (
+													<>
+														<ModalInput
+															label={t('name')}
+															placeholder={t1('placeholdername')}
+															type="text"
+															name="name"
+															value={DonateForm.values?.name}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.name &&
+															DonateForm.errors.name && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.name as any}
+																</p>
+															)}
+														<ModalInput
+															label={t('email')}
+															placeholder="Ahmed@gmail.com"
+															type="email"
+															name="email"
+															value={DonateForm.values?.email}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.email &&
+															DonateForm.errors.email && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.email as any}
+																</p>
+															)}
+														<ModalInput
+															label={t('address')}
+															placeholder={t1('placeholderaddress')}
+															type="text"
+															name="address"
+															value={DonateForm.values?.address}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.address &&
+															DonateForm.errors.address && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.address as any}
+																</p>
+															)}
+														<ModalInput
+															label={t('mobileNum')}
+															placeholder="526397444"
+															type="number"
+															name="mobilePhoneNumber"
+															value={DonateForm.values?.mobilePhoneNumber}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.mobilePhoneNumber &&
+															DonateForm.errors.mobilePhoneNumber && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.mobilePhoneNumber as any}
+																</p>
+															)}
+														<ModalInput
+															label={t('identityNum')}
+															placeholder="526397444999"
+															type="number"
+															name="nationalIdentityNumber"
+															value={DonateForm.values?.nationalIdentityNumber}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.nationalIdentityNumber &&
+															DonateForm.errors.nationalIdentityNumber && (
+																<p className="text-sm mb-2 text-red">
+																	{
+																		DonateForm.errors
+																			.nationalIdentityNumber as any
+																	}
+																</p>
+															)}
+														<ModalInput
+															label={t('city')}
+															placeholder="Karachi"
+															type="text"
+															name="city"
+															value={DonateForm.values?.city}
+															onChange={DonateForm.handleChange}
+														/>
+														{user &&
+															DonateForm.touched.city &&
+															DonateForm.errors.city && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.city as any}
+																</p>
+															)}
+														<Select
+															title={t('country')}
+															name="country"
+															className="max-w-[800px] w-full mb-8"
+															onChange={DonateForm.handleChange}
+															value={DonateForm.values.country}
+															titleColor="text-[#000000]"
+															textColor="text-[#00000080]"
+															BgColor="bg-[#F8F8F8]"
+															options={countriesData.map((country) => ({
+																label: country.name,
+																value: country.code,
+															}))}
+														/>
+														{user &&
+															DonateForm.touched.country &&
+															DonateForm.errors.country && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.country as any}
+																</p>
+															)}
+													</>
+												)}
+												<ModalInput
+													label={t('cardHolder')}
+													placeholder={t1('cardname')}
+													type="text"
+													name="cardHolderName"
+													value={DonateForm.values?.cardHolderName}
+													onChange={DonateForm.handleChange}
+												/>
+												{DonateForm.touched.cardHolderName &&
+													DonateForm.errors.cardHolderName && (
 														<p className="text-sm mb-2 text-red">
-															{DonateForm.errors.cvc as any}
+															{DonateForm.errors.cardHolderName as any}
 														</p>
 													)}
+												<ModalInput
+													label={t('cardNum')}
+													placeholder="123654125852"
+													type="text"
+													name="cardNumber"
+													value={DonateForm.values?.cardNumber}
+													onChange={DonateForm.handleChange}
+												/>
+												{DonateForm.touched.cardNumber &&
+													DonateForm.errors.cardNumber && (
+														<p className="text-sm mb-2 text-red">
+															{DonateForm.errors.cardNumber as any}
+														</p>
+													)}
+												<Select
+													title={t('expMonth')}
+													name="expireMonth"
+													className="max-w-[800px] w-full mb-8"
+													onChange={DonateForm.handleChange}
+													value={DonateForm.values.expireMonth}
+													// defaultValue={t('country.default')}
+													titleColor="text-[#000000]"
+													textColor="text-[#00000080]"
+													BgColor="bg-[#F8F8F8]"
+													options={monthsData.map((month) => ({
+														label: month,
+														value: month,
+													}))}
+												/>
+												{DonateForm.touched.expireMonth &&
+													DonateForm.errors.expireMonth && (
+														<p className="text-sm mb-2 text-red">
+															{DonateForm.errors.expireMonth as any}
+														</p>
+													)}
+												<div className=" flex gap-3">
+													<div className=" flex flex-col gap-2">
+														<ModalInput
+															label={t('expYear')}
+															placeholder="2023"
+															type="number"
+															name="expireYear"
+															value={DonateForm.values?.expireYear}
+															onChange={DonateForm.handleChange}
+														/>
+														{DonateForm.touched.expireYear &&
+															DonateForm.errors.expireYear && (
+																<p className="text-sm mb-2 text-red">
+																	{DonateForm.errors.expireYear as any}
+																</p>
+															)}
+													</div>
+
+													<div className=" flex flex-col gap-2">
+														<ModalInput
+															label={t('cvc')}
+															placeholder="551"
+															type="number"
+															name="cvc"
+															value={DonateForm.values?.cvc}
+															onChange={DonateForm.handleChange}
+														/>
+														{DonateForm.touched.cvc && DonateForm.errors.cvc && (
+															<p className="text-sm mb-2 text-red">
+																{DonateForm.errors.cvc as any}
+															</p>
+														)}
+													</div>
 												</div>
-											</div>
-											{/* <ModalInput
+												{/* <ModalInput
 												label="Enter Amount"
 												placeholder="300"
 												name="totalAmount"
@@ -485,26 +571,27 @@ const DonateModal: React.FC<DonateModalType> = ({
 												onChange={DonateForm.handleChange}
 												disabled={user ? true : false}
 											/> */}
-										</div>
-
-										<div className=" flex flex-col gap-3 w-full">
-											<div className=" flex justify-between items-center">
-												<h3 className=" text-2xl font-bold">{t('total')}</h3>
-												<h3 className=" text-2xl font-bold">
-													{currencyState.key}{' '}
-													{amount ? amount : DonateForm.values?.totalAmount}
-												</h3>
 											</div>
 
-											<Button
-												title={t('submit')}
-												className="  w-full"
-												isLoading={loading}
-												type="submit"
-												Color="#8DAE8E"
-											/>
-										</div>
-									</form>
+											<div className=" flex flex-col gap-3 w-full">
+												<div className=" flex justify-between items-center">
+													<h3 className=" text-2xl font-bold">{t('total')}</h3>
+													<h3 className=" text-2xl font-bold">
+														{currencyState.key}{' '}
+														{amount ? amount : DonateForm.values?.totalAmount}
+													</h3>
+												</div>
+
+												<Button
+													title={t('submit')}
+													className="  w-full"
+													isLoading={loading}
+													type="submit"
+													Color="#8DAE8E"
+												/>
+											</div>
+										</form>
+									</Elements>
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>
@@ -516,6 +603,7 @@ const DonateModal: React.FC<DonateModalType> = ({
 				setOpen={setOpenThankYou}
 				cancelButtonRef={cancelThankYouButtonRef}
 			/>
+
 		</>
 	);
 };
