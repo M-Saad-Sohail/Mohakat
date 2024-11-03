@@ -1,7 +1,6 @@
 
 
 'use client';
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { Fragment, useState, useEffect, useRef} from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { QuickDonationModalType } from '@/types';
@@ -60,7 +59,6 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 
 
   const handleCheckout = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if ((amount as number) > 0) {
       setShowPaymentForm(true);
     }

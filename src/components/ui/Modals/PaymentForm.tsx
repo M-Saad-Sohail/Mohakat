@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useState, useRef, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Button from '../LandingPage/Button';
@@ -21,7 +20,6 @@ interface CurrencyState {
   // add other properties as needed
 }
 const PaymentForm: React.FC<PaymentFormProps> = ({
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   amount = 0,
   t,
   onPaymentComplete,
@@ -41,7 +39,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const { user } = useLoggedInUser();
 
   const handleCheckout = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (amount <= 0) return;
 
     setIsProcessing(true);
