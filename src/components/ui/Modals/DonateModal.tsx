@@ -13,7 +13,7 @@ import { IoClose } from 'react-icons/io5';
 
 const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`);
 
-const DonateModal: React.FC<DonateModalType> = ({
+const DonateModal: React.FC<DonateModalType> = React.memo(({
     open,
     setOpen,
     cancelButtonRef,
@@ -21,7 +21,6 @@ const DonateModal: React.FC<DonateModalType> = ({
     familyId,
 	isAddToCart
 }) => {
-	console.log("familyId",familyId)
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const [openThankYou, setOpenThankYou] = useState(false);
     const cancelThankYouButtonRef = useRef(null);
@@ -131,6 +130,6 @@ const DonateModal: React.FC<DonateModalType> = ({
             />
         </>
     );
-};
+});
 
 export default DonateModal;

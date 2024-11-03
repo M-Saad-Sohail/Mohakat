@@ -22,10 +22,7 @@ import ThankYouModal from './ThankYouModal';
 
 const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`).catch(err => {
 	console.error('Failed to initialize Stripe:', err);
-	
   });
-  console.log('Stripe Publishable Key:', process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY);
-  console.log(stripePromise)
 
 const QuickDonationModal: React.FC<QuickDonationModalType> = ({
   open,

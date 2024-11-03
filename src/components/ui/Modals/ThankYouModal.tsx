@@ -12,12 +12,11 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { PATHS } from '@/contants';
 
-const ThankYouModal: React.FC<ThankYouModalType> = ({
+const ThankYouModal: React.FC<ThankYouModalType> = React.memo(({
 	open,
 	setOpen,
 	cancelButtonRef,
 }) => {
-	console.log("tankyou", open)
 	const { url, dir, locale, changeLocale, replace } = useLocaleRouter();
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
@@ -28,10 +27,6 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 	let beforeComma = parts[0];
 	let afterComma = parts[1];
 
-	// In ThankYouModal component
-	useEffect(() => {
-		console.log("ThankYouModal open state changed:", open);
-	}, [open]);
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>
@@ -118,6 +113,6 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 			</Transition.Root>
 		</>
 	);
-};
+});
 
 export default ThankYouModal;

@@ -101,7 +101,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         });
 
         const { clientSecret } = await response.json();
-        console.log("clientSecret", clientSecret)
 
         if (!stripe || !elements) {
             throw new Error('Stripe not initialized');
@@ -136,14 +135,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
 
             // Optionally handle the response of the save request
             const saveData = await saveResponse.json();
-            console.log('Donation saved:', saveData);
         } else {
             setError(result.error.message || 'Payment failed');
-            console.log(result.error)
         }
     } catch (error: any) {
         setError(error.message || 'Payment failed. Please try again.');
-        console.log(error)
     } finally {
         setIsProcessing(false);
     }
@@ -178,7 +174,6 @@ const handleCheckoutCartUser = async () => {
       });
 
       const { clientSecret } = await response.json();
-      console.log("clientSecret", clientSecret);
 
       if (!stripe || !elements) {
           throw new Error('Stripe not initialized');
@@ -207,15 +202,15 @@ const handleCheckoutCartUser = async () => {
               });
 
               const saveData = await saveResponse.json();
-              console.log('Donations Cart saved:', saveData);
+              
           }
       } else {
           setError(result.error.message || 'Payment failed');
-          console.log(result.error);
+          
       }
   } catch (error: any) {
       setError(error.message || 'Payment failed. Please try again.');
-      console.log(error);
+      
   } finally {
       setIsProcessing(false);
   }
