@@ -28,7 +28,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   familyId,
   isAddToCart
 }) => {
-  console.log("formamount", amount)
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
