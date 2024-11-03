@@ -7,7 +7,7 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useSelector } from 'react-redux';
 
 interface PaymentFormProps {
-  amount: number;
+  amount: any;
   currency: any;
   t: (key: string) => string;
   onPaymentComplete: () => void;
