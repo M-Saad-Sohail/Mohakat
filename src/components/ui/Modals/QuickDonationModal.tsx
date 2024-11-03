@@ -69,6 +69,7 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 	setOpenThankYou(true)
     setOpen(false);
     setDonate && setDonate(true);
+    setOpenThankYou(false)
   };
 
   return (

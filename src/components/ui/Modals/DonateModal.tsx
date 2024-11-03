@@ -28,12 +28,6 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
     const t = useTranslations('DonateModal');
     const t1 = useTranslations('QuickDonation');
 
-    // const handleCheckout = () => {
-    //     // setShowPaymentForm(true);
-    //     if ((amount as number) > 0)) {
-    //         setShowPaymentForm(true);
-    //     }
-    // };
     const handleCheckout = () => {
         if ((amount as number) > 0) {
             setShowPaymentForm(true);
@@ -44,6 +38,7 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
         setShowPaymentForm(false);
         setOpenThankYou(true);
         setOpen(false);
+        setOpenThankYou(false)
         // Additional logic after payment success, like state updates
     };
 

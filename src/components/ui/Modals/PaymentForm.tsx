@@ -56,7 +56,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
      
 
       const { clientSecret } = await response.json();
-      console.log(clientSecret)
 
       if (!stripe || !elements) {
         throw new Error('Stripe not initialized');
