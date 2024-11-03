@@ -1,6 +1,7 @@
 
 
 'use client';
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { Fragment, useState, useEffect, useRef} from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { QuickDonationModalType } from '@/types';
