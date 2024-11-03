@@ -3,7 +3,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.NEXT_PUBLIC_REACT_APP_STRIPE_SECRET_KEY!, {
   apiVersion: '2023-08-16',
 });
 
