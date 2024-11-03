@@ -352,5 +352,5 @@ const FamilyModal: React.FC<FamilyModalType> = ({
 		</>
 	);
 };
-
+FamilyModal.displayName = "FamilyModal";
 export default FamilyModal;

@@ -1230,8 +1230,5 @@ const ViewModal = ({
 		</div>
 	);
 };
-
+ViewModal.displayName = "ViewModal";
 export default ViewModal;
-function setLoading(arg0: boolean) {
-	throw new Error('Function not implemented.');
-}
