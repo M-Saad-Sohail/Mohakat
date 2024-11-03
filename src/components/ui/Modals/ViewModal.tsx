@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { close_icon } from '@/assests';

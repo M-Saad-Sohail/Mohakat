@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 'use client';
 import React, { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
