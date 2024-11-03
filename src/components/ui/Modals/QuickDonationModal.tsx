@@ -20,9 +20,10 @@ import ThankYouModal from './ThankYouModal';
 
 
 
-const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`).catch(err => {
-	console.error('Failed to initialize Stripe:', err);
-  });
+// const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`).catch(err => {
+// 	console.error('Failed to initialize Stripe:', err);
+//   });
+const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_REACT_APP_STRIPE_PUBLISHABLE_KEY}`)
 
 const QuickDonationModal: React.FC<QuickDonationModalType> = ({
   open,

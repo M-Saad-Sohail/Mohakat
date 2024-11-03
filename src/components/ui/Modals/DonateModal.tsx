@@ -17,19 +17,26 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
     open,
     setOpen,
     cancelButtonRef,
-    amount,
     familyId,
-	isAddToCart
+    isAddToCart,
+    amount
 }) => {
+    console.log("amount", amount)
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const [openThankYou, setOpenThankYou] = useState(false);
     const cancelThankYouButtonRef = useRef(null);
     const currencyState = useSelector((state: any) => state.currency);
     const t = useTranslations('DonateModal');
-	const t1 = useTranslations('QuickDonation');
+    const t1 = useTranslations('QuickDonation');
 
+    // const handleCheckout = () => {
+    //     // setShowPaymentForm(true);
+    //     if ((amount as number) > 0)) {
+    //         setShowPaymentForm(true);
+    //     }
+    // };
     const handleCheckout = () => {
-        if (amount > 0) {
+        if ((amount as number) > 0) {
             setShowPaymentForm(true);
         }
     };
@@ -90,6 +97,7 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
                                         <h3 className="text-lg font-semibold">{t('amount')}</h3>
                                         <h3 className="text-lg font-semibold">
                                             {currencyState.key} {amount}
+                                            {/* {currencyState.key} */}
                                         </h3>
                                     </div>
 
@@ -101,7 +109,8 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
                                                 title={t('submit')}
                                                 className="w-full"
                                                 Color="#8DAE8E"
-                                                disabled={amount <= 0}
+                                                // disabled={(amount as number) <= 0}
+                                                disabled={(amount as number) > 0 ? false : true}
                                             />
                                         </div>
                                     ) : (
@@ -110,9 +119,10 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
                                                 amount={amount}
                                                 currency={currencyState.key.toLowerCase()}
                                                 onPaymentComplete={handlePaymentSuccess}
-												familyId={familyId}
-												isAddToCart={isAddToCart}
-												
+                                                familyId={familyId}
+                                                isAddToCart={isAddToCart}
+                                                t={t}
+
                                             />
                                         </Elements>
                                     )}

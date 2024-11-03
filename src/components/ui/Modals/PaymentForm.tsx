@@ -7,8 +7,7 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import { useSelector } from 'react-redux';
 
 interface PaymentFormProps {
-  amount: any;
-  currencyState: any;
+  amount: number;
   currency: any;
   t: (key: string) => string;
   onPaymentComplete: () => void;
@@ -22,7 +21,6 @@ interface CurrencyState {
 }
 const PaymentForm: React.FC<PaymentFormProps> = ({
   amount,
-  currencyState,
   t,
   onPaymentComplete,
   userEmail,
@@ -30,6 +28,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   familyId,
   isAddToCart
 }) => {
+  console.log("formamount", amount)
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -58,6 +57,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
      
 
       const { clientSecret } = await response.json();
+      console.log(clientSecret)
 
       if (!stripe || !elements) {
         throw new Error('Stripe not initialized');
@@ -75,6 +75,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         onPaymentComplete();
       } else {
         setError(result.error.message || 'Payment failed');
+        console.log(result.error)
       }
     } catch (error: any) {
       setError(error.message || 'Payment failed. Please try again.');
