@@ -58,7 +58,9 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
     setAmount && setAmount(inputAmount === 0 ? 0 : inputAmount);
   }, [inputAmount]);
 
+
   const handleCheckout = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if ((amount as number) > 0) {
       setShowPaymentForm(true);
     }
