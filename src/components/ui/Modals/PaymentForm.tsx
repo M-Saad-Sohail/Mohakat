@@ -12,8 +12,8 @@ interface PaymentFormProps {
   t: (key: string) => string;
   onPaymentComplete: () => void;
   userEmail?: string;
-  familyId: any;
-  isAddToCart: any;
+  familyId: any | undefined;
+  isAddToCart: any | undefined;
 }
 interface CurrencyState {
   key: string;

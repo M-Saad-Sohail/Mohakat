@@ -203,6 +203,8 @@ const QuickDonationModal: React.FC<QuickDonationModalType> = ({
 						            t={t} // Pass t function here
                         currency={currencyState.key.toLowerCase()}
                         onPaymentComplete={handlePaymentSuccess}
+                    
+
                       />
                     </Elements>
                   )}
