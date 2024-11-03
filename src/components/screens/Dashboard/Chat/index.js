@@ -159,8 +159,12 @@ const Chats = () => {
 	const getUsers = async (sponsorId, token) => {
 		try {
 			// setIsLoading(false)
+			// const response = await getJsonWithToken(
+			// 	`https://sponserendpoint.netlify.app/.netlify/functions/server/donated/${sponsorId}/families`,
+			// 	token && token,
+			// );
 			const response = await getJsonWithToken(
-				`https://sponserendpoint.netlify.app/.netlify/functions/server/donated/${sponsorId}/families`,
+				`http://localhost:8000/api/v1/donated/${sponsorId}/families`,
 				token && token,
 			);
 			setUsersList(response?.families);

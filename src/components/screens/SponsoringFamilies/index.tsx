@@ -139,7 +139,7 @@ const SponsoringFamilies = () => {
 				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inEnglish,
 				gender: data?.gender?.inEnglish,
 				maritalStatus: data?.maritalStatus?.inEnglish,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+				familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inEnglish,
 				})),
@@ -155,7 +155,7 @@ const SponsoringFamilies = () => {
 				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inArabic,
 				gender: data?.gender?.inArabic,
 				maritalStatus: data?.maritalStatus?.inArabic,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+				familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inArabic,
 				})),
@@ -171,7 +171,7 @@ const SponsoringFamilies = () => {
 				areaOfPreviousResidence: data?.areaOfPreviousResidence?.inTurkish,
 				gender: data?.gender?.inTurkish,
 				maritalStatus: data?.maritalStatus?.inTurkish,
-				familyMemberDetail: data?.familyMemberDetail.map((member: any) => ({
+				familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
 					...member,
 					memberName: member?.memberName.inTurkish,
 				})),

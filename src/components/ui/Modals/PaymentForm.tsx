@@ -208,12 +208,6 @@ const handleCheckoutCartUser = async () => {
 
               const saveData = await saveResponse.json();
               console.log('Donations Cart saved:', saveData);
-
-              if (saveData.success) {
-                  setOpenThankYou(true);
-              } else {
-                  setError('Failed to save donations. Please try again.');
-              }
           }
       } else {
           setError(result.error.message || 'Payment failed');
@@ -260,31 +254,19 @@ const handleCheckoutCartUser = async () => {
           </div>
         )}
         <Button
-          // onClick={handleCheckout}
-          // onClick={() => {
-          //   if (user) {
-          //     handleCheckoutUser(); // Call if user is logged in
-          //   } 
-          //   else if(user && isAddToCart){
-          //     handleCheckoutCartUser()
-          //   }
-          //   else {
-          //     handleCheckout(); // Call if user is not logged in
-          //   }
-          // }}
           onClick={() => {
             if (user) {
                 if (isAddToCart) {
-                    handleCheckoutCartUser(); // Call if user is logged in and adding to cart
+                    handleCheckoutCartUser();
                 } else {
-                    handleCheckoutUser(); // Call if user is logged in but not adding to cart
+                    handleCheckoutUser();
                 }
             } else {
-                handleCheckout(); // Call if user is not logged in
+                handleCheckout();
             }
         }}
         
-          title={t1('button')}
+          title={t1('submit')}
           className="w-full"
           Color="#8DAE8E"
           disabled={!stripe || !elements || amount <= 0 || isProcessing}
