@@ -72,7 +72,10 @@
 		"submit": "Confirm Payment",
 		"success": "Thank you for your donation",
 		"error": "Something went wrong",
-		"donationFailed": "Donation Process failed. Try Again"
+		"donationFailed": "Donation Process failed. Try Again",
+		"amount": "Amount",
+		"donate": "Donate",
+		"cardDetail": "Card Detail"
 	},
 	"forgotPassword": {
 		"form": {

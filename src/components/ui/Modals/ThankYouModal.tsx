@@ -17,6 +17,7 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 	setOpen,
 	cancelButtonRef,
 }) => {
+	console.log("tankyou", open)
 	const { url, dir, locale, changeLocale, replace } = useLocaleRouter();
 	const pathname = usePathname();
 	const currentPath = pathname?.slice(1, 3);
@@ -26,6 +27,11 @@ const ThankYouModal: React.FC<ThankYouModalType> = ({
 
 	let beforeComma = parts[0];
 	let afterComma = parts[1];
+
+	// In ThankYouModal component
+	useEffect(() => {
+		console.log("ThankYouModal open state changed:", open);
+	}, [open]);
 	return (
 		<>
 			<Transition.Root show={open} as={Fragment}>

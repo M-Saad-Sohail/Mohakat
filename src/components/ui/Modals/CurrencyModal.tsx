@@ -16,11 +16,10 @@ interface CurrencyOption {
 	basePriceOne: number;
 	basePriceTwo: number;
 }
-
+// { label: 'Kuwaiti Dinar', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
 const currencyOptionsEnglish: CurrencyOption[] = [
 	{ label: 'Dollar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
 	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
-	{ label: 'Kuwaiti Dinar', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
 	{ label: 'Qatari Riyal', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
 	{ label: 'Saudi Riyal', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
 	{
@@ -34,7 +33,7 @@ const currencyOptionsEnglish: CurrencyOption[] = [
 const currencyOptionsArabic: CurrencyOption[] = [
 	{ label: 'الدولار', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
 	{ label: 'اليورو', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
-	{ label: 'دينار كويتي', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	// { label: 'دينار كويتي', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
 	{ label: 'ريال قطري', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
 	{ label: 'ريال سعودي', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
 	{ label: 'ليرة تركية', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },
@@ -43,7 +42,7 @@ const currencyOptionsArabic: CurrencyOption[] = [
 const currencyOptionsTurkish: CurrencyOption[] = [
 	{ label: 'Dolar', key: 'USD', basePriceOne: 300, basePriceTwo: 500 },
 	{ label: 'Euro', key: 'EUR', basePriceOne: 281, basePriceTwo: 469 },
-	{ label: 'Kuveyt Dinarı', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
+	// { label: 'Kuveyt Dinarı', key: 'KWD', basePriceOne: 92, basePriceTwo: 154 },
 	{ label: 'Katar Riyali', key: 'QAR', basePriceOne: 1092, basePriceTwo: 1820 },
 	{ label: 'Suudi Riyali', key: 'SAR', basePriceOne: 1125, basePriceTwo: 1875 },
 	{ label: 'Türk Lirası', key: 'TRY', basePriceOne: 9776, basePriceTwo: 16294 },

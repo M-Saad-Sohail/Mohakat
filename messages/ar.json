@@ -573,7 +573,10 @@
 		"success": "شكرًا لتبرعك",
 		"error": "حدث خطأ ما",
 		"submit": "تأكيد الدفع",
-		"donationFailed": "فشلت عملية التبرع. حاول مرة أخرى"
+		"donationFailed": "فشلت عملية التبرع. حاول مرة أخرى",
+		"amount": "المبلغ",
+		"donate": "تبرع",
+		"cardDetail": "تفاصيل البطاقة"
 	},	
 	"CurrencyModal": {
 		"title": "العملة"

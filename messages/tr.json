@@ -557,7 +557,10 @@
 		"success": "Bağışınız için teşekkür ederiz",
 		"error": "Bir şeyler yanlış gitti",
 		"submit": "Ödemeyi Onayla",
-		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin"
+		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin",
+		"amount": "Tutar",
+		"donate": "Bağışla",
+		"cardDetail": "Kart Detayı"
 	},
 	"QuickDonation": {
 		"title": "Genel ve Hızlı Bağış",
