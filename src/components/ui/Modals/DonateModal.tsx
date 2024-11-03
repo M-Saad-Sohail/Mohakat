@@ -21,7 +21,6 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
     isAddToCart,
     amount
 }) => {
-    console.log("amount", amount)
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const [openThankYou, setOpenThankYou] = useState(false);
     const cancelThankYouButtonRef = useRef(null);
