@@ -38,7 +38,6 @@ const DonateModal: React.FC<DonateModalType> = React.memo(({
         setShowPaymentForm(false);
         setOpenThankYou(true);
         setOpen(false);
-        setOpenThankYou(false)
         // Additional logic after payment success, like state updates
     };
 
