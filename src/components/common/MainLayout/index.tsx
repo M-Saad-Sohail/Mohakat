@@ -10,6 +10,8 @@ import { PATHS } from '@/contants';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import React, { useEffect, useState } from 'react';
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
+import FacebookPixel from "@/components/analytics/FacebookPixel"
 
 type MainLayoutProps = {
 	children: React.ReactNode;
@@ -34,7 +36,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	if (fromGazaMap) {
 		return (
 			<div>
-				<BottomToTop/>
+				<BottomToTop />
 				<Navbar setIsCartOpen={setIsCartOpen} />
 				<MobileNavbar setIsCartOpen={setIsCartOpen} />
 				{children}
@@ -48,15 +50,19 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	}
 
 	return (
-		<div className=" relative">
-			<Navbar setIsCartOpen={setIsCartOpen} />
-			<MobileNavbar setIsCartOpen={setIsCartOpen} />
-			{!user && <StickeyBar />}
-			<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-			{children}
-			<Footer />
-			<BottomToTop/>
-		</div>
+		<html>
+			<GoogleAnalytics />
+			<FacebookPixel />
+			<div className=" relative">
+				<Navbar setIsCartOpen={setIsCartOpen} />
+				<MobileNavbar setIsCartOpen={setIsCartOpen} />
+				{!user && <StickeyBar />}
+				<Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+				{children}
+				<Footer />
+				<BottomToTop />
+			</div>
+		</html>
 	);
 };
 
