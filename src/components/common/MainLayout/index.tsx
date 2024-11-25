@@ -12,6 +12,7 @@ import useLoggedInUser from '@/hooks/useLoggedInUser';
 import React, { useEffect, useState } from 'react';
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
 import FacebookPixel from "@/components/analytics/FacebookPixel"
+import MetaTags from './MetaTags';
 
 type MainLayoutProps = {
 	children: React.ReactNode;
@@ -23,15 +24,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 	const { redirectWithLocale } = useLocaleRouter();
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
-	// useEffect(() => {
-	// 	if (!!user) {
-	// 		let locale = 'en';
-	// 		if (['en', 'ar', 'tr'].includes(user.language)) {
-	// 			locale = user.language;
-	// 		}
-	// 		redirectWithLocale(locale, PATHS.HOME);
-	// 	}
-	// }, [user]);
+	
 
 	if (fromGazaMap) {
 		return (
@@ -51,6 +44,7 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 
 	return (
 		<html>
+			<MetaTags/>
 			<GoogleAnalytics />
 			<FacebookPixel />
 			<div className=" relative">
