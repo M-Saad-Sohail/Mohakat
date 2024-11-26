@@ -44,7 +44,9 @@ const MainLayout = ({ children, fromGazaMap }: MainLayoutProps) => {
 
 	return (
 		<html>
-			<MetaTags/>
+			{/* <MetaTags/> */}
+
+			<meta name="google-site-verification" content="4Q99eZQB_bVUSsKxHy06hc-_vsAbJAsgWgQfD4b9Cxk" />
 			<GoogleAnalytics />
 			<FacebookPixel />
 			<div className=" relative">
