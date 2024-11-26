@@ -16,7 +16,11 @@ const noto = Noto_Kufi_Arabic({
 	display: 'swap',
 });
 
-
+export const metadata = {
+	verification: {
+		google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+	},
+};
 export default function RootLayout({
 	children,
 	params: { locale },
@@ -29,7 +33,10 @@ export default function RootLayout({
 		<html lang={locale}>
 			<head>
 				<meta charSet="utf-8" />
-				
+				<meta
+					name="google-site-verification"
+					content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
+				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/logo.svg" sizes="any" />
 			</head>
