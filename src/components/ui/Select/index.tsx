@@ -6,7 +6,11 @@ interface IProps extends React.InputHTMLAttributes<HTMLSelectElement> {
 	title: string;
 	options: Array<{ value: string; label: string }>;
 	className?: string;
+	errorClass?: any;
 	defaultValue?: string;
+	titleColor?: string;
+	textColor?: string;
+	BgColor?: string;
 	name: string;
 }
 const Select: React.FC<IProps> = ({
@@ -16,6 +20,10 @@ const Select: React.FC<IProps> = ({
 	value,
 	name,
 	title,
+	titleColor,
+	textColor,
+	BgColor,
+	errorClass,
 	options,
 	defaultValue,
 }) => {
@@ -23,11 +31,15 @@ const Select: React.FC<IProps> = ({
 
 	return (
 		<div dir={dir} className={`flex flex-col gap-y-2 h-[50px] ${className}`}>
-			<label className="font-bold text-[14px] text-primary">{title}</label>
+			<label
+				className={`flex font-bold text-[14px] ${titleColor ? titleColor : `text-[#36454F]`}`}
+			>
+				{title}
+			</label>
 
 			<div dir={dir} className="relative h-full w-full">
 				<select
-					className={`py-2 px-5 w-full focus:outline-none text-[15px] bg-[#E8E8E8] h-[50px] max-w-[700px] text-primary appearance-none ${className}`}
+					className={`py-1 px-5 w-full focus:outline-none text-[15px] ${BgColor ? BgColor : `bg-[#E8E8E8]`}  h-[50px] max-w-[700px] ${textColor ? textColor : `text-[#36454F]`} appearance-none ${className} ${errorClass}`}
 					onChange={(e) => {
 						onChange?.(e);
 					}}

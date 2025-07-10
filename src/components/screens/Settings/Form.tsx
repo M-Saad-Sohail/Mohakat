@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Input from '@/components/ui//Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { PATHS, ProfileValues, RESETINITIALVALUES } from '@/contants';
@@ -25,6 +25,7 @@ import Select from '@/components/ui/Select';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import useDirection from '@/hooks/useDirection';
 import { countriesData } from '@/contants/countries';
+import Button from '@/components/ui/LandingPage/Button';
 
 type IProps = {
 	updatePassword: (arg: ResetPassword, id: String | undefined) => void;
@@ -100,6 +101,7 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 						name="name"
 						className="mb-[19px] min-w-[460px]"
 						value={updateProfileForm.values?.name}
+						disabled={true}
 						onChange={updateProfileForm.handleChange}
 					/>
 					<Input
@@ -107,44 +109,36 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 						name="email"
 						className="mb-[19px] min-w-[460px]"
 						value={updateProfileForm.values?.email}
+						disabled={true}
 						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
 				<div className="flex justify-start w-full mb-8 gap-x-4">
-					<Select
+					<Input
 						title={t('country.title')}
 						name="country"
-						defaultValue={t('country.default')}
-						options={countriesData.map((c) => ({
-							value: c.code,
-							label: c.name,
-						}))}
 						className="mb-[19px] min-w-[460px]"
 						value={updateProfileForm.values.country}
+						disabled={true}
 						onChange={updateProfileForm.handleChange}
 					/>
-					<Select
+					<Input
 						title={t('language.title')}
 						name="language"
-						options={[
-							{ label: t('language.english'), value: 'en' },
-							{ label: t('language.arabic'), value: 'ar' },
-							{ label: t('language.turkish'), value: 'tr' },
-						]}
-						defaultValue={t('language.default')}
+						className="mb-[19px] min-w-[460px]"
 						value={updateProfileForm.values.language}
-						className="min-w-[460px] mt-[2px]"
+						disabled={true}
 						onChange={updateProfileForm.handleChange}
 					/>
 				</div>
-				<Button
+				{/* <Button
 					title={t('update_profile')}
 					className="max-w-[200px] px-6  shadow-custom"
 					disabled={updateProfileForm.isSubmitting}
 					onClick={() => {
 						updateProfileForm.handleSubmit();
 					}}
-				/>
+				/> */}
 				<h4 className="text-[16px] font-bold text-mmain my-5 mt-12 leading-normal pt-2">
 					{t('section2')}
 				</h4>
@@ -189,7 +183,7 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 				/>
 
 				<div className="flex my-5">
-					<Button
+					{/* <Button
 						title={t('save_changes')}
 						className="max-w-[200px] px-6 shadow-custom"
 						disabled={changePasswordForm.isSubmitting}
@@ -197,6 +191,16 @@ const SettingForm = ({ updatePassword, isLoading }: IProps) => {
 							e.preventDefault();
 							changePasswordForm.handleSubmit();
 						}}
+					/> */}
+					<Button
+						onClick={(e:any) => {
+							e.preventDefault();
+							changePasswordForm.handleSubmit();
+						}}
+						className="max-w-[200px] px-6 shadow-custom"
+						disabled={changePasswordForm.isSubmitting}
+						title={t('save_changes')}
+						Color="#CF7475"
 					/>
 				</div>
 			</div>

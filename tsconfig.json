@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/screens/Dashboard/Chat/index.js", "src/app/[locale]/dashboard/chats/page.js"  ],
   "exclude": [
     "node_modules"
   ]

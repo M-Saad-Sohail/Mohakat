@@ -3,14 +3,16 @@
 		"links": {
 			"0": "Destek",
 			"1": "Sponsor",
-			"2": "Güçlendir",
+			"2": "Hakkında",
 			"3": "SSS",
 			"4": "İletişim"
 		},
 		"cta": {
 			"become-sponsor": "Sponsor Ol",
 			"signin": "Oturum Aç",
-			"go-to-dashboard": "Panoya Git"
+			"go-to-dashboard": "Panoya Git",
+			"dashboard": "Gösterge Paneli",
+			"logout": "Çıkış yap"
 		}
 	},
 	"LandingPage": {
@@ -22,8 +24,19 @@
 	},
 	"Signin": {
 		"form": {
-			"title": "Oturum Aç",
-			"description": "Devam etmek için kimlik bilgilerinizi girin",
+			"title": "Sponsor Olarak Giriş Yapın",
+			"title1": "Sponsor Olarak Giriş Yapın?",
+			"description": "Devam etmek için Tc limlik no bilgilerinizi girin",
+			"leaveChat": "Sohbetten Ayrıl",
+			"hello": "Merhaba, orada mısın?",
+			"contact": "Sponsor Olduğunuz Ailelerle İletişime Geçin",
+			"startChat": "Devam etmek için lütfen bir sohbet seçin",
+			"yourSponsorFamily": "Sponsor Aileleriniz",
+			"yourDonator": "Sponsorlarınız",
+			"firstContact": "Yalnızca Sponsor size ilk olarak ulaşacaktır.",
+			"initiateChat": "Sadece Sponsor bir sohbet başlatacak.",
+			"message": "Mesajınızı girin",
+			"noSponsor": "Kimse size bağışta bulunmadı ve siz de herhangi bir aileyi sponsorluk yapmıyorsunuz",
 			"email": {
 				"placeholder": "E-postanızı girin",
 				"title": "E-posta"
@@ -36,7 +49,36 @@
 			"cta": {
 				"0": "Hesabınız yok mu?",
 				"1": "Sponsor Ol"
-			}
+			},
+			"familySignIn": "Aile Olarak Giriş Yapın"
+		}
+	},
+	"forgotPassword": {
+		"form": {
+			"title": "Hesabınızı Bulun",
+			"description": "Sizi bulabilmemiz için e-posta adresinizi girin.",
+			"email": {
+				"placeholder": "E-postanızı Girin",
+				"title": "E-posta"
+			},
+			"submit": "E-posta Gönder",
+			"emailCheck": "Lütfen e-postanızı kontrol edin"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "Şifre Değiştirme",
+			"description": "Yeni şifrenizi girin",
+			"password": {
+				"placeholder": "Yeni şifrenizi girin",
+				"title": "Şifre"
+			},
+			"newPassword": {
+				"placeholder": "Yeni şifrenizi tekrar girin",
+				"title": "Şifreyi Onayla"
+			},
+			"submit": "Şifreyi Değiştir",
+			"InValidCredientials": "Geçersiz Kimlik Bilgileri!"
 		}
 	},
 	"VerifyOtp": {
@@ -160,30 +202,260 @@
 			"save_changes": "Değişiklikleri Kaydet"
 		}
 	},
+	"AddFamilies": {
+		"title": "Aileler",
+		"description": "Aileler sponsorluk aldığında temel kaynaklara ve desteğe erişerek yaşam kalitelerini artırırlar. Bağışlar yiyecek, barınma, eğitim ve tıbbi yardım sağlamak için kullanılıyor.",
+		"area": "alan",
+		"situation": "Evin durumu",
+		"no_of_member": "Üye Sayısı",
+		"select": "değer",
+		"chat": "Sohbet",
+		"form": {
+			"fill_form_correctly": "Formu doğru şekilde doldurun",
+			"family_details_error": "Aile üye detaylarını doldurun",
+			"all_fields": "Tüm alanlar zorunludur",
+			"in_eng": "İngilizce",
+"in_tur": "Türkçe",
+"in_ar": "Arapça",
+			"submit": "Aile Başarıyla Eklendi",
+			"title": "Aile Ekle",
+			"titleForUpdate": "Aileyi Güncelle",
+			"submitForUpdate": "Aile başarıyla güncellendi",
+			"delete": "Silmek",
+			"password": "Şifre",
+			"registerFamily": "Aile Kaydı",
+			"register": "Kaydol",
+			"name": {
+				"title": "İsim"
+			},
+			"BreadWinnerName": {
+				"title": "Ekmek Kazananının Adı"
+			},
+			"comment": {
+				"title": "Yorum"
+			},
+			"commentPlaceHolder": "Durumunuzu buraya yazın!",
+			"optional": "(İsteğe Bağlı)",
+			"email": {
+				"title": "E-posta"
+			},
+			"age": {
+				"title": "Yaş"
+			},
+			"memberIdNumber": {
+				"title": "Üye Kimlik Numarası"
+			},
+			"maritalStatus": {
+				"title": "Medeni Durum"
+			},
+			"gender": {
+				"title": "Cinsiyet"
+			},
+			"areaOfPreviousResidence": {
+				"title": "Önceki İkamet Alanı"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Mevcut İkamet Alanı"
+			},
+			"currentSituation": {
+				"title": "Mevcut Durum"
+			},
+			"lossesInWar": {
+				"title": "Savaşta Kayıplar"
+			},			
+			"FamilyMembers": {
+				"title": "Aile Üyeleri Sayısı"
+			},
+			"MartyrInFamily": {
+				"title": "Ailede Şehit Sayısı"
+			},
+			"InfectedInFamily": {
+				"title": "Ailedeki yaralıların sayısı"
+			},
+			"dob": {
+				"title": "Doğum Tarihi"
+			},
+			"telephone": {
+				"title": "Telefon"
+			},
+			"id": {
+				"title": "Kimlik"
+			},
+			"gender": {
+				"title": "Cinsiyet",
+				"male": "Erkek",
+				"female": "Kadın",
+				"default": "Cinsiyeti Seçin"
+			},
+			"martialstatus": {
+				"title": "Medeni Durum",
+				"single": "Bekar",
+				"married": "Evli",
+				"widow": "Dul",
+				"divorced": "boşanmış",
+				"default": "Medeni Durumu Seçin"
+			},
+			"previousresidence": {
+				"title": "Önceki İkamet",
+				"Gaza": "Gazze Şehri",
+				"JabaliaCamp": "Cebaliye Kampı",
+				"KhanYunis": "Han Yunus",
+				"Rafah": "Refah",
+				"DeiralBalah": "Dair Al Balah",
+				"Beachrefugeecamp": "Sahil Mülteci Kampı",
+				"NuseiratCamp": "Nuseirat Kampı",
+				"MaghaziCamp": "Maghazi Kampı",
+				"BureijCamp": "Bureyc Kampı",
+				"AlShatiCamp": "El Şati Kampı",
+				"default": "Önceki İkameti Seçin"
+			},
+			"currentresidence": {
+				"title": "Mevcut İkamet",
+				"Gaza": "Gazze Şehri",
+				"JabaliaCamp": "Cebaliye Kampı",
+				"KhanYunis": "Han Yunus",
+				"Rafah": "Refah",
+				"DeiralBalah": "Dair Al Balah",
+				"Beachrefugeecamp": "Sahil Mülteci Kampı",
+				"NuseiratCamp": "Nuseirat Kampı",
+				"MaghaziCamp": "Maghazi Kampı",
+				"BureijCamp": "Bureyc Kampı",
+				"AlShatiCamp": "El Şati Kampı",
+				"default": "Mevcut İkameti Seçin"
+			},
+			"currentsituation": {
+				"title": "Evin Güncel Durumu",
+				"bad": "Kötü",
+				"good": "İyi",
+				"worst": "Çok kötü",
+				"urgentneeded": "acilen gerekli",
+				"totaldestruction": "Toplam Yıkım",
+				"partialdestruction": "Kısmi Yıkım",
+				"intact": "Bozulmamış",
+				"rented": "Kiralık",
+				"default": "Mevcut Durumu Seçin"
+			},
+			"losesinwar": {
+				"title": "Savaşta Kayıplar",
+				"none": "hiçbiri",
+				"car": "araba",
+				"furniture": "mobilya",
+				"store": "mobilya mağazası",
+				"house": "ev",
+				"business": "iş",
+				"default": "Savaşta kayıp edilen eşyalar"
+			},
+			"language": {
+				"title": "Dil",
+				"arabic": "Arapça",
+				"english": "İngilizce",
+				"turkish": "Türkçe",
+				"default": "Dili Seçin"
+			},
+			"familyMemberDetails": {
+				"title": "Aile Üyesi Detayları"
+			},
+			"save_changes": "Değişiklikleri Kaydet",
+			"verification": "Daha fazla bilgi için E-postayı kontrol edin"
+		}
+	},
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "Bir Pay Bağışla ❤️"
+			},
+			"BecomeaSponser": {
+				"title": "Sponsor Ol"
+			},
+			"RegisterasFamily": {
+				"title": "Gazze'de Bir Aileyi Kaydedin"
+			},
+			"Sponser": {
+				"title": "Bir Pay Bağışla"
+			},
+			"AddtoBasket": {
+				"title": "Bir Pay Bağışla"
+			},
+			"Donate": {
+				"title": "Bağış Yap"
+			},
+			"AlreadyAdded": {
+				"title": "Zaten Eklendi"
+			},
+			"seeMore": {
+				"title": "Daha fazla görüntüle ➜"
+			},
+			"Step": {
+				"title": "Aşama"
+			},
+			"Families": {
+				"title": "aileler",
+				"notFound": "Aile Bulunamadı"
+			}
+		}
+	},
 	"Sidebar": {
+		"specialId": "Özel Kimlik",
 		"verified": "Doğrulandı",
 		"dashboard": "Pano",
 		"families": "Aileler",
+		"ManageFamilyPage": "Aileleri Yönet",
 		"settings": "Ayarlar",
 		"logout": "Çıkış",
 		"sponsor": {
-			"approved": "Onaylanmış Sponsor",
+			"approved": "Onaylanmış sponsorluklar",
 			"pending": "Bekleyen Sponsor",
 			"rejected": "Reddedilmiş Sponsor"
 		},
+		"family": {
+			"approved": "Onaylı Aileler",
+            "pending": "Bekleyen Aileler",
+            "rejected": "Reddedilen Aileler"
+		},
+		"donatedFamilies": "Bağış yapılan aileler",
 		"form_response": "Form Yanıtı",
 		"credit_cards": "Kredi Kartları",
-		"sponsoring": "Sponsorluk"
+		"sponsoring": "Sponsorluk",
+		"sponsors": "Sponsorlar",
+		"chat": "Sohbet"
 	},
 	"RejectedSponsors": {
 		"title": "Reddedilen Sponsorlar",
 		"deleteAll": "Tümünü Sil"
 	},
 	"PendingSponsors": {
-		"title": "Bekleyen Sponsorlar"
+		"title": "Bekleyen sponsorluklar"
+	},
+	"Families": {
+		"title": "Aileler"
+	},
+	"ThankModal": {
+		"title": "Bağışınız için teşekkür ederiz, Gazze'nin kurtarıcılarından birisiniz.",
+		"button": "Web Sitesine Devam Et"
+	},	
+	"ManageFamilies": {
+		"title": "Aileleri Yönet"
 	},
 	"ApprovedSponsors": {
 		"title": "Onaylanmış Sponsorlar"
+	},
+	"ApprovedFamily": {
+		"title": "Onaylanmış Aile"
+	},
+	"PendingFamily": {
+		"title": "Bekleyen Aile"
+	},
+	"RejectedFamily": {
+		"title": "Reddedilen Aile"
+	},
+	"SponsoredFamilies": {
+		"title": "Desteklenen Aileler"
+	},
+	"DonatedFamilies": {
+		"title": "Bağışlanan Aileler",
+		"sponserId": "Sponsor Kimliği",
+		"familyId": "Aile Kimliği",
+		"amountDonated": "Bağış Miktarı"
 	},
 	"Table": {
 		"Header": {
@@ -193,15 +465,23 @@
 			"Email": "Email",
 			"Language": "Language",
 			"Action": "Action",
-			"Role": "Rol"
+			"Role": "Rol",
+			"BreadWinnerName": "Ekmek Kazananının Adı",
+			"IdNumber": "kimlik Numarası",
+			"MartyrInFamily": "Aile İçinde Şehit",
+			"NumberOfFamilyMember": "Aile Üyesi Sayısı",
+			"Id": "Benzersiz kimlik"
 		}
+	},
+	"Pagination": {
+		"showing": "Gösterilen"
 	},
 	"Dashboard": {
 		"title": "Pano",
-		"section1": "Yönetici ve Moderatörler",
+		"section1": "Yönetici",
 		"cards": {
-			"1": "Toplam Aileler",
-			"2": "Toplam Onaylanmış Sponsorlar",
+			"1": "Toplam Aile Sayısı",
+			"2": "Toplam onaylanmış sponsorluk",
 			"3": "Alınan Miktar",
 			"4": "Form Yanıtları"
 		},
@@ -209,6 +489,264 @@
 	},
 	"GazaMap": {
 		"red": "Bu piksel zaten rezerve edilmiş.",
-		"grey": "Sponsor olarak kaydolmak için buna tıklayın."
+		"grey": "Sponsor olarak kaydolmak için buna tıklayın.",
+		"book": "Gazze Haritası'ndan Sponsorluğunuzu Rezerve Edin."
+
+	},
+	"OurPartner": {
+		"title": "Ortaklarımız"
+	},
+	"Footer": {
+		"home": "Ana Sayfa",
+		"families": "Aileler",
+		"faqs": "SSS",
+		"contact": "İletişim",
+		"MuakhetAllrightsreserved": "Moakhat. Tüm hakları saklıdır.",
+		"privacypolicy": "Gizlilik Politikası",
+		"termsofservice": "Hizmet Şartları",
+		"topbar": "Gazze İçin Fon Toplayın: Bağış Yapın, Sponsor Olun ve Sevgiyi Yayın.",
+		"currency": "para birimi"
+	},
+	"FAQ": {
+		"title": "SSS",
+		"description": "Bağış süreci, fonların nereye gittiği ve nasıl sponsor olunacağıyla ilgili sık sorulan soruların yanıtlarını bulun"
+	},
+	"ContactUs": {
+		"name": "İsim",
+		"email": "E-posta",
+		"message": "Mesaj",
+		"send": "Göndermek",
+		"success": "Başarıyla Gönderildi",
+		"error": "Bir şeyler yanlış gitti",
+		"allfields": "Tüm alanlar zorunludur",
+		"namePlaceHolder": "Adınızı giriniz",
+		"emailPlaceHolder": "E-postanızı giriniz",
+		"messagePlaceHolder": "Mesajınızı giriniz"
+	},
+	"About": {
+		"title": "Hakkında",
+		"aboutUs": "Hakkımızda"
+	},
+	"Cart": {
+		"title": "Sepet",
+		"total": "Toplam",
+		"button": "Ödeme Yapmaya Git",
+		"emptyMessage": "Hiçbir Ürün Eklenmedi"
+	},
+	"toolTips": {
+		"familyRegister": "Gazze'deki aileyi kaydettirmek",
+		"donateShare": "Pay Bağışla",
+		"becomeSponser": "Sponsor Ol"
+	},
+	"DonateModal": {
+		"title1": "Bir Pay Bağışla",
+		"title2": "Bir Aileye Sponsor Ol",
+		"name": "İsim",
+		"email": "E-posta",
+		"address": "Adres",
+		"country": "Ülke",
+		"mobileNum": "Cep Telefonu Numarası",
+		"identityNum": "Ulusal Kimlik Numarası",
+		"cardHolder": "Kart Sahibinin Adı",
+		"cardNum": "Kart Numarası",
+		"expMonth": "Son Kullanma Ayı",
+		"expYear": "Son Kullanma Yılı",
+		"cvc": "CVC",
+		"city": "Şehir",
+		"total": "Toplam",
+		"success": "Bağışınız için teşekkür ederiz",
+		"error": "Bir şeyler yanlış gitti",
+		"submit": "Ödemeyi Onayla",
+		"donationFailed": "Bağış işlemi başarısız oldu. Tekrar deneyin",
+		"amount": "Tutar",
+		"donate": "Bağışla",
+		"cardDetail": "Kart Detayı"
+	},
+	"QuickDonation": {
+		"title": "Genel ve Hızlı Bağış",
+		"purposeTitle": "Amaç",
+		"purposeValue": "Genel Amaç",
+		"totalTitle": "Toplam",
+		"anotherAmount": "Başka Miktar",
+		"inputPlaceholder": "Bağış miktarını girin",
+		"button": "Ödeme Yapmaya Devam Et",
+		"cardname": "Lütfen Kart Adınızı Girin",
+		"cardNumber": "Lütfen Kart Numaranızı Girin",
+		"expMonth": "Lütfen Kart Son Kullanma Ayını Seçin",
+		"expYear": "Lütfen Kart Son Kullanma Yılını Girin",
+		"cvc": "Lütfen Kartınızın CVC'sini Girin",
+		"placeholdername": "Muhammed Ahmed",
+		"placeholderaddress": "İstanbul, Türkiye"
+	},
+	"CurrencyModal": {
+		"title": "Para Birimi"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "Hepsini Temizle",
+		"backPage": "Önceki Sayfa",
+		"nextPage": "Sonraki Sayfa",
+		"Stable": "Kararlı",
+		"stable": "Kararlı",
+		"Bad": "Kötü",
+		"bad": "Kötü",
+		"Good": "İyi",
+		"good": "İyi",
+		"Worst": "Çok kötü",
+		"worst": "Çok kötü",
+		"month": "Aylar",
+		"selectduration":"Süre Seç",
+		"Urgently Needed": "Acil Olarak Gerekli",
+		"memberDetail": "Üye Detayları"
+	},
+	"LangSelect": {
+		"English": "İngilizce",
+		"Arabic": "Arapça",
+		"Turkish": "Türkçe"
+	},
+	"DeleteFamily": {
+		"family_deleted_successfully": "Aile Başarıyla Silindi",
+		"deletion_failed": "Aile Silinemedi"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponsor Adı",
+		"sponsoremail": "Sponsor E-posta",
+		"sponsoramount": "Miktar",
+		"sponsorfamily": "Aile Detaylarını Görüntüle",
+		"nodonation": "Sizin için hiçbir Sponsor veya bağış bulunamadı",
+		"sponsorcity": "Şehir"
+	},
+	"Socail": {
+		"title": "Tebrikler! Bir Sponsor oldunuz. Sponsorluğunuzu sosyal medyada diğerleriyle paylaşabilirsiniz",
+		"welcome": "Hoş geldiniz",
+		"thankyou": "Gazze'nin İhtiyaç Sahibi Ailelerine Bağış Yapın",
+		"dashboard": "Gösterge Paneli",
+		"family": "Aile olarak kayıtlısınız. İnşallah insanlar size yardım etmek için öne çıkacaklar."
+	},
+	"WebTour": {
+		"sponsorTitle": "Sponsor Olun",
+		"sponsorDesc": "'Sponsor Olun' düğmesine tıklayarak Gazze halkını destekleyin ve önemli bir etki yaratın.",
+		"anonymousTitle": "Anonim Bağış Yapın",
+		"anonymousDesc": "Gizliliğinizi koruyarak Gazze halkına yardım etmek için anonim bağış yapmayı seçin.",
+		"registerFamilyTitle": "Gazze Ailesi Olarak Kaydolun",
+		"registerFamilyDesc": "Gazze'de ikamet eden bir aile olarak kaydolarak destek ve yardım alın.",
+		"bookPixelTitle": "Gazze Haritasında Piksel Rezerve Edin",
+		"bookPixelDesc": "Etkileşimli haritamızda bir piksel sponsorluğu yaparak Gazze'yi destekleyin.",
+		"changeLanguageTitle": "Tercih Ettiğiniz Dili Seçin",
+		"changeLanguageDesc": "Platformumuz, dil tercihlerinize göre Arapça, Türkçe ve İngilizce dillerini desteklemektedir.",
+		"next": "sonraki",
+		"previous": "önceki",
+		"close": "kapat"
+  },
+  "FamilyValidationSchema": {
+	"breadWinnerNameEn": "Evin geçindirenin adı gerekli",
+    "genderEn": "Cinsiyet gerekli",
+    "dateOfBirth": "Doğum tarihi gerekli",
+    "maritalStatusEn": "Medeni durum gerekli",
+    "language": "Dil gerekli",
+    "areaOfPreviousResidenceEn": "Önceki ikamet bölgesi gerekli",
+    "areaOfCurrentResidenceEn": "Mevcut ikamet bölgesi gerekli",
+    "currentSituationEn": "Mevcut durum gerekli",
+    "lossesInWarEn": "Savaş kayıpları gerekli",
+    "numberOfFamilyMembers": "Aile üyelerinin sayısı gerekli",
+    "numberOfMartyrInFamily": "Ailedeki şehitlerin sayısı gerekli",
+    "numberOfInfectedInFamily": "Ailedeki enfekte olanların sayısı gerekli",
+    "telephoneNumber": "Telefon numarası gerekli",
+    "idNumber": "Kimlik numarası gerekli",
+    "email": "E-posta adresi gerekli",
+	"invalidEmail": "Geçersiz e-posta adresi",
+	"password": "Şifre gerekli",
+  	"minPassword": "Şifre 8 karakterden uzun olmalıdır"
+	},
+	"SponsorValidationSchema": {
+		"name": "İsim gerekli",
+		"nameMatch": "İsim yalnızca alfabe ve kelimeler arasında boşluklar içermelidir",
+		"nameNotSpace": "İsim sadece boşluklardan oluşamaz",
+		"country": "Ülke gerekli",
+		"email": "E-posta gerekli",
+		"password": "Şifre gerekli",
+		"language": "Dil gerekli",
+		"confirmPassword": "Şifreyi doğrulamak gerekli",
+		"passwordNotMatch": "Şifreler eşleşmelidir",
+		"invalidEmail": "Geçersiz e-posta adresi"
+	},
+	"ContactFormSchema": {
+		"name": "İsim gerekli",
+		"email": "E-posta gerekli",
+		"message": "Mesaj gerekli"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "Kart sahibi adı gerekli",
+		"cardNumber": "Kart numarası gerekli",
+		"cardNumberNoSpace": "Kart numarası boşluk içermemelidir",
+		"expireMonth": "Son kullanma ayı gerekli",
+		"expireYear": "Son kullanma yılı gerekli",
+		"expireYearMin": "Son kullanma yılı gelecekte olmalıdır",
+		"expireYearMax": "Geçersiz son kullanma yılı",
+		"expireDigitLimit": "Son kullanma yılı 4 haneli olmalıdır",
+		"cvc": "CVC gerekli",
+		"cvcTypeError": "CVC bir sayı olmalıdır",
+		"cvcMin": "CVC 3 haneli olmalıdır",
+		"cvcMax": "CVC 3 haneli olmalıdır"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "İsim gerekli",
+		"email": "E-posta gerekli",
+		"invalidEmail": "Geçersiz e-posta adresi",
+		"country": "Ülke gerekli",
+		"city": "Şehir gerekli",
+		"address": "Adres gerekli",
+		"cardHolderName": "Kart sahibi adı gerekli",
+		"cardNumber": "Kart numarası gerekli",
+		"cardNumberNoSpace": "Kart numarası boşluk içermemelidir",
+		"expireMonth": "Son kullanma ayı gerekli",
+		"mobilePhoneNumber": "Cep telefonu numarası gerekli",
+		"nationalIdentityNumber": "Kimlik numarası gerekli",
+		"nationalIdentityNumberMin": "Kimlik numarası en az 5 haneli olmalıdır",
+		"expireYear": "Son kullanma yılı gerekli",
+		"expireYearMin": "Son kullanma yılı gelecekte olmalıdır",
+		"expireYearMax": "Geçersiz son kullanma yılı",
+		"expireDigitLimit": "Son kullanma yılı 4 haneli olmalıdır",
+		"cvc": "CVC gerekli",
+		"cvcTypeError": "CVC bir sayı olmalıdır",
+		"cvcMin": "CVC 3 haneli olmalıdır",
+		"cvcMax": "CVC 3 haneli olmalıdır"
+	},
+	"FamilyValidationSchemaAdmin": {
+		"breadWinnerNameEn": "Aile reisi adı (İngilizce) gerekli",
+		"breadWinnerNameTr": "Aile reisi adı (Türkçe) gerekli",
+		"breadWinnerNameAr": "Aile reisi adı (Arapça) gerekli",
+		"invalidEmail": "Geçersiz e-posta adresi",
+		"email": "E-posta adresi gerekli",
+		"genderEn": "Cinsiyet gerekli",
+		"genderTr": "Cinsiyet (Türkçe) gerekli",
+		"genderAr": "Cinsiyet (Arapça) gerekli",
+		"dateOfBirth": "Doğum tarihi gerekli",
+		"maritalStatusEn": "Medeni durum (İngilizce) gerekli",
+		"maritalStatusTr": "Medeni durum (Türkçe) gerekli",
+		"maritalStatusAr": "Medeni durum (Arapça) gerekli",
+		"language": "Dil gerekli",
+		"areaOfPreviousResidenceEn": "Önceki ikamet yeri (İngilizce) gerekli",
+		"areaOfPreviousResidenceTr": "Önceki ikamet yeri (Türkçe) gerekli",
+		"areaOfPreviousResidenceAr": "Önceki ikamet yeri (Arapça) gerekli",
+		"areaOfCurrentResidenceEn": "Şimdiki ikamet yeri (İngilizce) gerekli",
+		"areaOfCurrentResidenceTr": "Şimdiki ikamet yeri (Türkçe) gerekli",
+		"areaOfCurrentResidenceAr": "Şimdiki ikamet yeri (Arapça) gerekli",
+		"currentSituationEn": "Mevcut durum (İngilizce) gerekli",
+		"currentSituationTr": "Mevcut durum (Türkçe) gerekli",
+		"currentSituationAr": "Mevcut durum (Arapça) gerekli",
+		"lossesInWarEn": "Savaşta kayıplar (İngilizce) gerekli",
+		"lossesInWarTr": "Savaşta kayıplar (Türkçe) gerekli",
+		"lossesInWarAr": "Savaşta kayıplar (Arapça) gerekli",
+		"numberOfFamilyMembersMin": "Aile üyelerinin sayısı pozitif veya sıfır olmalıdır",
+		"numberOfFamilyMembers": "Aile üyelerinin sayısı gerekli",
+		"numberOfMartyrInFamilyMin": "Ailedeki şehit sayısı pozitif veya sıfır olmalıdır",
+		"numberOfMartyrInFamily": "Ailedeki şehit sayısı gerekli",
+		"numberOfInfectedInFamilyMin": "Ailedeki enfekte sayısı pozitif veya sıfır olmalıdır",
+		"numberOfInfectedInFamily": "Ailedeki enfekte sayısı gerekli",
+		"telephoneNumber": "Telefon numarası gerekli",
+		"idNumber": "Kimlik numarası gerekli",
+		"minPassword": "Şifre 8 karakterden uzun olmalıdır",
+		"password": "Şifre gerekli"
 	}
+	
 }

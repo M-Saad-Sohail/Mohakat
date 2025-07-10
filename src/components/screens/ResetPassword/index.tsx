@@ -1,0 +1,115 @@
+'use client';
+import React, { useState } from 'react';
+import { useAuth } from '@/hooks/useAuth';
+import Button from '@/components/ui/LandingPage/Button';
+import { useTranslations } from 'next-intl';
+import Input from '@/components/ui/Input';
+import { postJson, putJson } from '@/api/api.instances';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useParams, useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import Heading from '@/components/ui/Heading/Heading';
+
+const ResetPassword = () => {
+	const { user } = useLoggedInUser();
+	const t = useTranslations('resetPassword.form');
+	const params = useParams();
+
+	const router = useRouter();
+	const [loading, setLoading] = useState<boolean>(false);
+	const [data, setData] = useState<any>({
+		password: '',
+		confirmPassword: '',
+	});
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setData((prev: any) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+
+		if (
+			data.password !== data.confirmPassword ||
+			!data.password ||
+			!data.confirmPassword
+		) {
+			toast.error(`${t('InValidCredientials')}`, {
+				position: 'top-right',
+				autoClose: 4000,
+			});
+			return;
+		}
+
+		try {
+			setLoading(true);
+			const res = await putJson(
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/reset/password/${params && params.token}`,
+				{
+					password: data.password,
+					confirmPassword: data.confirmPassword,
+				},
+			);
+			if (res.success) {
+				setLoading(false);
+				router.push(`/${params && params.locale}/sign-in`);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	return (
+		<form
+			className="w-full my-[100px] max-w-[800px]"
+			noValidate
+			onSubmit={handleSubmit}
+		>
+			<div className="mx-4 space-y-5">
+				<div>
+				<div className = "flex flex-col justify-center items-center">
+							<Heading heading = {t('title')} className = "main_heading-black" />
+						</div>
+					<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
+						{t('description')}
+					</div>
+				</div>
+				<Input
+					title={t('password.title')}
+					placeholder={t('password.placeholder')}
+					type="password"
+					name="password"
+					onChange={handleChange}
+					value={data.password}
+					className="mb-[19px] max-w-[800px]"
+				/>
+
+				<Input
+					title={t('newPassword.title')}
+					placeholder={t('newPassword.placeholder')}
+					type="password"
+					name="confirmPassword"
+					onChange={handleChange}
+					value={data.confirmPassword}
+					className="mb-[19px] max-w-[800px]"
+				/>
+
+				<div className="flex items-center justify-center w-full">
+					<Button
+						title={t('submit')}
+						type="submit"
+						isLoading={loading}
+						className="w-56"
+						Color='#CF7475'
+					/>
+				</div>
+			</div>
+		</form>
+	);
+};
+
+export default ResetPassword;

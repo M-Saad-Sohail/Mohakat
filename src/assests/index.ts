@@ -34,6 +34,8 @@ import password_eye from './icons/eye_icon.svg';
 import notification from './icons/notification_icon.svg';
 import camera from './icons/camera_icon.svg';
 import add_icon from './icons/add__icon.svg';
+import manage_family from './icons/mange_family.svg';
+import manage_family_png from './icons/manage_family_png.png';
 import left_arrow from './icons/left_arrow_icon.svg';
 import right_arrow from './icons/right_arrow_icon.svg';
 import sidebar_icon from './icons/right_arrow_icon.svg';
@@ -45,6 +47,10 @@ import ham_icon from './icons/hamburger_icon.png';
 import turkish_flag from './icons/turkish_flag.svg';
 import english_flag from './icons/english_flag.svg';
 import arabic_flag from './icons/arabic_flag.svg';
+import palestine_flag from './icons/palestine_flag.svg';
+import section_pic from './icons/sectionimg.png';
+import chat from './icons/chat.svg';
+
 
 export {
 	logo,
@@ -93,4 +99,9 @@ export {
 	english_flag,
 	arabic_flag,
 	turkish_flag,
+	palestine_flag,
+	manage_family,
+	manage_family_png,
+	section_pic,
+	chat
 };

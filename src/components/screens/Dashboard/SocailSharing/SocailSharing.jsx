@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import "./SocailSharing.css"
 
 import {
@@ -11,24 +11,28 @@ import {
     LinkedinIcon,
     TwitterShareButton
 } from 'react-share';
-
-
-// function generateRandomSponsorValue() {
-//     const randomInteger = Math.floor(Math.random() * 90000) + 10000;
-//     return `SPONSER-${randomInteger}`;
-//   }
+import { useTranslations } from 'next-intl';
+import { getUserFromLocalStorage } from '@/utils/auth';
 
 
 const SocialSharing  = () => {
-    const shareUrl = "https://sponserinitial.netlify.app/en"
+    const [user, setUser] = useState(false)
+
+    useEffect(() => {
+		const loggedInUser = getUserFromLocalStorage();
+		if (!loggedInUser) {
+			router.redirect(PATHS.LOGIN);
+			return;
+		}
+		setUser(loggedInUser);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+    const shareUrl = "https://moakhat.org/en"
     const title = `I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website.`
-    // const sponsorValue = generateRandomSponsorValue();
-    // I'm proud to be a sponsor for the people of Gaza and Palestine. You can also join the cause and make a positive impact by visiting this website. This is my Sponser Number ${sponsorValue}. 
-    // #Sponser #Gaza #GazaStrip #Palestine #مؤاخاة 
-    // My #${sponsorValue} Number. 
+    const t = useTranslations('Socail');
     return (
-        <div>
-            <div className="Demo__some-network">
+        <div className="Demo__some-network">
                 <FacebookShareButton
                     url={shareUrl}
                     hashtag={`#Sponser #Gaza #GazaStrip #Palestine #مؤاخاة `}
@@ -36,38 +40,30 @@ const SocialSharing  = () => {
                 >
                     <FacebookIcon size={40} />
                 </FacebookShareButton>
-            </div>
 
-            <div className="Demo__some-network">
                 <WhatsappShareButton
                     url={shareUrl}
-                    title={title}
+                    title= {t("title")}
                     className="Demo__some-network__share-button"
                 >
                     <WhatsappIcon size={40} />
                 </WhatsappShareButton>
-            </div>
-
-            <div className="Demo__some-network">
                 <LinkedinShareButton
                     url={shareUrl}
-                    title={title}
+                    title= {t("title")}
                     className="Demo__some-network__share-button"
                 >
                     <LinkedinIcon size={40} />
                 </LinkedinShareButton>
-            </div>
 
-            <div className="Demo__some-network">
                 <TwitterShareButton
                     url={shareUrl}
-                    title={title}
+                    title= {t("title")}
                     hashtag={'#Sponser #Gaza #GazaStrip #Palestine #مؤاخاة'}
                     className="Demo__some-network__share-button"
                 >
                     <XIcon size={40} round={true} />
                 </TwitterShareButton>
-            </div>
         </div>
     );
 }

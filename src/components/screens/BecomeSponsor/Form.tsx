@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '@/components/ui//Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
+import Button from '@/components/ui/LandingPage/Button';
 import Select from '@/components/ui/Select';
 import Link from 'next/link';
 import { useFormik } from 'formik';
@@ -10,6 +11,7 @@ import { RegisterUserCredentials } from '@/types';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { useTranslations } from 'next-intl';
 import { countriesData } from '@/contants/countries';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (
@@ -20,8 +22,9 @@ type IProps = {
 };
 
 const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
-	const { url, replace } = useLocaleRouter();
+	const { url, replace, locale, redirectWithLocale } = useLocaleRouter();
 
+	
 	const onSubmit = async (values: RegisterUserCredentials) => {
 		const { confirmPassword, ...rest } = values;
 		const success = await submitHandler({
@@ -31,29 +34,35 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 		if (!success) return;
 		let url = PATHS.VERIFY_OTP;
 		if (fromGazaMap) url += `?from=${encodeURIComponent('gaza_map')}`;
-		replace(url);
+		redirectWithLocale(locale, url);
+		// replace(url);
 	};
 
+	const t1 = useTranslations('SponsorValidationSchema'); // For Validition in 3 language
 	const { handleSubmit, handleChange, values, touched, errors } = useFormik({
 		initialValues: BECOMESPONSORINITIALVALUES,
-		validationSchema: becomeSponsorSchema,
+		validationSchema: becomeSponsorSchema(t1),
 		onSubmit,
 	});
 
 	const t = useTranslations('BecomeSponsor.form');
+	
 
 	return (
 		<>
 			<form
-				className="w-full my-[200px] max-w-[800px]" // Set form overflow to auto
+				className="w-full my-[100px] max-w-[800px] animated-div" // Set form overflow to auto
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<div className="mx-4">
-					<h2 className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+					<div className="flex flex-col justify-center items-center">
+						<Heading heading={t('title')} className="main_heading-black" />
+					</div>
+					{/* <h2 className="pt-2  text-4xl font-extrabold leading-normal text-primary">
 						{t('title')}
-					</h2>
-					<p className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+					</h2> */}
+					<p className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 						{t('description')}
 					</p>
 					<div className="flex flex-col w-full gap-4">
@@ -131,17 +140,21 @@ const Form = ({ submitHandler, isLoading, fromGazaMap }: IProps) => {
 						<div className="flex items-center justify-center w-full">
 							<Button
 								title={t('submit')}
-								className="max-w-[250px] px-6 "
 								type="submit"
 								isLoading={isLoading}
+								className="max-w-[300px]"
+								Color="#8DAE8E"
 							/>
 						</div>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary text-lg absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2">
+			<div className="text-center text-[#36454F] text-base absolute bottom-[3%] max-w-[800px] w-full justify-center items-center flex font-helvetica gap-x-2 ">
 				{t('cta.0')}
-				<Link className="font-bold text-primary" href={url('/sign-in')}>
+				<Link
+					className="font-bold text-[#CF7475] hover:text-[#36454F]"
+					href={url('/sign-in')}
+				>
 					{t('cta.1')}
 				</Link>
 			</div>

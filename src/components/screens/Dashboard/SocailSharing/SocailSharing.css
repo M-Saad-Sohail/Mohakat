@@ -3,8 +3,7 @@
     vertical-align: top;
     display: inline-block;
     margin-right: 10px;
-    text-align: center;
-    border: none !important;
+    text-align: start;
   }
   
   .Demo__some-network__share-count {
@@ -28,4 +27,12 @@
   .Demo__some-network__custom-icon {
     width: 32px;
     height: 32px;
+  }
+
+  @media screen and (max-width: 425px) {
+    .Demo__some-network__custom-icon {
+      width: 20px;
+      height: 20px;
+    }
+
   }

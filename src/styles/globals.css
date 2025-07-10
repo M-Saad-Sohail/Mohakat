@@ -2,11 +2,646 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap'); */
 
-svg {
-    object-fit: cover;
-    width: 80% !important;
-    margin: auto;
-    justify-content: center;
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400..700&display=swap'); */
+
+/* body {
+	font-family: 'Raleway', sans-serif; */
+	/* font-family: "IBM Plex Sans Arabic"; */
+	/* font-family: "Noto Naskh Arabic"; */
+	/* font-family: "Al-Jazeera", "Helvetica Neue", "Helvetica", "Arial"; */
+/* } */
+
+.bg-color {
+	background-color: #dddddd;
 }
 
+.login-icon:hover {
+	color: #8dae8e;
+	font-weight: bold;
+}
+
+svg {
+	object-fit: cover;
+	width: 80%;
+	margin: auto;
+	justify-content: center;
+}
+
+.carousel-container {
+	width: 100vw;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+}
+
+.carousel {
+	display: flex;
+	/* gap: 16px; */
+	animation: scroll 60s linear infinite;
+}
+
+.carousel-item {
+	flex: 0 0 auto;
+	width: 70%;
+	/*Should match the container width*/
+}
+
+@keyframes scroll {
+
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(calc(-100% * 4));
+	}
+}
+
+/* MOBILE NAVBAR */
+
+.navbar-lists {
+	width: 100%;
+	height: 85vh !important;
+	/* position: absolute; */
+	/* left: 0; */
+	/* bottom: 0; */
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	display: none;
+	opacity: 0;
+	transform: translateX(100%);
+	transition: all 0.3s linear;
+}
+
+.active .navbar-lists {
+	display: block;
+	opacity: 1;
+	transform: translateX(0);
+	z-index: 999;
+	transform-origin: right;
+	transition: all 0.3s linear;
+}
+
+.custom-box-shadow {
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.scrollbarHide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbarHide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+input[name='month'] {
+	/* accent-color: #cf7475; */
+	accent-color: #8dae8e;
+}
+
+/* tooltip */
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 180px;
+	background-color: #555555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 6px 0px;
+	position: absolute;
+	z-index: 1;
+	top: 15px;
+	left: 110%;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.tooltip .tooltiptext::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #555555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.border-filled {
+	border-color: #cf7475;
+	border-width: 3px;
+}
+
+.border-empty {
+	border-color: #cf7475;
+	border-width: 2px;
+}
+
+/* Define the scrollbar thumb */
+.currency-scrollbar::-webkit-scrollbar-thumb {
+	background-color: #888;
+	/* For Chrome, Safari, and Opera */
+	border-radius: 20px;
+	/* Optional: rounder thumb */
+}
+
+.currency-scrollbar::-webkit-scrollbar {
+	width: 3px;
+	/* Set the width of the scrollbar */
+}
+
+.navbar-link {
+	/* color: black; */
+	position: relative;
+	text-decoration: none;
+}
+
+.navbar-link::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2.6px;
+	border-radius: 4px;
+	/* background-color: #cf7475; */
+	/* background-color: #8dae8e; */
+	bottom: -4px;
+	left: 0;
+	transform-origin: right;
+	transform: scaleX(0);
+	transition: transform 0.3s ease-in-out;
+}
+
+.navbar-link:hover::before {
+	height: 3px;
+	transform-origin: left;
+	transform: scaleX(1);
+}
+
+.dashboard-link {
+	position: relative;
+	text-decoration: none;
+}
+
+.dashboard-link::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2.6px;
+	border-radius: 4px;
+	background-color: #8dae8e;
+	bottom: -4px;
+	left: 0;
+	transform-origin: right;
+	transform: scaleX(0);
+	transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-link:hover::before {
+	height: 3px;
+	transform-origin: left;
+	transform: scaleX(1);
+}
+
+::selection {
+	/* color: #27850D; */
+	/* color: #6B8167; */
+	color: #fff;
+	background-color: #8dae8e;
+}
+
+/* TOAST CUSTOMIZATION */
+
+.Toastify__toast--error {
+	border: 2.5px solid #eb5757 !important;
+	border-radius: 12px !important;
+	background: #fae1e2 !important;
+}
+
+.Toastify__toast--success {
+	border: 2.5px solid #8dae8e !important;
+	border-radius: 12px !important;
+	background: #dfeae5 !important;
+}
+
+.Toastify__toast-body {
+	color: black !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding: 0px !important;
+	width: 100% !important;
+	font-weight: 500 !important;
+	margin-left: 10px !important;
+	font-size: 16.5px !important;
+	text-align: start !important;
+}
+
+.Toastify__toast-icon {
+	content: url('../assests//icons//logo.svg') !important;
+}
+
+/* Customizing Close Button */
+.Toastify__close-button {
+	width: 35px !important;
+	height: 45px !important;
+}
+
+/* Hide Underline Animation */
+.Toastify__progress-bar--wrp {
+	visibility: hidden;
+}
+
+/* Zain CSS */
+.feature-shadow {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	padding-top: 10px;
+}
+
+.feature-shadow:hover {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	transform: scale(1.1);
+	border-radius: 8px;
+}
+
+.feature-shadow-faq {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	padding: 10px;
+}
+
+.feature-shadow-faq:hover {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	transform: scale(1.1);
+	border-radius: 8px;
+}
+
+/* Zain CSS end */
+
+.animated-div {
+	position: relative;
+	animation: slideFromLeft 0.5s ease-out forwards;
+	/* Adjust width, height, and other styles as needed */
+}
+
+@keyframes slideFromLeft {
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+/* Bakhtawar CSS */
+.btn-transition {
+	color: #fff;
+	border: 2px solid rgb(216, 2, 134);
+	border-radius: 0px;
+	padding: 18px 36px;
+	display: inline-block;
+	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 14px;
+	letter-spacing: 1px;
+	cursor: pointer;
+	box-shadow: inset 0 0 0 0 #d80286;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.4s;
+}
+
+.btn-transition:hover {
+	box-shadow: inset 400px 0 0 0 #d80286;
+}
+
+input[name='selectedCurrency'] {
+	/* accent-color: #cf7475; */
+	accent-color: #8dae8e;
+	height: 17px;
+	/* Adjust the size of the radio button */
+	width: 17px;
+}
+
+/* Use in User Dashboard */
+.feature-shadow-social {
+	transition:
+		transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	padding-top: 3px;
+}
+
+.feature-shadow-social:hover {
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+	border: 1px solid #f7f7f7;
+	cursor: pointer;
+	transform: scale(1.1);
+	border-radius: 8px;
+}
+
+@media screen and (max-width: 425px) {
+	.social-sharing {}
+
+	.social-sharing-h1 {
+		font-size: 0.8rem !important;
+	}
+
+	.social-sharing-para {
+		font-size: 0.6rem !important;
+	}
+
+	.feature-shadow-social {
+		/* padding-top: 3px !important; */
+		transform: none;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.feature-shadow-social:hover {
+		box-shadow: none !important;
+		border: none !important;
+		cursor: none !important;
+		border-radius: none;
+	}
+}
+
+/* Heading Component */
+.main_heading-black {
+	font-size: 2rem;
+	color: black;
+}
+
+.main_heading-white {
+	font-size: 2rem;
+	color: #fff;
+}
+
+.feature-icons {
+	font-size: 5rem;
+	color: #bb9b6c;
+	font-weight: bold;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	/* font-size: 2.2rem !important; */
+	/* color: #BB9B6C !important; */
+	display: none !important;
+}
+
+.slick-prev {
+	/* left: -36px !important; */
+	display: none !important;
+}
+
+.sidebar-about {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.about-card-image {
+	height: 250px;
+	width: 100%;
+	border-radius: 15px;
+	box-shadow:
+		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/* new about*/
+
+.img_div img {
+	animation: float 2.5s ease infinite;
+	/* margin-bottom: 2.8rem; */
+}
+
+@keyframes float {
+	50% {
+		transform: translate(10px, 20px);
+	}
+}
+
+/* Add this CSS to your stylesheets */
+.menu-tab-h2 {
+	position: relative;
+}
+
+.menu-tab-h2::after {
+	content: '';
+	height: 2.6px;
+	width: 0%;
+	background-color: #8dae8e;
+	display: block;
+	transition: 0.5s ease-in-out;
+}
+
+.menu-tab-h2:hover:after {
+	content: '';
+	height: 3px;
+	border-radius: 4px;
+	width: 100%;
+	background-color: #8dae8e;
+	display: block;
+	transition: 0.3s ease-in-out;
+}
+
+/* This will add a line under the active tab */
+.menu-tab-h2.active-tab::after {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	border-radius: 4px;
+	height: 3px;
+	background-color: #8dae8e;
+}
+
+.bg-herosection {
+	background-image: url('/images/bg-hero.png');
+}
+
+/* Text Sliding Topbar Start */
+
+#scroll-container {
+	font-family: 'Raleway', sans-serif;
+	overflow: hidden;
+	color: #36454F;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+#scroll-container:hover {
+	color: #fff;
+	font-weight: 400;
+}
+
+#scroll-text {
+	/* animation properties */
+	-moz-transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+
+	-moz-animation: my-animation 15s linear infinite;
+	-webkit-animation: my-animation 15s linear infinite;
+	animation: my-animation 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+	from {
+		-moz-transform: translateX(100%);
+	}
+
+	to {
+		-moz-transform: translateX(-100%);
+	}
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+	from {
+		-webkit-transform: translateX(100%);
+	}
+
+	to {
+		-webkit-transform: translateX(-100%);
+	}
+}
+
+@keyframes my-animation {
+	from {
+		-moz-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+	}
+
+	to {
+		-moz-transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+	}
+}
+
+/* Text Sliding Topbar End */
+
+
+/* navbar scrolling effect */
+
+.navbar_other {
+	background: rgba(89, 110, 124, 0.35);
+	backdrop-filter: blur(8.5px);
+	-webkit-backdrop-filter: blur(8.5px);
+}
+
+.scroll-header {
+	position: fixed !important;
+	top: -70px;
+	width: 100%;
+	z-index: 99;
+	background: rgba(54, 69, 79, 0.35);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(8.5px);
+	-webkit-backdrop-filter: blur(8.5px);
+	transform: translateY(70px);
+	transition: transform 500ms ease;
+	-webkit-transition: transform 500ms ease;
+}
+
+/* family card effect */
+
+.family_card {
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.family_card:hover {
+	border: 1px solid #CF7475;
+	transform: scale(1.04);
+}
+
+@keyframes scale-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); } /* Scale to 110% halfway through the animation */
+    100% { transform: scale(1); } /* Return to the original scale at the end */
+}
+
+.button-animated{
+	animation: scale-animation 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.chat{
+	display: flex;
+	justify-content: "start"
+}
+.chatReciver{
+	display: flex;
+	justify-content: "end";
+	flex-direction: row-reverse;
+}
+
+.divide{
+	display: flex !important;
+	flex-direction: row !important;
+	gap: 4rem !important;
+	justify-content: center;
+}
+.sent{
+	display: flex !important;
+	flex-direction: row !important;
+	gap: 4rem !important;
+}
+
+@media (max-width: 1024px) {
+	.divide {
+	  flex-direction: column !important;
+	  gap: 2rem !important;
+	}
+  }
+  
+  /* Media query for mobile devices (up to 768px) */
+  @media (max-width: 768px) {
+	.divide {
+	  flex-direction: column !important;
+	  gap: 1rem !important;
+	}
+  }
+
+  /* Media query for mobile devices (up to 768px) */
+  @media (max-width: 400px) {
+	.register_form_res{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto 19px;
+	}
+  }
+
+  /* Footer Logo */
+.footer_img_url{
+	filter: url(#footer_logo) !important;
+}

@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
+// import Button from '@/components/ui/Button';
+import Button from '@/components/ui/LandingPage/Button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { LOGININITIALVALUES, PATHS } from '@/contants';
@@ -12,6 +13,8 @@ import { useTranslations } from 'next-intl';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
 import { UserType } from '@/state/user/types';
 import UserNotVerifiedError from '@/errors/UserNotVerifiedError';
+import { useRouter } from 'next/navigation';
+import Heading from '@/components/ui/Heading/Heading';
 
 type IProps = {
 	submitHandler: (arg: UserCredentials) => Promise<UserType | null>;
@@ -20,6 +23,7 @@ type IProps = {
 
 const Form = ({ submitHandler, isLoading }: IProps) => {
 	const { url, locale, redirect, redirectWithLocale } = useLocaleRouter();
+	const router = useRouter();
 
 	const onSubmit = async (values: UserCredentials) => {
 		try {
@@ -35,7 +39,7 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 			redirectWithLocale(locale, PATHS.DASHBOARD);
 		} catch (error) {
 			if (error instanceof UserNotVerifiedError) {
-				return redirect(PATHS.RESEND_OTP);
+				redirectWithLocale(locale, PATHS.RESEND_OTP);
 			}
 		}
 	};
@@ -51,16 +55,19 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 	return (
 		<>
 			<form
-				className="w-full my-[200px] max-w-[800px]"
+				className="w-full my-[100px] max-w-[800px] animated-div"
 				noValidate
 				onSubmit={handleSubmit}
 			>
-				<div className="mx-4 my-10 space-y-5">
+				<div className="mx-4 space-y-5">
 					<div>
-						<div className="pt-2 mt-10 text-4xl font-extrabold leading-normal text-primary">
+						{/* <div className="pt-2 text-4xl font-extrabold leading-normal text-primary">
 							{t('title')}
+						</div> */}
+						<div className="flex flex-col justify-center items-center">
+							<Heading heading={t('title')} className="main_heading-black" />
 						</div>
-						<div className="pt-2 mb-8 text-xl font-semibold leading-normal text-primary">
+						<div className="pt-2 mb-8 text-lg font-semibold leading-normal text-[#36454F] text-center">
 							{t('description')}
 						</div>
 					</div>
@@ -84,28 +91,40 @@ const Form = ({ submitHandler, isLoading }: IProps) => {
 						error={touched.password && errors.password}
 						className="max-w-[800px]"
 					/>
-					<p className="text-primary w-full text-right text-[12px] font-bold">
-						{t('forgot')}
-					</p>
+					<Link href={url('/forgot-password')}>
+						<p className="text-black hover:text-[#CF7475] w-full text-right text-[12px] mt-5 font-bold">
+							{t('forgot')}
+						</p>
+					</Link>
 
 					<div className="flex items-center justify-center w-full">
 						<Button
 							title={t('submit')}
-							className="max-w-[200px] text-base px-6"
 							type="submit"
 							isLoading={isLoading}
+							className="w-56"
+							Color="#CF7475"
 						/>
 					</div>
 				</div>
 			</form>
-			<div className="text-center text-primary w-full max-w-[800px] absolute bottom-[3%] text-lg justify-center items-center flex font-helvetica gap-x-4">
+			<div className="text-center text-[#CF7475] font-bold w-full max-w-[800px] absolute bottom-[3%] text-base justify-center items-center flex font-helvetica gap-x-3">
 				{t('cta.0')}
 				<Link
 					locale={locale}
-					className="font-bold text-primary"
+					className="font-bold text-black hover:text-[#CF7475]"
 					href={url('/become-sponsor')}
 				>
 					{t('cta.1')}
+				</Link>
+
+				<Link
+					locale={locale}
+					className="font-bold text-black hover:text-[#CF7475]"
+					href={url('/sign-in-family')}
+					style={{ color: "#CF7475" }}
+				>
+					{t("familySignIn")}
 				</Link>
 			</div>
 		</>

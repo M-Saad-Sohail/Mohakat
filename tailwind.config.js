@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        'primary': '#792532',
+        'primary': '#CF7475',
       },
       screens: {
         '2xl': '1700px',

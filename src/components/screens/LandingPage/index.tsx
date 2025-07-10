@@ -1,18 +1,30 @@
-'use client'
+'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Navbar } from '@/components/ui/Navbar';
 import useLoggedInUser from '@/hooks/useLoggedInUser';
 import useLocaleRouter from '@/hooks/useLocaleRouter';
-import { PATHS } from '@/contants';
+import HeroSection from './HeroSection';
+import SponserSection from './Sponsers/SponserSection';
+import FamilySection from './FamilySection';
+import PartnersSection from './PartnersSection';
+import ImagesSection from './Intiation/ImagesSection';
+import MainLayout from '@/components/common/MainLayout';
+import AboutSection from './AboutSection';
+import TestinomialSlider from './TestinomialSlider';
+import AboutLandingPage from './AboutLandingPage';
+import ThankYouModal from '@/components/ui/Modals/ThankYouModal';
+import WebTour from '@/components/ui/WebTour/WebTour';
 
-const Hero = dynamic(() => import('./Hero'), {
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+
+const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
 });
 
 const LandingPage = () => {
-	const { user, isLoading } = useLoggedInUser()
-	const { locale, redirectWithLocale } = useLocaleRouter()
+	const { user, isLoading } = useLoggedInUser();
+	const { locale, redirectWithLocale } = useLocaleRouter();
 
 	if (isLoading) {
 		return null;
@@ -25,10 +37,16 @@ const LandingPage = () => {
 	// }
 
 	return (
-		<div>
-			<Navbar />
-			<Hero isLoggedIn={!isLoading && !!user} />
-		</div>
+		<MainLayout>
+			<HeroSection isLoggedIn={!isLoading && !!user} />
+			<AboutLandingPage />
+			<SponserSection isLoggedIn={!isLoading && !!user} />
+			<FamilySection isLoggedIn={!isLoading && !!user} />
+			<MapSection isLoggedIn={!isLoading && !!user} />
+			<TestinomialSlider />
+			<PartnersSection />
+			<WebTour />
+		</MainLayout>
 	);
 };
 

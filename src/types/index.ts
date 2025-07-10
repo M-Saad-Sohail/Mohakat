@@ -1,8 +1,14 @@
-import { loginSchema, becomeSponsorSchema,resetPasswordSchema, updateProfileSchema } from './../utils/validationSchema';
-import { InferType } from 'yup';
+import {
+	loginSchema,
+	becomeSponsorSchema,
+	resetPasswordSchema,
+	updateProfileSchema,
+} from './../utils/validationSchema';
+import { InferType, ObjectSchema } from 'yup';
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 export type LoginSchema = InferType<typeof loginSchema>;
-export type BecomeSponsorSchema = InferType<typeof becomeSponsorSchema>;
+// export type BecomeSponsorSchema = InferType<typeof becomeSponsorSchema>;
+export type BecomeSponsorSchemaType = ObjectSchema<any>;
 export type UpdateProfileSchema = InferType<typeof updateProfileSchema>;
 export type UserCredentials = {
 	password: string;
@@ -21,4 +27,57 @@ export enum KEYS {
 	USER = 'user',
 	TOKEN = 'token_dg',
 }
+export enum FAMILY_KEYS {
+	FAMILY = 'family',
+	TOKEN = 'token_dg',
+}
 
+export type FamilyModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	setDonate?: (value: boolean) => void;
+	setAmount?: (value: number) => void;
+	amount?: number;
+	cancelButtonRef: any;
+	isLoggedIn?: boolean;
+	familyInfo?: any;
+	isTableView?: any;
+};
+
+export type ThankYouModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+};
+
+export type DonateModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+	isLoggedIn?: boolean;
+	setAmount?: (value: number) => void;
+	amount?: number;
+	familyId?: string;
+	isAddToCart?:boolean
+};
+
+export type QuickDonationModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	setDonate?: (value: boolean) => void;
+	cancelButtonRef: any;
+	amount?: number;
+	setAmount?: (value: number) => void;
+};
+
+export type CurrencyModalType = {
+	open: boolean;
+	setOpen: (value: boolean) => void;
+	cancelButtonRef: any;
+};
+
+
+export type FamilyCredentials = {
+	password: string;
+	email: string;
+};

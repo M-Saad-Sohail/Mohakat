@@ -1,16 +1,18 @@
 {
 	"Navbar": {
 		"links": {
-			"0": "Support",
-			"1": "Sponsor",
-			"2": "Empower",
+			"0": "Home",
+			"1": "Families",
+			"2": "About",
 			"3": "FAQs",
 			"4": "Contact"
 		},
 		"cta": {
 			"become-sponsor": "Become a Sponsor",
 			"signin": "Sign In",
-			"go-to-dashboard": "Go to Dashboard"
+			"go-to-dashboard": "Go to Dashboard",
+			"dashboard": "Dashboard",
+			"logout": "Logout"
 		}
 	},
 	"LandingPage": {
@@ -22,8 +24,19 @@
 	},
 	"Signin": {
 		"form": {
-			"title": "Sign In",
+			"title": "Sign In as Sponsor",
+			"title1": "Sign In as Sponsor?",
 			"description": "Enter your credentials to continue",
+			"leaveChat": "Leave Chat",
+			"hello": "Hello, Are you there?",
+			"contact": "Contact to your Sponsored Families",
+			"startChat": "Please Select a chat to continue",
+			"noSponsor": "No one donated you nor you sponsor any family",
+			"yourSponsorFamily": "Your Sponsor Families",
+			"message": "Enter your message",
+			"firstContact": "Only Sponsor will contact you first.",
+			"initiateChat": "Only Sponsor will intiate a chat",
+			"yourDonator": "Yours Sponsor",
 			"email": {
 				"placeholder": "Enter your Email",
 				"title": "Email"
@@ -36,7 +49,61 @@
 			"cta": {
 				"0": "Don't have an account?",
 				"1": "Become a Sponsor"
-			}
+			},
+			"familySignIn": "Sign In As Family"
+		}
+	},
+	"DonateModal": {
+		"title1": "Donate a Share",
+		"title2": "Sponsor a Family",
+		"name": "Name",
+		"email": "Email",
+		"address": "Address",
+		"country": "Country",
+		"city": "City",
+		"mobileNum": "Mobile Number",
+		"identityNum": "National identity Number",
+		"cardHolder": "Card Holder Name",
+		"cardNum": "Card Number",
+		"expMonth": "Expiry Month",
+		"expYear": "Expiry Year",
+		"cvc": "CVC",
+		"total": "Total",
+		"submit": "Confirm Payment",
+		"success": "Thank you for your donation",
+		"error": "Something went wrong",
+		"donationFailed": "Donation Process failed. Try Again",
+		"amount": "Amount",
+		"donate": "Donate",
+		"cardDetail": "Card Detail"
+	},
+	"forgotPassword": {
+		"form": {
+			"title": "Find Your Account",
+			"description": "Enter your email address so we can find you,",
+			"email": {
+				"placeholder": "Enter your Email",
+				"title": "Email"
+			},
+			"checkEmail": "check your email",
+			"submit": "Send Email",
+			"emailCheck": "Please check your email"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "Change Password",
+			"description": "Enter your new  password",
+			"password": {
+				"placeholder": "New Password",
+				"title": "Password"
+			},
+			"newPassword": {
+				"placeholder": "Confirm Password",
+				"title": "Confirm Password"
+			},
+			"submit": "Change Password",
+			"InValidCredientials": "InValid Credientials!"
 		}
 	},
 	"VerifyOtp": {
@@ -160,10 +227,182 @@
 			"save_changes": "Save Changes"
 		}
 	},
+	"UpdateFamily": {
+		"form": {
+			"title": "Update Family",
+			"submit": "Family update successfully",
+			"delete": "Delete"
+		}
+	},
+	"AddFamilies": {
+		"title": "Families",
+		"description": "When families receive sponsorship, they gain access to essential resources and support, improving their quality of life. Donations are utilized to provide food, shelter, education, and medical assistance.",
+		"area": "Area",
+		"situation": "Situation of House",
+		"no_of_member": "No. of Members",
+		"select":"Select",
+		"chat": "Chat",
+		"form": {
+			"formTitle": "Edit Family Details",
+			"fill_form_correctly": "Please fill the form correctly",
+			"in_eng":"In English",
+			"in_tur":"In Turkish",
+			"in_ar":"In Arabic",
+			"family_details_error": "Please fill the family member details",
+			"all_fields": "All fields are required",
+			"submit": "Family Added Successfully",
+			"title": "Add Family",
+			"section1": "Personal Information",
+			"section2": "Change Password",
+			"titleForUpdate": "Update Family",
+			"submitForUpdate": "Family updated successfully",
+			"delete": "Delete",
+			"password": "Password",
+			"registerFamily": "Family Registration",
+			"register": "Register",
+			"BreadWinnerName": {
+				"title": "Bread Winner Name"
+			},
+			"maritalStatus": {
+				"title": "Martial Status"
+			},
+			"gender": {
+				"title": "Gender"
+			},
+			"areaOfPreviousResidence": {
+				"title": "Area Of Previous Residence"
+			},
+			"areaOfCurrentResidence": {
+				"title": "Area Of Current Residence"
+			},
+			"currentSituation": {
+				"title": "Current Situation"
+			},
+			"lossesInWar": {
+				"title": "Loses In War"
+			},
+			"comment": {
+				"title": "Comment"
+			},
+			"commentPlaceHolder": "Describe Your Situtaion here!",
+			"optional": "(Optional)",
+			"name": {
+				"title": "Name"
+			},
+			"email": {
+				"title": "Email"
+			},
+			"age": {
+				"title": "Age"
+			},
+			"memberIdNumber": {
+				"title": "Member ID number"
+			},
+			"gender": {
+				"title": "Gender"
+			},
+			"FamilyMembers": {
+				"title": "No of Family Members"
+			},
+			"MartyrInFamily": {
+				"title": "No of Martyr In Family"
+			},
+			"InfectedInFamily": {
+				"title": "No of Injured In Family"
+			},
+			"dob": {
+				"title": "Date of Birth"
+			},
+			"telephone": {
+				"title": "Telephone"
+			},
+			"id": {
+				"title": "Id"
+			},
+			"gender": {
+				"title": "Gender",
+				"male": "Male",
+				"female": "Female",
+				"default": "Select Gender"
+			},
+			"martialstatus": {
+				"title": "Martial Status",
+				"single": "Single",
+				"married": "Married",
+				"widow": "Widow",
+				"divorced": "Divorced",
+				"default": "Select Martial Status"
+			},
+			"previousresidence": {
+				"title": "Select Area Of Previous Residence",
+				"Gaza": "Gaza City",
+				"JabaliaCamp": "Jabalia Camp",
+				"KhanYunis": "Khan Yunis",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Dair Al Balah",
+				"Beachrefugeecamp": "Beach refugee camp",
+				"NuseiratCamp": "Nuseirat Camp",
+				"MaghaziCamp": "Maghazi Camp",
+				"BureijCamp": "Bureij Camp",
+				"AlShatiCamp": "Al-Shati Camp",
+				"default": "Select Previous Residence"
+			},
+			"currentresidence": {
+				"title": "Current Residence",
+				"Gaza": "Gaza City",
+				"JabaliaCamp": "Jabalia Camp",
+				"KhanYunis": "Khan Yunis",
+				"Rafah": "Rafah",
+				"DeiralBalah": "Dair Al Balah",
+				"Beachrefugeecamp": "Beach refugee camp",
+				"NuseiratCamp": "Nuseirat Camp",
+				"MaghaziCamp": "Maghazi Camp",
+				"BureijCamp": "Bureij Camp",
+				"AlShatiCamp": "Al-Shati Camp",
+				"default": "Select Current Residence"
+			},
+			"currentsituation": {
+				"title": "Current Situation of House",
+				"bad": "Bad",
+				"good": "Good",
+				"worst": "Worst",
+				"urgentneeded": "Urgently Needed",
+				"totaldestruction": "Total Destruction",
+				"partialdestruction": "Partial Destruction",
+				"intact": "Intact",
+				"rented": "Rented",
+				"default": "Select Current Situation"
+			},
+			"losesinwar": {
+				"title": "Loses In War",
+				"none": "none",
+				"car": "car",
+				"furniture": "furniture",
+				"store": "store furniture",
+				"house": "house",
+				"business": "business",
+				"default": "Select No of Loses in War"
+			},
+			"language": {
+				"title": "Language",
+				"arabic": "Arabic",
+				"english": "English",
+				"turkish": "Turkish",
+				"default": "Select Language"
+			},
+			"familyMemberDetails": {
+				"title": "Family Member Details"
+			},
+			"save_changes": "Save Changes",
+			"verification": "Check Email for further Information"
+		}
+	},
 	"Sidebar": {
+		"specialId": "Special ID",
 		"verified": "Verified",
 		"dashboard": "Dashboard",
-		"families": "families",
+		"families": "Families",
+		"ManageFamilyPage": "Manage Families",
 		"settings": "Settings",
 		"logout": "Logout",
 		"sponsor": {
@@ -171,9 +410,52 @@
 			"pending": "Pending Sponsor",
 			"rejected": "Rejected Sponsor"
 		},
+		"family": {
+			"approved": "Approved Families",
+			"pending": "Pending Families",
+			"rejected": "Rejected Families"
+		},
+		"donatedFamilies": "Donated Families",
 		"form_response": "Form Response",
 		"credit_cards": "Credit Cards",
-		"sponsoring": "Sponsoring"
+		"sponsoring": "Sponsoring",
+		"sponsors": "Sponsors",
+		"chat": "Chat"
+	},
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "Donate a Share ❤️"
+			},
+			"Sponser": {
+				"title": "Sponser"
+			},
+			"AddtoBasket": {
+				"title": "Add to Basket"
+			},
+			"AlreadyAdded": {
+				"title": "Already Added"
+			},
+			"seeMore": {
+				"title": "Sponsor More Families ➜"
+			},
+			"BecomeaSponser": {
+				"title": "Become a Sponser"
+			},
+			"RegisterasFamily": {
+				"title": "Register a Family in Gaza"
+			},
+			"Donate": {
+				"title": "Donate"
+			},
+			"Step": {
+				"title": "Step"
+			},
+			"Families": {
+				"title": "Families",
+				"notFound": "Family Not Located"
+			}
+		}
 	},
 	"RejectedSponsors": {
 		"title": "Rejected Sponsors",
@@ -182,8 +464,36 @@
 	"PendingSponsors": {
 		"title": "Pending Sponsors"
 	},
+	"Families": {
+		"title": "Families"
+	},
+	"ThankModal": {
+		"title": "Thank you for donating, You are among the saviors of gaza.",
+		"button":"Continue to Website"
+	},
+	"ManageFamilies": {
+		"title": "Manage Families"
+	},
 	"ApprovedSponsors": {
 		"title": "Approved Sponsors"
+	},
+	"ApprovedFamily": {
+		"title": "Approved Family"
+	},
+	"PendingFamily": {
+		"title": "Pending Family"
+	},
+	"RejectedFamily": {
+		"title": "Rejected Family"
+	},
+	"SponsoredFamilies": {
+		"title": "Sponsored Families"
+	},
+	"DonatedFamilies": {
+		"title": "Donated Families",
+		"sponserId": "Sponser Id",
+		"familyId": "Family Id",
+		"amountDonated": "Amount Donated"
 	},
 	"Table": {
 		"Header": {
@@ -193,12 +503,21 @@
 			"Email": "Email",
 			"Language": "Language",
 			"Action": "Action",
-			"Role": "Role"
+			"Role": "Role",
+			"BreadWinnerName": "Bread Winner Name",
+			"IdNumber": "ID number",
+			"MartyrInFamily": "Martyr In Family",
+			"NumberOfFamilyMember": "Number Of Family Members",
+			"Id": "Unique ID",
+			"approval": "Approval Action"
 		}
+	},
+	"Pagination": {
+		"showing": "Showing"
 	},
 	"Dashboard": {
 		"title": "Dashboard",
-		"section1": "Admin & Moderators",
+		"section1": "Admins",
 		"cards": {
 			"1": "Total Families",
 			"2": "Total Approved Sponsors",
@@ -209,6 +528,238 @@
 	},
 	"GazaMap": {
 		"red": "This pixel has already booked.",
-		"grey": "Click on this to get registered as a sponsor"
+		"grey": "Click on this to get registered as a sponsor",
+		"book": "Book Your Sponsorship from Gaza Map."
+	},
+	"OurPartner": {
+		"title": "Our Partners"
+	},
+	"Footer": {
+		"home": "Home",
+		"families": "Families",
+		"faqs": "FAQs",
+		"contact": "Contact",
+		"MuakhetAllrightsreserved": "Moakhat. All rights reserved.",
+		"privacypolicy": "Privacy Policy",
+		"termsofservice": "Terms of Service",
+		"topbar": "Raise Funds For Gaza: Donate, Sponsor, and Spread Love.",
+		"currency": "Currency"
+	},
+	"FAQ": {
+		"title": "FAQs",
+		"description": "Find answers to common questions about the donation process, where funds go, and how to become a sponsor"
+	},
+	"ContactUs": {
+		"name": "Name",
+		"email": "Email",
+		"message": "Message",
+		"send": "Send",
+		"success": "Submitted Successfully",
+		"error": "Something went wrong",
+		"allfields": "All fields are required",
+		"namePlaceHolder": "Enter your Name",
+		"emailPlaceHolder": "Enter your email",
+		"messagePlaceHolder": "Enter your Message"
+	},
+	"About": {
+		"title": "About",
+		"aboutUs": "About Us"
+	},
+	"Cart": {
+		"title": "Basket",
+		"total": "Total",
+		"button": "Proceed to Checkout",
+		"emptyMessage": "No Family Added"
+	},
+	"toolTips": {
+		"familyRegister": "Register a Family In Gaza",
+		"donateShare": "Donate a Share",
+		"becomeSponser": "Become Sponser"
+	},
+	"QuickDonation": {
+		"title": "General & Quick Donation",
+		"purposeTitle": "Purpose",
+		"purposeValue": "General Purpose",
+		"totalTitle": "Total",
+		"anotherAmount": "Another Amount",
+		"inputPlaceholder": "Enter donation amount",
+		"button": "Proceed to Checkout",
+		"cardname": "Please Enter your Card Name",
+		"cardNumber": "Please Enter your Card Number",
+		"expMonth": "Please Select your Expire Month of Card",
+		"expYear": "Please Enter your Expire Year of Card",
+		"cvc": "Please Enter your Card CVC",
+		"placeholdername": "Muhammad Ahmed",
+		"placeholderaddress": "Istanbul, Turkey"
+	},
+	"CurrencyModal": {
+		"title": "Currency"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "Clear All",
+		"backPage": "Back Page",
+		"nextPage": "Next Page",
+		"Stable": "Stable",
+		"stable": "Stable",
+		"Bad": "Bad",
+		"bad": "Bad",
+		"Good": "Good",
+		"good": "Good",
+		"Worst": "Worst",
+		"worst": "Worst",
+		"month":"Month(s)",
+		"selectduration":"Select Duration",
+		"Urgently Needed": "Urgently Needed",
+		"memberDetail": "Member Details"
+	},
+	"LangSelect": {
+		"English": "English",
+		"Arabic": "Arabic",
+		"Turkish": "Turkish"
+	},
+	"DeleteFamily": {
+		"family_deleted_successfully": "Family Deleted Successfully",
+		"deletion_failed": "Failed to Delete Family"
+	},
+	"Sponsoring": {
+		"sponsorname": "Sponser Name",
+		"sponsoremail": "Sponser Email",
+		"sponsoramount": "Amount",
+		"sponsorfamily": "View Family Details",
+		"nodonation": "No Sponsors or donation Found for you",
+		"sponsorcity": "City"
+	},
+	"Socail": {
+		"title": "Congratulation!! You've become a Sponser. You can share your sponsership to others on the social media",
+		"welcome": "Welcome",
+		"thankyou": "Donate For Needy Families of Gaza",
+		"dashboard": "Dashboard",
+		"family": "You are registered as a Family. God willing, people will come forward to help you."
+	},
+	"WebTour": {
+		"sponsorTitle": "Become a Sponsor",
+		"sponsorDesc": "Click the Become a Sponsor button to support the people of Gaza and make a significant impact",
+		"anonymousTitle": "Donate Anonymously",
+		"anonymousDesc": "Choose to donate anonymously to aid the people of Gaza while maintaining your privacy.",
+		"registerFamilyTitle": "Register as a Gaza Family",
+		"registerFamilyDesc": "Sign up to receive support and assistance by registering as a family residing in Gaza.",
+		"bookPixelTitle": "Book a Pixel on the Gaza Map",
+		"bookPixelDesc": "Support Gaza by sponsoring and booking a pixel on our interactive map.",
+		"changeLanguageTitle": "Select Your Preferred Language",
+		"changeLanguageDesc": "Our platform supports Arabic, Turkish, and English to cater to your language preference.",
+		"next": "next",
+		"previous": "previous",
+		"close": "close"
+	},
+	"FamilyValidationSchema": {
+		"breadWinnerNameEn": "Breadwinner name is required",
+		"genderEn": "Gender is required",
+		"dateOfBirth": "Date of birth is required",
+		"maritalStatusEn": "Maritial status is required",
+		"language": "Language is required",
+		"areaOfPreviousResidenceEn": "Previous residence area is required",
+		"areaOfCurrentResidenceEn": "Current residence area is required",
+		"currentSituationEn": "Current situation is required",
+		"lossesInWarEn": "Losses In War is required",
+		"numberOfFamilyMembers": "Number of family members is required",
+		"numberOfMartyrInFamily": "Number of martyrs in family is required",
+		"numberOfInfectedInFamily": "Number of infected in family is required",
+		"telephoneNumber": "Telephone number is required",
+		"idNumber": "ID number is required",
+		"email": "Email address is required",
+		"invalidEmail": "Invalid email address",
+		"password": "Password is required",
+		"minPassword": "Password Should be greater than 8 character"
+	},
+	"SponsorValidationSchema": {
+		"name": "Name is Required",
+		"nameMatch": "Name should only contain alphabets and spaces between words",
+		"nameNotSpace": "Name cannot be just spaces",
+		"country": "Country is Required",
+		"email": "Email is Required",
+		"password": "Password is required",
+		"language": "Language is Required",
+		"confirmPassword": "Confirm Password is Required",
+		"passwordNotMatch": "Passwords must match",
+		"invalidEmail": "Invalid email address"
+	},
+	"ContactFormSchema": {
+		"name": "Name is Required",
+		"email": "Email is Required",
+		"message": "Message is Required"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "Card holder name is required",
+		"cardNumber": "Card number is required",
+		"cardNumberNoSpace": "Card number must not contain spaces",
+		"expireMonth": "Expiration month is required",
+		"expireYear": "Expiration year is required",
+		"expireYearMin": "Expiration year must be in the future",
+		"expireYearMax": "Invalid expiration year",
+		"expireDigitLimit": "Expiration year must be 4 digits",
+		"cvc": "CVC is required",
+		"cvcTypeError": "CVC must be a number",
+		"cvcMin": "CVC must be 3 digits",
+		"cvcMax": "CVC must be 3 digits"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "Name is Required",
+		"email": "Email is Required",
+		"invalidEmail": "Invalid email address",
+		"country": "Country is Required",
+		"city": "City is Required",
+		"address": "Address is Required",
+		"cardHolderName": "Card holder name is required",
+		"cardNumber": "Card number is required",
+		"cardNumberNoSpace": "Card number must not contain spaces",
+		"expireMonth": "Expiration month is required",
+		"mobilePhoneNumber": "Mobile number is required",
+		"nationalIdentityNumber": "Identity number is required",
+		"nationalIdentityNumberMin": "Identity number should be at least 5 digits",
+		"expireYear": "Expiration year is required",
+		"expireYearMin": "Expiration year must be in the future",
+		"expireYearMax": "Invalid expiration year",
+		"expireDigitLimit": "Expiration year must be 4 digits",
+		"cvc": "CVC is required",
+		"cvcTypeError": "CVC must be a number",
+		"cvcMin": "CVC must be 3 digits",
+		"cvcMax": "CVC must be 3 digits"
+	},
+	"FamilyValidationSchemaAdmin": {
+		"breadWinnerNameEn": "Breadwinner name (English) is required",
+		"breadWinnerNameTr": "Breadwinner name (Turkish) is required",
+		"breadWinnerNameAr": "Breadwinner name (Arabic) is required",
+		"invalidEmail": "Invalid email address",
+		"email": "Email address is required",
+		"genderEn": "Gender is Required",
+		"genderTr": "Gender (Turkish) is required",
+		"genderAr": "Gender (Arabic) is required",
+		"dateOfBirth": "Date of birth is required",
+		"maritalStatusEn": "Maritial status (English) is required",
+		"maritalStatusTr": "Maritial status (Turkish) is required",
+		"maritalStatusAr": "Maritial status (Arabic) is required",
+		"language": "Language is required",
+		"areaOfPreviousResidenceEn": "Previous residence area (in English) is required",
+		"areaOfPreviousResidenceTr": "Previous residence area (in Turkish) is required",
+		"areaOfPreviousResidenceAr": "Previous residence area (in Arabic) is required",
+		"areaOfCurrentResidenceEn": "Current residence area (in English) is required",
+		"areaOfCurrentResidenceTr": "Current residence area (in Turkish) is required",
+		"areaOfCurrentResidenceAr": "Current residence area (in Arabic) is required",
+		"currentSituationEn": "Current situation (in English) is required",
+		"currentSituationTr": "Current situation (in Turkish) is required",
+		"currentSituationAr": "Current situation (in Arabic) is required",
+		"lossesInWarEn": "Losses In War (in English) is required",
+		"lossesInWarTr": "Losses In War (in Turkish) is required",
+		"lossesInWarAr": "Losses In War (in Arabic) is required",
+		"numberOfFamilyMembersMin": "Number of family members must be positive or zero",
+		"numberOfFamilyMembers": "Number of family members is required",
+		"numberOfMartyrInFamilyMin": "Number of martyrs in family must be positive or zero",
+		"numberOfMartyrInFamily": "Number of martyrs in family is required",
+		"numberOfInfectedInFamilyMin": "Number of infected in family must be positive or zero",
+		"numberOfInfectedInFamily": "Number of infected in family is required",
+		"telephoneNumber": "Telephone number is required",
+		"idNumber": "ID number is required",
+		"minPassword": "Password Should be greater than 8 character",
+		"password": "Password is required"
 	}
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { left_arrow, right_arrow } from '@/assests';
 import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 interface IProps {
 	pageIndex: number;
@@ -41,16 +43,30 @@ function Pagination({
 		return pages;
 	};
 
+	const t = useTranslations('Pagination');
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
+
 	return (
 		<div className="w-full flex justify-between">
-			<p className="text-[15px] text-black">Showing {pageIndex * pageSize + dataCount}/{pageCount * pageSize}</p>
+			<p className="text-[15px] text-black">
+				{`${t('showing')}`} {pageIndex * pageSize + dataCount}/
+				{pageCount * pageSize}
+			</p>
 			<div className="w-fit flex">
 				<button onClick={previousPage} disabled={!canPreviousPage}>
-					<Image src={left_arrow} alt="left" className="" />
+					<Image
+						src={currentPath === 'ar' ? right_arrow : left_arrow}
+						alt="left"
+						className=""
+					/>
 				</button>
 				{getPageNumbers()}
 				<button onClick={nextPage} disabled={!canNextPage}>
-					<Image src={right_arrow} alt="right" />
+					<Image
+						src={currentPath === 'ar' ? left_arrow : right_arrow}
+						alt="right"
+					/>
 				</button>
 			</div>
 		</div>

@@ -1,0 +1,461 @@
+'use client';
+import FamilyCard from '@/components/ui/FamilyCard';
+import React, { useEffect, useState } from 'react';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+// ICONS
+import { getJson } from '@/api/api.instances';
+import Loader from '@/components/ui/Loader';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { useTranslations } from 'next-intl';
+import { areasData } from '@/contants/Areas';
+import { situationData } from '@/contants/Situations';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { PATHS } from '@/contants';
+import { usePathname } from 'next/navigation';
+import useLocaleRouter from '@/hooks/useLocaleRouter';
+
+import Button from '@/components/ui/LandingPage/Button';
+import Heading from '@/components/ui/Heading/Heading';
+
+const FamiliesSection: React.FC<{ isLoggedIn?: boolean }> = ({
+	isLoggedIn,
+}) => {
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(1, 3);
+	const landingFamilyPath = pathname?.slice(3);
+	const { url, dir, locale, changeLocale } = useLocaleRouter();
+	const { user } = useLoggedInUser();
+	const t = useTranslations('AddFamilies');
+	const t1 = useTranslations('FamiliesMainSection');
+	const t2 = useTranslations('HeroMainSection.btns');
+	const [isLoading, setIsLoading] = useState(true);
+	const [familiesData, setFamiliesData] = useState<any[]>([]);
+	const [filteredData, setFilteredData] = useState<any[]>([]);
+	const [area, setArea] = useState('');
+	const [situation, setSituation] = useState('');
+	const [member, setMember] = useState<number | null>(null);
+	const [openDropDown, setOpenDropDown] = useState<boolean[]>([
+		false,
+		false,
+		false,
+	]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 15; // Change as needed
+
+	const getCurrentItems = () => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return filteredData.slice(startIndex, endIndex);
+	};
+
+	// Handlers for pagination buttons
+	const goToNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+	};
+
+	const goToPrevPage = () => {
+		setCurrentPage((prevPage) => prevPage - 1);
+	};
+
+	// DropDown
+	const handleDropDownClick = (index: number) => {
+		let newOpenDropDown: boolean[] = [];
+		newOpenDropDown = openDropDown?.map((item, i) => {
+			return i === index ? !openDropDown[i] : false;
+		});
+		setOpenDropDown(newOpenDropDown);
+	};
+
+	const filterData = (
+		areaValue: string,
+		situationValue: string,
+		memberValue: number | null,
+	) => {
+		const filteredItems = familiesData.filter((item) => {
+			let areaMatch = true;
+			let situationMatch = true;
+			let memberMatch = true;
+
+			if (areaValue !== '') {
+				areaMatch = item.areaOfCurrentResidence === areaValue;
+			}
+
+			if (situationValue !== '') {
+				situationMatch =
+					item.currentSituation?.toLowerCase() ===
+					situationValue?.toLowerCase();
+			}
+
+			if (memberValue !== null) {
+				memberMatch = item.numberOfFamilyMembers == memberValue;
+			}
+
+			return areaMatch && situationMatch && memberMatch;
+		});
+
+		setFilteredData(filteredItems);
+		setCurrentPage(1);
+	};
+
+	const handleFamiliesData = (path: string | undefined, data: any) => {
+		if (path === 'en') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inEnglish,
+					description: data?.description?.inEnglish,
+					maritalStatus: data?.maritalStatus?.inEnglish,
+					gender: data?.gender?.inEnglish,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inEnglish,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inEnglish,
+					currentSituation: data?.currentSituation?.inEnglish,
+					lossesInWar: data?.lossesInWar?.inEnglish,
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
+						...member,
+						memberName: member?.memberName?.inEnglish,
+						memberGender: member?.memberGender?.inEnglish,
+					})),
+				},
+			]);
+		} else if (path === 'ar') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inArabic,
+					description: data?.description?.inArabic,
+					maritalStatus: data?.maritalStatus?.inArabic,
+					gender: data?.gender?.inArabic,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inArabic,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inArabic,
+					currentSituation: data?.currentSituation?.inArabic,
+					lossesInWar: data?.lossesInWar?.inArabic,
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
+						...member,
+						memberName: member?.memberName?.inArabic,
+						memberGender: member?.memberGender?.inArabic,
+					})),
+				},
+			]);
+		} else if (path === 'tr') {
+			setFamiliesData((prev: any) => [
+				...prev,
+				{
+					...data,
+					breadWinnerName: data?.breadWinnerName?.inTurkish,
+					description: data?.description?.inTurkish,
+					maritalStatus: data?.maritalStatus?.inTurkish,
+					gender: data?.gender?.inTurkish,
+					areaOfPreviousResidence: data?.areaOfPreviousResidence?.inTurkish,
+					areaOfCurrentResidence: data?.areaOfCurrentResidence?.inTurkish,
+					currentSituation: data?.currentSituation?.inTurkish,
+					lossesInWar: data?.lossesInWar?.inTurkish,
+					familyMemberDetail: data?.familyMemberDetail?.map((member: any) => ({
+						...member,
+						memberName: member?.memberName?.inTurkish,
+						memberGender: member?.memberGender?.inTurkish,
+					})),
+				},
+			]);
+		}
+	};
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		(async () => {
+			setIsLoading(true);
+			const res = await getJson(
+				`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/families`,
+			);
+			if (res.success) {
+				setFamiliesData([]);
+				res.familySponser?.map((item: any) =>
+					handleFamiliesData(currentPath, item),
+				);
+				setIsLoading(false);
+			}
+		})();
+	}, []);
+
+	useEffect(() => {
+		setFilteredData(familiesData);
+	}, [familiesData]);
+
+	const clearAll = () => {
+		setFilteredData(familiesData);
+		setMember(null);
+		setSituation('');
+		setArea('');
+	};
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				event.target instanceof HTMLElement &&
+				!event.target.closest('.closeDropdown')
+			) {
+				setOpenDropDown([false, false, false]);
+			}
+		};
+
+		document.body.addEventListener('click', handleClickOutside);
+		return () => {
+			document.body.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
+
+	const handleAreaChange = (value: string) => {
+		setArea(value);
+		filterData(value, situation, member);
+	};
+
+	const handleSituationChange = (value: string) => {
+		setSituation(value);
+		filterData(area, value, member);
+	};
+
+	const handleMemberChange = (value: number | null) => {
+		setMember(value);
+		filterData(area, situation, value);
+	};
+
+	return (
+		<>
+			<section
+				dir={dir}
+				className={` ${!user || PATHS.FAMILY === landingFamilyPath ? 'md:w-[80%] py-12' : 'md:w-full py-8'} w-[90%] mx-auto flex flex-col gap-8 animated-div`}
+			>
+				{/* heading and content */}
+				{(!user || PATHS.FAMILY === landingFamilyPath) && (
+					<div className=" flex flex-col gap-2">
+						<div className="flex flex-col justify-start items-start">
+							<Heading heading={t('title')} className="main_heading-black" />
+						</div>
+						<p className="md:text-lg text-base font-light text-[#36454F]">
+							{t('description')}
+						</p>
+					</div>
+				)}
+
+				{/* dropdowns */}
+				<div className=" flex justify-between">
+					<div className="flex md:flex-nowrap flex-wrap md:gap-3 gap-3">
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%]">
+							<h3 className=" text-base font-medium"> {t('area')} </h3>
+							<button
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(0)}
+							>
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
+									{area ? area : t('select')}
+								</span>
+								<span>
+									{openDropDown[0] ? (
+										<IoIosArrowUp className="text-lg text-[#36454F] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#36454F] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[0] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-[155px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{areasData?.map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() =>
+												handleAreaChange(
+													t(`form.currentresidence.${item.label}`),
+												)
+											}
+										>
+											{t(`form.currentresidence.${item.label}`)}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
+							<h3 className=" text-base font-medium"> {t('situation')} </h3>
+							<button
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(1)}
+							>
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize ">
+									{situation ? situation : t('select')}
+								</span>
+								<span>
+									{openDropDown[1] ? (
+										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[1] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-fit py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{situationData?.map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() =>
+												handleSituationChange(
+													t(
+														`form.currentsituation.${item.value.toLowerCase().trim().replace(' ', '')}`,
+													),
+												)
+											}
+										>
+											{t(
+												`form.currentsituation.${item.label.toLowerCase().trim().replace(' ', '')}`,
+											)}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+
+						<div className="relative flex flex-col gap-2 md:w-64 w-[48%] ">
+							<h3 className=" text-base font-medium">{t('no_of_member')}</h3>
+							<button
+								className="flex justify-between items-center text-left rounded-md bg-[#F8F8F8] text-sm font-medium py-[8px] px-4 w-full cursor-pointer closeDropdown"
+								onClick={() => handleDropDownClick(2)}
+							>
+								<span className="md:text-base text-sm font-medium text-[#00000080] capitalize">
+									{member ? member : t('select')}
+								</span>
+								<span>
+									{openDropDown[2] ? (
+										<IoIosArrowUp className="text-lg text-[#00000080] cursor-pointer" />
+									) : (
+										<IoIosArrowDown className="text-lg text-[#00000080] cursor-pointer" />
+									)}
+								</span>
+							</button>
+							<div
+								className={`${
+									openDropDown[2] ? 'block' : 'hidden'
+								}  top-20 rounded-lg z-50 absolute w-64 h-[105px] py-[6px] overflow-y-scroll scrollbarHide bg-[#E8E8E8]`}
+							>
+								{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, i) => {
+									return (
+										<p
+											key={i}
+											className={`py-1 px-3 text-sm font-medium cursor-pointer hover:text-[#FFFFFF] hover:bg-gray-400`}
+											onClick={() => handleMemberChange(item)}
+										>
+											{item}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+						<div className="md:hidden flex items-end w-[48%]">
+							<Button
+								title={t1('clearAll')}
+								Color="#BB9B6C"
+								onClick={clearAll}
+								className=" w-full"
+							/>
+						</div>
+					</div>
+					<div className="md:flex hidden items-end">
+						<Button title={t1('clearAll')} Color="#BB9B6C" onClick={clearAll} />
+					</div>
+				</div>
+				{isLoading ? (
+					<div className="flex justify-center items-center h-32">
+						<Loader style={{ width: 'fit-content' }} />
+					</div>
+				) : filteredData && filteredData.length > 0 ? (
+					<>
+						{/* cards */}
+						<div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+							{getCurrentItems().map((family, i) => (
+								<FamilyCard
+									key={i}
+									familyData={family}
+									isLoggedIn={isLoggedIn}
+								/>
+							))}
+						</div>
+						{/* pagination */}
+						<div className="grid md:grid-cols-3 grid-cols-1 gap-5">
+							<div></div>
+							<div className="flex justify-center  gap-4">
+								<button
+									className={`${
+										currentPage === 1
+											? 'bg-[#555555] cursor-not-allowed'
+											: 'bg-[#000000] cursor-pointer'
+									} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm text-[12px] font-semibold  rounded-xl px-4 py-3 text-center  hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out 
+
+                                    `}
+									onClick={goToPrevPage}
+									disabled={currentPage === 1}
+								>
+									{currentPath === 'ar' ? (
+										<span>
+											<FaArrowRightLong className=" text-xl" />
+										</span>
+									) : (
+										<span>
+											<FaArrowLeftLong className=" text-xl" />
+										</span>
+									)}
+									<span>{t1('backPage')}</span>
+								</button>
+								<button
+									className="flex items-center gap-3 bg-[#000000]'} flex items-center gap-3 bg-[#000000] text-[#FFFFFF] text-sm text-[12px] font-semibold  rounded-xl px-4 py-3 text-center  cursor-pointer hover:bg-white border-2 border-transparent hover:border-[#000000] hover:text-[#000000] transition-colors duration-300 ease-in-out "
+									onClick={goToNextPage}
+									disabled={
+										currentPage >= Math.ceil(filteredData.length / itemsPerPage)
+									}
+								>
+									<span>{t1('nextPage')}</span>
+									{currentPath === 'ar' ? (
+										<span>
+											<FaArrowLeftLong className=" text-xl" />
+										</span>
+									) : (
+										<span>
+											<FaArrowRightLong className=" text-xl" />
+										</span>
+									)}
+								</button>
+							</div>
+
+							<div className="flex gap-2 justify-end items-center text-sm font-medium ">
+								<span>Page</span>
+								<div className=" border-[2px] border-[#000000] rounded-[6px] px-3">
+									{currentPage}
+								</div>
+								<span>of</span>
+								<span>{Math.ceil(filteredData.length / itemsPerPage)}</span>
+							</div>
+						</div>
+					</>
+				) : (
+					<div className="flex justify-center items-center h-32">
+						<h2 className=" text-center md:text-3xl text-2xl font-semibold">
+							{t2('Families.notFound')}
+						</h2>
+					</div>
+				)}
+			</section>
+		</>
+	);
+};
+
+export default FamiliesSection;

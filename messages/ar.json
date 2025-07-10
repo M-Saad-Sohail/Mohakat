@@ -1,16 +1,18 @@
 {
 	"Navbar": {
 		"links": {
-			"0": "الدعم",
-			"1": "الراعي",
-			"2": "تمكين",
+			"0": "الرئيسية",
+			"1": "الأسر",
+			"2": "من نحن",
 			"3": "الأسئلة الشائعة",
-			"4": "الاتصال"
+			"4": "اتصل بنا"
 		},
 		"cta": {
-			"become-sponsor": "كن راعيًا",
+			"become-sponsor": "اكفل أسرة",
 			"signin": "تسجيل الدخول",
-			"go-to-dashboard": "الانتقال إلى لوحة التحكم"
+			"go-to-dashboard": "الانتقال إلى لوحة التحكم",
+			"dashboard": "لوحة القيادة",
+			"logout": "تسجيل الخروج"
 		}
 	},
 	"LandingPage": {
@@ -22,8 +24,19 @@
 	},
 	"Signin": {
 		"form": {
-			"title": "تسجيل الدخول",
+			"title": "تسجيل الدخول كراعي",
+			"title1": "تسجيل الدخول كراعي؟",
 			"description": "أدخل بيانات الاعتماد الخاصة بك للمتابعة",
+			"leaveChat": "غادر المحادثة",
+			"noSponsor": "لم يتبرع لك أحد ولا تقوم برعاية أي عائلة",
+			"yourSponsorFamily": "عائلات الراعي الخاص بك",
+  			"yourDonator": "رعاياك",
+			"message": "أدخل رسالتك",
+			"firstContact": "أولاً، سيتواصل معك الراعي فقط",
+			"hello": "مرحباً، هل أنت هناك؟",
+			"contact": "الاتصال بالعائلات التي ترعاها",
+			"startChat": "يرجى اختيار محادثة للمتابعة",
+			"initiateChat": "الراعي فقط هو من سيبدأ الدردشة.",
 			"email": {
 				"placeholder": "أدخل بريدك الإلكتروني",
 				"title": "البريد الإلكتروني"
@@ -36,7 +49,36 @@
 			"cta": {
 				"0": "ليس لديك حساب؟",
 				"1": "كن راعيًا"
-			}
+			},
+			"familySignIn": "تسجيل الدخول كعائلة"
+		}
+	},
+	"forgotPassword": {
+		"form": {
+			"title": "العثور على حسابك",
+			"description": "أدخل عنوان بريدك الإلكتروني حتى نتمكن من العثور عليك.",
+			"email": {
+				"placeholder": "أدخل بريدك الإلكتروني",
+				"title": "البريد الإلكتروني"
+			},
+			"submit": "إرسال البريد الإلكتروني",
+			"emailCheck": "تحقق من بريدك الإلكتروني"
+		}
+	},
+	"resetPassword": {
+		"form": {
+			"title": "تغيير كلمة المرور",
+			"description": "أدخل كلمة المرور الجديدة",
+			"password": {
+				"placeholder": "أدخل كلمة المرور الجديدة",
+				"title": "كلمة المرور"
+			},
+			"newPassword": {
+				"placeholder": "أدخل كلمة المرور الجديدة مرة أخرى",
+				"title": "تأكيد كلمة المرور"
+			},
+			"submit": "تغيير كلمة المرور",
+			"InValidCredientials": "بيانات الاعتماد غير صالحة!"
 		}
 	},
 	"VerifyOtp": {
@@ -160,10 +202,205 @@
 			"save_changes": "حفظ التغييرات"
 		}
 	},
+	"AddFamilies": {
+		"title": "العائلات", 
+		"description": "عندما تتلقى الأسر الرعاية، فإنها تحصل على الموارد الأساسية والدعم، مما يحسن نوعية حياتهم. يتم استخدام التبرعات لتوفير الغذاء والمأوى والتعليم والمساعدة الطبية.",
+		"area": "منطقة",
+		"situation": "وضع المنزل",
+		"no_of_member": "عدد الأعضاء",
+		"select":"قيمة",
+		"chat": "الدردشة",
+		"form": {
+			"formTitle": "تحرير تفاصيل العائلة",
+			"fill_form_correctly": "املأ النموذج بشكل صحيح",
+			"family_details_error":  "يرجى ملء تفاصيل أفراد العائلة",
+			"in_eng": "بالإنجليزية",
+"in_tur": "بالتركية",
+"in_ar": "بالعربية",
+			"all_fields": "جميع الحقول مطلوبة",
+			"submit": "تمت إضافة العائلة بنجاح",
+			"title": "إضافة عائلة",
+			"titleForUpdate": "تحديث العائلة",
+			"submitForUpdate": "تم تحديث العائلة بنجاح",
+			"delete": "يمسح",
+			"password": "كلمة المرور",
+			"registerFamily": "تسجيل العائلة",
+			"register": "تسجيل",
+			"email": {
+				"title": "البريد الإلكتروني"
+			},
+			"BreadWinnerName": {
+				"title": "اسم رب العائلة"
+			},
+			"comment": {
+				"title": "ملاحظات اخرى"
+			},
+			"commentPlaceHolder": "صف حالتك هنا!",
+			"optional": "(اختياري)",
+			"name": {
+				"title": "اسم"
+			},
+			"age": {
+				"title": "العمر"
+			},
+			"memberIdNumber":{
+				"title": "رقم هوية العضو"
+			},
+			"maritalStatus": {
+				"title": "الحالة الزوجية"
+			},
+			"areaOfPreviousResidence": {
+				"title": "منطقة الإقامة السابقة"
+			},
+			"areaOfCurrentResidence": {
+				"title": "منطقة الإقامة الحالية"
+			},
+			"currentSituation": {
+				"title": "الوضع الحالي"
+			},
+			"lossesInWar": {
+				"title": "الخسائر في الحرب"
+			},			
+			"gender": {
+				"title": "الجنس"
+			},
+			"FamilyMembers": {
+				"title": "عدد أفراد العائلة"
+			},
+			"MartyrInFamily": {
+				"title": "عدد الشهداء في العائلة"
+			},
+			"InfectedInFamily": {
+				 "title": "عدد الجرحى في الأسرة"
+			},
+			"dob": {
+				"title": "تاريخ الميلاد"
+			},
+			"telephone": {
+				"title": "الهاتف"
+			},
+			"id": {
+				"title": "الهوية"
+			},
+			"gender": {
+				"title": "الجنس",
+				"male": "ذكر",
+				"female": "أنثى",
+				"default": "اختر الجنس"
+			},
+			"martialstatus": {
+				"title": "الحالة الاجتماعية",
+				"single": "أعزب",
+				"married": "متزوج",
+				"widow": "أرملة",
+				"divorced": "مُطلّق",
+				"default": "اختر الحالة الاجتماعية"
+			},
+			"previousresidence": {
+				"title": "الإقامة السابقة",
+				"Gaza": "مدينة غزة",
+				"JabaliaCamp": "مخيم جباليا",
+				"KhanYunis": "خان يونس",
+				"Rafah": "رفح",
+				"DeiralBalah": "دير البلح",
+				"Beachrefugeecamp": "مخيم اللاجئين على الشاطئ",
+				"NuseiratCamp": "مخيم نصيرات",
+				"MaghaziCamp": "مخيم المغازي",
+				"BureijCamp": "مخيم البريج",
+				"AlShatiCamp": "مخيم الشاطئ",
+				"default": "اختر الإقامة السابقة"
+			},
+			"currentresidence": {
+				"title": "الإقامة الحالية",
+				"Gaza": "مدينة غزة",
+				"JabaliaCamp": "مخيم جباليا",
+				"KhanYunis": "خان يونس",
+				"Rafah": "رفح",
+				"DeiralBalah": "دير البلح",
+				"Beachrefugeecamp": "مخيم اللاجئين على الشاطئ",
+				"NuseiratCamp": "مخيم نصيرات",
+				"MaghaziCamp": "مخيم المغازي",
+				"BureijCamp": "مخيم البريج",
+				"AlShatiCamp": "مخيم الشاطئ",
+				"default": "اختر الإقامة الحالية"
+			},
+			"currentsituation": {
+				"title": "الوضع الحالي للمنزل",
+				"bad": "تدمير كلي",
+				"good": "تدمير جزئي",
+				"worst": "سليم",
+				"totaldestruction": "تدمير كلي",
+				"partialdestruction": "تدمير جزئي",
+				"intact": "سليم",
+				"rented": "مستأجر",
+				"urgentneeded": "مستأجر",
+				"default": "اختر الحالة الحالية"
+			},
+			"losesinwar": {
+				"title": "الخسائر في الحرب",
+				"none": "لا شيء",
+				"car": "سيارة",
+				"furniture": "أثاث",
+				"store": "متجر الأثاث",
+				"house": "منزل",
+				"business": "عمل تجاري",
+				"default": "اختر عدد الخسائر في الحرب"
+			},
+			"language": {
+				"title": "اللغة",
+				"arabic": "العربية",
+				"english": "الإنجليزية",
+				"turkish": "التركية",
+				"default": "اختر اللغة"
+			},
+			"familyMemberDetails": {
+				"title": "تفاصيل أفراد العائلة"
+			},
+			"save_changes": "حفظ التغييرات",
+			"verification": "تحقق من البريد الإلكتروني لمزيد من المعلومات"
+		}
+	},
+	"HeroMainSection": {
+		"btns": {
+			"DonateaShare": {
+				"title": "❤️ تبرع بسهم"
+			},
+			"BecomeaSponser": {
+				"title": "كن راعياً"
+			},
+			"RegisterasFamily": {
+				"title": "تسجيل عائلة في غزة"
+			},
+			"Sponser": {
+				"title": "تبرع بحصة"
+			},
+			"AddtoBasket": {
+				"title": "تبرع بحصة"
+			},
+			"Donate": {
+				"title": "تبرع"
+			},
+			"AlreadyAdded": {
+				"title": "تمت الإضافة بالفعل"
+			},
+			"seeMore": { 
+				"title": "رؤية المزيد  ⬅"  
+			},
+			"Step": {
+				"title": "الخطوة"
+			},
+			"Families": {
+				"title": "الأسر",
+				"notFound": "العائلة غير موجودة"
+			}
+		}
+	},
 	"Sidebar": {
+		"specialId": "هوية خاصة",
 		"verified": "تم التحقق",
 		"dashboard": "لوحة التحكم",
 		"families": "العائلات",
+		"ManageFamilyPage": "إدارة العائلات",
 		"settings": "الإعدادات",
 		"logout": "تسجيل الخروج",
 		"sponsor": {
@@ -171,9 +408,17 @@
 			"pending": "الراعي المعلق",
 			"rejected": "الراعي المرفوض"
 		},
+		"family": {
+			"approved": "العائلات المعتمدة",
+            "pending": "العائلات المعلقة",
+            "rejected": "العائلات المرفوضة"
+		},
+		"donatedFamilies": "العائلات المتبرع لها",
 		"form_response": "استجابة النموذج",
 		"credit_cards": "بطاقات الائتمان",
-		"sponsoring": "الرعاية"
+		"sponsoring": "الرعاية",
+		"sponsors": "الجهات الراعية",
+		"chat": "دردشة"
 	},
 	"RejectedSponsors": {
 		"title": "الرعاة المرفوضون",
@@ -182,23 +427,59 @@
 	"PendingSponsors": {
 		"title": "الرعاة المعلقون"
 	},
+	"Families": {
+		"title": "عائلات"
+	},
+	"ThankModal": {
+		"title": "شكرًا لتبرعك، أنت من أنقذة غزة.",
+		"button": "المتابعة إلى الموقع"
+	},	
+	"ManageFamilies": {
+		"title": "إدارة العائلات"
+	},
 	"ApprovedSponsors": {
-		"title": "الرعاة الموافق عليهم"
+		"title": "العائلة المعتمدة"
+	},
+	"ApprovedFamily": {
+		"title": "العائلة المعتمدة"
+	},
+	"PendingFamily": {
+		"title": "عائلة في انتظار"
+	},
+	"RejectedFamily": {
+		"title": "العائلة المرفوضة"
+	},
+	"SponsoredFamilies": {
+		"title": "العائلات المدعومة"
+	},
+	"DonatedFamilies": {
+		"title": "العائلات المتبرع لها",
+		"sponserId": "معرف الراعي",
+		"familyId": "معرف العائلة",
+		"amountDonated": "المبلغ المتبرع به"
 	},
 	"Table": {
 		"Header": {
 			"Sno": "رقم السلسلة",
 			"Name": "الاسم",
 			"Country": "البلد",
-			"Email": "البريد الإلكتروني",
+			"Email": "البريد الإلكتروني", 
 			"Language": "اللغة",
 			"Action": "الإجراء",
-			"Role": "دور"
+			"Role": "دور",
+			"BreadWinnerName": "اسم الفائز بالخبز",
+			"IdNumber": "رقم الهوية",
+			"MartyrInFamily": "شهيد في العائلة",
+			"NumberOfFamilyMember": "عدد أفراد الأسرة",
+			"Id": "معرف فريد"
 		}
+	},
+	"Pagination": {
+		"showing": "عرض"
 	},
 	"Dashboard": {
 		"title": "لوحة التحكم",
-		"section1": "المشرفين والمديرين",
+		"section1": "المشرفين",
 		"cards": {
 			"1": "إجمالي العائلات",
 			"2": "إجمالي الرعاة المعتمدين",
@@ -209,6 +490,265 @@
 	},
 	"GazaMap": {
 		"red": "هذا البكسل تم حجزه بالفعل.",
-		"grey": "انقر هنا للتسجيل كراعي"
+		"grey": "انقر هنا للتسجيل كراعي",
+		"book": "احجز رعايتك من خريطة غزة."
+	},
+	"OurPartner": {
+		"title": "شركاؤنا"
+	},
+	"Footer": {
+		"home": "الرئيسية",
+		"families": "العائلات",
+		"faqs": "الأسئلة الشائعة",
+		"contact": "اتصل بنا",
+		"MuakhetAllrightsreserved": "مؤاخاة. جميع الحقوق محفوظة.",
+		"privacypolicy": "سياسة الخصوصية",
+		"termsofservice": "شروط الخدمة",
+		"topbar": "اجمع الأموال من أجل غزة: تبرع وارع وانشر الحب",
+		"currency": "عملة"
+	},
+	"FAQ": {
+		"title": "أسئلة شائعة",
+		"description": "ابحث عن الإجابات على الأسئلة الشائعة حول عملية التبرع، وجهة الأموال، وكيفية أن تصبح راعيًا"
+	},
+	"ContactUs": {
+		"name": "الاسم",
+		"email": "البريد الإلكتروني",
+		"message": "الرسالة",
+		"send": "يرسل",
+		"success": "تم الإرسال بنجاح",
+		"error": "حدث خطأ ما",
+		"allfields": "جميع الحقول مطلوبة",
+		"namePlaceHolder": "أدخل اسمك",
+		"emailPlaceHolder": "أدخل بريدك الإلكتروني",
+		"messagePlaceHolder": "أدخل رسالتك"
+	},
+	"About": {
+		"title": "حول",
+		"aboutUs": "حولنا"
+	},
+	"Cart": {
+		"title": "سلة التسوق",
+		"total": "المجموع",
+		"button": "الانتقال إلى الدفع",
+		"emptyMessage": "لم يتم إضافة عائلة"
+	},
+	"toolTips": {
+		"familyRegister": "تسجيل عائلة في غزة",
+		"donateShare": "تبرع بنصيب",
+		"becomeSponser": "كن راعي"
+	},
+	"QuickDonation": {
+		"title": "التبرع العام والسريع",
+		"purposeTitle": "الغرض",
+		"purposeValue": "الغرض العام",
+		"totalTitle": "الإجمالي",
+		"anotherAmount": "مبلغ آخر",
+		"inputPlaceholder": "أدخل مبلغ التبرع",
+		"button": "الانتقال إلى الخروج",
+		"cardname": "الرجاء إدخال اسم بطاقتك",
+		"cardNumber": "الرجاء إدخال رقم بطاقتك",
+		"expMonth": "الرجاء تحديد شهر انتهاء صلاحية البطاقة",
+		"expYear": "الرجاء إدخال سنة انتهاء صلاحية البطاقة",
+		"cvc": "الرجاء إدخال رمز CVC لبطاقتك",
+		"placeholdername": "محمد أحمد",
+		"placeholderaddress": "اسطنبول، تركيا"
+	},
+	"DonateModal":{
+		"title1": "تبرع بسهم",
+		"title2": "رعاية عائلة",
+		"name": "الاسم",
+		"email": "البريد الإلكتروني",
+		"address": "العنوان",
+		"country": "البلد",
+		"mobileNum": "رقم الجوال",
+		"identityNum": "الرقم الوطني",
+		"cardHolder": "اسم صاحب البطاقة",
+		"cardNum": "رقم البطاقة",
+		"expMonth": "شهر الانتهاء",
+		"expYear": "سنة الانتهاء",
+		"cvc": "رمز التحقق",
+		"city": "مدينة",
+		"total": "الإجمالي",
+		"success": "شكرًا لتبرعك",
+		"error": "حدث خطأ ما",
+		"submit": "تأكيد الدفع",
+		"donationFailed": "فشلت عملية التبرع. حاول مرة أخرى",
+		"amount": "المبلغ",
+		"donate": "تبرع",
+		"cardDetail": "تفاصيل البطاقة"
+	},	
+	"CurrencyModal": {
+		"title": "العملة"
+	},
+	"FamiliesMainSection": {
+		"clearAll": "مسح الكل",
+		"backPage": "الصفحة السابقة",
+		"nextPage": "الصفحة التالية",
+		"Stable": "مستقر",
+		"stable": "مستقر",
+		"Bad": "سيء",
+		"bad": "سيء",
+		"Good": "جيد",
+		"good": "جيد",
+		"Worst": "الأسوأ",
+		"worst": "الأسوأ",
+		"month":"أشهر",
+		"selectduration":"اختر المدة",
+		"Urgently Needed": "مطلوب بشكل عاجل",
+		"memberDetail": "تفاصيل العضو"
+	},
+	"LangSelect": {
+		"English": "الإنجليزية",
+		"Arabic": "العربية",
+		"Turkish": "التركية"
+	},	
+	"editFamilyModal":{
+		"title": "تحرير تفاصيل العائلة"
+	},
+	"DeleteFamily": {
+		"family_deleted_successfully": "تم حذف العائلة بنجاح",
+		"deletion_failed": "فشل في حذف العائلة"
+	},
+	"Sponsoring": {
+		"sponsorname": "اسم الكفيل",
+		"sponsoremail": "بريد الكفيل الإلكتروني",
+		"sponsoramount": "المبلغ",
+		"sponsorfamily": "عرض تفاصيل العائلة",
+		"nodonation": "لم يتم العثور على أي رعاة أو تبرعات لك",
+		"sponsorcity": "المدينة"
+	},
+	"Socail": {
+		"title": "تهانينا! لقد أصبحت راعيًا. يمكنك مشاركة رعايتك مع الآخرين على وسائل التواصل الاجتماعي",
+		"welcome": "مرحباً",
+		"thankyou": "تبرع لعائلات غزة المحتاجة",
+		"dashboard": "لوحة القيادة",
+		"family": "أنت مسجل كعائلة. إن شاء الله، سيتقدم الناس لمساعدتك."
+	},
+	"WebTour": {
+		"sponsorTitle": "كن راعياً",
+		"sponsorDesc": "انقر على زر 'كن راعياً' لدعم أهل غزة وإحداث تأثير كبير",
+		"anonymousTitle": "التبرع بشكل مجهول",
+		"anonymousDesc": "اختر التبرع بشكل مجهول لدعم أهل غزة مع الحفاظ على خصوصيتك.",
+		"registerFamilyTitle": "سجل كعائلة في غزة",
+		"registerFamilyDesc": "قم بالتسجيل لتلقي الدعم والمساعدة عن طريق تسجيل نفسك كعائلة مقيمة في غزة.",
+		"bookPixelTitle": "احجز بكسل على خريطة غزة",
+		"bookPixelDesc": "ادعم غزة من خلال رعاية وحجز بكسل على خريطتنا التفاعلية.",
+		"changeLanguageTitle": "اختر لغتك المفضلة",
+		"changeLanguageDesc": "يدعم منصتنا اللغات العربية والتركية والإنجليزية لتلبية تفضيلاتك اللغوية.",
+		"next": "التالي",
+		"previous": "السابق",
+		"close": "إغلاق"
+	  },
+	  "FamilyValidationSchema": {	
+		"breadWinnerNameEn": "اسم المعيل مطلوب",
+		"genderEn": "الجنس مطلوب",
+		"dateOfBirth": "تاريخ الميلاد مطلوب",
+		"maritalStatusEn": "الحالة الاجتماعية مطلوبة",
+		"language": "اللغة مطلوبة",
+		"areaOfPreviousResidenceEn": "منطقة السكن السابقة مطلوبة",
+		"areaOfCurrentResidenceEn": "منطقة السكن الحالية مطلوبة",
+		"currentSituationEn": "الوضع الحالي مطلوب",
+		"lossesInWarEn": "الخسائر في الحرب مطلوبة",
+		"numberOfFamilyMembers": "عدد أفراد الأسرة مطلوب",
+		"numberOfMartyrInFamily": "عدد الشهداء في الأسرة مطلوب",
+		"numberOfInfectedInFamily": "عدد المصابين في الأسرة مطلوب",
+		"telephoneNumber": "رقم الهاتف مطلوب",
+		"idNumber": "رقم الهوية مطلوب",
+		"email": "عنوان البريد الإلكتروني مطلوب",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+		"password": "كلمة المرور مطلوبة",
+  		"minPassword": "يجب أن تكون كلمة المرور أكثر من 8 أحرف"
+	},
+	"SponsorValidationSchema": {
+		"name": "الاسم مطلوب",
+		"nameMatch": "يجب أن يحتوي الاسم فقط على الأحرف والمسافات بين الكلمات",
+		"nameNotSpace": "لا يمكن أن يكون الاسم مجرد مسافات",
+		"country": "الدولة مطلوبة",
+		"email": "البريد الإلكتروني مطلوب",
+		"password": "كلمة المرور مطلوبة",
+		"language": "اللغة مطلوبة",
+		"confirmPassword": "تأكيد كلمة المرور مطلوب",
+		"passwordNotMatch": "يجب أن تتطابق كلمات المرور",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح"
+	},
+	"ContactFormSchema": {
+		"name": "الاسم مطلوب",
+		"email": "البريد الإلكتروني مطلوب",
+		"message": "الرسالة مطلوبة"
+	},
+	"CheckOutSchemaNonLogin": {
+		"cardHolderName": "اسم حامل البطاقة مطلوب",
+		"cardNumber": "رقم البطاقة مطلوب",
+		"cardNumberNoSpace": "يجب ألا يحتوي رقم البطاقة على مسافات",
+		"expireMonth": "شهر انتهاء الصلاحية مطلوب",
+		"expireYear": "سنة انتهاء الصلاحية مطلوبة",
+		"expireYearMin": "يجب أن تكون سنة انتهاء الصلاحية في المستقبل",
+		"expireYearMax": "سنة انتهاء الصلاحية غير صالحة",
+		"expireDigitLimit": "يجب أن تكون سنة انتهاء الصلاحية 4 أرقام",
+		"cvc": "CVC مطلوب",
+		"cvcTypeError": "يجب أن يكون CVC رقمًا",
+		"cvcMin": "يجب أن يكون CVC 3 أرقام",
+		"cvcMax": "يجب أن يكون CVC 3 أرقام"
+	},
+	"CheckOutSchemaLogin": {
+		"name": "الاسم مطلوب",
+		"email": "البريد الإلكتروني مطلوب",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+		"country": "البلد مطلوب",
+		"city": "المدينة مطلوبة",
+		"address": "العنوان مطلوب",
+		"cardHolderName": "اسم حامل البطاقة مطلوب",
+		"cardNumber": "رقم البطاقة مطلوب",
+		"cardNumberNoSpace": "يجب ألا يحتوي رقم البطاقة على مسافات",
+		"expireMonth": "شهر انتهاء الصلاحية مطلوب",
+		"mobilePhoneNumber": "رقم الجوال مطلوب",
+		"nationalIdentityNumber": "رقم الهوية مطلوب",
+		"nationalIdentityNumberMin": "يجب أن يكون رقم الهوية مكونًا من 5 أرقام على الأقل",
+		"expireYear": "سنة انتهاء الصلاحية مطلوبة",
+		"expireYearMin": "يجب أن تكون سنة انتهاء الصلاحية في المستقبل",
+		"expireYearMax": "سنة انتهاء الصلاحية غير صالحة",
+		"expireDigitLimit": "يجب أن تكون سنة انتهاء الصلاحية 4 أرقام",
+		"cvc": "CVC مطلوب",
+		"cvcTypeError": "يجب أن يكون CVC رقمًا",
+		"cvcMin": "يجب أن يكون CVC 3 أرقام",
+		"cvcMax": "يجب أن يكون CVC 3 أرقام"
+	},
+	"FamilyValidationSchemaAdmin": {
+		"breadWinnerNameEn": "اسم العائل (بالإنجليزية) مطلوب",
+		"breadWinnerNameTr": "اسم العائل (بالتركية) مطلوب",
+		"breadWinnerNameAr": "اسم العائل (بالعربية) مطلوب",
+		"invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+		"email": "عنوان البريد الإلكتروني مطلوب",
+		"genderEn": "الجنس مطلوب",
+		"genderTr": "الجنس (بالتركية) مطلوب",
+		"genderAr": "الجنس (بالعربية) مطلوب",
+		"dateOfBirth": "تاريخ الميلاد مطلوب",
+		"maritalStatusEn": "الحالة الاجتماعية (بالإنجليزية) مطلوبة",
+		"maritalStatusTr": "الحالة الاجتماعية (بالتركية) مطلوبة",
+		"maritalStatusAr": "الحالة الاجتماعية (بالعربية) مطلوبة",
+		"language": "اللغة مطلوبة",
+		"areaOfPreviousResidenceEn": "منطقة السكن السابقة (بالإنجليزية) مطلوبة",
+		"areaOfPreviousResidenceTr": "منطقة السكن السابقة (بالتركية) مطلوبة",
+		"areaOfPreviousResidenceAr": "منطقة السكن السابقة (بالعربية) مطلوبة",
+		"areaOfCurrentResidenceEn": "منطقة السكن الحالية (بالإنجليزية) مطلوبة",
+		"areaOfCurrentResidenceTr": "منطقة السكن الحالية (بالتركية) مطلوبة",
+		"areaOfCurrentResidenceAr": "منطقة السكن الحالية (بالعربية) مطلوبة",
+		"currentSituationEn": "الوضع الحالي (بالإنجليزية) مطلوب",
+		"currentSituationTr": "الوضع الحالي (بالتركية) مطلوب",
+		"currentSituationAr": "الوضع الحالي (بالعربية) مطلوب",
+		"lossesInWarEn": "الخسائر في الحرب (بالإنجليزية) مطلوبة",
+		"lossesInWarTr": "الخسائر في الحرب (بالتركية) مطلوبة",
+		"lossesInWarAr": "الخسائر في الحرب (بالعربية) مطلوبة",
+		"numberOfFamilyMembersMin": "يجب أن يكون عدد أفراد الأسرة موجبًا أو صفرًا",
+		"numberOfFamilyMembers": "عدد أفراد الأسرة مطلوب",
+		"numberOfMartyrInFamilyMin": "يجب أن يكون عدد الشهداء في الأسرة موجبًا أو صفرًا",
+		"numberOfMartyrInFamily": "عدد الشهداء في الأسرة مطلوب",
+		"numberOfInfectedInFamilyMin": "يجب أن يكون عدد المصابين في الأسرة موجبًا أو صفرًا",
+		"numberOfInfectedInFamily": "عدد المصابين في الأسرة مطلوب",
+		"telephoneNumber": "رقم الهاتف مطلوب",
+		"idNumber": "رقم الهوية مطلوب",
+		"minPassword": "يجب أن تكون كلمة المرور أكثر من 8 أحرف",
+		"password": "كلمة المرور مطلوبة"
 	}
 }

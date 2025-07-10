@@ -14,6 +14,9 @@ import {
 	form_icon,
 	logout,
 	sidebar_icon,
+	manage_family_png,
+	chat,
+	reject
 } from '@/assests';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -26,11 +29,17 @@ import '@/styles/scroll.css';
 import useDirection from '@/hooks/useDirection';
 import { useTranslations } from 'next-intl';
 import { PATHS } from '@/contants';
-import { RedirectType } from 'next/navigation';
+import { RedirectType, usePathname } from 'next/navigation';
 
 const AdminMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
+	{
+		title: 'ManageFamilyPage',
+		src: manage_family_png,
+		link: PATHS.MANAGEFAMILIES,
+		gap: true
+	},
 	{
 		title: 'sponsor.pending',
 		src: pending_icon,
@@ -40,34 +49,49 @@ const AdminMenus = [
 		title: 'sponsor.approved',
 		src: approved__icon,
 		link: PATHS.APPROVED_SPONSOR,
+		gap: true
 	},
 	{
-		title: 'sponsor.rejected',
-		src: deny_icon,
-		link: PATHS.REJECTED_SPONSOR,
+		title: 'family.approved',
+		src: approved__icon,
+		link: PATHS.APPROVED_FAMILY,
 	},
 	{
-		title: 'form_response',
-		src: form_icon,
-		link: PATHS.FORM_RESPONSES,
-		gap: true,
+		title: 'family.pending',
+		src: pending_icon,
+		link: PATHS.PENDING_FAMILY,
+		gap: true
 	},
+	// {
+	// 	title: 'family.rejected',
+	// 	src: reject,
+	// 	link: PATHS.REJECTED_FAMILY,
+	// 	gap: true
+	// },
+	// {
+	// 	title: 'form_response',
+	// 	src: form_icon,
+	// 	link: PATHS.FORM_RESPONSES,
+	// 	gap: true,
+	// },
 	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
 ];
-
+// console.log(AdminMenus);
 const UserMenus = [
 	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
 	{ title: 'families', src: families, link: PATHS.FAMILIES },
-	{ title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
-	{
-		title: 'credit_cards',
-		src: credit_card,
-		link: PATHS.CREDIT_CARDS,
-		gap: true,
-	},
-	{ title: 'settings', src: setting_icon, link: PATHS.SETTING },
+	// { title: 'sponsoring', src: sponsor, link: PATHS.SPONSORING },
+	{ title: 'chat', src: chat, link: PATHS.CHAT_FOR_LOGIN },
+	{ title: 'settings', src: setting_icon, link: PATHS.SETTING, gap: true },
 	{ title: 'logout', src: logout, link: PATHS.LOGIN },
+];
+const FamilyMenus = [
+	{ title: 'dashboard', src: dashboard, link: PATHS.DASHBOARD, gap: true },
+	{ title: 'sponsors', src: families, link: PATHS.FAMILY_SPONSOR, gap: true },
+	{ title: 'chat', src: chat, link: PATHS.CHAT_FOR_LOGIN },
+	{ title: 'settings', src: setting_icon, link: PATHS.FAMILY_SETTINGS, gap: true },
+	{ title: 'logout', src: logout, link: PATHS.LOGIN_FAMILY },
 ];
 
 type SideBarHeaderProps = {
@@ -109,7 +133,7 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 				alt=""
 				src={sidebar_icon}
 				className={`w-5 cursor-pointer ${
-					dir === 'rtl' ? 'rotate-180' : 'rotate-0'
+					dir === 'rtl' ? 'rotate-0' : 'rotate-180'
 				}`}
 				width={50}
 				height={50}
@@ -122,20 +146,35 @@ const SideBarHeader = (props: SideBarHeaderProps) => {
 const LeftSideBar = () => {
 	const [active, setActive] = useState('/');
 	const size = useWindowSize();
+	const pathname = usePathname();
+	const currentPath = pathname?.slice(3);
 	const [open, setOpen] = useState(size.width > 768);
-	const [user, setUser] = useState<{ name: string; email: string } | null>(
-		null,
-	);
+	const [user, setUser] = useState<{
+		name: string;
+		email: string;
+		id: string;
+		role: string;
+		uniqueId: any;
+	} | null>(null);
 	const [clickedMenu, setClickedMenu] = useState<number | null>(null);
 	const [isAdmin, setIsAdmin] = useState(false);
+	const [isFamily, setIsFamily] = useState(false);
 	const { logoutUser } = useAuth();
 
 	const { url, locale, dir, replace } = useLocaleRouter();
 
 	useEffect(() => {
 		const user = getUserFromLocalStorage();
-		if (user && user.role === 'admin') {
+		// console.log('uses', user);
+		if (user && user?.role === 'admin') {
 			setIsAdmin(true);
+			setUser(user);
+		}
+		if (user && user?.role === 'user') {
+			setUser(user);
+		}
+		if (user && user?.role === 'family') {
+			setIsFamily(true);
 			setUser(user);
 		}
 		const pathname = window.location.pathname;
@@ -152,12 +191,13 @@ const LeftSideBar = () => {
 		logoutUser();
 	};
 
-	const menus = isAdmin ? AdminMenus : UserMenus;
+	// const menus = isAdmin ? AdminMenus : UserMenus;
+	const menus = isAdmin ? AdminMenus : isFamily ? FamilyMenus : UserMenus;
 
 	return (
 		<div className="flex min-h-[100vh]" dir={dir}>
 			<div
-				className={`fixed bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
+				className={` bg-white max-h-fit overflow-y-hidden p-5 pt-8 relative duration-300 shadow-lg ${
 					open ? 'w-[270px]' : 'w-20 '
 				}`}
 			>
@@ -166,19 +206,38 @@ const LeftSideBar = () => {
 					handleOpen={() => setOpen(true)}
 					handleClose={() => setOpen(false)}
 				/>
-				<div className="flex-col flex mx-auto items-center justify-center mt-[40px]">
-					<Image
-						src={profile}
-						alt={''}
-						className="h-[50px] w-[50px] rounded-full mt-2"
-					/>
-					<p className={`${!open && 'hidden'} font-bold text-[14px] mt-2`}>
-						{user ? user.name : ''}
+				<div className="flex-col flex gap-3 mx-auto items-center justify-center mt-[40px]">
+					<div className=" flex flex-col items-center gap-3">
+						<p
+							className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}
+						>
+							{user ? user?.name?.toUpperCase() : ''}					
+						</p>
+
+					<p className={`${!open && 'hidden'} font-bold text-[14px] cursor-pointer navbar-link`}>
+						{
+							user?.role === "family" ? user?.email: ''
+						}
 					</p>
+						<div
+							className={`font-bold text-[14px] cursor-pointer rounded-lg px-4 py-1 ${
+								!open && 'hidden'
+							} ${user?.role === 'admin' ? 'bg-[#95dca9]' : ''}`}
+						>
+							{user?.role === 'admin' ? 'Admin' : ''}
+							<p>
+								{user?.role === 'user' && (
+									<p className="navbar-link">
+										{t('specialId')} : {user?.uniqueId}
+									</p>
+								)}
+							</p>
+						</div>
+					</div>
 					<p
 						className={`${
 							!open || isAdmin ? 'hidden' : ''
-						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px] mt-1`}
+						} rounded-lg bg-[#95dca9] px-4 py-1 text-[10px]`}
 					>
 						{t('verified')}
 					</p>
@@ -198,7 +257,7 @@ const LeftSideBar = () => {
 								}}
 							>
 								<li
-									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg-light-white text-black text-[16px] items-center gap-x-4 ${
+									className={`flex-col mt-2 rounded-md p-2 cursor-pointer hover:bg- hover:text-white text-[16px] items-center gap-x-4  ${
 										index === 0 && 'bg-light-white'
 									}  ${active !== menu.link && 'text-primary'}`}
 								>
@@ -213,8 +272,8 @@ const LeftSideBar = () => {
 										<div
 											className={`${
 												!open && 'hidden'
-											} text-black origin-left duration-200 text-[16px] font-[400] ${
-												clickedMenu === index
+											} text-black origin-left text-[16px] font-[400] dashboard-link hover:text-[17px] transition-all duration-300 ${
+												currentPath === menu.link
 													? 'text-primary font-semibold'
 													: ''
 											}  ${

@@ -87,7 +87,7 @@ const AdminDashboard = () => {
 						<h2 className="text-black text-[24px] flex items-center w-full my-4 font-bold">
 							{t('section1')}
 						</h2>
-						<div
+						{/* <div
 							className="gap-x-4 flex flex-row w-fit min-w-[160px] text-white bg-primary  cursor-pointer rounded-md  border-main font-bold py-2 px-4  h-[50px] justify-center items-center"
 							onClick={() => {
 								// setDeleteOpenModal(true);
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
 							<button className="text-[14px] text-white">
 								{t('add_user')}
 							</button>
-						</div>
+						</div> */}
 					</div>
 					<div className="px-4">
 						<Table data={data} columns={DASHBOARDCOLUMN} />
